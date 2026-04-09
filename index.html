@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Everblue Sea Institute for Social Dynamics | 늘푸른바다 사회동역학 연구소</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0f0d;
+  --bg2: #0f1a15;
+  --card: #111a14;
+  --border: rgba(201,168,76,0.15);
+  --gold: #C9A84C;
+  --gold-dim: rgba(201,168,76,0.4);
+  --green: #2C4A3E;
+  --green-light: #3d6b5a;
+  --cream: #f5f0e8;
+  --text: #e8e0d0;
+  --text-sub: #9e9080;
+  --text-mute: #5a5248;
+  --red: #b94040;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 15px;
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+
+/* NOISE OVERLAY */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.4;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 20px 48px;
+  background: linear-gradient(180deg, rgba(10,15,13,0.95) 0%, transparent 100%);
+  backdrop-filter: blur(8px);
+}
+.nav-logo {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 700;
+  color: var(--gold); letter-spacing: 2px;
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 1.5px;
+  color: var(--text-sub); text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--gold); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: flex-start;
+  padding: 120px 48px 80px;
+  position: relative; overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(44,74,62,0.25) 0%, transparent 70%),
+              radial-gradient(ellipse 40% 40% at 80% 70%, rgba(201,168,76,0.06) 0%, transparent 60%);
+}
+
+/* Attractor SVG */
+.attractor {
+  position: absolute; right: -5%; top: 50%; transform: translateY(-50%);
+  width: 55%; opacity: 0.12;
+  animation: rotate-slow 60s linear infinite;
+}
+@keyframes rotate-slow { from { transform: translateY(-50%) rotate(0deg); } to { transform: translateY(-50%) rotate(360deg); } }
+
+.hero-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 700; letter-spacing: 3px;
+  color: var(--gold); text-transform: uppercase;
+  border: 1px solid var(--gold-dim);
+  padding: 5px 14px; border-radius: 2px;
+  margin-bottom: 32px;
+  display: inline-block;
+  animation: fadeUp 1s ease both;
+}
+
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(48px, 7vw, 96px);
+  font-weight: 300; line-height: 1.1;
+  color: var(--cream);
+  margin-bottom: 16px;
+  animation: fadeUp 1s ease 0.15s both;
+}
+.hero h1 em { font-style: italic; color: var(--gold); }
+
+.hero-kr {
+  font-size: 16px; font-weight: 300;
+  color: var(--text-sub); letter-spacing: 2px;
+  margin-bottom: 40px;
+  animation: fadeUp 1s ease 0.3s both;
+}
+
+.hero-desc {
+  max-width: 520px;
+  font-size: 14px; line-height: 1.9;
+  color: var(--text-sub);
+  margin-bottom: 48px;
+  animation: fadeUp 1s ease 0.45s both;
+}
+
+.hero-coords {
+  display: flex; gap: 24px; flex-wrap: wrap;
+  margin-bottom: 48px;
+  animation: fadeUp 1s ease 0.6s both;
+}
+.coord {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; text-align: center;
+  padding: 12px 20px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: rgba(44,74,62,0.1);
+}
+.coord .cv { font-size: 22px; font-weight: 700; color: var(--gold); display: block; }
+.coord .cl { font-size: 9px; color: var(--text-mute); letter-spacing: 1px; margin-top: 2px; }
+
+.hero-cta {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  animation: fadeUp 1s ease 0.75s both;
+}
+.btn-primary {
+  background: var(--gold); color: var(--bg);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 700; letter-spacing: 2px;
+  padding: 14px 32px; border-radius: 2px;
+  text-decoration: none; text-transform: uppercase;
+  transition: opacity 0.3s;
+}
+.btn-primary:hover { opacity: 0.85; }
+.btn-outline {
+  border: 1px solid var(--gold-dim); color: var(--gold);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 2px;
+  padding: 14px 32px; border-radius: 2px;
+  text-decoration: none; text-transform: uppercase;
+  transition: border-color 0.3s, background 0.3s;
+}
+.btn-outline:hover { border-color: var(--gold); background: rgba(201,168,76,0.08); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* SCROLL INDICATOR */
+.scroll-ind {
+  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 2px; color: var(--text-mute);
+  animation: fadeUp 1s ease 1s both;
+}
+.scroll-line {
+  width: 1px; height: 48px;
+  background: linear-gradient(180deg, var(--gold-dim), transparent);
+  animation: scroll-pulse 2s ease infinite;
+}
+@keyframes scroll-pulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
+
+/* SECTIONS */
+section { padding: 100px 48px; position: relative; }
+.sec-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 3px; color: var(--gold);
+  text-transform: uppercase; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.sec-label::before {
+  content: ''; display: block;
+  width: 32px; height: 1px; background: var(--gold-dim);
+}
+.sec-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 300; line-height: 1.2;
+  color: var(--cream); margin-bottom: 48px;
+}
+.sec-title em { font-style: italic; color: var(--gold); }
+
+/* FRAMEWORK SECTION */
+.framework { background: var(--bg2); }
+.formula-display {
+  background: rgba(44,74,62,0.15);
+  border: 1px solid var(--border);
+  border-radius: 8px; padding: 32px 36px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; line-height: 2.2;
+  margin-bottom: 32px;
+  position: relative; overflow: hidden;
+}
+.formula-display::before {
+  content: 'Λ¹¹';
+  position: absolute; right: 24px; top: 16px;
+  font-size: 64px; font-weight: 700; color: var(--gold);
+  opacity: 0.06; letter-spacing: -2px;
+}
+.f-gold { color: var(--gold); font-weight: 700; }
+.f-dim { color: var(--text-mute); }
+
+.var-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px; margin-top: 32px;
+}
+.var-chip {
+  border: 1px solid var(--border);
+  border-radius: 6px; padding: 14px 18px;
+  background: rgba(255,255,255,0.02);
+}
+.var-chip .vc { font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 700; color: var(--gold); }
+.var-chip .vn { font-size: 11px; color: var(--text-sub); margin-top: 4px; }
+.var-chip .vt { font-size: 9px; color: var(--text-mute); margin-top: 2px; font-family: 'JetBrains Mono', monospace; }
+
+/* RESEARCH SECTION */
+.research-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.research-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px; padding: 32px;
+  position: relative; overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s;
+  text-decoration: none; color: inherit;
+  display: block;
+}
+.research-card:hover { border-color: var(--gold-dim); transform: translateY(-4px); }
+.research-card::after {
+  content: '→';
+  position: absolute; right: 28px; bottom: 28px;
+  font-size: 20px; color: var(--gold-dim);
+  transition: color 0.3s, right 0.3s;
+}
+.research-card:hover::after { color: var(--gold); right: 24px; }
+.rc-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 2px;
+  color: var(--gold); border: 1px solid var(--gold-dim);
+  padding: 3px 10px; border-radius: 2px;
+  display: inline-block; margin-bottom: 16px;
+}
+.rc-flag { font-size: 28px; margin-bottom: 12px; display: block; }
+.rc-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 400;
+  color: var(--cream); margin-bottom: 10px; line-height: 1.3;
+}
+.rc-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: var(--text-mute); letter-spacing: 1px;
+}
+.rc-scores {
+  display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap;
+}
+.rc-score {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: var(--text-sub);
+  background: rgba(201,168,76,0.08);
+  border: 1px solid rgba(201,168,76,0.2);
+  padding: 3px 10px; border-radius: 3px;
+}
+
+/* SSRN CARD */
+.ssrn-card {
+  background: linear-gradient(135deg, var(--green) 0%, #1a3028 100%);
+  border-radius: 12px; padding: 48px;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 32px; align-items: center;
+  margin-top: 48px;
+}
+.ssrn-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-weight: 300;
+  color: var(--cream); margin-bottom: 12px; line-height: 1.3;
+}
+.ssrn-id {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: var(--gold); letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+.ssrn-desc { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.8; max-width: 480px; }
+
+/* CHANNELS */
+.channels { background: var(--bg2); }
+.channel-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+.channel-card {
+  border: 1px solid var(--border);
+  border-radius: 10px; padding: 28px 24px;
+  background: rgba(255,255,255,0.02);
+  text-decoration: none; color: inherit;
+  transition: border-color 0.3s, background 0.3s;
+  display: block;
+}
+.channel-card:hover { border-color: var(--gold-dim); background: rgba(201,168,76,0.04); }
+.ch-icon { font-size: 28px; margin-bottom: 14px; display: block; }
+.ch-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+  color: var(--gold); text-transform: uppercase; margin-bottom: 8px;
+}
+.ch-desc { font-size: 12px; color: var(--text-sub); line-height: 1.7; }
+.ch-url { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-mute); margin-top: 12px; }
+
+/* ABOUT */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+.about-text { font-size: 14.5px; line-height: 1.95; color: var(--text-sub); }
+.about-text p { margin-bottom: 20px; }
+.about-text strong { color: var(--cream); font-weight: 500; }
+.sig {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px; font-weight: 300; font-style: italic;
+  color: var(--gold); margin-top: 32px;
+}
+.sig-sub { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-mute); letter-spacing: 2px; margin-top: 8px; }
+
+.axiom-list { list-style: none; }
+.axiom-list li {
+  border-left: 2px solid var(--gold-dim);
+  padding: 16px 20px; margin-bottom: 12px;
+  background: rgba(201,168,76,0.04);
+  border-radius: 0 6px 6px 0;
+}
+.axiom-list li .ax-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: var(--gold); letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.axiom-list li .ax-text { font-size: 13px; color: var(--text-sub); line-height: 1.7; }
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 48px;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 32px; align-items: end;
+}
+.footer-left .fl-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px; font-weight: 300; color: var(--cream);
+  margin-bottom: 8px;
+}
+.footer-left .fl-sub { font-size: 12px; color: var(--text-mute); }
+.footer-right {
+  text-align: right;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: var(--text-mute); line-height: 2;
+}
+.footer-right a { color: var(--gold); text-decoration: none; }
+.disclaimer {
+  margin-top: 24px; padding-top: 24px;
+  border-top: 1px solid var(--border);
+  font-size: 11px; color: var(--text-mute);
+  grid-column: 1 / -1; text-align: center;
+  font-weight: 700; color: var(--gold);
+  font-family: 'JetBrains Mono', monospace; letter-spacing: 0.3px;
+}
+
+@media (max-width: 768px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  section { padding: 80px 24px; }
+  .hero { padding: 100px 24px 60px; }
+  .attractor { display: none; }
+  .research-grid { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .ssrn-card { grid-template-columns: 1fr; }
+  footer { grid-template-columns: 1fr; }
+  .footer-right { text-align: left; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">ESID · Λ¹¹</a>
+  <ul class="nav-links">
+    <li><a href="#framework">Framework</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#channels">Publications</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <!-- Lorenz Attractor SVG -->
+  <svg class="attractor" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#C9A84C" stroke-width="0.8">
+      <path d="M250,180 C320,120 420,150 400,220 C380,290 280,300 270,240 C260,180 340,140 380,180 C420,220 410,310 360,330 C310,350 220,310 210,260 C200,210 270,180 310,200 C350,220 370,280 340,310 C310,340 250,330 230,290 C210,250 240,210 270,210 C300,210 330,240 320,270 C310,300 270,310 250,290 C230,270 240,240 260,240 C280,240 290,270 270,280"/>
+      <path d="M250,250 C180,200 140,260 160,310 C180,360 250,360 280,320 C310,280 290,220 250,210 C210,200 170,230 170,270 C170,310 210,340 250,330 C290,320 310,280 300,250 C290,220 260,210 240,230 C220,250 230,280 250,280 C270,280 280,260 270,245"/>
+      <ellipse cx="250" cy="250" rx="180" ry="140" stroke-dasharray="4,8" opacity="0.3"/>
+      <ellipse cx="250" cy="250" rx="120" ry="90" stroke-dasharray="2,12" opacity="0.2"/>
+    </g>
+    <circle cx="250" cy="250" r="4" fill="#C9A84C" opacity="0.6"/>
+  </svg>
+
+  <div class="hero-tag">Λ¹¹ · 11-Dimensional Sociodynamic Coordinate System</div>
+
+  <h1>Everblue<br><em>Sea Institute</em><br>for Social Dynamics</h1>
+  <p class="hero-kr">늘푸른바다 사회동역학 연구소</p>
+
+  <p class="hero-desc">
+    An independent research institute applying chaos theory, fractal geometry,
+    and attractor dynamics to the empirical measurement of social instability.
+    All variables are derived exclusively from public data — fully reproducible.
+  </p>
+
+  <div class="hero-coords">
+    <div class="coord"><span class="cv">BRI</span><span class="cl">Behavioral Risk Index</span></div>
+    <div class="coord"><span class="cv">SSI</span><span class="cl">Social Stability Index</span></div>
+    <div class="coord"><span class="cv">GPI</span><span class="cl">Societal Direction Vector</span></div>
+    <div class="coord"><span class="cv">11</span><span class="cl">Dimensions</span></div>
+  </div>
+
+  <div class="hero-cta">
+    <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6509200" target="_blank" class="btn-primary">Read the Paper — SSRN 6509200</a>
+    <a href="https://badaegopa.tistory.com" target="_blank" class="btn-outline">Research Blog</a>
+  </div>
+
+  <div class="scroll-ind">
+    <div class="scroll-line"></div>
+    <span>SCROLL</span>
+  </div>
+</section>
+
+<!-- FRAMEWORK -->
+<section class="framework" id="framework">
+  <div class="sec-label">Λ¹¹ Framework</div>
+  <h2 class="sec-title">The Master <em>Formula</em></h2>
+
+  <div class="formula-display">
+    <span class="f-gold">BRI_v35</span> = [ T·α·δ + Σᵢ(Cᵢ·βᵢ) − Σⱼ(Sⱼ·γ) ] / N<br><br>
+    <span class="f-dim">T  : Trigger variable score &nbsp;·&nbsp; α : Trigger weight = 1.8</span><br>
+    <span class="f-dim">δ  : Trigger character coefficient &nbsp;·&nbsp; Cᵢ : Chain variables &nbsp;·&nbsp; Sⱼ : Buffer variables</span><br>
+    <span class="f-dim">N  : Normalization constant = α + Σβᵢ − Σγ = 7.5</span><br><br>
+    <span class="f-gold">τ = BRI / SSI &nbsp;·&nbsp; GPI = Δ(Social Cohesion) / Δt</span>
+  </div>
+
+  <div class="var-grid">
+    <div class="var-chip"><div class="vc">F₁</div><div class="vn">Institutional Distrust</div><div class="vt">TRIGGER · β=1.0</div></div>
+    <div class="var-chip"><div class="vc">SR</div><div class="vn">Self-Correction Rate</div><div class="vt">TRIGGER · β=1.0</div></div>
+    <div class="var-chip"><div class="vc">A₁</div><div class="vn">Social Anxiety Index</div><div class="vt">TRIGGER · β=1.0</div></div>
+    <div class="var-chip"><div class="vc">P₁</div><div class="vn">Economic Pressure</div><div class="vt">CHAIN · β=1.0</div></div>
+    <div class="var-chip"><div class="vc">P₂</div><div class="vn">Housing Pressure</div><div class="vt">CHAIN · β=1.0</div></div>
+    <div class="var-chip"><div class="vc">F₂</div><div class="vn">Political Fragmentation</div><div class="vt">CHAIN · β=1.0</div></div>
+    <div class="var-chip"><div class="vc">LPI</div><div class="vn">Leader Power Index</div><div class="vt">CHAIN · β=1.0</div></div>
+    <div class="var-chip"><div class="vc">AMI</div><div class="vn">Alliance Military Index</div><div class="vt">CHAIN · β=0.8</div></div>
+    <div class="var-chip"><div class="vc">GCI</div><div class="vn">Geopolitical Conflict Impact</div><div class="vt">CHAIN · β=0.8</div></div>
+    <div class="var-chip"><div class="vc">SC₁</div><div class="vn">Civil Society Capacity</div><div class="vt">BUFFER · γ=0.3</div></div>
+    <div class="var-chip"><div class="vc">SC₂</div><div class="vn">Constitutional Order</div><div class="vt">BUFFER · γ=0.3</div></div>
+    <div class="var-chip"><div class="vc">SC₃</div><div class="vn">Welfare State Residual</div><div class="vt">BUFFER · γ=0.3</div></div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="sec-label">Country Analysis</div>
+  <h2 class="sec-title">Sociodynamic <em>Coordinates</em></h2>
+
+  <div class="research-grid">
+    <a href="https://badaegopa.tistory.com" target="_blank" class="research-card">
+      <span class="rc-flag">🇩🇪</span>
+      <div class="rc-tag">Λ¹¹ v3.5 · 2026.04</div>
+      <div class="rc-title">Germany — The Efficiency Paradox</div>
+      <div class="rc-meta">SR-TRIGGER ACTIVATED · Instability Zone</div>
+      <div class="rc-scores">
+        <span class="rc-score">BRI 6.91</span>
+        <span class="rc-score">SSI 0.58</span>
+        <span class="rc-score">GPI −0.041</span>
+      </div>
+    </a>
+    <a href="https://badaegopa.tistory.com" target="_blank" class="research-card">
+      <span class="rc-flag">🌐</span>
+      <div class="rc-tag">Λ¹¹ · Ongoing</div>
+      <div class="rc-title">Multi-Country Comparative Analysis</div>
+      <div class="rc-meta">Middle East · East Asia · Europe</div>
+      <div class="rc-scores">
+        <span class="rc-score">12-Variable Radar</span>
+        <span class="rc-score">Phase-Space</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="ssrn-card">
+    <div>
+      <div class="ssrn-id">SSRN ABSTRACT ID 6509200</div>
+      <div class="ssrn-title">BRI · SSI · GPI Triple-Coordinate Framework for Measuring Social Instability</div>
+      <p class="ssrn-desc">The foundational paper establishing the Λ¹¹ sociodynamic coordinate system. Introduces the 11-dimensional measurement framework based on chaos theory, attractor dynamics, and fractal self-similarity across social systems.</p>
+    </div>
+    <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6509200" target="_blank" class="btn-primary" style="white-space:nowrap;">Read on SSRN →</a>
+  </div>
+</section>
+
+<!-- CHANNELS -->
+<section class="channels" id="channels">
+  <div class="sec-label">Publications & Channels</div>
+  <h2 class="sec-title">Where to Find <em>Our Work</em></h2>
+
+  <div class="channel-grid">
+    <a href="https://badaegopa.tistory.com" target="_blank" class="channel-card">
+      <span class="ch-icon">📊</span>
+      <div class="ch-name">Tistory Blog</div>
+      <div class="ch-desc">Primary research hub. Full HTML analyses with formulae, data tables, radar charts, and phase-space diagrams.</div>
+      <div class="ch-url">badaegopa.tistory.com</div>
+    </a>
+    <a href="https://brunch.co.kr/@badaegopa" target="_blank" class="channel-card">
+      <span class="ch-icon">✍️</span>
+      <div class="ch-name">Brunch</div>
+      <div class="ch-desc">Observer essays. Socratic analysis of leadership, geopolitics, and social phenomena in narrative form.</div>
+      <div class="ch-url">brunch.co.kr/@badaegopa</div>
+    </a>
+    <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6509200" target="_blank" class="channel-card">
+      <span class="ch-icon">📄</span>
+      <div class="ch-name">SSRN</div>
+      <div class="ch-desc">Academic papers. The Λ¹¹ framework and its theoretical foundations. Open access.</div>
+      <div class="ch-url">SSRN Abstract ID 6509200</div>
+    </a>
+    <a href="#" class="channel-card">
+      <span class="ch-icon">🎬</span>
+      <div class="ch-name">YouTube</div>
+      <div class="ch-desc">Video briefings and analysis. NotebookLM Pro synthesized content. AI announcer 바다.</div>
+      <div class="ch-url">Coming Soon</div>
+    </a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="sec-label">About the Researcher</div>
+  <h2 class="sec-title">A <em>Way of Seeing</em>,<br>Not Conclusions</h2>
+
+  <div class="about-grid">
+    <div class="about-text">
+      <p>The Everblue Sea Institute for Social Dynamics was founded on a single conviction: that <strong>social instability is measurable</strong> — not through intuition or ideology, but through rigorous, reproducible mathematics derived entirely from public data.</p>
+      <p>The Λ¹¹ framework draws on <strong>chaos theory, fractal self-similarity, and attractor dynamics</strong> — the same structures that govern turbulent fluids, biological systems, and cosmic evolution — and applies them to the empirical analysis of human societies.</p>
+      <p>The institute does not offer predictions. It offers <strong>coordinates</strong> — precise measurements of where a society stands in its phase space, and what forces are acting upon it. The observer's role is to ask better questions.</p>
+      <p>This work follows the Socratic tradition: leaving behind a <em>way of seeing</em> rather than a set of conclusions.</p>
+      <div class="sig">청해(淸海)</div>
+      <div class="sig-sub">Director · Everblue Sea Institute · Ulsan, Korea</div>
+    </div>
+    <div>
+      <ul class="axiom-list">
+        <li>
+          <div class="ax-num">AXIOM Ⅰ</div>
+          <div class="ax-text">Mass Conservation — Social energy is neither created nor destroyed; it is transformed and redistributed across system layers.</div>
+        </li>
+        <li>
+          <div class="ax-num">AXIOM Ⅱ</div>
+          <div class="ax-text">Observer Limits — No single actor within a social system can possess complete information about that system's state.</div>
+        </li>
+        <li>
+          <div class="ax-num">AXIOM Ⅲ</div>
+          <div class="ax-text">Self-Similar Perturbation Transition — Instability patterns at the micro-scale are structurally isomorphic to those at the macro-scale.</div>
+        </li>
+        <li>
+          <div class="ax-num">AXIOM Ⅳ</div>
+          <div class="ax-text">Self-Correction Capacity — Every social system possesses an intrinsic capacity for self-correction, bounded by the SR threshold.</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <div class="fl-name">Everblue Sea Institute for Social Dynamics</div>
+    <div class="fl-sub">늘푸른바다 사회동역학 연구소 · 청해(淸海) · Ulsan, Korea · 2026</div>
+  </div>
+  <div class="footer-right">
+    <a href="https://badaegopa.tistory.com" target="_blank">badaegopa.tistory.com</a><br>
+    <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6509200" target="_blank">SSRN 6509200</a><br>
+    <a href="mailto:giseub12@gmail.com">giseub12@gmail.com</a><br>
+    everbluesea.org
+  </div>
+  <div class="disclaimer">
+    All analyses are grounded in publicly accessible academic sources and official statistical publications. Independent observer analysis. All variable values are fully reproducible through public formulae.
+  </div>
+</footer>
+
+</body>
+</html>
