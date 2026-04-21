@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>SEISMOS — 대한민국 사회구조 분석 플랫폼</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#F5F3EE;font-family:Georgia,'Times New Roman',serif;overflow-x:hidden;}
+
+/* 헤더 */
+.hdr{background:#3A6A5E;color:#fff;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;}
+.hdr-logo{font-family:'Courier New',monospace;font-size:16px;font-weight:700;letter-spacing:2px;color:#C8E0D8;}
+.hdr-sub{font-size:11px;color:#9FD0C4;font-family:'Courier New',monospace;}
+.hdr-badge{font-size:10px;background:#2A5A4A;color:#9FD0C4;padding:4px 12px;border-radius:20px;font-family:'Courier New',monospace;}
+
+/* 메인 레이아웃 */
+.main{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 50px);}
+
+/* 지도 패널 */
+.map-panel{background:#F0EDE6;border-right:1px solid #D0CAC0;padding:16px;position:relative;}
+.map-title{font-family:'Courier New',monospace;font-size:11px;color:#5E9186;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+.breadcrumb{font-size:12px;color:#888;margin-bottom:10px;}
+.breadcrumb span{color:#3A6A5E;font-weight:700;}
+#backBtn{display:none;font-size:11px;background:#EDE9E0;border:1px solid #C0BAB0;border-radius:20px;padding:4px 14px;cursor:pointer;color:#5E9186;font-family:'Courier New',monospace;margin-bottom:8px;}
+#backBtn:hover{background:#D0CAC0;}
+
+/* SVG 지도 */
+#mapSvg{width:100%;cursor:pointer;}
+.province{fill:#C8D8C8;stroke:#F5F3EE;stroke-width:0.8px;cursor:pointer;transition:fill 0.2s;}
+.province:hover{fill:#A8C0A8;}
+.province.ulsan{fill:#5E9186;stroke:#3A6A5E;stroke-width:1.5px;}
+.province.ulsan:hover{fill:#4A8070;}
+.province.dimmed{fill:#DDD8D0;opacity:0.4;}
+.prov-label{font-size:8px;fill:#3A6A5E;pointer-events:none;font-family:'Courier New',monospace;}
+.ulsan-label{font-size:9px;fill:#fff;pointer-events:none;font-family:'Courier New',monospace;font-weight:700;}
+
+/* 울산 구 지도 */
+.gu{stroke:#F5F3EE;stroke-width:1px;cursor:pointer;transition:fill 0.2s;}
+.gu:hover{opacity:0.8;}
+.gu-label{font-size:11px;fill:#2A3A2E;pointer-events:none;font-family:'Courier New',monospace;font-weight:700;}
+
+/* 오른쪽 패널 */
+.info-panel{padding:16px;display:flex;flex-direction:column;gap:10px;overflow-y:auto;}
+.panel-title{font-family:'Courier New',monospace;font-size:11px;color:#5E9186;letter-spacing:2px;text-transform:uppercase;}
+
+/* 초기 안내 */
+.init-box{background:#EDE9E0;border-radius:8px;padding:16px;text-align:center;}
+.init-hint{font-size:12px;color:#5E9186;line-height:1.8;}
+.init-arrow{font-size:24px;color:#B8850E;margin:10px 0;}
+
+/* 4개 구 시뮬레이터 그리드 */
+.sim-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.sim-card{background:#fff;border:1px solid #D0CAC0;border-radius:8px;padding:12px;position:relative;cursor:pointer;transition:border-color 0.2s;}
+.sim-card:hover{border-color:#5E9186;}
+.sim-card.active{border-color:#3A6A5E;border-width:2px;}
+.sim-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:8px 8px 0 0;}
+.sim-card.nam::before{background:#3A6A5E;}
+.sim-card.dong::before{background:#C73E1D;}
+.sim-card.jung::before{background:#9A6800;}
+.sim-card.buk::before{background:#185FA5;}
+.sim-gu{font-size:10px;color:#888;font-family:'Courier New',monospace;margin-bottom:4px;}
+.sim-eta{font-size:26px;font-weight:700;font-family:'Courier New',monospace;}
+.sim-badge{display:inline-block;font-size:9px;padding:2px 7px;border-radius:8px;margin-left:4px;font-family:'Courier New',monospace;font-weight:700;}
+.safe{background:#EAF3DE;color:#27500A;}
+.caution{background:#FFF8DC;color:#7A5500;}
+.alert{background:#FAECE7;color:#712B13;}
+.sim-var{display:flex;align-items:center;gap:4px;margin-top:3px;font-size:10px;color:#888;}
+.sim-bar-bg{flex:1;height:4px;background:#EDE9E0;border-radius:2px;overflow:hidden;}
+.sim-bar{height:100%;border-radius:2px;}
+.sim-val{font-family:'Courier New',monospace;font-size:10px;color:#3A6A5E;min-width:28px;text-align:right;}
+
+/* 상세 박스 */
+.detail-box{background:#fff;border:1px solid #D0CAC0;border-radius:8px;padding:14px;border-top-width:3px;}
+.detail-name{font-size:14px;font-weight:700;margin-bottom:8px;}
+.detail-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #EDE9E0;font-size:12px;}
+.detail-row:last-child{border-bottom:none;}
+.detail-label{color:#888;}
+.detail-val{font-family:'Courier New',monospace;font-weight:700;color:#2A3A2E;}
+.path-list{margin-top:8px;}
+.path-item{font-size:11px;color:#3A6A5E;padding:3px 0;border-left:3px solid #B8D4C8;padding-left:8px;margin-bottom:3px;}
+
+/* warn */
+.warn-box{background:#FFF8E8;border-left:3px solid #B8850E;padding:10px 14px;border-radius:0 6px 6px 0;font-size:11px;color:#7A5500;line-height:1.8;}
+
+/* 푸터 */
+.footer{background:#EDE9E0;border-top:1px solid #D0CAC0;padding:8px 20px;display:flex;justify-content:space-between;font-family:'Courier New',monospace;font-size:10px;color:#888;}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div>
+    <div class="hdr-logo">⚡ SEISMOS</div>
+    <div class="hdr-sub">공공데이터 기반 사회구조 분석 및 지역 경제 활성화 플랫폼</div>
+  </div>
+  <div class="hdr-badge">늘푸른바다 사회동역학 연구소 | SSRN 6509200</div>
+</div>
+
+<div class="main">
+
+  <!-- 왼쪽: 지도 -->
+  <div class="map-panel">
+    <div class="map-title" id="mapTitle">대한민국 광역시·도</div>
+    <div class="breadcrumb" id="breadcrumb">대한민국</div>
+    <button id="backBtn" onclick="goBack()">← 전국 지도로</button>
+
+    <!-- 전국 지도 -->
+    <div id="koreaView">
+      <svg id="mapSvg" viewBox="0 0 300 420">
+        <!-- 경기도 -->
+        <path class="province" d="M95,65 L155,60 L165,80 L160,110 L145,115 L120,112 L95,100 Z" onclick="clickProv('gyeonggi')" id="p-gyeonggi"/>
+        <text class="prov-label" x="130" y="88">경기</text>
+        <!-- 서울 -->
+        <path class="province" d="M118,82 L135,80 L138,92 L120,95 Z" onclick="clickProv('seoul')" id="p-seoul"/>
+        <text class="prov-label" x="124" y="90" font-size="7">서울</text>
+        <!-- 인천 -->
+        <path class="province" d="M90,82 L110,80 L112,95 L88,95 Z" onclick="clickProv('incheon')" id="p-incheon"/>
+        <text class="prov-label" x="92" y="90" font-size="7">인천</text>
+        <!-- 강원 -->
+        <path class="province" d="M158,55 L220,50 L228,115 L165,115 L160,80 Z" onclick="clickProv('gangwon')" id="p-gangwon"/>
+        <text class="prov-label" x="188" y="83">강원</text>
+        <!-- 세종 -->
+        <path class="province" d="M122,115 L135,113 L137,126 L120,128 Z" onclick="clickProv('sejong')" id="p-sejong"/>
+        <text class="prov-label" x="122" y="124" font-size="6">세종</text>
+        <!-- 충북 -->
+        <path class="province" d="M135,113 L175,113 L178,150 L140,155 L135,130 Z" onclick="clickProv('chungbuk')" id="p-chungbuk"/>
+        <text class="prov-label" x="150" y="135">충북</text>
+        <!-- 충남 -->
+        <path class="province" d="M75,115 L120,112 L135,130 L130,168 L80,170 L65,140 Z" onclick="clickProv('chungnam')" id="p-chungnam"/>
+        <text class="prov-label" x="95" y="145">충남</text>
+        <!-- 대전 -->
+        <path class="province" d="M118,128 L135,126 L138,142 L117,144 Z" onclick="clickProv('daejeon')" id="p-daejeon"/>
+        <text class="prov-label" x="118" y="138" font-size="7">대전</text>
+        <!-- 경북 -->
+        <path class="province" d="M175,110 L240,105 L248,190 L200,200 L178,195 L175,160 Z" onclick="clickProv('gyeongbuk')" id="p-gyeongbuk"/>
+        <text class="prov-label" x="205" y="152">경북</text>
+        <!-- 대구 -->
+        <path class="province" d="M188,190 L208,188 L212,208 L186,210 Z" onclick="clickProv('daegu')" id="p-daegu"/>
+        <text class="prov-label" x="188" y="202" font-size="7">대구</text>
+        <!-- 전북 -->
+        <path class="province" d="M68,170 L130,168 L135,210 L80,220 L62,200 Z" onclick="clickProv('jeonbuk')" id="p-jeonbuk"/>
+        <text class="prov-label" x="92" y="196">전북</text>
+        <!-- 전남 -->
+        <path class="province" d="M60,220 L130,215 L132,270 L90,290 L55,265 Z" onclick="clickProv('jeonnam')" id="p-jeonnam"/>
+        <text class="prov-label" x="88" y="252">전남</text>
+        <!-- 광주 -->
+        <path class="province" d="M85,215 L108,213 L110,232 L83,234 Z" onclick="clickProv('gwangju')" id="p-gwangju"/>
+        <text class="prov-label" x="85" y="226" font-size="7">광주</text>
+        <!-- 경남 -->
+        <path class="province" d="M135,210 L200,205 L215,260 L165,278 L130,270 Z" onclick="clickProv('gyeongnam')" id="p-gyeongnam"/>
+        <text class="prov-label" x="165" y="242">경남</text>
+        <!-- 부산 -->
+        <path class="province" d="M205,258 L230,255 L235,278 L205,280 Z" onclick="clickProv('busan')" id="p-busan"/>
+        <text class="prov-label" x="207" y="270" font-size="7">부산</text>
+        <!-- 울산 — 강조 -->
+        <path class="province ulsan" d="M223,198 L250,195 L255,235 L228,238 Z" onclick="clickProv('ulsan')" id="p-ulsan"/>
+        <text class="ulsan-label" x="231" y="215">울산</text>
+        <text class="ulsan-label" x="231" y="226" font-size="7">▼ CLICK</text>
+        <!-- 제주 -->
+        <path class="province" d="M82,310 L138,308 L140,330 L80,332 Z" onclick="clickProv('jeju')" id="p-jeju"/>
+        <text class="prov-label" x="102" y="323">제주</text>
+      </svg>
+    </div>
+
+    <!-- 울산 구단위 지도 -->
+    <div id="ulsanView" style="display:none;">
+      <svg id="ulsanSvg" viewBox="0 0 300 300" style="width:100%;">
+        <!-- 북구 -->
+        <path class="gu" id="gu-buk" fill="#A8C8B8" d="M30,20 L160,18 L162,115 L95,118 L28,112 Z" onclick="clickGu('buk')"/>
+        <text class="gu-label" x="88" y="70">북구</text>
+        <!-- 중구 -->
+        <path class="gu" id="gu-jung" fill="#B8D0C0" d="M28,115 L95,118 L98,175 L45,178 L26,155 Z" onclick="clickGu('jung')"/>
+        <text class="gu-label" x="52" y="150">중구</text>
+        <!-- 동구 -->
+        <path class="gu" id="gu-dong" fill="#90B8A8" d="M162,15 L240,18 L245,130 L165,132 L162,115 Z" onclick="clickGu('dong')"/>
+        <text class="gu-label" x="190" y="75">동구</text>
+        <!-- 남구 -->
+        <path class="gu" id="gu-nam" fill="#C0D8C8" d="M95,118 L245,132 L248,210 L130,215 L96,200 L95,175 Z" onclick="clickGu('nam')"/>
+        <text class="gu-label" x="165" y="170">남구</text>
+        <!-- 울주군 표시 (클릭 불가) -->
+        <path fill="#E0D8CE" stroke="#F5F3EE" stroke-width="1" d="M26,155 L45,178 L96,200 L130,215 L128,270 L40,265 L22,200 Z"/>
+        <text font-size="9" fill="#888" x="60" y="225" font-family="'Courier New',monospace">울주군</text>
+        <!-- 연결선 (선택 시 JS로 그림) -->
+        <g id="connLines"></g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- 오른쪽: 정보 패널 -->
+  <div class="info-panel" id="infoPanel">
+    <div class="panel-title" id="panelTitle">지역 선택</div>
+
+    <!-- 초기 -->
+    <div id="initMsg">
+      <div class="init-box">
+        <div class="init-arrow">▼</div>
+        <div class="init-hint">
+          왼쪽 지도에서 <strong style="color:#3A6A5E;">울산</strong>을 클릭하면<br>
+          4개 구 η 경보 및 시뮬레이터가 시작됩니다
+        </div>
+      </div>
+      <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div style="background:#EDE9E0;border-radius:6px;padding:10px;text-align:center;">
+          <div style="font-size:10px;color:#888;margin-bottom:4px;font-family:'Courier New',monospace;">η 경보구간</div>
+          <div style="font-size:11px;color:#3A6A5E;">안전 · 주의 · 경보 · 위험</div>
+        </div>
+        <div style="background:#EDE9E0;border-radius:6px;padding:10px;text-align:center;">
+          <div style="font-size:10px;color:#888;margin-bottom:4px;font-family:'Courier New',monospace;">분석 변수</div>
+          <div style="font-size:11px;color:#3A6A5E;">η · Ω_MZ · EPI</div>
+        </div>
+      </div>
+      <div style="margin-top:10px;background:#EDE9E0;border-radius:6px;padding:12px;">
+        <div style="font-size:10px;color:#5E9186;margin-bottom:6px;font-family:'Courier New',monospace;letter-spacing:1px;">SEISMOS 4-MODULE</div>
+        <div style="font-size:11px;color:#555;line-height:2;">
+          M1  실시간 경보 대시보드<br>
+          M2  AI 경제처방 리포트<br>
+          M3  청년·인구 압력 히트맵<br>
+          M4  담론육층 AI 챗봇
+        </div>
+      </div>
+      <div class="warn-box" style="margin-top:10px;">
+        <strong>[ Layer 6 원칙 ]</strong><br>
+        AI는 경로를 제시합니다. 판단은 지자체와 시민의 몫입니다.<br>
+        "SEISMOS는 지도를 그립니다. 결정은 사람이 합니다."
+      </div>
+    </div>
+
+    <!-- 울산 진입 후 -->
+    <div id="simMsg" style="display:none;">
+      <div class="sim-grid">
+        <div class="sim-card nam" id="sc-nam" onclick="clickGu('nam')">
+          <div class="sim-gu">남구 · 석유화학</div>
+          <div><span class="sim-eta" style="color:#3A6A5E;">0.31</span><span class="sim-badge safe">안전</span></div>
+          <div class="sim-var"><span style="width:22px;font-family:'Courier New',monospace;">η</span><div class="sim-bar-bg"><div class="sim-bar" style="width:31%;background:#3A6A5E;"></div></div><span class="sim-val">0.31</span></div>
+          <div class="sim-var"><span style="width:22px;font-family:'Courier New',monospace;">Ω</span><div class="sim-bar-bg"><div class="sim-bar" style="width:38%;background:#9A6800;"></div></div><span class="sim-val">0.38</span></div>
+          <div class="sim-var"><span style="width:22px;font-family:'Courier New',monospace;">EPI</span><div class="sim-bar-bg"><div class="sim-bar" style="width:22%;background:#3A6A5E;"></div></div><span class="sim-val">0.22</span></div>
+        </div>
+        <div class="sim-card dong" id="sc-dong" onclick="clickGu('dong')">
+          <div class="sim-gu">동구 · 조선업</div>
+          <div><span class="sim-eta" style="color:#C73E1D;">0.58</span><span class="sim-badge alert">경보</span></div>
+          <div class="sim-var"><span style="width:22px;font-family:'Courier New',monospace;">η</span><div class="sim-bar-bg"><div class="sim-bar" style="width:58%;background:#C73E1D;"></div></div><span class="sim-val">0.58</span></div>
+          <div class="sim-var"><span style="width:22px;font-family:'Courier New',monospace;">Ω</span><div class="sim-bar-bg"><div class="sim-bar" style="width:71%;background:#C73E1D;"></div></div><span class="sim-val">0.71</span></div>
+          <div class="sim-var"><span style="width:22px;font-family:'Courier New',monospace;">EPI</span><div class="sim-bar-bg"><div class="sim-bar" style="width:55%;background:#C73E1D;"></div></div><span class="sim-val">0.55</span></div>
+        </div>
+        <div class="sim-card jung" id="sc-jung" onclick="clickGu('jung')">
+          <div class="sim-gu">중구 · 구도심</div>
+          <div><span class="sim-eta" style="color:#9A6800;">0.44</span><span class="sim-badge caution">주의</span></div>
+          <div class="sim-var"><span style="width:22px;font-family:'Courier New',monospace;">η</span><div class="sim-bar-bg"><div class="sim-bar" style="width:44%;background:#9A6800;"></div></div><span class="sim-val">0.44</span></div>
+          <div class="sim-var"><span style="width:22px;font-family:'Courier New',monospace;">Ω</span><div class="sim-bar-bg"><div class="sim-bar" style="width:55%;background:#9A6800;"></div></div><span class="sim-val">0.55</span></div>
+          <div class="sim-var"><span style="width:22px;font-family:'Courier New',monospace;">EPI</span><div class="sim-bar-bg"><div class="sim-bar" style="width:38%;background:#9A6800;"></div></div><span class="sim-val">0.38</span></div>
+        </div>
+        <div class="sim-card buk" id="sc-buk" onclick="clickGu('buk')">
+          <div class="sim-gu">북구 · 자동차</div>
+          <div><span class="sim-eta" style="color:#185FA5;">0.37</span><span class="sim-badge safe">안전</span></div>
+          <div class="sim-var"><span style="width:22px;font-family:'Courier New',monospace;">η</span><div class="sim-bar-bg"><div class="sim-bar" style="width:37%;background:#185FA5;"></div></div><span class="sim-val">0.37</span></div>
+          <div class="sim-var"><span style="width:22px;font-family:'Courier New',monospace;">Ω</span><div class="sim-bar-bg"><div class="sim-bar" style="width:42%;background:#185FA5;"></div></div><span class="sim-val">0.42</span></div>
+          <div class="sim-var"><span style="width:22px;font-family:'Courier New',monospace;">EPI</span><div class="sim-bar-bg"><div class="sim-bar" style="width:29%;background:#185FA5;"></div></div><span class="sim-val">0.29</span></div>
+        </div>
+      </div>
+      <div class="detail-box" id="detailBox" style="display:none;margin-top:8px;"></div>
+      <div style="font-size:11px;color:#9A9A8A;text-align:center;padding:8px;font-style:italic;" id="guHint">구 지도 또는 카드를 클릭하면 상세 분석이 표시됩니다</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <span>늘푸른바다 사회동역학 연구소 | 소장 청해(淸海) | SSRN 6509200</span>
+  <span>badaegopa.tistory.com | everbluesea.org</span>
+</div>
+
+<script>
+const GU={
+  nam:{name:'남구',industry:'석유화학',eta:0.31,omz:0.38,epi:0.22,color:'#3A6A5E',badge:'안전',cls:'safe',
+    pop:'28.9만',elder:'17.3%',youth:'18.2%',
+    paths:['경로A: 석화 R&D 혁신 클러스터','경로B: 수소·그린에너지 전환','경로C: 현상유지 시 η↑ 위험']},
+  dong:{name:'동구',industry:'조선업',eta:0.58,omz:0.71,epi:0.55,color:'#C73E1D',badge:'경보',cls:'alert',
+    pop:'16.6만',elder:'21.4%',youth:'14.8%',
+    paths:['경로A: 조선업 MRO 고도화 (η→0.47)','경로B: 해양드론 신산업 전환 (η→0.35)','경로C: 외국인 정주 여건 개선 (η→0.46)']},
+  jung:{name:'중구',industry:'구도심',eta:0.44,omz:0.55,epi:0.38,color:'#9A6800',badge:'주의',cls:'caution',
+    pop:'22.1만',elder:'19.8%',youth:'16.5%',
+    paths:['경로A: 복합문화지구 재생 (η→0.28)','경로B: 청년창업 허브 (η→0.24)','경로C: 관광상권 특화 (η→0.33)']},
+  buk:{name:'북구',industry:'자동차',eta:0.37,omz:0.42,epi:0.29,color:'#185FA5',badge:'안전',cls:'safe',
+    pop:'18.2만',elder:'12.6%',youth:'20.1%',
+    paths:['경로A: 미래차·자율주행 전환 (η→0.22)','경로B: 스마트팩토리 고도화 (η→0.26)','경로C: 현상유지 시 η↑ 위험']}
+};
+
+let view='korea';
+
+function clickProv(id){
+  if(id!=='ulsan'){
+    d3.selectAll('.province').classed('dimmed',false);
+    d3.selectAll('.province').classed('dimmed',true);
+    d3.select('#p-'+id).classed('dimmed',false).style('fill','#8AAA8A');
+    setTimeout(()=>{d3.selectAll('.province').classed('dimmed',false);},1200);
+    return;
+  }
+  view='ulsan';
+  document.getElementById('koreaView').style.display='none';
+  document.getElementById('ulsanView').style.display='block';
+  document.getElementById('backBtn').style.display='inline-block';
+  document.getElementById('mapTitle').textContent='울산광역시 구단위 지도';
+  document.getElementById('breadcrumb').innerHTML='대한민국 > <span>울산광역시</span>';
+  document.getElementById('initMsg').style.display='none';
+  document.getElementById('simMsg').style.display='block';
+  document.getElementById('panelTitle').textContent='4개 구 η 경보 현황';
+}
+
+function goBack(){
+  view='korea';
+  document.getElementById('koreaView').style.display='block';
+  document.getElementById('ulsanView').style.display='none';
+  document.getElementById('backBtn').style.display='none';
+  document.getElementById('mapTitle').textContent='대한민국 광역시·도';
+  document.getElementById('breadcrumb').innerHTML='대한민국';
+  document.getElementById('initMsg').style.display='block';
+  document.getElementById('simMsg').style.display='none';
+  document.getElementById('panelTitle').textContent='지역 선택';
+  clearConnLines();
+}
+
+function clickGu(gu){
+  const d=GU[gu];
+  document.querySelectorAll('.sim-card').forEach(c=>c.classList.remove('active'));
+  document.getElementById('sc-'+gu).classList.add('active');
+  document.querySelectorAll('.gu').forEach(g=>{g.style.opacity='0.5';});
+  document.getElementById('gu-'+gu).style.opacity='1';
+  document.getElementById('breadcrumb').innerHTML='대한민국 > 울산광역시 > <span>'+d.name+'</span>';
+  document.getElementById('guHint').style.display='none';
+
+  const box=document.getElementById('detailBox');
+  box.style.display='block';
+  box.style.borderTopColor=d.color;
+  box.innerHTML=`
+    <div class="detail-name" style="color:${d.color}">${d.name} — ${d.industry}</div>
+    <div class="detail-row"><span class="detail-label">η 폭발근접지수</span><span class="detail-val" style="color:${d.color}">${d.eta.toFixed(2)} <span class="sim-badge ${d.cls}">${d.badge}</span></span></div>
+    <div class="detail-row"><span class="detail-label">Ω_MZ 세대갈등</span><span class="detail-val">${d.omz.toFixed(2)}</span></div>
+    <div class="detail-row"><span class="detail-label">EPI 폭발근접</span><span class="detail-val">${d.epi.toFixed(2)}</span></div>
+    <div class="detail-row"><span class="detail-label">인구</span><span class="detail-val">${d.pop}</span></div>
+    <div class="detail-row"><span class="detail-label">청년비율</span><span class="detail-val">${d.youth}</span></div>
+    <div class="detail-row"><span class="detail-label">고령화율</span><span class="detail-val">${d.elder}</span></div>
+    <div class="path-list">
+      <div style="font-size:10px;color:#888;margin-bottom:4px;font-family:'Courier New',monospace;">처방 경로 (Layer 1~5)</div>
+      ${d.paths.map(p=>`<div class="path-item">${p}</div>`).join('')}
+    </div>
+    <div style="margin-top:8px;padding:8px;background:#FFF8E8;border-radius:4px;font-size:10px;color:#7A5500;">
+      Layer 6: "이 경로들 중 어느 것이 ${d.name} 시민에게 좌표를 돌려주는가?"<br>
+      <em style="color:#9A6800;">— AI는 여기서 멈춥니다. 판단은 사람의 몫입니다.</em>
+    </div>
+  `;
+  drawConnLine(gu, d.color);
+}
+
+function clearConnLines(){
+  document.getElementById('connLines').innerHTML='';
+}
+
+function drawConnLine(gu, color){
+  clearConnLines();
+  const svg=document.getElementById('ulsanSvg');
+  const vb=svg.viewBox.baseVal;
+  const centers={
+    buk:{x:88,y:68}, dong:{x:195,y:75},
+    jung:{x:52,y:148}, nam:{x:165,y:168}
+  };
+  const guEl=document.getElementById('gu-'+gu);
+  const bbox=guEl.getBBox();
+  const cx=bbox.x+bbox.width/2;
+  const cy=bbox.y+bbox.height/2;
+  const g=document.getElementById('connLines');
+  const ns='http://www.w3.org/2000/svg';
+  [['buk',centers.buk],['dong',centers.dong],['jung',centers.jung],['nam',centers.nam]].forEach(([k,pt])=>{
+    if(k===gu) return;
+    const line=document.createElementNS(ns,'line');
+    line.setAttribute('x1',cx); line.setAttribute('y1',cy);
+    line.setAttribute('x2',pt.x); line.setAttribute('y2',pt.y);
+    line.setAttribute('stroke','#C0BAB0');
+    line.setAttribute('stroke-width','0.8');
+    line.setAttribute('stroke-dasharray','3 3');
+    line.setAttribute('opacity','0.5');
+    g.appendChild(line);
+  });
+  const dot=document.createElementNS(ns,'circle');
+  dot.setAttribute('cx',cx); dot.setAttribute('cy',cy);
+  dot.setAttribute('r','5'); dot.setAttribute('fill',color);
+  dot.setAttribute('opacity','0.8');
+  g.appendChild(dot);
+  const ring=document.createElementNS(ns,'circle');
+  ring.setAttribute('cx',cx); ring.setAttribute('cy',cy);
+  ring.setAttribute('r','9'); ring.setAttribute('fill','none');
+  ring.setAttribute('stroke',color); ring.setAttribute('stroke-width','1.5');
+  ring.setAttribute('opacity','0.5');
+  g.appendChild(ring);
+}
+</script>
+</body>
+</html>
