@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이란 체제 분기 흐름도 — Λ¹² v9.11</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#F5F3EE; display:flex; justify-content:center; padding:16px; }
+svg { max-width:100%; height:auto; display:block; }
+</style>
+</head>
+<body>
+<svg width="760" viewBox="0 0 760 1580" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="ar"   viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#888780" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+<marker id="ar-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#A32D2D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+<marker id="ar-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+</defs>
+<!-- §0 현재 상태 -->
+<rect x="230" y="20" width="300" height="58" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="1"/>
+<text x="380" y="44" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-weight="700" fill="#633806">현재 상태 — 2026.04.29</text>
+<text x="380" y="63" text-anchor="middle" font-family="Courier New,monospace" font-size="11" fill="#854F0B">Λ≈0.60 · TBI 0.665 · F_reach 0.32</text>
+<line x1="380" y1="78" x2="380" y2="106" stroke="#888780" stroke-width="1" marker-end="url(#ar)"/>
+<!-- §1 선택지 -->
+<rect x="240" y="106" width="280" height="44" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.8"/>
+<text x="380" y="133" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#444441">체제 앞에 놓인 경로</text>
+<path d="M240 128 L80 128 L80 178" fill="none" stroke="#0F6E56" stroke-width="1" marker-end="url(#ar-g)"/>
+<text x="160" y="120" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#0F6E56">좋은 방향①</text>
+<path d="M520 128 L660 128 L660 178" fill="none" stroke="#0F6E56" stroke-width="1" marker-end="url(#ar-g)"/>
+<text x="590" y="120" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#0F6E56">좋은 방향②</text>
+<line x1="380" y1="150" x2="380" y2="178" stroke="#888780" stroke-width="1" marker-end="url(#ar)"/>
+<text x="380" y="170" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#888780">트리거 발동</text>
+<!-- 좋은방향① 좌 -->
+<rect x="20" y="178" width="120" height="54" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.8"/>
+<text x="80" y="200" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="700" fill="#085041">종전+제재해제</text>
+<text x="80" y="218" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#0F6E56">경제 회복 시나리오</text>
+<line x1="80" y1="232" x2="80" y2="258" stroke="#A32D2D" stroke-width="0.8" marker-end="url(#ar-r)"/>
+<rect x="20" y="258" width="120" height="64" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.8"/>
+<text x="80" y="278" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="700" fill="#791F1F">구조적 불가</text>
+<text x="80" y="295" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#A32D2D">IRGC 독점 유지</text>
+<text x="80" y="311" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#A32D2D">10년 재건 필요</text>
+<path d="M80 322 L80 366 L240 366" fill="none" stroke="#A32D2D" stroke-width="0.8" stroke-dasharray="4 3" marker-end="url(#ar-r)"/>
+<!-- 좋은방향② 우 -->
+<rect x="600" y="178" width="140" height="54" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.8"/>
+<text x="670" y="200" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="700" fill="#085041">정치 개혁</text>
+<text x="670" y="218" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#0F6E56">민중 대화 시나리오</text>
+<line x1="670" y1="232" x2="670" y2="258" stroke="#A32D2D" stroke-width="0.8" marker-end="url(#ar-r)"/>
+<rect x="600" y="258" width="140" height="64" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.8"/>
+<text x="670" y="278" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="700" fill="#791F1F">구조적 불가</text>
+<text x="670" y="295" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#A32D2D">페제시키안 권한 없음</text>
+<text x="670" y="311" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#A32D2D">모즈타바 더 강경</text>
+<path d="M670 322 L670 366 L520 366" fill="none" stroke="#A32D2D" stroke-width="0.8" stroke-dasharray="4 3" marker-end="url(#ar-r)"/>
+<!-- §2 트리거 -->
+<rect x="240" y="178" width="280" height="54" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="1"/>
+<text x="380" y="200" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#633806">트리거 발동</text>
+<text x="380" y="218" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#854F0B">TBI θ=0.70 돌파 · 잔여 0.035</text>
+<line x1="380" y1="232" x2="380" y2="262" stroke="#888780" stroke-width="1" marker-end="url(#ar)"/>
+<!-- §3 행위자 -->
+<rect x="250" y="262" width="260" height="44" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.8"/>
+<text x="380" y="289" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#444441">발화 행위자 (3유형)</text>
+<path d="M290 306 L160 306 L160 346" fill="none" stroke="#888780" stroke-width="0.8" marker-end="url(#ar)"/>
+<line x1="380" y1="306" x2="380" y2="346" stroke="#888780" stroke-width="0.8" marker-end="url(#ar)"/>
+<path d="M470 306 L600 306 L600 346" fill="none" stroke="#888780" stroke-width="0.8" marker-end="url(#ar)"/>
+<rect x="90" y="346" width="140" height="64" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.8"/>
+<text x="160" y="368" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#712B13">외부 침투자</text>
+<text x="160" y="385" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#993C1D">모사드·CIA·MEK</text>
+<text x="160" y="401" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#993C1D">IRGC 감정 촉발</text>
+<rect x="310" y="346" width="140" height="64" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.8"/>
+<text x="380" y="368" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#633806">내부 불신자</text>
+<text x="380" y="385" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#854F0B">IRGC 이탈·개혁파</text>
+<text x="380" y="401" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#854F0B">발포 거부·정보 유출</text>
+<rect x="530" y="346" width="140" height="64" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.8"/>
+<text x="600" y="368" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#3C3489">민중 자연 발화</text>
+<text x="600" y="385" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#534AB7">굶주림·처형·미지급</text>
+<text x="600" y="401" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#534AB7">조직 없이 폭발</text>
+<path d="M160 410 L160 450 L330 450" fill="none" stroke="#888780" stroke-width="0.8" marker-end="url(#ar)"/>
+<line x1="380" y1="410" x2="380" y2="450" stroke="#888780" stroke-width="0.8" marker-end="url(#ar)"/>
+<path d="M600 410 L600 450 L430 450" fill="none" stroke="#888780" stroke-width="0.8" marker-end="url(#ar)"/>
+<!-- §4 체제 대응 -->
+<rect x="240" y="450" width="280" height="54" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.8"/>
+<text x="380" y="472" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#444441">체제 대응</text>
+<text x="380" y="490" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#5F5E5A">경찰만 투입 — 시간 벌기 전술</text>
+<line x1="380" y1="504" x2="380" y2="534" stroke="#888780" stroke-width="1" marker-end="url(#ar)"/>
+<!-- §5 경찰 한계 -->
+<rect x="220" y="534" width="320" height="64" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="1"/>
+<text x="380" y="556" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#633806">경찰 투입 한계 도달</text>
+<text x="380" y="574" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#854F0B">100만 집결 불가 · IRGC 투입 or 방치 딜레마</text>
+<path d="M240 566 L90 566 L90 618" fill="none" stroke="#A32D2D" stroke-width="1" marker-end="url(#ar-r)"/>
+<text x="164" y="556" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#A32D2D">IRGC 재투입</text>
+<path d="M520 566 L650 566 L650 618" fill="none" stroke="#888780" stroke-width="1" marker-end="url(#ar)"/>
+<text x="586" y="556" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#5F5E5A">방치·회피</text>
+<line x1="380" y1="598" x2="380" y2="618" stroke="#888780" stroke-width="1" marker-end="url(#ar)"/>
+<!-- 좌: IRGC 재투입 -->
+<rect x="20" y="618" width="140" height="64" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.8"/>
+<text x="90" y="640" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#791F1F">IRGC 재투입</text>
+<text x="90" y="657" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#A32D2D">2차 학살 시도</text>
+<text x="90" y="673" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#A32D2D">국제 압력 폭증</text>
+<line x1="90" y1="682" x2="90" y2="712" stroke="#A32D2D" stroke-width="0.8" marker-end="url(#ar-r)"/>
+<rect x="20" y="712" width="140" height="64" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.8"/>
+<text x="90" y="734" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#633806">균열 여부</text>
+<text x="90" y="751" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#854F0B">급여 미지급 지속?</text>
+<text x="90" y="767" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#854F0B">발포 거부 확산?</text>
+<path d="M60 776 L60 820" fill="none" stroke="#A32D2D" stroke-width="0.8" marker-end="url(#ar-r)"/>
+<text x="44" y="802" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#A32D2D">균열</text>
+<path d="M120 776 L120 820" fill="none" stroke="#888780" stroke-width="0.8" marker-end="url(#ar)"/>
+<text x="136" y="802" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#5F5E5A">유지</text>
+<rect x="16" y="820" width="76" height="54" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.8"/>
+<text x="54" y="841" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="700" fill="#791F1F">내부 붕괴</text>
+<text x="54" y="858" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#A32D2D">1979 재현?</text>
+<rect x="98" y="820" width="70" height="54" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.8"/>
+<text x="133" y="841" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="700" fill="#633806">재탄압</text>
+<text x="133" y="858" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#854F0B">사이클 반복</text>
+<path d="M54 874 L54 960 L230 960" fill="none" stroke="#A32D2D" stroke-width="0.8" stroke-dasharray="4 3" marker-end="url(#ar-r)"/>
+<!-- 우: 방치 -->
+<rect x="580" y="618" width="160" height="64" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.8"/>
+<text x="660" y="640" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#444441">시위 방치</text>
+<text x="660" y="657" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#5F5E5A">통제력 공개 붕괴</text>
+<text x="660" y="673" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#5F5E5A">체제 신호 상실</text>
+<line x1="660" y1="682" x2="660" y2="712" stroke="#888780" stroke-width="0.8" marker-end="url(#ar)"/>
+<rect x="580" y="712" width="160" height="54" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.8"/>
+<text x="660" y="734" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#791F1F">통제력 붕괴</text>
+<text x="660" y="751" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#A32D2D">엘리트 탈출 가속</text>
+<path d="M660 766 L660 960 L530 960" fill="none" stroke="#A32D2D" stroke-width="0.8" stroke-dasharray="4 3" marker-end="url(#ar-r)"/>
+<!-- 중앙: 민중 선택 -->
+<rect x="210" y="618" width="340" height="44" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.8"/>
+<text x="380" y="645" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#444441">민중의 선택 분기점</text>
+<path d="M300 662 L270 662 L270 712" fill="none" stroke="#888780" stroke-width="0.8" marker-end="url(#ar)"/>
+<text x="248" y="656" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#5F5E5A">일상 복귀?</text>
+<path d="M460 662 L490 662 L490 712" fill="none" stroke="#888780" stroke-width="0.8" marker-end="url(#ar)"/>
+<text x="512" y="656" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#5F5E5A">지속?</text>
+<!-- 일상 복귀 -->
+<rect x="195" y="712" width="150" height="88" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.8"/>
+<text x="270" y="733" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#0C447C">일상 복귀 시도</text>
+<text x="270" y="751" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#185FA5">돌아갈 일상이</text>
+<text x="270" y="767" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#185FA5">있는가?</text>
+<text x="270" y="785" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#185FA5">F_reach 0.32</text>
+<line x1="270" y1="800" x2="270" y2="830" stroke="#A32D2D" stroke-width="0.8" marker-end="url(#ar-r)"/>
+<rect x="195" y="830" width="150" height="54" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.8"/>
+<text x="270" y="851" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#791F1F">없다</text>
+<text x="270" y="869" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#A32D2D">전쟁 후 극빈</text>
+<path d="M270 884 L270 960 L230 960" fill="none" stroke="#A32D2D" stroke-width="0.8" stroke-dasharray="4 3" marker-end="url(#ar-r)"/>
+<!-- 시위 지속 -->
+<rect x="415" y="712" width="150" height="88" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.8"/>
+<text x="490" y="733" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#712B13">시위 지속</text>
+<text x="490" y="751" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#993C1D">전쟁 중 일상 거부</text>
+<text x="490" y="769" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#993C1D">봉기가 차선</text>
+<text x="490" y="787" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#993C1D">F_reach 0.32</text>
+<line x1="490" y1="800" x2="490" y2="960" stroke="#A32D2D" stroke-width="0.8" marker-end="url(#ar-r)"/>
+<!-- §8 봉기 수렴 -->
+<rect x="170" y="960" width="420" height="60" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="1.5"/>
+<text x="380" y="984" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-weight="700" fill="#791F1F">봉기 — 가장 높은 수렴점</text>
+<text x="380" y="1004" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#A32D2D">시점 미결 · 규모 미결 · 결과 미결</text>
+<line x1="380" y1="1020" x2="380" y2="1050" stroke="#888780" stroke-width="1" marker-end="url(#ar)"/>
+<!-- §9 봉기 이후 -->
+<rect x="240" y="1050" width="280" height="44" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.8"/>
+<text x="380" y="1077" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#444441">봉기 이후 분기 — 미결</text>
+<path d="M265 1094 L110 1094 L110 1138" fill="none" stroke="#888780" stroke-width="0.8" marker-end="url(#ar)"/>
+<path d="M320 1094 L270 1094 L270 1138" fill="none" stroke="#888780" stroke-width="0.8" marker-end="url(#ar)"/>
+<path d="M440 1094 L490 1094 L490 1138" fill="none" stroke="#888780" stroke-width="0.8" marker-end="url(#ar)"/>
+<path d="M495 1094 L650 1094 L650 1138" fill="none" stroke="#888780" stroke-width="0.8" marker-end="url(#ar)"/>
+<rect x="40"  y="1138" width="140" height="64" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.8"/>
+<text x="110" y="1160" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#085041">체제 붕괴</text>
+<text x="110" y="1177" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#0F6E56">이행 정부</text>
+<text x="110" y="1193" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#0F6E56">팔라비? 공화정?</text>
+<rect x="200" y="1138" width="140" height="64" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.8"/>
+<text x="270" y="1160" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#791F1F">2차 학살</text>
+<text x="270" y="1177" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#A32D2D">사이클 반복</text>
+<text x="270" y="1193" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#A32D2D">더 큰 폭발</text>
+<rect x="420" y="1138" width="140" height="64" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.8"/>
+<text x="490" y="1160" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#0C447C">협상 돌파</text>
+<text x="490" y="1177" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#185FA5">제재 해제</text>
+<text x="490" y="1193" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#185FA5">시간 벌기</text>
+<rect x="580" y="1138" width="150" height="64" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.8"/>
+<text x="655" y="1160" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#3C3489">군부 쿠데타</text>
+<text x="655" y="1177" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#534AB7">IRGC 온건파</text>
+<text x="655" y="1193" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#534AB7">내부 권력 교체</text>
+<!-- 수치 패널 -->
+<rect x="30" y="1252" width="700" height="100" rx="8" fill="none" stroke="#DDD8CE" stroke-width="1" stroke-dasharray="5 4"/>
+<text x="380" y="1278" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#444441">핵심 수치 — 현재 임계 위치 (2026.04.29)</text>
+<text x="80"  y="1304" font-family="Courier New,monospace" font-size="11" fill="#A32D2D">TBI 0.665 / θ=0.70 · 잔여 0.035</text>
+<text x="80"  y="1322" font-family="Courier New,monospace" font-size="11" fill="#5F5E5A">F_reach 0.32 / 위험선 0.40 하회</text>
+<text x="80"  y="1340" font-family="Courier New,monospace" font-size="11" fill="#854F0B">PWT-r 0.47 / Λ-Score ≈ 0.60</text>
+<text x="410" y="1304" font-family="Courier New,monospace" font-size="11" fill="#A32D2D">실업 +200만 / 인플레 72%</text>
+<text x="410" y="1322" font-family="Courier New,monospace" font-size="11" fill="#854F0B">처형 612건 (4월 기준)</text>
+<text x="410" y="1340" font-family="Courier New,monospace" font-size="11" fill="#5F5E5A">IRGC 급여 미지급 · SR 임계 근접</text>
+<!-- 미결 서명 -->
+<text x="380" y="1400" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#888780">— 이 아래는 Λ¹²가 답하지 않는다 —</text>
+<text x="380" y="1420" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#888780">민중이 거리에서 결정한다</text>
+<!-- 출처 -->
+<text x="380" y="1460" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#B4B2A9">늘푸른바다 사회동역학 연구소 · Λ¹² v9.11 · SSRN 6509200 · 2026-04-29</text>
+<text x="380" y="1478" text-anchor="middle" font-family="Courier New,monospace" font-size="10" fill="#B4B2A9">badaegopa.tistory.com</text>
+</svg>
+</body>
+</html>
