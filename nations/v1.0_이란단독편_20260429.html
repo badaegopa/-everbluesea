@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이란 Λ¹² 단독편 v1.0 — 늘푸른바다 사회동역학 연구소</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: #F5F3EE;
+  color: #2C2C2C;
+  font-family: Georgia, 'Batang', serif;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, #7BADA0 0%, #5E9186 55%, #3A6A5E 100%);
+  padding: 50px 36px 42px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: 'ایران';
+  position: absolute;
+  right: 24px; top: 16px;
+  font-size: 72px;
+  color: rgba(255,255,255,0.07);
+  font-family: Georgia, serif;
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.16);
+  color: #fff;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  padding: 4px 12px;
+  border-radius: 2px;
+  margin-bottom: 16px;
+  font-family: 'Courier New', monospace;
+}
+.hero-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
+.hero-sub {
+  color: rgba(255,255,255,0.80);
+  font-size: 14px;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.hero-tag {
+  background: rgba(255,255,255,0.14);
+  color: rgba(255,255,255,0.85);
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-family: 'Courier New', monospace;
+}
+
+/* ── CONTAINER ── */
+.wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 22px 64px;
+}
+
+/* ── WARNING BANNER ── */
+.warn {
+  background: #FFF8E7;
+  border-left: 4px solid #B8850E;
+  padding: 14px 20px;
+  margin: 28px 0 0;
+  border-radius: 0 4px 4px 0;
+}
+.warn-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #B8850E;
+  letter-spacing: 1.5px;
+  margin-bottom: 5px;
+  font-family: 'Courier New', monospace;
+}
+.warn p { font-size: 13px; color: #5C4200; line-height: 1.7; }
+
+/* ── SECTION ── */
+.sec-label {
+  display: inline-block;
+  background: #5E9186;
+  color: #fff;
+  font-size: 10px;
+  letter-spacing: 2px;
+  padding: 3px 10px;
+  border-radius: 2px;
+  margin-top: 44px;
+  margin-bottom: 8px;
+  font-family: 'Courier New', monospace;
+}
+.sec-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: #2C2C2C;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #DDD8CE;
+  margin-bottom: 18px;
+  line-height: 1.4;
+}
+.sec-title em { color: #5E9186; font-style: normal; }
+
+/* ── PROSE ── */
+.prose { font-size: 15px; line-height: 1.95; color: #333; margin-bottom: 14px; }
+.prose strong { color: #3A6A5E; }
+
+/* ── CARD ── */
+.card {
+  background: #fff;
+  border: 1px solid #DDD8CE;
+  border-radius: 6px;
+  padding: 20px 22px;
+  margin-bottom: 14px;
+}
+.card-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #3A6A5E;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+  font-family: 'Courier New', monospace;
+}
+
+/* ── TABLE ── */
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 14px 0; }
+th {
+  background: #5E9186;
+  color: #fff;
+  padding: 8px 12px;
+  text-align: left;
+  font-size: 11px;
+  letter-spacing: 1px;
+  font-family: 'Courier New', monospace;
+}
+td { padding: 8px 12px; border-bottom: 1px solid #EEE9E2; vertical-align: top; line-height: 1.6; }
+tr:nth-child(even) td { background: #FAF8F4; }
+.danger { color: #C0392B; font-weight: 700; }
+.watch  { color: #B8850E; font-weight: 700; }
+.up     { color: #C0392B; }
+.down   { color: #27AE60; }
+
+/* ── CODE / FORMULA BOX ── */
+.cbox {
+  background: #1E2227;
+  color: #E8E4DC;
+  font-family: 'Courier New', monospace;
+  font-size: 12.5px;
+  padding: 18px 22px;
+  border-radius: 4px;
+  margin: 14px 0;
+  line-height: 1.75;
+  overflow-x: auto;
+  white-space: pre;
+}
+.cg { color: #7BADA0; }
+.cy { color: #E8B84B; }
+.cr { color: #E07070; }
+.cc { color: #888; }
+
+/* ── QUOTE ── */
+.qblock {
+  border-left: 3px solid #B8850E;
+  padding: 10px 18px;
+  margin: 14px 0;
+  background: #FEFBF4;
+  font-style: italic;
+  font-size: 14px;
+  color: #444;
+  line-height: 1.8;
+}
+.qsrc {
+  font-size: 11px;
+  color: #888;
+  margin-top: 5px;
+  font-style: normal;
+  font-family: 'Courier New', monospace;
+}
+
+/* ── TIMELINE ── */
+.timeline { position: relative; padding-left: 24px; margin: 16px 0; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px; top: 0; bottom: 0;
+  width: 2px;
+  background: #DDD8CE;
+}
+.tl-item {
+  position: relative;
+  margin-bottom: 16px;
+  padding-left: 10px;
+}
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -21px;
+  top: 7px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: #5E9186;
+  border: 2px solid #F5F3EE;
+}
+.tl-item.red::before { background: #C0392B; }
+.tl-item.gold::before { background: #B8850E; }
+.tl-date {
+  font-size: 11px;
+  color: #888;
+  font-family: 'Courier New', monospace;
+  margin-bottom: 3px;
+}
+.tl-text { font-size: 14px; color: #333; line-height: 1.75; }
+
+/* ── DIVIDER ── */
+.div-gold {
+  text-align: center;
+  color: #B8850E;
+  font-size: 16px;
+  letter-spacing: 8px;
+  margin: 40px 0 20px;
+  opacity: 0.6;
+}
+
+/* ── FOOTER ── */
+.footer {
+  background: #3A6A5E;
+  color: rgba(255,255,255,0.80);
+  text-align: center;
+  padding: 28px 20px;
+  font-size: 12px;
+  line-height: 2;
+  margin-top: 52px;
+}
+.footer a { color: #A8D5CC; text-decoration: none; }
+.footer .ft-title {
+  font-size: 14px;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">ΛAMBDA¹² · 단독 국가편 #19</div>
+  <div class="hero-title">이란 — 혁명 이후 가장 긴 균열<br>봉기·학살·전쟁·노동자의 날</div>
+  <div class="hero-sub">Islamic Republic of Iran | Λ¹² v9.11 | SSRN 6509200</div>
+  <div class="hero-tags">
+    <span class="hero-tag">Λ-Score 추정 0.58~0.62</span>
+    <span class="hero-tag">Zone: DANGER</span>
+    <span class="hero-tag">TBI 최고</span>
+    <span class="hero-tag">SR 임계</span>
+    <span class="hero-tag">F_reach 0.32</span>
+    <span class="hero-tag">2026-04-29</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- WARNING -->
+<div class="warn">
+  <div class="warn-title">⚠ 데이터 제한 고지</div>
+  <p>이란 내부 통계는 인터넷 차단·검열로 인해 극히 제한적이다. 본 레포트는 IMF·UNDP·Amnesty International·이란 인터내셔널·나무위키 경과 기록·CNN·CNBC 등 복수 출처를 교차 검증하여 작성했다. 수치는 추정치이며, 공식 이란 정부 발표는 심각한 과소 보고 패턴이 확인된다.</p>
+</div>
+
+<!-- §0 개요 -->
+<div class="sec-label">§0 · 개요</div>
+<div class="sec-title">이란은 지금 어디에 있는가</div>
+
+<p class="prose">2025년 12월 28일 테헤란 상인들의 경제 항의로 시작된 시위는 불과 2주 만에 1979년 이슬람 혁명 이래 최대 규모의 봉기로 전화(轉化)했다. 1월 8~9일 이틀간 혁명수비대(IRGC)가 실시한 대학살은 최소 12,000명에서 최대 36,500명 이상의 사망자를 낳았고, 이 숫자는 아직 확정되지 않았다. 2월 28일 미·이스라엘 합동 공습으로 하메네이가 사망했고, 4월 8일 휴전이 성립됐으나 협상은 교착 상태다. 지금 이란의 노동자들은 다시 거리로 나오고 있다. 5월 1일 노동자의 날이 다가온다.</p>
+
+<p class="prose">이 레포트는 Λ¹² v9.11 프레임워크로 이란을 해부한다. 경제 파괴(BRI·LPI_net·F_reach), 지도자-민중 단절(Σ), 저항탄성의 축적과 폭발(SR), 트라우마 뇌관(TBI), 자본 흐름의 역전(CFD), 그리고 의회의 트리거 억제 전술까지 — 6개 층위를 동시에 읽는다.</p>
+
+<!-- §1 경과 타임라인 -->
+<div class="sec-label">§1 · 경과 타임라인</div>
+<div class="sec-title">D-Day 기록 — <em>2025.12.28 → 2026.04.29</em></div>
+
+<div class="timeline">
+  <div class="tl-item">
+    <div class="tl-date">2025.12.28</div>
+    <div class="tl-text"><strong>봉기 시작.</strong> 테헤란 알라딘·차르수 상가 상인들이 환율 폭등·정부 무능에 항의. 이틀 만에 전국 31개 주 전체로 확산. 구호가 "경제 회복"에서 "정권 타도·팔라비 복귀"로 전환.</div>
+  </div>
+  <div class="tl-item gold">
+    <div class="tl-date">2026.01.06</div>
+    <div class="tl-text"><strong>하메네이 유화책 실패.</strong> 1인당 월 7달러 바우처 제시 → 시위대 분노 오히려 폭증. 환율 폭등으로 바우처 가치 실시간 하락. Σ(지도자-민중 단절) 극대화 신호.</div>
+  </div>
+  <div class="tl-item red">
+    <div class="tl-date">2026.01.08~09</div>
+    <div class="tl-text"><strong>대학살.</strong> 전국 인터넷 완전 차단. IRGC·바시즈·이라크 시아파 용병 동원. 48시간 추정 사망자 12,000~36,500명. 병원 포화, 시신 암매장, 유족에 총알값 청구. "이란의 바빈 야르"(TIME지).</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">2026.01.17</div>
+    <div class="tl-text"><strong>하메네이 TV 시인.</strong> "수천 명이 죽었다" — 미국·이스라엘 탓으로 돌림. 사실상 학살 공식 인정.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">2026.01.19</div>
+    <div class="tl-text"><strong>시위 표면 진정.</strong> 체포자 4만 명 이상. 의료진·개혁파 정치인 대거 구속. SR 강제 억압 완료 — 그러나 임계 축적 시작.</div>
+  </div>
+  <div class="tl-item gold">
+    <div class="tl-date">2026.02.28</div>
+    <div class="tl-text"><strong>미·이스라엘 합동 공습.</strong> 하메네이 폭사. 핵시설·IRGC 거점 타격. 이란 내부에서 축하 시위 발생 — 즉시 총격 진압.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">2026.03~04</div>
+    <div class="tl-text"><strong>전쟁 기간.</strong> 호르무즈 해협 봉쇄. 석유화학 단지·제철소·교량·철도 타격. 직접 실업 100만 명, 간접 실업 100만 명 이상. 인플레이션 연 72%(3월 기준). 리알 1달러=132만 리알.</div>
+  </div>
+  <div class="tl-item gold">
+    <div class="tl-date">2026.04.08</div>
+    <div class="tl-text"><strong>휴전 성립.</strong> 파키스탄 중재. 협상 교착 — 핵·미사일·호르무즈 모두 미합의. IRGC "휴전은 내부 탄압 강화 기회"로 활용. 인터넷 차단 1,000시간 초과.</div>
+  </div>
+  <div class="tl-item red">
+    <div class="tl-date">2026.04.21~22</div>
+    <div class="tl-text"><strong>PMOI 조직원 2명 처형.</strong> 자헤단·전국 저항 단위 즉각 동원. "처형에 대한 응답은 불타오르는 봉기다" — TBI 뇌관 재점화.</div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-date">2026.04.22</div>
+    <div class="tl-text"><strong>사파다슈트 공단 노동자 시위.</strong> 전력·석유·교사·연금 노동자 동시 거리 복귀. 4월 급여 미지급. 5월 1일 노동자의 날 향해 수렴 중.</div>
+  </div>
+  <div class="tl-item gold">
+    <div class="tl-date">2026.04.27</div>
+    <div class="tl-text"><strong>의회 합의문 발표.</strong> "협상단 전폭 지지" — 트리거 억제 담론 전환 시도. 실질 내용 없음. SNSC "시위가 체제 생존 위협" 내부 인정.</div>
+  </div>
+  <div class="tl-item red">
+    <div class="tl-date">2026.05.01 (예측)</div>
+    <div class="tl-text"><strong>노동자의 날.</strong> 집결 가능성 최고조. 전력·석유·교사·연금·공단 노동자 조직적 명분 보유. 1979년 혁명도 파업이 먼저였다.</div>
+  </div>
+</div>
+
+<!-- §2 경제 레이어 -->
+<div class="sec-label">§2 · 경제 레이어</div>
+<div class="sec-title"><em>BRI · LPI_net · F_reach</em> — 생존선 붕괴</div>
+
+<div class="card">
+  <div class="card-title">▌ 핵심 경제 지표 (2026.04 기준)</div>
+  <table>
+    <tr>
+      <th>지표</th><th>전쟁 전</th><th>현재 (4월)</th><th>방향</th>
+    </tr>
+    <tr>
+      <td>GDP 성장률</td>
+      <td>-0.4% (2025)</td>
+      <td class="danger">-6.1% (IMF 추정)</td>
+      <td class="up">↓↓</td>
+    </tr>
+    <tr>
+      <td>인플레이션</td>
+      <td>50% (2025)</td>
+      <td class="danger">68.9~72% (3월 공식)</td>
+      <td class="up">↑↑</td>
+    </tr>
+    <tr>
+      <td>식품 인플레이션</td>
+      <td>64% (2025.10)</td>
+      <td class="danger">105% (2026.02)</td>
+      <td class="up">↑↑↑</td>
+    </tr>
+    <tr>
+      <td>리알/달러 환율</td>
+      <td>~760,000 rial</td>
+      <td class="danger">1,320,000~1,600,000 rial</td>
+      <td class="up">↓↓↓</td>
+    </tr>
+    <tr>
+      <td>직접 실업 (전쟁)</td>
+      <td>기존 고실업</td>
+      <td class="danger">+100만 명 (부장관 발표)</td>
+      <td class="up">↑↑</td>
+    </tr>
+    <tr>
+      <td>간접 실업 위협</td>
+      <td>—</td>
+      <td class="danger">전체 일자리 50% 위험</td>
+      <td class="up">↑↑↑</td>
+    </tr>
+    <tr>
+      <td>빈곤선 추가 전락</td>
+      <td>—</td>
+      <td class="danger">+410만 명 (UNDP)</td>
+      <td class="up">↑↑</td>
+    </tr>
+    <tr>
+      <td>인터넷 차단 일수</td>
+      <td>0</td>
+      <td class="danger">월 22일 차단 (3월)</td>
+      <td class="up">↑</td>
+    </tr>
+    <tr>
+      <td>인터넷 차단 경제 손실</td>
+      <td>—</td>
+      <td class="danger">$70~80M/일 (직·간접)</td>
+      <td class="up">↑</td>
+    </tr>
+  </table>
+</div>
+
+<div class="cbox"><span class="cc">─── F_reach 추정 계산 (전쟁 전 → 현재) ───</span>
+
+<span class="cg">F_reach = (S × I × D)^(1/3)</span>
+
+<span class="cc">전쟁 전 추정:</span>
+  S (자급력)   = 0.52  <span class="cc">← 제재·비효율 농업</span>
+  I (수입안정) = 0.48  <span class="cc">← 제재 우회 루트 존재</span>
+  D (분배도달) = 0.52  <span class="cc">← 보조금 시스템 작동 중</span>
+  <span class="cy">F_reach (전쟁 전) ≈ 0.50</span>
+
+<span class="cc">현재 (2026.04) 추정:</span>
+  S (자급력)   = 0.38  <span class="cr">← 농업·식품 공장 타격</span>
+  I (수입안정) = 0.29  <span class="cr">← 호르무즈 봉쇄+해군봉쇄</span>
+  D (분배도달) = 0.31  <span class="cr">← 인터넷 차단+유통망 붕괴</span>
+  <span class="cr">F_reach (현재) ≈ 0.32  ← 위험선 0.40 하회</span>
+
+<span class="cc">→ 고기 1kg = 160~190만 토만. 최저임금으로 구매 불가.</span>
+<span class="cc">→ 유제품 공장·섬유공장·트레일러업체 연쇄 폐업.</span></div>
+
+<div class="qblock">
+  "인플레이션, 실업, 공급 부족이 '참담하고 복잡한 상황'을 만들었다. 정부는 이 문제들을 공손한 말이나 일반적 성명으로 외면할 수 없다."
+  <div class="qsrc">— 이란 보수 성향 일간지 에테라트 (Ettelaat), 2026.04</div>
+</div>
+
+<p class="prose">주목할 것은 <strong>체제 내부 친정부 언론조차 경제 위기를 인정하기 시작했다</strong>는 사실이다. 이것이 Σ 붕괴의 언론 레이어 신호다. 지배 담론이 균열하기 시작할 때, 체제는 가장 취약해진다.</p>
+
+<!-- §3 Σ 붕괴 -->
+<div class="sec-label">§3 · Σ 지표</div>
+<div class="sec-title">지도자-민중 단절 — <em>극한치 도달</em></div>
+
+<p class="prose">Σ는 지도자 집단과 민중 사이의 단절 지수다. 수치가 높을수록 체제의 정당성 기반이 무너져 있다는 의미다. 이란의 Σ는 현재 Λ¹² 분석 대상 전 국가 중 최고 수준으로 추정된다.</p>
+
+<div class="card">
+  <div class="card-title">▌ Σ 붕괴의 6가지 실증 신호</div>
+  <table>
+    <tr><th>신호</th><th>내용</th><th>Σ 판단</th></tr>
+    <tr>
+      <td>시신 총알값 청구</td>
+      <td>유족에게 7,000달러 요구. 학살 증거 은폐.</td>
+      <td class="danger">극단</td>
+    </tr>
+    <tr>
+      <td>용병 동원</td>
+      <td>이라크·아프가니스탄·파키스탄 민병대 자국민 진압에 투입. "이란군은 이란인 쏘기 어렵다"</td>
+      <td class="danger">극단</td>
+    </tr>
+    <tr>
+      <td>의사 체포</td>
+      <td>시위대 치료 의사 체포, 부상자 치료 거부 강요</td>
+      <td class="danger">극단</td>
+    </tr>
+    <tr>
+      <td>유족 각서</td>
+      <td>"울지 말라, 장례 집 밖 나오지 말라" 서명 강제</td>
+      <td class="danger">극단</td>
+    </tr>
+    <tr>
+      <td>엘리트 탈출 시도</td>
+      <td>갈리바프 가족 프랑스 장기비자 신청. 이란 엘리트층 15억달러 암호화폐 해외 송금</td>
+      <td class="danger">붕괴 신호</td>
+    </tr>
+    <tr>
+      <td>진압 거부 병사 사형</td>
+      <td>발포 거부한 자비드 할레스 체포·사형 선고</td>
+      <td class="danger">강제 충성</td>
+    </tr>
+  </table>
+</div>
+
+<p class="prose"><strong>Σ 역설:</strong> 탄압의 강도가 극단으로 치달을수록 체제는 오히려 더 많은 강제 충성 비용을 지출한다. 자발적 지지 없이 공포로만 유지되는 체제는 — Λ¹² 분석에서 일관되게 확인된 바와 같이 — SR 임계 도달 후 급속 붕괴 패턴을 보인다.</p>
+
+<!-- §4 SR 역인과 -->
+<div class="sec-label">§4 · SR 역인과</div>
+<div class="sec-title">저항탄성 억압 → 임계 → <em>폭발 공식</em></div>
+
+<div class="cbox"><span class="cc">─── SR 역인과 공식 (이란 적용) ───</span>
+
+<span class="cg">SR 억압</span> → <span class="cy">표면 침묵</span> → <span class="cr">내부 축적</span> → <span class="cr">사건(TBI 뇌관)</span> → <span class="cr">SR 폭발</span>
+
+<span class="cc">이란 선행 사례:</span>
+  2009 녹색운동    → 억압 → 2019 시위 (321명 사망)
+  2019 시위 억압   → 축적 → 2022 마흐사 아미니 시위 (551명)
+  2022 억압        → 축적 → 2026.01 봉기 (36,500명 추정)
+  2026.01 학살 억압 → 축적 중 → <span class="cr">2026.05.01 노동자의 날 ?</span>
+
+<span class="cc">각 사이클마다 규모가 기하급수적으로 확대됨.</span>
+<span class="cc">억압이 다음 폭발의 연료가 된다.</span></div>
+
+<div class="qblock">
+  "하메네이 16년 억압 → 2026.04 마자르 53.6% 압승" (헝가리)
+  "PiS 8년 억압 → 2023 투스크 반전" (폴란드)
+  "노비사드 역 붕괴 → 400개 도시 시위" (세르비아)
+  <div class="qsrc">— SR 역인과 패턴 비교편 (유럽 비교 §4, 2026-04-29)</div>
+</div>
+
+<p class="prose">이란에서 이 공식이 다른 어느 나라보다 극단적으로 작동하는 이유가 있다. <strong>사이클마다 뇌관이 달랐다</strong> — 2009년은 선거 조작, 2019년은 유가 보조금 삭감, 2022년은 히잡 단속, 2026년은 환율 붕괴. 그리고 이번 5월 1일의 뇌관은 <strong>임금 미지급 + 대량 실업 + 처형</strong>이 동시에 작동하고 있다.</p>
+
+<!-- §5 TBI -->
+<div class="sec-label">§5 · TBI</div>
+<div class="sec-title">트라우마빅뱅지수 — <em>임계 θ = 0.7 초과 추정</em></div>
+
+<div class="cbox"><span class="cc">─── TBI 공식 ───</span>
+<span class="cg">TBI = H × C × N</span>   <span class="cc">(임계 θ = 0.7)</span>
+
+  H (역사적 트라우마 강도):
+    1979년 혁명 → 이란-이라크 전쟁 → 2009·2019·2022·2026 학살
+    <span class="cr">H ≈ 0.91</span>  <span class="cc">← 반복 학살로 공포+분노 중첩</span>
+
+  C (집단 응집력):
+    31개 주 전체, 상인·노동자·학생·여성·쿠르드·발루치 동시 참여
+    <span class="cy">C ≈ 0.83</span>
+
+  N (정규화 — 현재 공유 인식):
+    "이번이 마지막이다" 담론 확산
+    1월 학살 목격 세대 = 현재 거리 세대
+    <span class="cy">N ≈ 0.88</span>
+
+<span class="cr">TBI = 0.91 × 0.83 × 0.88 ≈ 0.665  → θ = 0.70 근접</span>
+
+<span class="cc">→ 처형 1건, 파업 1건이 θ 초과 트리거가 될 수 있다.</span></div>
+
+<!-- §6 CFD -->
+<div class="sec-label">§6 · CFD</div>
+<div class="sec-title">자본흐름지향성 — <em>IRGC 경제의 역설</em></div>
+
+<p class="prose">이란의 CFD가 특이한 이유는 <strong>IRGC가 경제 그 자체</strong>이기 때문이다. 석유 수출의 약 50%를 IRGC가 처리하고, 호르무즈 해협 통행료를 수취하며, 석유화학·건설·통신 등 주요 산업에 직접 관여한다. 이 구조에서 CFD는 민중을 향하지 않는다 — 자본이 IRGC → 레바논·이라크·예멘 대리전으로 흘러나간다.</p>
+
+<div class="cbox"><span class="cc">─── 이란 CFD 구조 ───</span>
+
+민중 세금·석유 수익
+      ↓
+   IRGC 내부 순환
+      ↓
+  ┌───────────────────┐
+  │ 헤즈볼라 지원      │  <span class="cr">← "가자도 레바논도 아닌 이란을"</span>
+  │ 하마스 지원        │     시위대 구호의 경제적 근거
+  │ 후티 지원          │
+  │ 핵·미사일 프로그램 │  <span class="cr">← 보안 예산 150% 증가</span>
+  └───────────────────┘
+      ↑
+  민중 임금 인상 2/5 수준
+  F_reach 0.32
+  고기값 최저임금 초과</div>
+
+<p class="prose">전쟁 이후 호르무즈 봉쇄로 IRGC의 주요 수입원이 차단됐다. 역설적으로 이것이 IRGC를 더 위험하게 만들었다 — <strong>경제 기반을 잃은 무장 집단은 더 폭력적으로 내부를 통제한다.</strong> 4월 임금 미지급, 처형 가속화는 같은 맥락이다.</p>
+
+<!-- §7 의회 합의문 해부 -->
+<div class="sec-label">§7 · 트리거 억제 전술</div>
+<div class="sec-title">의회 합의문 — <em>가용한 마지막 비폭력 카드</em></div>
+
+<p class="prose">4월 27일 이란 의회가 발표한 "협상단 전폭 지지" 합의문은 표면상 외교 지지 선언이다. 그러나 Λ¹² 담론 레이어로 읽으면 <strong>5월 1일 트리거 억제를 위한 담론 전환 전술</strong>이다.</p>
+
+<div class="card">
+  <div class="card-title">▌ 합의문의 실제 기능 분해</div>
+  <table>
+    <tr><th>표면 메시지</th><th>실제 기능</th><th>효과 가능성</th></tr>
+    <tr>
+      <td>"외교로 해결하자"</td>
+      <td>국내 분노를 협상 기대로 전환</td>
+      <td class="watch">낮음 — 협상 타결 가능성 희박</td>
+    </tr>
+    <tr>
+      <td>"지금은 때가 아니다"</td>
+      <td>5월 1일 참여 자제 신호 발송</td>
+      <td class="danger">매우 낮음 — 임금 미지급이 현실</td>
+    </tr>
+    <tr>
+      <td>"의회가 지지한다"</td>
+      <td>IRGC 탄압에 정당성 우산 제공</td>
+      <td class="watch">역효과 가능 — 자기모순 노출</td>
+    </tr>
+    <tr>
+      <td>"합의가 성과 직전"</td>
+      <td>시간 벌기, 봉기 연기</td>
+      <td class="danger">실패 — 5/1까지 합의 없음</td>
+    </tr>
+  </table>
+</div>
+
+<div class="qblock">
+  "의회가 협상에 관한 공식 정보를 받지 못했지만, 결과가 불리하더라도 반대하지 않겠다."
+  <div class="qsrc">— 메흐디 쿠차크자데 이란 의원 (2026.04)</div>
+</div>
+
+<p class="prose">이것이 핵심 모순이다. <strong>"공식 정보도 없이 지지"</strong> — 이것은 지지가 아니라 복종의 언어다. 민중이 이 모순을 읽지 못할 것이라는 가정 자체가 Σ 붕괴의 증거다. 1월에 3만 명 이상이 사망한 이후에도 그 신뢰가 남아있을 수 없다.</p>
+
+<p class="prose"><strong>결정적 이유:</strong> 이 전술이 효과를 가지려면 협상이 5월 1일 전에 가시적 성과를 내야 한다. 그러나 핵·미사일·호르무즈 3대 의제 모두 교착 상태다. 담론이 제시한 "기다려라"는 메시지가 5월 1일 당일 공허하게 드러난다.</p>
+
+<!-- §8 Λ¹² 좌표 -->
+<div class="sec-label">§8 · Λ¹² 좌표</div>
+<div class="sec-title">이란 종합 지수 — <em>v9.11 추정값</em></div>
+
+<div class="cbox"><span class="cc">─── Λ¹² 12개 변수 (이란 추정, 2026.04) ───</span>
+<span class="cc">방향: 위험=1, 안정=-1  |  DIRECTION[위험,안정] 역전 적용</span>
+
+변수        추정값    방향  판단
+────────────────────────────────────
+<span class="cr">BRI</span>        0.72     위험  경제 기반 붕괴 + 대외 고립
+<span class="cr">SSI</span>        0.88     위험  사회 분열 극대화 (민족·종교·계층)
+<span class="cr">GPI</span>        0.91     위험  전쟁 진행 중 — 호르무즈 변수
+<span class="cr">SR</span>         0.82     위험  억압으로 낮음 → 임계 축적
+<span class="cy">Σ</span>          0.93     위험  지도자-민중 단절 최고치
+<span class="cr">LPI_net</span>   0.79     위험  생산·유통망 전쟁 타격
+<span class="cr">OIP-I</span>      0.85     위험  기회 차단 지수 — 체포·처형
+<span class="cr">HCDI</span>       0.74     위험  의료 접근 차단, 인터넷 봉쇄
+<span class="cy">AMI</span>        0.68     위험  외부 군사 개입 지속 가능성
+<span class="cr">NI</span>         0.77     위험  핵협상 교착 — 불확실성 최대
+<span class="cr">CFD</span>        0.81     위험  자본 IRGC 집중, 민중 외부
+<span class="cr">TBI</span>        0.665    위험  θ=0.70 근접 임계
+
+<span class="cc">─────────────────────────────────────────</span>
+<span class="cc">가중합산 (위험≥0.65: w2.0 / 주목0.40~: w1.4 / 안정&lt;0.40: w0.6)</span>
+<span class="cr">Λ-Score 추정: 0.58 ~ 0.62   Zone: DANGER (상위)</span>
+<span class="cc">※ 내부 통계 극한 제한으로 오차 ±0.05</span>
+
+<span class="cy">PWT-r = 1 - Λ × β</span>
+  β = 0.40×(진영화 지수) + 0.35×(CFD) + 0.25×(1-CPI)
+  β_이란 ≈ 0.85  <span class="cr">← 역대 최고 차단 계수</span>
+<span class="cr">PWT-r ≈ 0.47  ← 회복 탄력성 극히 낮음</span></div>
+
+<!-- §9 레이더 SVG -->
+<div class="sec-label">§9 · 레이더 다이어그램</div>
+<div class="sec-title">이란 12축 <em>Λ¹² 레이더</em></div>
+
+<div style="background:#fff;border:1px solid #DDD8CE;border-radius:6px;padding:24px;margin:16px 0;text-align:center;">
+<svg width="480" height="480" viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .axis-label { font-size: 10px; fill: #555; font-family: 'Courier New', monospace; }
+      .radar-bg   { fill: none; stroke: #E5E0D8; stroke-width: 1; }
+      .radar-data { fill: rgba(192,57,43,0.18); stroke: #C0392B; stroke-width: 2; }
+      .radar-dot  { fill: #C0392B; }
+      .grid-line  { stroke: #E5E0D8; stroke-width: 0.8; }
+    </style>
+  </defs>
+
+  <!-- 배경 동심원 4개 -->
+  <circle cx="240" cy="240" r="40"  class="radar-bg"/>
+  <circle cx="240" cy="240" r="80"  class="radar-bg"/>
+  <circle cx="240" cy="240" r="120" class="radar-bg"/>
+  <circle cx="240" cy="240" r="160" class="radar-bg"/>
+  <circle cx="240" cy="240" r="200" class="radar-bg" stroke="#CCC"/>
+
+  <!-- 12축 방사선 -->
+  <!-- 0° 12시 -->
+  <line x1="240" y1="240" x2="240" y2="40"   class="grid-line"/>
+  <!-- 30° -->
+  <line x1="240" y1="240" x2="340" y2="90"   class="grid-line"/>
+  <!-- 60° -->
+  <line x1="240" y1="240" x2="413" y2="190"  class="grid-line"/>
+  <!-- 90° 3시 -->
+  <line x1="240" y1="240" x2="440" y2="240"  class="grid-line"/>
+  <!-- 120° -->
+  <line x1="240" y1="240" x2="413" y2="290"  class="grid-line"/>
+  <!-- 150° -->
+  <line x1="240" y1="240" x2="340" y2="390"  class="grid-line"/>
+  <!-- 180° 6시 -->
+  <line x1="240" y1="240" x2="240" y2="440"  class="grid-line"/>
+  <!-- 210° -->
+  <line x1="240" y1="240" x2="140" y2="390"  class="grid-line"/>
+  <!-- 240° -->
+  <line x1="240" y1="240" x2="67"  y2="290"  class="grid-line"/>
+  <!-- 270° 9시 -->
+  <line x1="240" y1="240" x2="40"  y2="240"  class="grid-line"/>
+  <!-- 300° -->
+  <line x1="240" y1="240" x2="67"  y2="190"  class="grid-line"/>
+  <!-- 330° -->
+  <line x1="240" y1="240" x2="140" y2="90"   class="grid-line"/>
+
+  <!--
+    변수별 값 → 반지름 r = 값 × 200
+    BRI=0.72→144, SSI=0.88→176, GPI=0.91→182,
+    SR=0.82→164, Σ=0.93→186, LPI=0.79→158,
+    OIP=0.85→170, HCDI=0.74→148, AMI=0.68→136,
+    NI=0.77→154, CFD=0.81→162, TBI=0.665→133
+
+    각도: BRI 0°, SSI 30°, GPI 60°, SR 90°,
+          Σ 120°, LPI 150°, OIP 180°, HCDI 210°,
+          AMI 240°, NI 270°, CFD 300°, TBI 330°
+
+    좌표 = (cx + r×sin(θ), cy - r×cos(θ))
+  -->
+  <polygon
+    points="
+      240,96
+      314,152
+      417,149
+      404,240
+      335,402
+      161,347
+      240,410
+      116,293
+      103,307
+      86,240
+      158,119
+      181,124
+    "
+    class="radar-data"/>
+
+  <!-- 데이터 포인트 -->
+  <circle cx="240" cy="96"  r="4" class="radar-dot"/>
+  <circle cx="314" cy="152" r="4" class="radar-dot"/>
+  <circle cx="417" cy="149" r="4" class="radar-dot"/>
+  <circle cx="404" cy="240" r="4" class="radar-dot"/>
+  <circle cx="335" cy="402" r="4" class="radar-dot"/>
+  <circle cx="161" cy="347" r="4" class="radar-dot"/>
+  <circle cx="240" cy="410" r="4" class="radar-dot"/>
+  <circle cx="116" cy="293" r="4" class="radar-dot"/>
+  <circle cx="103" cy="307" r="4" class="radar-dot"/>
+  <circle cx="86"  cy="240" r="4" class="radar-dot"/>
+  <circle cx="158" cy="119" r="4" class="radar-dot"/>
+  <circle cx="181" cy="124" r="4" class="radar-dot"/>
+
+  <!-- 축 레이블 -->
+  <text x="234" y="32"  text-anchor="middle" class="axis-label">BRI 0.72</text>
+  <text x="330" y="78"  text-anchor="start"  class="axis-label">SSI 0.88</text>
+  <text x="422" y="145" text-anchor="start"  class="axis-label">GPI 0.91</text>
+  <text x="448" y="244" text-anchor="start"  class="axis-label">SR 0.82</text>
+  <text x="390" y="420" text-anchor="start"  class="axis-label">Σ 0.93</text>
+  <text x="130" y="368" text-anchor="end"    class="axis-label">LPI 0.79</text>
+  <text x="234" y="455" text-anchor="middle" class="axis-label">OIP 0.85</text>
+  <text x="80"  y="320" text-anchor="end"    class="axis-label">HCDI 0.74</text>
+  <text x="38"  y="310" text-anchor="end"    class="axis-label">AMI 0.68</text>
+  <text x="16"  y="244" text-anchor="end"    class="axis-label">NI 0.77</text>
+  <text x="56"  y="112" text-anchor="end"    class="axis-label">CFD 0.81</text>
+  <text x="138" y="72"  text-anchor="end"    class="axis-label">TBI 0.665</text>
+
+  <!-- 중심 레이블 -->
+  <text x="240" y="228" text-anchor="middle" font-size="13" font-weight="700" fill="#C0392B" font-family="'Courier New', monospace">이란</text>
+  <text x="240" y="244" text-anchor="middle" font-size="10" fill="#888" font-family="'Courier New', monospace">Λ≈0.60</text>
+  <text x="240" y="258" text-anchor="middle" font-size="10" fill="#C0392B" font-family="'Courier New', monospace">DANGER</text>
+</svg>
+<p style="font-size:11px;color:#888;margin-top:8px;font-family:'Courier New',monospace;">이란 Λ¹² 12축 레이더 | 모든 축 위험 구간 (0.665~0.93) | v9.11 추정</p>
+</div>
+
+<!-- §10 5월 1일 분석 -->
+<div class="sec-label">§10 · 5월 1일 가설</div>
+<div class="sec-title">노동자의 날 — <em>뇌관 조건 체크리스트</em></div>
+
+<div class="card">
+  <div class="card-title">▌ 5월 1일 봉기 조건 진단</div>
+  <table>
+    <tr><th>조건</th><th>상태</th><th>판단</th></tr>
+    <tr>
+      <td>조직적 집결 명분</td>
+      <td>노동자의 날 — 전 세계 파업 전통</td>
+      <td style="color:#C0392B;font-weight:700;">✓ 충족</td>
+    </tr>
+    <tr>
+      <td>경제적 뇌관</td>
+      <td>4월 임금 미지급 / 연 72% 인플레 / 100만 실업</td>
+      <td style="color:#C0392B;font-weight:700;">✓ 충족</td>
+    </tr>
+    <tr>
+      <td>TBI 뇌관</td>
+      <td>4/21 처형 → 전국 저항 단위 동원 확인</td>
+      <td style="color:#C0392B;font-weight:700;">✓ 충족</td>
+    </tr>
+    <tr>
+      <td>SR 재충전</td>
+      <td>4/20~ 각 직능군 거리 복귀 확인</td>
+      <td style="color:#C0392B;font-weight:700;">✓ 충족</td>
+    </tr>
+    <tr>
+      <td>IRGC 탄압 명분 소멸</td>
+      <td>휴전 후 "외세 대응" 명분 사라짐</td>
+      <td style="color:#C0392B;font-weight:700;">✓ 충족</td>
+    </tr>
+    <tr>
+      <td>협상 성과 — 억제 변수</td>
+      <td>핵·호르무즈 교착. 5/1 전 타결 없음</td>
+      <td style="color:#27AE60;font-weight:700;">✗ 미충족 (봉기 유리)</td>
+    </tr>
+    <tr>
+      <td>IRGC 2차 대학살 가능성</td>
+      <td>외부 용병 재동원 가능 여부 불명</td>
+      <td style="color:#B8850E;font-weight:700;">? 불확실</td>
+    </tr>
+  </table>
+</div>
+
+<p class="prose">1979년 이슬람 혁명은 석유 노동자 파업에서 결정적 전환점을 맞았다. 샤 체제는 군대가 아니라 경제를 멈춘 노동자 앞에서 붕괴했다. <strong>IRGC가 두려워하는 것은 시위가 아니라 파업이다.</strong> 전력·석유·교사가 동시에 멈추면 IRGC의 경제 기반도 흔들린다.</p>
+
+<div class="qblock">
+  "체제가 두려워하는 것은 분명하다 — 협상 중 또는 휴전 연장 이후 발생하는 시위는 이슬람 공화국 체제 생존에 실질적 위협이 될 수 있다."
+  <div class="qsrc">— SNSC 내부 소식통 (Iran International, 2026.04.27)</div>
+</div>
+
+<!-- §11 Σ 보편성 명제 -->
+<div class="sec-label">§11 · 이론 확장</div>
+<div class="sec-title">Σ 보편성 — <em>Λ¹² v9.12 명제 후보</em></div>
+
+<p class="prose">유럽 19개국 분석에서 확인한 것과 동일한 패턴이 이란에서 가장 극단적 형태로 실증되고 있다. 경제 수준이 다르고, 역사가 다르고, 문화가 달라도 — <strong>지도자가 민중과 단절될 때 체제가 임계에 달한다.</strong></p>
+
+<div class="cbox"><span class="cc">─── Λ¹² v9.12 명제 후보 ───</span>
+
+<span class="cy">"Σ (지도자-민중 단절)는 문명권을 초월하는 보편 위기 지표다."</span>
+
+  아시아 Danger 공통: Σ + CPI(낮음) + TBI
+  유럽   Danger 공통: Σ + CFD (+ 권역별 TBI)
+  이란             : Σ + TBI + CFD + SR(억압) — 모두 최고치
+
+  이란은 이 명제의 가장 극단적 실험실이다.
+  체제가 Σ를 공포로 메우려 할 때,
+  오히려 다음 폭발의 규모를 키운다.
+
+<span class="cc">→ OLI 보정 필요: 이란 공식 통계 신뢰도 극히 낮음</span>
+<span class="cc">   Λ¹²_corrected = Λ¹²_raw / OLI × (1-TBI×θ) × exp(-k×t)</span>
+<span class="cc">   OLI_이란 ≈ 0.35  (낮을수록 통계 조작 심각)</span></div>
+
+<!-- §12 열린 질문 -->
+<div class="sec-label">§12 · 관찰자 위치</div>
+<div class="sec-title">진단 유보 — <em>담론육층 6번째 층</em></div>
+
+<p class="prose">Λ¹²는 현재 위치를 보여주는 내비게이션이다. 목적지를 강요하지 않는다. 이란에서 무슨 일이 일어날지를 예측하는 것이 아니라, <strong>지금 어떤 힘들이 어떤 방향으로 작용하고 있는지</strong>를 관찰하는 것이 이 레포트의 목적이다.</p>
+
+<div class="card">
+  <div class="card-title">▌ 열린 질문 — 6층 질문</div>
+  <table>
+    <tr>
+      <td style="width:30%;font-weight:700;color:#3A6A5E;">1. 노동자의 날이 뇌관이 될 것인가?</td>
+      <td>전력·석유·교사가 동시에 멈추는 조직적 파업이 발생하는가, 아니면 산발적 시위로 분산되는가.</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700;color:#3A6A5E;">2. IRGC는 또 한 번 외부 용병을 동원할 수 있는가?</td>
+      <td>1월에 가능했던 이라크 민병대 재동원이 전쟁·휴전 후 복잡해진 지정학 속에서도 가능한가.</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700;color:#3A6A5E;">3. 협상 타결이 SR을 억제할 수 있는가?</td>
+      <td>핵·미사일·호르무즈가 모두 교착인 상황에서 5월 1일 전에 민중이 체감할 협상 성과가 나올 수 있는가.</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700;color:#3A6A5E;">4. 다음 정권은 무엇인가?</td>
+      <td>팔라비 왕정·공화정·군부·IRGC 온건파 중 어느 것도 현재 확실하지 않다. 불확실성 자체가 변수다.</td>
+    </tr>
+  </table>
+</div>
+
+<p class="prose">이 네 질문에 답을 내리는 것은 이 레포트의 범위 밖이다. 관찰자는 지금 이란에서 거대한 힘들이 수렴하고 있다는 사실을 기록하고, 그 구조를 보여주는 것으로 역할을 마친다. <strong>판단은 이란의 시민들이 5월 1일 거리에서 내릴 것이다.</strong></p>
+
+<div class="div-gold">✦ ✦ ✦</div>
+
+<!-- §13 파일 정보 -->
+<div class="sec-label">§13 · 레포트 정보</div>
+<div class="sec-title">메타데이터</div>
+
+<div class="cbox"><span class="cc">파일명:  v1.0_이란단독편_20260429.html</span>
+<span class="cc">엔진:    Λ¹² v9.11 (SSRN 6509200)</span>
+<span class="cc">작성일:  2026-04-29</span>
+<span class="cc">소스:</span>
+<span class="cc">  - 나무위키 경과 기록 (2025.12.28 ~ 2026.04.27)</span>
+<span class="cc">  - CNBC Iran economy charts (2026.04.23)</span>
+<span class="cc">  - CNN/KESQ Iran unemployment (2026.04.28)</span>
+<span class="cc">  - IMF World Economic Outlook 2026</span>
+<span class="cc">  - UNDP 이란 전쟁 피해 보고서</span>
+<span class="cc">  - Amnesty International 학살 보고서</span>
+<span class="cc">  - Iran International 내부 문건</span>
+<span class="cc">  - WPIRAN 노동자 시위 보고 (2026.04)</span>
+<span class="cc">  - UK House of Commons Library 브리핑</span>
+<span class="cc">  - SNSC 내부 소식통 (Iran International 2026.04.27)</span>
+<span class="cc">데이터 한계: 인터넷 차단·검열로 내부 통계 극히 제한적</span>
+<span class="cc">             공식 이란 정부 수치는 과소 보고로 판단하여 가중치 하향</span>
+<span class="cc">다음 업데이트 트리거: 5/1 노동자의 날 이후 상황</span></div>
+
+<!-- §14 분기 흐름도 -->
+<div class="sec-label">§14 · 분기 순차 흐름도</div>
+<div class="sec-title">이란 체제 분기 — <em>모든 경로의 수렴점</em></div>
+
+<p class="prose">아래 흐름도는 현재 이란이 놓인 분기 구조를 순차적으로 보여준다. 결론을 내리지 않는다 — 각 경로가 어디로 향하는지를 관찰할 뿐이다. 붉은 수렴점이 구조가 가리키는 방향이다.</p>
+
+<div class="svg-wrap" style="padding:16px 8px;">
+<svg width="100%" viewBox="0 0 760 1640" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="ar"   viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#888780" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+<marker id="ar-r" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#A32D2D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+<marker id="ar-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+</defs>
+
+<!-- ══ §0 현재 상태 (상단 중앙) ══ -->
+<rect x="230" y="20" width="300" height="58" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="1"/>
+<text x="380" y="44" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-weight="700" fill="#633806">현재 상태 — 2026.04.29</text>
+<text x="380" y="63" text-anchor="middle" font-family="'Courier New',monospace" font-size="11" fill="#854F0B">Λ≈0.60 · TBI 0.665 · F_reach 0.32</text>
+<line x1="380" y1="78" x2="380" y2="106" stroke="#888780" stroke-width="1" marker-end="url(#ar)"/>
+
+<!-- ══ §1 선택지 ══ -->
+<rect x="240" y="106" width="280" height="44" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.8"/>
+<text x="380" y="133" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#444441">체제 앞에 놓인 경로</text>
+
+<!-- §1 → 좌 좋은방향① -->
+<path d="M240 128 L80 128 L80 178" fill="none" stroke="#0F6E56" stroke-width="1" marker-end="url(#ar-g)"/>
+<text x="160" y="120" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#0F6E56">좋은 방향①</text>
+<!-- §1 → 우 좋은방향② -->
+<path d="M520 128 L660 128 L660 178" fill="none" stroke="#0F6E56" stroke-width="1" marker-end="url(#ar-g)"/>
+<text x="590" y="120" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#0F6E56">좋은 방향②</text>
+<!-- §1 → 아래 트리거 -->
+<line x1="380" y1="150" x2="380" y2="178" stroke="#888780" stroke-width="1" marker-end="url(#ar)"/>
+<text x="380" y="170" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#888780">트리거 발동</text>
+
+<!-- ══ 좋은방향① (맨 좌) ══ -->
+<rect x="20" y="178" width="120" height="54" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.8"/>
+<text x="80" y="200" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="700" fill="#085041">종전+제재해제</text>
+<text x="80" y="218" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#0F6E56">경제 회복 시나리오</text>
+<line x1="80" y1="232" x2="80" y2="258" stroke="#A32D2D" stroke-width="0.8" marker-end="url(#ar-r)"/>
+<rect x="20" y="258" width="120" height="64" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.8"/>
+<text x="80" y="278" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="700" fill="#791F1F">구조적 불가</text>
+<text x="80" y="295" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#A32D2D">IRGC 독점 유지</text>
+<text x="80" y="311" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#A32D2D">10년 재건 필요</text>
+<path d="M80 322 L80 366 L240 366" fill="none" stroke="#A32D2D" stroke-width="0.8" stroke-dasharray="4 3" marker-end="url(#ar-r)"/>
+
+<!-- ══ 좋은방향② (맨 우) ══ -->
+<rect x="600" y="178" width="140" height="54" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.8"/>
+<text x="670" y="200" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="700" fill="#085041">정치 개혁</text>
+<text x="670" y="218" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#0F6E56">민중 대화 시나리오</text>
+<line x1="670" y1="232" x2="670" y2="258" stroke="#A32D2D" stroke-width="0.8" marker-end="url(#ar-r)"/>
+<rect x="600" y="258" width="140" height="64" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.8"/>
+<text x="670" y="278" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="700" fill="#791F1F">구조적 불가</text>
+<text x="670" y="295" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#A32D2D">페제시키안 권한 없음</text>
+<text x="670" y="311" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#A32D2D">모즈타바 더 강경</text>
+<path d="M670 322 L670 366 L520 366" fill="none" stroke="#A32D2D" stroke-width="0.8" stroke-dasharray="4 3" marker-end="url(#ar-r)"/>
+
+<!-- ══ §2 트리거 발동 ══ -->
+<rect x="240" y="178" width="280" height="54" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="1"/>
+<text x="380" y="200" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#633806">트리거 발동</text>
+<text x="380" y="218" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#854F0B">TBI θ=0.70 돌파 · 잔여 0.035</text>
+<line x1="380" y1="232" x2="380" y2="262" stroke="#888780" stroke-width="1" marker-end="url(#ar)"/>
+
+<!-- ══ §3 행위자 ══ -->
+<rect x="250" y="262" width="260" height="44" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.8"/>
+<text x="380" y="289" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#444441">발화 행위자 (3유형)</text>
+<path d="M290 306 L160 306 L160 346" fill="none" stroke="#888780" stroke-width="0.8" marker-end="url(#ar)"/>
+<line x1="380" y1="306" x2="380" y2="346" stroke="#888780" stroke-width="0.8" marker-end="url(#ar)"/>
+<path d="M470 306 L600 306 L600 346" fill="none" stroke="#888780" stroke-width="0.8" marker-end="url(#ar)"/>
+
+<!-- 행위자 A (좌) -->
+<rect x="90" y="346" width="140" height="64" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.8"/>
+<text x="160" y="368" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#712B13">외부 침투자</text>
+<text x="160" y="385" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#993C1D">모사드·CIA·MEK</text>
+<text x="160" y="401" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#993C1D">IRGC 감정 촉발</text>
+
+<!-- 행위자 B (중) -->
+<rect x="310" y="346" width="140" height="64" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.8"/>
+<text x="380" y="368" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#633806">내부 불신자</text>
+<text x="380" y="385" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#854F0B">IRGC 이탈·개혁파</text>
+<text x="380" y="401" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#854F0B">발포 거부·정보 유출</text>
+
+<!-- 행위자 C (우) -->
+<rect x="530" y="346" width="140" height="64" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.8"/>
+<text x="600" y="368" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#3C3489">민중 자연 발화</text>
+<text x="600" y="385" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#534AB7">굶주림·처형·미지급</text>
+<text x="600" y="401" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#534AB7">조직 없이 폭발</text>
+
+<!-- 3행위자 → 체제 대응 수렴 -->
+<path d="M160 410 L160 450 L330 450" fill="none" stroke="#888780" stroke-width="0.8" marker-end="url(#ar)"/>
+<line x1="380" y1="410" x2="380" y2="450" stroke="#888780" stroke-width="0.8" marker-end="url(#ar)"/>
+<path d="M600 410 L600 450 L430 450" fill="none" stroke="#888780" stroke-width="0.8" marker-end="url(#ar)"/>
+
+<!-- ══ §4 체제 대응 ══ -->
+<rect x="240" y="450" width="280" height="54" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.8"/>
+<text x="380" y="472" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#444441">체제 대응</text>
+<text x="380" y="490" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#5F5E5A">경찰만 투입 — 시간 벌기 전술</text>
+<line x1="380" y1="504" x2="380" y2="534" stroke="#888780" stroke-width="1" marker-end="url(#ar)"/>
+
+<!-- ══ §5 경찰 투입 한계 ══ -->
+<rect x="220" y="534" width="320" height="64" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="1"/>
+<text x="380" y="556" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#633806">경찰 투입 한계 도달</text>
+<text x="380" y="574" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#854F0B">100만 집결시 물리적 불가 · IRGC 투입 or 방치 딜레마</text>
+
+<!-- ══ §5 → 3방향 ══ -->
+<!-- 좌: IRGC 재투입 (x=90) -->
+<path d="M240 566 L90 566 L90 618" fill="none" stroke="#A32D2D" stroke-width="1" marker-end="url(#ar-r)"/>
+<text x="164" y="556" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#A32D2D">IRGC 재투입</text>
+<!-- 우: 방치 (x=650) -->
+<path d="M520 566 L650 566 L650 618" fill="none" stroke="#888780" stroke-width="1" marker-end="url(#ar)"/>
+<text x="586" y="556" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#5F5E5A">방치·회피</text>
+<!-- 아래: 민중 선택 -->
+<line x1="380" y1="598" x2="380" y2="618" stroke="#888780" stroke-width="1" marker-end="url(#ar)"/>
+
+<!-- ══ 좌측 컬럼: IRGC 재투입 (x중심=90) ══ -->
+<rect x="20" y="618" width="140" height="64" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.8"/>
+<text x="90" y="640" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#791F1F">IRGC 재투입</text>
+<text x="90" y="657" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#A32D2D">2차 학살 시도</text>
+<text x="90" y="673" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#A32D2D">국제 압력 폭증</text>
+<line x1="90" y1="682" x2="90" y2="712" stroke="#A32D2D" stroke-width="0.8" marker-end="url(#ar-r)"/>
+
+<!-- 균열 여부 (좌측 컬럼 계속) -->
+<rect x="20" y="712" width="140" height="64" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.8"/>
+<text x="90" y="734" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#633806">균열 여부</text>
+<text x="90" y="751" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#854F0B">급여 미지급 지속?</text>
+<text x="90" y="767" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#854F0B">발포 거부 확산?</text>
+
+<!-- 균열/유지 → 세로 분기 (좌 / 우) -->
+<path d="M60 776 L60 820" fill="none" stroke="#A32D2D" stroke-width="0.8" marker-end="url(#ar-r)"/>
+<text x="44" y="802" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#A32D2D">균열</text>
+<path d="M120 776 L120 820" fill="none" stroke="#888780" stroke-width="0.8" marker-end="url(#ar)"/>
+<text x="136" y="802" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#5F5E5A">유지</text>
+
+<!-- 내부 붕괴 -->
+<rect x="16" y="820" width="76" height="54" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.8"/>
+<text x="54" y="841" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="700" fill="#791F1F">내부 붕괴</text>
+<text x="54" y="858" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#A32D2D">1979 재현?</text>
+
+<!-- 재탄압 -->
+<rect x="98" y="820" width="70" height="54" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.8"/>
+<text x="133" y="841" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="700" fill="#633806">재탄압</text>
+<text x="133" y="858" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#854F0B">사이클 반복</text>
+
+<!-- 내부붕괴 → 봉기 수렴 점선 -->
+<path d="M54 874 L54 960 L230 960" fill="none" stroke="#A32D2D" stroke-width="0.8" stroke-dasharray="4 3" marker-end="url(#ar-r)"/>
+
+<!-- ══ 우측 컬럼: 방치·회피 (x중심=650) ══ -->
+<rect x="580" y="618" width="160" height="64" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.8"/>
+<text x="660" y="640" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#444441">시위 방치</text>
+<text x="660" y="657" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#5F5E5A">통제력 공개 붕괴</text>
+<text x="660" y="673" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#5F5E5A">체제 신호 상실</text>
+<line x1="660" y1="682" x2="660" y2="712" stroke="#888780" stroke-width="0.8" marker-end="url(#ar)"/>
+<rect x="580" y="712" width="160" height="54" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.8"/>
+<text x="660" y="734" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#791F1F">통제력 붕괴</text>
+<text x="660" y="751" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#A32D2D">엘리트 탈출 가속</text>
+<!-- 방치 → 봉기 점선 -->
+<path d="M660 766 L660 960 L530 960" fill="none" stroke="#A32D2D" stroke-width="0.8" stroke-dasharray="4 3" marker-end="url(#ar-r)"/>
+
+<!-- ══ 중앙: 민중 선택 (x=200~560) ══ -->
+<rect x="210" y="618" width="340" height="44" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.8"/>
+<text x="380" y="645" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#444441">민중의 선택 분기점</text>
+
+<!-- 민중 → 일상 복귀 (중앙 좌, x=270) -->
+<path d="M300 662 L270 662 L270 712" fill="none" stroke="#888780" stroke-width="0.8" marker-end="url(#ar)"/>
+<text x="248" y="656" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#5F5E5A">일상 복귀?</text>
+<!-- 민중 → 시위 지속 (중앙 우, x=490) -->
+<path d="M460 662 L490 662 L490 712" fill="none" stroke="#888780" stroke-width="0.8" marker-end="url(#ar)"/>
+<text x="512" y="656" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#5F5E5A">지속?</text>
+
+<!-- 일상 복귀 박스 (x=195~345, 겹침 없음) -->
+<rect x="195" y="712" width="150" height="88" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.8"/>
+<text x="270" y="733" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#0C447C">일상 복귀 시도</text>
+<text x="270" y="751" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#185FA5">돌아갈 일상이</text>
+<text x="270" y="767" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#185FA5">있는가?</text>
+<text x="270" y="785" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#185FA5">F_reach 0.32</text>
+<line x1="270" y1="800" x2="270" y2="830" stroke="#A32D2D" stroke-width="0.8" marker-end="url(#ar-r)"/>
+
+<!-- 없다 박스 -->
+<rect x="195" y="830" width="150" height="54" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.8"/>
+<text x="270" y="851" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#791F1F">없다</text>
+<text x="270" y="869" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#A32D2D">전쟁 후 극빈</text>
+<!-- 없다 → 봉기 점선 -->
+<path d="M270 884 L270 960 L230 960" fill="none" stroke="#A32D2D" stroke-width="0.8" stroke-dasharray="4 3" marker-end="url(#ar-r)"/>
+
+<!-- 시위 지속 박스 (x=415~565, 겹침 없음) -->
+<rect x="415" y="712" width="150" height="88" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.8"/>
+<text x="490" y="733" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#712B13">시위 지속</text>
+<text x="490" y="751" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#993C1D">전쟁 중 일상 거부</text>
+<text x="490" y="769" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#993C1D">봉기가 차선</text>
+<text x="490" y="787" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#993C1D">F_reach 0.32</text>
+<!-- 시위지속 → 봉기 -->
+<line x1="490" y1="800" x2="490" y2="960" stroke="#A32D2D" stroke-width="0.8" marker-end="url(#ar-r)"/>
+
+<!-- ══ §8 봉기 수렴점 ══ -->
+<rect x="170" y="960" width="420" height="60" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="1.5"/>
+<text x="380" y="984" text-anchor="middle" font-family="Georgia,serif" font-size="14" font-weight="700" fill="#791F1F">봉기 — 가장 높은 수렴점</text>
+<text x="380" y="1004" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#A32D2D">시점 미결 · 규모 미결 · 결과 미결</text>
+<line x1="380" y1="1020" x2="380" y2="1050" stroke="#888780" stroke-width="1" marker-end="url(#ar)"/>
+
+<!-- ══ §9 봉기 이후 ══ -->
+<rect x="240" y="1050" width="280" height="44" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.8"/>
+<text x="380" y="1077" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#444441">봉기 이후 분기 — 미결</text>
+
+<!-- 4방향 분기 -->
+<path d="M265 1094 L110 1094 L110 1138" fill="none" stroke="#888780" stroke-width="0.8" marker-end="url(#ar)"/>
+<path d="M320 1094 L270 1094 L270 1138" fill="none" stroke="#888780" stroke-width="0.8" marker-end="url(#ar)"/>
+<path d="M440 1094 L490 1094 L490 1138" fill="none" stroke="#888780" stroke-width="0.8" marker-end="url(#ar)"/>
+<path d="M495 1094 L650 1094 L650 1138" fill="none" stroke="#888780" stroke-width="0.8" marker-end="url(#ar)"/>
+
+<!-- 결과 A: 체제 붕괴 -->
+<rect x="40" y="1138" width="140" height="64" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.8"/>
+<text x="110" y="1160" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#085041">체제 붕괴</text>
+<text x="110" y="1177" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#0F6E56">이행 정부</text>
+<text x="110" y="1193" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#0F6E56">팔라비? 공화정?</text>
+
+<!-- 결과 B: 2차 학살 -->
+<rect x="200" y="1138" width="140" height="64" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.8"/>
+<text x="270" y="1160" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#791F1F">2차 학살</text>
+<text x="270" y="1177" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#A32D2D">사이클 반복</text>
+<text x="270" y="1193" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#A32D2D">더 큰 폭발</text>
+
+<!-- 결과 C: 협상 돌파 -->
+<rect x="420" y="1138" width="140" height="64" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.8"/>
+<text x="490" y="1160" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#0C447C">협상 돌파</text>
+<text x="490" y="1177" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#185FA5">제재 해제</text>
+<text x="490" y="1193" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#185FA5">시간 벌기</text>
+
+<!-- 결과 D: 군부 쿠데타 -->
+<rect x="580" y="1138" width="150" height="64" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.8"/>
+<text x="655" y="1160" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#3C3489">군부 쿠데타</text>
+<text x="655" y="1177" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#534AB7">IRGC 온건파</text>
+<text x="655" y="1193" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#534AB7">내부 권력 교체</text>
+
+<!-- ══ 수치 패널 ══ -->
+<rect x="30" y="1252" width="700" height="118" rx="8" fill="none" stroke="#DDD8CE" stroke-width="1" stroke-dasharray="5 4"/>
+<text x="380" y="1278" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#444441">핵심 수치 — 현재 임계 위치 (2026.04.29)</text>
+<text x="80"  y="1304" font-family="'Courier New',monospace" font-size="11" fill="#A32D2D">TBI 0.665 / θ=0.70 · 잔여 0.035</text>
+<text x="80"  y="1322" font-family="'Courier New',monospace" font-size="11" fill="#5F5E5A">F_reach 0.32 / 위험선 0.40 하회</text>
+<text x="80"  y="1340" font-family="'Courier New',monospace" font-size="11" fill="#854F0B">PWT-r 0.47 / Λ-Score ≈ 0.60</text>
+<text x="410" y="1304" font-family="'Courier New',monospace" font-size="11" fill="#A32D2D">실업 +200만 / 인플레 72%</text>
+<text x="410" y="1322" font-family="'Courier New',monospace" font-size="11" fill="#854F0B">처형 612건 (4월 기준)</text>
+<text x="410" y="1340" font-family="'Courier New',monospace" font-size="11" fill="#5F5E5A">IRGC 급여 미지급 · SR 임계 근접</text>
+
+<!-- 미결 서명 -->
+<text x="380" y="1400" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#888780">— 이 아래는 Λ¹²가 답하지 않는다 —</text>
+<text x="380" y="1420" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#888780">민중이 거리에서 결정한다</text>
+
+<!-- 범례 -->
+<rect x="30" y="1440" width="700" height="130" rx="8" fill="#FAF8F4" stroke="#DDD8CE" stroke-width="0.5"/>
+<text x="380" y="1464" text-anchor="middle" font-family="Georgia,serif" font-size="11" font-weight="700" fill="#444441">범례</text>
+<rect x="50"  y="1478" width="14" height="14" rx="3" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.8"/>
+<text x="72"  y="1490" font-family="Georgia,serif" font-size="11" fill="#085041">좋은 방향 (현실 불가)</text>
+<rect x="230" y="1478" width="14" height="14" rx="3" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.8"/>
+<text x="252" y="1490" font-family="Georgia,serif" font-size="11" fill="#633806">임계·경고 구간</text>
+<rect x="420" y="1478" width="14" height="14" rx="3" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.8"/>
+<text x="442" y="1490" font-family="Georgia,serif" font-size="11" fill="#791F1F">위험·붕괴 경로</text>
+<rect x="580" y="1478" width="14" height="14" rx="3" fill="#F1EFE8" stroke="#888780" stroke-width="0.8"/>
+<text x="602" y="1490" font-family="Georgia,serif" font-size="11" fill="#444441">중립 구간</text>
+<line x1="50"  y1="1516" x2="80"  y2="1516" stroke="#A32D2D" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#ar-r)"/>
+<text x="90"  y="1520" font-family="Georgia,serif" font-size="11" fill="#A32D2D">불가 경로 복귀 (점선)</text>
+<line x1="290" y1="1516" x2="320" y2="1516" stroke="#888780" stroke-width="1" marker-end="url(#ar)"/>
+<text x="330" y="1520" font-family="Georgia,serif" font-size="11" fill="#5F5E5A">정방향 흐름 (실선)</text>
+<text x="380" y="1558" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#888780">늘푸른바다 사회동역학 연구소 · Λ¹² v9.11 · SSRN 6509200 · 2026-04-29</text>
+</svg>
+</div>
+
+</div>
+
+</div><!-- /wrap -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="ft-title">늘푸른바다 사회동역학 연구소</div>
+  Everblue Sea Dynamics Institute · Developer of SYNTHESIS Framework<br>
+  <a href="https://badaegopa.tistory.com" target="_blank">badaegopa.tistory.com</a>
+  &nbsp;·&nbsp; SSRN 6509200 &nbsp;·&nbsp; Λ¹² v9.11<br>
+  분석을 넘어, 재조립으로 / Not analysis, but synthesis<br>
+  <br>
+  청해(淸海) + Claude · 2026-04-29
+</div>
+
+</body>
+</html>

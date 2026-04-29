@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이란 Λ¹² 레이더 — v9.11</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#F5F3EE; display:flex; flex-direction:column; align-items:center; padding:24px 16px; font-family:Georgia,serif; }
+.wrap { background:#fff; border:1px solid #DDD8CE; border-radius:6px; padding:24px; text-align:center; max-width:520px; width:100%; }
+.cap { font-size:11px; color:#888; margin-top:10px; font-family:'Courier New',monospace; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<svg width="480" height="480" viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg">
+  <!-- 배경 동심원 -->
+  <circle cx="240" cy="240" r="40"  fill="none" stroke="#E5E0D8" stroke-width="1"/>
+  <circle cx="240" cy="240" r="80"  fill="none" stroke="#E5E0D8" stroke-width="1"/>
+  <circle cx="240" cy="240" r="120" fill="none" stroke="#E5E0D8" stroke-width="1"/>
+  <circle cx="240" cy="240" r="160" fill="none" stroke="#E5E0D8" stroke-width="1"/>
+  <circle cx="240" cy="240" r="200" fill="none" stroke="#CCC"    stroke-width="1"/>
+  <!-- 12축 -->
+  <line x1="240" y1="240" x2="240" y2="40"  stroke="#E5E0D8" stroke-width="0.8"/>
+  <line x1="240" y1="240" x2="340" y2="90"  stroke="#E5E0D8" stroke-width="0.8"/>
+  <line x1="240" y1="240" x2="413" y2="190" stroke="#E5E0D8" stroke-width="0.8"/>
+  <line x1="240" y1="240" x2="440" y2="240" stroke="#E5E0D8" stroke-width="0.8"/>
+  <line x1="240" y1="240" x2="413" y2="290" stroke="#E5E0D8" stroke-width="0.8"/>
+  <line x1="240" y1="240" x2="340" y2="390" stroke="#E5E0D8" stroke-width="0.8"/>
+  <line x1="240" y1="240" x2="240" y2="440" stroke="#E5E0D8" stroke-width="0.8"/>
+  <line x1="240" y1="240" x2="140" y2="390" stroke="#E5E0D8" stroke-width="0.8"/>
+  <line x1="240" y1="240" x2="67"  y2="290" stroke="#E5E0D8" stroke-width="0.8"/>
+  <line x1="240" y1="240" x2="40"  y2="240" stroke="#E5E0D8" stroke-width="0.8"/>
+  <line x1="240" y1="240" x2="67"  y2="190" stroke="#E5E0D8" stroke-width="0.8"/>
+  <line x1="240" y1="240" x2="140" y2="90"  stroke="#E5E0D8" stroke-width="0.8"/>
+  <!-- 데이터 폴리곤 -->
+  <polygon
+    points="240,96 314,152 417,149 404,240 335,402 161,347 240,410 116,293 103,307 86,240 158,119 181,124"
+    fill="rgba(192,57,43,0.18)" stroke="#C0392B" stroke-width="2"/>
+  <!-- 데이터 포인트 -->
+  <circle cx="240" cy="96"  r="4" fill="#C0392B"/>
+  <circle cx="314" cy="152" r="4" fill="#C0392B"/>
+  <circle cx="417" cy="149" r="4" fill="#C0392B"/>
+  <circle cx="404" cy="240" r="4" fill="#C0392B"/>
+  <circle cx="335" cy="402" r="4" fill="#C0392B"/>
+  <circle cx="161" cy="347" r="4" fill="#C0392B"/>
+  <circle cx="240" cy="410" r="4" fill="#C0392B"/>
+  <circle cx="116" cy="293" r="4" fill="#C0392B"/>
+  <circle cx="103" cy="307" r="4" fill="#C0392B"/>
+  <circle cx="86"  cy="240" r="4" fill="#C0392B"/>
+  <circle cx="158" cy="119" r="4" fill="#C0392B"/>
+  <circle cx="181" cy="124" r="4" fill="#C0392B"/>
+  <!-- 축 레이블 (style 없이 직접 속성) -->
+  <text x="234" y="32"  text-anchor="middle" font-size="10" fill="#555" font-family="Courier New,monospace">BRI 0.72</text>
+  <text x="330" y="78"  text-anchor="start"  font-size="10" fill="#555" font-family="Courier New,monospace">SSI 0.88</text>
+  <text x="422" y="145" text-anchor="start"  font-size="10" fill="#555" font-family="Courier New,monospace">GPI 0.91</text>
+  <text x="448" y="244" text-anchor="start"  font-size="10" fill="#555" font-family="Courier New,monospace">SR 0.82</text>
+  <text x="390" y="420" text-anchor="start"  font-size="10" fill="#555" font-family="Courier New,monospace">Σ 0.93</text>
+  <text x="130" y="368" text-anchor="end"    font-size="10" fill="#555" font-family="Courier New,monospace">LPI 0.79</text>
+  <text x="234" y="455" text-anchor="middle" font-size="10" fill="#555" font-family="Courier New,monospace">OIP 0.85</text>
+  <text x="80"  y="320" text-anchor="end"    font-size="10" fill="#555" font-family="Courier New,monospace">HCDI 0.74</text>
+  <text x="38"  y="310" text-anchor="end"    font-size="10" fill="#555" font-family="Courier New,monospace">AMI 0.68</text>
+  <text x="16"  y="244" text-anchor="end"    font-size="10" fill="#555" font-family="Courier New,monospace">NI 0.77</text>
+  <text x="56"  y="112" text-anchor="end"    font-size="10" fill="#555" font-family="Courier New,monospace">CFD 0.81</text>
+  <text x="138" y="72"  text-anchor="end"    font-size="10" fill="#555" font-family="Courier New,monospace">TBI 0.665</text>
+  <!-- 중심 -->
+  <text x="240" y="228" text-anchor="middle" font-size="13" font-weight="700" fill="#C0392B" font-family="Courier New,monospace">이란</text>
+  <text x="240" y="244" text-anchor="middle" font-size="10" fill="#888"    font-family="Courier New,monospace">Λ≈0.60</text>
+  <text x="240" y="258" text-anchor="middle" font-size="10" fill="#C0392B" font-family="Courier New,monospace">DANGER</text>
+</svg>
+<p class="cap">이란 Λ¹² 12축 레이더 | 모든 축 위험 구간 (0.665~0.93) | v9.11 추정</p>
+</div>
+</body>
+</html>
