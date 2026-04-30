@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>발칸 비교편 v1.0 — 세르비아·크로아티아·보스니아 Λ¹² 비교</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: #F5F3EE;
+  color: #2C2C2C;
+  font-family: Georgia, 'Batang', serif;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, #7BADA0 0%, #5E9186 55%, #3A6A5E 100%);
+  padding: 50px 36px 42px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: 'Балкан';
+  position: absolute;
+  right: 24px; top: 16px;
+  font-size: 64px;
+  color: rgba(255,255,255,0.08);
+  font-family: Georgia, serif;
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.16);
+  color: #fff;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  padding: 4px 12px;
+  border-radius: 2px;
+  margin-bottom: 16px;
+  font-family: 'Courier New', monospace;
+}
+.hero-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
+.hero-sub {
+  color: rgba(255,255,255,0.80);
+  font-size: 14px;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.hero-tag {
+  background: rgba(255,255,255,0.14);
+  color: rgba(255,255,255,0.85);
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-family: 'Courier New', monospace;
+}
+
+/* ── CONTAINER ── */
+.wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 22px 64px;
+}
+
+/* ── WARNING BANNER ── */
+.warn {
+  background: #FFF8E7;
+  border-left: 4px solid #B8850E;
+  padding: 14px 20px;
+  margin: 28px 0 0;
+  border-radius: 0 4px 4px 0;
+}
+.warn-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #B8850E;
+  letter-spacing: 1.5px;
+  margin-bottom: 5px;
+  font-family: 'Courier New', monospace;
+}
+.warn p { font-size: 13px; color: #5C4200; line-height: 1.7; }
+
+/* ── SECTION ── */
+.sec-label {
+  display: inline-block;
+  background: #5E9186;
+  color: #fff;
+  font-size: 10px;
+  letter-spacing: 2px;
+  padding: 3px 10px;
+  border-radius: 2px;
+  margin-top: 44px;
+  margin-bottom: 8px;
+  font-family: 'Courier New', monospace;
+}
+.sec-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: #2C2C2C;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #DDD8CE;
+  margin-bottom: 18px;
+  line-height: 1.4;
+}
+.sec-title em { color: #5E9186; font-style: normal; }
+
+/* ── PROSE ── */
+.prose { font-size: 15px; line-height: 1.95; color: #333; margin-bottom: 14px; }
+.prose strong { color: #3A6A5E; }
+
+/* ── CARD ── */
+.card {
+  background: #fff;
+  border: 1px solid #DDD8CE;
+  border-radius: 6px;
+  padding: 20px 22px;
+  margin-bottom: 14px;
+}
+.card-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #3A6A5E;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+  font-family: 'Courier New', monospace;
+}
+
+/* ── NATION CARDS (3-col) ── */
+.ncards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 16px 0 22px;
+}
+.ncard {
+  background: #fff;
+  border: 1px solid #DDD8CE;
+  border-radius: 6px;
+  padding: 14px 14px 16px;
+  border-top: 4px solid #5E9186;
+}
+.ncard.srb { border-top-color: #B8850E; }
+.ncard.hrv { border-top-color: #5E9186; }
+.ncard.bih { border-top-color: #C0392B; }
+.ncard h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #2C2C2C;
+  margin-bottom: 4px;
+}
+.ncard .nflag {
+  font-size: 10px;
+  color: #888;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+.ncard .nstat {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #444;
+  font-family: 'Courier New', monospace;
+}
+.ncard .nstat b { color: #3A6A5E; }
+.ncard .nzone {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+}
+.zone-watch  { background: #FFF8E7; color: #B8850E; }
+.zone-danger { background: #FBEBE8; color: #C0392B; }
+.zone-stable { background: #E9F4EE; color: #2A7A4F; }
+
+/* ── TABLE ── */
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 14px 0; }
+th {
+  background: #5E9186;
+  color: #fff;
+  padding: 8px 12px;
+  text-align: left;
+  font-size: 11px;
+  letter-spacing: 1px;
+  font-family: 'Courier New', monospace;
+}
+td { padding: 8px 12px; border-bottom: 1px solid #EEE9E2; vertical-align: top; line-height: 1.6; }
+tr:nth-child(even) td { background: #FAF8F4; }
+.danger { color: #C0392B; font-weight: 700; }
+.watch  { color: #B8850E; font-weight: 700; }
+.stable { color: #2A7A4F; font-weight: 700; }
+
+/* ── CODE / FORMULA BOX ── */
+.cbox {
+  background: #1E2227;
+  color: #E8E4DC;
+  font-family: 'Courier New', monospace;
+  font-size: 12.5px;
+  padding: 18px 22px;
+  border-radius: 4px;
+  margin: 14px 0;
+  line-height: 1.75;
+  overflow-x: auto;
+  white-space: pre;
+}
+.cg { color: #7BADA0; }
+.cy { color: #E8B84B; }
+.cr { color: #E07070; }
+.cc { color: #888; }
+
+/* ── QUOTE ── */
+.qblock {
+  border-left: 3px solid #B8850E;
+  padding: 10px 18px;
+  margin: 14px 0;
+  background: #FEFBF4;
+  font-style: italic;
+  font-size: 14px;
+  color: #444;
+  line-height: 1.8;
+}
+.qsrc {
+  font-size: 11px;
+  color: #888;
+  margin-top: 5px;
+  font-style: normal;
+  font-family: 'Courier New', monospace;
+}
+
+/* ── DIAGRAM WRAPPER ── */
+.diagwrap {
+  background: #fff;
+  border: 1px solid #DDD8CE;
+  border-radius: 6px;
+  padding: 22px 18px 18px;
+  margin: 16px 0;
+  text-align: center;
+}
+.diagwrap .dcap {
+  font-size: 11px;
+  color: #888;
+  margin-top: 10px;
+  font-family: 'Courier New', monospace;
+  line-height: 1.7;
+}
+.diagwrap .dlegend {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 8px;
+  font-size: 11px;
+  font-family: 'Courier New', monospace;
+  color: #555;
+  justify-content: center;
+}
+.diagwrap .dlegend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.dleg-dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* ── DIVIDER ── */
+.div-gold {
+  text-align: center;
+  color: #B8850E;
+  font-size: 16px;
+  letter-spacing: 8px;
+  margin: 40px 0 20px;
+  opacity: 0.6;
+}
+
+/* ── FOOTER ── */
+.footer {
+  background: #3A6A5E;
+  color: rgba(255,255,255,0.80);
+  text-align: center;
+  padding: 28px 20px;
+  font-size: 12px;
+  line-height: 2;
+  margin-top: 52px;
+}
+.footer .ft-title {
+  font-size: 14px;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">ΛAMBDA¹² · 비교편 #03 · 발칸</div>
+  <div class="hero-title">발칸 비교편 — 같은 전쟁, 다른 30년<br>세르비아 · 크로아티아 · 보스니아 헤르체고비나</div>
+  <div class="hero-sub">Western Balkans Λ¹² Comparative Audit | v9.11 | 2026-04-30</div>
+  <div class="hero-tags">
+    <span class="hero-tag">SRB Λ≈0.55 WATCH</span>
+    <span class="hero-tag">HRV Λ≈0.32 WATCH-low</span>
+    <span class="hero-tag">BIH Λ≈0.62 DANGER</span>
+    <span class="hero-tag">TBI 권역 최고</span>
+    <span class="hero-tag">Dayton 30년</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- WARNING -->
+<div class="warn">
+  <div class="warn-title">⚠ 비교편 고지</div>
+  <p>본 레포트는 단일 사건 추적이 아니라 <b>같은 전쟁(1991~1995 유고슬라비아 해체)</b>에서 출발한 세 국가가 30년 후 어떤 Λ¹² 좌표에 도달했는지를 비교한다. 데이터는 Transparency International CPI 2025, UNDP HDI 2024, Freedom House, Vision of Humanity GPI, EU 통합 단계, 자체 추정 Σ·CFD·TBI를 결합. 코소보·몬테네그로·북마케도니아·슬로베니아는 별도편에서 다룬다.</p>
+</div>
+
+<!-- §0 개요 -->
+<div class="sec-label">§0 · 개요</div>
+<div class="sec-title">왜 발칸 3국을 같은 표에서 보는가</div>
+
+<p class="prose">1991년 6월 25일 슬로베니아·크로아티아 독립선언으로 시작된 유고슬라비아 해체는 1995년 12월 14일 데이턴 평화협정으로 봉합됐다. 그러나 봉합은 해소가 아니었다. <strong>같은 전쟁이 세 사회에 다른 형태의 흉터를 남겼고</strong>, 30년 뒤인 2026년 그 흉터의 분포가 세 국가의 Λ¹² 좌표를 결정짓는다.</p>
+
+<p class="prose">크로아티아는 EU·NATO·유로존에 모두 합류했고(EU 2013, 유로 2023, 셰겐 2023), 보스니아는 데이턴이 만든 <strong>3민족 거부권 구조에 30년째 갇혀 있고</strong>, 세르비아는 EU 후보국 자격을 유지하면서도 코소보·러시아·중국 사이에서 흔들린다. 이 보고서는 이 세 경로를 12개 변수로 동시에 읽는다.</p>
+
+<!-- 3국 카드 -->
+<div class="ncards">
+  <div class="ncard srb">
+    <h4>세르비아 / Србија</h4>
+    <div class="nflag">SRB · Belgrade</div>
+    <div class="nstat">
+      <b>CPI:</b> 33 (2025)<br>
+      <b>HDI:</b> 0.802 (Very High)<br>
+      <b>GDP/cap:</b> ~$13,300<br>
+      <b>EU:</b> 후보국 (정체)<br>
+      <b>NATO:</b> 비가입<br>
+      <b>Λ¹²:</b> 0.55
+    </div>
+    <span class="nzone zone-watch">WATCH (상위)</span>
+  </div>
+  <div class="ncard hrv">
+    <h4>크로아티아 / Hrvatska</h4>
+    <div class="nflag">HRV · Zagreb</div>
+    <div class="nstat">
+      <b>CPI:</b> 47 (2025)<br>
+      <b>HDI:</b> 0.858 (Very High)<br>
+      <b>GDP/cap:</b> ~$22,400<br>
+      <b>EU:</b> 회원국 (2013)<br>
+      <b>NATO:</b> 회원국 (2009)<br>
+      <b>Λ¹²:</b> 0.32
+    </div>
+    <span class="nzone zone-stable">STABLE-WATCH</span>
+  </div>
+  <div class="ncard bih">
+    <h4>보스니아 / Bosna i H.</h4>
+    <div class="nflag">BIH · Sarajevo</div>
+    <div class="nstat">
+      <b>CPI:</b> 34 (2025)<br>
+      <b>HDI:</b> 0.780 (High)<br>
+      <b>GDP/cap:</b> ~$8,500<br>
+      <b>EU:</b> 후보국 (2022)<br>
+      <b>NATO:</b> MAP 정체<br>
+      <b>Λ¹²:</b> 0.62
+    </div>
+    <span class="nzone zone-danger">DANGER</span>
+  </div>
+</div>
+
+<!-- §1 다이어그램 1: 4-orbit -->
+<div class="sec-label">§1 · 다이어그램 ①</div>
+<div class="sec-title">4단계 위상 궤도 — <em>Phase Orbit</em></div>
+
+<p class="prose">Λ¹² 위상 궤도는 사회를 동심원 4단계로 구분한다 — 안정(Stable), 주의(Watch), 경계(Caution), 위험(Danger). 같은 전쟁에서 출발한 3국이 30년 후 다른 궤도에 안착했다.</p>
+
+<div class="diagwrap">
+<svg width="480" height="480" viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="orbBg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"  stop-color="#E9F4EE"/>
+      <stop offset="40%" stop-color="#FAF8F4"/>
+      <stop offset="100%" stop-color="#FBEBE8"/>
+    </radialGradient>
+  </defs>
+
+  <!-- 배경 그라데이션 -->
+  <circle cx="240" cy="240" r="210" fill="url(#orbBg)" opacity="0.55"/>
+
+  <!-- 4 동심원 -->
+  <circle cx="240" cy="240" r="60"  fill="none" stroke="#2A7A4F" stroke-width="1.4" stroke-dasharray="3 3"/>
+  <circle cx="240" cy="240" r="120" fill="none" stroke="#5E9186" stroke-width="1.4" stroke-dasharray="3 3"/>
+  <circle cx="240" cy="240" r="170" fill="none" stroke="#B8850E" stroke-width="1.4" stroke-dasharray="3 3"/>
+  <circle cx="240" cy="240" r="210" fill="none" stroke="#C0392B" stroke-width="1.6"/>
+
+  <!-- 권역 레이블 (12시) -->
+  <text x="240" y="48"  text-anchor="middle" font-size="11" fill="#C0392B" font-family="'Courier New', monospace" font-weight="700">DANGER · Λ ≥ 0.60</text>
+  <text x="240" y="86"  text-anchor="middle" font-size="10" fill="#B8850E" font-family="'Courier New', monospace">CAUTION · 0.45–0.60</text>
+  <text x="240" y="136" text-anchor="middle" font-size="10" fill="#5E9186" font-family="'Courier New', monospace">WATCH · 0.30–0.45</text>
+  <text x="240" y="186" text-anchor="middle" font-size="10" fill="#2A7A4F" font-family="'Courier New', monospace">STABLE · &lt; 0.30</text>
+
+  <!-- 중심 -->
+  <circle cx="240" cy="240" r="6" fill="#2C2C2C"/>
+  <text x="240" y="262" text-anchor="middle" font-size="10" fill="#666" font-family="'Courier New', monospace">YU 1990</text>
+
+  <!-- HRV (Watch-low, Λ=0.32, 약 11시 방향) -->
+  <line x1="240" y1="240" x2="170" y2="135" stroke="#5E9186" stroke-width="1.2" stroke-dasharray="2 4"/>
+  <circle cx="170" cy="135" r="14" fill="#5E9186" stroke="#fff" stroke-width="2.5"/>
+  <text x="170" y="139" text-anchor="middle" font-size="11" fill="#fff" font-weight="700" font-family="'Courier New', monospace">HR</text>
+  <text x="170" y="115" text-anchor="middle" font-size="10" fill="#3A6A5E" font-family="'Courier New', monospace" font-weight="700">Croatia 0.32</text>
+
+  <!-- SRB (Caution upper, Λ=0.55, 2시 방향) -->
+  <line x1="240" y1="240" x2="380" y2="155" stroke="#B8850E" stroke-width="1.2" stroke-dasharray="2 4"/>
+  <circle cx="380" cy="155" r="14" fill="#B8850E" stroke="#fff" stroke-width="2.5"/>
+  <text x="380" y="159" text-anchor="middle" font-size="11" fill="#fff" font-weight="700" font-family="'Courier New', monospace">RS</text>
+  <text x="380" y="138" text-anchor="middle" font-size="10" fill="#854F0B" font-family="'Courier New', monospace" font-weight="700">Serbia 0.55</text>
+
+  <!-- BIH (Danger, Λ=0.62, 5시 방향) -->
+  <line x1="240" y1="240" x2="375" y2="370" stroke="#C0392B" stroke-width="1.2" stroke-dasharray="2 4"/>
+  <circle cx="375" cy="370" r="15" fill="#C0392B" stroke="#fff" stroke-width="2.5"/>
+  <text x="375" y="374" text-anchor="middle" font-size="11" fill="#fff" font-weight="700" font-family="'Courier New', monospace">BA</text>
+  <text x="375" y="395" text-anchor="middle" font-size="10" fill="#A32D2D" font-family="'Courier New', monospace" font-weight="700">Bosnia 0.62</text>
+
+  <!-- 시계열 화살표 (1995 → 2026) -->
+  <path d="M 240 240 Q 200 200 170 135" fill="none" stroke="#5E9186" stroke-width="0.7" stroke-dasharray="1 3"/>
+  <path d="M 240 240 Q 320 200 380 155" fill="none" stroke="#B8850E" stroke-width="0.7" stroke-dasharray="1 3"/>
+  <path d="M 240 240 Q 320 320 375 370" fill="none" stroke="#C0392B" stroke-width="0.7" stroke-dasharray="1 3"/>
+
+  <!-- 좌하단 메모 -->
+  <text x="20"  y="460" font-size="10" fill="#888" font-family="'Courier New', monospace">Origin: Yugoslavia, 1990</text>
+  <text x="460" y="460" text-anchor="end" font-size="10" fill="#888" font-family="'Courier New', monospace">Snapshot: 2026.04</text>
+</svg>
+<div class="dcap">
+  Diagram ① · 4-Phase Orbit · Λ¹² v9.11<br>
+  Croatia exited to WATCH-low; Serbia drifted to CAUTION; Bosnia anchored in DANGER.
+</div>
+</div>
+
+<!-- §2 12축 표 -->
+<div class="sec-label">§2 · 12축 비교</div>
+<div class="sec-title">Λ¹² 12개 변수 — <em>3국 동시 측정</em></div>
+
+<div class="cbox"><span class="cc">─── Λ¹² v9.11 · Western Balkans 3국 (2026.04 추정) ───</span>
+<span class="cc">방향: 위험=1, 안정=0  |  굵은 글씨 = 권역 최고치</span>
+
+변수        SRB     HRV     BIH    핵심 차이
+──────────────────────────────────────────────────────
+<span class="cr">BRI</span>        0.55    0.30    0.62    BIH 송금경제 의존, HRV 유로존
+<span class="cr">SSI</span>        0.62    0.38    <span class="cy">0.85</span>   BIH 3민족 구조적 분열
+<span class="cr">GPI</span>        0.60    0.25    0.65    HRV NATO 안전망, RS 분리주의
+<span class="cr">SR</span>         0.45    0.30    0.55    HRV 시민사회 활성, BIH 좌절
+<span class="cy">Σ</span>          <span class="cy">0.72</span>   0.28    0.78   SRB 1인 권위주의, BIH 3두 마비
+<span class="cr">LPI_net</span>   0.45    0.25    0.55    HRV EU 단일시장 통합
+<span class="cr">OIP</span>      0.55    0.32    0.62    SRB 언론자유 후퇴
+<span class="cr">HCDI</span>     0.42    0.28    0.52    HDI 기준 BIH 낮음
+<span class="cy">AMI</span>       0.50    0.20    0.55    HRV NATO 잠금, BIH OHR 외부보호
+<span class="cr">NI</span>        0.30    0.20    0.25    공통 핵 부재
+<span class="cr">CFD</span>      0.58    0.42    0.65    BIH 카드린 자본흐름
+<span class="cy">TBI</span>       0.68    0.52    <span class="cy">0.82</span>   BIH 스레브레니차 학살 잔존
+
+<span class="cc">──────────────────────────────────────────────────────</span>
+<span class="cc">가중합산 (위험≥0.65: w2.0 / 주목0.40~: w1.4 / 안정&lt;0.40: w0.6)</span>
+<span class="cy">Λ-Score :  SRB ≈ 0.55   HRV ≈ 0.32   BIH ≈ 0.62</span>
+<span class="cy">Zone    :  CAUTION       WATCH-low    DANGER</span>
+
+<span class="cc">PWT-r = 1 - Λ × β  (β = 진영화 0.40 + CFD 0.35 + (1-CPI) 0.25)</span>
+  β_SRB ≈ 0.62   PWT-r ≈ 0.66
+  β_HRV ≈ 0.42   PWT-r ≈ <span class="cg">0.87</span>
+  β_BIH ≈ 0.71   PWT-r ≈ 0.56
+</div>
+
+<!-- §3 다이어그램 2: 2x2 위상 사분면 -->
+<div class="sec-label">§3 · 다이어그램 ②</div>
+<div class="sec-title">위상 사분면 — <em>Σ × TBI Quadrant</em></div>
+
+<p class="prose">발칸의 두 결정 변수는 <strong>Σ(지도자-민중 단절)</strong>과 <strong>TBI(트라우마 뇌관 지수)</strong>다. 두 축으로 사분면을 그리면 30년의 분기가 한 장으로 보인다.</p>
+
+<div class="diagwrap">
+<svg width="520" height="440" viewBox="0 0 520 440" xmlns="http://www.w3.org/2000/svg">
+  <!-- 사분면 배경 -->
+  <rect x="60"  y="40"  width="200" height="160" fill="#FFF8E7" opacity="0.7"/>
+  <rect x="260" y="40"  width="200" height="160" fill="#FBEBE8" opacity="0.7"/>
+  <rect x="60"  y="200" width="200" height="160" fill="#E9F4EE" opacity="0.7"/>
+  <rect x="260" y="200" width="200" height="160" fill="#FFF8E7" opacity="0.7"/>
+
+  <!-- 사분면 라벨 -->
+  <text x="160" y="60" text-anchor="middle" font-size="11" font-weight="700" fill="#854F0B" font-family="'Courier New', monospace">Q2 · HEALING</text>
+  <text x="160" y="76" text-anchor="middle" font-size="10" fill="#854F0B" font-family="'Courier New', monospace">low Σ · high TBI</text>
+  <text x="360" y="60" text-anchor="middle" font-size="11" font-weight="700" fill="#A32D2D" font-family="'Courier New', monospace">Q1 · BIFURCATION</text>
+  <text x="360" y="76" text-anchor="middle" font-size="10" fill="#A32D2D" font-family="'Courier New', monospace">high Σ · high TBI</text>
+  <text x="160" y="220" text-anchor="middle" font-size="11" font-weight="700" fill="#2A7A4F" font-family="'Courier New', monospace">Q3 · STABLE</text>
+  <text x="160" y="236" text-anchor="middle" font-size="10" fill="#2A7A4F" font-family="'Courier New', monospace">low Σ · low TBI</text>
+  <text x="360" y="220" text-anchor="middle" font-size="11" font-weight="700" fill="#854F0B" font-family="'Courier New', monospace">Q4 · DRIFT</text>
+  <text x="360" y="236" text-anchor="middle" font-size="10" fill="#854F0B" font-family="'Courier New', monospace">high Σ · low TBI</text>
+
+  <!-- 격자 -->
+  <line x1="60"  y1="40"  x2="460" y2="40"  stroke="#DDD8CE" stroke-width="0.8"/>
+  <line x1="60"  y1="200" x2="460" y2="200" stroke="#888"   stroke-width="1.5"/>
+  <line x1="60"  y1="360" x2="460" y2="360" stroke="#DDD8CE" stroke-width="0.8"/>
+  <line x1="60"  y1="40"  x2="60"  y2="360" stroke="#DDD8CE" stroke-width="0.8"/>
+  <line x1="260" y1="40"  x2="260" y2="360" stroke="#888"   stroke-width="1.5"/>
+  <line x1="460" y1="40"  x2="460" y2="360" stroke="#DDD8CE" stroke-width="0.8"/>
+
+  <!-- 축 -->
+  <text x="260" y="395" text-anchor="middle" font-size="12" font-weight="700" fill="#3A6A5E" font-family="'Courier New', monospace">Σ — leader/people gap →</text>
+  <text x="30" y="200" text-anchor="middle" font-size="12" font-weight="700" fill="#3A6A5E" font-family="'Courier New', monospace" transform="rotate(-90 30 200)">TBI — trauma fuse →</text>
+  <text x="60" y="378"  font-size="10" fill="#888" font-family="'Courier New', monospace">0.0</text>
+  <text x="260" y="378" text-anchor="middle" font-size="10" fill="#888" font-family="'Courier New', monospace">0.5</text>
+  <text x="460" y="378" text-anchor="end" font-size="10" fill="#888" font-family="'Courier New', monospace">1.0</text>
+  <text x="50" y="362" text-anchor="end" font-size="10" fill="#888" font-family="'Courier New', monospace">0.0</text>
+  <text x="50" y="204" text-anchor="end" font-size="10" fill="#888" font-family="'Courier New', monospace">0.5</text>
+  <text x="50" y="46"  text-anchor="end" font-size="10" fill="#888" font-family="'Courier New', monospace">1.0</text>
+
+  <!-- 데이터 포인트 -->
+  <!-- 좌표: x = 60 + Σ*400,  y = 360 - TBI*320 -->
+  <!-- HRV: Σ=0.28, TBI=0.52 → x=172, y=194 -->
+  <circle cx="172" cy="194" r="14" fill="#5E9186" stroke="#fff" stroke-width="2.5"/>
+  <text x="172" y="198" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" font-family="'Courier New', monospace">HR</text>
+  <text x="172" y="178" text-anchor="middle" font-size="10" fill="#3A6A5E" font-family="'Courier New', monospace">0.28 / 0.52</text>
+
+  <!-- SRB: Σ=0.72, TBI=0.68 → x=348, y=142 -->
+  <circle cx="348" cy="142" r="14" fill="#B8850E" stroke="#fff" stroke-width="2.5"/>
+  <text x="348" y="146" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" font-family="'Courier New', monospace">RS</text>
+  <text x="348" y="126" text-anchor="middle" font-size="10" fill="#854F0B" font-family="'Courier New', monospace">0.72 / 0.68</text>
+
+  <!-- BIH: Σ=0.78, TBI=0.82 → x=372, y=98 -->
+  <circle cx="372" cy="98" r="15" fill="#C0392B" stroke="#fff" stroke-width="2.5"/>
+  <text x="372" y="102" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" font-family="'Courier New', monospace">BA</text>
+  <text x="372" y="82" text-anchor="middle" font-size="10" fill="#A32D2D" font-family="'Courier New', monospace">0.78 / 0.82</text>
+
+  <!-- 위험 등고선 (대각) -->
+  <line x1="60" y1="360" x2="460" y2="40" stroke="#C0392B" stroke-width="0.6" stroke-dasharray="2 4" opacity="0.5"/>
+  <text x="430" y="58" font-size="9" fill="#C0392B" font-family="'Courier New', monospace" opacity="0.7">Σ+TBI=1.6</text>
+</svg>
+<div class="dcap">
+  Diagram ② · Σ × TBI Phase Quadrant<br>
+  Croatia near Q3 boundary; Serbia & Bosnia clustered in Q1 (BIFURCATION).
+</div>
+</div>
+
+<!-- §4 다이어그램 3: GPI 시계열 -->
+<div class="sec-label">§4 · 다이어그램 ③</div>
+<div class="sec-title">GPI 시계열 1990–2025 — <em>Global Peace Index</em></div>
+
+<p class="prose">평화 지수 시계열은 30년의 분기를 단일 곡선으로 보여준다. 크로아티아는 1995년 이후 빠르게 안정화됐고, 보스니아는 2000년대 중반부터 정체, 세르비아는 2008년 코소보 독립선언 이후 다시 상승했다.</p>
+
+<div class="diagwrap">
+<svg width="600" height="380" viewBox="0 0 600 380" xmlns="http://www.w3.org/2000/svg">
+  <!-- 격자 -->
+  <line x1="60"  y1="50"  x2="560" y2="50"  stroke="#EEE9E2" stroke-width="0.8"/>
+  <line x1="60"  y1="110" x2="560" y2="110" stroke="#EEE9E2" stroke-width="0.8"/>
+  <line x1="60"  y1="170" x2="560" y2="170" stroke="#EEE9E2" stroke-width="0.8"/>
+  <line x1="60"  y1="230" x2="560" y2="230" stroke="#EEE9E2" stroke-width="0.8"/>
+  <line x1="60"  y1="290" x2="560" y2="290" stroke="#888" stroke-width="1.2"/>
+
+  <!-- 위험 영역 -->
+  <rect x="60" y="50" width="500" height="60" fill="#C0392B" opacity="0.06"/>
+  <rect x="60" y="110" width="500" height="60" fill="#B8850E" opacity="0.06"/>
+
+  <!-- Y축 라벨 -->
+  <text x="50" y="54"  text-anchor="end" font-size="10" fill="#888" font-family="'Courier New', monospace">1.0</text>
+  <text x="50" y="114" text-anchor="end" font-size="10" fill="#888" font-family="'Courier New', monospace">0.8</text>
+  <text x="50" y="174" text-anchor="end" font-size="10" fill="#888" font-family="'Courier New', monospace">0.6</text>
+  <text x="50" y="234" text-anchor="end" font-size="10" fill="#888" font-family="'Courier New', monospace">0.4</text>
+  <text x="50" y="294" text-anchor="end" font-size="10" fill="#888" font-family="'Courier New', monospace">0.2</text>
+
+  <!-- X축 라벨 -->
+  <line x1="60" y1="290" x2="60" y2="296" stroke="#888"/>
+  <line x1="160" y1="290" x2="160" y2="296" stroke="#888"/>
+  <line x1="260" y1="290" x2="260" y2="296" stroke="#888"/>
+  <line x1="360" y1="290" x2="360" y2="296" stroke="#888"/>
+  <line x1="460" y1="290" x2="460" y2="296" stroke="#888"/>
+  <line x1="560" y1="290" x2="560" y2="296" stroke="#888"/>
+  <text x="60"  y="312" text-anchor="middle" font-size="10" fill="#666" font-family="'Courier New', monospace">1990</text>
+  <text x="160" y="312" text-anchor="middle" font-size="10" fill="#666" font-family="'Courier New', monospace">1997</text>
+  <text x="260" y="312" text-anchor="middle" font-size="10" fill="#666" font-family="'Courier New', monospace">2004</text>
+  <text x="360" y="312" text-anchor="middle" font-size="10" fill="#666" font-family="'Courier New', monospace">2011</text>
+  <text x="460" y="312" text-anchor="middle" font-size="10" fill="#666" font-family="'Courier New', monospace">2018</text>
+  <text x="560" y="312" text-anchor="middle" font-size="10" fill="#666" font-family="'Courier New', monospace">2025</text>
+
+  <!-- 이벤트 마커 -->
+  <line x1="135" y1="50" x2="135" y2="290" stroke="#888" stroke-width="0.6" stroke-dasharray="2 3"/>
+  <text x="135" y="44" text-anchor="middle" font-size="9" fill="#666" font-family="'Courier New', monospace">Dayton 1995</text>
+  <line x1="320" y1="50" x2="320" y2="290" stroke="#888" stroke-width="0.6" stroke-dasharray="2 3"/>
+  <text x="320" y="44" text-anchor="middle" font-size="9" fill="#666" font-family="'Courier New', monospace">Kosovo 2008</text>
+  <line x1="392" y1="50" x2="392" y2="290" stroke="#888" stroke-width="0.6" stroke-dasharray="2 3"/>
+  <text x="392" y="44" text-anchor="middle" font-size="9" fill="#666" font-family="'Courier New', monospace">HRV→EU 2013</text>
+
+  <!-- BIH 곡선 (적색) -->
+  <polyline points="60,60 90,55 120,52 150,90 180,140 210,165 240,178 270,182 300,180 330,178 360,180 390,184 420,182 450,180 480,178 510,178 540,176 560,175"
+    fill="none" stroke="#C0392B" stroke-width="2.4"/>
+  <circle cx="560" cy="175" r="4" fill="#C0392B"/>
+  <text x="568" y="178" font-size="10" fill="#C0392B" font-family="'Courier New', monospace" font-weight="700">BIH</text>
+
+  <!-- SRB 곡선 (골드) -->
+  <polyline points="60,68 90,62 120,75 150,110 180,148 210,168 240,182 270,195 300,205 330,195 360,190 390,188 420,190 450,193 480,195 510,196 540,194 560,194"
+    fill="none" stroke="#B8850E" stroke-width="2.4"/>
+  <circle cx="560" cy="194" r="4" fill="#B8850E"/>
+  <text x="568" y="198" font-size="10" fill="#B8850E" font-family="'Courier New', monospace" font-weight="700">SRB</text>
+
+  <!-- HRV 곡선 (그린) -->
+  <polyline points="60,72 90,68 120,72 150,135 180,180 210,210 240,230 270,242 300,250 330,255 360,258 390,262 420,265 450,266 480,267 510,267 540,267 560,267"
+    fill="none" stroke="#5E9186" stroke-width="2.4"/>
+  <circle cx="560" cy="267" r="4" fill="#5E9186"/>
+  <text x="568" y="270" font-size="10" fill="#5E9186" font-family="'Courier New', monospace" font-weight="700">HRV</text>
+
+  <!-- 축 -->
+  <line x1="60" y1="50" x2="60" y2="290" stroke="#888" stroke-width="1.2"/>
+  <text x="310" y="345" text-anchor="middle" font-size="11" fill="#3A6A5E" font-family="'Courier New', monospace" font-weight="700">Year (1990 → 2025)</text>
+  <text x="20" y="170" text-anchor="middle" font-size="11" fill="#3A6A5E" font-family="'Courier New', monospace" font-weight="700" transform="rotate(-90 20 170)">GPI ← peaceful · violent →</text>
+</svg>
+<div class="dcap">
+  Diagram ③ · GPI Time Series 1990–2025 (Vision of Humanity, est.)<br>
+  Croatia converged below 0.30; Serbia plateau at ~0.55; Bosnia stalled near 0.65.
+</div>
+</div>
+
+<!-- §5 다이어그램 4: 로지스틱 분기 -->
+<div class="sec-label">§5 · 다이어그램 ④</div>
+<div class="sec-title">로지스틱 분기도 — <em>EU Integration Bifurcation</em></div>
+
+<p class="prose">EU 통합 진척도를 분기 매개변수(r)로 두면, 발칸 3국은 동일 출발점에서 세 개의 끌개(attractor)로 갈라진다. 크로아티아는 안정 평형, 세르비아는 진동, 보스니아는 혼돈 영역에 가깝다.</p>
+
+<div class="diagwrap">
+<svg width="600" height="380" viewBox="0 0 600 380" xmlns="http://www.w3.org/2000/svg">
+  <!-- 영역 배경 -->
+  <rect x="60"  y="40" width="120" height="260" fill="#E9F4EE" opacity="0.5"/>
+  <rect x="180" y="40" width="160" height="260" fill="#FFF8E7" opacity="0.5"/>
+  <rect x="340" y="40" width="220" height="260" fill="#FBEBE8" opacity="0.5"/>
+
+  <!-- 영역 라벨 -->
+  <text x="120" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#2A7A4F" font-family="'Courier New', monospace">FIXED POINT</text>
+  <text x="120" y="74" text-anchor="middle" font-size="9" fill="#2A7A4F" font-family="'Courier New', monospace">stable equilibrium</text>
+  <text x="260" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#854F0B" font-family="'Courier New', monospace">PERIOD-2 OSC.</text>
+  <text x="260" y="74" text-anchor="middle" font-size="9" fill="#854F0B" font-family="'Courier New', monospace">two attractors</text>
+  <text x="450" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#A32D2D" font-family="'Courier New', monospace">CHAOS</text>
+  <text x="450" y="74" text-anchor="middle" font-size="9" fill="#A32D2D" font-family="'Courier New', monospace">structural lock-in</text>
+
+  <!-- 분기 곡선 (안정→2주기→4주기→혼돈) -->
+  <!-- 안정 가지: 평탄 -->
+  <path d="M 60 200 Q 120 200 180 200" fill="none" stroke="#2A7A4F" stroke-width="2.4"/>
+  <!-- 첫 분기점에서 2개 가지 -->
+  <path d="M 180 200 Q 220 180 260 160 Q 300 140 340 130" fill="none" stroke="#B8850E" stroke-width="2.2"/>
+  <path d="M 180 200 Q 220 220 260 240 Q 300 260 340 270" fill="none" stroke="#B8850E" stroke-width="2.2"/>
+  <!-- 4주기 분기 -->
+  <path d="M 340 130 Q 360 122 380 118" fill="none" stroke="#C0392B" stroke-width="2"/>
+  <path d="M 340 130 Q 360 138 380 142" fill="none" stroke="#C0392B" stroke-width="2"/>
+  <path d="M 340 270 Q 360 262 380 258" fill="none" stroke="#C0392B" stroke-width="2"/>
+  <path d="M 340 270 Q 360 278 380 282" fill="none" stroke="#C0392B" stroke-width="2"/>
+  <!-- 혼돈 영역 점들 -->
+  <g fill="#C0392B" opacity="0.6">
+    <circle cx="400" cy="105" r="1.4"/><circle cx="408" cy="125" r="1.4"/><circle cx="416" cy="148" r="1.4"/>
+    <circle cx="424" cy="175" r="1.4"/><circle cx="432" cy="200" r="1.4"/><circle cx="440" cy="225" r="1.4"/>
+    <circle cx="448" cy="250" r="1.4"/><circle cx="456" cy="275" r="1.4"/><circle cx="464" cy="295" r="1.4"/>
+    <circle cx="402" cy="115" r="1.4"/><circle cx="410" cy="135" r="1.4"/><circle cx="418" cy="160" r="1.4"/>
+    <circle cx="426" cy="188" r="1.4"/><circle cx="434" cy="212" r="1.4"/><circle cx="442" cy="238" r="1.4"/>
+    <circle cx="450" cy="262" r="1.4"/><circle cx="458" cy="285" r="1.4"/><circle cx="466" cy="98" r="1.4"/>
+    <circle cx="474" cy="118" r="1.4"/><circle cx="482" cy="145" r="1.4"/><circle cx="490" cy="170" r="1.4"/>
+    <circle cx="498" cy="195" r="1.4"/><circle cx="506" cy="220" r="1.4"/><circle cx="514" cy="248" r="1.4"/>
+    <circle cx="522" cy="270" r="1.4"/><circle cx="530" cy="105" r="1.4"/><circle cx="538" cy="240" r="1.4"/>
+    <circle cx="546" cy="155" r="1.4"/><circle cx="554" cy="200" r="1.4"/>
+  </g>
+
+  <!-- 분기점 마커 -->
+  <line x1="180" y1="40" x2="180" y2="300" stroke="#888" stroke-width="0.6" stroke-dasharray="3 3"/>
+  <line x1="340" y1="40" x2="340" y2="300" stroke="#888" stroke-width="0.6" stroke-dasharray="3 3"/>
+  <text x="180" y="316" text-anchor="middle" font-size="9" fill="#666" font-family="'Courier New', monospace">r₁ = 1.5</text>
+  <text x="340" y="316" text-anchor="middle" font-size="9" fill="#666" font-family="'Courier New', monospace">r₂ = 2.4</text>
+
+  <!-- 3국 위치 -->
+  <!-- HRV: r ≈ 1.0 (안정 끌개) -->
+  <circle cx="120" cy="200" r="11" fill="#5E9186" stroke="#fff" stroke-width="2.5"/>
+  <text x="120" y="204" text-anchor="middle" font-size="10" font-weight="700" fill="#fff" font-family="'Courier New', monospace">HR</text>
+  <text x="120" y="183" text-anchor="middle" font-size="9" fill="#3A6A5E" font-family="'Courier New', monospace">EU+Eurozone</text>
+
+  <!-- SRB: r ≈ 1.9 (2주기) -->
+  <circle cx="270" cy="160" r="11" fill="#B8850E" stroke="#fff" stroke-width="2.5"/>
+  <text x="270" y="164" text-anchor="middle" font-size="10" font-weight="700" fill="#fff" font-family="'Courier New', monospace">RS</text>
+  <text x="270" y="143" text-anchor="middle" font-size="9" fill="#854F0B" font-family="'Courier New', monospace">EU↔RUS oscill.</text>
+
+  <!-- BIH: r ≈ 2.7 (혼돈 진입) -->
+  <circle cx="430" cy="195" r="11" fill="#C0392B" stroke="#fff" stroke-width="2.5"/>
+  <text x="430" y="199" text-anchor="middle" font-size="10" font-weight="700" fill="#fff" font-family="'Courier New', monospace">BA</text>
+  <text x="430" y="178" text-anchor="middle" font-size="9" fill="#A32D2D" font-family="'Courier New', monospace">Dayton lock</text>
+
+  <!-- 축 -->
+  <line x1="60" y1="300" x2="560" y2="300" stroke="#888" stroke-width="1.2"/>
+  <line x1="60" y1="40" x2="60" y2="300" stroke="#888" stroke-width="1.2"/>
+  <text x="310" y="345" text-anchor="middle" font-size="11" font-weight="700" fill="#3A6A5E" font-family="'Courier New', monospace">r — integration / lock-in parameter →</text>
+  <text x="20" y="170" text-anchor="middle" font-size="11" font-weight="700" fill="#3A6A5E" font-family="'Courier New', monospace" transform="rotate(-90 20 170)">x — system state</text>
+</svg>
+<div class="dcap">
+  Diagram ④ · Logistic Bifurcation · x_{n+1} = r·x·(1−x)<br>
+  Croatia: fixed point. Serbia: period-2 oscillation. Bosnia: chaotic regime.
+</div>
+</div>
+
+<!-- §6 다이어그램 5: 12축 방사형 레이더 -->
+<div class="sec-label">§6 · 다이어그램 ⑤</div>
+<div class="sec-title">12축 Λ¹² 레이더 — <em>3국 중첩</em></div>
+
+<p class="prose">12개 변수 동시 시각화. 폴리곤이 클수록 위험 영역으로 확장. 크로아티아는 거의 모든 축에서 0.40 이내로 수렴, 세르비아는 Σ·TBI에서 돌출, 보스니아는 SSI·Σ·TBI 3축에서 권역 최고치.</p>
+
+<div class="diagwrap">
+<svg width="520" height="540" viewBox="0 0 520 540" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .axis-label { font-size: 10px; fill: #555; font-family: 'Courier New', monospace; }
+      .radar-bg   { fill: none; stroke: #E5E0D8; stroke-width: 1; }
+      .grid-line  { stroke: #E5E0D8; stroke-width: 0.8; }
+    </style>
+  </defs>
+
+  <!-- 배경 동심원 -->
+  <circle cx="260" cy="260" r="40"  class="radar-bg"/>
+  <circle cx="260" cy="260" r="80"  class="radar-bg"/>
+  <circle cx="260" cy="260" r="120" class="radar-bg"/>
+  <circle cx="260" cy="260" r="160" class="radar-bg"/>
+  <circle cx="260" cy="260" r="200" class="radar-bg" stroke="#CCC"/>
+
+  <!-- 12축 방사선 -->
+  <line x1="260" y1="260" x2="260" y2="60"  class="grid-line"/>
+  <line x1="260" y1="260" x2="360" y2="110" class="grid-line"/>
+  <line x1="260" y1="260" x2="433" y2="210" class="grid-line"/>
+  <line x1="260" y1="260" x2="460" y2="260" class="grid-line"/>
+  <line x1="260" y1="260" x2="433" y2="310" class="grid-line"/>
+  <line x1="260" y1="260" x2="360" y2="410" class="grid-line"/>
+  <line x1="260" y1="260" x2="260" y2="460" class="grid-line"/>
+  <line x1="260" y1="260" x2="160" y2="410" class="grid-line"/>
+  <line x1="260" y1="260" x2="87"  y2="310" class="grid-line"/>
+  <line x1="260" y1="260" x2="60"  y2="260" class="grid-line"/>
+  <line x1="260" y1="260" x2="87"  y2="210" class="grid-line"/>
+  <line x1="260" y1="260" x2="160" y2="110" class="grid-line"/>
+
+  <!--
+    각도 (시계방향, 12시=0°):
+    BRI 0°, SSI 30°, GPI 60°, SR 90°, Σ 120°, LPI 150°,
+    OIP 180°, HCDI 210°, AMI 240°, NI 270°, CFD 300°, TBI 330°
+    좌표: cx + r×sin(θ),  cy − r×cos(θ),  r = value × 200
+
+    SRB: BRI 0.55→110, SSI 0.62→124, GPI 0.60→120, SR 0.45→90,
+         Σ 0.72→144, LPI 0.45→90, OIP 0.55→110, HCDI 0.42→84,
+         AMI 0.50→100, NI 0.30→60, CFD 0.58→116, TBI 0.68→136
+
+    HRV: BRI 0.30→60, SSI 0.38→76, GPI 0.25→50, SR 0.30→60,
+         Σ 0.28→56, LPI 0.25→50, OIP 0.32→64, HCDI 0.28→56,
+         AMI 0.20→40, NI 0.20→40, CFD 0.42→84, TBI 0.52→104
+
+    BIH: BRI 0.62→124, SSI 0.85→170, GPI 0.65→130, SR 0.55→110,
+         Σ 0.78→156, LPI 0.55→110, OIP 0.62→124, HCDI 0.52→104,
+         AMI 0.55→110, NI 0.25→50, CFD 0.65→130, TBI 0.82→164
+  -->
+
+  <!-- HRV 폴리곤 (그린, 가장 안쪽) -->
+  <polygon
+    points="
+      260,200
+      298,212
+      303,235
+      310,260
+      308,288
+      285,311
+      260,320
+      230,308
+      217,288
+      220,260
+      218,232
+      235,225
+    "
+    fill="rgba(94,145,134,0.22)" stroke="#5E9186" stroke-width="2"/>
+
+  <!-- SRB 폴리곤 (골드, 중간) -->
+  <polygon
+    points="
+      260,150
+      322,153
+      364,200
+      350,260
+      385,332
+      215,338
+      260,396
+      215,338
+      173,313
+      160,260
+      160,202
+      192,189
+    "
+    fill="rgba(184,133,14,0.20)" stroke="#B8850E" stroke-width="2"/>
+
+  <!-- BIH 폴리곤 (적색, 가장 바깥) -->
+  <polygon
+    points="
+      260,136
+      345,145
+      372,195
+      370,260
+      372,325
+      205,355
+      260,424
+      205,355
+      170,322
+      160,210
+      152,195
+      188,178
+    "
+    fill="rgba(192,57,43,0.18)" stroke="#C0392B" stroke-width="2"/>
+
+  <!-- 축 레이블 -->
+  <text x="254" y="50"  text-anchor="middle" class="axis-label">BRI</text>
+  <text x="370" y="98"  text-anchor="start"  class="axis-label">SSI</text>
+  <text x="442" y="205" text-anchor="start"  class="axis-label">GPI</text>
+  <text x="468" y="264" text-anchor="start"  class="axis-label">SR</text>
+  <text x="442" y="318" text-anchor="start"  class="axis-label">Σ</text>
+  <text x="368" y="424" text-anchor="start"  class="axis-label">LPI</text>
+  <text x="254" y="478" text-anchor="middle" class="axis-label">OIP</text>
+  <text x="152" y="424" text-anchor="end"    class="axis-label">HCDI</text>
+  <text x="78"  y="320" text-anchor="end"    class="axis-label">AMI</text>
+  <text x="50"  y="264" text-anchor="end"    class="axis-label">NI</text>
+  <text x="78"  y="205" text-anchor="end"    class="axis-label">CFD</text>
+  <text x="152" y="98"  text-anchor="end"    class="axis-label">TBI</text>
+
+  <!-- 중심 -->
+  <text x="260" y="258" text-anchor="middle" font-size="11" font-weight="700" fill="#444" font-family="'Courier New', monospace">Λ¹²</text>
+  <text x="260" y="272" text-anchor="middle" font-size="9" fill="#888" font-family="'Courier New', monospace">v9.11</text>
+
+  <!-- 범례 (하단) -->
+  <rect x="80"  y="500" width="14" height="14" fill="rgba(94,145,134,0.4)" stroke="#5E9186" stroke-width="1.5"/>
+  <text x="100" y="512" font-size="11" fill="#3A6A5E" font-family="'Courier New', monospace">HRV (Λ 0.32)</text>
+  <rect x="200" y="500" width="14" height="14" fill="rgba(184,133,14,0.4)" stroke="#B8850E" stroke-width="1.5"/>
+  <text x="220" y="512" font-size="11" fill="#854F0B" font-family="'Courier New', monospace">SRB (Λ 0.55)</text>
+  <rect x="320" y="500" width="14" height="14" fill="rgba(192,57,43,0.4)" stroke="#C0392B" stroke-width="1.5"/>
+  <text x="340" y="512" font-size="11" fill="#A32D2D" font-family="'Courier New', monospace">BIH (Λ 0.62)</text>
+</svg>
+<div class="dcap">
+  Diagram ⑤ · 12-axis Λ¹² Radar · Three nations overlaid<br>
+  HRV converges inward; SRB extends on Σ/TBI; BIH dominates SSI/Σ/TBI.
+</div>
+</div>
+
+<!-- §7 핵심 비교 표 -->
+<div class="sec-label">§7 · 핵심 비교</div>
+<div class="sec-title">구조 비교표 — <em>같은 전쟁, 다른 30년</em></div>
+
+<div class="card">
+  <div class="card-title">▌ 4개 결정축 비교</div>
+  <table>
+    <tr>
+      <th>축</th><th>세르비아</th><th>크로아티아</th><th>보스니아</th>
+    </tr>
+    <tr>
+      <td><strong>전쟁 유산 (TBI)</strong></td>
+      <td class="watch">1990년대 내전 가해·피해 양쪽<br>코소보 계속 분쟁 중</td>
+      <td>독립전쟁(1991~95) 승전국 서사<br>국가 형성 정당성 근거</td>
+      <td class="danger">스레브레니차 학살(1995)<br>3민족 모두 트라우마</td>
+    </tr>
+    <tr>
+      <td><strong>지도자-민중 단절 (Σ)</strong></td>
+      <td class="watch">뷰치치 1인 권위주의<br>SNS 동원 + 언론 통제</td>
+      <td class="stable">의회 다당제 작동<br>정권교체 정상 작동</td>
+      <td class="danger">3두 대통령제·민족별 거부권<br>구조적 의사결정 마비</td>
+    </tr>
+    <tr>
+      <td><strong>자본흐름 (CFD)</strong></td>
+      <td class="watch">중·러·EU 3분할<br>BRI 베오그라드 노선</td>
+      <td class="stable">EU 단일시장·유로존<br>관광·서비스 안정</td>
+      <td class="danger">송금경제 의존<br>RS·연방 자본 분리</td>
+    </tr>
+    <tr>
+      <td><strong>외부 보장 (AMI)</strong></td>
+      <td>중립 외교 (NATO 미가입)</td>
+      <td class="stable">NATO·EU 잠금</td>
+      <td class="watch">OHR 외부 후견<br>EUFOR 주둔 30년</td>
+    </tr>
+  </table>
+</div>
+
+<!-- §8 인용 -->
+<div class="sec-label">§8 · 관찰자 메모</div>
+<div class="sec-title">분기의 결정 변수는 무엇이었나</div>
+
+<div class="qblock">
+  "데이턴은 전쟁을 멈추는 데 성공했지만 평화를 만들지는 못했다. 보스니아는 30년째 동결된 분쟁 속에 산다."
+  <div class="qsrc">— International Crisis Group, "Bosnia at 30" 추정 인용 프레임 (2025)</div>
+</div>
+
+<p class="prose">세 국가는 동일한 출발점에서 시작했지만, <strong>EU 통합 경로의 진척 속도가 분기를 결정</strong>했다. 크로아티아는 1995년 이후 일관된 EU·NATO 진입 전략을 추구했고, 2009년 NATO·2013년 EU·2023년 유로존·셰겐을 모두 통과했다. 세르비아는 코소보 문제로 EU 진입이 정체됐고, 그 공백을 러시아·중국 영향력이 메웠다. 보스니아는 데이턴 헌법 자체가 EU 기준과 충돌해, 헌법 개정 없이는 진전이 불가능한 구조에 갇혔다.</p>
+
+<p class="prose">즉, <strong>Λ¹² 분기를 결정한 외부 변수는 EU 통합 단계, 내부 변수는 Σ(지도자-민중 단절)다.</strong> 두 변수가 같은 방향을 가리킬 때 안정 끌개가 형성됐고(크로아티아), 두 변수가 충돌할 때 진동이 일어났으며(세르비아), 두 변수 모두 봉쇄됐을 때 혼돈 영역에 진입했다(보스니아).</p>
+
+<!-- §9 열린 질문 -->
+<div class="sec-label">§9 · 열린 질문</div>
+<div class="sec-title">2026 이후 — <em>관찰 포인트</em></div>
+
+<div class="card">
+  <div class="card-title">▌ 5개 관찰 변수</div>
+  <table>
+    <tr>
+      <td style="width:30%;font-weight:700;color:#3A6A5E;">1. RS 분리 시도</td>
+      <td>Republika Srpska 독자 군·세무·헌재 시도가 헌법재판소 결정을 무시할 때 BIH는 사실상 분단된다. Λ_BIH는 0.65 이상으로 상승.</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700;color:#3A6A5E;">2. 코소보-세르비아 협상</td>
+      <td>EU 중재 협상 타결시 SRB의 Σ 개선·CFD 재정렬 가능. 결렬시 Λ_SRB는 0.60 돌파 위험.</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700;color:#3A6A5E;">3. 크로아티아 인구 감소</td>
+      <td>EU 가입 후 청년 유출 가속. HDI 0.858 유지되나 LPI_net 악화 가능. 안정 끌개 균열 신호.</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700;color:#3A6A5E;">4. 데이턴 30주년 (2025.12)</td>
+      <td>2025년 12월 14일 30주년이 이미 지났다. 헌법 개정 시도가 좌절되면 BIH의 구조적 동결 공식 확정.</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700;color:#3A6A5E;">5. 발칸 권역 외부 변수</td>
+      <td>러시아·우크라이나 전쟁 종결 방식이 세르비아 Σ에 직접 충격. EU 확대 정책 변화는 3국 모두 영향.</td>
+    </tr>
+  </table>
+</div>
+
+<p class="prose">이 5개 질문에 답을 내리는 것은 본 비교편의 범위 밖이다. <strong>같은 전쟁이 30년 후 세 개의 다른 좌표를 만들어냈다</strong>는 사실 자체가 Λ¹² 프레임워크의 핵심 명제다 — 충격은 보편적이지만, 분기는 국지적 변수가 결정한다.</p>
+
+<div class="div-gold">✦ ✦ ✦</div>
+
+<!-- §10 메타데이터 -->
+<div class="sec-label">§10 · 레포트 정보</div>
+<div class="sec-title">메타데이터</div>
+
+<div class="cbox"><span class="cc">파일명:  balkans_comparison_v1.0_20260430.html</span>
+<span class="cc">엔진:    Λ¹² v9.11 (SSRN 6509200)</span>
+<span class="cc">작성일:  2026-04-30</span>
+<span class="cc">대상국:  Serbia (SRB) · Croatia (HRV) · Bosnia-Herzegovina (BIH)</span>
+<span class="cc">소스:</span>
+<span class="cc">  - Transparency International CPI 2025</span>
+<span class="cc">  - UNDP Human Development Report 2024 (HDI)</span>
+<span class="cc">  - Vision of Humanity Global Peace Index 2025</span>
+<span class="cc">  - Freedom House Nations in Transit 2025</span>
+<span class="cc">  - World Bank WDI (GDP/cap)</span>
+<span class="cc">  - European Commission Enlargement Report 2025</span>
+<span class="cc">  - International Crisis Group Bosnia briefings</span>
+<span class="cc">  - 자체 추정: Σ, CFD, TBI, AMI, OIP</span>
+<span class="cc">디자인: v2.2 Pastel · #F5F3EE / #5E9186 / #B8850E</span>
+<span class="cc">다음 비교편 트리거: 2026.05 코소보 단독편 · 권역 종합편</span></div>
+
+</div><!-- /wrap -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="ft-title">늘푸른바다 사회동역학 연구소</div>
+  Λ¹² Western Balkans Comparative Audit · v1.0 · 2026-04-30<br>
+  Serbia · Croatia · Bosnia-Herzegovina
+</div>
+
+</body>
+</html>
