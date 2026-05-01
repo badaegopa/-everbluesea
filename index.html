@@ -1524,7 +1524,7 @@ function scrollToRegion(regionId) {
 
       const subRes = await fetch(folder.url, {headers:{'Accept':'application/vnd.github.v3+json'}});
       if (!subRes.ok) continue;
-      const files = (await subRes.json()).filter(f => f.name.endsWith('.html'));
+      const files = (await subRes.json()).filter(f => f.name.endsWith('.html') && f.name.startsWith('v'));
       if (files.length === 0) continue;
 
       const rows = files.sort((a,b)=>b.name.localeCompare(a.name)).map(f => {
