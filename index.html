@@ -1232,10 +1232,22 @@ function scrollToRegion(regionId) {
   const el = document.getElementById('region-' + regionId);
   if (el) {
     el.scrollIntoView({behavior:'smooth', block:'start'});
-    // 하이라이트 효과
     el.style.transition = 'box-shadow 0.3s';
     el.style.boxShadow = '0 0 0 3px var(--sage)';
     setTimeout(() => { el.style.boxShadow = ''; }, 1500);
+  } else {
+    // 아직 로딩 중이면 completed 섹션으로 스크롤 후 재시도
+    const completed = document.getElementById('completed');
+    if (completed) completed.scrollIntoView({behavior:'smooth', block:'start'});
+    setTimeout(() => {
+      const retryEl = document.getElementById('region-' + regionId);
+      if (retryEl) {
+        retryEl.scrollIntoView({behavior:'smooth', block:'start'});
+        retryEl.style.transition = 'box-shadow 0.3s';
+        retryEl.style.boxShadow = '0 0 0 3px var(--sage)';
+        setTimeout(() => { retryEl.style.boxShadow = ''; }, 1500);
+      }
+    }, 1500);
   }
 }
 
