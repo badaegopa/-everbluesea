@@ -732,7 +732,26 @@ body.en-mode span.en { display:inline; }
   </div>
 </section>
 
-<!-- ═══ LANGUAGE REPORTS ═══ -->
+<!-- ═══ COMPLETED REPORTS — 권역별 자동 목록 ═══ -->
+<section id="completed">
+  <div class="section-inner">
+    <div class="section-label">
+      <span class="ko">권역별 리포트</span>
+      <span class="en">Reports by Region</span>
+    </div>
+    <h2 class="section-title display reveal">
+      <span class="ko">권역별 리포트 — 원본 직접 열람</span>
+      <span class="en">Reports by Region — Direct Access</span>
+    </h2>
+    <p class="section-subtitle reveal">
+      <span class="ko">GitHub nations/ 자동 연동 · 새 파일 추가 → 즉시 반영</span>
+      <span class="en">Auto-synced from GitHub · New files appear instantly</span>
+    </p>
+    <div id="region-report-container"></div>
+  </div>
+</section>
+
+
 <section id="lang-reports" style="background:var(--bg2);">
   <div class="section-inner">
     <div class="section-label">
@@ -1444,49 +1463,105 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-/* ── 권역 카드 클릭 → 언어별 목록에서 해당 권역 하이라이트 ── */
+/* ── 권역 카드 클릭 → 권역별 자동 목록으로 스크롤 + 하이라이트 ── */
 function scrollToRegion(regionId) {
-  const langSection = document.getElementById('lang-reports');
-  if (!langSection) return;
-
-  // 모든 행 원상복구
-  document.querySelectorAll('#lang-reports .report-row').forEach(row => {
-    row.style.transition = 'all 0.3s';
-    row.style.opacity = '0.25';
-    row.style.transform = 'translateX(0)';
-  });
-
-  // 해당 권역 행 하이라이트
-  const matched = document.querySelectorAll(`#lang-reports .report-row[data-region="${regionId}"]`);
-
-  if (matched.length > 0) {
-    matched.forEach(row => {
-      row.style.opacity = '1';
-      row.style.background = 'var(--sage-pale)';
-      row.style.transform = 'translateX(4px)';
-    });
-
-    // 첫 번째 매칭 행으로 스크롤
-    setTimeout(() => {
-      matched[0].scrollIntoView({behavior:'smooth', block:'center'});
-    }, 100);
+  const el = document.getElementById('region-' + regionId);
+  if (el) {
+    el.scrollIntoView({behavior:'smooth', block:'start'});
+    el.style.transition = 'box-shadow 0.4s';
+    el.style.boxShadow = '0 0 0 3px var(--sage)';
+    setTimeout(() => { el.style.boxShadow = ''; }, 1800);
   } else {
-    // 매칭 없으면 섹션 상단으로
-    langSection.scrollIntoView({behavior:'smooth', block:'start'});
-    document.querySelectorAll('#lang-reports .report-row').forEach(row => {
-      row.style.opacity = '1';
-    });
+    // 아직 로딩 중 → completed 섹션으로 먼저 이동 후 재시도
+    const sec = document.getElementById('completed');
+    if (sec) sec.scrollIntoView({behavior:'smooth', block:'start'});
+    setTimeout(() => {
+      const retry = document.getElementById('region-' + regionId);
+      if (retry) {
+        retry.scrollIntoView({behavior:'smooth', block:'start'});
+        retry.style.transition = 'box-shadow 0.4s';
+        retry.style.boxShadow = '0 0 0 3px var(--sage)';
+        setTimeout(() => { retry.style.boxShadow = ''; }, 1800);
+      }
+    }, 1500);
+  }
+}
+
+/* ── GitHub nations/ 권역별 자동 로드 ── */
+(async function loadRegionReports() {
+  const REPO = 'badaegopa/-everbluesea';
+  const BASE = 'https://everbluesea.org';
+  const API  = `https://api.github.com/repos/${REPO}/contents/nations`;
+  const container = document.getElementById('region-report-container');
+
+  const REGIONS = {
+    'middle-east':    { icon:'🕌', ko:'중동',       en:'Middle East',        color:'#B8943A', bg:'#F0E4C4' },
+    'europe':         { icon:'🏛', ko:'유럽',       en:'Europe',             color:'#4A6FA5', bg:'#D4DFF0' },
+    'northeast-asia': { icon:'🌏', ko:'동북아시아',  en:'Northeast Asia',     color:'#4D7A6A', bg:'#D4E5DF' },
+    'south-asia':     { icon:'🏔', ko:'남아시아',   en:'South Asia',         color:'#8B6B9E', bg:'#E8DEF0' },
+    'americas':       { icon:'🌎', ko:'남북미',     en:'The Americas',       color:'#9B4040', bg:'#F0D8D8' },
+    'ldc':            { icon:'⚖️', ko:'최빈국 특집', en:'Least Developed',    color:'#7A746C', bg:'#E4E0D7' },
+    'tools':          { icon:'🔧', ko:'도구·분석',   en:'Tools & Analysis',   color:'#4A7FA8', bg:'#D4E5F0' },
+  };
+
+  function parseName(fn) {
+    return fn.replace('.html','')
+      .replace(/^v[\d.]+_/,'')
+      .replace(/_\d{8}.*/,'')
+      .replace(/_/g,' ');
   }
 
-  // 3초 후 원상복구
-  setTimeout(() => {
-    document.querySelectorAll('#lang-reports .report-row').forEach(row => {
-      row.style.opacity = '1';
-      row.style.background = '';
-      row.style.transform = '';
-    });
-  }, 3000);
-}
+  try {
+    const res = await fetch(API, {headers:{'Accept':'application/vnd.github.v3+json'}});
+    if (!res.ok) throw new Error();
+    const items = await res.json();
+    const folders = items.filter(i => i.type === 'dir');
+    let html = '';
+
+    for (const folder of folders) {
+      const key  = folder.name;
+      const info = REGIONS[key] || {icon:'📁', ko:key, en:key, color:'#7A746C', bg:'#E4E0D7'};
+
+      const subRes = await fetch(folder.url, {headers:{'Accept':'application/vnd.github.v3+json'}});
+      if (!subRes.ok) continue;
+      const files = (await subRes.json()).filter(f => f.name.endsWith('.html'));
+      if (files.length === 0) continue;
+
+      const rows = files.sort((a,b)=>b.name.localeCompare(a.name)).map(f => {
+        const url = `${BASE}/nations/${key}/${f.name}`;
+        const nm  = parseName(f.name);
+        return `<a class="report-row" href="${url}" target="_blank">
+          <span class="rr-status" style="background:${info.color};flex-shrink:0;"></span>
+          <span style="flex:1;font-family:'EB Garamond',serif;font-size:15px;color:#1E1D1B;">${nm}</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#7A746C;flex-shrink:0;">everbluesea.org ↗</span>
+        </a>`;
+      }).join('');
+
+      html += `
+      <div id="region-${key}" style="margin-bottom:28px;scroll-margin-top:80px;border-radius:8px;overflow:hidden;border:1px solid var(--border);transition:box-shadow 0.4s;">
+        <div style="background:${info.bg};padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;">
+          <span style="font-size:20px;">${info.icon}</span>
+          <span style="font-family:'Cormorant Garamond',serif;font-size:20px;color:${info.color};">
+            <span class="ko">${info.ko}</span><span class="en" style="display:none">${info.en}</span>
+          </span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:${info.color};margin-left:auto;background:rgba(255,255,255,0.5);padding:2px 8px;border-radius:10px;">
+            ${files.length}<span class="ko">편</span><span class="en" style="display:none"> reports</span>
+          </span>
+        </div>
+        <div>${rows}</div>
+      </div>`;
+    }
+
+    container.innerHTML = html || `<div style="padding:20px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-muted);">
+      <span class="ko">등록된 리포트가 없습니다</span><span class="en" style="display:none">No reports yet</span>
+    </div>`;
+
+  } catch(e) {
+    container.innerHTML = `<div style="padding:16px 20px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#7A746C;">
+      ⚠ <span class="ko">잠시 후 새로고침 해주세요</span><span class="en" style="display:none">Please refresh in a moment</span>
+    </div>`;
+  }
+})();
 
 
 </script>
