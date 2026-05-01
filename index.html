@@ -1486,15 +1486,23 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-/* ── GitHub nations/ 폴더 자동 로드 ── */
+/* ── GitHub nations/ 서브폴더 자동 로드 ── */
 (async function loadGithubReports() {
-  const REPO = 'badaegopa/-everbluesea';
-  const FOLDER = 'nations';
-  const BASE = 'https://everbluesea.org';
-  const API  = `https://api.github.com/repos/${REPO}/contents/${FOLDER}`;
-
+  const REPO    = 'badaegopa/-everbluesea';
+  const BASE    = 'https://everbluesea.org';
+  const API     = `https://api.github.com/repos/${REPO}/contents/nations`;
   const container = document.getElementById('gh-report-list');
   const counter   = document.getElementById('gh-count');
+
+  const REGIONS = {
+    'middle-east':    { label:'🕌 Middle East · 중동',        color:'#B8943A' },
+    'europe':         { label:'🏛 Europe · 유럽',             color:'#4A6FA5' },
+    'northeast-asia': { label:'🌏 Northeast Asia · 동북아',   color:'#4D7A6A' },
+    'south-asia':     { label:'🏔 South Asia · 남아시아',     color:'#8B6B9E' },
+    'americas':       { label:'🌎 Americas · 남북미',         color:'#9B4040' },
+    'ldc':            { label:'⚖️ LDC · 최빈국',              color:'#7A746C' },
+    'tools':          { label:'🔧 Tools · 도구',              color:'#4A7FA8' },
+  };
 
   function parseName(fn) {
     return fn.replace('.html','')
@@ -1502,45 +1510,66 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
       .replace(/_\d{8}.*/,'')
       .replace(/_/g,' ');
   }
-  function detectLang(fn) {
-    if (/_(en|EN)\b|_EN\./i.test(fn)) return 'EN';
-    if (/_(de|DE)\b|_DE\./i.test(fn)) return 'DE';
-    if (/_(es|ES)\b|_ES\./i.test(fn)) return 'ES';
-    if (/_(ur|UR)\b|_UR\./i.test(fn)) return 'UR';
-    if (/flow|radar|seismos/i.test(fn)) return 'TOOL';
-    return 'KO';
-  }
-  const LS = {
-    KO:  {bg:'#D4E5DF',color:'#4D7A6A',dot:'#4D7A6A'},
-    EN:  {bg:'#D4DFF0',color:'#4A6FA5',dot:'#4A6FA5'},
-    DE:  {bg:'#D8E4EE',color:'#3A5A7A',dot:'#3A5A7A'},
-    ES:  {bg:'#F5EDD0',color:'#8A6A20',dot:'#8A6A20'},
-    UR:  {bg:'#D4EAD8',color:'#3A7A4A',dot:'#3A7A4A'},
-    TOOL:{bg:'#E4E0D7',color:'#7A746C',dot:'#7A746C'},
-  };
 
   try {
+    // 1. nations/ 최상위 목록 가져오기 (서브폴더 목록)
     const res = await fetch(API, {headers:{'Accept':'application/vnd.github.v3+json'}});
     if (!res.ok) throw new Error();
-    const files = (await res.json())
-      .filter(f => f.name.endsWith('.html'))
-      .sort((a,b) => b.name.localeCompare(a.name));
+    const items = await res.json();
+    const folders = items.filter(i => i.type === 'dir');
+    const rootFiles = items.filter(i => i.type === 'file' && i.name.endsWith('.html'));
 
-    counter.textContent = `${files.length}개`;
+    let totalCount = 0;
+    let html = '';
 
-    container.innerHTML = files.map(f => {
-      const lang = detectLang(f.name);
-      const s = LS[lang];
-      const url = `${BASE}/${FOLDER}/${f.name}`;
-      const nm  = parseName(f.name);
-      return `<a class="report-row" href="${url}" target="_blank">
-        <span class="rr-status" style="background:${s.dot};flex-shrink:0;"></span>
-        <span class="rr-region" style="color:${s.color};width:50px;flex-shrink:0;font-family:'JetBrains Mono',monospace;font-size:10px;">${lang}</span>
-        <span style="flex:1;font-family:'EB Garamond',serif;font-size:15px;color:#1E1D1B;">${nm}</span>
-        <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#7A746C;flex-shrink:0;">everbluesea.org ↗</span>
-        <span style="background:${s.bg};color:${s.color};font-family:'JetBrains Mono',monospace;font-size:10px;padding:2px 8px;border-radius:10px;flex-shrink:0;">${lang}</span>
-      </a>`;
-    }).join('');
+    // 2. 각 서브폴더별로 파일 목록 가져오기
+    for (const folder of folders) {
+      const region = folder.name;
+      const info = REGIONS[region] || { label:`📁 ${region}`, color:'#7A746C' };
+
+      const subRes = await fetch(folder.url, {headers:{'Accept':'application/vnd.github.v3+json'}});
+      if (!subRes.ok) continue;
+      const subItems = await subRes.json();
+      const files = subItems.filter(f => f.name.endsWith('.html'));
+      if (files.length === 0) continue;
+
+      totalCount += files.length;
+
+      html += `<div style="background:var(--bg2); padding:8px 16px; border-bottom:1px solid var(--border); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; color:${info.color};">
+        ${info.label} <span style="color:var(--ink-muted); font-size:9px;">· ${files.length}편</span>
+      </div>`;
+
+      html += files.sort((a,b)=>b.name.localeCompare(a.name)).map(f => {
+        const url = `${BASE}/nations/${region}/${f.name}`;
+        const nm  = parseName(f.name);
+        return `<a class="report-row" href="${url}" target="_blank">
+          <span class="rr-status" style="background:${info.color};flex-shrink:0;"></span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:${info.color};width:80px;flex-shrink:0;">${region}</span>
+          <span style="flex:1;font-family:'EB Garamond',serif;font-size:15px;color:#1E1D1B;">${nm}</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#7A746C;flex-shrink:0;">everbluesea.org ↗</span>
+        </a>`;
+      }).join('');
+    }
+
+    // 3. 루트에 남은 파일 (미분류)
+    if (rootFiles.length > 0) {
+      totalCount += rootFiles.length;
+      html += `<div style="background:var(--bg2); padding:8px 16px; border-bottom:1px solid var(--border); font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; color:var(--ink-muted);">
+        📄 기타
+      </div>`;
+      html += rootFiles.map(f => {
+        const url = `${BASE}/nations/${f.name}`;
+        return `<a class="report-row" href="${url}" target="_blank">
+          <span class="rr-status" style="background:var(--ink-muted);flex-shrink:0;"></span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--ink-muted);width:80px;flex-shrink:0;">기타</span>
+          <span style="flex:1;font-family:'EB Garamond',serif;font-size:15px;color:#1E1D1B;">${parseName(f.name)}</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#7A746C;flex-shrink:0;">everbluesea.org ↗</span>
+        </a>`;
+      }).join('');
+    }
+
+    counter.textContent = `총 ${totalCount}개`;
+    container.innerHTML = html || `<div style="padding:20px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-muted);">리포트 없음</div>`;
 
   } catch(e) {
     container.innerHTML = `<div style="padding:16px 20px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#7A746C;">
