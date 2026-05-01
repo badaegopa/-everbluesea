@@ -732,28 +732,6 @@ body.en-mode span.en { display:inline; }
   </div>
 </section>
 
-<!-- ═══ COMPLETED REPORTS — 권역별 자동 목록 ═══ -->
-<section id="completed">
-  <div class="section-inner">
-    <div class="section-label">
-      <span class="ko">완성 리포트 목록</span>
-      <span class="en">Completed Reports</span>
-    </div>
-    <h2 class="section-title display reveal">
-      <span class="ko">권역별 리포트 — 원본 직접 열람</span>
-      <span class="en">Reports by Region — Direct Access</span>
-    </h2>
-    <p class="section-subtitle reveal">
-      <span class="ko">GitHub nations/ 자동 연동 · 클릭하면 everbluesea.org 원본으로 이동</span>
-      <span class="en">Auto-synced from GitHub · Click to open original on everbluesea.org</span>
-    </p>
-
-    <!-- 권역별 섹션 컨테이너 -->
-    <div id="region-report-container"></div>
-
-  </div>
-</section>
-
 <!-- ═══ LANGUAGE REPORTS ═══ -->
 <section id="lang-reports" style="background:var(--bg2);">
   <div class="section-inner">
@@ -775,7 +753,7 @@ body.en-mode span.en { display:inline; }
       🇰🇷 <span class="ko">한국어판 — 전체 취합</span><span class="en" style="display:none">Korean Edition — All Reports</span>
     </div>
     <div class="report-list reveal" style="margin-bottom:28px;">
-      <a class="report-row" href="https://badaegopa.tistory.com/33" target="_blank">
+      <a class="report-row" data-region="other" href="https://badaegopa.tistory.com/33" target="_blank">
         <span class="rr-status"></span>
         <span class="rr-region">KO · <span class="ko">논문</span><span class="en" style="display:none">Paper</span></span>
         <span class="rr-country ko">MZ세대들의 이유있는 반항</span>
@@ -783,7 +761,7 @@ body.en-mode span.en { display:inline; }
         <span class="rr-coord"><span class="ko">Λ¹² 제1논문</span><span class="en" style="display:none">Λ¹² 1st Paper</span></span>
         <span class="rr-ver">KO</span>
       </a>
-      <a class="report-row" href="https://badaegopa.tistory.com/43" target="_blank">
+      <a class="report-row" data-region="other" href="https://badaegopa.tistory.com/43" target="_blank">
         <span class="rr-status"></span>
         <span class="rr-region">KO · NE.Asia</span>
         <span class="rr-country ko">한국·북한·일본 BRI·SSI·GPI 비교분석</span>
@@ -791,7 +769,7 @@ body.en-mode span.en { display:inline; }
         <span class="rr-coord"><span class="ko">3국 비교</span><span class="en" style="display:none">3-nation comparison</span></span>
         <span class="rr-ver">v3.0</span>
       </a>
-      <a class="report-row" href="https://badaegopa.tistory.com/55" target="_blank">
+      <a class="report-row" data-region="other" href="https://badaegopa.tistory.com/55" target="_blank">
         <span class="rr-status"></span>
         <span class="rr-region">KO · Peninsula 1</span>
         <span class="rr-country ko">한반도 1편 — 중국이 줄 수 없는 것</span>
@@ -799,7 +777,7 @@ body.en-mode span.en { display:inline; }
         <span class="rr-coord">Peninsula Series 1/4</span>
         <span class="rr-ver">v3.0</span>
       </a>
-      <a class="report-row" href="https://badaegopa.tistory.com/56" target="_blank">
+      <a class="report-row" data-region="other" href="https://badaegopa.tistory.com/56" target="_blank">
         <span class="rr-status"></span>
         <span class="rr-region">KO · Peninsula 2</span>
         <span class="rr-country ko">한반도 2편 — 김정은의 선택</span>
@@ -807,7 +785,7 @@ body.en-mode span.en { display:inline; }
         <span class="rr-coord">Peninsula Series 2/4</span>
         <span class="rr-ver">v3.0</span>
       </a>
-      <a class="report-row" href="https://badaegopa.tistory.com/57" target="_blank">
+      <a class="report-row" data-region="other" href="https://badaegopa.tistory.com/57" target="_blank">
         <span class="rr-status"></span>
         <span class="rr-region">KO · Peninsula 3</span>
         <span class="rr-country ko">한반도 3편 — 통일보다 현실적인 것</span>
@@ -815,7 +793,7 @@ body.en-mode span.en { display:inline; }
         <span class="rr-coord">Peninsula Series 3/4</span>
         <span class="rr-ver">v3.0</span>
       </a>
-      <a class="report-row" href="https://badaegopa.tistory.com/58" target="_blank">
+      <a class="report-row" data-region="other" href="https://badaegopa.tistory.com/58" target="_blank">
         <span class="rr-status"></span>
         <span class="rr-region">KO · Peninsula</span>
         <span class="rr-country ko">한반도 통합분석표</span>
@@ -823,7 +801,7 @@ body.en-mode span.en { display:inline; }
         <span class="rr-coord"><span class="ko">통합 데이터표</span><span class="en" style="display:none">Integrated Data Table</span></span>
         <span class="rr-ver">v3.0</span>
       </a>
-      <a class="report-row" href="https://badaegopa.tistory.com/59" target="_blank">
+      <a class="report-row" data-region="other" href="https://badaegopa.tistory.com/59" target="_blank">
         <span class="rr-status"></span>
         <span class="rr-region">KO · S.Amer</span>
         <span class="rr-country ko">아르헨티나 — 100년의 역설과 회복의 조건</span>
@@ -831,7 +809,7 @@ body.en-mode span.en { display:inline; }
         <span class="rr-coord"><span class="ko">BRI · Q분면 분석</span><span class="en" style="display:none">BRI · Quadrant Analysis</span></span>
         <span class="rr-ver">v3.0</span>
       </a>
-      <a class="report-row" href="https://badaegopa.tistory.com/60" target="_blank">
+      <a class="report-row" data-region="other" href="https://badaegopa.tistory.com/60" target="_blank">
         <span class="rr-status"></span>
         <span class="rr-region">KO · Europe</span>
         <span class="rr-country ko">스페인편</span>
@@ -839,7 +817,7 @@ body.en-mode span.en { display:inline; }
         <span class="rr-coord"><span class="ko">유럽 시리즈</span><span class="en" style="display:none">Europe Series</span></span>
         <span class="rr-ver">v3.0</span>
       </a>
-      <a class="report-row" href="https://badaegopa.tistory.com/64" target="_blank">
+      <a class="report-row" data-region="other" href="https://badaegopa.tistory.com/64" target="_blank">
         <span class="rr-status"></span>
         <span class="rr-region">KO · Europe</span>
         <span class="rr-country ko">독일 — 효율의 역설, 방황하는 민중</span>
@@ -847,7 +825,7 @@ body.en-mode span.en { display:inline; }
         <span class="rr-coord">BRI 4.85 · Q2 · SR-lead↓</span>
         <span class="rr-ver">v3.0</span>
       </a>
-      <a class="report-row" href="https://badaegopa.tistory.com/65" target="_blank">
+      <a class="report-row" data-region="other" href="https://badaegopa.tistory.com/65" target="_blank">
         <span class="rr-status"></span>
         <span class="rr-region">KO · Europe</span>
         <span class="rr-country ko">독일편 (전체)</span>
@@ -855,7 +833,7 @@ body.en-mode span.en { display:inline; }
         <span class="rr-coord"><span class="ko">BRI 4.85 · 완전판</span><span class="en" style="display:none">BRI 4.85 · Full Ed.</span></span>
         <span class="rr-ver">v3.0</span>
       </a>
-      <a class="report-row" href="https://badaegopa.tistory.com/71" target="_blank">
+      <a class="report-row" data-region="other" href="https://badaegopa.tistory.com/71" target="_blank">
         <span class="rr-status"></span>
         <span class="rr-region">KO · S.Asia</span>
         <span class="rr-country ko">파키스탄 — 세계의 권력, 하나의 함정</span>
@@ -863,7 +841,7 @@ body.en-mode span.en { display:inline; }
         <span class="rr-coord"><span class="ko">BRI 7.20 · Q1 · 고위험</span><span class="en" style="display:none">BRI 7.20 · Q1 · High Risk</span></span>
         <span class="rr-ver">v3.0</span>
       </a>
-      <a class="report-row" href="https://badaegopa.tistory.com/89" target="_blank">
+      <a class="report-row" data-region="other" href="https://badaegopa.tistory.com/89" target="_blank">
         <span class="rr-status"></span>
         <span class="rr-region">KO · LDC</span>
         <span class="rr-country ko">최빈국편 — 남수단 · CAR · 니제르</span>
@@ -871,7 +849,7 @@ body.en-mode span.en { display:inline; }
         <span class="rr-coord"><span class="ko">3국 비교 · 최빈국 시리즈</span><span class="en" style="display:none">3-nation · LDC Series</span></span>
         <span class="rr-ver">v3.0</span>
       </a>
-      <a class="report-row" href="https://badaegopa.tistory.com/91" target="_blank">
+      <a class="report-row" data-region="other" href="https://badaegopa.tistory.com/91" target="_blank">
         <span class="rr-status"></span>
         <span class="rr-region">KO · M.EAST</span>
         <span class="rr-country ko">이스라엘편</span>
@@ -879,7 +857,7 @@ body.en-mode span.en { display:inline; }
         <span class="rr-coord"><span class="ko">중동 시리즈</span><span class="en" style="display:none">Middle East Series</span></span>
         <span class="rr-ver">v3.0</span>
       </a>
-      <a class="report-row" href="https://badaegopa.tistory.com/95" target="_blank">
+      <a class="report-row" data-region="other" href="https://badaegopa.tistory.com/95" target="_blank">
         <span class="rr-status"></span>
         <span class="rr-region">KO · AMER</span>
         <span class="rr-country ko">미국편 — 기축의 임계</span>
@@ -887,7 +865,7 @@ body.en-mode span.en { display:inline; }
         <span class="rr-coord"><span class="ko">BRI 0.68 · Q1-Q2경계</span><span class="en" style="display:none">BRI 0.68 · Q1-Q2 border</span></span>
         <span class="rr-ver">v4.0 ★</span>
       </a>
-      <a class="report-row" href="https://badaegopa.tistory.com/98" target="_blank">
+      <a class="report-row" data-region="other" href="https://badaegopa.tistory.com/98" target="_blank">
         <span class="rr-status"></span>
         <span class="rr-region">KO · E.ASIA</span>
         <span class="rr-country ko">중국편</span>
@@ -903,7 +881,7 @@ body.en-mode span.en { display:inline; }
       <a href="https://badaegopa.tistory.com/category/%EC%82%AC%ED%9A%8C%20%EB%8F%99%EC%97%AD%ED%95%99_%EC%84%B8%EA%B3%84%EB%A5%BC%20%EB%B3%B4%EB%8B%A4/English" target="_blank" style="font-size:10px; color:var(--blue); margin-left:10px;"><span class="ko">카테고리 전체 보기 ↗</span><span class="en" style="display:none">View all ↗</span></a>
     </div>
     <div class="report-list reveal" style="margin-bottom:28px;">
-      <a class="report-row" href="https://badaegopa.tistory.com/66" target="_blank">
+      <a class="report-row" data-region="other" href="https://badaegopa.tistory.com/66" target="_blank">
         <span class="rr-status" style="background:var(--blue);"></span>
         <span class="rr-region">EN · EUROPE</span>
         <span class="rr-country ko">Germany — The Paradox of Efficiency (영문판)</span>
@@ -911,7 +889,7 @@ body.en-mode span.en { display:inline; }
         <span class="rr-coord">BRI 4.85 · Q2 · SR-lead↓</span>
         <span class="rr-ver" style="background:var(--blue-pale);color:var(--blue);">EN</span>
       </a>
-      <a class="report-row" href="https://badaegopa.tistory.com/70" target="_blank">
+      <a class="report-row" data-region="other" href="https://badaegopa.tistory.com/70" target="_blank">
         <span class="rr-status" style="background:var(--blue);"></span>
         <span class="rr-region">EN · S.ASIA</span>
         <span class="rr-country ko">Pakistan — Global Power, One Trap, One Leap (영문판)</span>
@@ -919,7 +897,7 @@ body.en-mode span.en { display:inline; }
         <span class="rr-coord">BRI 7.20 · Q1 · High Risk</span>
         <span class="rr-ver" style="background:var(--blue-pale);color:var(--blue);">EN</span>
       </a>
-      <a class="report-row" href="https://badaegopa.tistory.com/93" target="_blank">
+      <a class="report-row" data-region="other" href="https://badaegopa.tistory.com/93" target="_blank">
         <span class="rr-status" style="background:var(--blue);"></span>
         <span class="rr-region">EN · M.EAST</span>
         <span class="rr-country ko">Israel — 영문판</span>
@@ -927,7 +905,7 @@ body.en-mode span.en { display:inline; }
         <span class="rr-coord"><span class="ko">중동 시리즈 EN</span><span class="en" style="display:none">Middle East Series EN</span></span>
         <span class="rr-ver" style="background:var(--blue-pale);color:var(--blue);">EN</span>
       </a>
-      <a class="report-row" href="https://badaegopa.tistory.com/96" target="_blank">
+      <a class="report-row" data-region="other" href="https://badaegopa.tistory.com/96" target="_blank">
         <span class="rr-status" style="background:var(--blue);"></span>
         <span class="rr-region">EN · AMER</span>
         <span class="rr-country ko">United States — 영문판</span>
@@ -935,7 +913,7 @@ body.en-mode span.en { display:inline; }
         <span class="rr-coord">BRI 0.68 · Q1-Q2 · Σ triple</span>
         <span class="rr-ver" style="background:var(--blue-pale);color:var(--blue);">EN</span>
       </a>
-      <a class="report-row" href="https://badaegopa.tistory.com/99" target="_blank">
+      <a class="report-row" data-region="other" href="https://badaegopa.tistory.com/99" target="_blank">
         <span class="rr-status" style="background:var(--blue);"></span>
         <span class="rr-region">EN · E.ASIA</span>
         <span class="rr-country ko">China — 영문판</span>
@@ -950,7 +928,7 @@ body.en-mode span.en { display:inline; }
       🇦🇷 <span class="ko">스페인어판 — Edición en Español</span><span class="en" style="display:none">Spanish Edition</span>
     </div>
     <div class="report-list reveal" style="margin-bottom:28px;">
-      <a class="report-row" href="https://badaegopa.tistory.com/60" target="_blank">
+      <a class="report-row" data-region="other" href="https://badaegopa.tistory.com/60" target="_blank">
         <span class="rr-status" style="background:#C0A060;"></span>
         <span class="rr-region">ES · S.AMER</span>
         <span class="rr-country ko">아르헨티나 — 스페인어판</span>
@@ -965,7 +943,7 @@ body.en-mode span.en { display:inline; }
       🇩🇪 <span class="ko">독일어판 — Deutsche Ausgabe</span><span class="en" style="display:none">German Edition</span>
     </div>
     <div class="report-list reveal" style="margin-bottom:28px;">
-      <a class="report-row" href="https://badaegopa.tistory.com/65" target="_blank">
+      <a class="report-row" data-region="other" href="https://badaegopa.tistory.com/65" target="_blank">
         <span class="rr-status" style="background:#5A7A9A;"></span>
         <span class="rr-region">DE · EUROPE</span>
         <span class="rr-country ko">Das Paradox der Effizienz — 독일어판</span>
@@ -980,7 +958,7 @@ body.en-mode span.en { display:inline; }
       🇵🇰 <span class="ko">우르두어판 — اردو ایڈیشن</span><span class="en" style="display:none">Urdu Edition</span>
     </div>
     <div class="report-list reveal">
-      <a class="report-row" href="https://badaegopa.tistory.com/71" target="_blank">
+      <a class="report-row" data-region="other" href="https://badaegopa.tistory.com/71" target="_blank">
         <span class="rr-status" style="background:#5A8A6A;"></span>
         <span class="rr-region">UR · S.ASIA</span>
         <span class="rr-country ko">파키스탄편 — 우르두어판</span>
@@ -1466,107 +1444,51 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-/* ── 권역별 스크롤 ── */
+/* ── 권역 카드 클릭 → 언어별 목록에서 해당 권역 하이라이트 ── */
 function scrollToRegion(regionId) {
-  const el = document.getElementById('region-' + regionId);
-  if (el) {
-    el.scrollIntoView({behavior:'smooth', block:'start'});
-    el.style.transition = 'box-shadow 0.3s';
-    el.style.boxShadow = '0 0 0 3px var(--sage)';
-    setTimeout(() => { el.style.boxShadow = ''; }, 1500);
-  } else {
-    // 아직 로딩 중이면 completed 섹션으로 스크롤 후 재시도
-    const completed = document.getElementById('completed');
-    if (completed) completed.scrollIntoView({behavior:'smooth', block:'start'});
+  const langSection = document.getElementById('lang-reports');
+  if (!langSection) return;
+
+  // 모든 행 원상복구
+  document.querySelectorAll('#lang-reports .report-row').forEach(row => {
+    row.style.transition = 'all 0.3s';
+    row.style.opacity = '0.25';
+    row.style.transform = 'translateX(0)';
+  });
+
+  // 해당 권역 행 하이라이트
+  const matched = document.querySelectorAll(`#lang-reports .report-row[data-region="${regionId}"]`);
+
+  if (matched.length > 0) {
+    matched.forEach(row => {
+      row.style.opacity = '1';
+      row.style.background = 'var(--sage-pale)';
+      row.style.transform = 'translateX(4px)';
+    });
+
+    // 첫 번째 매칭 행으로 스크롤
     setTimeout(() => {
-      const retryEl = document.getElementById('region-' + regionId);
-      if (retryEl) {
-        retryEl.scrollIntoView({behavior:'smooth', block:'start'});
-        retryEl.style.transition = 'box-shadow 0.3s';
-        retryEl.style.boxShadow = '0 0 0 3px var(--sage)';
-        setTimeout(() => { retryEl.style.boxShadow = ''; }, 1500);
-      }
-    }, 1500);
+      matched[0].scrollIntoView({behavior:'smooth', block:'center'});
+    }, 100);
+  } else {
+    // 매칭 없으면 섹션 상단으로
+    langSection.scrollIntoView({behavior:'smooth', block:'start'});
+    document.querySelectorAll('#lang-reports .report-row').forEach(row => {
+      row.style.opacity = '1';
+    });
   }
+
+  // 3초 후 원상복구
+  setTimeout(() => {
+    document.querySelectorAll('#lang-reports .report-row').forEach(row => {
+      row.style.opacity = '1';
+      row.style.background = '';
+      row.style.transform = '';
+    });
+  }, 3000);
 }
 
-/* ── GitHub nations/ 권역별 자동 로드 ── */
-(async function loadRegionReports() {
-  const REPO = 'badaegopa/-everbluesea';
-  const BASE = 'https://everbluesea.org';
-  const API  = `https://api.github.com/repos/${REPO}/contents/nations`;
-  const container = document.getElementById('region-report-container');
 
-  const REGIONS = {
-    'middle-east':    { icon:'🕌', ko:'중동',      en:'Middle East',         color:'#B8943A', bg:'#F0E4C4' },
-    'europe':         { icon:'🏛', ko:'유럽',      en:'Europe',              color:'#4A6FA5', bg:'#D4DFF0' },
-    'northeast-asia': { icon:'🌏', ko:'동북아시아', en:'Northeast Asia',      color:'#4D7A6A', bg:'#D4E5DF' },
-    'south-asia':     { icon:'🏔', ko:'남아시아',  en:'South Asia',          color:'#8B6B9E', bg:'#E8DEF0' },
-    'americas':       { icon:'🌎', ko:'남북미',    en:'The Americas',        color:'#9B4040', bg:'#F0D8D8' },
-    'ldc':            { icon:'⚖️', ko:'최빈국 특집', en:'Least Developed',    color:'#7A746C', bg:'#E4E0D7' },
-    'tools':          { icon:'🔧', ko:'도구·분석',  en:'Tools & Analysis',    color:'#4A7FA8', bg:'#D4E5F0' },
-  };
-
-  function parseName(fn) {
-    return fn.replace('.html','')
-      .replace(/^v[\d.]+_/,'')
-      .replace(/_\d{8}.*/,'')
-      .replace(/_/g,' ');
-  }
-
-  try {
-    const res = await fetch(API, {headers:{'Accept':'application/vnd.github.v3+json'}});
-    if (!res.ok) throw new Error();
-    const items = await res.json();
-    const folders = items.filter(i => i.type === 'dir');
-
-    let totalHtml = '';
-    let totalCount = 0;
-
-    for (const folder of folders) {
-      const key = folder.name;
-      const info = REGIONS[key] || { icon:'📁', ko:key, en:key, color:'#7A746C', bg:'#E4E0D7' };
-
-      const subRes = await fetch(folder.url, {headers:{'Accept':'application/vnd.github.v3+json'}});
-      if (!subRes.ok) continue;
-      const files = (await subRes.json()).filter(f => f.name.endsWith('.html'));
-      if (files.length === 0) continue;
-
-      totalCount += files.length;
-
-      const rows = files.sort((a,b) => b.name.localeCompare(a.name)).map(f => {
-        const url = `${BASE}/nations/${key}/${f.name}`;
-        const nm  = parseName(f.name);
-        return `<a class="report-row" href="${url}" target="_blank">
-          <span class="rr-status" style="background:${info.color};flex-shrink:0;"></span>
-          <span style="flex:1;font-family:'EB Garamond',serif;font-size:15px;color:#1E1D1B;">${nm}</span>
-          <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#7A746C;flex-shrink:0;">everbluesea.org ↗</span>
-        </a>`;
-      }).join('');
-
-      totalHtml += `
-        <div id="region-${key}" style="margin-bottom:32px; scroll-margin-top:80px; border-radius:8px; overflow:hidden; border:1px solid var(--border);">
-          <div style="background:${info.bg}; padding:14px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px;">
-            <span style="font-size:20px;">${info.icon}</span>
-            <span style="font-family:'Cormorant Garamond',serif; font-size:20px; color:${info.color};">
-              <span class="ko">${info.ko}</span><span class="en" style="display:none">${info.en}</span>
-            </span>
-            <span style="font-family:'JetBrains Mono',monospace; font-size:10px; color:${info.color}; margin-left:auto; background:rgba(255,255,255,0.5); padding:2px 8px; border-radius:10px;">${files.length}<span class="ko">편</span><span class="en" style="display:none"> reports</span></span>
-          </div>
-          <div>${rows}</div>
-        </div>`;
-    }
-
-    container.innerHTML = totalHtml || `<div style="padding:20px; text-align:center; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-muted);">
-      <span class="ko">등록된 리포트가 없습니다</span><span class="en" style="display:none">No reports yet</span>
-    </div>`;
-
-  } catch(e) {
-    container.innerHTML = `<div style="padding:16px 20px; font-family:'JetBrains Mono',monospace; font-size:11px; color:#7A746C;">
-      ⚠ <span class="ko">잠시 후 새로고침 해주세요</span><span class="en" style="display:none">Please refresh in a moment</span>
-    </div>`;
-  }
-})();
 </script>
 </body>
 </html>
