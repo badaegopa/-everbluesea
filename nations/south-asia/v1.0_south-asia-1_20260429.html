@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Λ¹² 남아시아 비교편 I — 스리랑카·부탄·방글라데시</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#F5F3EE;font-family:'Noto Sans KR',sans-serif;color:#2A2A2A;font-size:13px;line-height:1.75;}
+
+/* ─── 팔레트 v2.2 파스텔 ─── */
+.bg{background:#F5F3EE;}
+.green{color:#5E9186;}
+.green-text{color:#3A6A5E;}
+.gold{color:#B8850E;}
+
+/* 국가 색상 */
+.lk-c{color:#8B1A1A;}
+.bt-c{color:#D4861A;}
+.bd-c{color:#1A6B3A;}
+
+/* 변수 태그 */
+.tag{display:inline-block;padding:1px 7px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;}
+.tag-tbi{background:#FCEBEB;color:#791F1F;}
+.tag-sr{background:#E1F5EE;color:#085041;}
+.tag-oli{background:#E6F1FB;color:#0C447C;}
+.tag-lpi{background:#FAEEDA;color:#633806;}
+.tag-sig{background:#EEEDFE;color:#3C3489;}
+.tag-ppr{background:#EAF3DE;color:#27500A;}
+.tag-cfd{background:#FAECE7;color:#712B13;}
+.tag-new{background:#E1F5EE;color:#085041;}
+.tag-warn{background:#FCEBEB;color:#791F1F;}
+
+/* ─── 히어로 ─── */
+.hero{background:linear-gradient(135deg,#7BADA0,#5E9186);color:#fff;padding:52px 40px 40px;text-align:center;}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.12em;opacity:.75;margin-bottom:14px;}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:42px;letter-spacing:.06em;line-height:1.1;margin-bottom:10px;}
+.hero-sub{font-size:13px;opacity:.85;line-height:1.7;}
+.hero-meta{margin-top:18px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
+.hero-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:4px 14px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.06em;}
+
+/* ─── Λ-Score 헤드라인 배지 ─── */
+.score-banner{display:flex;gap:12px;margin:20px 24px;flex-wrap:wrap;}
+.score-card{flex:1;min-width:160px;background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:14px 16px;text-align:center;border-top:3px solid;}
+.score-card.lk{border-top-color:#8B1A1A;}
+.score-card.bt{border-top-color:#D4861A;}
+.score-card.bd{border-top-color:#1A6B3A;}
+.score-flag{font-size:24px;margin-bottom:4px;}
+.score-country{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.05em;margin-bottom:6px;}
+.score-lambda{font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:700;margin-bottom:2px;}
+.score-lambda.lk{color:#8B1A1A;}
+.score-lambda.bt{color:#D4861A;}
+.score-lambda.bd{color:#1A6B3A;}
+.score-zone{font-size:11px;font-family:'JetBrains Mono',monospace;padding:2px 10px;border-radius:4px;display:inline-block;margin-bottom:4px;}
+.zone-watch{background:#FFF3E0;color:#E65100;}
+.zone-danger{background:#FCEBEB;color:#791F1F;}
+.zone-stable{background:#E8F5E9;color:#1B5E20;}
+.score-pwt{font-size:10.5px;color:#888;font-family:'JetBrains Mono',monospace;}
+
+/* ─── 선언 ─── */
+.declaration{background:#FFFDF8;border-left:4px solid #5E9186;margin:0 24px 24px;padding:18px 22px;border-radius:0 8px 8px 0;}
+.declaration-title{font-family:'Bebas Neue',sans-serif;font-size:16px;color:#3A6A5E;letter-spacing:.05em;margin-bottom:8px;}
+.declaration p{font-size:12.5px;color:#444;line-height:1.8;}
+
+/* ─── 민중 시선 ─── */
+.peoples-view{margin:0 24px 24px;background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:20px 22px;}
+.pv-title{font-family:'Bebas Neue',sans-serif;font-size:15px;color:#B8850E;letter-spacing:.06em;margin-bottom:12px;}
+.pv-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.pv-card{background:#F5F3EE;border-radius:8px;padding:12px 14px;border-top:3px solid;}
+.pv-card.lk{border-color:#8B1A1A;}
+.pv-card.bt{border-color:#D4861A;}
+.pv-card.bd{border-color:#1A6B3A;}
+.pv-flag{font-size:22px;margin-bottom:4px;}
+.pv-name{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.05em;margin-bottom:6px;}
+.pv-quote{font-size:11.5px;color:#555;line-height:1.7;font-style:italic;}
+
+/* ─── 섹션 ─── */
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:.07em;color:#3A6A5E;border-bottom:2px solid #5E9186;margin:28px 24px 14px;padding-bottom:8px;}
+
+/* ─── 3열 그리드 ─── */
+.three-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:0 24px 24px;}
+
+/* ─── 용어 해설 ─── */
+.term-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 24px 24px;}
+.term-box{background:#fff;border:1px solid #DDD8CE;border-radius:8px;padding:12px 14px;}
+.term-name{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;color:#3A6A5E;margin-bottom:4px;}
+.term-def{font-size:11px;color:#555;line-height:1.6;}
+.term-ref{font-size:9.5px;color:#999;margin-top:4px;font-family:'JetBrains Mono',monospace;}
+
+/* ─── 역사 타임라인 ─── */
+.hist-card{background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:14px 16px;}
+.hist-title{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:10.5px;margin-bottom:10px;}
+.hist-title.lk{color:#8B1A1A;}
+.hist-title.bt{color:#D4861A;}
+.hist-title.bd{color:#1A6B3A;}
+.hist-item{display:flex;gap:10px;margin-bottom:8px;font-size:11.5px;}
+.hist-year{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:10px;min-width:44px;color:#B8850E;}
+.hist-text{color:#444;line-height:1.6;}
+
+/* ─── 통계 테이블 ─── */
+.stats-table{width:calc(100% - 48px);margin:0 24px 24px;border-collapse:collapse;font-size:11.5px;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05);}
+.stats-table th{background:#3A6A5E;color:#fff;padding:9px 14px;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:10.5px;text-align:center;}
+.stats-table td{padding:8px 14px;border-bottom:1px solid #f0ede7;text-align:center;color:#444;}
+.stats-table tr:last-child td{border:none;}
+.stats-table .label{text-align:left;font-weight:500;color:#3A6A5E;}
+.val-lk{color:#8B1A1A;font-weight:700;font-family:'JetBrains Mono',monospace;}
+.val-bt{color:#D4861A;font-weight:700;font-family:'JetBrains Mono',monospace;}
+.val-bd{color:#1A6B3A;font-weight:700;font-family:'JetBrains Mono',monospace;}
+
+/* ─── 좌표 카드 ─── */
+.coord-card{background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:14px 16px;}
+.coord-head{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.05em;margin-bottom:10px;}
+.coord-head.lk{color:#8B1A1A;}
+.coord-head.bt{color:#D4861A;}
+.coord-head.bd{color:#1A6B3A;}
+.coord-item{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.coord-label{font-size:10.5px;}
+.coord-bar-wrap{flex:1;height:6px;background:#eee;border-radius:3px;margin:0 10px;}
+.coord-bar{height:6px;border-radius:3px;}
+.coord-num{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;min-width:36px;text-align:right;}
+
+/* ─── 공식 박스 ─── */
+.formula-box{margin:0 24px 24px;background:linear-gradient(135deg,#f0ede7,#e8e4dc);border:1px solid #DDD8CE;border-radius:10px;padding:16px 20px;}
+.formula-title{font-family:'Bebas Neue',sans-serif;font-size:15px;color:#3A6A5E;letter-spacing:.06em;margin-bottom:10px;}
+.formula-eq{font-family:'JetBrains Mono',monospace;font-size:13px;color:#3A6A5E;background:#fff;display:inline-block;padding:6px 14px;border-radius:6px;margin-bottom:8px;}
+.formula-note{font-size:11px;color:#666;line-height:1.7;}
+
+/* ─── 레이더·GPI 래퍼 ─── */
+.radar-wrap,.gpi-wrap,.phase-wrap{margin:0 24px 24px;background:#fff;border:1px solid #DDD8CE;border-radius:12px;padding:20px;}
+.radar-title,.gpi-title{font-family:'Bebas Neue',sans-serif;font-size:16px;color:#3A6A5E;letter-spacing:.06em;margin-bottom:4px;text-align:center;}
+.radar-legend{display:flex;justify-content:center;gap:24px;margin-top:12px;flex-wrap:wrap;}
+.radar-legend-item{display:flex;align-items:center;gap:6px;font-size:11px;}
+.radar-dot{width:10px;height:10px;border-radius:50%;}
+
+/* ─── PPR ─── */
+.ppr-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:0 24px 18px;}
+.ppr-card{background:#fff;border:1px solid #DDD8CE;border-radius:10px;overflow:hidden;}
+.ppr-card-head{padding:10px 14px;font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;color:#fff;}
+.ppr-card-head.lk{background:#8B1A1A;}
+.ppr-card-head.bt{background:#D4861A;}
+.ppr-card-head.bd{background:#1A6B3A;}
+.ppr-card-body{padding:10px 14px;font-size:11.5px;color:#444;line-height:1.75;}
+.ppr-stack-label{font-size:9.5px;font-family:'JetBrains Mono',monospace;background:#F5F3EE;color:#666;display:inline-block;padding:1px 6px;border-radius:3px;margin-bottom:3px;}
+
+/* ─── 담론육층 ─── */
+.layer-card{background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:14px 16px;}
+.layer-card-head{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.04em;margin-bottom:10px;}
+.layer-card-head.lk{color:#8B1A1A;}
+.layer-card-head.bt{color:#D4861A;}
+.layer-card-head.bd{color:#1A6B3A;}
+.layer-row{display:flex;gap:8px;margin-bottom:7px;font-size:11px;line-height:1.6;}
+.layer-num{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:10px;min-width:16px;color:#B8850E;}
+.layer-text{color:#555;}
+
+/* ─── 오차·한반도·결론 ─── */
+.err-card{background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:12px 14px;}
+.err-head{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:10.5px;margin-bottom:8px;}
+.err-head.lk{color:#8B1A1A;}
+.err-head.bt{color:#D4861A;}
+.err-head.bd{color:#1A6B3A;}
+.err-item{font-size:11px;color:#555;line-height:1.65;margin-bottom:4px;}
+.kr-box{margin:0 24px 24px;background:linear-gradient(135deg,#eef6f4,#e4f0ed);border:1px solid #c5ddd9;border-radius:10px;padding:18px 22px;}
+.kr-title{font-family:'Bebas Neue',sans-serif;font-size:16px;color:#3A6A5E;letter-spacing:.06em;margin-bottom:10px;}
+.kr-text{font-size:12px;color:#444;line-height:1.85;}
+.conclusion{margin:0 24px 24px;background:linear-gradient(135deg,#7BADA0,#5E9186);color:#fff;border-radius:12px;padding:24px 26px;}
+.conclusion-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.07em;margin-bottom:14px;}
+.conclusion-text{font-size:12.5px;line-height:1.9;opacity:.93;}
+.series-box{margin:0 24px 24px;border:2px solid #5E9186;border-radius:10px;padding:14px 18px;}
+.series-title{font-family:'Bebas Neue',sans-serif;font-size:14px;color:#3A6A5E;letter-spacing:.06em;margin-bottom:8px;}
+.series-list{display:flex;flex-wrap:wrap;gap:8px;}
+.series-item{font-size:11px;background:#F5F3EE;border:1px solid #DDD8CE;border-radius:6px;padding:3px 10px;color:#666;}
+.series-item.done{background:#5E9186;color:#fff;border-color:#5E9186;}
+.series-item.current{background:#B8850E;color:#fff;border-color:#B8850E;}
+.footer{background:#3A6A5E;color:rgba(255,255,255,.8);text-align:center;padding:22px;font-size:11px;line-height:1.9;}
+.footer a{color:#F0C040;text-decoration:none;}
+.note{font-size:10.5px;color:#888;font-style:italic;margin:0 24px 16px;}
+.freach-s{color:#2E7D32;font-weight:700;}
+.freach-i{color:#1565C0;font-weight:700;}
+.freach-d{color:#AD1457;font-weight:700;}
+
+/* ─── 특집 박스 ─── */
+.special-box{margin:0 24px 24px;border-radius:12px;padding:20px 24px;}
+.special-box.lk{background:linear-gradient(135deg,#fff4f4,#ffe8e8);border:2px solid #8B1A1A;}
+.special-box.bt{background:linear-gradient(135deg,#fff8ef,#ffebd0);border:2px solid #D4861A;}
+.special-box.bd{background:linear-gradient(135deg,#f0fff4,#e0f5e9);border:2px solid #1A6B3A;}
+.special-title{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.06em;margin-bottom:12px;}
+.special-title.lk{color:#8B1A1A;}
+.special-title.bt{color:#D4861A;}
+.special-title.bd{color:#1A6B3A;}
+.special-text{font-size:12px;color:#444;line-height:1.9;}
+.stat-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;color:#fff;margin:2px 3px;}
+.stat-lk{background:#8B1A1A;}
+.stat-bt{background:#D4861A;}
+.stat-bd{background:#1A6B3A;}
+
+/* ─── GNH 비교 박스 ─── */
+.gnh-box{margin:0 24px 24px;background:linear-gradient(135deg,#fffbef,#fff5d0);border:2px solid #D4861A;border-radius:12px;padding:20px 24px;}
+.gnh-title{font-family:'Bebas Neue',sans-serif;font-size:18px;color:#D4861A;letter-spacing:.06em;margin-bottom:12px;}
+.gnh-text{font-size:12px;color:#444;line-height:1.9;}
+.gnh-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
+.gnh-card{background:#fff;border:1px solid #DDD8CE;border-radius:8px;padding:12px 14px;}
+.gnh-card-title{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:#D4861A;margin-bottom:6px;}
+.gnh-card-body{font-size:11.5px;color:#555;line-height:1.7;}
+
+/* ─── 위상공간 ─── */
+.phase-title{font-family:'Bebas Neue',sans-serif;font-size:16px;color:#3A6A5E;letter-spacing:.06em;margin-bottom:4px;text-align:center;}
+.phase-sub{font-size:10.5px;color:#888;text-align:center;margin-bottom:14px;font-family:'JetBrains Mono',monospace;}
+</style>
+</head>
+<body>
+
+<!-- ══ 히어로 ══ -->
+<div class="hero">
+  <div class="hero-eyebrow">늘푸른바다 사회동역학 연구소 · Λ¹² 국가편 비교 시리즈 III</div>
+  <div class="hero-title">남아시아 비교편 I</div>
+  <div class="hero-sub">스리랑카 · 부탄 · 방글라데시<br>부도·행복·혁명 — 세 개의 극단이 보여주는 것</div>
+  <div class="hero-meta">
+    <span class="hero-badge">Λ¹² v9.11 엔진</span>
+    <span class="hero-badge">방향보정 독립축 확정판</span>
+    <span class="hero-badge">F_reach 적용</span>
+    <span class="hero-badge">Λ-Score 공식 최초 적용</span>
+    <span class="hero-badge">SSRN 6509200</span>
+    <span class="hero-badge">2026-04-29</span>
+  </div>
+</div>
+
+<!-- ══ Λ-Score 헤드라인 배지 ══ -->
+<div class="score-banner">
+  <div class="score-card lk">
+    <div class="score-flag">🇱🇰</div>
+    <div class="score-country lk-c">스리랑카</div>
+    <div class="score-lambda lk">0.298</div>
+    <div><span class="score-zone zone-watch">Watch</span></div>
+    <div class="score-pwt">PWT-r 0.834 · β 0.557</div>
+  </div>
+  <div class="score-card bt">
+    <div class="score-flag">🇧🇹</div>
+    <div class="score-country bt-c">부탄</div>
+    <div class="score-lambda bt">0.182</div>
+    <div><span class="score-zone zone-stable">Stable</span></div>
+    <div class="score-pwt">PWT-r 0.955 · β 0.248</div>
+  </div>
+  <div class="score-card bd">
+    <div class="score-flag">🇧🇩</div>
+    <div class="score-country bd-c">방글라데시</div>
+    <div class="score-lambda bd">0.396</div>
+    <div><span class="score-zone zone-danger">Danger</span></div>
+    <div class="score-pwt">PWT-r 0.728 · β 0.688</div>
+  </div>
+</div>
+
+<!-- ══ 연구 목적 선언 ══ -->
+<div class="declaration">
+  <div class="declaration-title">연구 목적 선언</div>
+  <p>
+    스리랑카는 2022년 국가부도와 대통령궁 점령이라는 체제 충격을 겪은 후 회복 중이다.
+    부탄은 GNH(국민행복지수)를 국가 철학으로 운용하는 유일한 나라다 — 보편 데이터 기준의 Λ¹²가 행복지수 국가를 어떻게 읽는가.
+    방글라데시는 2024년 세계 최초 Z세대 혁명으로 15년 독재를 종식했지만 혁명 이후 더 깊은 위기로 빠져들었다.
+    세 나라는 서로 다른 방식으로 Λ¹² 핵심 가설을 시험한다.
+    Λ¹²는 결론을 선고하지 않는다. 보는 방식을 광장에 놓아둔다.
+  </p>
+</div>
+
+<!-- ══ 민중 시선 ══ -->
+<div class="peoples-view">
+  <div class="pv-title">민중의 시선 — 세 청년이 바라보는 창</div>
+  <div class="pv-grid">
+    <div class="pv-card lk">
+      <div class="pv-flag">🇱🇰</div>
+      <div class="pv-name lk-c">콜롬보의 청년</div>
+      <div class="pv-quote">
+        "2022년에 우리가 대통령궁에 들어갔다.
+        수영장에서 수영했고 대통령은 도망쳤다.
+        그게 끝이었을까? 아니다 — 빚은 여전하고
+        가격은 여전히 높다. 그래도 우리가 바꿀 수 있다는 걸 알았다."
+      </div>
+    </div>
+    <div class="pv-card bt">
+      <div class="pv-flag">🇧🇹</div>
+      <div class="pv-name bt-c">팀부의 청년</div>
+      <div class="pv-quote">
+        "행복지수가 높다는 나라에서 우리 친구들이
+        호주로 캐나다로 떠난다. GNH가 밥을 먹여주지 않는다.
+        왕실을 존경하지만 일자리는 없다.
+        행복이란 무엇인가 — 통계인가 삶인가."
+      </div>
+    </div>
+    <div class="pv-card bd">
+      <div class="pv-flag">🇧🇩</div>
+      <div class="pv-name bd-c">다카의 청년</div>
+      <div class="pv-quote">
+        "우리가 혁명을 했다. 친구가 총에 맞았다.
+        하시나는 떠났다 — 그런데 유누스 정부도
+        다르지 않다. 폭력은 더 늘었다.
+        혁명은 시작이었는가 아니면 끝이었는가."
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ §0 용어 해설 ══ -->
+<div class="sec-title">§0 &nbsp;핵심 용어 해설</div>
+<div class="term-grid">
+  <div class="term-box">
+    <div class="term-name">SR 역인과 가설 (§3)</div>
+    <div class="term-def">SR 선행하락이 붕괴의 역인과 신호. SR 낮음 = 안전이 아니다. 스리랑카가 2022년 이 가설의 실증 사례.</div>
+    <div class="term-ref">Λ¹² §3 · 스리랑카 2022</div>
+  </div>
+  <div class="term-box">
+    <div class="term-name">TBI — 트라우마 빅뱅</div>
+    <div class="term-def">역사적 충격이 현재 체제 정당성에 남긴 흔적. 방글라데시: 1971 독립전쟁 + 2024 혁명 이중 충격.</div>
+    <div class="term-ref">Λ¹² §27 TBI=H×C×N</div>
+  </div>
+  <div class="term-box">
+    <div class="term-name">OLI — 관측가능성 한계</div>
+    <div class="term-def">데이터 신뢰 범위. 부탄은 GNH 자체 통계 체계 — 보편 OLI 기준과 괴리 가능성.</div>
+    <div class="term-ref">Λ¹² §24 · Goodhart</div>
+  </div>
+  <div class="term-box">
+    <div class="term-name">Λ-Score (§30 신설)</div>
+    <div class="term-def">방향보정 독립축 가중합산. Λ=Σ(get_w(norm_i))/N/1.29. 이번 편부터 헤드라인 적용.</div>
+    <div class="term-ref">Λ¹² §30 v9.11 2026-04-29</div>
+  </div>
+  <div class="term-box">
+    <div class="term-name">PWT-r — 마중물 도달률</div>
+    <div class="term-def">PWT-r=1−Λ×β. β=진영화·CFD·부패 합성. 지도자 덕이 민중에 닿는 비율.</div>
+    <div class="term-ref">Λ¹² §30 PWT 공리 §26</div>
+  </div>
+  <div class="term-box">
+    <div class="term-name">F_reach — 식량도달성</div>
+    <div class="term-def">F_reach=(S×I×D)^⅓. 자급력·수입안정·분배도달. 방글라데시: S 강점·D 결핍 구조.</div>
+    <div class="term-ref">Λ¹² §13-B v9.10</div>
+  </div>
+</div>
+
+<!-- ══ Ⅰ 이론적 자기위치 ══ -->
+<div class="sec-title">Ⅰ &nbsp;관찰자 시선 — 이론적 자기위치 (§1-B)</div>
+<div style="margin:0 24px 14px;background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:16px 20px;">
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:13px;color:#B8850E;letter-spacing:.05em;margin-bottom:10px;">고전사회학 계보 매칭</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;font-size:11.5px;">
+    <div style="background:#F5F3EE;border-radius:6px;padding:8px 12px;">
+      <div style="font-weight:700;color:#8B1A1A;margin-bottom:4px;">🇱🇰 스리랑카</div>
+      <div style="color:#555;line-height:1.7;">Gurr의 <em>상대적 박탈감</em> 이론의 교과서 사례. 2022 위기는 Goldstone의 국가취약성 모형이 예측한 궤도. Goffman 인상관리: 고타바야의 허구적 안정 이미지가 붕괴 직전까지 유지됐다. 이후 Dissenayake 정부의 신뢰 회복은 Weber 합법적 지배 재건 과정.</div>
+    </div>
+    <div style="background:#F5F3EE;border-radius:6px;padding:8px 12px;">
+      <div style="font-weight:700;color:#D4861A;margin-bottom:4px;">🇧🇹 부탄</div>
+      <div style="color:#555;line-height:1.7;">Weber 전통적 지배(왕실) + Durkheim 기계적 연대(불교 공동체)의 결합. GNH는 Durkheim의 집합의식(conscience collective)을 정책화한 사례. 그러나 Marx의 관점: 행복 담론이 경제 불평등을 은폐하는 이데올로기가 될 수 있다는 비판도 존재.</div>
+    </div>
+    <div style="background:#F5F3EE;border-radius:6px;padding:8px 12px;">
+      <div style="font-weight:700;color:#1A6B3A;margin-bottom:4px;">🇧🇩 방글라데시</div>
+      <div style="color:#555;line-height:1.7;">2024 혁명 = Gurr의 SR 역인과 가설의 실시간 실증. 억압→SR 하락→임계→폭발. 혁명 이후 Pareto의 엘리트 순환론: 하시나가 퇴출됐으나 구조는 유지. Gramsci: 혁명은 헤게모니를 바꾸지 못하면 완성되지 않는다.</div>
+    </div>
+  </div>
+</div>
+<p class="note">§1-C: 어떤 이론도 세 국가를 완전히 포괄하지 않는다. 이론은 시작점이지 결론이 아니다.</p>
+
+<!-- ══ Ⅱ 통치 구조 ══ -->
+<div class="sec-title">Ⅱ &nbsp;국가 통치 구조 + 식민·독립 역사</div>
+<div class="three-grid">
+  <div style="background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:14px 16px;">
+    <div class="hist-title lk">🇱🇰 스리랑카 — 입헌민주공화국</div>
+    <div class="hist-item"><span class="hist-year">~1948</span><span class="hist-text">영국 식민지 (실론). 1948.02.04 독립. 영연방 내 자치령으로 출발.</span></div>
+    <div class="hist-item"><span class="hist-year">1983~09</span><span class="hist-text">타밀 내전 26년 (LTTE vs 정부). 내전 종식 2009. TBI 핵심.</span></div>
+    <div class="hist-item"><span class="hist-year">2022</span><span class="hist-text">국가부도 선언 + 대통령궁 점령. 고타바야 해외 도주. IMF EFF $29억 개시.</span></div>
+    <div class="hist-item"><span class="hist-year">2024~</span><span class="hist-text">디사나야케(NPP) 대통령 취임. 좌파 연정. IMF 3차 검토 통과. 채무재조정 98% 완료.</span></div>
+    <div style="margin-top:8px;font-size:11px;color:#555;"><strong>현 체제:</strong> 대통령 중심제 공화국. 현 대통령: 아누라 쿠마라 디사나야케 (2024~)</div>
+    <div style="font-size:11px;color:#555;"><strong>핵심 긴장:</strong> 빚의 기억 + 회복 경로의 지속성 + 소수민족 화해 미완</div>
+  </div>
+  <div style="background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:14px 16px;">
+    <div class="hist-title bt">🇧🇹 부탄 — 입헌군주제 왕국</div>
+    <div class="hist-item"><span class="hist-year">~1907</span><span class="hist-text">왕국 통일. 영국 보호령 (외교만 위임). 완전 식민 경험 없음.</span></div>
+    <div class="hist-item"><span class="hist-year">1949</span><span class="hist-text">인도와 우호조약. 외교·안보 실질적으로 인도 의존 구조 시작.</span></div>
+    <div class="hist-item"><span class="hist-year">1990s</span><span class="hist-text">네팔계 부탄인(로창파) 10만 명 추방 — GNH 이면의 인권 이슈.</span></div>
+    <div class="hist-item"><span class="hist-year">2008</span><span class="hist-text">헌법 제정 + 첫 총선. GNH 헌법화. 입헌군주제 전환.</span></div>
+    <div class="hist-item"><span class="hist-year">2023~</span><span class="hist-text">청년 해외 이주 급증(호주·캐나다). 인구 감소 위기. 중국 국경 협상.</span></div>
+    <div style="margin-top:8px;font-size:11px;color:#555;"><strong>현 체제:</strong> 입헌군주제. 현 국왕: 지그메 케사르 남걀 왕추크 (2006~)</div>
+    <div style="font-size:11px;color:#555;"><strong>핵심 긴장:</strong> GNH 철학 vs 경제 현실 | 인도 의존 vs 중국 접근</div>
+  </div>
+  <div style="background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:14px 16px;">
+    <div class="hist-title bd">🇧🇩 방글라데시 — 인민공화국 (임시)</div>
+    <div class="hist-item"><span class="hist-year">~1947</span><span class="hist-text">영국 식민지 → 인도-파키스탄 분리독립. 동파키스탄으로 편입.</span></div>
+    <div class="hist-item"><span class="hist-year">1971</span><span class="hist-text">독립전쟁 + 대학살 (사망 30~300만 추정). 방글라데시 독립 12.16. TBI 최고 수준.</span></div>
+    <div class="hist-item"><span class="hist-year">1975~90</span><span class="hist-text">군사독재 반복 (지아우르 라만·에르샤드). 민주화 이후에도 AL-BNP 적대적 양당 순환.</span></div>
+    <div class="hist-item"><span class="hist-year">2009~24</span><span class="hist-text">하시나 15년 장기집권. GDP 성장 but 권위주의 강화.</span></div>
+    <div class="hist-item"><span class="hist-year">2024.08</span><span class="hist-text">Z세대 혁명 — 하시나 축출. 유누스 임시정부. 혁명 이후 폭력 급증.</span></div>
+    <div style="margin-top:8px;font-size:11px;color:#555;"><strong>현 체제:</strong> 임시정부. 현 수반: 무함마드 유누스 (2024~)</div>
+    <div style="font-size:11px;color:#555;"><strong>핵심 긴장:</strong> 혁명 이후 무질서 | 이슬람화 vs 세속주의 | 인도-방글라데시 갈등</div>
+  </div>
+</div>
+
+<!-- ══ Ⅲ 기본 통계 ══ -->
+<div class="sec-title">Ⅲ &nbsp;기본 통계 (2024~2025 기준)</div>
+<table class="stats-table">
+  <thead>
+    <tr>
+      <th class="label" style="text-align:left;">지표</th>
+      <th>🇱🇰 스리랑카</th>
+      <th>🇧🇹 부탄</th>
+      <th>🇧🇩 방글라데시</th>
+      <th>출처·비고</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class="label">인구</td><td class="val-lk">2,230만</td><td class="val-bt">78만</td><td class="val-bd">1억 7,600만</td><td>UN 2024</td></tr>
+    <tr><td class="label">GDP (명목)</td><td class="val-lk">884억$</td><td class="val-bt">30억$</td><td class="val-bd">4,530억$</td><td>WB 2024</td></tr>
+    <tr><td class="label">1인당 GDP (PPP)</td><td class="val-lk">$14,500</td><td class="val-bt">$12,100</td><td class="val-bd">$9,200</td><td>IMF 2024</td></tr>
+    <tr><td class="label">GDP 성장률 (2025)</td><td class="val-lk">+5.0%</td><td class="val-bt">+5.2%</td><td class="val-bd" style="background:#fff0f0;">+2.3% ⚠</td><td>IMF/ADB; 방글라데시 혁명 후 급락</td></tr>
+    <tr><td class="label">HDI (2024)</td><td class="val-lk">0.780</td><td class="val-bt">0.681</td><td class="val-bd">0.670</td><td>UNDP HDR 2025</td></tr>
+    <tr><td class="label">CPI 2025 (TI)</td><td class="val-lk">36 / 105위</td><td class="val-bt">72 / 22위 ⭐</td><td class="val-bd">25 / 151위</td><td>TI 2026.02; 부탄 남아시아 1위</td></tr>
+    <tr><td class="label">GPI 2025 (IEP)</td><td class="val-lk">1.849 / 62위</td><td class="val-bt">1.527 / 17위 ⭐</td><td class="val-bd">1.927 / 75위</td><td>IEP 2025</td></tr>
+    <tr><td class="label">부채/GDP</td><td class="val-lk">104.6% ⚠</td><td class="val-bt">~115%</td><td class="val-bd">35%</td><td>IMF 2024; 스리랑카·부탄 고부채</td></tr>
+    <tr><td class="label">인플레이션 (2025)</td><td class="val-lk">~3%</td><td class="val-bt">~4%</td><td class="val-bd" style="background:#fff0f0;">~12% ⚠</td><td>방글라데시 식품 인플레 16%</td></tr>
+    <tr><td class="label">언론자유 (RSF 2025)</td><td class="val-lk">139위</td><td class="val-bt">33위 ⭐</td><td class="val-bd">149위</td><td>RSF 2025</td></tr>
+    <tr><td class="label">GNH 지수</td><td class="val-lk">해당없음</td><td class="val-bt">0.781 (2022)</td><td class="val-bd">해당없음</td><td>부탄 전용 지수 — 비교 불가</td></tr>
+  </tbody>
+</table>
+
+<!-- ══ 스리랑카 특집 ══ -->
+<div class="sec-title">⚡ &nbsp;스리랑카 특집 — SR 역인과 가설의 살아있는 실증</div>
+<div class="special-box lk">
+  <div class="special-title lk">2022~2025: 부도에서 회복으로 — Λ¹² 궤도 추적</div>
+  <div class="special-text">
+    <strong>2022년 스리랑카는 Λ¹² §3 SR 역인과 가설의 가장 선명한 실증이다.</strong><br><br>
+    하시나 정권처럼 SR이 억압으로 낮아진 구조가 아니라 — <em>SR이 낮았기 때문에 충격이 더 컸다</em>.
+    오랫동안 표면적 안정이 유지됐고 시민들은 불만을 표출할 경로가 없었다.
+    인플레이션 <span class="stat-badge stat-lk">69.8%</span>, 외환보유고 <span class="stat-badge stat-lk">0.3개월분</span>, 연료·의약품 부족이 동시에 폭발했을 때 — SR이 임계를 단숨에 넘었다.<br><br>
+
+    <strong>회복 경로 (2023~2025):</strong><br>
+    IMF EFF <span class="stat-badge stat-lk">$29억</span> 개시 → 인플레이션 <span class="stat-badge stat-lk">4%</span>로 안정 → 외환보유고 <span class="stat-badge stat-lk">$61억</span> 회복 →
+    GDP 성장 <span class="stat-badge stat-lk">+5.0%</span>(2024) → 채무재조정 98% 완료(2024).<br><br>
+
+    <strong>Λ¹² 읽기:</strong><br>
+    현재 Λ-Score <span class="stat-badge stat-lk">0.341</span> Watch 구간. 회복 중이지만 부채 <span class="stat-badge stat-lk">GDP 104.6%</span>가 구조적 취약점으로 남아있다.
+    2022년 전의 Λ-Score를 추정하면 0.50 이상 Danger — 그 상태에서 SR이 급등하며 체제 충격으로 전환됐다.
+    회복 이후 빈곤율은 <span class="stat-badge stat-lk">24.5%</span> — 2019년의 2배. 경제 회복이 민중에게 닿는 속도(PWT-r)가 핵심 변수.
+  </div>
+</div>
+
+<!-- ══ 부탄 GNH 특집 ══ -->
+<div class="sec-title">🏔 &nbsp;부탄 특집 — GNH vs 보편 데이터의 충돌</div>
+<div class="gnh-box">
+  <div class="gnh-title">GNH 0.781 vs Λ-Score 0.198 — 두 지수가 만나는 자리</div>
+  <div class="gnh-text">
+    부탄은 GNH(국민행복지수) 0.781을 달성한 나라다. 그런데 Λ¹² 보편 기준으로 보면 Stable 구간 0.198.
+    이 두 수치가 충돌하는가? 아니다 — 오히려 서로 보완한다.<br><br>
+    GNH가 "행복의 달성 수준"을 측정한다면, Λ¹²는 "구조적 불안정성"을 측정한다.
+    CPI 72점(남아시아 1위)·GPI 17위·언론자유 33위 — 부탄은 보편 지표에서도 양호하다.
+    <strong>그러나 두 가지 균열이 보인다.</strong>
+  </div>
+  <div class="gnh-grid">
+    <div class="gnh-card">
+      <div class="gnh-card-title">균열 ① — 청년 이탈과 인구 위기</div>
+      <div class="gnh-card-body">
+        2022~2024년 인구의 10% 이상이 호주·캐나다로 이주. 'Brain drain'이 아닌 'Population drain'.
+        GNH가 측정하는 행복과 실제 삶의 경제적 기반 사이의 괴리. F_reach S(자급력)는 양호하지만
+        인구 감소가 장기 식량 생산 기반을 위협.
+      </div>
+    </div>
+    <div class="gnh-card">
+      <div class="gnh-card-title">균열 ② — 인도 의존과 중국 접근</div>
+      <div class="gnh-card-body">
+        전력·식품·소비재 90% 인도 의존. F_reach I(수입 안정) 취약. 2023년 중국과 국경 협상 — 인도가 민감 반응.
+        부탄 GNH의 '지속가능성' 도메인이 지정학적 취약성을 충분히 반영하는지 논란.
+        Goodhart 법칙: GNH 지수가 정책 목표화되면 실제 행복을 과대측정할 위험.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 방글라데시 특집 ══ -->
+<div class="sec-title">🔥 &nbsp;방글라데시 특집 — 혁명 이후 왜 더 나빠졌는가</div>
+<div class="special-box bd">
+  <div class="special-title bd">2024 Z세대 혁명 → 2025 이중 위기 — Λ¹² 진단</div>
+  <div class="special-text">
+    <strong>방글라데시 2024 혁명은 Λ¹² 역사상 가장 생생한 실시간 사례다.</strong><br><br>
+
+    SR 역인과 구조 작동 과정:
+    하시나 15년 → 억압에 의한 SR 하락 → 2024.07 학생 시위 촉발 → SR 임계 돌파 → 체제 충격 → 하시나 도주(2024.08.05).<br><br>
+
+    <strong>혁명 이후 2025 — Λ¹² 4가지 경고 신호:</strong><br>
+    ① GDP 성장 <span class="stat-badge stat-bd">2.3%</span> — 2023년 6.1%에서 급락. 인플레이션 <span class="stat-badge stat-bd">12%</span> 지속.<br>
+    ② 폭도 폭력 사망 <span class="stat-badge stat-bd">637명</span>(혁명 후 1년) vs 2023년 51명 — 1,250% 증가.<br>
+    ③ 청년 실업 <span class="stat-badge stat-bd">28%</span> — 남아시아 최고. 혁명 세대가 실업자.<br>
+    ④ 소수민족(힌두) 공격 지속. 이슬람화 압력 증가.<br><br>
+
+    <strong>Λ¹² 진단:</strong><br>
+    Λ-Score <span class="stat-badge stat-bd">0.428</span> Danger 구간. 혁명 직후 Σ(지도자-민중 단절)가 일시 하락했다가
+    유누스 정부 실망으로 다시 상승 중. TBI <span class="stat-badge stat-bd">0.78</span> — 1971 독립전쟁 트라우마 + 2024 혁명 사망자 트라우마가 중첩.
+    담론육층 6층의 질문: <em>혁명은 구조를 바꿨는가, 아니면 이름만 바꿨는가.</em>
+  </div>
+</div>
+
+<!-- ══ Ⅳ 기본 좌표 ══ -->
+<div class="sec-title">Ⅳ &nbsp;Λ¹² 기본 좌표 — 방향보정 Proxy 추정</div>
+<div class="three-grid">
+  <!-- 스리랑카 -->
+  <div class="coord-card">
+    <div class="coord-head lk">🇱🇰 스리랑카</div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-tbi">TBI</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:68%;background:#791F1F;opacity:.7;"></div></div>
+      <span class="coord-num" style="color:#791F1F;">0.68</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-sr">SR</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:42%;background:#085041;opacity:.7;"></div></div>
+      <span class="coord-num" style="color:#085041;">0.42</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-sig">Σ</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:45%;background:#3C3489;opacity:.7;"></div></div>
+      <span class="coord-num" style="color:#3C3489;">0.45</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-oli">OLI</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:58%;background:#0C447C;opacity:.7;"></div></div>
+      <span class="coord-num" style="color:#0C447C;">0.58</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-lpi">LPI_net</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:52%;background:#633806;opacity:.7;"></div></div>
+      <span class="coord-num" style="color:#633806;">+0.08</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-cfd">CFD</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:62%;background:#712B13;opacity:.7;"></div></div>
+      <span class="coord-num" style="color:#712B13;">0.62</span>
+    </div>
+    <div style="margin-top:8px;font-size:10px;color:#888;">BRI: 3.5 · SSI: 5.8 · GPI: 1.849 · F_reach: 0.62</div>
+    <div style="margin-top:4px;font-size:10px;color:#8B1A1A;font-family:'JetBrains Mono',monospace;">★ 2022 이전 SR 역인과 실증 국가</div>
+  </div>
+  <!-- 부탄 -->
+  <div class="coord-card">
+    <div class="coord-head bt">🇧🇹 부탄</div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-tbi">TBI</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:22%;background:#791F1F;opacity:.7;"></div></div>
+      <span class="coord-num" style="color:#791F1F;">0.22</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-sr">SR</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:25%;background:#085041;opacity:.7;"></div></div>
+      <span class="coord-num" style="color:#085041;">0.25</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-sig">Σ</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:30%;background:#3C3489;opacity:.7;"></div></div>
+      <span class="coord-num" style="color:#3C3489;">0.30</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-oli">OLI</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:55%;background:#0C447C;opacity:.7;"></div></div>
+      <span class="coord-num" style="color:#0C447C;">0.55</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-lpi">LPI_net</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:62%;background:#633806;opacity:.7;"></div></div>
+      <span class="coord-num" style="color:#633806;">+0.18</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-cfd">CFD</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:28%;background:#712B13;opacity:.7;"></div></div>
+      <span class="coord-num" style="color:#712B13;">0.28</span>
+    </div>
+    <div style="margin-top:8px;font-size:10px;color:#888;">BRI: 1.8 · SSI: 7.2 · GPI: 1.527 · F_reach: 0.58</div>
+    <div style="margin-top:4px;font-size:10px;color:#D4861A;font-family:'JetBrains Mono',monospace;">★ GNH 철학 = 낮은 Σ·TBI의 구조적 원인</div>
+  </div>
+  <!-- 방글라데시 -->
+  <div class="coord-card" style="border:2px solid #1A6B3A;">
+    <div class="coord-head bd">🇧🇩 방글라데시 ⚠</div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-tbi">TBI</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:78%;background:#791F1F;opacity:.7;"></div></div>
+      <span class="coord-num" style="color:#791F1F;">0.78</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-sr">SR</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:62%;background:#085041;opacity:.7;"></div></div>
+      <span class="coord-num" style="color:#085041;">0.62</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-sig">Σ</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:65%;background:#3C3489;opacity:.7;"></div></div>
+      <span class="coord-num" style="color:#3C3489;">0.65 ⚠</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-oli">OLI</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:42%;background:#0C447C;opacity:.7;"></div></div>
+      <span class="coord-num" style="color:#0C447C;">0.42</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-lpi">LPI_net</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:25%;background:#633806;opacity:.7;"></div></div>
+      <span class="coord-num" style="color:#633806;">−0.15</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-cfd">CFD</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:72%;background:#712B13;opacity:.7;"></div></div>
+      <span class="coord-num" style="color:#712B13;">0.72</span>
+    </div>
+    <div style="margin-top:8px;font-size:10px;color:#888;">BRI: 5.2 · SSI: 3.8 · GPI: 1.927 · F_reach: 0.64</div>
+    <div style="margin-top:4px;font-size:10px;color:#1A6B3A;font-family:'JetBrains Mono',monospace;">★ Σ 0.65 위험 지대 진입 — 혁명 후 재축적</div>
+  </div>
+</div>
+
+<div class="formula-box">
+  <div class="formula-title">Λ¹² v9.11 §30 — 방향보정 독립축 공식 (2026-04-29 확정)</div>
+  <div class="formula-eq">Λ-Score = Σ(get_w(norm_i)) / 12 / 1.29</div>
+  <div class="formula-note">
+    안정방향 8개 변수(SSI·SR·GPI·OLI·LPI·HDI·CPI·F_reach) → (1-v) 역전 후 계산.<br>
+    OLI: 스리랑카 0.58 · 부탄 0.55 · 방글라데시 0.42 — 동등성 조건 ±0.10 미충족 → 방향성 독해 우선.<br>
+    <strong>방글라데시 OLI 0.42:</strong> 혁명 과도기 — 공식 통계 신뢰도 제한. Goodhart 법칙 최강 적용.
+  </div>
+</div>
+
+<!-- ══ Ⅴ 레이더 SVG ══ -->
+<div class="sec-title">Ⅴ &nbsp;Λ¹² 12지수 레이더 — 3국 오버레이 (방향보정 적용)</div>
+<div class="radar-wrap">
+  <div class="radar-title">Λ¹² 12지수 레이더 — 남아시아 3국 (정규화 후 역전 적용)</div>
+  <div style="display:flex;justify-content:center;">
+    <svg width="520" height="420" viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(260,210)">
+        <!-- 지대별 배경 원 -->
+        <circle r="160" fill="#FCEBEB" fill-opacity="0.15"/>
+        <circle r="104" fill="#FFF3E0" fill-opacity="0.2"/>
+        <circle r="64"  fill="#E8F5E9" fill-opacity="0.3"/>
+        <!-- 동심원 -->
+        <circle r="40"  fill="none" stroke="#DDD8CE" stroke-width="1"/>
+        <circle r="80"  fill="none" stroke="#DDD8CE" stroke-width="1"/>
+        <circle r="104" fill="none" stroke="#BA7517" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.6"/>
+        <circle r="120" fill="none" stroke="#DDD8CE" stroke-width="1"/>
+        <circle r="160" fill="none" stroke="#E24B4A" stroke-width="1" stroke-dasharray="5,3" opacity="0.5"/>
+        <!-- 축선 -->
+        <line x1="0" y1="0" x2="0"    y2="-160" stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="80"   y2="-139" stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="139"  y2="-80"  stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="160"  y2="0"    stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="139"  y2="80"   stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="80"   y2="139"  stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="0"    y2="160"  stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-80"  y2="139"  stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-139" y2="80"   stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-160" y2="0"    stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-139" y2="-80"  stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-80"  y2="-139" stroke="#DDD8CE" stroke-width="1"/>
+        <!-- 눈금 -->
+        <text x="5" y="-42"  font-size="8" fill="#aaa" font-family="JetBrains Mono">0.25</text>
+        <text x="5" y="-82"  font-size="8" fill="#aaa" font-family="JetBrains Mono">0.5</text>
+        <text x="5" y="-122" font-size="8" fill="#aaa" font-family="JetBrains Mono">0.75</text>
+        <!-- 지대 라벨 -->
+        <text x="118" y="4" font-size="7" fill="#E24B4A" font-family="JetBrains Mono" opacity="0.7">위험</text>
+        <text x="76"  y="4" font-size="7" fill="#BA7517" font-family="JetBrains Mono" opacity="0.7">주목</text>
+        <!-- 축 라벨 -->
+        <text x="0"    y="-172" text-anchor="middle" font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">BRI</text>
+        <text x="88"   y="-150" text-anchor="start"  font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">SSI</text>
+        <text x="150"  y="-86"  text-anchor="start"  font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">SR</text>
+        <text x="168"  y="4"    text-anchor="start"  font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">GPI</text>
+        <text x="150"  y="92"   text-anchor="start"  font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">TBI</text>
+        <text x="88"   y="155"  text-anchor="start"  font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">Σ</text>
+        <text x="0"    y="178"  text-anchor="middle" font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">OLI</text>
+        <text x="-92"  y="155"  text-anchor="end"    font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">LPI</text>
+        <text x="-154" y="92"   text-anchor="end"    font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">CFD</text>
+        <text x="-172" y="4"    text-anchor="end"    font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">HDI</text>
+        <text x="-154" y="-86"  text-anchor="end"    font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">CPI</text>
+        <text x="-92"  y="-150" text-anchor="end"    font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">F_reach</text>
+
+        <!--
+          방향보정 정규화값 (1-v 적용 후):
+          스리랑카: BRI0.35,SSI0.42,SR0.58,GPI0.52,TBI0.68,Σ0.45,OLI0.42,LPI0.48,CFD0.62,HDI0.22,CPI0.64,Freach0.38
+          부탄:     BRI0.18,SSI0.72,SR0.75,GPI0.85,TBI0.22,Σ0.30,OLI0.45,LPI0.82,CFD0.28,HDI0.32,CPI0.28,Freach0.42
+          방글라데시:BRI0.52,SSI0.38,SR0.62,GPI0.42,TBI0.78,Σ0.65,OLI0.58,LPI0.35,CFD0.72,HDI0.33,CPI0.75,Freach0.36
+        -->
+
+        <!-- 스리랑카 (암적) -->
+        <polygon points="
+          0,-56
+          60,-43
+          139,-55
+          83,0
+          168,122
+          72,53
+          0,67
+          -54,44
+          -84,62
+          -35,0
+          -165,-56
+          -63,-71
+        " fill="#8B1A1A" fill-opacity="0.15" stroke="#8B1A1A" stroke-width="2" stroke-opacity="0.85"/>
+
+        <!-- 부탄 (황금) -->
+        <polygon points="
+          0,-29
+          102,-73
+          179,-68
+          136,0
+          54,40
+          48,35
+          0,72
+          -93,80
+          -38,22
+          -51,0
+          -72,-22
+          -42,-38
+        " fill="#D4861A" fill-opacity="0.15" stroke="#D4861A" stroke-width="2" stroke-opacity="0.85"/>
+
+        <!-- 방글라데시 (녹색) -->
+        <polygon points="
+          0,-83
+          54,-39
+          149,-55
+          67,0
+          193,140
+          104,76
+          0,93
+          -40,32
+          -97,71
+          -53,0
+          -194,-47
+          -47,-41
+        " fill="#1A6B3A" fill-opacity="0.15" stroke="#1A6B3A" stroke-width="2.5" stroke-opacity="0.85" stroke-dasharray="7,3"/>
+
+        <circle cx="0" cy="0" r="3" fill="#5E9186"/>
+      </g>
+    </svg>
+  </div>
+  <div class="radar-legend">
+    <div class="radar-legend-item"><div class="radar-dot" style="background:#8B1A1A;"></div><span>🇱🇰 스리랑카</span></div>
+    <div class="radar-legend-item"><div class="radar-dot" style="background:#D4861A;"></div><span>🇧🇹 부탄</span></div>
+    <div class="radar-legend-item"><div class="radar-dot" style="background:#1A6B3A;border:1px dashed;"></div><span>🇧🇩 방글라데시 (점선=혁명 과도기)</span></div>
+  </div>
+  <div style="margin-top:10px;font-size:10.5px;color:#888;text-align:center;line-height:1.7;">
+    ※ 방향보정 v9.11 적용 — 안정방향 8개 변수 역전(1-v) 후 정규화. 높은 값 = 위험 방향.<br>
+    빨간 점선원=위험지대(0.65↑) · 주황 점선원=주목지대(0.40↑). 부탄의 작은 면적 = Stable 구조.
+  </div>
+</div>
+
+<!-- ══ PPR-5 ══ -->
+<!-- Ⅶ 정치 -->
+<div class="sec-title">Ⅶ &nbsp;PPR-1 정치 (Political)</div>
+<div class="ppr-grid">
+  <div class="ppr-card">
+    <div class="ppr-card-head lk">🇱🇰 스리랑카</div>
+    <div class="ppr-card-body">
+      <div class="ppr-stack-label">과정</div>
+      <div style="margin-bottom:8px;">디사나야케(NPP) 좌파 연정 2024 취임. 사상 첫 좌파 대통령. IMF 개혁 경로 유지하면서 복지 확대 병행 시도.</div>
+      <div class="ppr-stack-label">현상</div>
+      <div style="margin-bottom:8px;"><span class="tag tag-sig">Σ 0.45</span> — 회복 국면에서 지도자-민중 단절 감소. 2022 충격 이후 민중 관여 증가. CPI 36(105위) — 여전히 부패 구조 잔존.</div>
+      <div class="ppr-stack-label">결과</div>
+      <div>Q1 방향 이동 중: SR 상승·Σ 하락 — 건강한 저항의 신호. IMF 개혁 연속성 유지가 관건.</div>
+    </div>
+  </div>
+  <div class="ppr-card">
+    <div class="ppr-card-head bt">🇧🇹 부탄</div>
+    <div class="ppr-card-body">
+      <div class="ppr-stack-label">과정</div>
+      <div style="margin-bottom:8px;">입헌군주제. 국왕 지그메 케사르 강한 신뢰 기반. 의원내각제(총리 Tshering Tobgay 2024 재집권). GNH 위원회가 모든 정책 심사.</div>
+      <div class="ppr-stack-label">현상</div>
+      <div style="margin-bottom:8px;"><span class="tag tag-sig">Σ 0.30</span> — 3국 중 최저. 왕실-민중 신뢰 구조. CPI 72(22위) 남아시아 최고. 정치적 안정 기반 탄탄. LPI_net +0.18 최고.</div>
+      <div class="ppr-stack-label">결과</div>
+      <div>정치 지표 최고. 취약점은 경제 현실과 청년 이탈. 정치 안정이 경제 문제를 은폐할 위험.</div>
+    </div>
+  </div>
+  <div class="ppr-card">
+    <div class="ppr-card-head bd">🇧🇩 방글라데시</div>
+    <div class="ppr-card-body">
+      <div class="ppr-stack-label">과정</div>
+      <div style="margin-bottom:8px;">유누스 임시정부 2024.08~. 하시나 체포영장 + 인도 체류. 선거 일정 불투명. 의회 해산 상태 지속.</div>
+      <div class="ppr-stack-label">현상</div>
+      <div style="margin-bottom:8px;"><span class="tag tag-sig">Σ 0.65</span> ⚠ 위험 지대 진입. LPI_net −0.15: 유누스 이미지 vs 실질 통치 괴리. 이슬람화 압력 증가로 CFD 0.72 상승.</div>
+      <div class="ppr-stack-label">결과</div>
+      <div>혁명이 Σ를 일시 낮췄다가 재상승. 선거 없는 통치 → 정당성 공백 → Σ 임계 접근. 2025년이 분기점.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Ⅷ 경제 -->
+<div class="sec-title">Ⅷ &nbsp;PPR-2 경제 (Economic)</div>
+<div class="ppr-grid">
+  <div class="ppr-card">
+    <div class="ppr-card-head lk">🇱🇰 스리랑카</div>
+    <div class="ppr-card-body">
+      <div class="ppr-stack-label">과정</div>
+      <div style="margin-bottom:8px;">GDP +5.0%(2024) 회복. IMF EFF $29억 3차 검토 통과. 채무재조정 98% 완료. 관광 회복 — 2025 방문객 역대 최고 예상.</div>
+      <div class="ppr-stack-label">현상</div>
+      <div style="margin-bottom:8px;">부채/GDP 104.6% — 구조적 취약. 빈곤율 24.5% (2019년의 2배). 콜롬보 주식시장 200% 급등(2023~). 외환보유고 $61억 회복.</div>
+      <div class="ppr-stack-label">결과</div>
+      <div>회복 속도 인상적이나 빈곤층 PWT-r이 낮다. 금융 회복 vs 민생 회복의 속도 갭. 호르무즈 분쟁 — 콜롬보 항만이 우회 수혜.</div>
+    </div>
+  </div>
+  <div class="ppr-card">
+    <div class="ppr-card-head bt">🇧🇹 부탄</div>
+    <div class="ppr-card-body">
+      <div class="ppr-stack-label">과정</div>
+      <div style="margin-bottom:8px;">GDP +5.2%(2025). 수력발전·관광·농업 3축. 수력전력 90% 인도 수출 — 단일 의존 구조. 2034 GDP 4배 목표.</div>
+      <div class="ppr-stack-label">현상</div>
+      <div style="margin-bottom:8px;">1인당 GDP $12,100. 부채/GDP ~115% — 수력발전 투자 기인. 청년 10% 이주로 노동력 감소. 인도 의존 F_reach I 취약.</div>
+      <div class="ppr-stack-label">결과</div>
+      <div>GNH 철학과 경제 현실의 긴장: 행복은 측정되지만 일자리는 없다. 청년 이탈이 장기 성장 잠재력의 최대 위협.</div>
+    </div>
+  </div>
+  <div class="ppr-card">
+    <div class="ppr-card-head bd">🇧🇩 방글라데시</div>
+    <div class="ppr-card-body">
+      <div class="ppr-stack-label">과정</div>
+      <div style="margin-bottom:8px;">GDP 2.3%(2025) — 2023년 6.1%에서 급락. 의류수출 GDP 84%로 단일 의존. 인플레 12%·식품 16%.</div>
+      <div class="ppr-stack-label">현상</div>
+      <div style="margin-bottom:8px;">외환보유고 $145억(2025.07) — 2022년 $330억에서 급감. 청년실업 28% 남아시아 최고. 미국 관세 19% 의류 타격. 송금 11% 감소.</div>
+      <div class="ppr-stack-label">결과</div>
+      <div>혁명이 경제를 더 악화시켰다. F_reach S(자급력) 0.72 강점이 D(분배) 0.48 결핍으로 상쇄. 빈곤층이 혁명의 비용을 치르고 있다.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Ⅸ 사회+F_reach -->
+<div class="sec-title">Ⅸ &nbsp;PPR-3 사회 (Social) + F_reach</div>
+<div class="ppr-grid">
+  <div class="ppr-card">
+    <div class="ppr-card-head lk">🇱🇰 스리랑카</div>
+    <div class="ppr-card-body">
+      <div class="ppr-stack-label">F_reach 진단</div>
+      <div style="margin-bottom:8px;">
+        F_reach ≈ (0.68×0.62×0.55)^⅓ ≈ <strong>0.62</strong> ⭐⭐⭐☆<br>
+        <span class="freach-s">S 자급력 0.68</span>: 쌀·코코넛·차·고무 농업 강국. 2022 비료 금지령으로 일시 타격 후 회복.<br>
+        <span class="freach-i">I 수입 안정 0.62</span>: 호르무즈 분쟁 → 콜롬보 항만 수혜 역설.<br>
+        <span class="freach-d">D 분배 0.55</span>: 빈곤율 24.5% — 회복 과실 분배 불균형.
+      </div>
+      <div class="ppr-stack-label">사회 지표</div>
+      <div>HDI 0.780. 교육·의료 수준 남아시아 최고권. 타밀-싱할라 민족 긴장 구조 잔존. CFD 0.62.</div>
+    </div>
+  </div>
+  <div class="ppr-card">
+    <div class="ppr-card-head bt">🇧🇹 부탄</div>
+    <div class="ppr-card-body">
+      <div class="ppr-stack-label">F_reach 진단</div>
+      <div style="margin-bottom:8px;">
+        F_reach ≈ (0.72×0.45×0.58)^⅓ ≈ <strong>0.58</strong> ⭐⭐☆☆<br>
+        <span class="freach-s">S 자급력 0.72</span>: 유기농 100% 국가 목표. 감자·쌀·채소 자급. 소규모 농업 강점.<br>
+        <span class="freach-i">I 수입 안정 0.45</span>: 식품 90% 인도 의존 — F_reach 최대 취약점.<br>
+        <span class="freach-d">D 분배 0.58</span>: 소규모 국가 물류 양호. 단 산악 오지 도달성 한계.
+      </div>
+      <div class="ppr-stack-label">사회 지표</div>
+      <div>HDI 0.681. GNH 0.781 — 두 지수의 갭이 '측정 차원의 차이'를 보여줌. 청년 이주가 D 지탱하는 송금 감소 위협.</div>
+    </div>
+  </div>
+  <div class="ppr-card">
+    <div class="ppr-card-head bd">🇧🇩 방글라데시</div>
+    <div class="ppr-card-body">
+      <div class="ppr-stack-label">F_reach 진단</div>
+      <div style="margin-bottom:8px;">
+        F_reach ≈ (0.72×0.68×0.48)^⅓ ≈ <strong>0.64</strong> ⭐⭐⭐☆<br>
+        <span class="freach-s">S 자급력 0.72</span>: 쌀 세계 3위 생산. 수산·채소 강국.<br>
+        <span class="freach-i">I 수입 안정 0.68</span>: 다변화 적절. 식용유 수입 의존 취약점.<br>
+        <span class="freach-d">D 분배 0.48</span>: 인플레 16% + 혁명 혼란이 D 직격. 가난한 사람이 가장 먼저 맞는다.
+      </div>
+      <div class="ppr-stack-label">사회 지표</div>
+      <div>HDI 0.670. 폭도 폭력 1,250% 증가. 소수민족 힌두 공격 지속. CFD 0.72 — 이슬람-힌두·세속-이슬람주의 단층.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Ⅹ 환경 -->
+<div class="sec-title">Ⅹ &nbsp;PPR-4 환경 (Environmental)</div>
+<div class="ppr-grid">
+  <div class="ppr-card">
+    <div class="ppr-card-head lk">🇱🇰 스리랑카</div>
+    <div class="ppr-card-body">
+      <div class="ppr-stack-label">과정</div>
+      <div style="margin-bottom:8px;">2021 유기농 전면 전환(비료 수입 금지) → 농업 생산 40% 급감 → 식량위기 악화. 2022 정책 철회 후 회복 중.</div>
+      <div class="ppr-stack-label">현상</div>
+      <div style="margin-bottom:8px;">기후 취약: 몬순 가뭄·홍수 반복. 산호초 손상. 외채 위기로 환경 투자 축소. 그러나 재생에너지 비중 증가 중.</div>
+      <div class="ppr-stack-label">결과</div>
+      <div>유기농 실험 실패 교훈: 이념 주도 환경 정책이 식량 안보와 충돌. F_reach S 훼손의 역설적 사례.</div>
+    </div>
+  </div>
+  <div class="ppr-card">
+    <div class="ppr-card-head bt">🇧🇹 부탄</div>
+    <div class="ppr-card-body">
+      <div class="ppr-stack-label">과정</div>
+      <div style="margin-bottom:8px;">헌법으로 삼림 60% 이상 유지 의무화. 탄소 음수(Carbon Negative) 국가 — 흡수량 > 배출량. GNH 환경 도메인 핵심.</div>
+      <div class="ppr-stack-label">현상</div>
+      <div style="margin-bottom:8px;">빙하 후퇴 — 기후변화로 수력발전 장기 위협. 히말라야 생태계 변화. 빙하 호수 범람(GLOF) 위험.</div>
+      <div class="ppr-stack-label">결과</div>
+      <div>세계 최고 환경 모범국이지만 기후변화 피해자 — 탄소를 가장 적게 배출하지만 가장 먼저 영향받는 역설.</div>
+    </div>
+  </div>
+  <div class="ppr-card">
+    <div class="ppr-card-head bd">🇧🇩 방글라데시</div>
+    <div class="ppr-card-body">
+      <div class="ppr-stack-label">과정</div>
+      <div style="margin-bottom:8px;">기후변화 가장 취약한 10개국 중 하나. 해수면 상승으로 국토 17% 침수 위협. 사이클론·홍수 매년 반복.</div>
+      <div class="ppr-stack-label">현상</div>
+      <div style="margin-bottom:8px;">2025 사이클론 11월 직격 — 수출 최저 성장. 메콩 삼각주 염분 침투. 방글라데시 기후 난민이 이미 수백만 수준.</div>
+      <div class="ppr-stack-label">결과</div>
+      <div>기후 충격이 F_reach S를 반복 훼손. 정치 혼란 + 기후 위기 동시 충격 — 복합 취약성 최고. 기후 적응 재원이 정치 혼란으로 차단.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Ⅺ 거버넌스 -->
+<div class="sec-title">Ⅺ &nbsp;PPR-5 거버넌스 (Governance)</div>
+<div class="ppr-grid">
+  <div class="ppr-card">
+    <div class="ppr-card-head lk">🇱🇰 스리랑카</div>
+    <div class="ppr-card-body">
+      <div class="ppr-stack-label">과정</div>
+      <div style="margin-bottom:8px;">라자팍사 일족 기소 진행. 디사나야케 정부 반부패 공약. CPI 36(105위) — 개선 여지.</div>
+      <div class="ppr-stack-label">현상</div>
+      <div style="margin-bottom:8px;"><span class="tag tag-lpi">LPI_net +0.08</span>: 소폭 양수 — 실질 개혁 신호. IMF 조건부 거버넌스 개선. 그러나 사법 독립성 아직 취약.</div>
+      <div class="ppr-stack-label">결과</div>
+      <div>거버넌스 회복 궤도. 핵심 변수: 2022 충격의 책임 규명이 완료되는가. 구조 개혁 없는 경제 회복은 재발 위험.</div>
+    </div>
+  </div>
+  <div class="ppr-card">
+    <div class="ppr-card-head bt">🇧🇹 부탄</div>
+    <div class="ppr-card-body">
+      <div class="ppr-stack-label">과정</div>
+      <div style="margin-bottom:8px;">CPI 72(22위) — 남아시아 1위, 세계 최고 수준. GNH 거버넌스 도메인이 실제 정책 심사에 작동. 왕실 리더십 신뢰 높음.</div>
+      <div class="ppr-stack-label">현상</div>
+      <div style="margin-bottom:8px;"><span class="tag tag-lpi">LPI_net +0.18</span>: 3국 최고. 국왕 직접 국민 소통 구조. OLI 0.55 — GNH 자체 통계 체계가 관측 편향 가능성.</div>
+      <div class="ppr-stack-label">결과</div>
+      <div>거버넌스 지표 최우수. Goodhart 적용: GNH 지수화가 거버넌스 실질 개선인지 지표 관리인지 구분 필요. 청년 이탈이 정책 피드백을 차단.</div>
+    </div>
+  </div>
+  <div class="ppr-card">
+    <div class="ppr-card-head bd">🇧🇩 방글라데시</div>
+    <div class="ppr-card-body">
+      <div class="ppr-stack-label">과정</div>
+      <div style="margin-bottom:8px;">CPI 25(151위) — 하시나 부패 구조 잔존. 유누스 정부 개혁 선언 but 집행력 미비. 사이버보안법 폐지 약속 미이행.</div>
+      <div class="ppr-stack-label">현상</div>
+      <div style="margin-bottom:8px;"><span class="tag tag-lpi">LPI_net −0.15</span>: 이미지 비용 > 실질 역량. 폭도 폭력 방치로 신뢰 상실. 군부 거리 순찰 = 통치 공백 증거.</div>
+      <div class="ppr-stack-label">결과</div>
+      <div>혁명이 거버넌스를 악화시켰다 — 이것이 Pareto 엘리트 순환론의 예측이다. 구조 없는 혁명은 이름만 바꾼다.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ⅩII 담론육층 ══ -->
+<div class="sec-title">ⅩII &nbsp;담론육층 — 3국 병렬</div>
+<div class="three-grid">
+  <div class="layer-card">
+    <div class="layer-card-head lk">🇱🇰 스리랑카</div>
+    <div class="layer-row"><span class="layer-num">①</span><span class="layer-text"><strong>데이터:</strong> GDP+5%·CPI 36·부채 104.6%·빈곤 24.5%</span></div>
+    <div class="layer-row"><span class="layer-num">②</span><span class="layer-text"><strong>구조:</strong> 수출(차·관광·의류) 의존 + 중국·인도 간 지정학 완충.</span></div>
+    <div class="layer-row"><span class="layer-num">③</span><span class="layer-text"><strong>패턴:</strong> 2001 부채 위기 → 2022 부도 반복. 구조 개혁 없는 성장의 반복 위험.</span></div>
+    <div class="layer-row"><span class="layer-num">④</span><span class="layer-text"><strong>시각:</strong> 외부: IMF 모범 회복 사례. 내부: "빚은 우리가 갚는데 부자는 그대로다".</span></div>
+    <div class="layer-row"><span class="layer-num">⑤</span><span class="layer-text"><strong>프레임:</strong> "경제 회복 성공" vs "민생 회복 실패" — 두 내러티브가 공존.</span></div>
+    <div class="layer-row"><span class="layer-num">⑥</span><span class="layer-text" style="color:#B8850E;"><strong>판단:</strong> 2022년 광장에서 수영한 사람들 — 그들의 분노가 지금 어디 있는지가 다음 궤도를 결정한다.</span></div>
+  </div>
+  <div class="layer-card">
+    <div class="layer-card-head bt">🇧🇹 부탄</div>
+    <div class="layer-row"><span class="layer-num">①</span><span class="layer-text"><strong>데이터:</strong> GNH 0.781·CPI 72·GPI 17위·청년이주 10%</span></div>
+    <div class="layer-row"><span class="layer-num">②</span><span class="layer-text"><strong>구조:</strong> 불교 왕국 + GNH 철학 + 인도 의존 경제.</span></div>
+    <div class="layer-row"><span class="layer-num">③</span><span class="layer-text"><strong>패턴:</strong> 행복을 측정할수록 청년이 떠나는 역설. 1990년대 네팔계 추방 — GNH의 선택적 포용.</span></div>
+    <div class="layer-row"><span class="layer-num">④</span><span class="layer-text"><strong>시각:</strong> 외부: 행복의 왕국 모범 사례. 내부: "행복지수보다 호주 비자가 현실이다".</span></div>
+    <div class="layer-row"><span class="layer-num">⑤</span><span class="layer-text"><strong>프레임:</strong> "GNH가 진정한 발전 모델" vs "소국 환상 — 인도 없이 존재 불가".</span></div>
+    <div class="layer-row"><span class="layer-num">⑥</span><span class="layer-text" style="color:#B8850E;"><strong>판단:</strong> 행복이란 측정되는 것인가, 아니면 측정을 넘어서는 무엇인가. 부탄이 그 질문에 가장 가깝게 있다.</span></div>
+  </div>
+  <div class="layer-card">
+    <div class="layer-card-head bd">🇧🇩 방글라데시</div>
+    <div class="layer-row"><span class="layer-num">①</span><span class="layer-text"><strong>데이터:</strong> Λ 0.428·GDP 2.3%·폭력 1,250%↑·실업 28%</span></div>
+    <div class="layer-row"><span class="layer-num">②</span><span class="layer-text"><strong>구조:</strong> 의류 단일 경제 + AL-BNP 적대 양당 + 이슬람화 압력.</span></div>
+    <div class="layer-row"><span class="layer-num">③</span><span class="layer-text"><strong>패턴:</strong> 1971 독립→군사독재→민주화→권위주의→혁명. 구조는 반복된다.</span></div>
+    <div class="layer-row"><span class="layer-num">④</span><span class="layer-text"><strong>시각:</strong> 외부: 세계 첫 Z세대 혁명 성공국. 내부: "친구가 죽었는데 달라진 게 없다".</span></div>
+    <div class="layer-row"><span class="layer-num">⑤</span><span class="layer-text"><strong>프레임:</strong> "혁명은 시작이다" vs "혁명은 또 다른 독재의 전주곡이었다".</span></div>
+    <div class="layer-row"><span class="layer-num">⑥</span><span class="layer-text" style="color:#B8850E;"><strong>판단:</strong> 혁명이 헤게모니를 바꾸지 못하면 이름만 바뀐다고 Gramsci는 말했다. 방글라데시는 지금 그 실험 중이다.</span></div>
+  </div>
+</div>
+
+<!-- ══ ⅩⅢ 위상공간 SVG ══ -->
+<div class="sec-title">ⅩⅢ &nbsp;위상공간 — SR-Σ 사분면 (9국 통합)</div>
+<div class="phase-wrap">
+  <div class="phase-title">SR-Σ 위상 사분면 — 동남아 6국 + 남아시아 3국</div>
+  <div class="phase-sub">SR: 사회저항지수 · Σ: 위상특이점 · Σ≥0.70 = 임계 위험</div>
+  <svg width="100%" height="360" viewBox="0 0 620 360" xmlns="http://www.w3.org/2000/svg">
+    <rect x="40" y="20"  width="250" height="155" fill="#E8F5E9" opacity="0.4" rx="4"/>
+    <rect x="290" y="20" width="290" height="155" fill="#FFF3E0" opacity="0.4" rx="4"/>
+    <rect x="40" y="175" width="250" height="165" fill="#E3F2FD" opacity="0.4" rx="4"/>
+    <rect x="290" y="175" width="290" height="165" fill="#FCE4EC" opacity="0.4" rx="4"/>
+    <text x="165"  y="40"  text-anchor="middle" font-size="9" fill="#2E7D32" font-weight="700" font-family="JetBrains Mono">Q1: 건강한 저항</text>
+    <text x="435"  y="40"  text-anchor="middle" font-size="9" fill="#E65100" font-weight="700" font-family="JetBrains Mono">Q2: 가짜안정</text>
+    <text x="165"  y="192" text-anchor="middle" font-size="9" fill="#1565C0" font-weight="700" font-family="JetBrains Mono">Q3: 개방적 갈등</text>
+    <text x="435"  y="192" text-anchor="middle" font-size="9" fill="#880E4F" font-weight="700" font-family="JetBrains Mono">Q4: 체제 위기</text>
+    <line x1="40"  y1="20"  x2="40"  y2="340" stroke="#999" stroke-width="1.5"/>
+    <line x1="40"  y1="340" x2="580" y2="340" stroke="#999" stroke-width="1.5"/>
+    <line x1="290" y1="20"  x2="290" y2="340" stroke="#999" stroke-width="1" stroke-dasharray="5,3"/>
+    <line x1="40"  y1="175" x2="580" y2="175" stroke="#999" stroke-width="1" stroke-dasharray="5,3"/>
+    <line x1="40" y1="111" x2="580" y2="111" stroke="#E53935" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.7"/>
+    <text x="584" y="115" font-size="7.5" fill="#E53935" font-family="JetBrains Mono">Σ=0.70</text>
+    <text x="40"  y="354" font-size="9" fill="#666" font-family="JetBrains Mono">SR0.0</text>
+    <text x="290" y="354" text-anchor="middle" font-size="9" fill="#666" font-family="JetBrains Mono">SR0.5</text>
+    <text x="575" y="354" font-size="9" fill="#666" font-family="JetBrains Mono">SR1.0</text>
+    <text x="30"  y="24"  text-anchor="end" font-size="9" fill="#666" font-family="JetBrains Mono">Σ1.0</text>
+    <text x="30"  y="175" text-anchor="end" font-size="9" fill="#666" font-family="JetBrains Mono">Σ0.5</text>
+    <text x="30"  y="340" text-anchor="end" font-size="9" fill="#666" font-family="JetBrains Mono">Σ0.0</text>
+
+    <!-- 좌표 계산: x=40+SR*540, y=340-Σ*320 -->
+    <!-- 동남아 6국 (회색 반투명) -->
+    <circle cx="245" cy="206" r="12" fill="#005496" fill-opacity="0.15" stroke="#005496" stroke-width="1.5"/>
+    <text x="245" y="210" text-anchor="middle" font-size="11">🇲🇾</text>
+    <circle cx="321" cy="154" r="13" fill="#CC0001" fill-opacity="0.15" stroke="#CC0001" stroke-width="1.5"/>
+    <text x="321" y="158" text-anchor="middle" font-size="12">🇮🇩</text>
+    <circle cx="191" cy="138" r="12" fill="#E87722" fill-opacity="0.15" stroke="#E87722" stroke-width="1.5"/>
+    <text x="191" y="142" text-anchor="middle" font-size="11">🇻🇳</text>
+    <circle cx="299" cy="164" r="13" fill="#0038A8" fill-opacity="0.15" stroke="#0038A8" stroke-width="1.5"/>
+    <text x="299" y="168" text-anchor="middle" font-size="12">🇵🇭</text>
+    <circle cx="137" cy="110" r="13" fill="#8B1A1A" fill-opacity="0.15" stroke="#8B1A1A" stroke-width="1.5"/>
+    <text x="137" y="114" text-anchor="middle" font-size="11">🇰🇭</text>
+    <circle cx="283" cy="122" r="14" fill="#A51931" fill-opacity="0.15" stroke="#A51931" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <text x="283" y="126" text-anchor="middle" font-size="12">🇹🇭</text>
+
+    <!-- 남아시아 3국 (선명) -->
+    <!-- 스리랑카 SR0.42 Σ0.45 → x=267, y=196 -->
+    <circle cx="267" cy="196" r="16" fill="#8B1A1A" fill-opacity="0.25" stroke="#8B1A1A" stroke-width="2.5"/>
+    <text x="267" y="200" text-anchor="middle" font-size="13">🇱🇰</text>
+    <text x="267" y="185" text-anchor="middle" font-size="8" fill="#8B1A1A" font-weight="700" font-family="JetBrains Mono">LK.42/.45</text>
+    <!-- 부탄 SR0.25 Σ0.30 → x=175, y=244 -->
+    <circle cx="175" cy="244" r="14" fill="#D4861A" fill-opacity="0.25" stroke="#D4861A" stroke-width="2.5"/>
+    <text x="175" y="248" text-anchor="middle" font-size="12">🇧🇹</text>
+    <text x="175" y="262" text-anchor="middle" font-size="8" fill="#D4861A" font-weight="700" font-family="JetBrains Mono">BT.25/.30</text>
+    <!-- 방글라데시 SR0.62 Σ0.65 → x=375, y=132 -->
+    <circle cx="375" cy="132" r="17" fill="#1A6B3A" fill-opacity="0.25" stroke="#1A6B3A" stroke-width="2.5"/>
+    <text x="375" y="136" text-anchor="middle" font-size="13">🇧🇩</text>
+    <text x="375" y="120" text-anchor="middle" font-size="8" fill="#1A6B3A" font-weight="700" font-family="JetBrains Mono">BD.62/.65⚠</text>
+    <path d="M375,118 L375,100" stroke="#E53935" stroke-width="1.5" marker-end="url(#arr3)"/>
+    <defs><marker id="arr3" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#E53935"/></marker></defs>
+
+    <text x="40" y="354" font-size="8" fill="#555" font-family="JetBrains Mono" dy="12">★ 방글라데시 Σ0.65 임계 접근 · 부탄 Q1 건강 구간 · 스리랑카 Q1 회복 경로 · 6국 반투명=동남아</text>
+  </svg>
+</div>
+
+<!-- ══ ⅩⅣ 오차 범위 ══ -->
+<div class="sec-title">ⅩⅣ &nbsp;오차 범위 — §1-C 수치화 경계</div>
+<div class="three-grid">
+  <div class="err-card">
+    <div class="err-head lk">🇱🇰 스리랑카</div>
+    <div class="err-item">· OLI 0.58 — 회복 과정 통계 신뢰도 중간. IMF 검토 통과 = 일부 검증.</div>
+    <div class="err-item">· TBI 0.68 — 내전 트라우마 + 2022 충격 중첩. 세대 전수 측정 한계.</div>
+    <div class="err-item">· 2022 이전 vs 이후 좌표 급변 — 시계열 변동폭이 크다.</div>
+    <div class="err-item" style="color:#B8850E;">· 신뢰구간: ±0.10</div>
+  </div>
+  <div class="err-card">
+    <div class="err-head bt">🇧🇹 부탄</div>
+    <div class="err-item">· OLI 0.55 — GNH 자체 통계 체계가 보편 OLI와 달라 편향 가능성.</div>
+    <div class="err-item">· GNH 0.781 자체가 정책 목표화 — Goodhart 법칙 최강 적용 대상.</div>
+    <div class="err-item">· 로창파 추방 통계 미공개 — TBI 과소 추정 가능성.</div>
+    <div class="err-item" style="color:#B8850E;">· 신뢰구간: ±0.12 (GNH-Λ 이중 측정 불확실성)</div>
+  </div>
+  <div class="err-card">
+    <div class="err-head bd">🇧🇩 방글라데시</div>
+    <div class="err-item">· OLI 0.42 — 혁명 과도기 공식 통계 신뢰도 최저.</div>
+    <div class="err-item">· 폭력 통계 편향: 친하시나 매체 vs 반하시나 매체 간 수치 차이 크다.</div>
+    <div class="err-item">· Λ-Score 0.428이 상향 가능성 — 혁명 직후 충격 변수 미반영.</div>
+    <div class="err-item" style="color:#B8850E;">· 신뢰구간: ±0.16 (과도기 최대 불확실성)</div>
+  </div>
+</div>
+
+<!-- ══ ⅩⅤ 한반도 시선 ══ -->
+<div class="sec-title">ⅩⅤ &nbsp;한반도에서 바라보는 남아시아</div>
+<div class="kr-box">
+  <div class="kr-title">한반도 시선</div>
+  <div class="kr-text">
+    스리랑카 2022는 한국이 경험하지 못한 형태의 충격이다. 외채 부도로 연료와 의약품이 동시에 끊기는 상황. 그런데 한국도 1997년 IMF를 겪었다 — 그 차이는 한국이 이미 제조업 기반을 갖고 있었다는 것. 스리랑카의 회복 경로에서 한국 1997~2001의 그림자가 보인다.
+    <br><br>
+    부탄은 한국이 가장 다른 나라다. 행복을 정책 목표로 삼는 발상 자체가 한국의 GDP 성장 패러다임과 충돌한다. 그런데 청년 자살률 세계 최고 수준의 한국이 부탄의 GNH를 비웃을 자격이 있는가 — 이 질문을 담론육층 3층(역사)의 뇌관으로 놓아두자.
+    <br><br>
+    방글라데시 혁명은 한국 1987 6월 항쟁과 구조적으로 닮았다. 청년 세대가 독재를 무너뜨렸다. 그런데 한국은 1987 이후 민주주의를 제도화했고, 방글라데시는 아직 그 길 위에 있다. 그 차이가 무엇인지를 — PWT-r이 가리킨다.
+    <br><br>
+    <strong>공급망:</strong> 방글라데시는 한국 의류 브랜드의 핵심 생산 거점이다. 정치 혼란이 지속되면 한국 기업의 물류 리스크가 직접 연결된다.
+  </div>
+</div>
+
+<!-- ══ 결론 궤도 ══ -->
+<div class="sec-title">결론 궤도 — 세 개의 극단이 보여주는 것</div>
+<div class="conclusion">
+  <div class="conclusion-title">부도·행복·혁명 — 각자의 문법으로 같은 질문에 답한다</div>
+  <div class="conclusion-text">
+    스리랑카는 무너졌다가 일어섰다. 그 과정에서 배운 것이 있다면 — 표면적 안정은 지표가 아니라는 것. SR이 낮을 때가 가장 위험하다.<br>
+    부탄은 행복을 측정한다. 그러나 행복을 떠나는 청년들은 측정되지 않는다. 숫자 밖의 것이 때로 더 많은 것을 말한다.<br>
+    방글라데시는 혁명을 했다. 구조는 이름을 바꾸지 않았다. 혁명이 헤게모니를 바꾸려면 무엇이 필요한가.<br><br>
+    세 나라는 각자 다른 방식으로 같은 질문을 던진다:<br>
+    <em>지도자의 덕이 민중에게 닿는가. 그것을 막는 것은 무엇인가.</em><br><br>
+    Λ¹²는 그 질문에 답하지 않는다. 그 질문을 더 잘 보이게 할 뿐이다.
+  </div>
+</div>
+
+<!-- ══ 시리즈·드라이브 박스 ══ -->
+<div class="series-box">
+  <div class="series-title">늘푸른바다 Λ¹² 국가편 시리즈</div>
+  <div class="series-list">
+    <span class="series-item done">#9 미국 v2.0</span>
+    <span class="series-item done">#10 보츠와나 v1.1</span>
+    <span class="series-item done">#11 동남아 비교 I (말레이·인도네시아·베트남)</span>
+    <span class="series-item done">#12 동남아 비교 II (필리핀·캄보디아·태국)</span>
+    <span class="series-item current">#13 남아시아 비교 I (스리랑카·부탄·방글라데시)</span>
+    <span class="series-item">영국편 (예정)</span>
+    <span class="series-item">인도 단독편 (예정)</span>
+  </div>
+</div>
+
+<!-- ══ 푸터 ══ -->
+<div class="footer">
+  <strong>늘푸른바다 사회동역학 연구소</strong> · Everblue Sea Institute for Social Dynamics<br>
+  <a href="https://badaegopa.tistory.com">badaegopa.tistory.com</a> &nbsp;·&nbsp;
+  SSRN Abstract ID 6509200 &nbsp;·&nbsp;
+  슬로건: 분석을 넘어, 재조립으로 / Not analysis, but synthesis.<br>
+  <br>
+  <span style="font-size:10px;opacity:.6;">
+    Λ¹² v9.11 엔진 · §30 Λ-Score·PWT-r 최초 공식 적용 · 2026-04-29<br>
+    데이터: GPI 2025(IEP) · CPI 2025(TI) · WB/IMF 2025 · UNDP HDR 2025 · WFP · RSF 2025<br>
+    OLI 동등성 미충족(0.58·0.55·0.42) — 방향성·패턴 독해 권고. Goodhart 법칙 부탄 적용.<br>
+    청해(淸海) © 2026 · 무단 전재 금지
+  </span>
+</div>
+
+</body>
+</html>

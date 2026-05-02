@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Λ¹² 동유럽 비교편 I — 폴란드·헝가리·체코·루마니아</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#F5F3EE;font-family:'Noto Sans KR',sans-serif;color:#2A2A2A;font-size:13px;line-height:1.75;}
+.pl-c{color:#DC143C;} .hu-c{color:#CE2939;} .cz-c{color:#D7141A;} .ro-c{color:#002B7F;}
+.tag{display:inline-block;padding:1px 7px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;}
+.tag-tbi{background:#FCEBEB;color:#791F1F;} .tag-sr{background:#E1F5EE;color:#085041;}
+.tag-sig{background:#EEEDFE;color:#3C3489;} .tag-lpi{background:#FAEEDA;color:#633806;}
+.tag-cfd{background:#FAECE7;color:#712B13;} .tag-oli{background:#E6F1FB;color:#0C447C;}
+
+.hero{background:linear-gradient(135deg,#7BADA0,#5E9186);color:#fff;padding:50px 40px 38px;text-align:center;}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;opacity:.75;margin-bottom:12px;}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:42px;letter-spacing:.06em;line-height:1.1;margin-bottom:10px;}
+.hero-sub{font-size:13px;opacity:.85;line-height:1.7;}
+.hero-meta{margin-top:16px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
+.hero-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:3px 13px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.06em;}
+
+.score-banner{display:flex;gap:10px;margin:20px 24px;flex-wrap:wrap;}
+.score-card{flex:1;min-width:140px;background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:12px 14px;text-align:center;border-top:3px solid;}
+.score-card.pl{border-top-color:#DC143C;} .score-card.hu{border-top-color:#CE2939;}
+.score-card.cz{border-top-color:#D7141A;} .score-card.ro{border-top-color:#002B7F;}
+.score-flag{font-size:22px;margin-bottom:3px;}
+.score-country{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.05em;margin-bottom:5px;}
+.score-lambda{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:700;margin-bottom:2px;}
+.score-lambda.pl{color:#DC143C;} .score-lambda.hu{color:#CE2939;}
+.score-lambda.cz{color:#D7141A;} .score-lambda.ro{color:#002B7F;}
+.score-zone{font-size:10px;font-family:'JetBrains Mono',monospace;padding:2px 8px;border-radius:4px;display:inline-block;margin-bottom:3px;}
+.zone-watch{background:#FFF3E0;color:#E65100;} .zone-danger{background:#FCEBEB;color:#791F1F;}
+.zone-stable{background:#E8F5E9;color:#1B5E20;} .zone-critical{background:#7B0000;color:#fff;}
+.score-pwt{font-size:10px;color:#888;font-family:'JetBrains Mono',monospace;}
+
+.declaration{background:#FFFDF8;border-left:4px solid #5E9186;margin:0 24px 24px;padding:16px 20px;border-radius:0 8px 8px 0;}
+.declaration-title{font-family:'Bebas Neue',sans-serif;font-size:15px;color:#3A6A5E;letter-spacing:.05em;margin-bottom:7px;}
+.declaration p{font-size:12.5px;color:#444;line-height:1.8;}
+.peoples-view{margin:0 24px 24px;background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:18px 20px;}
+.pv-title{font-family:'Bebas Neue',sans-serif;font-size:14px;color:#B8850E;letter-spacing:.06em;margin-bottom:10px;}
+.pv-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;}
+.pv-card{background:#F5F3EE;border-radius:8px;padding:10px 12px;border-top:3px solid;}
+.pv-card.pl{border-color:#DC143C;} .pv-card.hu{border-color:#CE2939;}
+.pv-card.cz{border-color:#D7141A;} .pv-card.ro{border-color:#002B7F;}
+.pv-flag{font-size:20px;margin-bottom:3px;}
+.pv-name{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:.04em;margin-bottom:4px;}
+.pv-quote{font-size:11px;color:#555;line-height:1.65;font-style:italic;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:.07em;color:#3A6A5E;border-bottom:2px solid #5E9186;margin:26px 24px 13px;padding-bottom:7px;}
+.four-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:11px;margin:0 24px 22px;}
+.note{font-size:10.5px;color:#888;font-style:italic;margin:0 24px 14px;}
+
+.hist-card{background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:12px 14px;}
+.hist-title{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:10px;margin-bottom:7px;}
+.hist-title.pl{color:#DC143C;} .hist-title.hu{color:#CE2939;}
+.hist-title.cz{color:#D7141A;} .hist-title.ro{color:#002B7F;}
+.hist-item{display:flex;gap:8px;margin-bottom:6px;font-size:11px;}
+.hist-year{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:9.5px;min-width:40px;color:#B8850E;}
+.hist-text{color:#444;line-height:1.6;}
+
+.stats-table{width:calc(100% - 48px);margin:0 24px 22px;border-collapse:collapse;font-size:11.5px;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05);}
+.stats-table th{background:#3A6A5E;color:#fff;padding:8px 12px;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:10.5px;text-align:center;}
+.stats-table td{padding:7px 12px;border-bottom:1px solid #f0ede7;text-align:center;color:#444;}
+.stats-table tr:last-child td{border:none;}
+.stats-table .label{text-align:left;font-weight:500;color:#3A6A5E;}
+.val-pl{color:#DC143C;font-weight:700;font-family:'JetBrains Mono',monospace;}
+.val-hu{color:#CE2939;font-weight:700;font-family:'JetBrains Mono',monospace;}
+.val-cz{color:#D7141A;font-weight:700;font-family:'JetBrains Mono',monospace;}
+.val-ro{color:#002B7F;font-weight:700;font-family:'JetBrains Mono',monospace;}
+
+.coord-card{background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:12px 14px;}
+.coord-head{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:.04em;margin-bottom:8px;}
+.coord-head.pl{color:#DC143C;} .coord-head.hu{color:#CE2939;}
+.coord-head.cz{color:#D7141A;} .coord-head.ro{color:#002B7F;}
+.coord-item{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.coord-label{font-size:10px;}
+.coord-bar-wrap{flex:1;height:5px;background:#eee;border-radius:3px;margin:0 8px;}
+.coord-bar{height:5px;border-radius:3px;}
+.coord-num{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:700;min-width:32px;text-align:right;}
+
+.formula-box{margin:0 24px 22px;background:linear-gradient(135deg,#f0ede7,#e8e4dc);border:1px solid #DDD8CE;border-radius:10px;padding:13px 17px;}
+.formula-title{font-family:'Bebas Neue',sans-serif;font-size:13px;color:#3A6A5E;letter-spacing:.05em;margin-bottom:7px;}
+.formula-eq{font-family:'JetBrains Mono',monospace;font-size:12px;color:#3A6A5E;background:#fff;display:inline-block;padding:4px 11px;border-radius:5px;margin-bottom:6px;}
+.formula-note{font-size:11px;color:#666;line-height:1.7;}
+
+.radar-wrap{margin:0 24px 22px;background:#fff;border:1px solid #DDD8CE;border-radius:12px;padding:16px;}
+.radar-title{font-family:'Bebas Neue',sans-serif;font-size:15px;color:#3A6A5E;letter-spacing:.06em;text-align:center;margin-bottom:4px;}
+.radar-legend{display:flex;justify-content:center;gap:18px;margin-top:10px;flex-wrap:wrap;}
+.radar-legend-item{display:flex;align-items:center;gap:5px;font-size:11px;}
+.radar-dot{width:10px;height:10px;border-radius:50%;}
+
+.ppr-grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin:0 24px 15px;}
+.ppr-card{background:#fff;border:1px solid #DDD8CE;border-radius:10px;overflow:hidden;}
+.ppr-card-head{padding:7px 11px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:#fff;}
+.ppr-card-head.pl{background:#DC143C;} .ppr-card-head.hu{background:#CE2939;}
+.ppr-card-head.cz{background:#D7141A;} .ppr-card-head.ro{background:#002B7F;}
+.ppr-card-body{padding:9px 11px;font-size:11px;color:#444;line-height:1.7;}
+.ppr-stack-label{font-size:9px;font-family:'JetBrains Mono',monospace;background:#F5F3EE;color:#666;display:inline-block;padding:1px 5px;border-radius:3px;margin-bottom:3px;}
+
+/* 헝가리 혁명 특집 */
+.breaking-box{margin:0 24px 22px;background:linear-gradient(135deg,#FFF8EF,#FFEBD0);border:3px solid #B8850E;border-radius:12px;padding:18px 22px;}
+.breaking-title{font-family:'Bebas Neue',sans-serif;font-size:20px;color:#B8850E;letter-spacing:.06em;margin-bottom:10px;}
+.breaking-badge{display:inline-block;background:#E53935;color:#fff;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;padding:3px 10px;border-radius:4px;margin-right:8px;margin-bottom:6px;}
+.breaking-text{font-size:12px;color:#444;line-height:1.9;}
+.stat-badge{display:inline-block;padding:2px 7px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;color:#fff;margin:1px 2px;}
+.sb-pl{background:#DC143C;} .sb-hu{background:#CE2939;}
+.sb-cz{background:#D7141A;} .sb-ro{background:#002B7F;}
+.sb-eu{background:#3A6A5E;}
+
+.layer-card{background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:11px 13px;}
+.layer-card-head{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:.04em;margin-bottom:8px;}
+.layer-card-head.pl{color:#DC143C;} .layer-card-head.hu{color:#CE2939;}
+.layer-card-head.cz{color:#D7141A;} .layer-card-head.ro{color:#002B7F;}
+.layer-row{display:flex;gap:7px;margin-bottom:5px;font-size:10.5px;line-height:1.6;}
+.layer-num{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:9.5px;min-width:14px;color:#B8850E;}
+
+.phase-wrap{margin:0 24px 22px;background:#fff;border:1px solid #DDD8CE;border-radius:12px;padding:16px;}
+.phase-title{font-family:'Bebas Neue',sans-serif;font-size:15px;color:#3A6A5E;letter-spacing:.06em;text-align:center;margin-bottom:3px;}
+.phase-sub{font-size:10px;color:#888;text-align:center;margin-bottom:12px;font-family:'JetBrains Mono',monospace;}
+
+.err-card{background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:10px 12px;}
+.err-head{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:10px;margin-bottom:6px;}
+.err-head.pl{color:#DC143C;} .err-head.hu{color:#CE2939;}
+.err-head.cz{color:#D7141A;} .err-head.ro{color:#002B7F;}
+.err-item{font-size:10.5px;color:#555;line-height:1.6;margin-bottom:3px;}
+
+.kr-box{margin:0 24px 22px;background:linear-gradient(135deg,#eef6f4,#e4f0ed);border:1px solid #c5ddd9;border-radius:10px;padding:15px 19px;}
+.kr-title{font-family:'Bebas Neue',sans-serif;font-size:15px;color:#3A6A5E;letter-spacing:.06em;margin-bottom:7px;}
+.kr-text{font-size:12px;color:#444;line-height:1.85;}
+.conclusion{margin:0 24px 22px;background:linear-gradient(135deg,#7BADA0,#5E9186);color:#fff;border-radius:12px;padding:20px 24px;}
+.conclusion-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.07em;margin-bottom:11px;}
+.conclusion-text{font-size:12.5px;line-height:1.9;opacity:.93;}
+.series-box{margin:0 24px 22px;border:2px solid #5E9186;border-radius:10px;padding:11px 15px;}
+.series-title{font-family:'Bebas Neue',sans-serif;font-size:13px;color:#3A6A5E;letter-spacing:.06em;margin-bottom:6px;}
+.series-list{display:flex;flex-wrap:wrap;gap:7px;}
+.series-item{font-size:11px;background:#F5F3EE;border:1px solid #DDD8CE;border-radius:6px;padding:3px 9px;color:#666;}
+.series-item.done{background:#5E9186;color:#fff;border-color:#5E9186;}
+.series-item.current{background:#B8850E;color:#fff;border-color:#B8850E;}
+.footer{background:#3A6A5E;color:rgba(255,255,255,.8);text-align:center;padding:20px;font-size:11px;line-height:1.9;}
+.footer a{color:#F0C040;text-decoration:none;}
+.freach-s{color:#2E7D32;font-weight:700;} .freach-i{color:#1565C0;font-weight:700;} .freach-d{color:#AD1457;font-weight:700;}
+
+/* 동유럽 공통 패턴 박스 */
+.eeu-box{margin:0 24px 22px;background:linear-gradient(135deg,#F3F0FF,#EAE6FF);border:2px solid #3C3489;border-radius:12px;padding:16px 20px;}
+.eeu-title{font-family:'Bebas Neue',sans-serif;font-size:18px;color:#3C3489;letter-spacing:.06em;margin-bottom:10px;}
+.eeu-text{font-size:12px;color:#444;line-height:1.9;}
+</style>
+</head>
+<body>
+
+<!-- ══ 히어로 ══ -->
+<div class="hero">
+  <div class="hero-eyebrow">늘푸른바다 사회동역학 연구소 · Λ¹² 국가편 비교 시리즈 — 유럽 IV</div>
+  <div class="hero-title">동유럽 비교편 I</div>
+  <div class="hero-sub">폴란드 · 헝가리 · 체코 · 루마니아<br>소련 유산 — 민주화 → 권위주의 후퇴 → 2023~2026 민주주의의 반격</div>
+  <div class="hero-meta">
+    <span class="hero-badge">Λ¹² v9.11 엔진</span>
+    <span class="hero-badge">§30 Λ-Score</span>
+    <span class="hero-badge">헝가리 오르반 2026.04 패배</span>
+    <span class="hero-badge">폴란드 PiS 2023 퇴장</span>
+    <span class="hero-badge">SSRN 6509200</span>
+    <span class="hero-badge">2026-04-29</span>
+  </div>
+</div>
+
+<!-- ══ Λ-Score 배지 ══ -->
+<div class="score-banner">
+  <div class="score-card pl">
+    <div class="score-flag">🇵🇱</div>
+    <div class="score-country pl-c">폴란드</div>
+    <div class="score-lambda pl">0.378</div>
+    <div><span class="score-zone zone-danger">Danger</span></div>
+    <div class="score-pwt">PWT-r 0.808 · β 0.508</div>
+  </div>
+  <div class="score-card hu">
+    <div class="score-flag">🇭🇺</div>
+    <div class="score-country hu-c">헝가리</div>
+    <div class="score-lambda hu">0.385</div>
+    <div><span class="score-zone zone-danger">Danger</span></div>
+    <div class="score-pwt">PWT-r 0.759 · β 0.627</div>
+  </div>
+  <div class="score-card cz">
+    <div class="score-flag">🇨🇿</div>
+    <div class="score-country cz-c">체코</div>
+    <div class="score-lambda cz">0.335</div>
+    <div><span class="score-zone zone-watch">Watch</span></div>
+    <div class="score-pwt">PWT-r 0.869 · β 0.392</div>
+  </div>
+  <div class="score-card ro">
+    <div class="score-flag">🇷🇴</div>
+    <div class="score-country ro-c">루마니아</div>
+    <div class="score-lambda ro">0.390</div>
+    <div><span class="score-zone zone-danger">Danger</span></div>
+    <div class="score-pwt">PWT-r 0.772 · β 0.585</div>
+  </div>
+</div>
+
+<!-- ══ 헝가리 Breaking ══ -->
+<div class="breaking-box">
+  <div class="breaking-title">🔴 Breaking — 헝가리 오르반 16년 만에 패배 (2026.04.12)</div>
+  <span class="breaking-badge">2026-04-12 확정</span>
+  <span class="breaking-badge">Λ¹² 즉시 반영</span>
+  <div class="breaking-text">
+    <span class="stat-badge sb-hu">티사당 53.6%</span> 138석(199석 중) 압승 · 투표율 <span class="stat-badge sb-hu">80%</span> 역대 최고 · 오르반 패배 인정 · 피터 마자르 총리 취임 예정<br><br>
+    <strong>Λ¹² 즉시 독해:</strong> 헝가리 TBI 0.78이 16년 제도 포획의 누적 트라우마를 반영한다면 — SR 역인과 가설이 작동했다. 오르반 통치 하에 SR은 낮게 억압됐고, 2024 마자르 등장 이후 SR이 폭발적으로 상승하며 Σ 임계를 돌파했다. <em>억압된 저항이 임계를 넘는 순간</em> — 이것이 SR 역인과의 동유럽 버전이다.<br><br>
+    <strong>주의:</strong> 오르반 패배 = 오르반주의 종식이 아니다. 피데스는 지방·언론·사법에 깊이 뿌리박혀 있다. Λ-Score는 구조 개선 여정의 출발점을 반영한다. 완성이 아니다.
+  </div>
+</div>
+
+<!-- ══ 연구 목적 ══ -->
+<div class="declaration">
+  <div class="declaration-title">연구 목적 선언</div>
+  <p>
+    동유럽 4국은 1989~1991 소련 붕괴 이후 민주주의로 전환했다. 그 전환이 모두 성공했는가 — 아니었다. 헝가리와 폴란드는 민주주의를 이용해 민주주의를 해체했다. Weber가 말한 "합법적 수단으로 권력을 집중하는 구조" — Levitsky·Ziblatt의 "민주주의는 어떻게 죽는가"의 교과서 사례가 동유럽에서 나왔다. 2023~2026년 민주주의의 반격이 시작됐다. 이 순간을 Λ¹²로 읽는다.
+  </p>
+</div>
+
+<!-- ══ 동유럽 공통 패턴 특집 ══ -->
+<div class="sec-title">⚡ &nbsp;동유럽 공통 패턴 — 소련 유산이 남긴 것</div>
+<div class="eeu-box">
+  <div class="eeu-title">TBI × 제도 취약성 × 포퓰리즘 — 동유럽형 Λ¹² 구조</div>
+  <div class="eeu-text">
+    <strong>동유럽이 서유럽·북유럽과 다른 이유:</strong><br><br>
+    서유럽의 Σ 상승 원인 = 이민 + 경제 정체 + 엘리트 불신 (만성적·구조적)<br>
+    동유럽의 Σ 상승 원인 = 소련 유산의 TBI + 민주주의 경험 부족 + 제도 취약성 (역사적·급성적)<br><br>
+
+    <strong>공통 궤도:</strong><br>
+    소련 붕괴(1989~91) → 급진 민주화 → 제도 미성숙 → 포퓰리스트 지도자 등장 →
+    법 수단으로 민주주의 해체 → EU 제재 → 시민 저항 → <strong>2023~26 반전</strong><br><br>
+
+    <strong>4국 비교:</strong><br>
+    <span class="stat-badge sb-pl">폴란드</span> 2015~23 PiS 집권 → 2023 투스크 반전 → 사법 독립 회복 중<br>
+    <span class="stat-badge sb-hu">헝가리</span> 2010~26 오르반 16년 → 2026.04 마자르 압승 → 제도 재건 시작<br>
+    <span class="stat-badge sb-cz">체코</span> 2017~21 바비스 포퓰리즘 → 2021 피알라 중도 회복 → 상대적 안정<br>
+    <span class="stat-badge sb-ro">루마니아</span> 만성 부패 + 재정 위기 + 2024 극우 카린 조르제스쿠 부상 → 헌재 선거 무효화
+
+  </div>
+</div>
+
+<!-- ══ 민중 시선 ══ -->
+<div class="peoples-view">
+  <div class="pv-title">민중의 시선 — 네 청년이 바라보는 창</div>
+  <div class="pv-grid">
+    <div class="pv-card pl">
+      <div class="pv-flag">🇵🇱</div>
+      <div class="pv-name pl-c">바르샤바의 청년</div>
+      <div class="pv-quote">"PiS가 퇴장했다. 투스크가 왔다. EU 기금이 다시 풀렸다. 그런데 헌법재판소는 아직 PiS 사람들이다. 개혁은 시작됐지만 끝나지 않았다."</div>
+    </div>
+    <div class="pv-card hu">
+      <div class="pv-flag">🇭🇺</div>
+      <div class="pv-name hu-c">부다페스트의 청년</div>
+      <div class="pv-quote">"2026년 4월 12일 — 우리가 투표로 오르반을 끝냈다. 할아버지는 소련군을 봤다. 나는 오르반을 봤다. 이번엔 우리가 이겼다."</div>
+    </div>
+    <div class="pv-card cz">
+      <div class="pv-flag">🇨🇿</div>
+      <div class="pv-name cz-c">프라하의 청년</div>
+      <div class="pv-quote">"체코는 헝가리처럼 되지 않았다. 그게 다행이다. 그런데 주거비가 미쳤다. 프라하 집값이 런던보다 비싸다. 정치 안정이 삶 안정은 아니다."</div>
+    </div>
+    <div class="pv-card ro">
+      <div class="pv-flag">🇷🇴</div>
+      <div class="pv-name ro-c">부쿠레슈티의 청년</div>
+      <div class="pv-quote">"조르제스쿠가 선거 1위 했는데 헌재가 무효로 했다. 부패한 기득권이 민의를 막았다. 그래도 그 사람이 대안인지 모르겠다. 갈 곳이 없다."</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ §0 용어 ══ -->
+<div class="sec-title">§0 &nbsp;핵심 용어 — 동유럽 특수 적용</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 24px 22px;">
+  <div style="background:#fff;border:1px solid #DDD8CE;border-radius:8px;padding:10px 13px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;color:#3A6A5E;margin-bottom:3px;">TBI — 소련 유산의 무게</div>
+    <div style="font-size:11px;color:#555;line-height:1.6;">동유럽 TBI = 소련 강압 + 비밀경찰 트라우마 + 민주화 이후 배신감. 헝가리 0.78이 이 구조의 최고점.</div>
+  </div>
+  <div style="background:#fff;border:1px solid #DDD8CE;border-radius:8px;padding:10px 13px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;color:#3A6A5E;margin-bottom:3px;">SR 역인과 (§3)</div>
+    <div style="font-size:11px;color:#555;line-height:1.6;">헝가리 오르반 체제: SR 억압 → 낮은 SR → 임계 축적 → 2026 폭발. 스리랑카·방글라데시와 같은 구조 — 서로 다른 맥락.</div>
+  </div>
+  <div style="background:#fff;border:1px solid #DDD8CE;border-radius:8px;padding:10px 13px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;color:#3A6A5E;margin-bottom:3px;">OLI — 데이터 신뢰도 과도기</div>
+    <div style="font-size:11px;color:#555;line-height:1.6;">헝가리: 오르반 체제 하 통계 신뢰도 훼손. 루마니아: 만성 저OLI. 폴란드·체코는 EU 기준 충족. Goodhart 헝가리 최적용.</div>
+  </div>
+  <div style="background:#fff;border:1px solid #DDD8CE;border-radius:8px;padding:10px 13px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;color:#3A6A5E;margin-bottom:3px;">Λ-Score 과도기 주의</div>
+    <div style="font-size:11px;color:#555;line-height:1.6;">폴란드·헝가리는 정권 교체 직후 — 현재 Λ는 이전 체제 잔존 구조를 반영. 1~2년 후 재측정 필요. 이것이 즉시교체 원칙 한계.</div>
+  </div>
+  <div style="background:#fff;border:1px solid #DDD8CE;border-radius:8px;padding:10px 13px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;color:#3A6A5E;margin-bottom:3px;">PWT-r — EU 기금의 β 효과</div>
+    <div style="font-size:11px;color:#555;line-height:1.6;">EU 기금 동결 = β를 외부에서 올리는 구조. 폴란드 €1370억·헝가리 €360억 동결. 기금 해제 = PWT-r 상승 경로.</div>
+  </div>
+  <div style="background:#fff;border:1px solid #DDD8CE;border-radius:8px;padding:10px 13px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;color:#3A6A5E;margin-bottom:3px;">루마니아 특수 — 이중 위기</div>
+    <div style="font-size:11px;color:#555;line-height:1.6;">부패(CPI 43) + 재정 위기(GDP 대비 적자 8%) + 극우 부상 삼중 압박. 동유럽 4국 중 유일하게 개선 신호 없음.</div>
+  </div>
+</div>
+
+<!-- ══ Ⅰ 이론 ══ -->
+<div class="sec-title">Ⅰ &nbsp;이론적 자기위치 (§1-B)</div>
+<div style="margin:0 24px 14px;background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:13px 17px;">
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;font-size:11px;">
+    <div style="background:#F5F3EE;border-radius:6px;padding:8px 10px;">
+      <div style="font-weight:700;color:#DC143C;margin-bottom:3px;">🇵🇱 폴란드</div>
+      <div style="color:#555;line-height:1.65;">Levitsky·Ziblatt "민주주의는 어떻게 죽는가" — PiS 사례. 선거로 집권 → 법 수단으로 사법 장악. Gramsci: 2023 투스크 = 헤게모니 탈환 시도. Weber: 합법적 지배 재건 중. 단 PiS 사법 잔존으로 미완.</div>
+    </div>
+    <div style="background:#F5F3EE;border-radius:6px;padding:8px 10px;">
+      <div style="font-weight:700;color:#CE2939;margin-bottom:3px;">🇭🇺 헝가리</div>
+      <div style="color:#555;line-height:1.65;">Levitsky·Ziblatt의 교과서 1번 사례. Bermeo의 "executive aggrandizement" — 쿠데타 없이 민주주의 해체. Pareto 엘리트 순환: 마자르 = 새 엘리트의 등장. 그러나 구조 재건 없으면 반복.</div>
+    </div>
+    <div style="background:#F5F3EE;border-radius:6px;padding:8px 10px;">
+      <div style="font-weight:700;color:#D7141A;margin-bottom:3px;">🇨🇿 체코</div>
+      <div style="color:#555;line-height:1.65;">Havel의 "무력의 권력" — 벨벳혁명의 유산. 체코는 시민사회 기반이 상대적으로 강했다. 바비스 포퓰리즘도 오르반 수준에 이르지 못한 이유. Weber 합법적 지배 연속성 유지.</div>
+    </div>
+    <div style="background:#F5F3EE;border-radius:6px;padding:8px 10px;">
+      <div style="font-weight:700;color:#002B7F;margin-bottom:3px;">🇷🇴 루마니아</div>
+      <div style="color:#555;line-height:1.65;">차우셰스쿠 독재 잔재 + 신엘리트 부패의 결합. Weber 전통적 지배의 잔영. Marx: 부패 구조가 계급 이동을 차단. Gurr 박탈감 + 조르제스쿠 포퓰리즘. 제도적 해결 경로 부재.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ Ⅱ 역사 ══ -->
+<div class="sec-title">Ⅱ &nbsp;역사 — 소련 위성국에서 EU 회원국으로</div>
+<div class="four-grid">
+  <div class="hist-card">
+    <div class="hist-title pl">🇵🇱 폴란드</div>
+    <div class="hist-item"><span class="hist-year">1939~45</span><span class="hist-text">나치+소련 이중 점령. 전체 인구 17% 사망 600만 명. TBI 최대.</span></div>
+    <div class="hist-item"><span class="hist-year">1945~89</span><span class="hist-text">소련 위성국. 연대 운동(Solidarność) 저항. TBI + 저항 전통.</span></div>
+    <div class="hist-item"><span class="hist-year">1989</span><span class="hist-text">비폭력 원탁회의 민주화. 동유럽 최초.</span></div>
+    <div class="hist-item"><span class="hist-year">2015~23</span><span class="hist-text">PiS 집권 — 사법·언론·선거제 장악. EU와 법치 갈등. EU 기금 동결.</span></div>
+    <div class="hist-item"><span class="hist-year">2023~</span><span class="hist-text">투스크 집권. 민주주의 회복 경로. EU 기금 재개. 그러나 헌재 PiS 잔존.</span></div>
+    <div style="margin-top:5px;font-size:9px;color:#DC143C;font-family:'JetBrains Mono',monospace;">★ TBI 가장 높음 — 나치+소련 이중 학살</div>
+  </div>
+  <div class="hist-card">
+    <div class="hist-title hu">🇭🇺 헝가리</div>
+    <div class="hist-item"><span class="hist-year">1945~56</span><span class="hist-text">소련 점령. 1956 혁명 — 소련 탱크 진압. TBI 핵심.</span></div>
+    <div class="hist-item"><span class="hist-year">1989</span><span class="hist-text">원탁회의 민주화. 오르반은 이 시기 민주주의 청년 운동가.</span></div>
+    <div class="hist-item"><span class="hist-year">2010</span><span class="hist-text">오르반 재집권. 2/3 의석으로 헌법 개정 시작. '비자유 민주주의' 선언.</span></div>
+    <div class="hist-item"><span class="hist-year">2018~26</span><span class="hist-text">EU 제재·기금 동결. 언론·사법·선거 장악. 마자르 2024 등장.</span></div>
+    <div class="hist-item"><span class="hist-year">2026.04</span><span class="hist-text">마자르 티사당 53.6% 압승. 오르반 16년 만에 패배.</span></div>
+    <div style="margin-top:5px;font-size:9px;color:#CE2939;font-family:'JetBrains Mono',monospace;">★ SR 역인과 실증 — 억압→임계→폭발</div>
+  </div>
+  <div class="hist-card">
+    <div class="hist-title cz">🇨🇿 체코</div>
+    <div class="hist-item"><span class="hist-year">1938~45</span><span class="hist-text">나치 보호령. 주데텐란트 併合 → 전체 합병.</span></div>
+    <div class="hist-item"><span class="hist-year">1968</span><span class="hist-text">프라하의 봄 — 소련 탱크 진압. TBI.</span></div>
+    <div class="hist-item"><span class="hist-year">1989</span><span class="hist-text">벨벳혁명 — 완전 비폭력 민주화. Havel 대통령.</span></div>
+    <div class="hist-item"><span class="hist-year">1993</span><span class="hist-text">체코슬로바키아 벨벳 분리. 체코·슬로바키아 평화 분리.</span></div>
+    <div class="hist-item"><span class="hist-year">2017~21</span><span class="hist-text">바비스 ANO 포퓰리즘 집권. 부패 스캔들. 2021 피알라로 교체.</span></div>
+    <div style="margin-top:5px;font-size:9px;color:#D7141A;font-family:'JetBrains Mono',monospace;">★ 오르반화 막은 벨벳혁명의 시민사회 유산</div>
+  </div>
+  <div class="hist-card">
+    <div class="hist-title ro">🇷🇴 루마니아</div>
+    <div class="hist-item"><span class="hist-year">1947~89</span><span class="hist-text">차우셰스쿠 독재 1965~89. 동유럽 최악 독재. TBI 극심.</span></div>
+    <div class="hist-item"><span class="hist-year">1989</span><span class="hist-text">무장 혁명 — 차우셰스쿠 처형. 유일한 폭력 혁명. TBI 최고.</span></div>
+    <div class="hist-item"><span class="hist-year">2004</span><span class="hist-text">EU·NATO 가입. 그러나 구 공산당 관료 구조 잔존.</span></div>
+    <div class="hist-item"><span class="hist-year">2017</span><span class="hist-text">부패 법안 반부패 시위 50만 명 — 최대 민주화 시위.</span></div>
+    <div class="hist-item"><span class="hist-year">2024</span><span class="hist-text">조르제스쿠 대선 1위 → 헌재 선거 무효 → 정치 위기.</span></div>
+    <div style="margin-top:5px;font-size:9px;color:#002B7F;font-family:'JetBrains Mono',monospace;">★ 차우셰스쿠 처형 봤던 세대가 아직 정치 중</div>
+  </div>
+</div>
+
+<!-- ══ Ⅲ 기본 통계 ══ -->
+<div class="sec-title">Ⅲ &nbsp;기본 통계 (2024~2025)</div>
+<table class="stats-table">
+  <thead>
+    <tr>
+      <th class="label" style="text-align:left;">지표</th>
+      <th>🇵🇱 폴란드</th><th>🇭🇺 헝가리</th><th>🇨🇿 체코</th><th>🇷🇴 루마니아</th><th>출처</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class="label">인구</td><td class="val-pl">3,780만</td><td class="val-hu">970만</td><td class="val-cz">1,080만</td><td class="val-ro">1,900만</td><td>UN 2024</td></tr>
+    <tr><td class="label">1인당 GDP (PPP)</td><td class="val-pl">$44,500</td><td class="val-hu">$40,100</td><td class="val-cz">$49,600</td><td class="val-ro">$38,200</td><td>IMF 2024</td></tr>
+    <tr><td class="label">GDP 성장률 (2025)</td><td class="val-pl">+3.6% ⭐</td><td class="val-hu" style="background:#fff0f0;">~0% ⚠</td><td class="val-cz">+2.5%</td><td class="val-ro">+1.0%</td><td>CE Times Feb.2026</td></tr>
+    <tr><td class="label">HDI (2025)</td><td class="val-pl">0.886</td><td class="val-hu">0.851</td><td class="val-cz">0.902</td><td class="val-ro">0.832</td><td>UNDP 2025</td></tr>
+    <tr><td class="label">CPI 2025 (TI)</td><td class="val-pl">54 / 47위</td><td class="val-hu" style="background:#fff0f0;">44 / 76위 ⚠</td><td class="val-cz">58 / 36위</td><td class="val-ro" style="background:#fff0f0;">43 / 81위 ⚠</td><td>TI 2026.02; 헝·루 부패 심각</td></tr>
+    <tr><td class="label">GPI 2025 (IEP)</td><td class="val-pl">1.729 / 41위</td><td class="val-hu">1.681 / 37위</td><td class="val-cz">1.395 / 7위 ⭐</td><td class="val-ro">1.955 / 78위</td><td>IEP 2025</td></tr>
+    <tr><td class="label">공공부채/GDP</td><td class="val-pl">54%</td><td class="val-hu">73%</td><td class="val-cz">44%</td><td class="val-ro" style="background:#fff0f0;">51% + 적자 8% ⚠</td><td>Eurostat; 루마니아 재정 위기</td></tr>
+    <tr><td class="label">EU 기금 상황</td><td class="val-pl">회복 중</td><td class="val-hu">동결 중 (마자르 재개 예정)</td><td class="val-cz">정상</td><td class="val-ro">조건부</td><td>EC 2025</td></tr>
+    <tr><td class="label">민주주의 지수</td><td class="val-pl">회복 경로</td><td class="val-hu">마자르 전환 중</td><td class="val-cz">공고화</td><td class="val-ro">취약</td><td>Freedom House 2025</td></tr>
+  </tbody>
+</table>
+
+<!-- ══ Ⅳ 기본 좌표 ══ -->
+<div class="sec-title">Ⅳ &nbsp;Λ¹² 기본 좌표 — 방향보정 Proxy 추정</div>
+<div class="four-grid">
+  <div class="coord-card">
+    <div class="coord-head pl">🇵🇱 폴란드</div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-tbi">TBI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:78%;background:#791F1F;opacity:.7;"></div></div><span class="coord-num" style="color:#791F1F;">0.78</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-sr">SR</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:52%;background:#085041;opacity:.7;"></div></div><span class="coord-num" style="color:#085041;">0.52</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-sig">Σ</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:50%;background:#3C3489;opacity:.7;"></div></div><span class="coord-num" style="color:#3C3489;">0.50</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-oli">OLI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:68%;background:#0C447C;opacity:.7;"></div></div><span class="coord-num" style="color:#0C447C;">0.68</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-lpi">LPI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:50%;background:#633806;opacity:.7;"></div></div><span class="coord-num" style="color:#633806;">+0.04</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-cfd">CFD</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:55%;background:#712B13;opacity:.7;"></div></div><span class="coord-num" style="color:#712B13;">0.55</span></div>
+    <div style="margin-top:5px;font-size:9.5px;color:#888;">BRI:3.5·SSI:6.0·GPI:1.729·F_reach:0.72</div>
+    <div style="font-size:9px;color:#DC143C;font-family:'JetBrains Mono',monospace;">★ TBI 0.78 — 나치+소련 이중 대학살</div>
+  </div>
+  <div class="coord-card" style="border:2px solid #CE2939;">
+    <div class="coord-head hu">🇭🇺 헝가리 ⚠ 전환점</div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-tbi">TBI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:78%;background:#791F1F;opacity:.7;"></div></div><span class="coord-num" style="color:#791F1F;">0.78</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-sr">SR</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:62%;background:#085041;opacity:.7;"></div></div><span class="coord-num" style="color:#085041;">0.62↑</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-sig">Σ</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:68%;background:#3C3489;opacity:.7;"></div></div><span class="coord-num" style="color:#3C3489;">0.68</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-oli">OLI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:42%;background:#0C447C;opacity:.7;"></div></div><span class="coord-num" style="color:#0C447C;">0.42</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-lpi">LPI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:25%;background:#633806;opacity:.7;"></div></div><span class="coord-num" style="color:#633806;">−0.28</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-cfd">CFD</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:65%;background:#712B13;opacity:.7;"></div></div><span class="coord-num" style="color:#712B13;">0.65</span></div>
+    <div style="margin-top:5px;font-size:9.5px;color:#888;">BRI:4.8·SSI:4.5·GPI:1.681·F_reach:0.65</div>
+    <div style="font-size:9px;color:#CE2939;font-family:'JetBrains Mono',monospace;">★ 2026.04 이후 SR↑ Σ↓ 전환 시작 예측</div>
+  </div>
+  <div class="coord-card">
+    <div class="coord-head cz">🇨🇿 체코</div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-tbi">TBI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:55%;background:#791F1F;opacity:.7;"></div></div><span class="coord-num" style="color:#791F1F;">0.55</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-sr">SR</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:42%;background:#085041;opacity:.7;"></div></div><span class="coord-num" style="color:#085041;">0.42</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-sig">Σ</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:40%;background:#3C3489;opacity:.7;"></div></div><span class="coord-num" style="color:#3C3489;">0.40</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-oli">OLI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:72%;background:#0C447C;opacity:.7;"></div></div><span class="coord-num" style="color:#0C447C;">0.72</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-lpi">LPI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:52%;background:#633806;opacity:.7;"></div></div><span class="coord-num" style="color:#633806;">+0.08</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-cfd">CFD</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:42%;background:#712B13;opacity:.7;"></div></div><span class="coord-num" style="color:#712B13;">0.42</span></div>
+    <div style="margin-top:5px;font-size:9.5px;color:#888;">BRI:2.8·SSI:6.5·GPI:1.395·F_reach:0.72</div>
+    <div style="font-size:9px;color:#D7141A;font-family:'JetBrains Mono',monospace;">★ 4국 중 가장 안정 — Havel 유산</div>
+  </div>
+  <div class="coord-card" style="border:2px solid #002B7F;">
+    <div class="coord-head ro">🇷🇴 루마니아 ⚠</div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-tbi">TBI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:82%;background:#791F1F;opacity:.7;"></div></div><span class="coord-num" style="color:#791F1F;">0.82</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-sr">SR</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:55%;background:#085041;opacity:.7;"></div></div><span class="coord-num" style="color:#085041;">0.55</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-sig">Σ</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:62%;background:#3C3489;opacity:.7;"></div></div><span class="coord-num" style="color:#3C3489;">0.62</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-oli">OLI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:45%;background:#0C447C;opacity:.7;"></div></div><span class="coord-num" style="color:#0C447C;">0.45</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-lpi">LPI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:28%;background:#633806;opacity:.7;"></div></div><span class="coord-num" style="color:#633806;">−0.22</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-cfd">CFD</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:60%;background:#712B13;opacity:.7;"></div></div><span class="coord-num" style="color:#712B13;">0.60</span></div>
+    <div style="margin-top:5px;font-size:9.5px;color:#888;">BRI:4.5·SSI:4.8·GPI:1.955·F_reach:0.62</div>
+    <div style="font-size:9px;color:#002B7F;font-family:'JetBrains Mono',monospace;">★ TBI 0.82 최고 — 차우셰스쿠 독재 잔재</div>
+  </div>
+</div>
+
+<div class="formula-box">
+  <div class="formula-title">Λ¹² v9.11 §30 + 동유럽 OLI 특기</div>
+  <div class="formula-eq">Λ-Score = Σ(get_w(norm_i)) / 12 / 1.29</div>
+  <div class="formula-note">
+    OLI: 폴란드 0.68 · 헝가리 0.42 · 체코 0.72 · 루마니아 0.45 — 동등성 조건 미충족(±0.10 이상 차이).<br>
+    <strong>헝가리 OLI 0.42:</strong> 오르반 체제 하 통계·언론 통제로 신뢰도 훼손. 2026.04 이후 개선 예상. 현재 Λ는 구 체제 기준값.<br>
+    <strong>루마니아 OLI 0.45:</strong> 만성 부패 구조. 신뢰구간 ±0.15. 방향성·패턴 독해 우선.<br>
+    <strong>폴란드·체코 비교 유효성 높음:</strong> OLI 동등성 ±0.04 이내.
+  </div>
+</div>
+
+<!-- ══ Ⅴ 레이더 ══ -->
+<div class="sec-title">Ⅴ &nbsp;Λ¹² 12지수 레이더 — 동유럽 4국</div>
+<div class="radar-wrap">
+  <div class="radar-title">동유럽 4국 레이더 — TBI 방향 돌출이 서유럽·북유럽과 다르다</div>
+  <div style="display:flex;justify-content:center;">
+    <svg width="520" height="400" viewBox="0 0 520 400" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(260,200)">
+        <circle r="40"  fill="none" stroke="#DDD8CE" stroke-width="1"/>
+        <circle r="80"  fill="none" stroke="#DDD8CE" stroke-width="1"/>
+        <circle r="104" fill="none" stroke="#BA7517" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.5"/>
+        <circle r="120" fill="none" stroke="#DDD8CE" stroke-width="1"/>
+        <circle r="160" fill="none" stroke="#E24B4A" stroke-width="1" stroke-dasharray="5,3" opacity="0.4"/>
+        <line x1="0" y1="0" x2="0"    y2="-160" stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="80"   y2="-139" stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="139"  y2="-80"  stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="160"  y2="0"    stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="139"  y2="80"   stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="80"   y2="139"  stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="0"    y2="160"  stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-80"  y2="139"  stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-139" y2="80"   stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-160" y2="0"    stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-139" y2="-80"  stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-80"  y2="-139" stroke="#DDD8CE" stroke-width="1"/>
+        <text x="5" y="-42" font-size="7" fill="#aaa" font-family="JetBrains Mono">0.25</text>
+        <text x="5" y="-82" font-size="7" fill="#aaa" font-family="JetBrains Mono">0.5</text>
+        <text x="5" y="-122" font-size="7" fill="#aaa" font-family="JetBrains Mono">0.75</text>
+        <text x="0"    y="-172" text-anchor="middle" font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">BRI</text>
+        <text x="88"   y="-150" text-anchor="start"  font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">SSI</text>
+        <text x="150"  y="-86"  text-anchor="start"  font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">SR</text>
+        <text x="168"  y="4"    text-anchor="start"  font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">GPI</text>
+        <text x="150"  y="92"   text-anchor="start"  font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">TBI</text>
+        <text x="88"   y="155"  text-anchor="start"  font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">Σ</text>
+        <text x="0"    y="178"  text-anchor="middle" font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">OLI</text>
+        <text x="-92"  y="155"  text-anchor="end"    font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">LPI</text>
+        <text x="-154" y="92"   text-anchor="end"    font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">CFD</text>
+        <text x="-172" y="4"    text-anchor="end"    font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">HDI</text>
+        <text x="-154" y="-86"  text-anchor="end"    font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">CPI</text>
+        <text x="-92"  y="-150" text-anchor="end"    font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">F_reach</text>
+        <!--
+          방향보정 정규화:
+          폴란드:   BRI0.35,SSI0.40,SR0.52,GPI0.77,TBI0.78,Σ0.50,OLI0.32,LPI0.52,CFD0.55,HDI0.114,CPI0.46,Freach0.28
+          헝가리:   BRI0.48,SSI0.55,SR0.62,GPI0.82,TBI0.78,Σ0.68,OLI0.58,LPI0.28,CFD0.65,HDI0.149,CPI0.56,Freach0.35
+          체코:     BRI0.28,SSI0.35,SR0.42,GPI0.93,TBI0.55,Σ0.40,OLI0.28,LPI0.58,CFD0.42,HDI0.098,CPI0.42,Freach0.28
+          루마니아: BRI0.45,SSI0.52,SR0.55,GPI0.60,TBI0.82,Σ0.62,OLI0.55,LPI0.28,CFD0.60,HDI0.168,CPI0.57,Freach0.38
+        -->
+        <!-- 폴란드 (진홍) -->
+        <polygon points="0,-56 57,-40 132,-51 123,0 193,140 80,59 0,51 -59,60 -74,64 -18,0 -119,-35 -36,-46"
+          fill="#DC143C" fill-opacity="0.14" stroke="#DC143C" stroke-width="2" stroke-opacity="0.9"/>
+        <!-- 헝가리 (빨강) — 가장 큰 면적 -->
+        <polygon points="0,-77 74,-44 157,-68 131,0 193,140 109,80 0,93 -32,33 -88,72 -24,0 -144,-43 -46,-60"
+          fill="#CE2939" fill-opacity="0.12" stroke="#CE2939" stroke-width="2.5" stroke-opacity="0.9" stroke-dasharray="8,3"/>
+        <!-- 체코 (빨강점선) -->
+        <polygon points="0,-45 44,-32 106,-47 149,0 136,99 64,47 0,45 -66,67 -57,55 -16,0 -108,-32 -36,-40"
+          fill="#D7141A" fill-opacity="0.12" stroke="#D7141A" stroke-width="1.8" stroke-opacity="0.85" stroke-dasharray="5,3"/>
+        <!-- 루마니아 (남청) — TBI 방향 최대 돌출 -->
+        <polygon points="0,-72 65,-40 140,-57 96,0 203,147 99,73 0,88 -32,33 -81,69 -27,0 -147,-44 -50,-57"
+          fill="#002B7F" fill-opacity="0.12" stroke="#002B7F" stroke-width="2" stroke-opacity="0.9"/>
+        <circle cx="0" cy="0" r="3" fill="#5E9186"/>
+      </g>
+    </svg>
+  </div>
+  <div class="radar-legend">
+    <div class="radar-legend-item"><div class="radar-dot" style="background:#DC143C;"></div><span>🇵🇱 폴란드</span></div>
+    <div class="radar-legend-item"><div class="radar-dot" style="background:#CE2939;border:1px dashed;"></div><span>🇭🇺 헝가리 (점선 — 과도기)</span></div>
+    <div class="radar-legend-item"><div class="radar-dot" style="background:#D7141A;border:1px dashed;"></div><span>🇨🇿 체코 (점선)</span></div>
+    <div class="radar-legend-item"><div class="radar-dot" style="background:#002B7F;"></div><span>🇷🇴 루마니아</span></div>
+  </div>
+  <div style="margin-top:9px;font-size:10.5px;color:#888;text-align:center;">
+    ※ 동유럽 레이더의 특징 — TBI·Σ 방향 동시 돌출. 서유럽(CFD 한 방향)·북유럽(CFD 한 방향)과 달리 <strong>전방위 팽창</strong>.<br>
+    헝가리·루마니아 Σ 방향 최대 돌출. 체코 레이더 면적 4국 최소 — 상대적 안정 구조.
+  </div>
+</div>
+
+<!-- ══ PPR-5 요약 ══ -->
+<div class="sec-title">Ⅶ~Ⅺ &nbsp;PPR-5 핵심 요약</div>
+<div class="ppr-grid-4">
+  <div class="ppr-card"><div class="ppr-card-head pl">🇵🇱 폴란드 — 회복 경로</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">정치</div>
+    <div style="margin-bottom:5px;">투스크 집권(2023). PiS 퇴장. 그러나 헌법재판소·방송사에 PiS 인사 잔존. 카롤 나브로츠키 PiS 대통령 당선(2025) — 개혁에 비토권 행사 중.</div>
+    <div class="ppr-stack-label">경제·사회</div>
+    <div style="margin-bottom:5px;">GDP +3.6% EU 최고권. 강한 소비·실질임금 상승. EU 기금 €1370억 재개. 우크라이나 전쟁 물류 허브 수혜.</div>
+    <div class="ppr-stack-label">Λ¹²</div>
+    <div><span class="tag tag-tbi">TBI 0.78</span> — 나치+소련 이중 학살. 연대 저항 전통이 SR을 높게 유지. LPI +0.04 소폭 양수. 개혁 진행 중.</div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-card-head hu">🇭🇺 헝가리 — 역사적 전환점</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">정치 (Breaking)</div>
+    <div style="margin-bottom:5px;">2026.04.12 마자르 티사당 53.6% 압승. 오르반 16년 집권 종식. 투표율 80% 역대 최고. 그러나 피데스 지방·언론 장악 잔존.</div>
+    <div class="ppr-stack-label">경제</div>
+    <div style="margin-bottom:5px;">GDP ~0% 정체. EU 기금 €360억 동결. 인플레이션 지속. 오르반 경제 정책의 부작용. 마자르 집권 후 기금 해제 기대.</div>
+    <div class="ppr-stack-label">Λ¹²</div>
+    <div><span class="tag tag-sig">Σ 0.68</span> · <span class="tag tag-lpi">LPI −0.28</span> 최저 — 오르반 체제 기준값. 마자르 집권 후 Σ↓·LPI↑ 전환 시작 예측. Goodhart 최적용.</div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-card-head cz">🇨🇿 체코 — 상대적 안정</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">정치</div>
+    <div style="margin-bottom:5px;">피알라 ODS 중도 우파 정부(2021~). 바비스 ANO 퇴장. EU 친화. 사법 독립성 유지. NATO 핵심국.</div>
+    <div class="ppr-stack-label">경제</div>
+    <div style="margin-bottom:5px;">GDP +2.5%. 체코 크로나 강세. 독일 자동차 산업 의존 — VW 위기가 간접 충격. CPI 58 동유럽 최고.</div>
+    <div class="ppr-stack-label">Λ¹²</div>
+    <div><span class="tag tag-sig">Σ 0.40</span> · <span class="tag tag-lpi">LPI +0.08</span> — 4국 중 최안정. GPI 세계 7위. 벨벳혁명 시민사회 유산이 제도 완충 역할.</div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-card-head ro">🇷🇴 루마니아 — 이중 위기</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">정치</div>
+    <div style="margin-bottom:5px;">2024 대선 조르제스쿠 1위 → 헌재 선거 무효 → 정치 위기. 극우 부상 구조화. EU 재정 감시 강화.</div>
+    <div class="ppr-stack-label">경제</div>
+    <div style="margin-bottom:5px;">GDP 적자 8% — EU 과도재정 절차. 인플레이션 지속. 부채 증가. 구조 개혁 지연.</div>
+    <div class="ppr-stack-label">Λ¹²</div>
+    <div><span class="tag tag-tbi">TBI 0.82</span> 4국 최고 · <span class="tag tag-lpi">LPI −0.22</span> — 차우셰스쿠 유산 + 부패 구조. β 최고 = PWT-r 최저 예상. 개선 경로 불명확.</div>
+  </div></div>
+</div>
+
+<!-- ══ ⅩII 담론육층 ══ -->
+<div class="sec-title">ⅩII &nbsp;담론육층 — 4국 병렬</div>
+<div class="four-grid">
+  <div class="layer-card">
+    <div class="layer-card-head pl">🇵🇱 폴란드</div>
+    <div class="layer-row"><span class="layer-num">①</span><span style="font-size:10.5px;color:#555;">GDP+3.6%·TBI 0.78·투스크·PiS헌재잔존</span></div>
+    <div class="layer-row"><span class="layer-num">②</span><span style="font-size:10.5px;color:#555;">연대 저항 전통 + 법치 회복 경로.</span></div>
+    <div class="layer-row"><span class="layer-num">③</span><span style="font-size:10.5px;color:#555;">나치→소련→연대→민주화→PiS→투스크 반전.</span></div>
+    <div class="layer-row"><span class="layer-num">④</span><span style="font-size:10.5px;color:#555;">외부: 민주주의 회복 모범. 내부: "대통령이 비토권 남용".</span></div>
+    <div class="layer-row"><span class="layer-num">⑤</span><span style="font-size:10.5px;color:#555;">"민주주의가 이겼다" vs "아직 반이 남았다".</span></div>
+    <div class="layer-row"><span class="layer-num">⑥</span><span style="font-size:10.5px;color:#B8850E;">연대가 소련을 이겼다 — 지금 우리는 무엇을 이기고 있는가.</span></div>
+  </div>
+  <div class="layer-card">
+    <div class="layer-card-head hu">🇭🇺 헝가리</div>
+    <div class="layer-row"><span class="layer-num">①</span><span style="font-size:10.5px;color:#555;">2026.04 마자르 압승·TBI 0.78·Σ 0.68·GDP 0%</span></div>
+    <div class="layer-row"><span class="layer-num">②</span><span style="font-size:10.5px;color:#555;">16년 제도 포획 + SR 역인과 → 폭발.</span></div>
+    <div class="layer-row"><span class="layer-num">③</span><span style="font-size:10.5px;color:#555;">1956 혁명→소련 진압→1989 민주화→오르반→마자르.</span></div>
+    <div class="layer-row"><span class="layer-num">④</span><span style="font-size:10.5px;color:#555;">외부: EU 민주주의 회복 희망. 내부: "피데스가 아직 거기 있다".</span></div>
+    <div class="layer-row"><span class="layer-num">⑤</span><span style="font-size:10.5px;color:#555;">"역사적 전환" vs "오르반주의는 살아있다".</span></div>
+    <div class="layer-row"><span class="layer-num">⑥</span><span style="font-size:10.5px;color:#B8850E;">민주주의는 투표로 죽고 투표로 살아난다 — 헝가리가 그걸 보여줬다.</span></div>
+  </div>
+  <div class="layer-card">
+    <div class="layer-card-head cz">🇨🇿 체코</div>
+    <div class="layer-row"><span class="layer-num">①</span><span style="font-size:10.5px;color:#555;">Σ 0.40·CPI 58·GPI 7위·GDP+2.5%</span></div>
+    <div class="layer-row"><span class="layer-num">②</span><span style="font-size:10.5px;color:#555;">벨벳혁명 시민사회 + 강한 중간계층 구조.</span></div>
+    <div class="layer-row"><span class="layer-num">③</span><span style="font-size:10.5px;color:#555;">나치→프라하의봄→벨벳혁명→바비스→피알라.</span></div>
+    <div class="layer-row"><span class="layer-num">④</span><span style="font-size:10.5px;color:#555;">외부: 동유럽 안정국. 내부: "프라하 집값이 런던보다 비싸다".</span></div>
+    <div class="layer-row"><span class="layer-num">⑤</span><span style="font-size:10.5px;color:#555;">"동유럽 모범" vs "경제 성장이 주거 해결 못했다".</span></div>
+    <div class="layer-row"><span class="layer-num">⑥</span><span style="font-size:10.5px;color:#B8850E;">Havel은 "무력의 권력"을 말했다. 그 힘이 아직 여기 있는가.</span></div>
+  </div>
+  <div class="layer-card">
+    <div class="layer-card-head ro">🇷🇴 루마니아</div>
+    <div class="layer-row"><span class="layer-num">①</span><span style="font-size:10.5px;color:#555;">TBI 0.82·CPI 43·재정적자 8%·조르제스쿠 사태</span></div>
+    <div class="layer-row"><span class="layer-num">②</span><span style="font-size:10.5px;color:#555;">차우셰스쿠 유산 부패 구조 + 제도 공백.</span></div>
+    <div class="layer-row"><span class="layer-num">③</span><span style="font-size:10.5px;color:#555;">차우셰스쿠 처형→부패 민주주의→극우 부상.</span></div>
+    <div class="layer-row"><span class="layer-num">④</span><span style="font-size:10.5px;color:#555;">외부: EU 우려 대상. 내부: "누굴 믿어야 하나".</span></div>
+    <div class="layer-row"><span class="layer-num">⑤</span><span style="font-size:10.5px;color:#555;">"선거 무효는 민주주의 수호" vs "엘리트가 민의 차단".</span></div>
+    <div class="layer-row"><span class="layer-num">⑥</span><span style="font-size:10.5px;color:#B8850E;">차우셰스쿠를 처형한 나라가 다시 권위주의 문 앞에 서 있다.</span></div>
+  </div>
+</div>
+
+<!-- ══ ⅩⅢ 위상공간 ══ -->
+<div class="sec-title">ⅩⅢ &nbsp;위상공간 — SR-Σ 사분면 (25국 누적)</div>
+<div class="phase-wrap">
+  <div class="phase-title">SR-Σ 사분면 — 동유럽 4국 + 이전 21국</div>
+  <div class="phase-sub">25국 누적 · 헝가리 SR↑ 전환 화살표 표시</div>
+  <svg width="100%" height="320" viewBox="0 0 620 320" xmlns="http://www.w3.org/2000/svg">
+    <rect x="40" y="15" width="250" height="145" fill="#E8F5E9" opacity="0.25" rx="3"/>
+    <rect x="290" y="15" width="290" height="145" fill="#FFF3E0" opacity="0.25" rx="3"/>
+    <rect x="40" y="160" width="250" height="150" fill="#E3F2FD" opacity="0.25" rx="3"/>
+    <rect x="290" y="160" width="290" height="150" fill="#FCE4EC" opacity="0.25" rx="3"/>
+    <text x="165"  y="32" text-anchor="middle" font-size="8" fill="#2E7D32" font-weight="700" font-family="JetBrains Mono">Q1 건강한 저항</text>
+    <text x="435"  y="32" text-anchor="middle" font-size="8" fill="#E65100" font-weight="700" font-family="JetBrains Mono">Q2 가짜안정</text>
+    <text x="165" y="178" text-anchor="middle" font-size="8" fill="#1565C0" font-weight="700" font-family="JetBrains Mono">Q3 개방적 갈등</text>
+    <text x="435" y="178" text-anchor="middle" font-size="8" fill="#880E4F" font-weight="700" font-family="JetBrains Mono">Q4 체제 위기</text>
+    <line x1="40" y1="15" x2="40" y2="310" stroke="#999" stroke-width="1.5"/>
+    <line x1="40" y1="310" x2="580" y2="310" stroke="#999" stroke-width="1.5"/>
+    <line x1="290" y1="15" x2="290" y2="310" stroke="#999" stroke-width="1" stroke-dasharray="5,3"/>
+    <line x1="40" y1="160" x2="580" y2="160" stroke="#999" stroke-width="1" stroke-dasharray="5,3"/>
+    <line x1="40" y1="100" x2="580" y2="100" stroke="#E53935" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.6"/>
+    <text x="584" y="104" font-size="7" fill="#E53935" font-family="JetBrains Mono">Σ=0.70</text>
+    <!-- 이전 21국 축약 -->
+    <circle cx="137" cy="104" r="7" fill="#8B1A1A" fill-opacity="0.06" stroke="#8B1A1A" stroke-width="0.8"/><text x="137" y="107" text-anchor="middle" font-size="7">🇰🇭</text>
+    <circle cx="375" cy="122" r="8" fill="#1A6B3A" fill-opacity="0.06" stroke="#1A6B3A" stroke-width="0.8"/><text x="375" y="125" text-anchor="middle" font-size="8">🇧🇩</text>
+    <circle cx="337" cy="131" r="9" fill="#0D5EAF" fill-opacity="0.06" stroke="#0D5EAF" stroke-width="0.8"/><text x="337" y="134" text-anchor="middle" font-size="8">🇬🇷</text>
+    <circle cx="321" cy="142" r="9" fill="#012169" fill-opacity="0.06" stroke="#012169" stroke-width="0.8"/><text x="321" y="145" text-anchor="middle" font-size="8">🇬🇧</text>
+    <circle cx="375" cy="136" r="10" fill="#002395" fill-opacity="0.06" stroke="#002395" stroke-width="0.8"/><text x="375" y="139" text-anchor="middle" font-size="8">🇫🇷</text>
+    <circle cx="283" cy="145" r="9" fill="#009246" fill-opacity="0.06" stroke="#009246" stroke-width="0.8"/><text x="283" y="148" text-anchor="middle" font-size="8">🇮🇹</text>
+    <circle cx="245" cy="179" r="10" fill="#006AA7" fill-opacity="0.06" stroke="#006AA7" stroke-width="0.8"/><text x="245" y="182" text-anchor="middle" font-size="8">🇸🇪</text>
+    <circle cx="213" cy="229" r="9" fill="#C60C30" fill-opacity="0.06" stroke="#C60C30" stroke-width="0.8"/><text x="213" y="232" text-anchor="middle" font-size="8">🇩🇰</text>
+
+    <text x="30" y="18" text-anchor="end" font-size="8" fill="#666" font-family="JetBrains Mono">Σ1.0</text>
+    <text x="30" y="160" text-anchor="end" font-size="8" fill="#666" font-family="JetBrains Mono">Σ0.5</text>
+    <text x="30" y="310" text-anchor="end" font-size="8" fill="#666" font-family="JetBrains Mono">Σ0.0</text>
+    <text x="40"  y="322" font-size="8" fill="#666" font-family="JetBrains Mono">SR0.0</text>
+    <text x="290" y="322" text-anchor="middle" font-size="8" fill="#666" font-family="JetBrains Mono">SR0.5</text>
+    <text x="575" y="322" font-size="8" fill="#666" font-family="JetBrains Mono">SR1.0</text>
+
+    <!-- 동유럽 4국 선명 — x=40+SR*540, y=310-Σ*290 -->
+    <!-- 폴란드 SR0.52 Σ0.50 → x=321, y=165 -->
+    <circle cx="321" cy="165" r="15" fill="#DC143C" fill-opacity="0.22" stroke="#DC143C" stroke-width="2.2"/>
+    <text x="321" y="169" text-anchor="middle" font-size="13">🇵🇱</text>
+    <text x="321" y="154" text-anchor="middle" font-size="7.5" fill="#DC143C" font-weight="700" font-family="JetBrains Mono">PL.52/.50</text>
+    <!-- 헝가리 SR0.62(↑) Σ0.68 → x=375, y=113 -->
+    <circle cx="375" cy="113" r="16" fill="#CE2939" fill-opacity="0.22" stroke="#CE2939" stroke-width="2.5"/>
+    <text x="375" y="117" text-anchor="middle" font-size="13">🇭🇺</text>
+    <text x="375" y="102" text-anchor="middle" font-size="7.5" fill="#CE2939" font-weight="700" font-family="JetBrains Mono">HU.62↑/.68</text>
+    <!-- SR 상승 화살표 (2026.04 이후 예측) -->
+    <defs><marker id="arr_hu" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#CE2939"/></marker></defs>
+    <path d="M375,113 L330,150" stroke="#CE2939" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr_hu)" opacity="0.7"/>
+    <text x="342" y="146" font-size="7.5" fill="#CE2939" font-family="JetBrains Mono">마자르 후 예측</text>
+    <!-- 체코 SR0.42 Σ0.40 → x=267, y=194 -->
+    <circle cx="267" cy="194" r="14" fill="#D7141A" fill-opacity="0.2" stroke="#D7141A" stroke-width="2"/>
+    <text x="267" y="198" text-anchor="middle" font-size="12">🇨🇿</text>
+    <text x="267" y="210" text-anchor="middle" font-size="7.5" fill="#D7141A" font-weight="700" font-family="JetBrains Mono">CZ.42/.40</text>
+    <!-- 루마니아 SR0.55 Σ0.62 → x=337, y=131 -->
+    <circle cx="337" cy="131" r="15" fill="#002B7F" fill-opacity="0.22" stroke="#002B7F" stroke-width="2.2"/>
+    <text x="337" y="135" text-anchor="middle" font-size="13">🇷🇴</text>
+    <text x="337" y="120" text-anchor="middle" font-size="7.5" fill="#002B7F" font-weight="700" font-family="JetBrains Mono">RO.55/.62</text>
+
+    <text x="40" y="322" font-size="7.5" fill="#555" font-family="JetBrains Mono" dy="10">★ 헝가리 2026 전환 화살표(예측) · 동유럽이 Q2/Q4 경계에 집중 — TBI가 높아 Σ도 높다. 반투명=이전국</text>
+  </svg>
+</div>
+
+<!-- ══ ⅩⅣ 오차 ══ -->
+<div class="sec-title">ⅩⅣ &nbsp;오차 범위</div>
+<div class="four-grid">
+  <div class="err-card"><div class="err-head pl">🇵🇱 폴란드</div>
+    <div class="err-item">· OLI 0.68 — EU 기준 충족. 정권 교체 후 일부 재편 중.</div>
+    <div class="err-item">· TBI 0.78 — 전쟁 세대 트라우마 정량화 한계.</div>
+    <div class="err-item" style="color:#B8850E;">· 신뢰구간: ±0.09</div>
+  </div>
+  <div class="err-card"><div class="err-head hu">🇭🇺 헝가리</div>
+    <div class="err-item">· OLI 0.42 — 오르반 체제 통계 신뢰도 훼손. 마자르 후 개선 예상.</div>
+    <div class="err-item">· 2026.04 이후 좌표 급변 예측 — 현재값 구 체제 기준.</div>
+    <div class="err-item" style="color:#B8850E;">· 신뢰구간: ±0.16 (최대 불확실성)</div>
+  </div>
+  <div class="err-card"><div class="err-head cz">🇨🇿 체코</div>
+    <div class="err-item">· OLI 0.72 — 4국 최고. 체코통계청 EU 기준.</div>
+    <div class="err-item">· Σ 0.40 보더라인 — 주거 위기 확대 시 상승 가능.</div>
+    <div class="err-item" style="color:#B8850E;">· 신뢰구간: ±0.08</div>
+  </div>
+  <div class="err-card"><div class="err-head ro">🇷🇴 루마니아</div>
+    <div class="err-item">· OLI 0.45 — 부패 구조로 통계 왜곡 가능성 높음.</div>
+    <div class="err-item">· 재정적자 8% — 실제 수치 EU와 괴리 가능.</div>
+    <div class="err-item" style="color:#B8850E;">· 신뢰구간: ±0.15</div>
+  </div>
+</div>
+
+<!-- ══ ⅩⅤ 한반도 ══ -->
+<div class="sec-title">ⅩⅤ &nbsp;한반도에서 바라보는 동유럽</div>
+<div class="kr-box">
+  <div class="kr-title">한반도 시선</div>
+  <div class="kr-text">
+    헝가리 2026년 마자르 압승은 한국에게 중요한 메시지다. 16년 권위주의 체제가 선거로 끝났다. 그런데 어떻게 가능했나 — 투표율 80%가 답이다. 시민이 참여했기 때문이다. SR 역인과 가설이 여기서도 작동했다: 억압된 저항이 임계를 넘었을 때 투표장으로 나왔다. 한국의 높은 투표율 전통은 이 맥락에서 의미가 있다.
+    <br><br>
+    폴란드 PiS 사례 — 한국이 경험한 박근혜 탄핵과 구조가 닮았다. 선거로 집권한 정부가 제도를 장악하려 하고 시민 저항으로 막힌다. 차이는 폴란드는 탄핵이 아닌 선거로 교체됐다는 것. 어느 방법이 더 강력한 민주주의 신호인가.
+    <br><br>
+    루마니아 조르제스쿠 사태 — 2024 한국 계엄 사태와 맥락이 겹친다. 기득권 기관이 선거 결과를 무효화할 때 — 이것이 민주주의 수호인가 아니면 엘리트의 민의 차단인가. 이 질문이 두 나라에서 동시에 제기됐다. 담론육층 5층 프레임의 충돌이다.
+    <br><br>
+    <strong>경제 연결:</strong> 폴란드는 한국 삼성·LG의 유럽 생산 허브. 폴란드 GDP 성장 3.6%는 한국 수출 호재. 루마니아 재정 위기는 유럽 소비시장 위협.
+  </div>
+</div>
+
+<!-- ══ 결론 ══ -->
+<div class="sec-title">결론 궤도 — 민주주의는 죽기도 하고 살아나기도 한다</div>
+<div class="conclusion">
+  <div class="conclusion-title">2026년 봄 — 동유럽에서 온 두 가지 신호</div>
+  <div class="conclusion-text">
+    헝가리에서 16년 권위주의 체제가 투표로 끝났다.<br>
+    루마니아에서 극우 후보가 1위를 했고 헌재가 선거를 무효화했다.<br><br>
+    같은 해, 같은 대륙, 반대 방향의 신호.<br><br>
+    민주주의는 쉽게 죽는다 — 헝가리가 보여줬다.<br>
+    민주주의는 다시 살아난다 — 헝가리가 또 보여줬다.<br>
+    민주주의는 다시 위협받는다 — 루마니아가 보여주고 있다.<br><br>
+    <em>TBI가 높은 나라들은 역사를 기억한다.<br>
+    그 기억이 저항의 원천이 될 수도, 두려움의 원천이 될 수도 있다.<br>
+    어느 방향이 되는지는 — 지금 무엇을 선택하느냐에 달렸다.</em>
+  </div>
+</div>
+
+<!-- ══ 시리즈 ══ -->
+<div class="series-box">
+  <div class="series-title">늘푸른바다 Λ¹² 국가편 시리즈</div>
+  <div class="series-list">
+    <span class="series-item done">#9 미국</span>
+    <span class="series-item done">#10 보츠와나</span>
+    <span class="series-item done">#11~12 동남아</span>
+    <span class="series-item done">#13 남아시아</span>
+    <span class="series-item done">#14 남유럽</span>
+    <span class="series-item done">#15 서유럽</span>
+    <span class="series-item done">#16 북유럽</span>
+    <span class="series-item current">#17 동유럽 비교 I (폴란드·헝가리·체코·루마니아)</span>
+    <span class="series-item">발칸 비교 (예정)</span>
+  </div>
+</div>
+
+<!-- ══ 푸터 ══ -->
+<div class="footer">
+  <strong>늘푸른바다 사회동역학 연구소</strong> · Everblue Sea Institute for Social Dynamics<br>
+  <a href="https://badaegopa.tistory.com">badaegopa.tistory.com</a> &nbsp;·&nbsp;
+  SSRN Abstract ID 6509200 &nbsp;·&nbsp;
+  슬로건: 분석을 넘어, 재조립으로 / Not analysis, but synthesis.<br><br>
+  <span style="font-size:10px;opacity:.6;">
+    Λ¹² v9.11 · §30 Λ-Score·PWT-r · 2026-04-29<br>
+    데이터: GPI 2025(IEP) · CPI 2025(TI) · CE Times Feb.2026 · HRW Apr.2026 · Al Jazeera/CNN 2026.04.12 선거 결과<br>
+    헝가리 OLI 0.42 — 오르반 체제 기준. 마자르 집권 후 재측정 필요. Goodhart 법칙 최적용.<br>
+    청해(淸海) © 2026 · 무단 전재 금지
+  </span>
+</div>
+
+</body>
+</html>

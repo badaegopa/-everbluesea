@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Λ¹² 북유럽 비교편 I — 스웨덴·노르웨이·덴마크·핀란드</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#F5F3EE;font-family:'Noto Sans KR',sans-serif;color:#2A2A2A;font-size:13px;line-height:1.75;}
+.se-c{color:#006AA7;} .no-c{color:#EF2B2D;} .dk-c{color:#C60C30;} .fi-c{color:#003580;}
+.tag{display:inline-block;padding:1px 7px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;}
+.tag-tbi{background:#FCEBEB;color:#791F1F;} .tag-sr{background:#E1F5EE;color:#085041;}
+.tag-sig{background:#EEEDFE;color:#3C3489;} .tag-lpi{background:#FAEEDA;color:#633806;}
+.tag-cfd{background:#FAECE7;color:#712B13;} .tag-oli{background:#E6F1FB;color:#0C447C;}
+
+.hero{background:linear-gradient(135deg,#7BADA0,#5E9186);color:#fff;padding:50px 40px 38px;text-align:center;}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;opacity:.75;margin-bottom:12px;}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:42px;letter-spacing:.06em;line-height:1.1;margin-bottom:10px;}
+.hero-sub{font-size:13px;opacity:.85;line-height:1.7;}
+.hero-meta{margin-top:16px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
+.hero-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:3px 13px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.06em;}
+
+.score-banner{display:flex;gap:10px;margin:20px 24px;flex-wrap:wrap;}
+.score-card{flex:1;min-width:140px;background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:12px 14px;text-align:center;border-top:3px solid;}
+.score-card.se{border-top-color:#006AA7;} .score-card.no{border-top-color:#EF2B2D;}
+.score-card.dk{border-top-color:#C60C30;} .score-card.fi{border-top-color:#003580;}
+.score-flag{font-size:22px;margin-bottom:3px;}
+.score-country{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.05em;margin-bottom:5px;}
+.score-lambda{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:700;margin-bottom:2px;}
+.score-lambda.se{color:#006AA7;} .score-lambda.no{color:#EF2B2D;}
+.score-lambda.dk{color:#C60C30;} .score-lambda.fi{color:#003580;}
+.score-zone{font-size:10px;font-family:'JetBrains Mono',monospace;padding:2px 8px;border-radius:4px;display:inline-block;margin-bottom:3px;}
+.zone-watch{background:#FFF3E0;color:#E65100;} .zone-danger{background:#FCEBEB;color:#791F1F;}
+.zone-stable{background:#E8F5E9;color:#1B5E20;}
+.score-pwt{font-size:10px;color:#888;font-family:'JetBrains Mono',monospace;}
+
+.declaration{background:#FFFDF8;border-left:4px solid #5E9186;margin:0 24px 24px;padding:16px 20px;border-radius:0 8px 8px 0;}
+.declaration-title{font-family:'Bebas Neue',sans-serif;font-size:15px;color:#3A6A5E;letter-spacing:.05em;margin-bottom:7px;}
+.declaration p{font-size:12.5px;color:#444;line-height:1.8;}
+.peoples-view{margin:0 24px 24px;background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:18px 20px;}
+.pv-title{font-family:'Bebas Neue',sans-serif;font-size:14px;color:#B8850E;letter-spacing:.06em;margin-bottom:10px;}
+.pv-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;}
+.pv-card{background:#F5F3EE;border-radius:8px;padding:10px 12px;border-top:3px solid;}
+.pv-card.se{border-color:#006AA7;} .pv-card.no{border-color:#EF2B2D;}
+.pv-card.dk{border-color:#C60C30;} .pv-card.fi{border-color:#003580;}
+.pv-flag{font-size:20px;margin-bottom:3px;}
+.pv-name{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:.04em;margin-bottom:4px;}
+.pv-quote{font-size:11px;color:#555;line-height:1.65;font-style:italic;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:.07em;color:#3A6A5E;border-bottom:2px solid #5E9186;margin:26px 24px 13px;padding-bottom:7px;}
+.four-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:11px;margin:0 24px 22px;}
+.note{font-size:10.5px;color:#888;font-style:italic;margin:0 24px 14px;}
+
+.hist-card{background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:12px 14px;}
+.hist-title{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:10px;margin-bottom:7px;}
+.hist-title.se{color:#006AA7;} .hist-title.no{color:#EF2B2D;}
+.hist-title.dk{color:#C60C30;} .hist-title.fi{color:#003580;}
+.hist-item{display:flex;gap:8px;margin-bottom:6px;font-size:11px;}
+.hist-year{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:9.5px;min-width:40px;color:#B8850E;}
+.hist-text{color:#444;line-height:1.6;}
+
+.stats-table{width:calc(100% - 48px);margin:0 24px 22px;border-collapse:collapse;font-size:11.5px;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05);}
+.stats-table th{background:#3A6A5E;color:#fff;padding:8px 12px;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:10.5px;text-align:center;}
+.stats-table td{padding:7px 12px;border-bottom:1px solid #f0ede7;text-align:center;color:#444;}
+.stats-table tr:last-child td{border:none;}
+.stats-table .label{text-align:left;font-weight:500;color:#3A6A5E;}
+.val-se{color:#006AA7;font-weight:700;font-family:'JetBrains Mono',monospace;}
+.val-no{color:#EF2B2D;font-weight:700;font-family:'JetBrains Mono',monospace;}
+.val-dk{color:#C60C30;font-weight:700;font-family:'JetBrains Mono',monospace;}
+.val-fi{color:#003580;font-weight:700;font-family:'JetBrains Mono',monospace;}
+
+.coord-card{background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:12px 14px;}
+.coord-head{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:.04em;margin-bottom:8px;}
+.coord-head.se{color:#006AA7;} .coord-head.no{color:#EF2B2D;}
+.coord-head.dk{color:#C60C30;} .coord-head.fi{color:#003580;}
+.coord-item{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.coord-label{font-size:10px;}
+.coord-bar-wrap{flex:1;height:5px;background:#eee;border-radius:3px;margin:0 8px;}
+.coord-bar{height:5px;border-radius:3px;}
+.coord-num{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:700;min-width:32px;text-align:right;}
+
+.formula-box{margin:0 24px 22px;background:linear-gradient(135deg,#f0ede7,#e8e4dc);border:1px solid #DDD8CE;border-radius:10px;padding:13px 17px;}
+.formula-title{font-family:'Bebas Neue',sans-serif;font-size:13px;color:#3A6A5E;letter-spacing:.05em;margin-bottom:7px;}
+.formula-eq{font-family:'JetBrains Mono',monospace;font-size:12px;color:#3A6A5E;background:#fff;display:inline-block;padding:4px 11px;border-radius:5px;margin-bottom:6px;}
+.formula-note{font-size:11px;color:#666;line-height:1.7;}
+
+.radar-wrap{margin:0 24px 22px;background:#fff;border:1px solid #DDD8CE;border-radius:12px;padding:16px;}
+.radar-title{font-family:'Bebas Neue',sans-serif;font-size:15px;color:#3A6A5E;letter-spacing:.06em;text-align:center;margin-bottom:4px;}
+.radar-legend{display:flex;justify-content:center;gap:18px;margin-top:10px;flex-wrap:wrap;}
+.radar-legend-item{display:flex;align-items:center;gap:5px;font-size:11px;}
+.radar-dot{width:10px;height:10px;border-radius:50%;}
+
+.ppr-grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin:0 24px 15px;}
+.ppr-card{background:#fff;border:1px solid #DDD8CE;border-radius:10px;overflow:hidden;}
+.ppr-card-head{padding:7px 11px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:#fff;}
+.ppr-card-head.se{background:#006AA7;} .ppr-card-head.no{background:#EF2B2D;}
+.ppr-card-head.dk{background:#C60C30;} .ppr-card-head.fi{background:#003580;}
+.ppr-card-body{padding:9px 11px;font-size:11px;color:#444;line-height:1.7;}
+.ppr-stack-label{font-size:9px;font-family:'JetBrains Mono',monospace;background:#F5F3EE;color:#666;display:inline-block;padding:1px 5px;border-radius:3px;margin-bottom:3px;}
+
+.paradox-box{margin:0 24px 22px;background:linear-gradient(135deg,#EEF6F4,#E4F0ED);border:2px solid #5E9186;border-radius:12px;padding:16px 20px;}
+.paradox-title{font-family:'Bebas Neue',sans-serif;font-size:18px;color:#3A6A5E;letter-spacing:.06em;margin-bottom:10px;}
+.paradox-text{font-size:12px;color:#444;line-height:1.9;}
+.stat-badge{display:inline-block;padding:2px 7px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;color:#fff;margin:1px 2px;}
+.sb-se{background:#006AA7;} .sb-no{background:#EF2B2D;}
+.sb-dk{background:#C60C30;} .sb-fi{background:#003580;}
+.sb-n{background:#3A6A5E;}
+
+.layer-card{background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:11px 13px;}
+.layer-card-head{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:.04em;margin-bottom:8px;}
+.layer-card-head.se{color:#006AA7;} .layer-card-head.no{color:#EF2B2D;}
+.layer-card-head.dk{color:#C60C30;} .layer-card-head.fi{color:#003580;}
+.layer-row{display:flex;gap:7px;margin-bottom:5px;font-size:10.5px;line-height:1.6;}
+.layer-num{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:9.5px;min-width:14px;color:#B8850E;}
+
+.phase-wrap{margin:0 24px 22px;background:#fff;border:1px solid #DDD8CE;border-radius:12px;padding:16px;}
+.phase-title{font-family:'Bebas Neue',sans-serif;font-size:15px;color:#3A6A5E;letter-spacing:.06em;text-align:center;margin-bottom:3px;}
+.phase-sub{font-size:10px;color:#888;text-align:center;margin-bottom:12px;font-family:'JetBrains Mono',monospace;}
+
+.err-card{background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:10px 12px;}
+.err-head{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:10px;margin-bottom:6px;}
+.err-head.se{color:#006AA7;} .err-head.no{color:#EF2B2D;}
+.err-head.dk{color:#C60C30;} .err-head.fi{color:#003580;}
+.err-item{font-size:10.5px;color:#555;line-height:1.6;margin-bottom:3px;}
+
+.kr-box{margin:0 24px 22px;background:linear-gradient(135deg,#eef6f4,#e4f0ed);border:1px solid #c5ddd9;border-radius:10px;padding:15px 19px;}
+.kr-title{font-family:'Bebas Neue',sans-serif;font-size:15px;color:#3A6A5E;letter-spacing:.06em;margin-bottom:7px;}
+.kr-text{font-size:12px;color:#444;line-height:1.85;}
+.conclusion{margin:0 24px 22px;background:linear-gradient(135deg,#7BADA0,#5E9186);color:#fff;border-radius:12px;padding:20px 24px;}
+.conclusion-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.07em;margin-bottom:11px;}
+.conclusion-text{font-size:12.5px;line-height:1.9;opacity:.93;}
+.series-box{margin:0 24px 22px;border:2px solid #5E9186;border-radius:10px;padding:11px 15px;}
+.series-title{font-family:'Bebas Neue',sans-serif;font-size:13px;color:#3A6A5E;letter-spacing:.06em;margin-bottom:6px;}
+.series-list{display:flex;flex-wrap:wrap;gap:7px;}
+.series-item{font-size:11px;background:#F5F3EE;border:1px solid #DDD8CE;border-radius:6px;padding:3px 9px;color:#666;}
+.series-item.done{background:#5E9186;color:#fff;border-color:#5E9186;}
+.series-item.current{background:#B8850E;color:#fff;border-color:#B8850E;}
+.footer{background:#3A6A5E;color:rgba(255,255,255,.8);text-align:center;padding:20px;font-size:11px;line-height:1.9;}
+.footer a{color:#F0C040;text-decoration:none;}
+.freach-s{color:#2E7D32;font-weight:700;} .freach-i{color:#1565C0;font-weight:700;} .freach-d{color:#AD1457;font-weight:700;}
+</style>
+</head>
+<body>
+
+<!-- ══ 히어로 ══ -->
+<div class="hero">
+  <div class="hero-eyebrow">늘푸른바다 사회동역학 연구소 · Λ¹² 국가편 비교 시리즈 — 유럽 III</div>
+  <div class="hero-title">북유럽 비교편 I</div>
+  <div class="hero-sub">스웨덴 · 노르웨이 · 덴마크 · 핀란드<br>복지 황금모델의 역설 — 세계 최고 지표인데 왜 포퓰리즘이 20%인가</div>
+  <div class="hero-meta">
+    <span class="hero-badge">Λ¹² v9.11 엔진</span>
+    <span class="hero-badge">§30 Λ-Score</span>
+    <span class="hero-badge">HDI 세계 최상위권</span>
+    <span class="hero-badge">스웨덴 조직범죄 역설</span>
+    <span class="hero-badge">SSRN 6509200</span>
+    <span class="hero-badge">2026-04-29</span>
+  </div>
+</div>
+
+<!-- ══ Λ-Score 배지 ══ -->
+<div class="score-banner">
+  <div class="score-card se">
+    <div class="score-flag">🇸🇪</div>
+    <div class="score-country se-c">스웨덴</div>
+    <div class="score-lambda se">0.432</div>
+    <div><span class="score-zone zone-danger">Danger</span></div>
+    <div class="score-pwt">PWT-r 0.821 · β 0.414</div>
+  </div>
+  <div class="score-card no">
+    <div class="score-flag">🇳🇴</div>
+    <div class="score-country no-c">노르웨이</div>
+    <div class="score-lambda no">0.407</div>
+    <div><span class="score-zone zone-danger">Danger</span></div>
+    <div class="score-pwt">PWT-r 0.878 · β 0.299</div>
+  </div>
+  <div class="score-card dk">
+    <div class="score-flag">🇩🇰</div>
+    <div class="score-country dk-c">덴마크</div>
+    <div class="score-lambda dk">0.403</div>
+    <div><span class="score-zone zone-danger">Danger</span></div>
+    <div class="score-pwt">PWT-r 0.904 · β 0.238</div>
+  </div>
+  <div class="score-card fi">
+    <div class="score-flag">🇫🇮</div>
+    <div class="score-country fi-c">핀란드</div>
+    <div class="score-lambda fi">0.408</div>
+    <div><span class="score-zone zone-danger">Danger</span></div>
+    <div class="score-pwt">PWT-r 0.906 · β 0.231</div>
+  </div>
+</div>
+
+<!-- ══ 연구 목적 ══ -->
+<div class="declaration">
+  <div class="declaration-title">연구 목적 선언</div>
+  <p>
+    세계 행복지수 1위권, HDI 세계 최상위, CPI 세계 최고권, GPI 세계 평화국 — 북유럽 4국은 인류가 만들어낸 가장 성공적인 사회 시스템의 모범으로 꼽혀왔다. 그런데 같은 나라들에서 극우 이민 반대 정당이 20% 이상을 득표하고, 스웨덴에서는 한 달에 폭탄 테러가 30건 이상 발생한다.
+    이것이 어떻게 가능한가 — Λ¹² 보편 기준으로 읽는다.
+  </p>
+</div>
+
+<!-- ══ 북유럽 역설 특집 ══ -->
+<div class="sec-title">⚡ &nbsp;북유럽 역설 — 황금모델의 균열은 어디서 왔는가</div>
+<div class="paradox-box">
+  <div class="paradox-title">세계 최고 지표 + 20% 포퓰리즘 = Λ¹² 분석 대상</div>
+  <div class="paradox-text">
+    <strong>숫자 먼저:</strong><br>
+    스웨덴 <span class="stat-badge sb-se">HDI 0.959</span> 세계 4위 · <span class="stat-badge sb-se">CPI 84</span> 세계 7위 · <span class="stat-badge sb-se">Sweden Democrats 20%+</span> · 조직범죄 62,000명 연루<br>
+    노르웨이 <span class="stat-badge sb-no">HDI 0.970</span> 세계 2위 · <span class="stat-badge sb-no">석유기금 $1.7조</span> · Progress Party 집권연정<br>
+    덴마크 <span class="stat-badge sb-dk">HDI 0.962</span> 세계 3위 · <span class="stat-badge sb-dk">이민 역대 최저 864명</span>(2024) · 세계 가장 엄격한 이민법<br>
+    핀란드 <span class="stat-badge sb-fi">HDI 0.962</span> 세계 3위 · <span class="stat-badge sb-fi">핀스당 집권→퇴장</span> · 2025년 경제 회복 시작<br><br>
+
+    <strong>Λ¹² 해석 — 왜 황금모델에 균열이 생겼는가:</strong><br><br>
+
+    ① <strong>통합 실패의 CFD 충격</strong>: 2015년 대규모 이민 유입(스웨덴 16만 명). 복지국가가 흡수하려 했으나 통합 속도가 유입 속도를 따라가지 못했다. CFD(문화다양성 분열)가 상승한 이유가 여기 있다. 이민 자체가 문제가 아니라 <em>통합 메커니즘의 부재</em>가 문제였다.<br><br>
+
+    ② <strong>스웨덴 조직범죄의 구조적 역설</strong>: 세계 최고 복지국가에서 왜 조직범죄가 번성하는가. 세대 간 통합 실패로 이민 2~3세대가 주류 경제로 진입하지 못한 채 조직범죄로 유입. 복지가 탈출구를 제공하지 못한 역설 — TBI가 아닌 <em>구조적 배제</em>가 BRI를 올렸다.<br><br>
+
+    ③ <strong>덴마크의 다른 선택</strong>: 덴마크는 2015년 이후 이민 정책을 극적으로 강화했다 — 사회민주당이 극우의 이민 정책을 흡수해버린 것. Σ는 낮지만 이것이 지속 가능한가라는 질문이 남는다.
+  </div>
+</div>
+
+<!-- ══ 민중 시선 ══ -->
+<div class="peoples-view">
+  <div class="pv-title">민중의 시선 — 네 청년이 바라보는 창</div>
+  <div class="pv-grid">
+    <div class="pv-card se">
+      <div class="pv-flag">🇸🇪</div>
+      <div class="pv-name se-c">말뫼의 청년</div>
+      <div class="pv-quote">"스웨덴은 좋은 나라였다. 우리 부모가 온 것은 여기가 좋아서였다. 그런데 나는 갱단 친구들을 잃었다. 시스템이 우리를 흡수하지 못했다. 누구 잘못인가."</div>
+    </div>
+    <div class="pv-card no">
+      <div class="pv-flag">🇳🇴</div>
+      <div class="pv-name no-c">오슬로의 청년</div>
+      <div class="pv-quote">"노르웨이는 석유 덕분에 부자다. 석유가 없었어도 이랬을까. 우리 복지가 영원할까. 기후 때문에 석유 팔면 안 된다는데 — 그러면 우리 돈은 어디서 오나."</div>
+    </div>
+    <div class="pv-card dk">
+      <div class="pv-flag">🇩🇰</div>
+      <div class="pv-name dk-c">코펜하겐의 청년</div>
+      <div class="pv-quote">"덴마크가 이민자를 안 받는다는 게 자랑스럽지 않다. 그런데 솔직히 스웨덴을 보면 우리 정책이 맞았을 수도 있다고 생각한다. 그게 더 불편하다."</div>
+    </div>
+    <div class="pv-card fi">
+      <div class="pv-flag">🇫🇮</div>
+      <div class="pv-name fi-c">헬싱키의 청년</div>
+      <div class="pv-quote">"핀스당이 집권했다 퇴장했다. 핀란드 경제가 2년 마이너스였다. 지금 겨우 플러스 됐다. 행복지수 1위라는데 솔직히 모르겠다. 일자리가 먼저다."</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ §0 용어 ══ -->
+<div class="sec-title">§0 &nbsp;핵심 용어 — 북유럽 특수 적용</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 24px 22px;">
+  <div style="background:#fff;border:1px solid #DDD8CE;border-radius:8px;padding:10px 13px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;color:#3A6A5E;margin-bottom:3px;">CFD — 북유럽형 분열</div>
+    <div style="font-size:11px;color:#555;line-height:1.6;">남유럽=지역 격차, 서유럽=이민+경제, 북유럽=이민 통합 실패. 가장 개방적인 사회에서 CFD가 상승하는 역설.</div>
+  </div>
+  <div style="background:#fff;border:1px solid #DDD8CE;border-radius:8px;padding:10px 13px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;color:#3A6A5E;margin-bottom:3px;">BRI — 구조적 배제 경로</div>
+    <div style="font-size:11px;color:#555;line-height:1.6;">스웨덴: TBI가 아닌 이민 2·3세대 주류 진입 실패 → 조직범죄 유입 → BRI 상승. 복지국가의 역설적 맹점.</div>
+  </div>
+  <div style="background:#fff;border:1px solid #DDD8CE;border-radius:8px;padding:10px 13px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;color:#3A6A5E;margin-bottom:3px;">Σ — 덴마크형 억제</div>
+    <div style="font-size:11px;color:#555;line-height:1.6;">덴마크는 이민 정책 강화로 Σ를 낮게 유지. 그러나 이것이 PWT-r 상승인가 CFD 억제인가 — Goodhart 적용 필요.</div>
+  </div>
+  <div style="background:#fff;border:1px solid #DDD8CE;border-radius:8px;padding:10px 13px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;color:#3A6A5E;margin-bottom:3px;">F_reach — 북유럽 강점</div>
+    <div style="font-size:11px;color:#555;line-height:1.6;">4국 모두 F_reach 최상위. 노르웨이 석유기금 → I·D 압도적. 핀란드 유기농·낙농 S 강점. 복지가 D를 보장.</div>
+  </div>
+  <div style="background:#fff;border:1px solid #DDD8CE;border-radius:8px;padding:10px 13px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;color:#3A6A5E;margin-bottom:3px;">OLI — 세계 최고 신뢰구간</div>
+    <div style="font-size:11px;color:#555;line-height:1.6;">스웨덴·노르웨이·덴마크·핀란드 OLI 0.85~0.92 — 세계 최고 통계 투명성. Λ-Score 신뢰도 가장 높음.</div>
+  </div>
+  <div style="background:#fff;border:1px solid #DDD8CE;border-radius:8px;padding:10px 13px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;color:#3A6A5E;margin-bottom:3px;">PWT-r — 복지국가 효과</div>
+    <div style="font-size:11px;color:#555;line-height:1.6;">북유럽 복지국가 = β(차단) 최소화. 지도자의 마중물이 민중에 닿는 구조적 보장. PWT-r 최고권 예상.</div>
+  </div>
+</div>
+
+<!-- ══ Ⅰ 이론 ══ -->
+<div class="sec-title">Ⅰ &nbsp;이론적 자기위치 (§1-B)</div>
+<div style="margin:0 24px 14px;background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:13px 17px;">
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;font-size:11px;">
+    <div style="background:#F5F3EE;border-radius:6px;padding:8px 10px;">
+      <div style="font-weight:700;color:#006AA7;margin-bottom:3px;">🇸🇪 스웨덴</div>
+      <div style="color:#555;line-height:1.65;">Durkheim 유기적 연대의 도전 — 이민 2세대가 연대에서 이탈. Merton 아노미: 복지국가가 목표(성공)는 제시했지만 수단(진입 경로)은 차단. 조직범죄 = 이 아노미의 표출. Gramsci: 주류 헤게모니에 진입 불가한 집단의 대안 조직화.</div>
+    </div>
+    <div style="background:#F5F3EE;border-radius:6px;padding:8px 10px;">
+      <div style="font-weight:700;color:#EF2B2D;margin-bottom:3px;">🇳🇴 노르웨이</div>
+      <div style="color:#555;line-height:1.65;">Weber 합법적 지배의 최성공 사례. 석유기금 = Rawls 정의론의 실천 — 자원을 세대 간 공유. Keynes 복지 자본주의의 현재 진행형. 그러나 Jeffrey Sachs의 경고: 석유 의존이 장기 지속가능성을 위협.</div>
+    </div>
+    <div style="background:#F5F3EE;border-radius:6px;padding:8px 10px;">
+      <div style="font-weight:700;color:#C60C30;margin-bottom:3px;">🇩🇰 덴마크</div>
+      <div style="color:#555;line-height:1.65;">Lijphart 합의민주주의의 변형 — 이민 문제에서 합의 대신 사회민주당이 극우 정책 흡수. Gramsci: 새 헤게모니 형성. Tocqueville: 다수의 이름으로 소수를 배제하는 다수결 민주주의의 위험.</div>
+    </div>
+    <div style="background:#F5F3EE;border-radius:6px;padding:8px 10px;">
+      <div style="font-weight:700;color:#003580;margin-bottom:3px;">🇫🇮 핀란드</div>
+      <div style="color:#555;line-height:1.65;">Gurr 상대적 박탈감: 행복지수 1위 국가에서 경제 불황이 실망으로 작용. 고기대 + 저성과 = 더 큰 박탈감. Durkheim 아노미: 핀스당 집권 후 퇴장 = 포퓰리즘이 제도화되면서 일반화.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ Ⅱ 역사 ══ -->
+<div class="sec-title">Ⅱ &nbsp;역사 — 바이킹에서 복지국가까지</div>
+<div class="four-grid">
+  <div class="hist-card">
+    <div class="hist-title se">🇸🇪 스웨덴</div>
+    <div class="hist-item"><span class="hist-year">1939~45</span><span class="hist-text">중립 유지. 나치 독일과 무역 but 전쟁 미참여. TBI 낮음.</span></div>
+    <div class="hist-item"><span class="hist-year">1930~70</span><span class="hist-text">사민당 장기 집권으로 복지국가 기틀 완성. '스웨덴 모델' 탄생.</span></div>
+    <div class="hist-item"><span class="hist-year">2015</span><span class="hist-text">난민 16만 명 수용 — 유럽 1인당 최다. 통합 과부하 시작.</span></div>
+    <div class="hist-item"><span class="hist-year">2022~</span><span class="hist-text">Sweden Democrats 지지로 우파 연정 집권. 이민 정책 대전환.</span></div>
+    <div class="hist-item"><span class="hist-year">2025</span><span class="hist-text">조직범죄 급증. 1월 폭탄 30건+. NATO 가입(2024) 완료.</span></div>
+    <div style="margin-top:5px;font-size:9px;color:#006AA7;font-family:'JetBrains Mono',monospace;">★ 복지국가의 통합 실패가 Λ¹² 핵심 변수</div>
+  </div>
+  <div class="hist-card">
+    <div class="hist-title no">🇳🇴 노르웨이</div>
+    <div class="hist-item"><span class="hist-year">1940~45</span><span class="hist-text">나치 점령. 레지스탕스. TBI 존재.</span></div>
+    <div class="hist-item"><span class="hist-year">1969</span><span class="hist-text">북해 석유 발견. 국부의 전환점.</span></div>
+    <div class="hist-item"><span class="hist-year">1990</span><span class="hist-text">국부펀드(GPFG) 설립. 석유 수익 세대 간 공유 구조화.</span></div>
+    <div class="hist-item"><span class="hist-year">2011</span><span class="hist-text">브레이비크 테러 77명 사망. TBI 최고 충격. 민주주의 수호 결집.</span></div>
+    <div class="hist-item"><span class="hist-year">2025</span><span class="hist-text">GDP +1.8%. 기금 $1.7조. Progress Party 연정 참여.</span></div>
+    <div style="margin-top:5px;font-size:9px;color:#EF2B2D;font-family:'JetBrains Mono',monospace;">★ 브레이비크(2011) = 현재 TBI의 핵심</div>
+  </div>
+  <div class="hist-card">
+    <div class="hist-title dk">🇩🇰 덴마크</div>
+    <div class="hist-item"><span class="hist-year">1940~45</span><span class="hist-text">나치 점령. 유대인 구출 작전으로 95% 구조. TBI + 자긍심.</span></div>
+    <div class="hist-item"><span class="hist-year">1973</span><span class="hist-text">덴마크인민당 전신 — 최초 극우 포퓰리즘 등장.</span></div>
+    <div class="hist-item"><span class="hist-year">2001</span><span class="hist-text">이민 제한 시작. 이후 세계 최엄격 이민법 구축.</span></div>
+    <div class="hist-item"><span class="hist-year">2015~</span><span class="hist-text">사민당 메테 프레데릭센 — 극우 이민 정책 흡수, 집권 성공.</span></div>
+    <div class="hist-item"><span class="hist-year">2024</span><span class="hist-text">망명 신청 864명 — 역대 최저. 이민 억제 성공. Chega 모델?</span></div>
+    <div style="margin-top:5px;font-size:9px;color:#C60C30;font-family:'JetBrains Mono',monospace;">★ 좌파가 우파 정책을 흡수한 성공 사례</div>
+  </div>
+  <div class="hist-card">
+    <div class="hist-title fi">🇫🇮 핀란드</div>
+    <div class="hist-item"><span class="hist-year">1939~40</span><span class="hist-text">소련과 겨울전쟁. 독립 수호. 강한 민족 정체성. TBI.</span></div>
+    <div class="hist-item"><span class="hist-year">1944~91</span><span class="hist-text">소련과 특수관계(핀란드화). 냉전 중립 유지.</span></div>
+    <div class="hist-item"><span class="hist-year">1991~95</span><span class="hist-text">소련 붕괴 후 경제 위기 GDP -11%. 구조 개혁.</span></div>
+    <div class="hist-item"><span class="hist-year">2023</span><span class="hist-text">핀스당 집권 연정 참여. 긴축·복지 삭감.</span></div>
+    <div class="hist-item"><span class="hist-year">2024~25</span><span class="hist-text">핀스당 지지 하락. 경제 2년 마이너스 후 회복 시작. NATO 2023 가입.</span></div>
+    <div style="margin-top:5px;font-size:9px;color:#003580;font-family:'JetBrains Mono',monospace;">★ 행복 1위 + 경제 불황 = 높은 기대의 역설</div>
+  </div>
+</div>
+
+<!-- ══ Ⅲ 기본 통계 ══ -->
+<div class="sec-title">Ⅲ &nbsp;기본 통계 (2024~2025)</div>
+<table class="stats-table">
+  <thead>
+    <tr>
+      <th class="label" style="text-align:left;">지표</th>
+      <th>🇸🇪 스웨덴</th><th>🇳🇴 노르웨이</th><th>🇩🇰 덴마크</th><th>🇫🇮 핀란드</th><th>출처</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class="label">인구</td><td class="val-se">1,060만</td><td class="val-no">550만</td><td class="val-dk">600만</td><td class="val-fi">550만</td><td>UN 2024</td></tr>
+    <tr><td class="label">1인당 GDP</td><td class="val-se">$56,100</td><td class="val-no">$108,700 ⭐</td><td class="val-dk">$68,800</td><td class="val-fi">$53,600</td><td>IMF PPP 2024</td></tr>
+    <tr><td class="label">GDP 성장률 (2025)</td><td class="val-se">+0.5%</td><td class="val-no">+1.8%</td><td class="val-dk">+2.1% ⭐</td><td class="val-fi" style="background:#fff0f0;">+0.2% ⚠ 회복중</td><td>Danske Bank/EY 2026</td></tr>
+    <tr><td class="label">HDI (2025)</td><td class="val-se">0.959 (4위)</td><td class="val-no">0.970 (2위) ⭐</td><td class="val-dk">0.962 (3위)</td><td class="val-fi">0.962 (3위)</td><td>UNDP 2025; 세계 최상위</td></tr>
+    <tr><td class="label">CPI 2025 (TI)</td><td class="val-se">82 / 7위</td><td class="val-no">84 / 5위</td><td class="val-dk">89 / 1위 ⭐</td><td class="val-fi">87 / 3위</td><td>TI 2026.02; 세계 최청렴</td></tr>
+    <tr><td class="label">GPI 2025 (IEP)</td><td class="val-se">1.302 / 9위</td><td class="val-no">1.488 / 16위</td><td class="val-dk">1.304 / 10위</td><td class="val-fi">1.107 / 2위 ⭐</td><td>IEP 2025</td></tr>
+    <tr><td class="label">극우 지지율</td><td class="val-se">SD ~20% 연정지지</td><td class="val-no">FrP ~15% 연정</td><td class="val-dk">DF+Denmark ~15%</td><td class="val-fi">PS ~14% 퇴출 후</td><td>2025 여론조사</td></tr>
+    <tr><td class="label">이민자 비율</td><td class="val-se">20%+ ⚠</td><td class="val-no">18%</td><td class="val-dk">11% (정책 억제)</td><td class="val-fi">8%</td><td>각국 통계청 2024</td></tr>
+    <tr><td class="label">행복지수 (WHR)</td><td class="val-se">4위</td><td class="val-no">7위</td><td class="val-dk">2위</td><td class="val-fi">1위 ⭐ 7년 연속</td><td>World Happiness Report 2025</td></tr>
+    <tr><td class="label">공공지출/GDP</td><td class="val-se">49.4%</td><td class="val-no">48.3%</td><td class="val-dk">50.8%</td><td class="val-fi">55.8% ⭐</td><td>OECD; 모두 OECD 평균 크게 상회</td></tr>
+  </tbody>
+</table>
+
+<!-- ══ Ⅳ 기본 좌표 ══ -->
+<div class="sec-title">Ⅳ &nbsp;Λ¹² 기본 좌표 — 방향보정 Proxy 추정</div>
+<div class="four-grid">
+  <div class="coord-card" style="border:2px solid #006AA7;">
+    <div class="coord-head se">🇸🇪 스웨덴 ⚠ 역설</div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-tbi">TBI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:32%;background:#791F1F;opacity:.7;"></div></div><span class="coord-num" style="color:#791F1F;">0.32</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-sr">SR</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:38%;background:#085041;opacity:.7;"></div></div><span class="coord-num" style="color:#085041;">0.38</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-sig">Σ</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:45%;background:#3C3489;opacity:.7;"></div></div><span class="coord-num" style="color:#3C3489;">0.45</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-oli">OLI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:88%;background:#0C447C;opacity:.7;"></div></div><span class="coord-num" style="color:#0C447C;">0.88</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-lpi">LPI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:48%;background:#633806;opacity:.7;"></div></div><span class="coord-num" style="color:#633806;">+0.02</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-cfd">CFD</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:62%;background:#712B13;opacity:.7;"></div></div><span class="coord-num" style="color:#712B13;">0.62</span></div>
+    <div style="margin-top:5px;font-size:9.5px;color:#888;">BRI:3.8·SSI:6.8·GPI:1.302·F_reach:0.88</div>
+    <div style="font-size:9px;color:#006AA7;font-family:'JetBrains Mono',monospace;">★ BRI 3.8 — 조직범죄 CFD 복합 상승</div>
+  </div>
+  <div class="coord-card">
+    <div class="coord-head no">🇳🇴 노르웨이</div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-tbi">TBI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:38%;background:#791F1F;opacity:.7;"></div></div><span class="coord-num" style="color:#791F1F;">0.38</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-sr">SR</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:35%;background:#085041;opacity:.7;"></div></div><span class="coord-num" style="color:#085041;">0.35</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-sig">Σ</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:32%;background:#3C3489;opacity:.7;"></div></div><span class="coord-num" style="color:#3C3489;">0.32</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-oli">OLI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:90%;background:#0C447C;opacity:.7;"></div></div><span class="coord-num" style="color:#0C447C;">0.90</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-lpi">LPI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:58%;background:#633806;opacity:.7;"></div></div><span class="coord-num" style="color:#633806;">+0.12</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-cfd">CFD</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:42%;background:#712B13;opacity:.7;"></div></div><span class="coord-num" style="color:#712B13;">0.42</span></div>
+    <div style="margin-top:5px;font-size:9.5px;color:#888;">BRI:2.2·SSI:7.5·GPI:1.488·F_reach:0.92</div>
+    <div style="font-size:9px;color:#EF2B2D;font-family:'JetBrains Mono',monospace;">★ TBI 0.38: 브레이비크(2011) 트라우마</div>
+  </div>
+  <div class="coord-card">
+    <div class="coord-head dk">🇩🇰 덴마크</div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-tbi">TBI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:30%;background:#791F1F;opacity:.7;"></div></div><span class="coord-num" style="color:#791F1F;">0.30</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-sr">SR</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:32%;background:#085041;opacity:.7;"></div></div><span class="coord-num" style="color:#085041;">0.32</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-sig">Σ</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:28%;background:#3C3489;opacity:.7;"></div></div><span class="coord-num" style="color:#3C3489;">0.28</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-oli">OLI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:92%;background:#0C447C;opacity:.7;"></div></div><span class="coord-num" style="color:#0C447C;">0.92</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-lpi">LPI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:62%;background:#633806;opacity:.7;"></div></div><span class="coord-num" style="color:#633806;">+0.18</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-cfd">CFD</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:35%;background:#712B13;opacity:.7;"></div></div><span class="coord-num" style="color:#712B13;">0.35</span></div>
+    <div style="margin-top:5px;font-size:9.5px;color:#888;">BRI:2.0·SSI:7.8·GPI:1.304·F_reach:0.90</div>
+    <div style="font-size:9px;color:#C60C30;font-family:'JetBrains Mono',monospace;">★ Σ 0.28 최저 — 이민 억제의 Σ 효과</div>
+  </div>
+  <div class="coord-card">
+    <div class="coord-head fi">🇫🇮 핀란드</div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-tbi">TBI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:40%;background:#791F1F;opacity:.7;"></div></div><span class="coord-num" style="color:#791F1F;">0.40</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-sr">SR</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:30%;background:#085041;opacity:.7;"></div></div><span class="coord-num" style="color:#085041;">0.30</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-sig">Σ</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:38%;background:#3C3489;opacity:.7;"></div></div><span class="coord-num" style="color:#3C3489;">0.38</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-oli">OLI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:88%;background:#0C447C;opacity:.7;"></div></div><span class="coord-num" style="color:#0C447C;">0.88</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-lpi">LPI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:52%;background:#633806;opacity:.7;"></div></div><span class="coord-num" style="color:#633806;">+0.06</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-cfd">CFD</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:28%;background:#712B13;opacity:.7;"></div></div><span class="coord-num" style="color:#712B13;">0.28</span></div>
+    <div style="margin-top:5px;font-size:9.5px;color:#888;">BRI:2.5·SSI:7.2·GPI:1.107·F_reach:0.88</div>
+    <div style="font-size:9px;color:#003580;font-family:'JetBrains Mono',monospace;">★ TBI 0.40: 겨울전쟁+소련 압박 기억</div>
+  </div>
+</div>
+
+<div class="formula-box">
+  <div class="formula-title">Λ¹² v9.11 §30 + 북유럽 OLI 특기</div>
+  <div class="formula-eq">Λ-Score = Σ(get_w(norm_i)) / 12 / 1.29</div>
+  <div class="formula-note">
+    북유럽 OLI: 스웨덴 0.88 · 노르웨이 0.90 · 덴마크 0.92 · 핀란드 0.88 — 전 세계 최고 신뢰구간. Λ-Score 수치 신뢰도 가장 높은 권역.<br>
+    <strong>HDI·CPI·GPI 역전 효과:</strong> 안정방향 8개 변수 역전(1-v) 시 — 이들 최상위 지표가 Λ를 크게 낮추는 방향으로 작동. 북유럽이 전 세계 최저 Λ 권역 예상.<br>
+    <strong>스웨덴 BRI 3.8 특기:</strong> 조직범죄 증가가 BRI를 올림. 다른 3국과의 갭이 이 변수에서 발생.
+  </div>
+</div>
+
+<!-- ══ Ⅴ 레이더 ══ -->
+<div class="sec-title">Ⅴ &nbsp;Λ¹² 12지수 레이더 — 북유럽 4국</div>
+<div class="radar-wrap">
+  <div class="radar-title">북유럽 4국 레이더 (방향보정 정규화)</div>
+  <div style="display:flex;justify-content:center;">
+    <svg width="520" height="400" viewBox="0 0 520 400" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(260,200)">
+        <circle r="40"  fill="none" stroke="#DDD8CE" stroke-width="1"/>
+        <circle r="80"  fill="none" stroke="#DDD8CE" stroke-width="1"/>
+        <circle r="104" fill="none" stroke="#BA7517" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.5"/>
+        <circle r="120" fill="none" stroke="#DDD8CE" stroke-width="1"/>
+        <circle r="160" fill="none" stroke="#E24B4A" stroke-width="1" stroke-dasharray="5,3" opacity="0.3"/>
+        <line x1="0" y1="0" x2="0"    y2="-160" stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="80"   y2="-139" stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="139"  y2="-80"  stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="160"  y2="0"    stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="139"  y2="80"   stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="80"   y2="139"  stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="0"    y2="160"  stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-80"  y2="139"  stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-139" y2="80"   stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-160" y2="0"    stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-139" y2="-80"  stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-80"  y2="-139" stroke="#DDD8CE" stroke-width="1"/>
+        <text x="5" y="-42" font-size="7" fill="#aaa" font-family="JetBrains Mono">0.25</text>
+        <text x="5" y="-82" font-size="7" fill="#aaa" font-family="JetBrains Mono">0.5</text>
+        <text x="5" y="-122" font-size="7" fill="#aaa" font-family="JetBrains Mono">0.75</text>
+        <text x="0"    y="-172" text-anchor="middle" font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">BRI</text>
+        <text x="88"   y="-150" text-anchor="start"  font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">SSI</text>
+        <text x="150"  y="-86"  text-anchor="start"  font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">SR</text>
+        <text x="168"  y="4"    text-anchor="start"  font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">GPI</text>
+        <text x="150"  y="92"   text-anchor="start"  font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">TBI</text>
+        <text x="88"   y="155"  text-anchor="start"  font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">Σ</text>
+        <text x="0"    y="178"  text-anchor="middle" font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">OLI</text>
+        <text x="-92"  y="155"  text-anchor="end"    font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">LPI</text>
+        <text x="-154" y="92"   text-anchor="end"    font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">CFD</text>
+        <text x="-172" y="4"    text-anchor="end"    font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">HDI</text>
+        <text x="-154" y="-86"  text-anchor="end"    font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">CPI</text>
+        <text x="-92"  y="-150" text-anchor="end"    font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">F_reach</text>
+        <!--
+          방향보정: 안정방향 역전 후
+          스웨덴: BRI0.38,SSI0.32,SR0.38,GPI0.87,TBI0.32,Σ0.45,OLI0.12,LPI0.52,CFD0.62,HDI0.041,CPI0.18,Freach0.12
+          노르웨이: BRI0.22,SSI0.25,SR0.35,GPI0.85,TBI0.38,Σ0.32,OLI0.10,LPI0.62,CFD0.42,HDI0.030,CPI0.16,Freach0.08
+          덴마크: BRI0.20,SSI0.22,SR0.32,GPI0.87,TBI0.30,Σ0.28,OLI0.08,LPI0.68,CFD0.35,HDI0.038,CPI0.11,Freach0.10
+          핀란드: BRI0.25,SSI0.28,SR0.30,GPI0.95,TBI0.40,Σ0.38,OLI0.12,LPI0.56,CFD0.28,HDI0.038,CPI0.13,Freach0.12
+        -->
+        <!-- 스웨덴 (파랑) - 4국 중 가장 큰 면적 -->
+        <polygon points="0,-61 45,-32 96,-43 139,0 79,58 72,53 0,19 -59,60 -84,64 -7,0 -46,-15 -17,-21"
+          fill="#006AA7" fill-opacity="0.15" stroke="#006AA7" stroke-width="2" stroke-opacity="0.9"/>
+        <!-- 노르웨이 (적) -->
+        <polygon points="0,-35 32,-25 89,-35 136,0 94,68 51,38 0,16 -70,68 -57,55 -5,0 -41,-13 -13,-15"
+          fill="#EF2B2D" fill-opacity="0.12" stroke="#EF2B2D" stroke-width="1.8" stroke-opacity="0.85"/>
+        <!-- 덴마크 (진적) -->
+        <polygon points="0,-32 28,-23 80,-32 139,0 74,54 45,33 0,13 -77,75 -47,46 -6,0 -28,-9 -13,-14"
+          fill="#C60C30" fill-opacity="0.12" stroke="#C60C30" stroke-width="1.8" stroke-opacity="0.85" stroke-dasharray="6,3"/>
+        <!-- 핀란드 (남청) -->
+        <polygon points="0,-40 35,-27 76,-30 152,0 99,72 61,45 0,19 -63,61 -38,37 -6,0 -33,-11 -16,-17"
+          fill="#003580" fill-opacity="0.12" stroke="#003580" stroke-width="1.8" stroke-opacity="0.85" stroke-dasharray="4,3"/>
+        <circle cx="0" cy="0" r="3" fill="#5E9186"/>
+      </g>
+    </svg>
+  </div>
+  <div class="radar-legend">
+    <div class="radar-legend-item"><div class="radar-dot" style="background:#006AA7;"></div><span>🇸🇪 스웨덴 (4국 중 최대 면적)</span></div>
+    <div class="radar-legend-item"><div class="radar-dot" style="background:#EF2B2D;"></div><span>🇳🇴 노르웨이</span></div>
+    <div class="radar-legend-item"><div class="radar-dot" style="background:#C60C30;border:1px dashed;"></div><span>🇩🇰 덴마크 (점선)</span></div>
+    <div class="radar-legend-item"><div class="radar-dot" style="background:#003580;border:1px dashed;"></div><span>🇫🇮 핀란드 (점선)</span></div>
+  </div>
+  <div style="margin-top:9px;font-size:10.5px;color:#888;text-align:center;">
+    ※ 북유럽 4국 레이더 면적이 전 세계 최소 — HDI·CPI·GPI·F_reach 역전값이 매우 낮기 때문.<br>
+    스웨덴이 CFD·BRI 방향으로 돌출. 덴마크 CFD·Σ 방향 최소 — 이민 억제 정책의 Λ¹² 효과.
+  </div>
+</div>
+
+<!-- ══ PPR-5 ══ -->
+<div class="sec-title">Ⅶ &nbsp;PPR-1 정치</div>
+<div class="ppr-grid-4">
+  <div class="ppr-card"><div class="ppr-card-head se">🇸🇪 스웨덴</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">현황</div>
+    <div style="margin-bottom:5px;">크리스테르손 우파 연정 (SD 지지). 이민 정책 대전환. 2024 NATO 가입. 조직범죄 대응 강화.</div>
+    <div class="ppr-stack-label">Λ¹²</div>
+    <div><span class="tag tag-sig">Σ 0.45</span> · <span class="tag tag-cfd">CFD 0.62</span> — 4국 중 Σ·CFD 최고. 이민 통합 실패가 정치 Σ 상승 원인. SD 집권지지 = Σ 억제 시도.</div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-card-head no">🇳🇴 노르웨이</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">현황</div>
+    <div style="margin-bottom:5px;">스토레 노동당 정부(2021~). Progress Party(FrP) 야당. 석유 생산 지속 논란. 기후 정책 갈등.</div>
+    <div class="ppr-stack-label">Λ¹²</div>
+    <div><span class="tag tag-sig">Σ 0.32</span> · <span class="tag tag-lpi">LPI +0.12</span> — 4국 중 양호. 석유기금이 정치 갈등을 완충. 브레이비크 이후 민주주의 결집 지속.</div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-card-head dk">🇩🇰 덴마크</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">현황</div>
+    <div style="margin-bottom:5px;">프레데릭센 사민당 정부 지속. 이민 정책으로 극우 흡수 성공. 망명 864명(2024) 역대 최저.</div>
+    <div class="ppr-stack-label">Λ¹²</div>
+    <div><span class="tag tag-sig">Σ 0.28</span> 최저 · <span class="tag tag-lpi">LPI +0.18</span> 최고 — 이민 정책 강화가 Σ를 낮춘 덴마크형 접근. PWT-r 최고 예상.</div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-card-head fi">🇫🇮 핀란드</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">현황</div>
+    <div style="margin-bottom:5px;">오르포 연정(2023~). 핀스당 포함 → 긴축 정책. 2025년 핀스당 지지 14%로 하락. 2023 NATO 가입.</div>
+    <div class="ppr-stack-label">Λ¹²</div>
+    <div><span class="tag tag-sig">Σ 0.38</span> — 경제 2년 마이너스 후 Σ 상승했다가 회복 중. 핀스당 포함 연정이 Σ를 낮추는 효과 — 포퓰리즘 제도화의 역설.</div>
+  </div></div>
+</div>
+
+<div class="sec-title">Ⅷ·Ⅸ &nbsp;PPR-2 경제 + PPR-3 사회</div>
+<div class="ppr-grid-4">
+  <div class="ppr-card"><div class="ppr-card-head se">🇸🇪 스웨덴</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">경제</div>
+    <div style="margin-bottom:5px;">GDP +0.5%. 경기 침체 탈출 중. 크로나 약세. 주택시장 침체. 에릭슨·볼보·IKEA 수출 강점.</div>
+    <div class="ppr-stack-label">사회</div>
+    <div>이민자 20%+. 통합 실패 → 조직범죄 62,000명. 말뫼 분리 이미지. F_reach 0.88 강점이나 분배 불평등 심화. 1985~2010 소득 불평등 OECD 최대 증가.</div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-card-head no">🇳🇴 노르웨이</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">경제</div>
+    <div style="margin-bottom:5px;">GDP +1.8%. 석유기금 $1.7조. 1인당 GDP $108,700 세계 최고권. 오일·가스 의존 지속가능성 논란.</div>
+    <div class="ppr-stack-label">사회</div>
+    <div>F_reach 0.92 — 4국 최고. 복지 완전 보장. 브레이비크 이후 '노르웨이 방식' — 폭력에 더 많은 민주주의로 대응. LPI +0.12 반영.</div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-card-head dk">🇩🇪 덴마크</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">경제</div>
+    <div style="margin-bottom:5px;">GDP +2.1% 4국 최고. 제약·녹색에너지 강점(Novo Nordisk GLP-1 붐). CPI 1위 · GPI 10위 · HDI 3위 복합 강점.</div>
+    <div class="ppr-stack-label">사회</div>
+    <div>F_reach 0.90. 이민 864명 최저 — 분배 압박 낮음. 그러나 배제된 이민자 처우 인권 논란. '덴마크 패러독스': 가장 행복한 나라가 가장 엄격한 이민법.</div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-card-head fi">🇫🇮 핀란드</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">경제</div>
+    <div style="margin-bottom:5px;">GDP +0.2% 간신히 회복. 2년 연속 마이너스 후. 러시아 국경 폐쇄 충격. 노키아 이후 새 성장 동력 부재.</div>
+    <div class="ppr-stack-label">사회</div>
+    <div>행복지수 7년 연속 1위 — 경제 불황과 역설. Gurr: 기대가 높을수록 실망도 크다. F_reach 0.88 양호. 핀스당 긴축으로 복지 압박 논란.</div>
+  </div></div>
+</div>
+
+<div class="sec-title">Ⅹ·Ⅺ &nbsp;PPR-4 환경 + PPR-5 거버넌스</div>
+<div class="ppr-grid-4">
+  <div class="ppr-card"><div class="ppr-card-head se">🇸🇪 스웨덴</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">환경</div>
+    <div style="margin-bottom:4px;">재생에너지 60%+. 탈원전 논쟁 중(우파 재검토). 숲 관리 세계 모범. 기후 목표 선도.</div>
+    <div class="ppr-stack-label">거버넌스</div>
+    <div>CPI 82(7위). LPI +0.02 소폭. 조직범죄가 CPI를 압박. 사법-행정 투명성은 여전히 세계 최고권 유지.</div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-card-head no">🇳🇴 노르웨이</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">환경</div>
+    <div style="margin-bottom:4px;">석유 수출 국가 + 기후 선진국 역설. 전기차 보급 1위. 재생에너지 98%+. 탄소 포집 선도.</div>
+    <div class="ppr-stack-label">거버넌스</div>
+    <div>CPI 84(5위). LPI +0.12 4국 2위. 오일펀드 윤리위원회 — 투자 배제 목록 운영. 세계 거버넌스 모범.</div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-card-head dk">🇩🇰 덴마크</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">환경</div>
+    <div style="margin-bottom:4px;">풍력 발전 세계 1위 기술. 전력 수요 50%+ 풍력. 코펜하겐 2025 탄소중립 목표 달성 임박.</div>
+    <div class="ppr-stack-label">거버넌스</div>
+    <div>CPI 89(1위) 세계 최청렴. LPI +0.18 4국 최고. 투명성·반부패 세계 모범. β 최소 = PWT-r 최고 구조.</div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-card-head fi">🇫🇮 핀란드</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">환경</div>
+    <div style="margin-bottom:4px;">핵발전 신규 건설(올킬루오토 3호). 숲 탄소 흡수 논란. 러시아 국경 장벽 건설 - 생태 영향.</div>
+    <div class="ppr-stack-label">거버넌스</div>
+    <div>CPI 87(3위). LPI +0.06. GPI 2위(세계 2위 평화국) — 군사력 증강 후에도 평화 유지. β 낮음 = PWT-r 양호.</div>
+  </div></div>
+</div>
+
+<!-- ══ ⅩII 담론육층 ══ -->
+<div class="sec-title">ⅩII &nbsp;담론육층 — 4국 병렬</div>
+<div class="four-grid">
+  <div class="layer-card">
+    <div class="layer-card-head se">🇸🇪 스웨덴</div>
+    <div class="layer-row"><span class="layer-num">①</span><span style="font-size:10.5px;color:#555;">Λ-Score 4국 최고·CFD 0.62·조직범죄 62,000</span></div>
+    <div class="layer-row"><span class="layer-num">②</span><span style="font-size:10.5px;color:#555;">복지국가 통합 메커니즘의 속도 한계.</span></div>
+    <div class="layer-row"><span class="layer-num">③</span><span style="font-size:10.5px;color:#555;">중립 전통→관용 정책→2015 과부하→SD 부상.</span></div>
+    <div class="layer-row"><span class="layer-num">④</span><span style="font-size:10.5px;color:#555;">외부: 관용의 모범. 내부: "스웨덴이 스웨덴을 잃었다".</span></div>
+    <div class="layer-row"><span class="layer-num">⑤</span><span style="font-size:10.5px;color:#555;">"다양성이 강점" vs "통합 없는 개방은 붕괴".</span></div>
+    <div class="layer-row"><span class="layer-num">⑥</span><span style="font-size:10.5px;color:#B8850E;">말뫼의 청년은 스웨덴이 실패한 것인가, 아니면 우리가 스웨덴에게 실패한 것인가.</span></div>
+  </div>
+  <div class="layer-card">
+    <div class="layer-card-head no">🇳🇴 노르웨이</div>
+    <div class="layer-row"><span class="layer-num">①</span><span style="font-size:10.5px;color:#555;">Λ 2위·HDI 2위·석유기금 $1.7조·Σ 0.32</span></div>
+    <div class="layer-row"><span class="layer-num">②</span><span style="font-size:10.5px;color:#555;">석유 부 + 복지 완성 + 민주주의 결집 구조.</span></div>
+    <div class="layer-row"><span class="layer-num">③</span><span style="font-size:10.5px;color:#555;">나치 점령→브레이비크→민주주의로 대응 반복.</span></div>
+    <div class="layer-row"><span class="layer-num">④</span><span style="font-size:10.5px;color:#555;">외부: 세계 최고 복지. 내부: "석유 없이도 이랬을까".</span></div>
+    <div class="layer-row"><span class="layer-num">⑤</span><span style="font-size:10.5px;color:#555;">"석유는 세대 자산" vs "기후 위기에 석유 팔면 안 된다".</span></div>
+    <div class="layer-row"><span class="layer-num">⑥</span><span style="font-size:10.5px;color:#B8850E;">브레이비크에게 노르웨이가 대답한 방식 — 폭력에 더 많은 민주주의로.</span></div>
+  </div>
+  <div class="layer-card">
+    <div class="layer-card-head dk">🇩🇰 덴마크</div>
+    <div class="layer-row"><span class="layer-num">①</span><span style="font-size:10.5px;color:#555;">Λ 최저·CPI 1위·이민 864명·Σ 0.28</span></div>
+    <div class="layer-row"><span class="layer-num">②</span><span style="font-size:10.5px;color:#555;">이민 억제 + 좌파 정부의 우파 정책 흡수 구조.</span></div>
+    <div class="layer-row"><span class="hist-year" style="min-width:14px;font-size:9.5px;">③</span><span style="font-size:10.5px;color:#555;">나치→유대인 구출→관용→2001 전환→세계 최엄격.</span></div>
+    <div class="layer-row"><span class="layer-num">④</span><span style="font-size:10.5px;color:#555;">외부: 스웨덴과 다른 길. 내부: "이게 덴마크 가치인가".</span></div>
+    <div class="layer-row"><span class="layer-num">⑤</span><span style="font-size:10.5px;color:#555;">"실용적 이민 관리" vs "차별의 제도화".</span></div>
+    <div class="layer-row"><span class="layer-num">⑥</span><span style="font-size:10.5px;color:#B8850E;">유대인을 구출한 나라가 지금 무엇을 선택하고 있는가.</span></div>
+  </div>
+  <div class="layer-card">
+    <div class="layer-card-head fi">🇫🇮 핀란드</div>
+    <div class="layer-row"><span class="layer-num">①</span><span style="font-size:10.5px;color:#555;">행복 1위·GDP +0.2%·핀스당 퇴장·TBI 0.40</span></div>
+    <div class="layer-row"><span class="layer-num">②</span><span style="font-size:10.5px;color:#555;">복지 강점 + 경제 정체 + 러시아 위협 복합.</span></div>
+    <div class="layer-row"><span class="layer-num">③</span><span style="font-size:10.5px;color:#555;">겨울전쟁→핀란드화→독립→NATO — 안보 불안 DNA.</span></div>
+    <div class="layer-row"><span class="layer-num">④</span><span style="font-size:10.5px;color:#555;">외부: 행복지수 1위 신화. 내부: "행복지수가 밥 먹여주나".</span></div>
+    <div class="layer-row"><span class="layer-num">⑤</span><span style="font-size:10.5px;color:#555;">"복지국가 지속" vs "긴축 없인 지속 불가".</span></div>
+    <div class="layer-row"><span class="layer-num">⑥</span><span style="font-size:10.5px;color:#B8850E;">세계에서 가장 행복한 나라 — 그 행복이 숫자인지 삶인지 물어봐야 한다.</span></div>
+  </div>
+</div>
+
+<!-- ══ ⅩⅢ 위상공간 ══ -->
+<div class="sec-title">ⅩⅢ &nbsp;위상공간 — SR-Σ 사분면 (21국 누적)</div>
+<div class="phase-wrap">
+  <div class="phase-title">SR-Σ 사분면 — 북유럽 4국 + 이전 17국</div>
+  <div class="phase-sub">21국 누적 · 북유럽이 Q1/Q3 좌하단에 집중 — 전 세계 가장 안정적 좌표</div>
+  <svg width="100%" height="320" viewBox="0 0 620 320" xmlns="http://www.w3.org/2000/svg">
+    <rect x="40" y="15" width="250" height="145" fill="#E8F5E9" opacity="0.3" rx="3"/>
+    <rect x="290" y="15" width="290" height="145" fill="#FFF3E0" opacity="0.3" rx="3"/>
+    <rect x="40" y="160" width="250" height="150" fill="#E3F2FD" opacity="0.3" rx="3"/>
+    <rect x="290" y="160" width="290" height="150" fill="#FCE4EC" opacity="0.3" rx="3"/>
+    <text x="165"  y="32" text-anchor="middle" font-size="8" fill="#2E7D32" font-weight="700" font-family="JetBrains Mono">Q1 건강한 저항</text>
+    <text x="435"  y="32" text-anchor="middle" font-size="8" fill="#E65100" font-weight="700" font-family="JetBrains Mono">Q2 가짜안정</text>
+    <text x="165" y="178" text-anchor="middle" font-size="8" fill="#1565C0" font-weight="700" font-family="JetBrains Mono">Q3 개방적 갈등</text>
+    <text x="435" y="178" text-anchor="middle" font-size="8" fill="#880E4F" font-weight="700" font-family="JetBrains Mono">Q4 체제 위기</text>
+    <line x1="40" y1="15" x2="40" y2="310" stroke="#999" stroke-width="1.5"/>
+    <line x1="40" y1="310" x2="580" y2="310" stroke="#999" stroke-width="1.5"/>
+    <line x1="290" y1="15" x2="290" y2="310" stroke="#999" stroke-width="1" stroke-dasharray="5,3"/>
+    <line x1="40" y1="160" x2="580" y2="160" stroke="#999" stroke-width="1" stroke-dasharray="5,3"/>
+    <line x1="40" y1="100" x2="580" y2="100" stroke="#E53935" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.6"/>
+    <text x="584" y="104" font-size="7" fill="#E53935" font-family="JetBrains Mono">Σ=0.70</text>
+    <text x="30" y="18" text-anchor="end" font-size="8" fill="#666" font-family="JetBrains Mono">Σ1.0</text>
+    <text x="30" y="160" text-anchor="end" font-size="8" fill="#666" font-family="JetBrains Mono">Σ0.5</text>
+    <text x="30" y="310" text-anchor="end" font-size="8" fill="#666" font-family="JetBrains Mono">Σ0.0</text>
+    <text x="40"  y="322" font-size="8" fill="#666" font-family="JetBrains Mono">SR0.0</text>
+    <text x="290" y="322" text-anchor="middle" font-size="8" fill="#666" font-family="JetBrains Mono">SR0.5</text>
+    <text x="575" y="322" font-size="8" fill="#666" font-family="JetBrains Mono">SR1.0</text>
+
+    <!-- 이전 17국 반투명 (축약) -->
+    <circle cx="137" cy="104" r="9" fill="#8B1A1A" fill-opacity="0.08" stroke="#8B1A1A" stroke-width="1"/><text x="137" y="107" text-anchor="middle" font-size="8">🇰🇭</text>
+    <circle cx="375" cy="122" r="10" fill="#1A6B3A" fill-opacity="0.08" stroke="#1A6B3A" stroke-width="1"/><text x="375" y="125" text-anchor="middle" font-size="9">🇧🇩</text>
+    <circle cx="337" cy="131" r="11" fill="#0D5EAF" fill-opacity="0.08" stroke="#0D5EAF" stroke-width="1"/><text x="337" y="134" text-anchor="middle" font-size="9">🇬🇷</text>
+    <circle cx="283" cy="145" r="10" fill="#009246" fill-opacity="0.08" stroke="#009246" stroke-width="1"/><text x="283" y="148" text-anchor="middle" font-size="9">🇮🇹</text>
+    <circle cx="321" cy="142" r="11" fill="#012169" fill-opacity="0.08" stroke="#012169" stroke-width="1"/><text x="321" y="145" text-anchor="middle" font-size="9">🇬🇧</text>
+    <circle cx="375" cy="136" r="12" fill="#002395" fill-opacity="0.08" stroke="#002395" stroke-width="1"/><text x="375" y="139" text-anchor="middle" font-size="9">🇫🇷</text>
+    <!-- 기타 반투명 소형 -->
+    <circle cx="299" cy="163" r="8" fill="#AA151B" fill-opacity="0.06" stroke="#AA151B" stroke-width="0.8"/><text x="299" y="166" text-anchor="middle" font-size="7">🇪🇸</text>
+    <circle cx="299" cy="159" r="8" fill="#333" fill-opacity="0.06" stroke="#333" stroke-width="0.8"/><text x="310" y="154" text-anchor="middle" font-size="7">🇩🇪</text>
+    <circle cx="283" cy="165" r="8" fill="#AE1C28" fill-opacity="0.06" stroke="#AE1C28" stroke-width="0.8"/><text x="275" y="178" text-anchor="middle" font-size="7">🇳🇱</text>
+
+    <!-- 북유럽 4국 선명 — x=40+SR*540, y=310-Σ*290 -->
+    <!-- 스웨덴 SR0.38 Σ0.45 → x=245, y=179 -->
+    <circle cx="245" cy="179" r="16" fill="#006AA7" fill-opacity="0.22" stroke="#006AA7" stroke-width="2.5"/>
+    <text x="245" y="183" text-anchor="middle" font-size="13">🇸🇪</text>
+    <text x="245" y="167" text-anchor="middle" font-size="7.5" fill="#006AA7" font-weight="700" font-family="JetBrains Mono">SE.38/.45</text>
+    <!-- 노르웨이 SR0.35 Σ0.32 → x=229, y=217 -->
+    <circle cx="229" cy="217" r="14" fill="#EF2B2D" fill-opacity="0.2" stroke="#EF2B2D" stroke-width="2"/>
+    <text x="229" y="221" text-anchor="middle" font-size="12">🇳🇴</text>
+    <text x="229" y="232" text-anchor="middle" font-size="7.5" fill="#EF2B2D" font-weight="700" font-family="JetBrains Mono">NO.35/.32</text>
+    <!-- 덴마크 SR0.32 Σ0.28 → x=213, y=229 -->
+    <circle cx="213" cy="229" r="13" fill="#C60C30" fill-opacity="0.2" stroke="#C60C30" stroke-width="2"/>
+    <text x="213" y="233" text-anchor="middle" font-size="12">🇩🇰</text>
+    <text x="185" y="248" text-anchor="middle" font-size="7.5" fill="#C60C30" font-weight="700" font-family="JetBrains Mono">DK.32/.28</text>
+    <!-- 핀란드 SR0.30 Σ0.38 → x=202, y=200 -->
+    <circle cx="202" cy="200" r="14" fill="#003580" fill-opacity="0.2" stroke="#003580" stroke-width="2"/>
+    <text x="202" y="204" text-anchor="middle" font-size="12">🇫🇮</text>
+    <text x="170" y="192" text-anchor="middle" font-size="7.5" fill="#003580" font-weight="700" font-family="JetBrains Mono">FI.30/.38</text>
+
+    <!-- 북유럽 클러스터 표시 -->
+    <ellipse cx="222" cy="208" rx="55" ry="40" fill="none" stroke="#3A6A5E" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.5"/>
+    <text x="222" y="258" text-anchor="middle" font-size="8" fill="#3A6A5E" font-family="JetBrains Mono">북유럽 클러스터</text>
+
+    <text x="40" y="322" font-size="7.5" fill="#555" font-family="JetBrains Mono" dy="10">★ 북유럽 4국 Q1/Q3 경계 — 전체 21국 중 가장 안정적. 스웨덴만 Q2 방향으로 이탈 중. 반투명=이전국</text>
+  </svg>
+</div>
+
+<!-- ══ ⅩⅣ 오차 ══ -->
+<div class="sec-title">ⅩⅣ &nbsp;오차 범위</div>
+<div class="four-grid">
+  <div class="err-card"><div class="err-head se">🇸🇪 스웨덴</div>
+    <div class="err-item">· OLI 0.88 최고. SCB(통계청) 세계 최고 수준.</div>
+    <div class="err-item">· BRI 3.8 — 조직범죄 통계 정확도 높으나 범위 추정 어려움.</div>
+    <div class="err-item" style="color:#B8850E;">· 신뢰구간: ±0.06</div>
+  </div>
+  <div class="err-card"><div class="err-head no">🇳🇴 노르웨이</div>
+    <div class="err-item">· OLI 0.90 최고. 석유기금 포함 거시 통계 투명도 최상.</div>
+    <div class="err-item">· TBI 0.38 — 브레이비크 트라우마 정량화 한계.</div>
+    <div class="err-item" style="color:#B8850E;">· 신뢰구간: ±0.05</div>
+  </div>
+  <div class="err-card"><div class="err-head dk">🇩🇰 덴마크</div>
+    <div class="err-item">· OLI 0.92 전 세계 최고. DST(통계청) 완전 공개.</div>
+    <div class="err-item">· 이민 864명 — 이민 억제 자체가 Σ 측정 왜곡 가능.</div>
+    <div class="err-item" style="color:#B8850E;">· 신뢰구간: ±0.05</div>
+  </div>
+  <div class="err-card"><div class="err-head fi">🇫🇮 핀란드</div>
+    <div class="err-item">· OLI 0.88. Statistics Finland 투명도 높음.</div>
+    <div class="err-item">· 행복지수 1위 = 주관적 측정 — OLI와 별개.</div>
+    <div class="err-item" style="color:#B8850E;">· 신뢰구간: ±0.06</div>
+  </div>
+</div>
+
+<!-- ══ ⅩⅤ 한반도 ══ -->
+<div class="sec-title">ⅩⅤ &nbsp;한반도에서 바라보는 북유럽</div>
+<div class="kr-box">
+  <div class="kr-title">한반도 시선</div>
+  <div class="kr-text">
+    핀란드는 한국이 가장 자주 참조하는 나라다 — 교육 시스템. PISA 1위의 비결이 무엇인지를 한국이 계속 연구해왔다. 핀란드가 "경쟁 없는 교육"을 실천하는 동안 한국은 세계 최고 강도의 입시 경쟁을 유지했다. 둘 다 높은 교육 성취를 달성했다. 방법이 다를 수 있다는 것 — 이것이 담론육층 5층(프레임)의 교훈이다.
+    <br><br>
+    스웨덴 조직범죄 급증은 한국의 다문화 정책에 경고다. 이민자가 늘어날 때 통합 속도가 유입 속도를 따라가지 못하면 CFD가 올라간다. 한국도 2030~2040년 인구 감소 대응을 위해 이민 확대가 불가피하다 — 스웨덴의 실패에서 배울 것이 있다.
+    <br><br>
+    노르웨이의 석유기금 — 한국에 비유하면 삼성·현대의 수출 수익을 국부 펀드로 운용하는 구조다. 한국도 국민연금이 그 역할을 일부 담당하지만 규모와 투명성에서 차이가 크다. 세대 간 자산 공유의 제도화가 PWT-r을 높이는 구조라는 점 — F_reach와 연결되는 지점이다.
+    <br><br>
+    <strong>경제 연결:</strong> 노르웨이 에퀴노르(석유), 덴마크 Novo Nordisk(GLP-1 비만치료제), 스웨덴 에릭슨(5G) — 모두 한국 기업과 직접 경쟁·협력 관계.
+  </div>
+</div>
+
+<!-- ══ 결론 ══ -->
+<div class="sec-title">결론 궤도 — 황금모델의 균열은 어디에 있는가</div>
+<div class="conclusion">
+  <div class="conclusion-title">세계 최고 지표 — 그래도 Λ가 0이 아닌 이유</div>
+  <div class="conclusion-text">
+    북유럽 4국은 Λ¹² 기준으로 전 세계에서 가장 낮은 위험 구간에 있다.<br>
+    HDI·CPI·GPI·F_reach가 모두 역전 후 낮은 값 — 안정방향 변수들이 Λ를 강력하게 낮추는 구조다.<br><br>
+    그런데 0이 아니다. 그 이유는 CFD와 BRI다.<br>
+    스웨덴이 홀로 이 두 변수에서 이탈하고 있다 — 통합 실패의 대가다.<br><br>
+    덴마크는 다른 선택을 했다. Σ를 낮추기 위해 CFD를 억제했다.<br>
+    그것이 옳은가 — Λ¹²는 답하지 않는다. 다만 그 선택의 결과를 보여줄 뿐이다.<br><br>
+    <em>황금모델의 균열은 외부에서 온 것이 아니었다.<br>
+    가장 개방적인 사회가 스스로 만들어낸 한계였다.</em>
+  </div>
+</div>
+
+<!-- ══ 시리즈 ══ -->
+<div class="series-box">
+  <div class="series-title">늘푸른바다 Λ¹² 국가편 시리즈</div>
+  <div class="series-list">
+    <span class="series-item done">#9 미국</span>
+    <span class="series-item done">#10 보츠와나</span>
+    <span class="series-item done">#11 동남아 비교 I</span>
+    <span class="series-item done">#12 동남아 비교 II</span>
+    <span class="series-item done">#13 남아시아 비교 I</span>
+    <span class="series-item done">#14 남유럽 비교 I</span>
+    <span class="series-item done">#15 서유럽 비교 I</span>
+    <span class="series-item current">#16 북유럽 비교 I (스웨덴·노르웨이·덴마크·핀란드)</span>
+    <span class="series-item">동유럽 비교 (예정)</span>
+    <span class="series-item">발칸 비교 (예정)</span>
+  </div>
+</div>
+
+<!-- ══ 푸터 ══ -->
+<div class="footer">
+  <strong>늘푸른바다 사회동역학 연구소</strong> · Everblue Sea Institute for Social Dynamics<br>
+  <a href="https://badaegopa.tistory.com">badaegopa.tistory.com</a> &nbsp;·&nbsp;
+  SSRN Abstract ID 6509200 &nbsp;·&nbsp;
+  슬로건: 분석을 넘어, 재조립으로 / Not analysis, but synthesis.<br><br>
+  <span style="font-size:10px;opacity:.6;">
+    Λ¹² v9.11 · §30 Λ-Score·PWT-r · 2026-04-29<br>
+    데이터: GPI 2025(IEP) · CPI 2025(TI) · Danske Bank Nordic Outlook Mar.2026 · UNDP HDR 2025 · BISI Sweden Organised Crime 2025<br>
+    OLI 0.88~0.92 — 전 세계 최고 신뢰구간. Λ-Score 배지값 Python 검증 후 교체.<br>
+    청해(淸海) © 2026 · 무단 전재 금지
+  </span>
+</div>
+
+</body>
+</html>

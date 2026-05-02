@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Λ¹² 서유럽 비교편 I — 영국·프랑스·독일·네덜란드</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#F5F3EE;font-family:'Noto Sans KR',sans-serif;color:#2A2A2A;font-size:13px;line-height:1.75;}
+.gb-c{color:#012169;} .fr-c{color:#002395;} .de-c{color:#000000;} .nl-c{color:#AE1C28;}
+.tag{display:inline-block;padding:1px 7px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;}
+.tag-tbi{background:#FCEBEB;color:#791F1F;} .tag-sr{background:#E1F5EE;color:#085041;}
+.tag-sig{background:#EEEDFE;color:#3C3489;} .tag-lpi{background:#FAEEDA;color:#633806;}
+.tag-cfd{background:#FAECE7;color:#712B13;} .tag-oli{background:#E6F1FB;color:#0C447C;}
+
+.hero{background:linear-gradient(135deg,#7BADA0,#5E9186);color:#fff;padding:50px 40px 38px;text-align:center;}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;opacity:.75;margin-bottom:12px;}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:42px;letter-spacing:.06em;line-height:1.1;margin-bottom:10px;}
+.hero-sub{font-size:13px;opacity:.85;line-height:1.7;}
+.hero-meta{margin-top:16px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
+.hero-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:3px 13px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.06em;}
+
+.score-banner{display:flex;gap:10px;margin:20px 24px;flex-wrap:wrap;}
+.score-card{flex:1;min-width:140px;background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:12px 14px;text-align:center;border-top:3px solid;}
+.score-card.gb{border-top-color:#012169;} .score-card.fr{border-top-color:#002395;}
+.score-card.de{border-top-color:#000;} .score-card.nl{border-top-color:#AE1C28;}
+.score-flag{font-size:22px;margin-bottom:3px;}
+.score-country{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.05em;margin-bottom:5px;}
+.score-lambda{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:700;margin-bottom:2px;}
+.score-lambda.gb{color:#012169;} .score-lambda.fr{color:#002395;}
+.score-lambda.de{color:#333;} .score-lambda.nl{color:#AE1C28;}
+.score-zone{font-size:10px;font-family:'JetBrains Mono',monospace;padding:2px 8px;border-radius:4px;display:inline-block;margin-bottom:3px;}
+.zone-watch{background:#FFF3E0;color:#E65100;} .zone-danger{background:#FCEBEB;color:#791F1F;}
+.zone-stable{background:#E8F5E9;color:#1B5E20;}
+.score-pwt{font-size:10px;color:#888;font-family:'JetBrains Mono',monospace;}
+
+.declaration{background:#FFFDF8;border-left:4px solid #5E9186;margin:0 24px 24px;padding:16px 20px;border-radius:0 8px 8px 0;}
+.declaration-title{font-family:'Bebas Neue',sans-serif;font-size:15px;color:#3A6A5E;letter-spacing:.05em;margin-bottom:7px;}
+.declaration p{font-size:12.5px;color:#444;line-height:1.8;}
+.peoples-view{margin:0 24px 24px;background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:18px 20px;}
+.pv-title{font-family:'Bebas Neue',sans-serif;font-size:14px;color:#B8850E;letter-spacing:.06em;margin-bottom:10px;}
+.pv-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;}
+.pv-card{background:#F5F3EE;border-radius:8px;padding:10px 12px;border-top:3px solid;}
+.pv-card.gb{border-color:#012169;} .pv-card.fr{border-color:#002395;}
+.pv-card.de{border-color:#333;} .pv-card.nl{border-color:#AE1C28;}
+.pv-flag{font-size:20px;margin-bottom:3px;}
+.pv-name{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:.04em;margin-bottom:4px;}
+.pv-quote{font-size:11px;color:#555;line-height:1.65;font-style:italic;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:.07em;color:#3A6A5E;border-bottom:2px solid #5E9186;margin:26px 24px 13px;padding-bottom:7px;}
+.four-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:11px;margin:0 24px 22px;}
+.note{font-size:10.5px;color:#888;font-style:italic;margin:0 24px 14px;}
+
+.hist-card{background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:12px 14px;}
+.hist-title{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:10px;margin-bottom:7px;}
+.hist-title.gb{color:#012169;} .hist-title.fr{color:#002395;}
+.hist-title.de{color:#333;} .hist-title.nl{color:#AE1C28;}
+.hist-item{display:flex;gap:8px;margin-bottom:6px;font-size:11px;}
+.hist-year{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:9.5px;min-width:40px;color:#B8850E;}
+.hist-text{color:#444;line-height:1.6;}
+
+.stats-table{width:calc(100% - 48px);margin:0 24px 22px;border-collapse:collapse;font-size:11.5px;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05);}
+.stats-table th{background:#3A6A5E;color:#fff;padding:8px 12px;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:10.5px;text-align:center;}
+.stats-table td{padding:7px 12px;border-bottom:1px solid #f0ede7;text-align:center;color:#444;}
+.stats-table tr:last-child td{border:none;}
+.stats-table .label{text-align:left;font-weight:500;color:#3A6A5E;}
+.val-gb{color:#012169;font-weight:700;font-family:'JetBrains Mono',monospace;}
+.val-fr{color:#002395;font-weight:700;font-family:'JetBrains Mono',monospace;}
+.val-de{color:#333;font-weight:700;font-family:'JetBrains Mono',monospace;}
+.val-nl{color:#AE1C28;font-weight:700;font-family:'JetBrains Mono',monospace;}
+
+.coord-card{background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:12px 14px;}
+.coord-head{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:.04em;margin-bottom:8px;}
+.coord-head.gb{color:#012169;} .coord-head.fr{color:#002395;}
+.coord-head.de{color:#333;} .coord-head.nl{color:#AE1C28;}
+.coord-item{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.coord-label{font-size:10px;}
+.coord-bar-wrap{flex:1;height:5px;background:#eee;border-radius:3px;margin:0 8px;}
+.coord-bar{height:5px;border-radius:3px;}
+.coord-num{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:700;min-width:32px;text-align:right;}
+
+.formula-box{margin:0 24px 22px;background:linear-gradient(135deg,#f0ede7,#e8e4dc);border:1px solid #DDD8CE;border-radius:10px;padding:13px 17px;}
+.formula-title{font-family:'Bebas Neue',sans-serif;font-size:13px;color:#3A6A5E;letter-spacing:.05em;margin-bottom:7px;}
+.formula-eq{font-family:'JetBrains Mono',monospace;font-size:12px;color:#3A6A5E;background:#fff;display:inline-block;padding:4px 11px;border-radius:5px;margin-bottom:6px;}
+.formula-note{font-size:11px;color:#666;line-height:1.7;}
+
+.radar-wrap{margin:0 24px 22px;background:#fff;border:1px solid #DDD8CE;border-radius:12px;padding:16px;}
+.radar-title{font-family:'Bebas Neue',sans-serif;font-size:15px;color:#3A6A5E;letter-spacing:.06em;margin-bottom:4px;text-align:center;}
+.radar-legend{display:flex;justify-content:center;gap:18px;margin-top:10px;flex-wrap:wrap;}
+.radar-legend-item{display:flex;align-items:center;gap:5px;font-size:11px;}
+.radar-dot{width:10px;height:10px;border-radius:50%;}
+
+.ppr-grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin:0 24px 15px;}
+.ppr-card{background:#fff;border:1px solid #DDD8CE;border-radius:10px;overflow:hidden;}
+.ppr-card-head{padding:7px 11px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:#fff;}
+.ppr-card-head.gb{background:#012169;} .ppr-card-head.fr{background:#002395;}
+.ppr-card-head.de{background:#333;} .ppr-card-head.nl{background:#AE1C28;}
+.ppr-card-body{padding:9px 11px;font-size:11px;color:#444;line-height:1.7;}
+.ppr-stack-label{font-size:9px;font-family:'JetBrains Mono',monospace;background:#F5F3EE;color:#666;display:inline-block;padding:1px 5px;border-radius:3px;margin-bottom:3px;}
+
+.special-box{margin:0 24px 22px;border-radius:12px;padding:16px 20px;}
+.special-box.brexit{background:linear-gradient(135deg,#EEF2FF,#E8EDFF);border:2px solid #012169;}
+.special-box.reform{background:linear-gradient(135deg,#FFF8EF,#FFEBD0);border:2px solid #B8850E;}
+.special-title{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.06em;margin-bottom:9px;}
+.special-title.brexit{color:#012169;} .special-title.reform{color:#B8850E;}
+.special-text{font-size:12px;color:#444;line-height:1.85;}
+.stat-badge{display:inline-block;padding:2px 7px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;color:#fff;margin:1px 2px;}
+.sb-gb{background:#012169;} .sb-fr{background:#002395;}
+.sb-de{background:#555;} .sb-nl{background:#AE1C28;}
+
+.layer-card{background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:11px 13px;}
+.layer-card-head{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:.04em;margin-bottom:8px;}
+.layer-card-head.gb{color:#012169;} .layer-card-head.fr{color:#002395;}
+.layer-card-head.de{color:#333;} .layer-card-head.nl{color:#AE1C28;}
+.layer-row{display:flex;gap:7px;margin-bottom:5px;font-size:10.5px;line-height:1.6;}
+.layer-num{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:9.5px;min-width:14px;color:#B8850E;}
+
+.phase-wrap{margin:0 24px 22px;background:#fff;border:1px solid #DDD8CE;border-radius:12px;padding:16px;}
+.phase-title{font-family:'Bebas Neue',sans-serif;font-size:15px;color:#3A6A5E;letter-spacing:.06em;text-align:center;margin-bottom:3px;}
+.phase-sub{font-size:10px;color:#888;text-align:center;margin-bottom:12px;font-family:'JetBrains Mono',monospace;}
+
+.err-card{background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:10px 12px;}
+.err-head{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:10px;margin-bottom:6px;}
+.err-head.gb{color:#012169;} .err-head.fr{color:#002395;}
+.err-head.de{color:#333;} .err-head.nl{color:#AE1C28;}
+.err-item{font-size:10.5px;color:#555;line-height:1.6;margin-bottom:3px;}
+
+.kr-box{margin:0 24px 22px;background:linear-gradient(135deg,#eef6f4,#e4f0ed);border:1px solid #c5ddd9;border-radius:10px;padding:15px 19px;}
+.kr-title{font-family:'Bebas Neue',sans-serif;font-size:15px;color:#3A6A5E;letter-spacing:.06em;margin-bottom:7px;}
+.kr-text{font-size:12px;color:#444;line-height:1.85;}
+.conclusion{margin:0 24px 22px;background:linear-gradient(135deg,#7BADA0,#5E9186);color:#fff;border-radius:12px;padding:20px 24px;}
+.conclusion-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.07em;margin-bottom:11px;}
+.conclusion-text{font-size:12.5px;line-height:1.9;opacity:.93;}
+.series-box{margin:0 24px 22px;border:2px solid #5E9186;border-radius:10px;padding:11px 15px;}
+.series-title{font-family:'Bebas Neue',sans-serif;font-size:13px;color:#3A6A5E;letter-spacing:.06em;margin-bottom:6px;}
+.series-list{display:flex;flex-wrap:wrap;gap:7px;}
+.series-item{font-size:11px;background:#F5F3EE;border:1px solid #DDD8CE;border-radius:6px;padding:3px 9px;color:#666;}
+.series-item.done{background:#5E9186;color:#fff;border-color:#5E9186;}
+.series-item.current{background:#B8850E;color:#fff;border-color:#B8850E;}
+.footer{background:#3A6A5E;color:rgba(255,255,255,.8);text-align:center;padding:20px;font-size:11px;line-height:1.9;}
+.footer a{color:#F0C040;text-decoration:none;}
+.freach-s{color:#2E7D32;font-weight:700;} .freach-i{color:#1565C0;font-weight:700;} .freach-d{color:#AD1457;font-weight:700;}
+</style>
+</head>
+<body>
+
+<!-- ══ 히어로 ══ -->
+<div class="hero">
+  <div class="hero-eyebrow">늘푸른바다 사회동역학 연구소 · Λ¹² 국가편 비교 시리즈 — 유럽 II</div>
+  <div class="hero-title">서유럽 비교편 I</div>
+  <div class="hero-sub">영국 · 프랑스 · 독일 · 네덜란드<br>포퓰리즘의 최전선 — 왕실·공화국·제조업·관용의 나라들이 흔들린다</div>
+  <div class="hero-meta">
+    <span class="hero-badge">Λ¹² v9.11 엔진</span>
+    <span class="hero-badge">§30 Λ-Score</span>
+    <span class="hero-badge">Reform UK 33% · AfD 2위</span>
+    <span class="hero-badge">SSRN 6509200</span>
+    <span class="hero-badge">2026-04-29</span>
+  </div>
+</div>
+
+<!-- ══ Λ-Score 배지 ══ -->
+<div class="score-banner">
+  <div class="score-card gb">
+    <div class="score-flag">🇬🇧</div>
+    <div class="score-country gb-c">영국</div>
+    <div class="score-lambda gb">0.424</div>
+    <div><span class="score-zone zone-danger">Danger</span></div>
+    <div class="score-pwt">PWT-r 0.785 · β 0.508</div>
+  </div>
+  <div class="score-card fr">
+    <div class="score-flag">🇫🇷</div>
+    <div class="score-country fr-c">프랑스</div>
+    <div class="score-lambda fr">0.436</div>
+    <div><span class="score-zone zone-danger">Danger</span></div>
+    <div class="score-pwt">PWT-r 0.770 · β 0.528</div>
+  </div>
+  <div class="score-card de">
+    <div class="score-flag">🇩🇪</div>
+    <div class="score-country de-c">독일</div>
+    <div class="score-lambda de">0.436</div>
+    <div><span class="score-zone zone-danger">Danger</span></div>
+    <div class="score-pwt">PWT-r 0.808 · β 0.440</div>
+  </div>
+  <div class="score-card nl">
+    <div class="score-flag">🇳🇱</div>
+    <div class="score-country nl-c">네덜란드</div>
+    <div class="score-lambda nl">0.417</div>
+    <div><span class="score-zone zone-danger">Danger</span></div>
+    <div class="score-pwt">PWT-r 0.824 · β 0.422</div>
+  </div>
+</div>
+
+<!-- ══ 연구 목적 ══ -->
+<div class="declaration">
+  <div class="declaration-title">연구 목적 선언</div>
+  <p>
+    서유럽 4국은 유럽 자유민주주의 질서의 핵심 축이었다. 영국은 의회민주주의의 어머니, 프랑스는 인권 혁명의 발상지, 독일은 전쟁 이후 민주주의 재건의 모델, 네덜란드는 관용과 다원주의의 상징이었다. 그 모든 나라에서 지금 포퓰리즘 극우가 1~2위를 달리고 있다. 이것은 우연이 아니다. Λ¹²는 그 구조를 읽는다.
+  </p>
+</div>
+
+<!-- ══ 서유럽 포퓰리즘 특집 ══ -->
+<div class="sec-title">⚡ &nbsp;서유럽 포퓰리즘 특집 — 왜 자유민주주의의 심장부가 흔들리는가</div>
+<div class="special-box reform">
+  <div class="special-title reform">Reform UK 33% · AfD 2위 · RN 강세 · PVV 붕괴 — 공통 구조 해부</div>
+  <div class="special-text">
+    <strong>수치가 먼저:</strong><br>
+    영국 <span class="stat-badge sb-gb">Reform UK 33%</span> 1위 · Labour <span class="stat-badge sb-gb">18%</span> 역대 최저(2025.11)<br>
+    독일 <span class="stat-badge sb-de">AfD 2위</span> · 메르츠 CDU 집권 · 부채제동 개혁 논란<br>
+    프랑스 <span class="stat-badge sb-fr">RN 르펜</span> 최대야당 · 마크롱 레임덕 · 3번째 총리<br>
+    네덜란드 <span class="stat-badge sb-nl">PVV 빌더스</span> 정부 붕괴 · 이민 정책 갈등<br><br>
+
+    <strong>Λ¹² 공통 구조:</strong><br>
+    이 네 나라의 포퓰리즘은 남유럽 PIIGS와 원인이 다르다. 남유럽은 긴축이 β를 올렸다면 — 서유럽은 <strong>세 가지 복합 충격</strong>이 Σ를 올렸다.<br><br>
+
+    ① <strong>이민 충격</strong> — CFD 상승. 다문화 정책의 이상과 현실 격차. 노동계급이 이민자와 주거·일자리 경쟁을 체감.<br>
+    ② <strong>경제 정체</strong> — 독일 제조업 위기·영국 브렉시트 후유증·프랑스 구조 개혁 지연. 성장이 멈추자 분배 갈등이 수면 위로.<br>
+    ③ <strong>엘리트 불신</strong> — TBI 아닌 <em>만성적 제도 피로</em>. "저들은 우리를 대변하지 않는다"는 감각. Σ 상승의 서유럽형 원인.
+  </div>
+</div>
+
+<!-- ══ Brexit 특집 ══ -->
+<div class="special-box brexit">
+  <div class="special-title brexit">영국 특집 — Brexit의 유산과 Reform UK의 부상</div>
+  <div class="special-text">
+    <strong>2016 브렉시트 → 2024 노동당 압승 → 2025 Reform 1위</strong> — 이 궤도가 Λ¹² SR 역인과 가설을 서유럽에서 보여준다.<br><br>
+
+    영국은 <span class="stat-badge sb-gb">GDP/인당 2008~2024 -2%</span> 실질 하락. 같은 기간 미국은 +70%. 공공 서비스(NHS·교육·사법) 15년 긴축으로 붕괴 직전. 브렉시트가 무역·투자 충격을 추가했다.<br><br>
+
+    스타머 노동당은 2024년 34% 득표로 압승했지만 — 이건 노동당 지지가 아니라 보수당 붕괴였다. <span class="stat-badge sb-gb">역대 최저 득표율</span>로 집권한 정부에게 개혁 동력이 없었다. 스타머는 역대 최고 비호감 총리가 됐다.<br><br>
+
+    Reform UK의 Farage는 이 진공을 채웠다. "저들은 50년간 망쳤다 — 우리가 바꾼다." 포퓰리즘의 교과서적 서사. 왕실 지지율 하락 + 제도 불신 + 경제 정체 = <span class="tag tag-sig">Σ 상승</span>의 영국형 조합.
+  </div>
+</div>
+
+<!-- ══ 민중 시선 ══ -->
+<div class="peoples-view">
+  <div class="pv-title">민중의 시선 — 네 청년이 바라보는 창</div>
+  <div class="pv-grid">
+    <div class="pv-card gb">
+      <div class="pv-flag">🇬🇧</div>
+      <div class="pv-name gb-c">런던의 청년</div>
+      <div class="pv-quote">"노동당이 이겼는데 아무것도 안 바뀌었다. 집세는 오르고 NHS는 죽어간다. Farage가 싫은데 솔직히 그 말은 맞다. 저들이 망쳤다."</div>
+    </div>
+    <div class="pv-card fr">
+      <div class="pv-flag">🇫🇷</div>
+      <div class="pv-name fr-c">파리의 청년</div>
+      <div class="pv-quote">"마크롱이 연금 개혁을 강행했다. 우리가 거리로 나갔다. 그는 무시했다. 르펜이 나쁘다고 들었는데 — 근데 마크롱도 우리 말 안 들었다."</div>
+    </div>
+    <div class="pv-card de">
+      <div class="pv-flag">🇩🇪</div>
+      <div class="pv-name de-c">베를린의 청년</div>
+      <div class="pv-quote">"동독 출신 부모님은 AfD를 찍는다. 통일 이후 서독에 착취당한 기억이 있다고. 나는 AfD가 싫지만 그 분노는 이해한다. 그게 더 무섭다."</div>
+    </div>
+    <div class="pv-card nl">
+      <div class="pv-flag">🇳🇱</div>
+      <div class="pv-name nl-c">암스테르담의 청년</div>
+      <div class="pv-quote">"네덜란드는 관용의 나라였다. 빌더스가 집권했다가 무너졌다. 그런데 집값은 여전히 미쳤다. 관용이 집을 사줬으면 좋겠다."</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ §0 용어 ══ -->
+<div class="sec-title">§0 &nbsp;핵심 용어</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 24px 22px;">
+  <div style="background:#fff;border:1px solid #DDD8CE;border-radius:8px;padding:10px 13px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;color:#3A6A5E;margin-bottom:3px;">Σ — 위상특이점 (서유럽형)</div>
+    <div style="font-size:11px;color:#555;line-height:1.6;">남유럽은 긴축이 원인. 서유럽은 이민+경제정체+엘리트 불신의 복합 구조가 Σ를 올린다. 더 만성적이고 더 깊다.</div>
+  </div>
+  <div style="background:#fff;border:1px solid #DDD8CE;border-radius:8px;padding:10px 13px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;color:#3A6A5E;margin-bottom:3px;">CFD — 문화다양성 분열</div>
+    <div style="font-size:11px;color:#555;line-height:1.6;">서유럽 포퓰리즘의 핵심 연료. 독일 동서 격차+이민, 영국 잉글랜드-스코틀랜드+이민. 서유럽형 CFD = 이민 갈등.</div>
+  </div>
+  <div style="background:#fff;border:1px solid #DDD8CE;border-radius:8px;padding:10px 13px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;color:#3A6A5E;margin-bottom:3px;">TBI — 서유럽 특수</div>
+    <div style="font-size:11px;color:#555;line-height:1.6;">식민·나치·홀로코스트 역사가 3층 뇌관. 독일 AfD는 이 역사 위에서 자라난다. 영국 제국주의 청산 요구가 세대 단층.</div>
+  </div>
+  <div style="background:#fff;border:1px solid #DDD8CE;border-radius:8px;padding:10px 13px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;color:#3A6A5E;margin-bottom:3px;">LPI_net — 지도력 순지수</div>
+    <div style="font-size:11px;color:#555;line-height:1.6;">스타머·마크롱·숄츠 모두 이미지 비용 > 실질 역량. LPI_net 음수권. 지도자 리더십 위기가 Σ를 더 올린다.</div>
+  </div>
+  <div style="background:#fff;border:1px solid #DDD8CE;border-radius:8px;padding:10px 13px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;color:#3A6A5E;margin-bottom:3px;">F_reach — 식량도달성</div>
+    <div style="font-size:11px;color:#555;line-height:1.6;">서유럽은 S·I 모두 강점. D(분배)가 주거비 폭등으로 압박. 영국 식품은행 급증이 F_reach D의 실증.</div>
+  </div>
+  <div style="background:#fff;border:1px solid #DDD8CE;border-radius:8px;padding:10px 13px;">
+    <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;color:#3A6A5E;margin-bottom:3px;">Λ-Score §30</div>
+    <div style="font-size:11px;color:#555;line-height:1.6;">방향보정 독립축 가중합산. 서유럽 4국: 높은 HDI·CPI가 Λ를 낮추는 방향으로 작동. 그러나 Σ·CFD 상승이 상쇄.</div>
+  </div>
+</div>
+
+<!-- ══ Ⅰ 이론 ══ -->
+<div class="sec-title">Ⅰ &nbsp;이론적 자기위치 (§1-B)</div>
+<div style="margin:0 24px 14px;background:#fff;border:1px solid #DDD8CE;border-radius:10px;padding:13px 17px;">
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;font-size:11px;">
+    <div style="background:#F5F3EE;border-radius:6px;padding:8px 10px;">
+      <div style="font-weight:700;color:#012169;margin-bottom:3px;">🇬🇧 영국</div>
+      <div style="color:#555;line-height:1.65;">Weber 합법적 지배의 위기 — 의회 주권이 흔들린다. Brexit 국민투표 = Durkheim 집합의식 vs 대의민주주의 갈등. Gramsci: 포스트-Thatcher 헤게모니의 해체 — Reform은 새 헤게모니를 주장한다.</div>
+    </div>
+    <div style="background:#F5F3EE;border-radius:6px;padding:8px 10px;">
+      <div style="font-weight:700;color:#002395;margin-bottom:3px;">🇫🇷 프랑스</div>
+      <div style="color:#555;line-height:1.65;">Tocqueville의 프랑스 혁명론 재현 — 중앙집권 국가가 개혁을 거부할 때 거리혁명이 온다. 노란조끼·연금개혁 시위 = Gurr의 상대적 박탈감. 마크롱 = Weber 카리스마 지배의 소진.</div>
+    </div>
+    <div style="background:#F5F3EE;border-radius:6px;padding:8px 10px;">
+      <div style="font-weight:700;color:#333;margin-bottom:3px;">🇩🇪 독일</div>
+      <div style="color:#555;line-height:1.65;">Habermas의 의사소통 합리성 — 독일 민주주의는 합의 기반. AfD는 이 합의를 공격하는 안티테제. 동서 격차 = Durkheim 아노미. Weizsäcker: 역사 책임 수용이 독일 정체성의 핵심 — AfD가 여기 도전.</div>
+    </div>
+    <div style="background:#F5F3EE;border-radius:6px;padding:8px 10px;">
+      <div style="font-weight:700;color:#AE1C28;margin-bottom:3px;">🇳🇱 네덜란드</div>
+      <div style="color:#555;line-height:1.65;">Lijphart의 합의민주주의(consociationalism) 모델의 붕괴. 필라리자시 해체 이후 결속 장치 없어짐. Pim Fortuyn 암살(2002)이 네덜란드 정치 트라우마. 빌더스 = 그 유산의 계승자.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ Ⅱ 역사 ══ -->
+<div class="sec-title">Ⅱ &nbsp;역사 — 제국·혁명·나치·관용의 나라들</div>
+<div class="four-grid">
+  <div class="hist-card">
+    <div class="hist-title gb">🇬🇧 영국</div>
+    <div class="hist-item"><span class="hist-year">~1945</span><span class="hist-text">대영제국 전성기 → 2차 대전 이후 제국 해체. 복지국가 건설(NHS 1948).</span></div>
+    <div class="hist-item"><span class="hist-year">1979~97</span><span class="hist-text">대처 신자유주의 — 제조업 해체·금융화. 노동계층 타격.</span></div>
+    <div class="hist-item"><span class="hist-year">2016</span><span class="hist-text">Brexit 국민투표 52%. 엘리트 vs 민중 분열의 시작.</span></div>
+    <div class="hist-item"><span class="hist-year">2024</span><span class="hist-text">스타머 노동당 압승(34%). 보수당 14년 만에 퇴장.</span></div>
+    <div class="hist-item"><span class="hist-year">2025</span><span class="hist-text">Reform UK 33% 1위. 스타머 역대 최고 비호감.</span></div>
+    <div style="margin-top:5px;font-size:9.5px;color:#012169;font-family:'JetBrains Mono',monospace;">★ TBI: 식민유산 청산 요구 + Brexit 트라우마</div>
+  </div>
+  <div class="hist-card">
+    <div class="hist-title fr">🇫🇷 프랑스</div>
+    <div class="hist-item"><span class="hist-year">1789</span><span class="hist-text">대혁명 — 자유·평등·박애. 공화주의 전통.</span></div>
+    <div class="hist-item"><span class="hist-year">1940~44</span><span class="hist-text">나치 점령·비시 정권. 레지스탕스. TBI.</span></div>
+    <div class="hist-item"><span class="hist-year">1968</span><span class="hist-text">5월 혁명. 학생·노동 봉기. 드골 퇴진.</span></div>
+    <div class="hist-item"><span class="hist-year">2017~</span><span class="hist-text">마크롱 집권. 노란조끼(2018)·연금개혁 시위(2023) 반복.</span></div>
+    <div class="hist-item"><span class="hist-year">2024~</span><span class="hist-text">의회 교착. 3번째 총리. 르펜 RN 최대야당.</span></div>
+    <div style="margin-top:5px;font-size:9.5px;color:#002395;font-family:'JetBrains Mono',monospace;">★ 거리혁명 전통 = SR 높음의 구조적 원인</div>
+  </div>
+  <div class="hist-card">
+    <div class="hist-title de">🇩🇪 독일</div>
+    <div class="hist-item"><span class="hist-year">1933~45</span><span class="hist-text">나치즘·홀로코스트·2차 대전 패전. TBI 최고.</span></div>
+    <div class="hist-item"><span class="hist-year">1949</span><span class="hist-text">서독 기본법 제정. '투쟁 민주주의'. 극단주의 헌법적 차단.</span></div>
+    <div class="hist-item"><span class="hist-year">1990</span><span class="hist-text">통일. 동독 편입 — 경제 격차·정체성 갈등 잔존.</span></div>
+    <div class="hist-item"><span class="hist-year">2015</span><span class="hist-text">메르켈 난민 100만 수용 — AfD 급성장 촉매.</span></div>
+    <div class="hist-item"><span class="hist-year">2025</span><span class="hist-text">메르츠 CDU 집권. AfD 2위. 부채제동 논란.</span></div>
+    <div style="margin-top:5px;font-size:9.5px;color:#333;font-family:'JetBrains Mono',monospace;">★ 동서 격차 = CFD 핵심. AfD = 동독 집중</div>
+  </div>
+  <div class="hist-card">
+    <div class="hist-title nl">🇳🇱 네덜란드</div>
+    <div class="hist-item"><span class="hist-year">~1945</span><span class="hist-text">나치 점령. 안네 프랑크. 기근겨울(1944~45). TBI.</span></div>
+    <div class="hist-item"><span class="hist-year">1945~</span><span class="hist-text">필라리자시(zuilen) 합의민주주의. 종교·계층별 공동체 기반.</span></div>
+    <div class="hist-item"><span class="hist-year">2002</span><span class="hist-text">Pim Fortuyn 암살 — 네덜란드 정치 트라우마. 포퓰리즘 서막.</span></div>
+    <div class="hist-item"><span class="hist-year">2023</span><span class="hist-text">빌더스 PVV 1위 → 연정 구성. 이민 갈등으로 2025 붕괴.</span></div>
+    <div class="hist-item"><span class="hist-year">2025</span><span class="hist-text">재선거. 주거 위기 심화. 이민 2위(인구 16.2%).</span></div>
+    <div style="margin-top:5px;font-size:9.5px;color:#AE1C28;font-family:'JetBrains Mono',monospace;">★ 관용의 나라가 관용을 의심하기 시작</div>
+  </div>
+</div>
+
+<!-- ══ Ⅲ 기본 통계 ══ -->
+<div class="sec-title">Ⅲ &nbsp;기본 통계 (2024~2025)</div>
+<table class="stats-table">
+  <thead>
+    <tr>
+      <th class="label" style="text-align:left;">지표</th>
+      <th>🇬🇧 영국</th><th>🇫🇷 프랑스</th><th>🇩🇪 독일</th><th>🇳🇱 네덜란드</th><th>출처</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class="label">인구</td><td class="val-gb">6,760만</td><td class="val-fr">6,820만</td><td class="val-de">8,400만</td><td class="val-nl">1,790만</td><td>UN 2024</td></tr>
+    <tr><td class="label">GDP (명목)</td><td class="val-gb">3조 1,200억$</td><td class="val-fr">3조 1,300억$</td><td class="val-de">4조 4,600억$</td><td class="val-nl">1조 1,800억$</td><td>WB 2024</td></tr>
+    <tr><td class="label">GDP 성장률 (2025)</td><td class="val-gb">+1.1%</td><td class="val-fr">+0.8%</td><td class="val-de" style="background:#fff0f0;">+0.3% ⚠ G7최저</td><td class="val-nl">+1.6%</td><td>EY/IMF; 독일 만성 정체</td></tr>
+    <tr><td class="label">HDI (2025)</td><td class="val-gb">0.940</td><td class="val-fr">0.910</td><td class="val-de">0.942</td><td class="val-nl">0.946 ⭐</td><td>UNDP 2025</td></tr>
+    <tr><td class="label">CPI 2025 (TI)</td><td class="val-gb">71 / 18위</td><td class="val-fr">72 / 17위</td><td class="val-de">78 / 12위 ⭐</td><td class="val-nl">79 / 11위 ⭐</td><td>TI 2026.02; 4국 모두 상위권</td></tr>
+    <tr><td class="label">GPI 2025 (IEP)</td><td class="val-gb">1.657 / 36위</td><td class="val-fr">1.880 / 67위</td><td class="val-de">1.528 / 18위 ⭐</td><td class="val-nl">1.427 / 8위 ⭐</td><td>IEP 2025</td></tr>
+    <tr><td class="label">공공부채/GDP</td><td class="val-gb">99%</td><td class="val-fr" style="background:#fff0f0;">113% ⚠</td><td class="val-de">63%</td><td class="val-nl">46% ⭐</td><td>Eurostat/IMF 2025</td></tr>
+    <tr><td class="label">극우 지지율 (최신)</td><td class="val-gb">Reform 33% 1위 ⚠</td><td class="val-fr">RN 최대야당</td><td class="val-de">AfD 2위 ~20%</td><td class="val-nl">PVV 붕괴 후 재선거</td><td>각국 2025 여론조사</td></tr>
+    <tr><td class="label">현 정부</td><td class="val-gb">스타머 Labour</td><td class="val-fr">마크롱 교착</td><td class="val-de">메르츠 CDU</td><td class="val-nl">임시 정부</td><td>2025 현재</td></tr>
+    <tr><td class="label">이민자 비율</td><td class="val-gb">~16%</td><td class="val-fr">~13%</td><td class="val-de">~16%</td><td class="val-nl">16.2%</td><td>Eurostat 2024</td></tr>
+  </tbody>
+</table>
+
+<!-- ══ Ⅳ 기본 좌표 ══ -->
+<div class="sec-title">Ⅳ &nbsp;Λ¹² 기본 좌표 — 방향보정 Proxy 추정</div>
+<div class="four-grid">
+  <div class="coord-card">
+    <div class="coord-head gb">🇬🇧 영국</div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-tbi">TBI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:55%;background:#791F1F;opacity:.7;"></div></div><span class="coord-num" style="color:#791F1F;">0.55</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-sr">SR</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:52%;background:#085041;opacity:.7;"></div></div><span class="coord-num" style="color:#085041;">0.52</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-sig">Σ</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:58%;background:#3C3489;opacity:.7;"></div></div><span class="coord-num" style="color:#3C3489;">0.58</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-oli">OLI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:75%;background:#0C447C;opacity:.7;"></div></div><span class="coord-num" style="color:#0C447C;">0.75</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-lpi">LPI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:32%;background:#633806;opacity:.7;"></div></div><span class="coord-num" style="color:#633806;">−0.18</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-cfd">CFD</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:65%;background:#712B13;opacity:.7;"></div></div><span class="coord-num" style="color:#712B13;">0.65</span></div>
+    <div style="margin-top:5px;font-size:9.5px;color:#888;">BRI:3.5·SSI:5.8·GPI:1.657·F_reach:0.74</div>
+    <div style="font-size:9px;color:#012169;font-family:'JetBrains Mono',monospace;">★ LPI −0.18: 스타머 비호감 역대 최고</div>
+  </div>
+  <div class="coord-card">
+    <div class="coord-head fr">🇫🇷 프랑스</div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-tbi">TBI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:52%;background:#791F1F;opacity:.7;"></div></div><span class="coord-num" style="color:#791F1F;">0.52</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-sr">SR</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:62%;background:#085041;opacity:.7;"></div></div><span class="coord-num" style="color:#085041;">0.62</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-sig">Σ</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:60%;background:#3C3489;opacity:.7;"></div></div><span class="coord-num" style="color:#3C3489;">0.60</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-oli">OLI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:78%;background:#0C447C;opacity:.7;"></div></div><span class="coord-num" style="color:#0C447C;">0.78</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-lpi">LPI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:30%;background:#633806;opacity:.7;"></div></div><span class="coord-num" style="color:#633806;">−0.22</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-cfd">CFD</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:68%;background:#712B13;opacity:.7;"></div></div><span class="coord-num" style="color:#712B13;">0.68</span></div>
+    <div style="margin-top:5px;font-size:9.5px;color:#888;">BRI:3.8·SSI:5.5·GPI:1.880·F_reach:0.78</div>
+    <div style="font-size:9px;color:#002395;font-family:'JetBrains Mono',monospace;">★ SR 0.62 높음: 거리혁명 전통 유효</div>
+  </div>
+  <div class="coord-card">
+    <div class="coord-head de">🇩🇪 독일</div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-tbi">TBI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:68%;background:#791F1F;opacity:.7;"></div></div><span class="coord-num" style="color:#791F1F;">0.68</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-sr">SR</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:48%;background:#085041;opacity:.7;"></div></div><span class="coord-num" style="color:#085041;">0.48</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-sig">Σ</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:52%;background:#3C3489;opacity:.7;"></div></div><span class="coord-num" style="color:#3C3489;">0.52</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-oli">OLI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:80%;background:#0C447C;opacity:.7;"></div></div><span class="coord-num" style="color:#0C447C;">0.80</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-lpi">LPI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:45%;background:#633806;opacity:.7;"></div></div><span class="coord-num" style="color:#633806;">−0.05</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-cfd">CFD</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:62%;background:#712B13;opacity:.7;"></div></div><span class="coord-num" style="color:#712B13;">0.62</span></div>
+    <div style="margin-top:5px;font-size:9.5px;color:#888;">BRI:2.8·SSI:6.2·GPI:1.528·F_reach:0.80</div>
+    <div style="font-size:9px;color:#333;font-family:'JetBrains Mono',monospace;">★ TBI 0.68: 홀로코스트 책임의 무게</div>
+  </div>
+  <div class="coord-card">
+    <div class="coord-head nl">🇳🇱 네덜란드</div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-tbi">TBI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:42%;background:#791F1F;opacity:.7;"></div></div><span class="coord-num" style="color:#791F1F;">0.42</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-sr">SR</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:45%;background:#085041;opacity:.7;"></div></div><span class="coord-num" style="color:#085041;">0.45</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-sig">Σ</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:50%;background:#3C3489;opacity:.7;"></div></div><span class="coord-num" style="color:#3C3489;">0.50</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-oli">OLI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:82%;background:#0C447C;opacity:.7;"></div></div><span class="coord-num" style="color:#0C447C;">0.82</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-lpi">LPI</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:40%;background:#633806;opacity:.7;"></div></div><span class="coord-num" style="color:#633806;">−0.10</span></div>
+    <div class="coord-item"><span class="coord-label"><span class="tag tag-cfd">CFD</span></span><div class="coord-bar-wrap"><div class="coord-bar" style="width:60%;background:#712B13;opacity:.7;"></div></div><span class="coord-num" style="color:#712B13;">0.60</span></div>
+    <div style="margin-top:5px;font-size:9.5px;color:#888;">BRI:2.5·SSI:6.5·GPI:1.427·F_reach:0.82</div>
+    <div style="font-size:9px;color:#AE1C28;font-family:'JetBrains Mono',monospace;">★ HDI·CPI·GPI 모두 최상위 but Σ 상승</div>
+  </div>
+</div>
+
+<div class="formula-box">
+  <div class="formula-title">Λ¹² v9.11 §30 + 서유럽 OLI 특기</div>
+  <div class="formula-eq">Λ-Score = Σ(get_w(norm_i)) / 12 / 1.29</div>
+  <div class="formula-note">
+    서유럽 OLI: 영국 0.75 · 프랑스 0.78 · 독일 0.80 · 네덜란드 0.82 — 4국 모두 최고 신뢰구간. 동등성 조건 충족 → 직접 비교 유효.<br>
+    <strong>영국 특기:</strong> Brexit 이후 무역통계 재편 중 — 일부 지표 불연속성. CPI 71 하락세(2023년 감소 3점) — 구조적 부패 증가 신호.<br>
+    <strong>독일 TBI 0.68:</strong> 홀로코스트 책임의 역사적 무게가 현재 정치 담론을 제약. AfD는 이 제약을 공격하는 전략.
+  </div>
+</div>
+
+<!-- ══ Ⅴ 레이더 ══ -->
+<div class="sec-title">Ⅴ &nbsp;Λ¹² 12지수 레이더 — 서유럽 4국</div>
+<div class="radar-wrap">
+  <div class="radar-title">서유럽 4국 레이더 (방향보정 정규화)</div>
+  <div style="display:flex;justify-content:center;">
+    <svg width="520" height="400" viewBox="0 0 520 400" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(260,200)">
+        <circle r="40"  fill="none" stroke="#DDD8CE" stroke-width="1"/>
+        <circle r="80"  fill="none" stroke="#DDD8CE" stroke-width="1"/>
+        <circle r="104" fill="none" stroke="#BA7517" stroke-width="0.8" stroke-dasharray="3,3" opacity="0.5"/>
+        <circle r="120" fill="none" stroke="#DDD8CE" stroke-width="1"/>
+        <circle r="160" fill="none" stroke="#E24B4A" stroke-width="1" stroke-dasharray="5,3" opacity="0.35"/>
+        <line x1="0" y1="0" x2="0"    y2="-160" stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="80"   y2="-139" stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="139"  y2="-80"  stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="160"  y2="0"    stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="139"  y2="80"   stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="80"   y2="139"  stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="0"    y2="160"  stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-80"  y2="139"  stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-139" y2="80"   stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-160" y2="0"    stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-139" y2="-80"  stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-80"  y2="-139" stroke="#DDD8CE" stroke-width="1"/>
+        <text x="5" y="-42" font-size="7" fill="#aaa" font-family="JetBrains Mono">0.25</text>
+        <text x="5" y="-82" font-size="7" fill="#aaa" font-family="JetBrains Mono">0.5</text>
+        <text x="5" y="-122" font-size="7" fill="#aaa" font-family="JetBrains Mono">0.75</text>
+        <text x="0"    y="-172" text-anchor="middle" font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">BRI</text>
+        <text x="88"   y="-150" text-anchor="start"  font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">SSI</text>
+        <text x="150"  y="-86"  text-anchor="start"  font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">SR</text>
+        <text x="168"  y="4"    text-anchor="start"  font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">GPI</text>
+        <text x="150"  y="92"   text-anchor="start"  font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">TBI</text>
+        <text x="88"   y="155"  text-anchor="start"  font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">Σ</text>
+        <text x="0"    y="178"  text-anchor="middle" font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">OLI</text>
+        <text x="-92"  y="155"  text-anchor="end"    font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">LPI</text>
+        <text x="-154" y="92"   text-anchor="end"    font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">CFD</text>
+        <text x="-172" y="4"    text-anchor="end"    font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">HDI</text>
+        <text x="-154" y="-86"  text-anchor="end"    font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">CPI</text>
+        <text x="-92"  y="-150" text-anchor="end"    font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">F_reach</text>
+        <!--
+          방향보정 정규화 (안정방향 역전):
+          영국:     BRI0.35,SSI0.42,SR0.52,GPI0.82,TBI0.55,Σ0.58,OLI0.25,LPI0.32,CFD0.65,HDI0.06,CPI0.29,Freach0.26
+          프랑스:   BRI0.38,SSI0.45,SR0.62,GPI0.72,TBI0.52,Σ0.60,OLI0.22,LPI0.30,CFD0.68,HDI0.09,CPI0.28,Freach0.22
+          독일:     BRI0.28,SSI0.38,SR0.48,GPI0.85,TBI0.68,Σ0.52,OLI0.20,LPI0.45,CFD0.62,HDI0.058,CPI0.22,Freach0.20
+          네덜란드: BRI0.25,SSI0.35,SR0.45,GPI0.92,TBI0.42,Σ0.50,OLI0.18,LPI0.40,CFD0.60,HDI0.054,CPI0.21,Freach0.18
+        -->
+        <!-- 영국 (네이비) -->
+        <polygon points="0,-56 60,-36 133,-51 131,0 136,99 93,68 0,40 -36,55 -88,64 -10,0 -75,-24 -34,-38"
+          fill="#012169" fill-opacity="0.12" stroke="#012169" stroke-width="1.8" stroke-opacity="0.85"/>
+        <!-- 프랑스 (블루) -->
+        <polygon points="0,-61 64,-39 149,-65 115,0 129,93 96,71 0,35 -34,56 -92,69 -14,0 -72,-22 -29,-36"
+          fill="#002395" fill-opacity="0.12" stroke="#002395" stroke-width="1.8" stroke-opacity="0.85"/>
+        <!-- 독일 (검정) -->
+        <polygon points="0,-45 54,-34 116,-49 136,0 168,122 83,61 0,32 -51,56 -84,61 -9,0 -56,-18 -26,-32"
+          fill="#333" fill-opacity="0.12" stroke="#333" stroke-width="1.8" stroke-opacity="0.85" stroke-dasharray="7,3"/>
+        <!-- 네덜란드 (적) -->
+        <polygon points="0,-40 50,-31 108,-47 147,0 104,76 80,59 0,29 -45,57 -81,59 -9,0 -54,-17 -24,-29"
+          fill="#AE1C28" fill-opacity="0.12" stroke="#AE1C28" stroke-width="1.8" stroke-opacity="0.85" stroke-dasharray="4,3"/>
+        <circle cx="0" cy="0" r="3" fill="#5E9186"/>
+      </g>
+    </svg>
+  </div>
+  <div class="radar-legend">
+    <div class="radar-legend-item"><div class="radar-dot" style="background:#012169;"></div><span>🇬🇧 영국</span></div>
+    <div class="radar-legend-item"><div class="radar-dot" style="background:#002395;"></div><span>🇫🇷 프랑스</span></div>
+    <div class="radar-legend-item"><div class="radar-dot" style="background:#333;border:1px dashed;"></div><span>🇩🇪 독일 (점선)</span></div>
+    <div class="radar-legend-item"><div class="radar-dot" style="background:#AE1C28;border:1px dashed;"></div><span>🇳🇱 네덜란드 (점선)</span></div>
+  </div>
+  <div style="margin-top:9px;font-size:10.5px;color:#888;text-align:center;">
+    ※ 서유럽 4국은 HDI·CPI·GPI 모두 최상위 → 역전(1-v) 후 레이더 면적이 남유럽·아시아보다 작다.<br>
+    CFD·Σ·TBI 축이 서유럽 위험의 핵심. 프랑스 SR 0.62(높음)가 레이더를 SR 방향으로 당김 — 거리혁명 전통.
+  </div>
+</div>
+
+<!-- ══ PPR-5 ══ -->
+<div class="sec-title">Ⅶ &nbsp;PPR-1 정치</div>
+<div class="ppr-grid-4">
+  <div class="ppr-card"><div class="ppr-card-head gb">🇬🇧 영국</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">현황</div>
+    <div style="margin-bottom:6px;">스타머 Labour 집권(2024~). Reform 33% 1위. 5년 임기 내 개혁 동력 의문. 스코틀랜드 독립 재논의.</div>
+    <div class="ppr-stack-label">Λ¹²</div>
+    <div><span class="tag tag-sig">Σ 0.58</span> · <span class="tag tag-lpi">LPI −0.18</span> — 지도자 신뢰 붕괴가 Σ 상승 주 원인. Reform 부상 = Σ 피드백 루프.</div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-card-head fr">🇫🇷 프랑스</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">현황</div>
+    <div style="margin-bottom:6px;">마크롱 레임덕. 3번째 총리(바이루). 의회 교착 — 신임투표 위기 반복. RN 최대야당. 2027 대선이 핵심.</div>
+    <div class="ppr-stack-label">Λ¹²</div>
+    <div><span class="tag tag-sig">Σ 0.60</span> · <span class="tag tag-lpi">LPI −0.22</span> — 4국 LPI 최저. SR 0.62 높음 = 시민 저항 활발하나 체제 변화 없음. 담론 교착 구조.</div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-card-head de">🇩🇪 독일</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">현황</div>
+    <div style="margin-bottom:6px;">메르츠 CDU/CSU+SPD 대연정(2025~). AfD 2위 배제. 부채제동 개혁 통과. 재무장 논란.</div>
+    <div class="ppr-stack-label">Λ¹²</div>
+    <div><span class="tag tag-sig">Σ 0.52</span> · <span class="tag tag-tbi">TBI 0.68</span> — 홀로코스트 책임이 AfD 차단의 정치적 근거. 그러나 동독 지역에서 이 논리가 약화.</div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-card-head nl">🇳🇱 네덜란드</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">현황</div>
+    <div style="margin-bottom:6px;">PVV 빌더스 연정 붕괴(2025). 재선거. 주거 위기·이민 정책 갈등. 정치 불안정 구조화.</div>
+    <div class="ppr-stack-label">Λ¹²</div>
+    <div><span class="tag tag-sig">Σ 0.50</span> — 4국 중 가장 낮음. 그러나 합의민주주의 구조 해체 중. 재선거 반복이 Σ 상승 예고.</div>
+  </div></div>
+</div>
+
+<div class="sec-title">Ⅷ &nbsp;PPR-2 경제</div>
+<div class="ppr-grid-4">
+  <div class="ppr-card"><div class="ppr-card-head gb">🇬🇧 영국</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">현황</div>
+    <div style="margin-bottom:6px;">GDP +1.1%. 공공부채 99%. £20억 재정 구멍. 인플레이션 목표 상회. NHS 대기 720만 명. 식품은행 급증.</div>
+    <div class="ppr-stack-label">Λ¹²</div>
+    <div>1인당 GDP 2008~2024 실질 -2% — 브렉시트+금융위기+아우스테리티 복합. F_reach D(분배) 압박. PWT-r이 구조적으로 낮아지는 경로.</div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-card-head fr">🇫🇷 프랑스</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">현황</div>
+    <div style="margin-bottom:6px;">GDP +0.8%. 공공부채 113% ⚠. 연금개혁 강행. 실업 7.4%. 경쟁력 하락. EU 내 독일과 공동리더십 흔들림.</div>
+    <div class="ppr-stack-label">Λ¹²</div>
+    <div>부채 113% + 정치 교착 = 개혁 불가 구조. 연금개혁이 β를 올렸다 — 지도자 의지와 무관하게 파이프가 막힘. 프랑스식 PWT-r 차단.</div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-card-head de">🇩🇪 독일</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">현황</div>
+    <div style="margin-bottom:6px;">GDP +0.3% G7 최저. 탈석탄·에너지 전환 충격. 자동차 산업 위기(VW 1만여명 해고). 부채제동 개혁으로 투자 재개 시도.</div>
+    <div class="ppr-stack-label">Λ¹²</div>
+    <div>제조업 기반 강점(F_reach 0.80)이 Λ를 낮춤. 그러나 에너지 전환 충격이 동독 지역 집중 → CFD 압박. 독일의 성장 정체는 유럽 전체의 문제.</div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-card-head nl">🇳🇱 네덜란드</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">현황</div>
+    <div style="margin-bottom:6px;">GDP +1.6%. 부채 46% EU 최저. 무역 허브(로테르담). 그러나 주거 위기 심각 — 암스테르담 집값 10년간 3배.</div>
+    <div class="ppr-stack-label">Λ¹²</div>
+    <div>거시 양호 + 주거 위기 = "조용한 함정" 패턴. F_reach D(분배) 압박. 포르투갈과 동일 구조: 숫자 좋은데 거리에선 포퓰리즘.</div>
+  </div></div>
+</div>
+
+<div class="sec-title">Ⅸ &nbsp;PPR-3 사회 + F_reach</div>
+<div class="ppr-grid-4">
+  <div class="ppr-card"><div class="ppr-card-head gb">🇬🇧 영국</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">F_reach</div>
+    <div style="margin-bottom:5px;">F≈<strong>0.74</strong>⭐⭐⭐<br><span class="freach-s">S 0.70</span>농업·낙농 기반. <span class="freach-i">I 0.80</span>글로벌 공급망. <span class="freach-d">D 0.72</span>but 식품은행 2,900개+.</div>
+    <div class="ppr-stack-label">사회</div>
+    <div>세대 단층: 왕실 지지 18~24세 32% vs 65세+ 68%. 이민자 16% + 이민 반대 67%. CFD 0.65 구조.</div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-card-head fr">🇫🇷 프랑스</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">F_reach</div>
+    <div style="margin-bottom:5px;">F≈<strong>0.78</strong>⭐⭐⭐<br><span class="freach-s">S 0.85</span>농업대국. <span class="freach-i">I 0.82</span>EU. <span class="freach-d">D 0.68</span>파리 집중·지방 격차.</div>
+    <div class="ppr-stack-label">사회</div>
+    <div>노란조끼·연금시위 = SR 0.62 배경. 방리유 이민자 2~3세 분리. '공화국의 아이들'이 공화국을 불신. CFD 0.68.</div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-card-head de">🇩🇪 독일</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">F_reach</div>
+    <div style="margin-bottom:5px;">F≈<strong>0.80</strong>⭐⭐⭐⭐<br><span class="freach-s">S 0.82</span>농업+식품. <span class="freach-i">I 0.85</span>EU+세계무역. <span class="freach-d">D 0.72</span>동서 격차.</div>
+    <div class="ppr-stack-label">사회</div>
+    <div>동독 임금 서독의 83%. 빈 공동화 vs 뮌헨·베를린 집값. 동독 정체성 = AfD 지지 구조. TBI 0.68 — 나치 역사가 정치 담론을 제약.</div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-card-head nl">🇳🇱 네덜란드</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">F_reach</div>
+    <div style="margin-bottom:5px;">F≈<strong>0.82</strong>⭐⭐⭐⭐<br><span class="freach-s">S 0.88</span>농업수출 세계2위. <span class="freach-i">I 0.85</span>로테르담. <span class="freach-d">D 0.72</span>주거비 압박.</div>
+    <div class="ppr-stack-label">사회</div>
+    <div>이민 16.2% + PVV '침략' 담론. 이민자 2세대 정체성 갈등. 합의민주주의 해체 → 다원주의 피로. CFD 0.60.</div>
+  </div></div>
+</div>
+
+<div class="sec-title">Ⅹ &nbsp;PPR-4 환경</div>
+<div class="ppr-grid-4">
+  <div class="ppr-card"><div class="ppr-card-head gb">🇬🇧 영국</div><div class="ppr-card-body">재생에너지 40%+. 북해 유전 논란. 홍수 반복. 스타머 그린 투자 강조 but 재정 압박. CfD(차액계약) 제도로 재생에너지 확장 중.</div></div>
+  <div class="ppr-card"><div class="ppr-card-head fr">🇫🇷 프랑스</div><div class="ppr-card-body">원전 70% — 탄소 저배출. 그러나 노후 원전 관리 비용. 2023 가뭄·폭염 반복. 마크롱 녹색 산업화(IRA 대응) 추진 중.</div></div>
+  <div class="ppr-card"><div class="ppr-card-head de">🇩🇪 독일</div><div class="ppr-card-body">탈원전(2023 완료)·탈석탄 동시 추진 → 에너지 비용 급등. 러시아 가스 차단 충격. 재생에너지 50%+ 목표. 에너지 전환이 경제 발목.</div></div>
+  <div class="ppr-card"><div class="ppr-card-head nl">🇳🇱 네덜란드</div><div class="ppr-card-body">해수면 상승 최전선. 농업 질소 규제로 농민 시위 격화. 그로닝겐 가스전 폐쇄. 기후 적응 세계 최고 수준 but 비용 급증.</div></div>
+</div>
+
+<div class="sec-title">Ⅺ &nbsp;PPR-5 거버넌스</div>
+<div class="ppr-grid-4">
+  <div class="ppr-card"><div class="ppr-card-head gb">🇬🇧 영국</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">현황</div>
+    <div style="margin-bottom:5px;">CPI 71(18위) 하락세. 스타머 사무실장 사임·부총리 사임 등 스캔들 반복. 왕실 비용 논란. 사법부 독립성은 유지.</div>
+    <div class="ppr-stack-label">Λ¹²</div>
+    <div>LPI_net −0.18: 역대 최고 비호감 총리. 그러나 제도 자체는 안정 — 왕실 상징이 Σ를 완전히 막지 못한다는 증거.</div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-card-head fr">🇫🇷 프랑스</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">현황</div>
+    <div style="margin-bottom:5px;">CPI 72(17위). 마크롱 레임덕 — 신임투표 위기 2회. 3번째 총리 바이루. 입법 교착 만성화.</div>
+    <div class="ppr-stack-label">Λ¹²</div>
+    <div>LPI_net −0.22: 4국 최저. 마크롱 이미지 정치가 실질 개혁보다 비용이 컸다. 프랑스 5공화국 헌법이 오히려 교착을 구조화.</div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-card-head de">🇩🇪 독일</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">현황</div>
+    <div style="margin-bottom:5px;">CPI 78(12위). 연방헌법재판소 활성 — 극단주의 차단 장치 작동. 메르츠 부채제동 개혁으로 재정 유연성 확보 시도.</div>
+    <div class="ppr-stack-label">Λ¹²</div>
+    <div>LPI_net −0.05: 4국 중 가장 양호. 제도 거버넌스 강점. 단 AfD 차단이 '투쟁 민주주의'의 한계 — 차단이 더 강한 분노를 만들 수도.</div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-card-head nl">🇳🇱 네덜란드</div><div class="ppr-card-body">
+    <div class="ppr-stack-label">현황</div>
+    <div style="margin-bottom:5px;">CPI 79(11위). GPI 8위. 그러나 정부 붕괴 반복 — 합의민주주의 비용. 이민 정책이 모든 연정의 아킬레스건.</div>
+    <div class="ppr-stack-label">Λ¹²</div>
+    <div>LPI_net −0.10. 거버넌스 지표 최우수지만 정치 불안정. 포르투갈과 유사: 제도는 좋은데 정치가 흔들린다.</div>
+  </div></div>
+</div>
+
+<!-- ══ ⅩII 담론육층 ══ -->
+<div class="sec-title">ⅩII &nbsp;담론육층 — 4국 병렬</div>
+<div class="four-grid">
+  <div class="layer-card">
+    <div class="layer-card-head gb">🇬🇧 영국</div>
+    <div class="layer-row"><span class="layer-num">①</span><span style="font-size:10.5px;color:#555;">Reform 33%·Labour 18%·GDP/인당 -2%(08~24)</span></div>
+    <div class="layer-row"><span class="layer-num">②</span><span style="font-size:10.5px;color:#555;">브렉시트 단절 + NHS 붕괴 + 주거 위기 구조.</span></div>
+    <div class="layer-row"><span class="layer-num">③</span><span style="font-size:10.5px;color:#555;">대처→블레어→보수 14년→스타머 — 매번 바꿨지만 같은 결과.</span></div>
+    <div class="layer-row"><span class="layer-num">④</span><span style="font-size:10.5px;color:#555;">외부: 민주주의 모국. 내부: "저들은 50년간 망쳤다".</span></div>
+    <div class="layer-row"><span class="layer-num">⑤</span><span style="font-size:10.5px;color:#555;">"개혁이 필요하다" vs "Reform이 답이다" — 같은 단어, 다른 의미.</span></div>
+    <div class="layer-row"><span class="layer-num">⑥</span><span style="font-size:10.5px;color:#B8850E;">의회민주주의의 어머니 — 그 모국에서 의회가 불신받는다.</span></div>
+  </div>
+  <div class="layer-card">
+    <div class="layer-card-head fr">🇫🇷 프랑스</div>
+    <div class="layer-row"><span class="layer-num">①</span><span style="font-size:10.5px;color:#555;">LPI −0.22·Σ 0.60·부채 113%·RN 최대야당</span></div>
+    <div class="layer-row"><span class="layer-num">②</span><span style="font-size:10.5px;color:#555;">중앙집권 국가 + 거리혁명 전통의 충돌.</span></div>
+    <div class="layer-row"><span class="layer-num">③</span><span style="font-size:10.5px;color:#555;">대혁명→파리코뮌→5월혁명→노란조끼→연금시위 — 반복.</span></div>
+    <div class="layer-row"><span class="layer-num">④</span><span style="font-size:10.5px;color:#555;">외부: 인권 혁명의 나라. 내부: "마크롱은 왕처럼 군다".</span></div>
+    <div class="layer-row"><span class="layer-num">⑤</span><span style="font-size:10.5px;color:#555;">"공화국을 지켜야 한다" vs "이 공화국이 우리를 배신했다".</span></div>
+    <div class="layer-row"><span class="layer-num">⑥</span><span style="font-size:10.5px;color:#B8850E;">자유·평등·박애 — 세 번째 단어 박애가 지금 어디 있는지.</span></div>
+  </div>
+  <div class="layer-card">
+    <div class="layer-card-head de">🇩🇪 독일</div>
+    <div class="layer-row"><span class="layer-num">①</span><span style="font-size:10.5px;color:#555;">GDP+0.3%·AfD 2위·TBI 0.68·동서 격차</span></div>
+    <div class="layer-row"><span class="layer-num">②</span><span style="font-size:10.5px;color:#555;">나치 역사 책임 + 동서 통일 미완 이중 구조.</span></div>
+    <div class="layer-row"><span class="layer-num">③</span><span style="font-size:10.5px;color:#555;">나치→재건→메르켈 안정→숄츠 삼당 교착→메르츠.</span></div>
+    <div class="layer-row"><span class="layer-num">④</span><span style="font-size:10.5px;color:#555;">외부: 민주주의 재건 모델. 동독 내부: "통일 후 착취당했다".</span></div>
+    <div class="layer-row"><span class="layer-num">⑤</span><span style="font-size:10.5px;color:#555;">"AfD는 민주주의의 적" vs "AfD만이 우리 말을 듣는다".</span></div>
+    <div class="layer-row"><span class="layer-num">⑥</span><span style="font-size:10.5px;color:#B8850E;">역사를 기억하는 것과 역사에 갇히는 것 — 그 경계가 흔들린다.</span></div>
+  </div>
+  <div class="layer-card">
+    <div class="layer-card-head nl">🇳🇱 네덜란드</div>
+    <div class="layer-row"><span class="layer-num">①</span><span style="font-size:10.5px;color:#555;">CPI 79·GPI 8위·주거3배·PVV 붕괴</span></div>
+    <div class="layer-row"><span class="layer-num">②</span><span style="font-size:10.5px;color:#555;">합의민주주의 해체 + 이민 갈등 구조.</span></div>
+    <div class="layer-row"><span class="layer-num">③</span><span style="font-size:10.5px;color:#555;">필라리자시→탈필라리자시→Fortuyn 암살→빌더스.</span></div>
+    <div class="layer-row"><span class="layer-num">④</span><span style="font-size:10.5px;color:#555;">외부: 관용의 나라. 내부: "관용이 우리 집을 빼앗는다".</span></div>
+    <div class="layer-row"><span class="layer-num">⑤</span><span style="font-size:10.5px;color:#555;">"다양성이 강점" vs "동화 없는 이민은 분열".</span></div>
+    <div class="layer-row"><span class="layer-num">⑥</span><span style="font-size:10.5px;color:#B8850E;">안네 프랑크를 기린 나라가 지금 이민자를 두려워한다.</span></div>
+  </div>
+</div>
+
+<!-- ══ ⅩⅢ 위상공간 ══ -->
+<div class="sec-title">ⅩⅢ &nbsp;위상공간 — SR-Σ 사분면 (17국 누적)</div>
+<div class="phase-wrap">
+  <div class="phase-title">SR-Σ 사분면 — 서유럽 4국 + 이전 13국</div>
+  <div class="phase-sub">17국 누적 배치 · 서유럽 4국 선명 표시</div>
+  <svg width="100%" height="320" viewBox="0 0 620 320" xmlns="http://www.w3.org/2000/svg">
+    <rect x="40" y="15" width="250" height="145" fill="#E8F5E9" opacity="0.3" rx="3"/>
+    <rect x="290" y="15" width="290" height="145" fill="#FFF3E0" opacity="0.3" rx="3"/>
+    <rect x="40" y="160" width="250" height="150" fill="#E3F2FD" opacity="0.3" rx="3"/>
+    <rect x="290" y="160" width="290" height="150" fill="#FCE4EC" opacity="0.3" rx="3"/>
+    <text x="165"  y="32" text-anchor="middle" font-size="8" fill="#2E7D32" font-weight="700" font-family="JetBrains Mono">Q1 건강한 저항</text>
+    <text x="435"  y="32" text-anchor="middle" font-size="8" fill="#E65100" font-weight="700" font-family="JetBrains Mono">Q2 가짜안정</text>
+    <text x="165" y="178" text-anchor="middle" font-size="8" fill="#1565C0" font-weight="700" font-family="JetBrains Mono">Q3 개방적 갈등</text>
+    <text x="435" y="178" text-anchor="middle" font-size="8" fill="#880E4F" font-weight="700" font-family="JetBrains Mono">Q4 체제 위기</text>
+    <line x1="40" y1="15" x2="40" y2="310" stroke="#999" stroke-width="1.5"/>
+    <line x1="40" y1="310" x2="580" y2="310" stroke="#999" stroke-width="1.5"/>
+    <line x1="290" y1="15" x2="290" y2="310" stroke="#999" stroke-width="1" stroke-dasharray="5,3"/>
+    <line x1="40" y1="160" x2="580" y2="160" stroke="#999" stroke-width="1" stroke-dasharray="5,3"/>
+    <line x1="40" y1="100" x2="580" y2="100" stroke="#E53935" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.6"/>
+    <text x="584" y="104" font-size="7" fill="#E53935" font-family="JetBrains Mono">Σ=0.70</text>
+    <text x="30" y="18"  text-anchor="end" font-size="8" fill="#666" font-family="JetBrains Mono">Σ1.0</text>
+    <text x="30" y="160" text-anchor="end" font-size="8" fill="#666" font-family="JetBrains Mono">Σ0.5</text>
+    <text x="30" y="310" text-anchor="end" font-size="8" fill="#666" font-family="JetBrains Mono">Σ0.0</text>
+    <text x="40"  y="322" font-size="8" fill="#666" font-family="JetBrains Mono">SR0.0</text>
+    <text x="290" y="322" text-anchor="middle" font-size="8" fill="#666" font-family="JetBrains Mono">SR0.5</text>
+    <text x="575" y="322" font-size="8" fill="#666" font-family="JetBrains Mono">SR1.0</text>
+
+    <!-- 이전 13국 반투명 -->
+    <circle cx="245" cy="195" r="9"  fill="#005496" fill-opacity="0.1" stroke="#005496" stroke-width="1"/><text x="245" y="198" text-anchor="middle" font-size="9">🇲🇾</text>
+    <circle cx="321" cy="147" r="10" fill="#CC0001" fill-opacity="0.1" stroke="#CC0001" stroke-width="1"/><text x="321" y="150" text-anchor="middle" font-size="10">🇮🇩</text>
+    <circle cx="191" cy="131" r="9"  fill="#E87722" fill-opacity="0.1" stroke="#E87722" stroke-width="1"/><text x="191" y="134" text-anchor="middle" font-size="9">🇻🇳</text>
+    <circle cx="299" cy="155" r="10" fill="#0038A8" fill-opacity="0.1" stroke="#0038A8" stroke-width="1"/><text x="299" y="158" text-anchor="middle" font-size="10">🇵🇭</text>
+    <circle cx="137" cy="104" r="11" fill="#8B1A1A" fill-opacity="0.1" stroke="#8B1A1A" stroke-width="1.5"/><text x="137" y="107" text-anchor="middle" font-size="9">🇰🇭</text>
+    <circle cx="283" cy="116" r="11" fill="#A51931" fill-opacity="0.1" stroke="#A51931" stroke-width="1.2"/><text x="283" y="119" text-anchor="middle" font-size="9">🇹🇭</text>
+    <circle cx="267" cy="186" r="11" fill="#8B1A1A" fill-opacity="0.1" stroke="#8B1A1A" stroke-width="1.2"/><text x="267" y="189" text-anchor="middle" font-size="9">🇱🇰</text>
+    <circle cx="175" cy="228" r="10" fill="#D4861A" fill-opacity="0.1" stroke="#D4861A" stroke-width="1"/><text x="175" y="231" text-anchor="middle" font-size="9">🇧🇹</text>
+    <circle cx="375" cy="122" r="12" fill="#1A6B3A" fill-opacity="0.1" stroke="#1A6B3A" stroke-width="1.2"/><text x="375" y="125" text-anchor="middle" font-size="10">🇧🇩</text>
+    <!-- 남유럽 반투명 -->
+    <circle cx="299" cy="163" r="12" fill="#AA151B" fill-opacity="0.1" stroke="#AA151B" stroke-width="1.2"/><text x="299" y="166" text-anchor="middle" font-size="10">🇪🇸</text>
+    <circle cx="283" cy="145" r="12" fill="#009246" fill-opacity="0.1" stroke="#009246" stroke-width="1.2"/><text x="283" y="148" text-anchor="middle" font-size="10">🇮🇹</text>
+    <circle cx="337" cy="131" r="13" fill="#0D5EAF" fill-opacity="0.1" stroke="#0D5EAF" stroke-width="1.5"/><text x="337" y="134" text-anchor="middle" font-size="11">🇬🇷</text>
+    <circle cx="267" cy="175" r="11" fill="#006600" fill-opacity="0.1" stroke="#006600" stroke-width="1.2"/><text x="267" y="178" text-anchor="middle" font-size="10">🇵🇹</text>
+
+    <!-- 서유럽 4국 선명 — x=40+SR*540, y=310-Σ*290 -->
+    <!-- 영국 SR0.52 Σ0.58 → x=321, y=142 -->
+    <circle cx="321" cy="142" r="14" fill="#012169" fill-opacity="0.2" stroke="#012169" stroke-width="2.2"/>
+    <text x="321" cy="145" y="146" text-anchor="middle" font-size="12">🇬🇧</text>
+    <text x="321" y="131" text-anchor="middle" font-size="7.5" fill="#012169" font-weight="700" font-family="JetBrains Mono">GB.52/.58</text>
+    <!-- 프랑스 SR0.62 Σ0.60 → x=375, y=136 -->
+    <circle cx="375" cy="136" r="15" fill="#002395" fill-opacity="0.2" stroke="#002395" stroke-width="2.2"/>
+    <text x="375" y="140" text-anchor="middle" font-size="13">🇫🇷</text>
+    <text x="375" y="125" text-anchor="middle" font-size="7.5" fill="#002395" font-weight="700" font-family="JetBrains Mono">FR.62/.60</text>
+    <!-- 독일 SR0.48 Σ0.52 → x=299, y=159 -->
+    <circle cx="299" cy="159" r="14" fill="#333" fill-opacity="0.2" stroke="#333" stroke-width="2"/>
+    <text x="299" y="163" text-anchor="middle" font-size="12">🇩🇪</text>
+    <text x="299" y="175" text-anchor="middle" font-size="7.5" fill="#333" font-weight="700" font-family="JetBrains Mono">DE.48/.52</text>
+    <!-- 네덜란드 SR0.45 Σ0.50 → x=283, y=165 -->
+    <circle cx="283" cy="165" r="13" fill="#AE1C28" fill-opacity="0.2" stroke="#AE1C28" stroke-width="2"/>
+    <text x="283" y="169" text-anchor="middle" font-size="12">🇳🇱</text>
+    <text x="283" y="183" text-anchor="middle" font-size="7.5" fill="#AE1C28" font-weight="700" font-family="JetBrains Mono">NL.45/.50</text>
+
+    <text x="40" y="322" font-size="7.5" fill="#555" font-family="JetBrains Mono" dy="10">★ 서유럽 4국 Q2/Q3 경계 군집 — 남유럽과 동일 위치권. 프랑스 SR 0.62 가장 높음(거리혁명). 반투명=이전 17국.</text>
+  </svg>
+</div>
+
+<!-- ══ ⅩⅣ 오차 ══ -->
+<div class="sec-title">ⅩⅣ &nbsp;오차 범위</div>
+<div class="four-grid">
+  <div class="err-card"><div class="err-head gb">🇬🇧 영국</div>
+    <div class="err-item">· OLI 0.75 — Brexit 이후 무역통계 재편 중. 일부 불연속.</div>
+    <div class="err-item">· Reform 지지율 = 여론조사. 실제 선거와 갭 가능.</div>
+    <div class="err-item" style="color:#B8850E;">· 신뢰구간: ±0.08</div>
+  </div>
+  <div class="err-card"><div class="err-head fr">🇫🇷 프랑스</div>
+    <div class="err-item">· OLI 0.78 — EU Eurostat 기반. 높은 신뢰도.</div>
+    <div class="err-item">· LPI −0.22가 과대 추정 가능 — 제도 자체는 안정적.</div>
+    <div class="err-item" style="color:#B8850E;">· 신뢰구간: ±0.08</div>
+  </div>
+  <div class="err-card"><div class="err-head de">🇩🇪 독일</div>
+    <div class="err-item">· OLI 0.80 최고. Destatis 통계 신뢰도 유럽 최고.</div>
+    <div class="err-item">· TBI 0.68 추정: 홀로코스트 정치 효과 정량화 어려움.</div>
+    <div class="err-item" style="color:#B8850E;">· 신뢰구간: ±0.07</div>
+  </div>
+  <div class="err-card"><div class="err-head nl">🇳🇱 네덜란드</div>
+    <div class="err-item">· OLI 0.82 최고. CBS(네덜란드통계청) 최우수.</div>
+    <div class="err-item">· 재선거 진행 중 — 정치 불확실성 반영 한계.</div>
+    <div class="err-item" style="color:#B8850E;">· 신뢰구간: ±0.07</div>
+  </div>
+</div>
+
+<!-- ══ ⅩⅤ 한반도 ══ -->
+<div class="sec-title">ⅩⅤ &nbsp;한반도에서 바라보는 서유럽</div>
+<div class="kr-box">
+  <div class="kr-title">한반도 시선</div>
+  <div class="kr-text">
+    영국 Reform UK 33% — 이것은 한국 정치에도 신호다. 기존 양당 구조가 모두 신뢰를 잃었을 때 제3세력이 부상한다. 한국도 국민의힘·민주당에 대한 피로가 깊어지고 있다. "저들이 다 망쳤다"는 서사는 언어만 바꾸면 어디서든 작동한다.
+    <br><br>
+    독일 AfD와 동서 격차 — 한국의 수도권-지방 격차와 구조가 같다. 서울이 모든 것을 흡수하는 동안 지방은 공동화됐다. 그 불만이 특정 정당에 집중될 때 — AfD처럼 극단적 형태를 취할 수 있다. CFD 관리가 한국 정치의 과제다.
+    <br><br>
+    프랑스 연금 개혁 시위 — 한국도 2035~2040년 연금 개혁을 피할 수 없다. 마크롱이 강행했을 때 어떤 일이 벌어졌는지가 선례다. SR이 높은 사회에서 개혁을 합의 없이 밀어붙이면 Σ가 임계를 넘는다.
+    <br><br>
+    <strong>경제 연결:</strong> 독일 자동차 위기 → 현대·기아의 유럽 경쟁 환경 변화. 영국 브렉시트 → 한-영 FTA 재협상 필요성.
+  </div>
+</div>
+
+<!-- ══ 결론 ══ -->
+<div class="sec-title">결론 궤도 — 자유민주주의의 심장부에서 온 경고</div>
+<div class="conclusion">
+  <div class="conclusion-title">Reform · AfD · RN · PVV — 이름은 다르지만 같은 말을 한다</div>
+  <div class="conclusion-text">
+    "저들은 50년간 망쳤다."<br>
+    "엘리트가 우리를 배신했다."<br>
+    "이민자가 우리 집을 빼앗았다."<br><br>
+    이 서사가 작동하는 이유는 — 거짓이기 때문이 아니라 절반은 맞기 때문이다.<br>
+    지도자들은 마중물을 흘리려 했다. 그러나 파이프가 막혔다.<br>
+    브렉시트가, 긴축이, 이민 갈등이, 주거 위기가 β를 올렸다.<br><br>
+    자유민주주의의 어머니 나라들이 지금 자유민주주의를 불신한다.<br>
+    이것이 Λ¹²가 서유럽에서 읽는 신호다.<br>
+    <em>지도자만 탓할 수 없다 — 그러나 지도자가 책임에서 자유롭지도 않다.</em>
+  </div>
+</div>
+
+<!-- ══ 시리즈 박스 ══ -->
+<div class="series-box">
+  <div class="series-title">늘푸른바다 Λ¹² 국가편 시리즈</div>
+  <div class="series-list">
+    <span class="series-item done">#9 미국</span>
+    <span class="series-item done">#10 보츠와나</span>
+    <span class="series-item done">#11 동남아 비교 I</span>
+    <span class="series-item done">#12 동남아 비교 II</span>
+    <span class="series-item done">#13 남아시아 비교 I</span>
+    <span class="series-item done">#14 남유럽 비교 I</span>
+    <span class="series-item current">#15 서유럽 비교 I (영국·프랑스·독일·네덜란드)</span>
+    <span class="series-item">북유럽 비교 (예정)</span>
+    <span class="series-item">동유럽 비교 (예정)</span>
+    <span class="series-item">발칸 비교 (예정)</span>
+  </div>
+</div>
+
+<!-- ══ 푸터 ══ -->
+<div class="footer">
+  <strong>늘푸른바다 사회동역학 연구소</strong> · Everblue Sea Institute for Social Dynamics<br>
+  <a href="https://badaegopa.tistory.com">badaegopa.tistory.com</a> &nbsp;·&nbsp;
+  SSRN Abstract ID 6509200 &nbsp;·&nbsp;
+  슬로건: 분석을 넘어, 재조립으로 / Not analysis, but synthesis.<br><br>
+  <span style="font-size:10px;opacity:.6;">
+    Λ¹² v9.11 · §30 Λ-Score·PWT-r · 2026-04-29<br>
+    데이터: GPI 2025(IEP) · CPI 2025(TI) · EY European Outlook Mar.2026 · IMF WEO Apr.2026 · Ipsos UK Nov.2025<br>
+    OLI 0.75~0.82 — EU 통계 체계 최고 신뢰구간. Λ-Score 배지값 = Python calc_lambda_score() 검증 후 교체 예정.<br>
+    청해(淸海) © 2026 · 무단 전재 금지
+  </span>
+</div>
+
+</body>
+</html>

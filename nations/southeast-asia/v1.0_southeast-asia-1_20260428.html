@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Λ¹² 동남아 신흥3국 비교편 — 말레이시아·인도네시아·베트남</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ─── 디자인 v2.2 파스텔 팔레트 ─── */
+:root {
+  --bg: #F5F3EE;
+  --card: #FFFFFF;
+  --border: #DDD8CE;
+  --green: #5E9186;
+  --green-text: #3A6A5E;
+  --gold: #B8850E;
+  --gold-light: #F0C040;
+  --hero-from: #7BADA0;
+  --hero-to: #5E9186;
+  --text: #2A2A2A;
+  --muted: #666;
+  --cream: #FFFDF8;
+
+  /* 국가 색상 */
+  --my: #005496;  /* 말레이시아 — 남청 */
+  --id: #CC0001;  /* 인도네시아 — 빨강 */
+  --vn: #DA251D;  /* 베트남 — 진홍 */
+  --vn: #E87722;  /* 베트남 — 주황(구분용) */
+
+  /* 변수 라벨 색상 (v9.9 표준) */
+  --tbi-bg:#FCEBEB; --tbi-c:#791F1F;
+  --sr-bg:#E1F5EE;  --sr-c:#085041;
+  --oli-bg:#E6F1FB; --oli-c:#0C447C;
+  --lpi-bg:#FAEEDA; --lpi-c:#633806;
+  --sig-bg:#EEEDFE; --sig-c:#3C3489;
+  --ppr-bg:#EAF3DE; --ppr-c:#27500A;
+  --cfd-bg:#FAECE7; --cfd-c:#712B13;
+}
+
+* { box-sizing: border-box; margin:0; padding:0; }
+body { background:var(--bg); font-family:'Noto Sans KR',sans-serif; color:var(--text); font-size:13px; line-height:1.75; }
+
+/* ─── 히어로 헤더 ─── */
+.hero {
+  background: linear-gradient(135deg, var(--hero-from), var(--hero-to));
+  color:#fff; padding:52px 40px 40px; text-align:center;
+}
+.hero-eyebrow { font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.12em; opacity:.75; margin-bottom:14px; }
+.hero-title { font-family:'Bebas Neue',sans-serif; font-size:42px; letter-spacing:.06em; line-height:1.1; margin-bottom:10px; }
+.hero-sub { font-size:13px; opacity:.85; line-height:1.7; }
+.hero-meta { margin-top:18px; display:flex; justify-content:center; gap:20px; flex-wrap:wrap; }
+.hero-badge { background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.3); border-radius:20px; padding:4px 14px; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.06em; }
+
+/* ─── 연구목적 선언 ─── */
+.declaration { background:var(--cream); border-left:4px solid var(--green); margin:28px 24px; padding:18px 22px; border-radius:0 8px 8px 0; }
+.declaration-title { font-family:'Bebas Neue',sans-serif; font-size:16px; color:var(--green-text); letter-spacing:.05em; margin-bottom:8px; }
+.declaration p { font-size:12.5px; color:#444; line-height:1.8; }
+
+/* ─── 민중 시선 ─── */
+.peoples-view { margin:0 24px 24px; background:#fff; border:1px solid var(--border); border-radius:10px; padding:20px 22px; }
+.peoples-view-title { font-family:'Bebas Neue',sans-serif; font-size:15px; color:var(--gold); letter-spacing:.06em; margin-bottom:12px; }
+.pv-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; }
+.pv-card { background:var(--bg); border-radius:8px; padding:12px 14px; border-top:3px solid; }
+.pv-card.my { border-color:var(--my); }
+.pv-card.id { border-color:var(--id); }
+.pv-card.vn { border-color:#E87722; }
+.pv-flag { font-size:22px; margin-bottom:4px; }
+.pv-name { font-family:'Bebas Neue',sans-serif; font-size:14px; letter-spacing:.05em; margin-bottom:6px; }
+.pv-name.my { color:var(--my); }
+.pv-name.id { color:var(--id); }
+.pv-name.vn { color:#E87722; }
+.pv-quote { font-size:11.5px; color:#555; line-height:1.7; font-style:italic; }
+
+/* ─── 섹션 타이틀 ─── */
+.sec-title {
+  font-family:'Bebas Neue',sans-serif; font-size:19px; letter-spacing:.07em;
+  color:var(--green-text); border-bottom:2px solid var(--green);
+  margin:28px 24px 14px; padding-bottom:8px;
+}
+
+/* ─── §0 용어 해설 ─── */
+.term-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:0 24px 24px; }
+.term-box { background:#fff; border:1px solid var(--border); border-radius:8px; padding:12px 14px; }
+.term-name { font-family:'JetBrains Mono',monospace; font-weight:700; font-size:11px; color:var(--green-text); margin-bottom:4px; }
+.term-def { font-size:11px; color:#555; line-height:1.6; }
+.term-ref { font-size:9.5px; color:#999; margin-top:4px; font-family:'JetBrains Mono',monospace; }
+
+/* ─── Ⅰ 관찰자 시선 — 3열 카드 ─── */
+.observer-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin:0 24px 24px; }
+.obs-card { background:#fff; border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+.obs-header { padding:12px 16px; color:#fff; }
+.obs-header.my { background:var(--my); }
+.obs-header.id { background:var(--id); }
+.obs-header.vn { background:#E87722; }
+.obs-country { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:.05em; }
+.obs-eng { font-size:10px; opacity:.8; font-family:'JetBrains Mono',monospace; }
+.obs-body { padding:14px 16px; }
+.obs-row { display:flex; justify-content:space-between; margin-bottom:7px; font-size:11.5px; border-bottom:1px dashed #eee; padding-bottom:5px; }
+.obs-row:last-child { border:none; margin-bottom:0; }
+.obs-label { color:#777; }
+.obs-value { font-weight:700; font-family:'JetBrains Mono',monospace; font-size:11px; }
+.obs-value.my { color:var(--my); }
+.obs-value.id { color:var(--id); }
+.obs-value.vn { color:#E87722; }
+
+/* ─── Ⅱ 국가 통치 구조 ─── */
+.gov-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin:0 24px 24px; }
+.gov-card { background:#fff; border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+.gov-title { font-family:'JetBrains Mono',monospace; font-weight:700; font-size:10.5px; margin-bottom:8px; }
+.gov-title.my { color:var(--my); }
+.gov-title.id { color:var(--id); }
+.gov-title.vn { color:#E87722; }
+.gov-item { font-size:11.5px; color:#444; margin-bottom:5px; line-height:1.6; }
+.gov-item strong { color:var(--text); }
+
+/* ─── Ⅲ 기본 통계 ─── */
+.stats-table { width:calc(100% - 48px); margin:0 24px 24px; border-collapse:collapse; font-size:11.5px; background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,.05); }
+.stats-table th { background:var(--green-text); color:#fff; padding:9px 14px; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:10.5px; text-align:center; }
+.stats-table td { padding:8px 14px; border-bottom:1px solid #f0ede7; text-align:center; color:#444; }
+.stats-table tr:last-child td { border:none; }
+.stats-table tr:hover td { background:#fafaf7; }
+.stats-table .label { text-align:left; font-weight:500; color:var(--green-text); }
+.val-my { color:var(--my); font-weight:700; font-family:'JetBrains Mono',monospace; }
+.val-id { color:var(--id); font-weight:700; font-family:'JetBrains Mono',monospace; }
+.val-vn { color:#E87722; font-weight:700; font-family:'JetBrains Mono',monospace; }
+
+/* ─── Ⅳ 기본 좌표 + 공식 박스 ─── */
+.coord-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin:0 24px 14px; }
+.coord-card { background:#fff; border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+.coord-head { font-family:'Bebas Neue',sans-serif; font-size:14px; letter-spacing:.05em; margin-bottom:10px; }
+.coord-head.my { color:var(--my); }
+.coord-head.id { color:var(--id); }
+.coord-head.vn { color:#E87722; }
+.coord-item { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+.coord-label { font-size:10.5px; }
+.coord-bar-wrap { flex:1; height:6px; background:#eee; border-radius:3px; margin:0 10px; }
+.coord-bar { height:6px; border-radius:3px; }
+.coord-num { font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; min-width:32px; text-align:right; }
+
+.formula-box { margin:0 24px 24px; background:linear-gradient(135deg,#f0ede7,#e8e4dc); border:1px solid var(--border); border-radius:10px; padding:16px 20px; }
+.formula-title { font-family:'Bebas Neue',sans-serif; font-size:15px; color:var(--green-text); letter-spacing:.06em; margin-bottom:10px; }
+.formula-eq { font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--green-text); background:#fff; display:inline-block; padding:6px 14px; border-radius:6px; margin-bottom:8px; }
+.formula-note { font-size:11px; color:#666; line-height:1.7; }
+
+/* ─── Ⅴ 레이더 SVG ─── */
+.radar-wrap { margin:0 24px 24px; background:#fff; border:1px solid var(--border); border-radius:12px; padding:20px; }
+.radar-title { font-family:'Bebas Neue',sans-serif; font-size:16px; color:var(--green-text); letter-spacing:.06em; margin-bottom:16px; text-align:center; }
+.radar-container { display:flex; justify-content:center; gap:0; }
+.radar-legend { display:flex; justify-content:center; gap:24px; margin-top:12px; flex-wrap:wrap; }
+.radar-legend-item { display:flex; align-items:center; gap:6px; font-size:11px; }
+.radar-dot { width:10px; height:10px; border-radius:50%; }
+
+/* ─── Ⅵ GPI 추이 ─── */
+.gpi-wrap { margin:0 24px 24px; background:#fff; border:1px solid var(--border); border-radius:12px; padding:20px; }
+.gpi-title { font-family:'Bebas Neue',sans-serif; font-size:16px; color:var(--green-text); letter-spacing:.06em; margin-bottom:4px; text-align:center; }
+.gpi-sub { font-size:10.5px; color:#888; text-align:center; margin-bottom:16px; font-family:'JetBrains Mono',monospace; }
+
+/* ─── PPR-5 블록 ─── */
+.ppr-block { margin:0 24px 18px; }
+.ppr-label { font-family:'Bebas Neue',sans-serif; font-size:17px; letter-spacing:.06em; color:var(--green-text); border-bottom:2px solid var(--border); padding-bottom:6px; margin-bottom:14px; }
+.ppr-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; }
+.ppr-card { background:#fff; border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+.ppr-card-head { padding:10px 14px; font-family:'JetBrains Mono',monospace; font-size:10.5px; font-weight:700; color:#fff; }
+.ppr-card-head.my { background:var(--my); }
+.ppr-card-head.id { background:var(--id); }
+.ppr-card-head.vn { background:#E87722; }
+.ppr-card-body { padding:10px 14px; font-size:11.5px; color:#444; line-height:1.75; }
+.ppr-score { display:inline-block; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:13px; padding:2px 8px; border-radius:4px; margin-bottom:6px; }
+
+/* ─── 과정→현상+수식→결과 수직 스택 ─── */
+.ppr-stack-row { margin-bottom:4px; }
+.ppr-stack-label { font-size:9.5px; font-family:'JetBrains Mono',monospace; background:var(--bg); color:var(--muted); display:inline-block; padding:1px 6px; border-radius:3px; margin-bottom:3px; }
+
+/* ─── ⅩII 담론육층 ─── */
+.layer-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin:0 24px 24px; }
+.layer-card { background:#fff; border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+.layer-card-head { font-family:'Bebas Neue',sans-serif; font-size:14px; letter-spacing:.04em; margin-bottom:10px; }
+.layer-card-head.my { color:var(--my); }
+.layer-card-head.id { color:var(--id); }
+.layer-card-head.vn { color:#E87722; }
+.layer-row { display:flex; gap:8px; margin-bottom:7px; font-size:11px; line-height:1.6; }
+.layer-num { font-family:'JetBrains Mono',monospace; font-weight:700; font-size:10px; min-width:16px; color:var(--gold); }
+.layer-text { color:#555; }
+
+/* ─── ⅩⅢ 위상공간 ─── */
+.phase-wrap { margin:0 24px 24px; background:#fff; border:1px solid var(--border); border-radius:12px; padding:20px; }
+.phase-title { font-family:'Bebas Neue',sans-serif; font-size:16px; color:var(--green-text); letter-spacing:.06em; margin-bottom:4px; text-align:center; }
+.phase-sub { font-size:10.5px; color:#888; text-align:center; margin-bottom:16px; }
+
+/* ─── ⅩⅣ 오차 범위 ─── */
+.err-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin:0 24px 24px; }
+.err-card { background:#fff; border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+.err-head { font-family:'JetBrains Mono',monospace; font-weight:700; font-size:10.5px; margin-bottom:8px; }
+.err-head.my { color:var(--my); }
+.err-head.id { color:var(--id); }
+.err-head.vn { color:#E87722; }
+.err-item { font-size:11px; color:#555; line-height:1.65; margin-bottom:4px; }
+
+/* ─── ⅩⅤ 한반도 시선 ─── */
+.kr-box { margin:0 24px 24px; background:linear-gradient(135deg,#eef6f4,#e4f0ed); border:1px solid #c5ddd9; border-radius:10px; padding:18px 22px; }
+.kr-title { font-family:'Bebas Neue',sans-serif; font-size:16px; color:var(--green-text); letter-spacing:.06em; margin-bottom:10px; }
+.kr-text { font-size:12px; color:#444; line-height:1.85; }
+
+/* ─── 결론 궤도 ─── */
+.conclusion { margin:0 24px 24px; background:linear-gradient(135deg,var(--hero-from),var(--hero-to)); color:#fff; border-radius:12px; padding:24px 26px; }
+.conclusion-title { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:.07em; margin-bottom:14px; }
+.conclusion-text { font-size:12.5px; line-height:1.9; opacity:.93; }
+
+/* ─── 시리즈 박스 ─── */
+.series-box { margin:0 24px 24px; border:2px solid var(--green); border-radius:10px; padding:14px 18px; }
+.series-title { font-family:'Bebas Neue',sans-serif; font-size:14px; color:var(--green-text); letter-spacing:.06em; margin-bottom:8px; }
+.series-list { display:flex; flex-wrap:wrap; gap:8px; }
+.series-item { font-size:11px; background:var(--bg); border:1px solid var(--border); border-radius:6px; padding:3px 10px; color:var(--muted); }
+.series-item.done { background:var(--green); color:#fff; border-color:var(--green); }
+.series-item.current { background:var(--gold); color:#fff; border-color:var(--gold); }
+
+/* ─── 푸터 ─── */
+.footer { background:var(--green-text); color:rgba(255,255,255,.8); text-align:center; padding:22px; font-size:11px; line-height:1.9; }
+.footer a { color:var(--gold-light); text-decoration:none; }
+
+/* ─── 변수 태그 ─── */
+.tag { display:inline-block; padding:1px 7px; border-radius:3px; font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:700; }
+.tag-tbi { background:var(--tbi-bg); color:var(--tbi-c); }
+.tag-sr  { background:var(--sr-bg);  color:var(--sr-c); }
+.tag-oli { background:var(--oli-bg); color:var(--oli-c); }
+.tag-lpi { background:var(--lpi-bg); color:var(--lpi-c); }
+.tag-sig { background:var(--sig-bg); color:var(--sig-c); }
+.tag-ppr { background:var(--ppr-bg); color:var(--ppr-c); }
+.tag-cfd { background:var(--cfd-bg); color:var(--cfd-c); }
+
+/* ─── 유틸 ─── */
+.mb16 { margin-bottom:16px; }
+.note { font-size:10.5px; color:#888; font-style:italic; margin:0 24px 16px; }
+.highlight-box { background:rgba(184,133,14,.08); border-left:3px solid var(--gold); padding:10px 14px; border-radius:0 8px 8px 0; margin-bottom:10px; font-size:11.5px; color:#444; line-height:1.75; }
+
+/* F_reach 색상 */
+.freach-s { color:#2E7D32; font-weight:700; }
+.freach-i { color:#1565C0; font-weight:700; }
+.freach-d { color:#AD1457; font-weight:700; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     히어로 헤더
+══════════════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-eyebrow">늘푸른바다 사회동역학 연구소 · Λ¹² 국가편 비교 시리즈</div>
+  <div class="hero-title">동남아 신흥 3국 비교편</div>
+  <div class="hero-sub">말레이시아 · 인도네시아 · 베트남<br>세 개의 궤도, 하나의 지역 — 서로 다른 발전의 문법</div>
+  <div class="hero-meta">
+    <span class="hero-badge">Λ¹² v9.10 엔진</span>
+    <span class="hero-badge">F_reach 신규 적용</span>
+    <span class="hero-badge">GPI 2025 기준</span>
+    <span class="hero-badge">CPI 2025 기준</span>
+    <span class="hero-badge">SSRN 6509200</span>
+    <span class="hero-badge">2026-04-28</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     연구 목적 선언
+══════════════════════════════════════════ -->
+<div class="declaration">
+  <div class="declaration-title">연구 목적 선언</div>
+  <p>
+    본 비교편은 말레이시아·인도네시아·베트남 세 국가를 Λ¹² 12차원 프레임워크로 동시에 분석하여, 동남아 신흥3국이 공유하는 구조적 조건과 분기하는 궤도를 관찰한다.
+    세 국가는 모두 개방적 무역경제를 채택하고 있으나 정치 체제·민족 구성·발전 경로가 상이하다. 이 차이가 Λ¹² 좌표 위에서 어떻게 표현되는지를 추적하는 것이 본 편의 목적이다.
+    Λ¹²는 결론을 선고하지 않는다. 보는 방식을 광장에 놓아둔다.
+  </p>
+</div>
+
+<!-- ══════════════════════════════════════════
+     민중 시선
+══════════════════════════════════════════ -->
+<div class="peoples-view">
+  <div class="peoples-view-title">민중의 시선 — 세 청년이 내다보는 창</div>
+  <div class="pv-grid">
+    <div class="pv-card my">
+      <div class="pv-flag">🇲🇾</div>
+      <div class="pv-name my">쿠알라룸푸르의 청년</div>
+      <div class="pv-quote">
+        "우리는 1MDB를 기억한다. 부마도 1991년에 그랬고, 나집도 그랬다.
+        돈은 어딘가로 가고 우리는 아직도 값싼 임금을 받는다.
+        부미푸트라 정책은 누구를 위한 것인가 — 민중인가, 엘리트인가."
+      </div>
+    </div>
+    <div class="pv-card id">
+      <div class="pv-flag">🇮🇩</div>
+      <div class="pv-name id">자카르타 외곽의 청년</div>
+      <div class="pv-quote">
+        "수도는 보르네오로 옮겨가는데 우리 동네 홍수는 여전하다.
+        2025년 반정부 시위에서 친구가 다쳤다. 민주주의라고 부르지만
+        군부와 재계가 움직이는 방향은 달라 보이지 않는다."
+      </div>
+    </div>
+    <div class="pv-card vn">
+      <div class="pv-flag">🇻🇳</div>
+      <div class="pv-name vn">하노이의 청년</div>
+      <div class="pv-quote">
+        "도이모이 이후 우리 부모 세대는 가난을 벗었다.
+        그런데 나는 페이스북도 자유롭게 못 쓴다.
+        경제는 자유인데 말은 자유가 아니다 — 이 모순을 어떻게 설명할까."
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     §0 용어 해설
+══════════════════════════════════════════ -->
+<div class="sec-title">§0 &nbsp;핵심 용어 해설 — Λ¹² 변수 체계</div>
+<div class="term-grid">
+  <div class="term-box">
+    <div class="term-name">BRI — 봉기위험지수</div>
+    <div class="term-def">Rebellion Risk Index. 민중 불만의 폭발 가능성. 경제불평등·제도불신·억압강도의 합성지수. 0~10 스케일.</div>
+    <div class="term-ref">Goldstone(2001) · Gurr(1970)</div>
+  </div>
+  <div class="term-box">
+    <div class="term-name">SSI — 사회안정지수</div>
+    <div class="term-def">Social Stability Index. 제도의 충격 흡수력. 법치·경제 회복력·사회통합 복합 측정.</div>
+    <div class="term-ref">Acemoglu & Robinson(2012)</div>
+  </div>
+  <div class="term-box">
+    <div class="term-name">SR — 사회저항지수</div>
+    <div class="term-def">Social Resistance Index. 제도에 대한 누적 시민 저항. SR 선행하락이 붕괴 역인과 신호.</div>
+    <div class="term-ref">Λ¹² §3 역인과 가설</div>
+  </div>
+  <div class="term-box">
+    <div class="term-name">Σ — 위상특이점</div>
+    <div class="term-def">Phase Singularity. 지도자-민중 단절도. 0(완전연결)~1(완전단절). Σ≥0.7이면 임계 위험.</div>
+    <div class="term-ref">Λ¹² §5 Σ 정의</div>
+  </div>
+  <div class="term-box">
+    <div class="term-name">TBI — 트라우마 빅뱅 지수</div>
+    <div class="term-def">Trauma Big Bang Index. 역사적 트라우마 누적이 현재 체제 정당성에 미치는 영향. TBI=H×C×N.</div>
+    <div class="term-ref">Λ¹² §27 비유클리드 확장</div>
+  </div>
+  <div class="term-box">
+    <div class="term-name">OLI — 관측가능성 한계지수</div>
+    <div class="term-def">Observability Limit Index. 데이터 신뢰 가능 범위. OLI 낮은 국가 간 직접 비교는 ±0.10 조건 필요.</div>
+    <div class="term-ref">Λ¹² §24</div>
+  </div>
+  <div class="term-box">
+    <div class="term-name">LPI_net — 순지도력지수</div>
+    <div class="term-def">Net Leadership Power Index. 지도자의 실질 역량 - 이미지 관리 비용. 양수=실질우위.</div>
+    <div class="term-ref">Λ¹² §8 LPI</div>
+  </div>
+  <div class="term-box">
+    <div class="term-name">CFD — 문화다양성지수</div>
+    <div class="term-def">Cultural Fragmentation/Diversity Index. 다민족·다종교 사회에서 응집력과 갈등 사이의 긴장.</div>
+    <div class="term-ref">Λ¹² §9 CFD</div>
+  </div>
+  <div class="term-box">
+    <div class="term-name">F_reach — 식량도달성지수</div>
+    <div class="term-def">Food Reach Index. F_reach=(S×I×D)^⅓. S 자급력·I 수입안정·D 분배도달. v9.10 보편변수 신설.</div>
+    <div class="term-ref">FAO·Sen·UNDP HDI 기하평균 계보</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     Ⅰ 관찰자 시선 — 이론적 자기위치
+══════════════════════════════════════════ -->
+<div class="sec-title">Ⅰ &nbsp;관찰자 시선 — 세 국가를 배치하기 전에</div>
+<div style="margin:0 24px 14px; background:#fff; border:1px solid var(--border); border-radius:10px; padding:16px 20px;">
+  <div style="font-family:'Bebas Neue',sans-serif; font-size:13px; color:var(--gold); letter-spacing:.05em; margin-bottom:8px;">이론적 자기위치 — 고전사회학 계보 매칭 (§1-B)</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; font-size:11.5px;">
+    <div style="background:var(--bg); border-radius:6px; padding:8px 12px;">
+      <div style="font-weight:700; color:var(--my); margin-bottom:4px;">🇲🇾 말레이시아</div>
+      <div style="color:#555; line-height:1.7;">Weber의 합법적 지배 유형 중 <em>카리스마+전통적 지배</em>의 혼합. 부미푸트라 특권 구조는 Weber의 신분집단(Stand) 개념과 직결. Goffman 인상관리: 나집 이후 정부의 반부패 이미지 복원 노력.</div>
+    </div>
+    <div style="background:var(--bg); border-radius:6px; padding:8px 12px;">
+      <div style="font-weight:700; color:var(--id); margin-bottom:4px;">🇮🇩 인도네시아</div>
+      <div style="color:#555; line-height:1.7;">Durkheim의 유기적 연대가 작동하는 <em>다원 민주주의</em> 구조. 동시에 군부-재계 유착이 Mosca/Pareto의 지배엘리트 순환론과 공명. 2025년 시위는 Gurr의 상대적 박탈감 모형이 예측하는 궤도.</div>
+    </div>
+    <div style="background:var(--bg); border-radius:6px; padding:8px 12px;">
+      <div style="font-weight:700; color:#E87722; margin-bottom:4px;">🇻🇳 베트남</div>
+      <div style="color:#555; line-height:1.7;">단일 당 지배하에서의 <em>도구적 합리성</em>(Weber) — 경제 자유화와 정치 통제의 분리. Marx의 상부구조(정치)-하부구조(경제) 이원론이 역설적으로 살아있는 공간. Gramsci의 헤게모니: 당의 경제 성과가 정당성 담론을 생산.</div>
+    </div>
+  </div>
+</div>
+<p class="note">* 이 매칭표는 분석의 시작점이며, 어느 이론도 세 국가를 완전히 포괄하지 않는다. Λ¹² §1-C 수치화 경계 원칙 준수.</p>
+
+<!-- ══════════════════════════════════════════
+     Ⅱ 국가 통치 구조
+══════════════════════════════════════════ -->
+<div class="sec-title">Ⅱ &nbsp;국가 통치 구조</div>
+<div class="gov-grid">
+  <div class="gov-card">
+    <div class="gov-title my">🇲🇾 말레이시아 — 입헌군주제 연방</div>
+    <div class="gov-item"><strong>체제:</strong> 입헌군주제 / 의원내각제</div>
+    <div class="gov-item"><strong>현 총리:</strong> 안와르 이브라힘 (2022~)</div>
+    <div class="gov-item"><strong>국왕:</strong> 이브라힘 국왕 (2024~)</div>
+    <div class="gov-item"><strong>특이구조:</strong> 9개 술탄국 왕위 5년 순환제, 부미푸트라(말레이계) 우대정책</div>
+    <div class="gov-item"><strong>부패 이슈:</strong> 1MDB 스캔들 진행중(나집 징역 확정 2023)</div>
+    <div class="gov-item"><strong>핵심 긴장:</strong> 다민족(말레이60%·화교22%·인도6%) 간 자원배분 갈등</div>
+  </div>
+  <div class="gov-card">
+    <div class="gov-title id">🇮🇩 인도네시아 — 단일 공화제</div>
+    <div class="gov-item"><strong>체제:</strong> 대통령 중심제 / 단일 공화국</div>
+    <div class="gov-item"><strong>현 대통령:</strong> 프라보워 수비안토 (2024~)</div>
+    <div class="gov-item"><strong>특이구조:</strong> 전직 특수부대 사령관 출신 대통령, 군부-재계 유착 구조</div>
+    <div class="gov-item"><strong>안보이슈:</strong> 남중국해 나투나 해역 중국 침범 반복 대응</div>
+    <div class="gov-item"><strong>사회이슈:</strong> 2025년 반정부 시위 — 사상자 발생·디스인포메이션 논란</div>
+    <div class="gov-item"><strong>핵심 긴장:</strong> 민주주의 후퇴 우려 vs 경제 안정 우선주의</div>
+  </div>
+  <div class="gov-card">
+    <div class="gov-title vn">🇻🇳 베트남 — 단일 당-국가 체제</div>
+    <div class="gov-item"><strong>체제:</strong> 단일 당 사회주의 공화국 (베트남 공산당 VCP)</div>
+    <div class="gov-item"><strong>현 서기장:</strong> 또 럼 (2024~ / 국가주석 겸임)</div>
+    <div class="gov-item"><strong>특이구조:</strong> 당 > 국가 > 군의 3원 통제 구조</div>
+    <div class="gov-item"><strong>개혁노선:</strong> 도이모이(Đổi Mới, 1986) 이후 시장개방 유지</div>
+    <div class="gov-item"><strong>반부패:</strong> '화로(Blazing Furnace)' 캠페인 — 수십 명 고위직 처벌</div>
+    <div class="gov-item"><strong>핵심 긴장:</strong> 경제 자유화 ↔ 정치 통제 분리의 지속 가능성</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     Ⅲ 기본 통계
+══════════════════════════════════════════ -->
+<div class="sec-title">Ⅲ &nbsp;기본 통계 (2024~2025 기준)</div>
+<table class="stats-table">
+  <thead>
+    <tr>
+      <th class="label" style="text-align:left;">지표</th>
+      <th>🇲🇾 말레이시아</th>
+      <th>🇮🇩 인도네시아</th>
+      <th>🇻🇳 베트남</th>
+      <th>출처·비고</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="label">인구</td>
+      <td class="val-my">3,370만</td>
+      <td class="val-id">2억 7,900만</td>
+      <td class="val-vn">9,800만</td>
+      <td>UN 2024</td>
+    </tr>
+    <tr>
+      <td class="label">GDP (명목, 달러)</td>
+      <td class="val-my">4,590억</td>
+      <td class="val-id">1조 4,390억</td>
+      <td class="val-vn">4,500억</td>
+      <td>WB 2024</td>
+    </tr>
+    <tr>
+      <td class="label">1인당 GDP (PPP)</td>
+      <td class="val-my">$36,900</td>
+      <td class="val-id">$14,500</td>
+      <td class="val-vn">$14,600</td>
+      <td>IMF 2024</td>
+    </tr>
+    <tr>
+      <td class="label">GDP 성장률 (2025E)</td>
+      <td class="val-my">+4.5%</td>
+      <td class="val-id">+5.0%</td>
+      <td class="val-vn">+6.5%</td>
+      <td>ADB 2025 (ADB 지역 평균 4.7%)</td>
+    </tr>
+    <tr>
+      <td class="label">HDI (2024)</td>
+      <td class="val-my">0.803 (High)</td>
+      <td class="val-id">0.728 (High)</td>
+      <td class="val-vn">0.726 (High)</td>
+      <td>UNDP HDR 2025</td>
+    </tr>
+    <tr>
+      <td class="label">지니 계수</td>
+      <td class="val-my">~40.0</td>
+      <td class="val-id">~34.9</td>
+      <td class="val-vn">~35.7</td>
+      <td>WB 2022~24; 말레이시아 불평등 상대적 높음</td>
+    </tr>
+    <tr>
+      <td class="label">CPI 2025 (TI)</td>
+      <td class="val-my">52 / 54위</td>
+      <td class="val-id">34 / 99위</td>
+      <td class="val-vn">41 / 88위</td>
+      <td>Transparency International 2026.02</td>
+    </tr>
+    <tr>
+      <td class="label">GPI 2025 (IEP)</td>
+      <td class="val-my">1.469 / 13위</td>
+      <td class="val-id">1.786 / 49위</td>
+      <td class="val-vn">1.721 / 38위</td>
+      <td>IEP 2025; ASEAN내 2·5·3위</td>
+    </tr>
+    <tr>
+      <td class="label">주요 종교</td>
+      <td class="val-my">이슬람 61%</td>
+      <td class="val-id">이슬람 87%</td>
+      <td class="val-vn">불교·무종교 다수</td>
+      <td>–</td>
+    </tr>
+    <tr>
+      <td class="label">언론자유지수(RSF 2025)</td>
+      <td class="val-my">107위</td>
+      <td class="val-id">116위</td>
+      <td class="val-vn">174위 (하위)</td>
+      <td>RSF 2025; 베트남 언론통제 심각</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ══════════════════════════════════════════
+     Ⅳ 기본 좌표 + 공식 박스
+══════════════════════════════════════════ -->
+<div class="sec-title">Ⅳ &nbsp;Λ¹² 기본 좌표 — Proxy 추정 3단계</div>
+<div class="coord-grid">
+  <!-- 말레이시아 -->
+  <div class="coord-card">
+    <div class="coord-head my">🇲🇾 말레이시아</div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-tbi">TBI</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:45%;background:var(--tbi-c);opacity:.7;"></div></div>
+      <span class="coord-num" style="color:var(--tbi-c);">0.45</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-sr">SR</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:38%;background:var(--sr-c);opacity:.7;"></div></div>
+      <span class="coord-num" style="color:var(--sr-c);">0.38</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-sig">Σ</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:42%;background:var(--sig-c);opacity:.7;"></div></div>
+      <span class="coord-num" style="color:var(--sig-c);">0.42</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-oli">OLI</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:68%;background:var(--oli-c);opacity:.7;"></div></div>
+      <span class="coord-num" style="color:var(--oli-c);">0.68</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-lpi">LPI_net</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:51%;background:var(--lpi-c);opacity:.7;"></div></div>
+      <span class="coord-num" style="color:var(--lpi-c);">+0.12</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-cfd">CFD</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:72%;background:var(--cfd-c);opacity:.7;"></div></div>
+      <span class="coord-num" style="color:var(--cfd-c);">0.72</span>
+    </div>
+    <div style="margin-top:8px; font-size:10px; color:#888;">BRI: 3.2 · SSI: 5.8 · GPI: 1.469</div>
+  </div>
+  <!-- 인도네시아 -->
+  <div class="coord-card">
+    <div class="coord-head id">🇮🇩 인도네시아</div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-tbi">TBI</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:55%;background:var(--tbi-c);opacity:.7;"></div></div>
+      <span class="coord-num" style="color:var(--tbi-c);">0.55</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-sr">SR</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:52%;background:var(--sr-c);opacity:.7;"></div></div>
+      <span class="coord-num" style="color:var(--sr-c);">0.52</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-sig">Σ</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:58%;background:var(--sig-c);opacity:.7;"></div></div>
+      <span class="coord-num" style="color:var(--sig-c);">0.58</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-oli">OLI</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:55%;background:var(--oli-c);opacity:.7;"></div></div>
+      <span class="coord-num" style="color:var(--oli-c);">0.55</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-lpi">LPI_net</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:40%;background:var(--lpi-c);opacity:.7;"></div></div>
+      <span class="coord-num" style="color:var(--lpi-c);">−0.08</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-cfd">CFD</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:85%;background:var(--cfd-c);opacity:.7;"></div></div>
+      <span class="coord-num" style="color:var(--cfd-c);">0.85</span>
+    </div>
+    <div style="margin-top:8px; font-size:10px; color:#888;">BRI: 4.1 · SSI: 5.2 · GPI: 1.786</div>
+  </div>
+  <!-- 베트남 -->
+  <div class="coord-card">
+    <div class="coord-head vn">🇻🇳 베트남</div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-tbi">TBI</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:62%;background:var(--tbi-c);opacity:.7;"></div></div>
+      <span class="coord-num" style="color:var(--tbi-c);">0.62</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-sr">SR</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:28%;background:var(--sr-c);opacity:.7;"></div></div>
+      <span class="coord-num" style="color:var(--sr-c);">0.28</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-sig">Σ</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:63%;background:var(--sig-c);opacity:.7;"></div></div>
+      <span class="coord-num" style="color:var(--sig-c);">0.63</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-oli">OLI</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:42%;background:var(--oli-c);opacity:.7;"></div></div>
+      <span class="coord-num" style="color:var(--oli-c);">0.42</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-lpi">LPI_net</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:38%;background:var(--lpi-c);opacity:.7;"></div></div>
+      <span class="coord-num" style="color:var(--lpi-c);">+0.05</span>
+    </div>
+    <div class="coord-item">
+      <span class="coord-label"><span class="tag tag-cfd">CFD</span></span>
+      <div class="coord-bar-wrap"><div class="coord-bar" style="width:32%;background:var(--cfd-c);opacity:.7;"></div></div>
+      <span class="coord-num" style="color:var(--cfd-c);">0.32</span>
+    </div>
+    <div style="margin-top:8px; font-size:10px; color:#888;">BRI: 2.7 · SSI: 5.5 · GPI: 1.721</div>
+  </div>
+</div>
+
+<div class="formula-box">
+  <div class="formula-title">Λ¹² 보정 공식 (§27 통합공식 — v9.10 최종 확정)</div>
+  <div class="formula-eq">Λ¹²_corrected = Λ¹²_raw ÷ OLI × (1 − TBI×θ) × exp(−k×t)</div>
+  <div class="formula-note">
+    OLI(관측가능성 한계): 말레이시아 0.68 · 인도네시아 0.55 · 베트남 0.42 — OLI 동등성 ±0.10 조건 불충족 → 3국 간 직접 수치 비교 시 구조적 의미(방향성) 중심으로 독해 권고.<br>
+    θ: TBI 임계 감쇠계수 (기본값 0.7) · k: 화해계수 · t: 경과시간.<br>
+    ★ 베트남 OLI 0.42 — 단일 당 정보 통제 구조상 관측 데이터 신뢰도가 세 국가 중 가장 낮음. Goodhart 경고 적용.
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     Ⅴ 레이더 — 12지수 3국 오버레이 SVG
+══════════════════════════════════════════ -->
+<div class="sec-title">Ⅴ &nbsp;Λ¹² 12지수 레이더 — 3국 오버레이</div>
+<div class="radar-wrap">
+  <div class="radar-title">Λ¹² 12지수 레이더 차트 (3국 동시 비교)</div>
+  <div class="radar-container">
+    <svg width="520" height="420" viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg">
+      <!-- 배경 그리드 -->
+      <g transform="translate(260,210)">
+        <!-- 동심원 -->
+        <circle r="40"  fill="none" stroke="#DDD8CE" stroke-width="1"/>
+        <circle r="80"  fill="none" stroke="#DDD8CE" stroke-width="1"/>
+        <circle r="120" fill="none" stroke="#DDD8CE" stroke-width="1"/>
+        <circle r="160" fill="none" stroke="#DDD8CE" stroke-width="1"/>
+        <!-- 축선 12개 -->
+        <line x1="0" y1="0" x2="0" y2="-160"   stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="80" y2="-139"  stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="139" y2="-80"  stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="160" y2="0"    stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="139" y2="80"   stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="80" y2="139"   stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="0" y2="160"    stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-80" y2="139"  stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-139" y2="80"  stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-160" y2="0"   stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-139" y2="-80" stroke="#DDD8CE" stroke-width="1"/>
+        <line x1="0" y1="0" x2="-80" y2="-139" stroke="#DDD8CE" stroke-width="1"/>
+
+        <!-- 눈금 라벨 -->
+        <text x="5" y="-42"  font-size="8" fill="#aaa" font-family="JetBrains Mono">0.25</text>
+        <text x="5" y="-82"  font-size="8" fill="#aaa" font-family="JetBrains Mono">0.5</text>
+        <text x="5" y="-122" font-size="8" fill="#aaa" font-family="JetBrains Mono">0.75</text>
+        <text x="5" y="-162" font-size="8" fill="#aaa" font-family="JetBrains Mono">1.0</text>
+
+        <!-- 12 축 라벨 -->
+        <!-- 12시 BRI -->
+        <text x="0"   y="-172" text-anchor="middle" font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">BRI</text>
+        <!-- 1시 SSI -->
+        <text x="86"  y="-150" text-anchor="start"  font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">SSI</text>
+        <!-- 2시 SR -->
+        <text x="150" y="-86"  text-anchor="start"  font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">SR</text>
+        <!-- 3시 GPI -->
+        <text x="168" y="4"   text-anchor="start"  font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">GPI</text>
+        <!-- 4시 TBI -->
+        <text x="150" y="92"  text-anchor="start"  font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">TBI</text>
+        <!-- 5시 Σ -->
+        <text x="86"  y="155" text-anchor="start"  font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">Σ</text>
+        <!-- 6시 OLI -->
+        <text x="0"   y="178" text-anchor="middle" font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">OLI</text>
+        <!-- 7시 LPI -->
+        <text x="-90" y="155" text-anchor="end"    font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">LPI</text>
+        <!-- 8시 CFD -->
+        <text x="-154" y="92" text-anchor="end"    font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">CFD</text>
+        <!-- 9시 HDI -->
+        <text x="-172" y="4"  text-anchor="end"    font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">HDI</text>
+        <!-- 10시 CPI -->
+        <text x="-154" y="-86" text-anchor="end"   font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">CPI</text>
+        <!-- 11시 F_reach -->
+        <text x="-90" y="-150" text-anchor="end"   font-size="9" fill="#3A6A5E" font-weight="700" font-family="JetBrains Mono">F_reach</text>
+
+        <!-- ★ 말레이시아 (파랑) — 정규화 값×160 -->
+        <!-- BRI 3.2/10→0.32  SSI 5.8/10→0.58  SR 0.38  GPI(역)0.73  TBI 0.45  Σ 0.42  OLI 0.68  LPI 0.62  CFD(역)0.28  HDI 0.80  CPI 0.52  Freach 0.66 -->
+        <polygon points="
+          0,-51
+          83,-59
+          132,-45
+          117,0
+          111,80
+          67,49
+          0,109
+          -70,87
+          -36,25
+          -128,0
+          -130,-62
+          -71,-91
+        " fill="#005496" fill-opacity="0.15" stroke="#005496" stroke-width="2" stroke-opacity="0.8"/>
+
+        <!-- ★ 인도네시아 (빨강) -->
+        <!-- BRI 4.1/10→0.41  SSI 5.2/10→0.52  SR 0.52  GPI(역)0.60  TBI 0.55  Σ 0.58  OLI 0.55  LPI 0.42  CFD(역)0.15  HDI 0.728  CPI 0.34  Freach 0.55 -->
+        <polygon points="
+          0,-66
+          74,-53
+          126,-65
+          96,0
+          136,98
+          93,68
+          0,88
+          -47,65
+          -20,13
+          -117,0
+          -88,-42
+          -49,-63
+        " fill="#CC0001" fill-opacity="0.15" stroke="#CC0001" stroke-width="2" stroke-opacity="0.8"/>
+
+        <!-- ★ 베트남 (주황) -->
+        <!-- BRI 2.7/10→0.27  SSI 5.5/10→0.55  SR 0.28  GPI(역)0.65  TBI 0.62  Σ 0.63  OLI 0.42  LPI 0.38  CFD(역)0.68  HDI 0.726  CPI 0.41  Freach 0.61 -->
+        <polygon points="
+          0,-43
+          78,-56
+          98,-33
+          104,0
+          153,111
+          101,74
+          0,67
+          -43,59
+          -92,67
+          -116,0
+          -105,-51
+          -71,-68
+        " fill="#E87722" fill-opacity="0.15" stroke="#E87722" stroke-width="2" stroke-opacity="0.8"/>
+
+        <!-- 중심점 -->
+        <circle cx="0" cy="0" r="3" fill="#5E9186"/>
+      </g>
+    </svg>
+  </div>
+  <div class="radar-legend">
+    <div class="radar-legend-item"><div class="radar-dot" style="background:#005496;"></div><span>🇲🇾 말레이시아</span></div>
+    <div class="radar-legend-item"><div class="radar-dot" style="background:#CC0001;"></div><span>🇮🇩 인도네시아</span></div>
+    <div class="radar-legend-item"><div class="radar-dot" style="background:#E87722;"></div><span>🇻🇳 베트남</span></div>
+  </div>
+  <div style="margin-top:12px; font-size:10.5px; color:#888; text-align:center; line-height:1.7;">
+    ※ 레이더 값은 각 지표 0~1 정규화(일부 역방향 보정 포함). GPI·CFD는 낮을수록 양호하므로 역수 적용.<br>
+    OLI 동등성 미충족(말레이시아 0.68·인도네시아 0.55·베트남 0.42) — 패턴·방향성 독해 우선.
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     Ⅵ GPI 추이 SVG
+══════════════════════════════════════════ -->
+<div class="sec-title">Ⅵ &nbsp;GPI 평화지수 추이 (2019~2025)</div>
+<div class="gpi-wrap">
+  <div class="gpi-title">GPI 점수 추이</div>
+  <div class="gpi-sub">낮을수록 평화 · 출처: IEP Global Peace Index 2025</div>
+  <svg width="100%" height="240" viewBox="0 0 640 240" xmlns="http://www.w3.org/2000/svg">
+    <!-- 배경 그리드 -->
+    <line x1="70" y1="20" x2="70" y2="200" stroke="#DDD8CE" stroke-width="1"/>
+    <line x1="70" y1="20" x2="620" y2="20" stroke="#DDD8CE" stroke-width="1" stroke-dasharray="4,4"/>
+    <line x1="70" y1="70" x2="620" y2="70" stroke="#DDD8CE" stroke-width="1" stroke-dasharray="4,4"/>
+    <line x1="70" y1="120" x2="620" y2="120" stroke="#DDD8CE" stroke-width="1" stroke-dasharray="4,4"/>
+    <line x1="70" y1="170" x2="620" y2="170" stroke="#DDD8CE" stroke-width="1" stroke-dasharray="4,4"/>
+    <line x1="70" y1="200" x2="620" y2="200" stroke="#DDD8CE" stroke-width="1"/>
+    <!-- Y축 라벨 (GPI 스코어) -->
+    <text x="62" y="24"  text-anchor="end" font-size="9" fill="#888" font-family="JetBrains Mono">1.3</text>
+    <text x="62" y="74"  text-anchor="end" font-size="9" fill="#888" font-family="JetBrains Mono">1.5</text>
+    <text x="62" y="124" text-anchor="end" font-size="9" fill="#888" font-family="JetBrains Mono">1.7</text>
+    <text x="62" y="174" text-anchor="end" font-size="9" fill="#888" font-family="JetBrains Mono">1.9</text>
+    <!-- X축 연도 -->
+    <!-- 2019=x80, 2020=x172, 2021=x264, 2022=x356, 2023=x448, 2024=x540, 2025=x620 -->
+    <text x="80"  y="216" text-anchor="middle" font-size="9" fill="#888" font-family="JetBrains Mono">2019</text>
+    <text x="172" y="216" text-anchor="middle" font-size="9" fill="#888" font-family="JetBrains Mono">2020</text>
+    <text x="264" y="216" text-anchor="middle" font-size="9" fill="#888" font-family="JetBrains Mono">2021</text>
+    <text x="356" y="216" text-anchor="middle" font-size="9" fill="#888" font-family="JetBrains Mono">2022</text>
+    <text x="448" y="216" text-anchor="middle" font-size="9" fill="#888" font-family="JetBrains Mono">2023</text>
+    <text x="540" y="216" text-anchor="middle" font-size="9" fill="#888" font-family="JetBrains Mono">2024</text>
+    <text x="620" y="216" text-anchor="middle" font-size="9" fill="#888" font-family="JetBrains Mono">2025</text>
+
+    <!-- 변환: y = 200 - (gpi - 1.3)/0.6 * 180 -->
+    <!-- 말레이시아: 1.52,1.50,1.49,1.51,1.47,1.48,1.47 -->
+    <polyline points="
+      80,66 172,60 264,57 356,63 448,51 540,54 620,51
+    " fill="none" stroke="#005496" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <!-- 점 -->
+    <circle cx="80"  cy="66" r="4" fill="#005496"/>
+    <circle cx="172" cy="60" r="4" fill="#005496"/>
+    <circle cx="264" cy="57" r="4" fill="#005496"/>
+    <circle cx="356" cy="63" r="4" fill="#005496"/>
+    <circle cx="448" cy="51" r="4" fill="#005496"/>
+    <circle cx="540" cy="54" r="4" fill="#005496"/>
+    <circle cx="620" cy="51" r="4" fill="#005496"/>
+    <text x="628" y="55" font-size="9" fill="#005496" font-weight="700" font-family="JetBrains Mono">🇲🇾</text>
+
+    <!-- 인도네시아: 1.83,1.79,1.80,1.82,1.81,1.80,1.79 -->
+    <polyline points="
+      80,159 172,147 264,150 356,156 448,153 540,150 620,147
+    " fill="none" stroke="#CC0001" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="80"  cy="159" r="4" fill="#CC0001"/>
+    <circle cx="172" cy="147" r="4" fill="#CC0001"/>
+    <circle cx="264" cy="150" r="4" fill="#CC0001"/>
+    <circle cx="356" cy="156" r="4" fill="#CC0001"/>
+    <circle cx="448" cy="153" r="4" fill="#CC0001"/>
+    <circle cx="540" cy="150" r="4" fill="#CC0001"/>
+    <circle cx="620" cy="147" r="4" fill="#CC0001"/>
+    <text x="628" y="151" font-size="9" fill="#CC0001" font-weight="700" font-family="JetBrains Mono">🇮🇩</text>
+
+    <!-- 베트남: 1.79,1.78,1.73,1.72,1.73,1.73,1.72 -->
+    <polyline points="
+      80,147 172,144 264,129 356,126 448,129 540,129 620,126
+    " fill="none" stroke="#E87722" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="80"  cy="147" r="4" fill="#E87722"/>
+    <circle cx="172" cy="144" r="4" fill="#E87722"/>
+    <circle cx="264" cy="129" r="4" fill="#E87722"/>
+    <circle cx="356" cy="126" r="4" fill="#E87722"/>
+    <circle cx="448" cy="129" r="4" fill="#E87722"/>
+    <circle cx="540" cy="129" r="4" fill="#E87722"/>
+    <circle cx="620" cy="126" r="4" fill="#E87722"/>
+    <text x="628" y="130" font-size="9" fill="#E87722" font-weight="700" font-family="JetBrains Mono">🇻🇳</text>
+  </svg>
+  <div style="font-size:10.5px; color:#888; margin-top:8px; text-align:center;">
+    ※ 말레이시아: ASEAN 2위(13위 글로벌) 꾸준히 유지 · 인도네시아: 2025년 3계단 상승(49위) 개선 추세 · 베트남: 38위 완만한 개선
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PPR-5 블록 (Ⅶ~Ⅺ)
+══════════════════════════════════════════ -->
+
+<!-- ─── Ⅶ 정치 PPR ─── -->
+<div class="sec-title">Ⅶ &nbsp;PPR-1 정치 (Political)</div>
+<div class="ppr-block">
+  <div class="ppr-grid">
+    <!-- 말레이시아 -->
+    <div class="ppr-card">
+      <div class="ppr-card-head my">🇲🇾 말레이시아</div>
+      <div class="ppr-card-body">
+        <div class="ppr-stack-label">과정</div>
+        <div class="ppr-stack-row">
+          다당제 의원내각제 운용. 안와르 이브라힘 총리 2022년 취임 — '마디아니(단합)' 연정. 1MDB 재판 진행, 나집 전 총리 징역 12년 확정(2023).
+        </div>
+        <div class="ppr-stack-label" style="margin-top:8px;">현상 + 지표</div>
+        <div class="ppr-stack-row">
+          <span class="tag tag-sig">Σ 0.42</span> — 지도자-민중 단절 중간 수준.<br>
+          CPI 52점(54위): ASEAN 2위. 부패 인식 개선 중이나 정치 엘리트 면죄부 논란 지속.<br>
+          부미푸트라 정책이 정치적 민족주의와 결합 — CFD 0.72 높음.
+        </div>
+        <div class="ppr-stack-label" style="margin-top:8px;">결과 신호</div>
+        <div class="ppr-stack-row">
+          Q2 사분면(SR↓·Σ↑ 경계): 표면 안정. 부마 정책 개혁 지체 시 민족 갈등 Σ 상승 위험.
+        </div>
+      </div>
+    </div>
+    <!-- 인도네시아 -->
+    <div class="ppr-card">
+      <div class="ppr-card-head id">🇮🇩 인도네시아</div>
+      <div class="ppr-card-body">
+        <div class="ppr-stack-label">과정</div>
+        <div class="ppr-stack-row">
+          대통령 중심제. 프라보워 수비안토 2024년 10월 취임. 전직 특수부대(Kopassus) 사령관. 군부-재계 유착 구조 온존 우려.
+        </div>
+        <div class="ppr-stack-label" style="margin-top:8px;">현상 + 지표</div>
+        <div class="ppr-stack-row">
+          <span class="tag tag-sig">Σ 0.58</span> — 지도자-민중 단절 상당히 높음.<br>
+          2025년 반정부 시위 — 경찰 폭력·디스인포메이션 논란. CPI 34점(99위) 심각.<br>
+          <span class="tag tag-sr">SR 0.52</span> — 사회 저항 누적 뚜렷.
+        </div>
+        <div class="ppr-stack-label" style="margin-top:8px;">결과 신호</div>
+        <div class="ppr-stack-row">
+          Q3 사분면(가짜안정) 진입 위험: Σ 0.58이 0.70 임계치 접근 중. 민주주의 후퇴 지속 시 BRI 임계 상승 경보.
+        </div>
+      </div>
+    </div>
+    <!-- 베트남 -->
+    <div class="ppr-card">
+      <div class="ppr-card-head vn">🇻🇳 베트남</div>
+      <div class="ppr-card-body">
+        <div class="ppr-stack-label">과정</div>
+        <div class="ppr-stack-row">
+          베트남 공산당(VCP) 단일 지배. '화로(Blazing Furnace)' 반부패 캠페인 지속. 또 럼 서기장 2024년 취임.
+        </div>
+        <div class="ppr-stack-label" style="margin-top:8px;">현상 + 지표</div>
+        <div class="ppr-stack-row">
+          <span class="tag tag-sig">Σ 0.63</span> — 단일 당 구조상 지도자-민중 단절 높음.<br>
+          CPI 41점(88위) — 반부패 캠페인 효과(2012→2025 구조적 상승). 언론자유 174위 최하위권.<br>
+          <span class="tag tag-sr">SR 0.28</span> — 낮은 표면 저항: 억압 구조 결과.
+        </div>
+        <div class="ppr-stack-label" style="margin-top:8px;">결과 신호</div>
+        <div class="ppr-stack-row">
+          SR 낮음 ≠ 안전: Λ¹² SR 역인과 가설 — 억압에 의한 SR 하락은 충격 시 급격 폭발 위험 내포. <span class="tag tag-tbi">TBI 0.62</span> 전쟁 기억 잔존.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── Ⅷ 경제 PPR ─── -->
+<div class="sec-title">Ⅷ &nbsp;PPR-2 경제 (Economic)</div>
+<div class="ppr-block">
+  <div class="ppr-grid">
+    <div class="ppr-card">
+      <div class="ppr-card-head my">🇲🇾 말레이시아</div>
+      <div class="ppr-card-body">
+        <div class="ppr-stack-label">과정</div>
+        <div class="ppr-stack-row">1인당 GDP(PPP) $36,900 — 동남아 상위. 반도체·팜유·LNG 수출 삼각축. TSMC·인텔 반도체 팹 투자 유치 성공.</div>
+        <div class="ppr-stack-label" style="margin-top:8px;">현상</div>
+        <div class="ppr-stack-row">지니 40.0 — 높은 불평등. 부미푸트라 특혜가 자원배분 효율 저하 유발. 성장률 +4.5% 안정적. 중국·미국 간 공급망 재편 수혜국으로 부상.</div>
+        <div class="ppr-stack-label" style="margin-top:8px;">결과</div>
+        <div class="ppr-stack-row">고소득 함정 탈출 가능성: 반도체 허브 전략이 결정적. 불평등 구조 미해소 시 중산층 박탈감 누적 위험.</div>
+      </div>
+    </div>
+    <div class="ppr-card">
+      <div class="ppr-card-head id">🇮🇩 인도네시아</div>
+      <div class="ppr-card-body">
+        <div class="ppr-stack-label">과정</div>
+        <div class="ppr-stack-row">GDP 1조 4,390억$ — ASEAN 최대. 니켈·석탄·팜유 자원 강국. 수도 누산타라 이전 공사 진행 중. 성장률 +5.0%.</div>
+        <div class="ppr-stack-label" style="margin-top:8px;">현상</div>
+        <div class="ppr-stack-row">지니 34.9 개선 중. 1인당 GDP $14,500 — 인구 대비 낮음. 자원 저주 구조: 니켈 수출 금지→배터리 밸류체인 내재화 시도. 재정 적자 -0.8%GDP 권역 평균.</div>
+        <div class="ppr-stack-label" style="margin-top:8px;">결과</div>
+        <div class="ppr-stack-row">제조업 고도화가 최대 과제. EV 배터리 공급망 편입 성패가 향후 10년 결정. 자원-민주주의 딜레마 지속.</div>
+      </div>
+    </div>
+    <div class="ppr-card">
+      <div class="ppr-card-head vn">🇻🇳 베트남</div>
+      <div class="ppr-card-body">
+        <div class="ppr-stack-label">과정</div>
+        <div class="ppr-stack-row">GDP 4,500억$ · 성장률 +6.5% — 3국 중 최고. 도이모이 이후 수출주도 성장 지속. 삼성·인텔·폭스콘 글로벌 공장 집결.</div>
+        <div class="ppr-stack-label" style="margin-top:8px;">현상</div>
+        <div class="ppr-stack-row">1인당 GDP $14,600. 지니 35.7. 남북 지역 격차: 하노이·호치민 집중, 농촌 소외 심화. 미-중 무역전쟁 공급망 이전 최대 수혜국.</div>
+        <div class="ppr-stack-label" style="margin-top:8px;">결과</div>
+        <div class="ppr-stack-row">경제 성과가 당 정당성의 유일한 버팀목. 성장 둔화 시 <span class="tag tag-sig">Σ</span> 급등 위험. 지역 불균형이 잠재적 사회 갈등 뇌관.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── Ⅸ 사회 PPR ─── -->
+<div class="sec-title">Ⅸ &nbsp;PPR-3 사회 (Social) + F_reach</div>
+<div class="ppr-block">
+  <div class="ppr-grid">
+    <div class="ppr-card">
+      <div class="ppr-card-head my">🇲🇾 말레이시아</div>
+      <div class="ppr-card-body">
+        <div class="ppr-stack-label">F_reach 진단</div>
+        <div class="ppr-stack-row">
+          F_reach ≈ (0.70×0.72×0.68)^⅓ ≈ <strong>0.70</strong> ⭐⭐⭐☆<br>
+          <span class="freach-s">S 자급력 0.70</span>: 쌀 자급률 70%·팜유 세계 2위 수출.<br>
+          <span class="freach-i">I 수입 안정 0.72</span>: 수입원 다변화·외환 보유 안정.<br>
+          <span class="freach-d">D 분배 0.68</span>: 부미푸트라 우대가 화교·인도계 식품 접근에 간접 영향.
+        </div>
+        <div class="ppr-stack-label" style="margin-top:8px;">사회 지표</div>
+        <div class="ppr-stack-row">HDI 0.803 높음. 의료·교육 수준 ASEAN 상위. 다민족 긴장: 말레이·화교·인도계 간 기회불평등 체감.</div>
+        <div class="ppr-stack-label" style="margin-top:8px;">결과</div>
+        <div class="ppr-stack-row">F_reach 상대적 양호. D 결핍 구조(분배 불균형)가 주 취약점. Σ 상승 주 동인은 경제가 아닌 정치·민족 갈등.</div>
+      </div>
+    </div>
+    <div class="ppr-card">
+      <div class="ppr-card-head id">🇮🇩 인도네시아</div>
+      <div class="ppr-card-body">
+        <div class="ppr-stack-label">F_reach 진단</div>
+        <div class="ppr-stack-row">
+          F_reach ≈ (0.68×0.60×0.55)^⅓ ≈ <strong>0.61</strong> ⭐⭐☆☆<br>
+          <span class="freach-s">S 자급력 0.68</span>: 쌀 생산 세계 3위 but 인구 2.8억 압박.<br>
+          <span class="freach-i">I 수입 안정 0.60</span>: 호르무즈 경로 의존, 중동 리스크 노출.<br>
+          <span class="freach-d">D 분배 0.55</span>: 도서 지형 2만 섬 — 물류 취약, 외딴 섬 식량 도달 불균형.
+        </div>
+        <div class="ppr-stack-label" style="margin-top:8px;">사회 지표</div>
+        <div class="ppr-stack-row">HDI 0.728. 빈곤율 개선 추세. 자바 섬 집중 인프라 vs 동부 섬 낙후. 2억 명 이상 무슬림 사회의 종교-세속 긴장.</div>
+        <div class="ppr-stack-label" style="margin-top:8px;">결과</div>
+        <div class="ppr-stack-row">F_reach 중하위: S·I 복합 취약. 이란 분쟁·호르무즈 리스크 I 악화 시 즉각 식량 안보 위협. 도서 물류가 D의 구조적 한계.</div>
+      </div>
+    </div>
+    <div class="ppr-card">
+      <div class="ppr-card-head vn">🇻🇳 베트남</div>
+      <div class="ppr-card-body">
+        <div class="ppr-stack-label">F_reach 진단</div>
+        <div class="ppr-stack-row">
+          F_reach ≈ (0.82×0.65×0.58)^⅓ ≈ <strong>0.68</strong> ⭐⭐⭐☆<br>
+          <span class="freach-s">S 자급력 0.82</span>: 쌀 수출 세계 3위, 커피·새우 수출 강국.<br>
+          <span class="freach-i">I 수입 안정 0.65</span>: 말라카 해협 의존 — 지정학 리스크 노출.<br>
+          <span class="freach-d">D 분배 0.58</span>: 도시-농촌·남북 격차로 분배 도달 불균형.
+        </div>
+        <div class="ppr-stack-label" style="margin-top:8px;">사회 지표</div>
+        <div class="ppr-stack-row">HDI 0.726. 기대수명 74.5세. 교육 접근성 개선 중. 농촌 청년 도시 이농 가속 — 지역 공동화.</div>
+        <div class="ppr-stack-label" style="margin-top:8px;">결과</div>
+        <div class="ppr-stack-row">S 강점이 전체 F_reach 지탱. D 결핍이 잠재 불만 원천. 농업 강국이면서 D 부족 — 한국형 농촌 소외와 유사한 구조적 모순.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── Ⅹ 환경 PPR ─── -->
+<div class="sec-title">Ⅹ &nbsp;PPR-4 환경 (Environmental)</div>
+<div class="ppr-block">
+  <div class="ppr-grid">
+    <div class="ppr-card">
+      <div class="ppr-card-head my">🇲🇾 말레이시아</div>
+      <div class="ppr-card-body">
+        <div class="ppr-stack-label">과정</div>
+        <div class="ppr-stack-row">팜유 농업이 열대우림 파괴의 주범. 보르네오·사라왁 삼림 훼손 지속. 탄소 중립 2050 선언.</div>
+        <div class="ppr-stack-label" style="margin-top:8px;">현상</div>
+        <div class="ppr-stack-row">EU 산림벌채규정(EUDR) — 팜유 수출 타격 리스크. 1인당 CO₂ 배출 7.8t(2022). ESG 압박 증가. 홍수·태풍 기후 리스크 상승.</div>
+        <div class="ppr-stack-label" style="margin-top:8px;">결과</div>
+        <div class="ppr-stack-row">팜유 vs 환경 딜레마: 친환경 전환 비용이 농촌 생계와 충돌. 경제-환경 두 마리 토끼 동시 달성이 최대 과제.</div>
+      </div>
+    </div>
+    <div class="ppr-card">
+      <div class="ppr-card-head id">🇮🇩 인도네시아</div>
+      <div class="ppr-card-body">
+        <div class="ppr-stack-label">과정</div>
+        <div class="ppr-stack-row">세계 최대 열대우림 보유국. 석탄 수출 세계 1위(2023). 온실가스 세계 8위. 수마트라·보르네오 삼림화재 반복.</div>
+        <div class="ppr-stack-label" style="margin-top:8px;">현상</div>
+        <div class="ppr-stack-row">수도 누산타라 이전: 자카르타 침강(연 25cm) + 인구 집중 해소 목적. 니켈 채굴 — 술라웨시 환경오염 보고. ADB: 기후 취약성 고위험 분류.</div>
+        <div class="ppr-stack-label" style="margin-top:8px;">결과</div>
+        <div class="ppr-stack-row">자원 수출-환경 트레이드오프 최대: 니켈이 EV 배터리 핵심이지만 채굴 피해가 지역사회에 집중. 불균등 환경 부담의 전형.</div>
+      </div>
+    </div>
+    <div class="ppr-card">
+      <div class="ppr-card-head vn">🇻🇳 베트남</div>
+      <div class="ppr-card-body">
+        <div class="ppr-stack-label">과정</div>
+        <div class="ppr-stack-row">메콩강 삼각주: 기후변화·상류 중국 댐 건설로 염분 침투·지반 침하 심각. 태양광·풍력 급속 확대(2020~2024 세계 최고 속도 중 하나).</div>
+        <div class="ppr-stack-label" style="margin-top:8px;">현상</div>
+        <div class="ppr-stack-row">1인당 CO₂ 3.8t. 제조업 집중 → 대기오염 우려. 그러나 재생에너지 확장 속도 인상적. 기후 취약 농업인구 집중 지역(메콩 삼각주) 이주 위협.</div>
+        <div class="ppr-stack-label" style="margin-top:8px;">결과</div>
+        <div class="ppr-stack-row">메콩강 상류 통제권 부재가 식량-환경 복합 위기 진원. F_reach S 강점이 기후 충격으로 훼손될 가능성 내포.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── Ⅺ 거버넌스 PPR ─── -->
+<div class="sec-title">Ⅺ &nbsp;PPR-5 거버넌스 (Governance)</div>
+<div class="ppr-block">
+  <div class="ppr-grid">
+    <div class="ppr-card">
+      <div class="ppr-card-head my">🇲🇾 말레이시아</div>
+      <div class="ppr-card-body">
+        <div class="ppr-stack-label">과정</div>
+        <div class="ppr-stack-row">반부패위원회(MACC) 강화. 나집 재판 진행. WGI 거버넌스 중상위권. 법치 지수 ASEAN 2~3위.</div>
+        <div class="ppr-stack-label" style="margin-top:8px;">현상</div>
+        <div class="ppr-stack-row"><span class="tag tag-lpi">LPI_net +0.12</span>: 안와르 총리 반부패 이미지 vs 실질 집행력 괴리 존재. 부미푸트라 정책이 능력주의 거버넌스와 충돌. 2033년 CPI 상위 25위 목표 선언(MACC).</div>
+        <div class="ppr-stack-label" style="margin-top:8px;">결과</div>
+        <div class="ppr-stack-row">거버넌스 개선 잠재력 존재. 핵심 병목: 1MDB 재발 방지 구조 수립 여부. 정치 엘리트 면죄부 관행 지속 시 LPI_net 하락 전환 가능.</div>
+      </div>
+    </div>
+    <div class="ppr-card">
+      <div class="ppr-card-head id">🇮🇩 인도네시아</div>
+      <div class="ppr-card-body">
+        <div class="ppr-stack-label">과정</div>
+        <div class="ppr-stack-row">부패척결위원회(KPK) 약화 우려. 프라보워 정부 군부 배경 — 시민통제 약화 신호. 부패지수 34(99위) 개선 정체.</div>
+        <div class="ppr-stack-label" style="margin-top:8px;">현상</div>
+        <div class="ppr-stack-row"><span class="tag tag-lpi">LPI_net −0.08</span>: 거버넌스 실질 역량 하락 신호. 2025년 시위 대응에서 디스인포메이션 활용 의혹. 인구 2.8억 관리의 행정 복잡성.</div>
+        <div class="ppr-stack-label" style="margin-top:8px;">결과</div>
+        <div class="ppr-stack-row">거버넌스 후퇴 위험군: LPI_net 음수 전환이 Σ 상승으로 직결. KPK 독립성 회복이 선행 조건. <span class="tag tag-sr">SR 0.52</span> + Σ 0.58 동시 상승이 가장 위험한 경로.</div>
+      </div>
+    </div>
+    <div class="ppr-card">
+      <div class="ppr-card-head vn">🇻🇳 베트남</div>
+      <div class="ppr-card-body">
+        <div class="ppr-stack-label">과정</div>
+        <div class="ppr-stack-row">VCP '화로' 반부패 캠페인 — 수십 명 고위직 처벌. CPI 41점(88위) 10년간 구조적 상승. 경제 실용주의가 정치 이데올로기 압도.</div>
+        <div class="ppr-stack-label" style="margin-top:8px;">현상</div>
+        <div class="ppr-stack-row"><span class="tag tag-lpi">LPI_net +0.05</span>: 반부패 성과가 일부 정당성 생산. 그러나 언론 통제(RSF 174위)가 거버넌스 투명성의 구조적 한계. OLI 0.42 — 실제 거버넌스 품질 관측 불확실성 높음.</div>
+        <div class="ppr-stack-label" style="margin-top:8px;">결과</div>
+        <div class="ppr-stack-row">당 주도 거버넌스의 역설: 부패 억제 효과는 가시적이나 정보 통제로 피드백 루프가 작동 불능. Goodhart 법칙 적용: CPI 상승이 반부패 캠페인의 도구화 가능성 내포.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     ⅩII 담론육층 3국 병렬
+══════════════════════════════════════════ -->
+<div class="sec-title">ⅩII &nbsp;담론육층 — 3국 병렬 분석</div>
+<div class="layer-grid">
+  <div class="layer-card">
+    <div class="layer-card-head my">🇲🇾 말레이시아</div>
+    <div class="layer-row"><span class="layer-num">①</span><span class="layer-text"><strong>데이터:</strong> CPI 52·GPI 1.469·GDP성장 4.5%·지니 40</span></div>
+    <div class="layer-row"><span class="layer-num">②</span><span class="layer-text"><strong>구조:</strong> 입헌군주제+부미푸트라 이중 구조. 반도체 허브 전략으로 수출 다각화.</span></div>
+    <div class="layer-row"><span class="layer-num">③</span><span class="layer-text"><strong>패턴:</strong> 1MDB 이후 반부패 개혁 사이클 반복. 민족 우대정책은 불평등 재생산.</span></div>
+    <div class="layer-row"><span class="layer-num">④</span><span class="layer-text"><strong>시각:</strong> 외부: ASEAN 안정 모범국 이미지. 내부: 화교·인도계 박탈감 서사.</span></div>
+    <div class="layer-row"><span class="layer-num">⑤</span><span class="layer-text"><strong>프레임:</strong> "다민족 공존의 성공" vs "엘리트 민족주의의 착취" 두 내러티브 경쟁.</span></div>
+    <div class="layer-row"><span class="layer-num">⑥</span><span class="layer-text" style="color:var(--gold);"><strong>판단(소장 고유):</strong> 6층은 독자 몫. 어느 나라도 악수를 막는 구조를 먼저 물어야 한다.</span></div>
+  </div>
+  <div class="layer-card">
+    <div class="layer-card-head id">🇮🇩 인도네시아</div>
+    <div class="layer-row"><span class="layer-num">①</span><span class="layer-text"><strong>데이터:</strong> CPI 34·GPI 1.786·GDP성장 5.0%·지니 34.9</span></div>
+    <div class="layer-row"><span class="layer-num">②</span><span class="layer-text"><strong>구조:</strong> 대통령제+군부 유산. 자원 풍부 도서 국가 — 통합과 분산의 긴장.</span></div>
+    <div class="layer-row"><span class="layer-num">③</span><span class="layer-text"><strong>패턴:</strong> 수하르토→민주화→군부 부활. 경제 성장이 민주주의 후퇴를 은폐하는 반복.</span></div>
+    <div class="layer-row"><span class="layer-num">④</span><span class="layer-text"><strong>시각:</strong> 외부: G20 신흥 강국. 내부: "우리 세금은 어디 갔나" — 부패 시위.</span></div>
+    <div class="layer-row"><span class="layer-num">⑤</span><span class="layer-text"><strong>프레임:</strong> "안정을 위한 강한 지도자" vs "민주주의를 포기한 성장" 충돌.</span></div>
+    <div class="layer-row"><span class="layer-num">⑥</span><span class="layer-text" style="color:var(--gold);"><strong>판단(소장 고유):</strong> Σ 0.58이 0.70 임계를 넘으면 패러다임이 바뀐다. 그 시점을 누가 먼저 보는가.</span></div>
+  </div>
+  <div class="layer-card">
+    <div class="layer-card-head vn">🇻🇳 베트남</div>
+    <div class="layer-row"><span class="layer-num">①</span><span class="layer-text"><strong>데이터:</strong> CPI 41·GPI 1.721·GDP성장 6.5%·지니 35.7</span></div>
+    <div class="layer-row"><span class="layer-num">②</span><span class="layer-text"><strong>구조:</strong> 단일 당 지배+시장경제 분리 운용. 도이모이 패러다임 지속.</span></div>
+    <div class="layer-row"><span class="layer-num">③</span><span class="layer-text"><strong>패턴:</strong> 경제 성과→정치 정당성 재생산. SR 억압→표면 안정→내부 압력 축적 반복.</span></div>
+    <div class="layer-row"><span class="layer-num">④</span><span class="layer-text"><strong>시각:</strong> 외부: 아시아의 성장 기적 후보. 내부: "말도 못하고 일만 한다".</span></div>
+    <div class="layer-row"><span class="layer-num">⑤</span><span class="layer-text"><strong>프레임:</strong> "경제자유+정치통제" 모델의 지속 가능성 논쟁. 중국 모델 복사인가 독자 경로인가.</span></div>
+    <div class="layer-row"><span class="layer-num">⑥</span><span class="layer-text" style="color:var(--gold);"><strong>판단(소장 고유):</strong> SR이 낮은 이유가 만족인지 억압인지 — 그 경계가 무너질 때 어떤 일이 일어나는가.</span></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     ⅩⅢ 위상공간 SVG (SR-Σ 사분면)
+══════════════════════════════════════════ -->
+<div class="sec-title">ⅩⅢ &nbsp;위상공간 — SR-Σ 사분면</div>
+<div class="phase-wrap">
+  <div class="phase-title">SR-Σ 위상 사분면 (3국 동시 배치)</div>
+  <div class="phase-sub">SR: 사회저항지수 · Σ: 위상특이점(지도자-민중 단절) · Σ≥0.7 = 임계 위험</div>
+  <svg width="100%" height="340" viewBox="0 0 560 340" xmlns="http://www.w3.org/2000/svg">
+    <!-- 사분면 배경 -->
+    <rect x="40" y="20"  width="240" height="145" fill="#E8F5E9" opacity="0.5" rx="4"/><!-- Q1: 건강 저항 -->
+    <rect x="280" y="20" width="240" height="145" fill="#FFF3E0" opacity="0.5" rx="4"/><!-- Q2: 가짜 안정 -->
+    <rect x="40" y="165" width="240" height="145" fill="#E3F2FD" opacity="0.5" rx="4"/><!-- Q3: 개방적 갈등 -->
+    <rect x="280" y="165" width="240" height="145" fill="#FCE4EC" opacity="0.5" rx="4"/><!-- Q4: 위기 -->
+
+    <!-- 사분면 라벨 -->
+    <text x="160" y="38" text-anchor="middle" font-size="9" fill="#2E7D32" font-weight="700" font-family="JetBrains Mono">Q1: 건강한 저항 (SR↑ · Σ↓)</text>
+    <text x="400" y="38" text-anchor="middle" font-size="9" fill="#E65100" font-weight="700" font-family="JetBrains Mono">Q2: 가짜안정 위험 (SR↓ · Σ↑)</text>
+    <text x="160" y="180" text-anchor="middle" font-size="9" fill="#1565C0" font-weight="700" font-family="JetBrains Mono">Q3: 개방적 갈등 (SR↑ · Σ↑)</text>
+    <text x="400" y="180" text-anchor="middle" font-size="9" fill="#880E4F" font-weight="700" font-family="JetBrains Mono">Q4: 체제 위기 (SR↓ · Σ↑↑)</text>
+
+    <!-- 축 -->
+    <line x1="40" y1="20" x2="40" y2="310" stroke="#999" stroke-width="1.5"/>
+    <line x1="40" y1="310" x2="520" y2="310" stroke="#999" stroke-width="1.5"/>
+    <line x1="280" y1="20" x2="280" y2="310" stroke="#999" stroke-width="1" stroke-dasharray="5,3"/>
+    <line x1="40" y1="165" x2="520" y2="165" stroke="#999" stroke-width="1" stroke-dasharray="5,3"/>
+
+    <!-- Σ=0.70 임계선 -->
+    <line x1="40" y1="88" x2="520" y2="88" stroke="#E53935" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.7"/>
+    <text x="524" y="92" font-size="8" fill="#E53935" font-family="JetBrains Mono">Σ=0.70</text>
+    <text x="524" y="101" font-size="8" fill="#E53935" font-family="JetBrains Mono">임계</text>
+
+    <!-- 축 라벨 -->
+    <text x="30" y="20" text-anchor="end" font-size="9" fill="#666" font-family="JetBrains Mono">Σ 1.0</text>
+    <text x="30" y="165" text-anchor="end" font-size="9" fill="#666" font-family="JetBrains Mono">Σ 0.5</text>
+    <text x="30" y="310" text-anchor="end" font-size="9" fill="#666" font-family="JetBrains Mono">Σ 0.0</text>
+    <text x="40" y="326" font-size="9" fill="#666" font-family="JetBrains Mono">SR 0.0</text>
+    <text x="280" y="326" text-anchor="middle" font-size="9" fill="#666" font-family="JetBrains Mono">SR 0.5</text>
+    <text x="515" y="326" font-size="9" fill="#666" font-family="JetBrains Mono">SR 1.0</text>
+
+    <!-- 좌표 계산: x = 40 + SR×480, y = 310 - Σ×290 -->
+    <!-- 말레이시아: SR=0.38 → x=222, Σ=0.42 → y=188 -->
+    <circle cx="222" cy="188" r="18" fill="#005496" fill-opacity="0.25" stroke="#005496" stroke-width="2"/>
+    <text x="222" cy="188" text-anchor="middle" y="192" font-size="12">🇲🇾</text>
+    <text x="222" y="176" text-anchor="middle" font-size="8.5" fill="#005496" font-weight="700">말레이시아</text>
+    <text x="222" y="167" text-anchor="middle" font-size="8" fill="#005496" font-family="JetBrains Mono">SR.38 Σ.42</text>
+
+    <!-- 인도네시아: SR=0.52 → x=290, Σ=0.58 → y=142 -->
+    <circle cx="290" cy="142" r="20" fill="#CC0001" fill-opacity="0.20" stroke="#CC0001" stroke-width="2"/>
+    <text x="290" cy="142" text-anchor="middle" y="146" font-size="13">🇮🇩</text>
+    <text x="290" y="130" text-anchor="middle" font-size="8.5" fill="#CC0001" font-weight="700">인도네시아</text>
+    <text x="290" y="120" text-anchor="middle" font-size="8" fill="#CC0001" font-family="JetBrains Mono">SR.52 Σ.58</text>
+    <!-- 임계 경고 화살표 -->
+    <path d="M310,105 L310,90" stroke="#E53935" stroke-width="1.5" marker-end="url(#arr)"/>
+    <defs><marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#E53935"/></marker></defs>
+
+    <!-- 베트남: SR=0.28 → x=174, Σ=0.63 → y=127 -->
+    <circle cx="174" cy="127" r="18" fill="#E87722" fill-opacity="0.20" stroke="#E87722" stroke-width="2"/>
+    <text x="174" cy="127" text-anchor="middle" y="131" font-size="12">🇻🇳</text>
+    <text x="174" y="115" text-anchor="middle" font-size="8.5" fill="#E87722" font-weight="700">베트남</text>
+    <text x="174" y="106" text-anchor="middle" font-size="8" fill="#E87722" font-family="JetBrains Mono">SR.28 Σ.63</text>
+
+    <!-- 범례 -->
+    <rect x="40" y="316" width="480" height="18" fill="none"/>
+    <text x="40" y="330" font-size="8.5" fill="#555" font-family="JetBrains Mono">★ 베트남: Q2 경계(가짜안정) — SR 낮음이 억압 결과일 때 가장 위험한 침묵. &nbsp;&nbsp; 인도네시아: Q3 진입 압력 — Σ 임계 접근 주시.</text>
+  </svg>
+</div>
+
+<!-- ══════════════════════════════════════════
+     ⅩⅣ 오차 범위 (§1-C 수치화 경계)
+══════════════════════════════════════════ -->
+<div class="sec-title">ⅩⅣ &nbsp;오차 범위 — §1-C 수치화 경계 (Polanyi·Goodhart)</div>
+<div class="err-grid">
+  <div class="err-card">
+    <div class="err-head my">🇲🇾 말레이시아</div>
+    <div class="err-item">· OLI 0.68 — 3국 중 데이터 신뢰도 최상. 그러나 부미푸트라 관련 내부 통계 접근 제한 존재.</div>
+    <div class="err-item">· CFD 0.72 (고): 민족 갈등 측정에 암묵지(Polanyi) 비중 높음 — 설문 이상의 현실 포착 한계.</div>
+    <div class="err-item">· CPI 측정: 전문가 인식 기반 — 실제 부패와 인식 간 괴리 가능(Goodhart 경고).</div>
+    <div class="err-item" style="color:#B8850E;">· Λ¹²_corrected(MY) 신뢰구간: ±0.08</div>
+  </div>
+  <div class="err-card">
+    <div class="err-head id">🇮🇩 인도네시아</div>
+    <div class="err-item">· OLI 0.55 — 도서 지형 + 비공식 경제 규모로 공식 통계 포착 범위 제한.</div>
+    <div class="err-item">· 2만 개 섬 행정 데이터 불균질 — 자바 섬 편중 통계 왜곡 가능성.</div>
+    <div class="err-item">· 시위 사상자·디스인포메이션 규모 공식 집계 미비 — SR 과소 추정 위험.</div>
+    <div class="err-item" style="color:#B8850E;">· Λ¹²_corrected(ID) 신뢰구간: ±0.12</div>
+  </div>
+  <div class="err-card">
+    <div class="err-head vn">🇻🇳 베트남</div>
+    <div class="err-item">· OLI 0.42 — 3국 중 최저. 단일 당 정보 통제로 독립적 데이터 검증 구조적 한계.</div>
+    <div class="err-item">· 언론자유 174위: 체제 비판 통계·연구 접근 불가 — 모든 지표 하방 편향 가능성.</div>
+    <div class="err-item">· Goodhart 법칙 최강 적용: CPI 상승이 당 주도 반부패 지표 관리의 산물일 가능성.</div>
+    <div class="err-item" style="color:#B8850E;">· Λ¹²_corrected(VN) 신뢰구간: ±0.18 (최대 불확실성)</div>
+  </div>
+</div>
+<p class="note">※ 3국 간 OLI 편차(0.68·0.55·0.42)가 ±0.10 동등성 조건을 초과 — 직접 수치 비교는 구조적 패턴·방향성 중심으로 독해. Λ¹² §24 관측가능성 한계 원칙 준수.</p>
+
+<!-- ══════════════════════════════════════════
+     ⅩⅤ 한반도 시선
+══════════════════════════════════════════ -->
+<div class="sec-title">ⅩⅤ &nbsp;한반도에서 바라보는 동남아 신흥 3국</div>
+<div class="kr-box">
+  <div class="kr-title">한반도 시선 — 거울 앞에 서기</div>
+  <div class="kr-text">
+    한국은 동남아 신흥 3국의 어딘가를 40년 전에 지나왔다. 베트남의 6.5% 성장률은 1970년대 한국을 닮았고, 인도네시아의 군부-재계 유착은 박정희 시대의 데자뷔다. 말레이시아의 민족 우대정책은 한국의 지역감정과 구조적으로 유사하다.
+    <br><br>
+    그러나 닮음이 운명을 뜻하지 않는다. 한국이 1MDB를 겪지 않은 것은 제도가 달랐기 때문이 아니라 — 한국도 IMF를 겪었다 — 그 충격에서 무엇을 학습했는가의 차이다.
+    <br><br>
+    <strong>공급망 시선:</strong> 베트남은 한국 제조업의 핵심 하청기지다. 삼성 매출의 상당 부분이 베트남에서 생산된다. 베트남 Σ가 임계를 넘는 순간은 한국 기업의 리스크가 되는 순간이기도 하다.
+    <br><br>
+    <strong>지정학 시선:</strong> 말레이시아·인도네시아·베트남 모두 남중국해 문제 당사국이다. 세 국가의 대중(對中) 헤지 전략이 한반도 안보 구조와 연동된다.
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     결론 궤도
+══════════════════════════════════════════ -->
+<div class="sec-title">결론 궤도 — 서로 다른 문법, 같은 광장</div>
+<div class="conclusion">
+  <div class="conclusion-title">세 개의 궤도가 가리키는 것</div>
+  <div class="conclusion-text">
+    말레이시아는 안정 속에 균열을 숨긴다. 수치는 좋고, 구조는 낡다.<br>
+    인도네시아는 크기로 버텨왔다. 그런데 Σ가 임계를 향해 걷고 있다.<br>
+    베트남은 조용하다. 그 조용함이 무엇의 결과인지가 문제다.<br>
+    <br>
+    세 국가는 각자 다른 문법으로 발전을 이야기하지만, 광장에는 같은 질문이 놓여 있다.<br>
+    <em>누가 성장의 열매를 나누고, 누가 그 결정을 내리며, 누가 그 결정에 이의를 제기할 수 있는가.</em><br>
+    <br>
+    Λ¹² 프레임워크는 그 질문에 답하지 않는다. 그 질문을 더 잘 보이게 할 뿐이다.
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     시리즈 박스
+══════════════════════════════════════════ -->
+<div class="series-box">
+  <div class="series-title">늘푸른바다 Λ¹² 국가편 시리즈</div>
+  <div class="series-list">
+    <span class="series-item done">#9 미국 v2.0</span>
+    <span class="series-item done">#10 보츠와나 v1.1</span>
+    <span class="series-item current">#11 동남아 비교편 (말레이시아·인도네시아·베트남) v1.0</span>
+    <span class="series-item">영국편 (예정)</span>
+    <span class="series-item">한국편 (예정)</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     푸터
+══════════════════════════════════════════ -->
+<div class="footer">
+  <strong>늘푸른바다 사회동역학 연구소</strong> &nbsp;·&nbsp; Everblue Sea Institute for Social Dynamics<br>
+  <a href="https://badaegopa.tistory.com">badaegopa.tistory.com</a> &nbsp;·&nbsp;
+  SSRN Abstract ID 6509200 &nbsp;·&nbsp;
+  슬로건: 분석을 넘어, 재조립으로 / Not analysis, but synthesis.<br>
+  <br>
+  <span style="font-size:10px; opacity:.6;">
+    Λ¹² v9.10 엔진 기준 · 데이터: GPI 2025(IEP) · CPI 2025(TI) · HDR 2025(UNDP) · IMF WEO Apr.2025 · ADB 2025<br>
+    본 자료의 모든 Proxy 추정값은 공개 데이터 기반 연구자 추정이며, 공식 통계를 대체하지 않습니다.<br>
+    OLI 동등성 조건 미충족(말레이시아 0.68·인도네시아 0.55·베트남 0.42) — 3국 간 직접 수치 비교 시 구조·방향성 독해 권고.<br>
+    청해(淸海) © 2026 · 무단 전재 금지
+  </span>
+</div>
+
+</body>
+</html>
