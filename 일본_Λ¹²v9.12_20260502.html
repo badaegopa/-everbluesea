@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>일본 단독편 — Λ¹²v9.12 | 늘푸른바다 사회동역학 연구소</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#F5F3EE; color:#2C2C2C; font-family:Georgia,'Times New Roman',serif; line-height:1.75; }
+.header { background:linear-gradient(135deg,#6B1E1E 0%,#9B2335 50%,#5A1515 100%); padding:48px 40px 36px; position:relative; overflow:hidden; }
+.header::before { content:'和'; position:absolute; right:40px; top:10px; font-size:160px; color:rgba(255,255,255,0.06); font-family:Georgia,serif; font-weight:bold; line-height:1; }
+.header-badge { display:inline-block; background:rgba(255,255,255,0.18); color:#fff; font-family:'Courier New',monospace; font-size:11px; padding:4px 12px; border-radius:2px; letter-spacing:1.5px; margin-bottom:16px; }
+.header h1 { color:#fff; font-size:30px; font-weight:normal; margin-bottom:6px; }
+.header h2 { color:rgba(255,255,255,0.85); font-size:15px; font-weight:normal; letter-spacing:0.5px; }
+.header-meta { margin-top:20px; color:rgba(255,255,255,0.65); font-family:'Courier New',monospace; font-size:11px; letter-spacing:1px; }
+.engine-box { background:#fff; border-left:4px solid #B8850E; padding:14px 20px; margin:24px 40px; font-family:'Courier New',monospace; font-size:12px; color:#595959; }
+.engine-box strong { color:#B8850E; }
+.section { padding:32px 40px; border-bottom:1px solid #DDD8CE; }
+.section-title { font-size:13px; font-family:'Courier New',monospace; color:#6B1E1E; letter-spacing:2px; text-transform:uppercase; margin-bottom:16px; }
+.section h3 { font-size:20px; color:#1F1F1F; font-weight:normal; margin-bottom:14px; line-height:1.4; }
+.section p { font-size:14px; color:#3A3A3A; margin-bottom:10px; text-align:justify; }
+.minjung-box { background:#FFF5F5; border-left:4px solid #9B2335; padding:20px 24px; margin:14px 0; border-radius:2px; }
+.minjung-box p { font-size:14px; color:#3A1010; line-height:1.85; margin-bottom:8px; }
+.term-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:14px 0; }
+.term-item { background:#fff; border:1px solid #DDD8CE; padding:12px 14px; border-radius:2px; }
+.term-item .term-key { font-family:'Courier New',monospace; font-size:12px; color:#6B1E1E; font-weight:bold; margin-bottom:4px; }
+.term-item .term-val { font-size:12px; color:#444; }
+.data-table-wrap { margin:16px 0; overflow-x:auto; }
+.data-table { width:100%; border-collapse:collapse; font-size:13px; }
+.data-table th { background:#6B1E1E; color:#fff; padding:10px 14px; text-align:center; font-family:'Courier New',monospace; font-size:11px; letter-spacing:0.5px; font-weight:normal; }
+.data-table th:first-child { text-align:left; }
+.data-table td { padding:9px 14px; border-bottom:1px solid #EEE; text-align:center; font-family:'Courier New',monospace; font-size:12px; }
+.data-table td:first-child { text-align:left; font-family:Georgia,serif; font-size:13px; color:#2C2C2C; }
+.data-table tr:nth-child(even) td { background:#F5F3EE; }
+.data-table tr:hover td { background:#FFF0F0; }
+.formula-box { background:#fff; border:1px solid #DDD8CE; border-top:3px solid #6B1E1E; padding:20px 24px; margin:16px 0; }
+.formula-box .formula-title { font-family:'Courier New',monospace; font-size:11px; color:#6B1E1E; letter-spacing:2px; margin-bottom:12px; }
+.formula-box .formula-eq { font-family:'Courier New',monospace; font-size:14px; color:#1F1F1F; background:#F5F3EE; padding:12px 16px; border-radius:2px; margin:8px 0; letter-spacing:0.5px; line-height:1.6; }
+.formula-box .formula-note { font-size:12px; color:#666; margin-top:8px; }
+.svg-wrap { text-align:center; margin:16px 0; }
+.obs-note { background:#FFF5F0; border:1px solid #EED5C5; border-radius:3px; padding:14px 18px; margin:14px 0; font-size:13px; color:#3A1A1A; line-height:1.7; }
+.obs-note::before { content:'◈ 관찰 신호'; display:block; font-family:'Courier New',monospace; font-size:10px; color:#6B1E1E; letter-spacing:1px; margin-bottom:6px; }
+.error-box { background:#FAEEDA; border-left:3px solid #B8850E; padding:12px 16px; margin:14px 0; font-size:12px; color:#633806; font-family:'Courier New',monospace; }
+.ppr-card { background:#fff; border:1px solid #DDD8CE; border-radius:3px; overflow:hidden; margin-bottom:14px; }
+.ppr-head { background:#6B1E1E; color:#fff; font-size:12px; font-family:'Courier New',monospace; padding:8px 14px; letter-spacing:1px; }
+.ppr-body { padding:14px; }
+.ppr-row { display:flex; justify-content:space-between; font-size:12px; padding:4px 0; border-bottom:1px solid #F0EDE8; }
+.ppr-row:last-child { border-bottom:none; }
+.ppr-key { color:#666; }
+.ppr-val { font-family:'Courier New',monospace; font-weight:bold; color:#6B1E1E; }
+.discourse-layer { display:grid; grid-template-columns:130px 1fr; gap:0; margin-bottom:2px; }
+.layer-num { background:#6B1E1E; color:#fff; font-family:'Courier New',monospace; font-size:11px; padding:12px 14px; display:flex; align-items:center; }
+.layer-content { background:#fff; border:1px solid #DDD8CE; border-left:none; padding:12px 18px; font-size:13px; color:#2C2C2C; line-height:1.7; }
+.layer-content strong { color:#6B1E1E; }
+.signal-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:14px 0; }
+.signal-card { background:#fff; border:1px solid #DDD8CE; padding:14px; border-radius:2px; text-align:center; }
+.signal-card .sig-icon { font-size:24px; margin-bottom:6px; }
+.signal-card .sig-label { font-size:11px; color:#888; font-family:'Courier New',monospace; margin-bottom:4px; }
+.signal-card .sig-val { font-size:18px; font-family:'Courier New',monospace; font-weight:bold; color:#6B1E1E; }
+.signal-card .sig-note { font-size:10px; color:#666; margin-top:4px; }
+.conclusion { background:#FFF5F5; border-left:4px solid #9B2335; padding:24px 32px; margin:20px 40px; border-radius:2px; }
+.conclusion p { font-size:15px; line-height:1.95; color:#1F1F1F; text-align:justify; margin-bottom:12px; }
+.conclusion p:last-child { margin-bottom:0; }
+.series-box { background:#fff; border:1px solid #DDD8CE; margin:20px 40px; padding:20px; }
+.series-title { font-family:'Courier New',monospace; font-size:11px; color:#6B1E1E; letter-spacing:2px; margin-bottom:12px; }
+.series-item { display:flex; gap:12px; padding:6px 0; border-bottom:1px solid #F0EDE8; font-size:12px; }
+.series-item:last-child { border-bottom:none; }
+.series-num { font-family:'Courier New',monospace; color:#B8850E; min-width:40px; }
+.series-status { margin-left:auto; font-family:'Courier New',monospace; font-size:10px; padding:2px 8px; border-radius:2px; }
+.status-done { background:#E8F4F0; color:#27500A; }
+.status-plan { background:#F5F3EE; color:#888; }
+.status-now { background:#FFF5F5; color:#6B1E1E; }
+.footer { background:#FFF0F0; padding:28px 40px; text-align:center; border-top:1px solid #DDD8CE; }
+.footer p { font-size:12px; color:#6B1E1E; margin-bottom:4px; font-family:'Courier New',monospace; }
+.footer a { color:#9B2335; text-decoration:none; }
+.footer .engine-tag { margin-top:10px; font-size:10px; color:#888; letter-spacing:1px; }
+@media(max-width:768px){ .section,.engine-box,.conclusion,.series-box,.footer{margin-left:16px;margin-right:16px;padding-left:16px;padding-right:16px;} .header{padding:32px 16px 24px;} .term-grid,.signal-grid{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-badge">JAPAN STANDALONE REPORT · #22 · Λ¹²v9.12</div>
+  <h1>🇯🇵 일본 단독편</h1>
+  <h2>잠든 화산 — 표면의 평화와 내부의 압력 · 일본 사회동역학 심층 분석</h2>
+  <div class="header-meta">늘푸른바다 사회동역학 연구소 · 본 보고서는 Λ¹²v9.12 엔진 기준 산출 · 발행일 2026.05.02</div>
+</div>
+<div class="engine-box">
+  <strong>ENGINE:</strong> Λ¹²v9.12 | ADI §31 포함 | SSRN 6632858 기반<br>
+  <strong>보정식:</strong> Λ¹²_corrected = Λ¹²_raw ÷ OLI × (1−TBI×θ) × (1−ADI×γ) × exp(−k×t) | OLI=0.88<br>
+  <strong>특이 변수:</strong> Σ_aph(무관심형 단절) 우세 — 표면적 안정이 내부 압력을 가리는 구조. TBI 0.368은 역사 미소화의 가해자 트라우마.
+</div>
+<div class="section">
+  <div class="section-title">연구 목적 선언</div>
+  <h3>이 보고서는 1억 2천만 일본 민중의 현실을 관찰자의 시선으로 기록합니다</h3>
+  <div class="minjung-box">
+    <p>일본은 세계에서 가장 조용한 위기를 겪고 있는 나라입니다. GPI 12위의 평화로운 나라, Freedom House 96점의 자유로운 나라. 그러나 합계출산율 1.15의 나라, 공공부채 GDP의 225%인 나라, 30년 디플레이션을 살아온 나라이기도 합니다.</p>
+    <p>Λ¹²는 묻습니다: 이 평화는 해결인가, 봉인인가. 잠든 화산이 조용한 것은 꺼진 것이 아닙니다.</p>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">§0 · 용어 해설</div>
+  <div class="term-grid">
+    <div class="term-item"><div class="term-key">Σ_aph (무관심형 단절)</div><div class="term-val">민중이 체제에 실망해 냉소·체념으로 이탈. 일본의 낮은 투표율·청년 정치 무관심이 대표 신호.</div></div>
+    <div class="term-item"><div class="term-key">잃어버린 30년</div><div class="term-val">1991년 자산 버블 붕괴 이후 저성장·디플레이션 지속. 구조 개혁 지연의 복합 결과.</div></div>
+    <div class="term-item"><div class="term-key">야스쿠니 문제</div><div class="term-val">A급 전범 합사 신사에 정치 지도자 참배. 한·중과의 역사 갈등 구조화. RHC 핵심 요인.</div></div>
+    <div class="term-item"><div class="term-key">가해자 TBI</div><div class="term-val">피해자 트라우마가 아닌 가해자 트라우마. 일본의 TBI 0.368은 전쟁 범죄의 공식 부인·교과서 왜곡에서 기인.</div></div>
+    <div class="term-item"><div class="term-key">다카이치 신자에</div><div class="term-val">2025.10 취임 총리. LDP 우파 대표. 2026.02 중의원 선거 압승. 방위비 확대·AI·반도체 투자 추진.</div></div>
+    <div class="term-item"><div class="term-key">인구절벽</div><div class="term-val">2024년 총인구 123.4만. 2040년 60만 이하 예측. 노동력 부족 1,100만 명 예상. 이민 정책 전환 없이는 구조 해결 불가.</div></div>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">Ⅰ · 관찰자 시선</div>
+  <h3>세계에서 가장 조용한 위기</h3>
+  <p>일본은 GPI 12위 평화국입니다. 동시에 공공부채 225%GDP, 합계출산율 1.15, 30년 디플레이션 탈출 시도 중인 나라입니다. 2026년 2월 LDP가 중의원 선거에서 압승, 다카이치 총리 체제가 안정됐습니다. 표면적 정치 안정 아래 구조적 위기가 축적되고 있습니다.</p>
+  <div class="signal-grid">
+    <div class="signal-card"><div class="sig-icon">🕊️</div><div class="sig-label">GPI 2025 순위</div><div class="sig-val">12위</div><div class="sig-note">동북아 최고 평화지수</div></div>
+    <div class="signal-card"><div class="sig-icon">💰</div><div class="sig-label">공공부채/GDP</div><div class="sig-val">~225%</div><div class="sig-note">세계 최고 수준 / 엔화 표시</div></div>
+    <div class="signal-card"><div class="sig-icon">👶</div><div class="sig-label">합계출산율 2024</div><div class="sig-val">1.15</div><div class="sig-note">역대 최저 / 인구절벽 진입</div></div>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">Ⅱ · 국가 통치 구조</div>
+  <h3>LDP 70년 우위 — 정권 교체 없는 민주주의</h3>
+  <div class="ppr-card"><div class="ppr-head">2024~2026 정치 구조</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">2024.10</span><span class="ppr-val">이시바 시게루 총리 취임 (LDP)</span></div>
+    <div class="ppr-row"><span class="ppr-key">2025.10</span><span class="ppr-val">다카이치 신자에 총리 취임</span></div>
+    <div class="ppr-row"><span class="ppr-key">2026.02</span><span class="ppr-val">LDP 중의원 선거 압승 / 슈퍼매조리티</span></div>
+    <div class="ppr-row"><span class="ppr-key">Freedom House</span><span class="ppr-val">96/100 (Free) — 아시아 최고수준</span></div>
+    <div class="ppr-row"><span class="ppr-key">Σ_aph 신호</span><span class="ppr-val">낮은 투표율 / 청년 정치 무관심 / 야당 분열</span></div>
+  </div></div>
+  <div class="obs-note">
+    일본 민주주의의 역설: Freedom House 96점이지만 LDP가 70년간 집권. 정당 내부 파벌 정치가 실질 정책을 결정. 야당 부재와 시민 Σ_aph가 구조적 개혁을 지연. 이것이 '정권 교체 없는 민주주의'의 Λ¹² 신호.
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">Ⅲ · 기본 통계</div>
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <tr><th>지표</th><th>수치</th><th>비고</th><th>출처</th></tr>
+      <tr><td>GDP per capita 2024</td><td>USD 34,500</td><td>한국에 첫 추월당함</td><td>한국은행 비교 2025</td></tr>
+      <tr><td>GDP 성장 2025</td><td>1.2~1.3%</td><td>구조적 저성장 지속</td><td>AMRO 2025.03</td></tr>
+      <tr><td>HDI</td><td>0.920</td><td>세계 상위권</td><td>UNDP 2025</td></tr>
+      <tr><td>공공부채/GDP</td><td>~225%</td><td>세계 최고 / 엔화 표시 안정</td><td>IMF 2025</td></tr>
+      <tr><td>합계출산율 2024</td><td>1.15</td><td>역대 최저 기록</td><td>후생노동성</td></tr>
+      <tr><td>노인부양비율</td><td>70% (2024)</td><td>주요국 최고</td><td>Allianz Trade</td></tr>
+      <tr><td>CPI (부패인식)</td><td>71/100 (20위)</td><td>LDP 자금 스캔들로 하락</td><td>TI 2024</td></tr>
+      <tr><td>Freedom House</td><td>96/100 (Free)</td><td>아시아태평양 3위</td><td>Freedom House 2025</td></tr>
+      <tr><td>RSF MFI 2025</td><td>62위/180</td><td>—</td><td>RSF 2025</td></tr>
+      <tr><td>방위비</td><td>GDP 2% 목표</td><td>2027년 달성 계획</td><td>일본 방위성</td></tr>
+    </table>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">Ⅳ · 기본 좌표 · 공식 박스</div>
+  <div class="formula-box">
+    <div class="formula-title">ΛSCORE FORMULA — JAPAN</div>
+    <div class="formula-eq">Λ¹²_corrected = Λ¹²_raw ÷ 0.88 × (1 − 0.368 × 0.70) × (1 − 0.308 × 0.35) × exp(−k×t)</div>
+    <div class="formula-eq">TBI 보정항: (1 − 0.368 × 0.70) = (1 − 0.258) = 0.742</div>
+    <div class="formula-eq">ADI 보정항: (1 − 0.308 × 0.35) = (1 − 0.108) = 0.892 [Capable — 소니·후지쓰 AI 역량]</div>
+    <div class="formula-note">※ TBI 0.368: 피해자 트라우마(원폭·전쟁 피해)와 가해자 트라우마(식민·학살 부인)의 복합. 전자는 소화됐으나 후자는 미소화. ADI 0.308 Capable: 소프트웨어 AI는 한국보다 강하나 미국·중국과 격차.</div>
+  </div>
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <tr><th>변수</th><th>값</th><th>분류</th><th>비고</th></tr>
+      <tr><td>LPI</td><td>0.78</td><td>안정</td><td>높은 생활수준</td></tr>
+      <tr><td>HDI</td><td>0.920</td><td>안정</td><td>세계 상위권</td></tr>
+      <tr><td>GPI</td><td>12위→0.88</td><td>안정</td><td>동북아 최고</td></tr>
+      <tr><td>CPI</td><td>71→0.71</td><td>안정</td><td>LDP 스캔들 후 하락</td></tr>
+      <tr><td>CFD</td><td>0.45</td><td>주목</td><td>이민 갈등 부상</td></tr>
+      <tr><td>DCI</td><td>0.72</td><td>위험</td><td>고령화·세대 단층 심각</td></tr>
+      <tr><td>MFI</td><td>62위→0.65</td><td>주목</td><td>기업·권력 압박</td></tr>
+      <tr><td>RHC</td><td>0.553</td><td>주목</td><td>야스쿠니·영토 갈등</td></tr>
+      <tr><td>IGI</td><td>0.14</td><td>안정</td><td>제도 억압 낮음</td></tr>
+      <tr><td>AHI</td><td>0.52</td><td>주목</td><td>비정규직 40% / 임금 정체</td></tr>
+      <tr><td>F_reach</td><td>0.58</td><td>주목</td><td>식량 자급률 38%</td></tr>
+      <tr><td>ADI</td><td>0.308</td><td>Capable</td><td>소니·후지쓰/중간 역량</td></tr>
+    </table>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">Ⅴ · 레이더 2×2 위상 사분면</div>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 520 400" xmlns="http://www.w3.org/2000/svg" width="520" height="400">
+      <rect width="520" height="400" fill="#F5F3EE"/>
+      <rect x="50" y="30" width="210" height="170" fill="#EBF4F0" opacity="0.5"/>
+      <rect x="260" y="30" width="210" height="170" fill="#FFF3CD" opacity="0.4"/>
+      <rect x="50" y="200" width="210" height="170" fill="#FAEEDA" opacity="0.4"/>
+      <rect x="260" y="200" width="210" height="170" fill="#FCEBEB" opacity="0.3"/>
+      <line x1="50" y1="200" x2="470" y2="200" stroke="#555" stroke-width="1.5"/>
+      <line x1="260" y1="30" x2="260" y2="370" stroke="#555" stroke-width="1.5"/>
+      <text x="260" y="18" text-anchor="middle" fill="#3A6A5E" font-size="11" font-family="Courier New">높은 개방성</text>
+      <text x="260" y="388" text-anchor="middle" fill="#888" font-size="11" font-family="Courier New">낮은 개방성</text>
+      <text x="36" y="204" text-anchor="middle" fill="#888" font-size="10" font-family="Courier New" transform="rotate(-90,36,204)">불안정</text>
+      <text x="484" y="204" text-anchor="middle" fill="#3A6A5E" font-size="10" font-family="Courier New" transform="rotate(-90,484,204)">안정</text>
+      <text x="155" y="52" text-anchor="middle" fill="#3A6A5E" font-size="10" font-family="Courier New">개방·안정</text>
+      <text x="365" y="52" text-anchor="middle" fill="#856404" font-size="10" font-family="Courier New">개방·불안정</text>
+      <text x="155" y="380" text-anchor="middle" fill="#A0522D" font-size="10" font-family="Courier New">폐쇄·안정</text>
+      <text x="365" y="380" text-anchor="middle" fill="#791F1F" font-size="10" font-family="Courier New">폐쇄·불안정</text>
+      <!-- 일본 Q1 개방·안정 (그러나 정체 구간) -->
+      <circle cx="192" cy="108" r="24" fill="#FFF0F0" stroke="#6B1E1E" stroke-width="2.5"/>
+      <text x="192" y="104" text-anchor="middle" font-size="18">🇯🇵</text>
+      <text x="192" y="140" text-anchor="middle" fill="#6B1E1E" font-size="11" font-family="Courier New" font-weight="bold">일본 현재</text>
+      <!-- 인구절벽 압력 화살표 -->
+      <defs><marker id="redarr3" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#6B1E1E"/></marker></defs>
+      <line x1="192" y1="132" x2="192" y2="178" stroke="#6B1E1E" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#redarr3)"/>
+      <text x="212" y="155" fill="#6B1E1E" font-size="9" font-family="Courier New">인구절벽</text>
+      <text x="212" y="167" fill="#6B1E1E" font-size="9" font-family="Courier New">장기 압력</text>
+      <!-- 비교 -->
+      <circle cx="148" cy="78" r="14" fill="#EEF3FF" stroke="#1B4F8A" stroke-width="1.5"/>
+      <text x="148" y="76" text-anchor="middle" font-size="12">🇹🇼</text>
+      <circle cx="345" cy="148" r="14" fill="#FFF3CD" stroke="#B8850E" stroke-width="1.5"/>
+      <text x="345" y="146" text-anchor="middle" font-size="12">🇰🇷</text>
+      <circle cx="140" cy="312" r="22" fill="#FCEBEB" stroke="#8B1A1A" stroke-width="2"/>
+      <text x="140" y="308" text-anchor="middle" font-size="16">🇨🇳</text>
+      <text x="60" y="108" fill="#6B1E1E" font-size="9" font-family="Courier New">※ 표면 안정</text>
+      <text x="60" y="121" fill="#6B1E1E" font-size="9" font-family="Courier New">구조 위기 내재</text>
+    </svg>
+  </div>
+  <div class="obs-note">일본은 Q1(개방·안정)에 위치하나 구조적 취약성이 내재합니다. DCI 0.72(세대단층) 위험 구간, 공공부채 225%GDP, 인구절벽이 장기적으로 안정성을 하방 압박하는 구조입니다. 표면의 평화는 구조적 문제의 해결이 아니라 봉인에 가깝습니다.</div>
+</div>
+<div class="section">
+  <div class="section-title">Ⅵ · PPR — 5개 구조 블록</div>
+  <div class="ppr-card"><div class="ppr-head">PPR-1 · 정치</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">LDP 70년 우위</span><span class="ppr-val">민주주의이나 정권 교체 없음</span></div>
+    <div class="ppr-row"><span class="ppr-key">다카이치 체제</span><span class="ppr-val">2026.02 압승 / 우파 확장 정책</span></div>
+    <div class="ppr-row"><span class="ppr-key">Σ_aph</span><span class="ppr-val">낮은 투표율 / 청년 무관심 / 야당 부재</span></div>
+    <div class="ppr-row"><span class="ppr-key">LDP 스캔들</span><span class="ppr-val">자금 파벌 스캔들 CPI 하락 원인</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-2 · 경제</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">성장</span><span class="ppr-val">1.2% (2025) / 구조적 저성장</span></div>
+    <div class="ppr-row"><span class="ppr-key">공공부채</span><span class="ppr-val">~225%GDP / 이자비용 관리 가능 수준</span></div>
+    <div class="ppr-row"><span class="ppr-key">탈디플레</span><span class="ppr-val">30년 만에 2%+ 인플레 진입 중</span></div>
+    <div class="ppr-row"><span class="ppr-key">비정규직</span><span class="ppr-val">전체 노동자 40% / 임금 이중구조</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-3 · 사회</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">출산율</span><span class="ppr-val">1.15 (2024) — 역대 최저</span></div>
+    <div class="ppr-row"><span class="ppr-key">고령화</span><span class="ppr-val">노인부양비 70% / 2040년 노동력 -1,100만</span></div>
+    <div class="ppr-row"><span class="ppr-key">이민 갈등</span><span class="ppr-val">극우 산세이토 부상 / LDP 우경화</span></div>
+    <div class="ppr-row"><span class="ppr-key">외국인 비율</span><span class="ppr-val">3.2% (2025) / 증가 추세</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-4 · 역사</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">TBI</span><span class="ppr-val">0.368 — 가해자 트라우마 미소화</span></div>
+    <div class="ppr-row"><span class="ppr-key">야스쿠니</span><span class="ppr-val">A급 전범 합사 / 참배 논란 지속</span></div>
+    <div class="ppr-row"><span class="ppr-key">교과서</span><span class="ppr-val">역사 왜곡 / 난징·위안부 기술 축소</span></div>
+    <div class="ppr-row"><span class="ppr-key">원폭 피해</span><span class="ppr-val">피해 트라우마는 소화 / 가해는 부인</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-5 · 지정학</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">방위비</span><span class="ppr-val">GDP 2% 목표 / 2027 달성 계획</span></div>
+    <div class="ppr-row"><span class="ppr-key">미일동맹</span><span class="ppr-val">핵심 안보 축 / 방위비 분담 조정</span></div>
+    <div class="ppr-row"><span class="ppr-key">한일관계</span><span class="ppr-val">윤→이재명 전환으로 재조정 가능성</span></div>
+    <div class="ppr-row"><span class="ppr-key">ADI</span><span class="ppr-val">0.308 Capable / 소니·후지쓰 AI</span></div>
+  </div></div>
+</div>
+<div class="section">
+  <div class="section-title">Ⅶ · 담론육층 — 일본 독해</div>
+  <div style="margin:14px 0;">
+    <div class="discourse-layer"><div class="layer-num">1층<br>데이터</div><div class="layer-content"><strong>무엇이 보이는가:</strong> GPI 12위·Freedom House 96점의 평화롭고 자유로운 나라. 동시에 합계출산율 1.15·공공부채 225%·비정규직 40%·30년 저성장. 두 얼굴이 같은 숫자 안에 있습니다.</div></div>
+    <div class="discourse-layer"><div class="layer-num">2층<br>이해관계</div><div class="layer-content"><strong>누가 이익을 얻는가:</strong> LDP는 구조 개혁 없이 재정 지출로 지지 기반 유지. 대기업·정규직은 이중노동시장의 수혜자. 노인 세대는 연금·의료 수혜. 청년은 비정규직·주거비·인구 감소 압박의 피해자. 야스쿠니 참배는 국내 우파 결집 도구로 기능.</div></div>
+    <div class="discourse-layer"><div class="layer-num">3층<br>역사 패턴</div><div class="layer-content"><strong>이전에도 있었는가:</strong> 일본의 역사 미소화 패턴은 1945년 패전 직후부터 시작됐습니다. 맥아더 점령 체제가 천황제를 유지하면서 '전쟁 책임의 해체'를 제도화했습니다. 이후 70년간 야스쿠니·교과서·위안부 문제가 반복. 역사를 미소화한 나라는 이웃과 화해할 구조적 동기가 약합니다.</div></div>
+    <div class="discourse-layer"><div class="layer-num">4층<br>시각 역전</div><div class="layer-content"><strong>반대로 보면:</strong> 합계출산율 1.15는 위기이지만 — 일본 청년이 아이를 낳지 않는 것은 현재 구조에 대한 합리적 반응입니다. Σ_aph(정치 무관심)도 실망에서 오는 저항일 수 있습니다. 표면의 평화는 활화산의 고요함일 수도 있습니다. ADI 0.308 Capable은 AI 경쟁에서 미·중에 뒤처질 수 있다는 신호.</div></div>
+    <div class="discourse-layer"><div class="layer-num">5층<br>프레임</div><div class="layer-content"><strong>Λ¹² 위상 진단:</strong> 일본은 Q1(개방·안정) 위치이나 DCI 0.72가 가장 우려되는 변수입니다. 세대 단층이 임계를 넘은 상태에서 인구절벽이 진행되면 복지·재정·노동 구조가 동시에 압박받는 시나리오. TBI 0.368의 역사 미소화는 한일·중일 관계를 구조적으로 제약합니다.</div></div>
+    <div class="discourse-layer"><div class="layer-num" style="background:#3A6A5E;">6층<br>판단 유보</div><div class="layer-content" style="background:#E8F4F0;"><strong>이 층은 1억 2천만 일본 민중의 몫입니다.</strong> 잠든 화산이 계속 잠들어 있을 것인가, 아니면 깨어날 것인가는 Λ¹²가 대답할 수 없습니다.</div></div>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">Ⅷ · 오차 범위</div>
+  <div class="error-box">※ OLI=0.88: 일본 통계 신뢰도 높음. 단 LDP 자금 스캔들 관련 공식 통계 편향 가능성 일부 존재. 공공부채 수치는 엔화 표시 국내 보유 비중이 높아 실질 위험이 비율보다 낮을 수 있음 — 그러나 금리 정상화 시 비용 증가 위험. 방위비 증가의 GPI 반영 시차 주의.
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">Ⅸ · 결론 궤도</div>
+  <div class="conclusion">
+    <p>일본은 세계에서 가장 정교하게 포장된 위기를 가진 나라입니다. GPI 12위의 평화, Freedom House 96점의 자유 — 이 수치들은 거짓이 아닙니다. 그러나 그 아래에 잠든 것들이 있습니다.</p>
+    <p>TBI 0.368이 말하는 것 — 일본은 원폭의 피해를 기억하지만 난징의 가해를 부인합니다. 이 비대칭이 70년 동안 동북아시아의 화해를 가로막는 구조를 만들었습니다. 기억의 선택적 소화는 완전한 소화가 아닙니다.</p>
+    <p>DCI 0.72가 말하는 것 — 노인이 70%를 부양받는 사회에서 청년은 무엇을 위해 일하는가. 합계출산율 1.15는 숫자가 아니라 질문입니다. 다음 세대가 이 구조를 지속할 의지가 있는가.</p>
+    <p>잠든 화산은 꺼진 화산이 아닙니다. 그것이 일본의 현재 주소입니다.</p>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">Ⅹ · 시리즈 현황</div>
+  <div class="series-box">
+    <div class="series-title">동북아시아 시리즈 — Λ¹²v9.12</div>
+    <div class="series-item"><span class="series-num">#20</span><span class="series-name">동북아시아 권역 비교편</span><span class="series-status status-done">완성</span></div>
+    <div class="series-item"><span class="series-num">#21</span><span class="series-name">한국 단독편 v1.0</span><span class="series-status status-done">완성</span></div>
+    <div class="series-item"><span class="series-num">#22</span><span class="series-name">일본 단독편 v1.0 (현재 문서)</span><span class="series-status status-now">완성</span></div>
+    <div class="series-item"><span class="series-num">#23</span><span class="series-name">중국 단독편 v1.0</span><span class="series-status status-done">완성</span></div>
+    <div class="series-item"><span class="series-num">#24</span><span class="series-name">대만 단독편 v1.0</span><span class="series-status status-done">완성</span></div>
+    <div class="series-item"><span class="series-num">#25</span><span class="series-name">북한 단독편 v1.0</span><span class="series-status status-plan">예정</span></div>
+  </div>
+</div>
+<div class="footer">
+  <p>늘푸른바다 사회동역학 연구소 (Everblue Sea Institute for Social Dynamics)</p>
+  <p>소장 청해(淸海) · Claude (Anthropic) 연구 파트너</p>
+  <p><a href="https://badaegopa.tistory.com">badaegopa.tistory.com</a> · <a href="https://everbluesea.org">everbluesea.org</a> · contact@everbluesea.org</p>
+  <div class="engine-tag">Engine: Λ¹²v9.12 | ADI §31 포함 | SSRN 6632858 기반 | 일본_Λ¹²v9.12_20260502.html</div>
+</div>
+</body>
+</html>

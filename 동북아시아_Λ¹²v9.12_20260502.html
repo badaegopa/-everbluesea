@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>동북아시아 권역 비교편 — Λ¹²v9.12 | 늘푸른바다 사회동역학 연구소</title>
+<style>
+/* ─── 디자인 v2.2 파스텔 팔레트 ─── */
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: #F5F3EE;
+  color: #2C2C2C;
+  font-family: Georgia, 'Times New Roman', serif;
+  line-height: 1.75;
+}
+
+/* ─── 헤더 ─── */
+.header {
+  background: linear-gradient(135deg, #7BADA0 0%, #5E9186 100%);
+  padding: 48px 40px 36px;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: 'Λ¹²';
+  position: absolute;
+  right: 40px;
+  top: 20px;
+  font-size: 120px;
+  color: rgba(255,255,255,0.08);
+  font-family: Georgia, serif;
+  font-weight: bold;
+  line-height: 1;
+}
+.header-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  padding: 4px 12px;
+  border-radius: 2px;
+  letter-spacing: 1.5px;
+  margin-bottom: 16px;
+}
+.header h1 {
+  color: #fff;
+  font-size: 28px;
+  font-weight: normal;
+  letter-spacing: -0.5px;
+  margin-bottom: 6px;
+}
+.header h2 {
+  color: rgba(255,255,255,0.85);
+  font-size: 15px;
+  font-weight: normal;
+  letter-spacing: 0.5px;
+}
+.header-meta {
+  margin-top: 20px;
+  color: rgba(255,255,255,0.70);
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+/* ─── 엔진 박스 ─── */
+.engine-box {
+  background: #fff;
+  border-left: 4px solid #B8850E;
+  padding: 14px 20px;
+  margin: 24px 40px;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: #595959;
+}
+.engine-box strong { color: #B8850E; }
+
+/* ─── 섹션 ─── */
+.section {
+  padding: 32px 40px;
+  border-bottom: 1px solid #DDD8CE;
+}
+.section-title {
+  font-size: 13px;
+  font-family: 'Courier New', monospace;
+  color: #5E9186;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.section h3 {
+  font-size: 20px;
+  color: #1F1F1F;
+  font-weight: normal;
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+.section p {
+  font-size: 14px;
+  color: #3A3A3A;
+  margin-bottom: 10px;
+  text-align: justify;
+}
+
+/* ─── 국가 카드 그리드 ─── */
+.country-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin: 20px 40px;
+}
+.country-card {
+  background: #fff;
+  border: 1px solid #DDD8CE;
+  border-radius: 4px;
+  padding: 18px 14px;
+  text-align: center;
+}
+.country-card .flag { font-size: 28px; margin-bottom: 8px; }
+.country-card .name { font-size: 13px; font-weight: bold; color: #3A6A5E; margin-bottom: 4px; }
+.country-card .name-en { font-size: 10px; color: #888; font-family: 'Courier New', monospace; margin-bottom: 12px; }
+.country-card .lambda-score {
+  font-size: 26px;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+  margin-bottom: 4px;
+}
+.country-card .score-label { font-size: 10px; color: #888; margin-bottom: 8px; }
+.country-card .risk-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 2px;
+  font-size: 10px;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.5px;
+}
+
+/* 위험 등급 색상 */
+.risk-low { background: #E8F4F0; color: #27500A; }
+.risk-mid { background: #FFF3CD; color: #856404; }
+.risk-high { background: #FCEBEB; color: #791F1F; }
+.risk-critical { background: #8B1A1A; color: #fff; }
+
+.score-green { color: #27500A; }
+.score-yellow { color: #856404; }
+.score-orange { color: #B8850E; }
+.score-red { color: #791F1F; }
+.score-dark { color: #4A0000; }
+
+/* ─── 데이터 테이블 ─── */
+.data-table-wrap { margin: 20px 40px; overflow-x: auto; }
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.data-table th {
+  background: #5E9186;
+  color: #fff;
+  padding: 10px 14px;
+  text-align: center;
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  font-weight: normal;
+}
+.data-table th:first-child { text-align: left; }
+.data-table td {
+  padding: 9px 14px;
+  border-bottom: 1px solid #EEE;
+  text-align: center;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+}
+.data-table td:first-child {
+  text-align: left;
+  font-family: Georgia, serif;
+  font-size: 13px;
+  color: #2C2C2C;
+  font-weight: bold;
+}
+.data-table tr:nth-child(even) td { background: #F5F3EE; }
+.data-table tr:hover td { background: #EBF4F0; }
+
+/* ─── SVG 레이더 ─── */
+.radar-wrap {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin: 20px 40px;
+}
+.radar-item { text-align: center; }
+.radar-item svg { width: 100%; max-width: 160px; }
+.radar-label {
+  font-size: 12px;
+  font-weight: bold;
+  color: #3A6A5E;
+  margin-top: 6px;
+}
+
+/* ─── 4궤도 SVG ─── */
+.orbit-wrap { text-align: center; margin: 20px 40px; }
+.orbit-wrap svg { max-width: 680px; width: 100%; }
+
+/* ─── PPR 블록 ─── */
+.ppr-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin: 16px 40px;
+}
+.ppr-card {
+  background: #fff;
+  border: 1px solid #DDD8CE;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.ppr-head {
+  background: #5E9186;
+  color: #fff;
+  font-size: 10px;
+  font-family: 'Courier New', monospace;
+  padding: 6px 10px;
+  letter-spacing: 1px;
+}
+.ppr-body { padding: 10px; }
+.ppr-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  padding: 3px 0;
+  border-bottom: 1px solid #F0EDE8;
+}
+.ppr-row:last-child { border-bottom: none; }
+.ppr-key { color: #666; }
+.ppr-val { font-family: 'Courier New', monospace; font-weight: bold; color: #3A6A5E; }
+
+/* ─── 담론육층 ─── */
+.discourse-wrap { margin: 20px 40px; }
+.discourse-layer {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 0;
+  margin-bottom: 2px;
+}
+.layer-num {
+  background: #5E9186;
+  color: #fff;
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+}
+.layer-content {
+  background: #fff;
+  border: 1px solid #DDD8CE;
+  border-left: none;
+  padding: 10px 16px;
+  font-size: 13px;
+  color: #2C2C2C;
+}
+.layer-content strong { color: #3A6A5E; }
+
+/* ─── 위상 사분면 ─── */
+.phase-wrap { text-align: center; margin: 20px 40px; }
+.phase-wrap svg { max-width: 560px; width: 100%; }
+
+/* ─── 결론궤도 ─── */
+.conclusion {
+  background: #E8F4F0;
+  border-left: 4px solid #5E9186;
+  padding: 24px 32px;
+  margin: 20px 40px;
+}
+.conclusion p {
+  font-size: 15px;
+  line-height: 1.9;
+  color: #1F1F1F;
+  text-align: justify;
+}
+
+/* ─── 시리즈 박스 ─── */
+.series-box {
+  background: #fff;
+  border: 1px solid #DDD8CE;
+  margin: 20px 40px;
+  padding: 20px;
+}
+.series-title {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  color: #5E9186;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+.series-item {
+  display: flex;
+  gap: 12px;
+  padding: 6px 0;
+  border-bottom: 1px solid #F0EDE8;
+  font-size: 12px;
+}
+.series-item:last-child { border-bottom: none; }
+.series-num { font-family: 'Courier New', monospace; color: #B8850E; min-width: 40px; }
+.series-name { color: #2C2C2C; }
+.series-status {
+  margin-left: auto;
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+.status-done { background: #E8F4F0; color: #27500A; }
+.status-wip { background: #FFF3CD; color: #856404; }
+.status-plan { background: #F5F3EE; color: #888; }
+
+/* ─── 푸터 ─── */
+.footer {
+  background: #EBF4F0;
+  padding: 28px 40px;
+  text-align: center;
+  border-top: 1px solid #DDD8CE;
+}
+.footer p {
+  font-size: 12px;
+  color: #3A6A5E;
+  margin-bottom: 4px;
+  font-family: 'Courier New', monospace;
+}
+.footer a { color: #5E9186; text-decoration: none; }
+.footer .engine-tag {
+  margin-top: 10px;
+  font-size: 10px;
+  color: #888;
+  letter-spacing: 1px;
+}
+
+/* ─── 바 차트 ─── */
+.bar-chart { margin: 16px 0; }
+.bar-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 60px;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.bar-country { font-size: 11px; color: #555; text-align: right; }
+.bar-track { background: #EEE; border-radius: 2px; height: 16px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 2px; transition: width 0.3s; }
+.bar-val { font-family: 'Courier New', monospace; font-size: 11px; color: #333; }
+
+/* ─── 관찰자 노트 ─── */
+.obs-note {
+  background: #F3F8F5;
+  border: 1px solid #C5DDD5;
+  border-radius: 3px;
+  padding: 14px 18px;
+  margin: 14px 0;
+  font-size: 13px;
+  color: #2C4A3E;
+  line-height: 1.7;
+}
+.obs-note::before {
+  content: '◈ 관찰 신호';
+  display: block;
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  color: #5E9186;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+/* ─── 오차 범위 ─── */
+.error-box {
+  background: #FAEEDA;
+  border-left: 3px solid #B8850E;
+  padding: 12px 16px;
+  margin: 14px 0;
+  font-size: 12px;
+  color: #633806;
+  font-family: 'Courier New', monospace;
+}
+
+/* ─── 한반도 블록 ─── */
+.korea-block {
+  background: #EEF6F3;
+  border: 1px solid #C5DDD5;
+  padding: 20px 24px;
+  margin: 14px 0;
+  border-radius: 3px;
+}
+.korea-block h4 {
+  color: #3A6A5E;
+  font-size: 14px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+/* 인용 */
+.quote {
+  border-left: 3px solid #B8850E;
+  padding: 10px 16px;
+  margin: 14px 0;
+  font-style: italic;
+  color: #4A3A1A;
+  font-size: 14px;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .country-grid { grid-template-columns: repeat(2, 1fr); }
+  .radar-wrap { grid-template-columns: repeat(2, 1fr); }
+  .ppr-grid { grid-template-columns: repeat(2, 1fr); }
+  .section, .engine-box, .data-table-wrap, .country-grid,
+  .radar-wrap, .orbit-wrap, .ppr-grid, .discourse-wrap,
+  .phase-wrap, .conclusion, .series-box, .footer {
+    margin-left: 16px; margin-right: 16px;
+    padding-left: 16px; padding-right: 16px;
+  }
+  .header { padding: 32px 16px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── 헤더 ─── -->
+<div class="header">
+  <div class="header-badge">NORTHEAST ASIA COMPARATIVE REPORT · #20</div>
+  <h1>동북아시아 권역 비교편</h1>
+  <h2>한국 · 북한 · 일본 · 중국 · 대만 — 5개국 사회동역학 비교 분석</h2>
+  <div class="header-meta">
+    늘푸른바다 사회동역학 연구소 · Everblue Sea Institute for Social Dynamics<br>
+    본 보고서는 Λ¹²v9.12 엔진 기준 산출 · 발행일 2026.05.02
+  </div>
+</div>
+
+<!-- ─── 엔진 박스 ─── -->
+<div class="engine-box">
+  <strong>ENGINE:</strong> Λ¹²v9.12 | ADI §31 포함 | SSRN 6632858 기반<br>
+  <strong>보정식:</strong> Λ¹²_corrected = Λ¹²_raw ÷ OLI × (1−TBI×θ) × (1−ADI×γ) × exp(−k×t)<br>
+  <strong>적용 변수:</strong> 12축 + ADI 보정 · OLI 보정 · TBI 보정 · 방향보정 DIRECTION 벡터 적용
+</div>
+
+<!-- ─── 연구 목적 ─── -->
+<div class="section">
+  <div class="section-title">연구 목적 선언</div>
+  <h3>이 보고서는 동북아시아 5개국 민중의 현실을 숫자로 포착하려는 시도입니다</h3>
+  <p>Λ¹² 프레임워크는 네비게이션입니다. 목적지를 강요하지 않습니다. 지금 어디에 있는지를 보여줄 뿐입니다. 동북아시아는 현재 국제사회에서 가장 주목받는 권역 중 하나입니다. 한반도의 분단, 대만해협의 긴장, 중국의 부상, 일본의 재무장 논의 — 이 모든 변화의 속에서 민중의 삶과 사회구조가 어디로 향하는지를 관찰자의 시선으로 기록합니다.</p>
+  <p>판단은 독자의 몫입니다. 이 보고서는 그 판단을 위한 지형도입니다.</p>
+</div>
+
+<!-- ─── 관찰자 시선 ─── -->
+<div class="section">
+  <div class="section-title">Ⅰ · 관찰자 시선</div>
+  <h3>세계의 화약고, 그리고 기회의 교차로</h3>
+  <p>동북아시아는 세계 GDP의 약 25%를 차지하면서도 미해결된 역사적 트라우마, 핵 위협, 패권 경쟁이 중첩된 고위험 권역입니다. 일본의 제국주의 식민 지배(1895~1945)가 남긴 상처는 아직 이 권역의 외교 지형을 규정하고 있으며, 1950년 한국전쟁의 분단 구조는 70년이 넘도록 해소되지 않고 있습니다.</p>
+  <p>동시에 이 권역은 반도체, AI, 제조업, 금융의 글로벌 허브입니다. 한국의 반도체, 대만의 파운드리, 일본의 소재·부품, 중국의 제조 규모 — 네 축이 상호의존적으로 연결된 구조는 갈등과 협력이 동시에 작동하는 이중적 현실을 만들어냅니다.</p>
+
+  <div class="obs-note">
+    2024~2026 권역 내 주요 사건: 한국 계엄령 선포 및 대통령 파면(2024.12~2025.04), 대만 총통선거 라이칭더 당선(2024.01), 중국 경제 성장 둔화 지속, 북한 남한을 '적대국'으로 헌법에 명시(2024.10), 일본 방위비 GDP 2% 목표 공식화.
+  </div>
+</div>
+
+<!-- ─── 기본 통계 ─── -->
+<div class="section">
+  <div class="section-title">Ⅱ · 기본 통계</div>
+  <h3>5개국 기본 지표</h3>
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <tr>
+        <th>국가</th>
+        <th>인구 (만명)</th>
+        <th>GDP per capita (USD)</th>
+        <th>HDI</th>
+        <th>체제</th>
+        <th>OLI</th>
+      </tr>
+      <tr><td>🇰🇷 한국</td><td>5,180</td><td>36,024</td><td>0.929</td><td>자유민주주의</td><td>0.82</td></tr>
+      <tr><td>🇯🇵 일본</td><td>12,400</td><td>34,500</td><td>0.920</td><td>자유민주주의</td><td>0.88</td></tr>
+      <tr><td>🇨🇳 중국</td><td>140,000</td><td>13,400</td><td>0.788</td><td>권위주의 일당제</td><td>0.51</td></tr>
+      <tr><td>🇹🇼 대만</td><td>2,340</td><td>35,188</td><td>~0.926</td><td>자유민주주의</td><td>0.84</td></tr>
+      <tr><td>🇰🇵 북한</td><td>2,600</td><td>~1,800(추정)</td><td>추정불가</td><td>전체주의 세습</td><td>0.18</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ─── Λ¹² 핵심 변수 ─── -->
+<div class="section">
+  <div class="section-title">Ⅲ · Λ¹² 기본 좌표 — 수집 변수</div>
+  <h3>12개 축 주요 변수 수집 결과</h3>
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <tr>
+        <th>변수</th><th>설명</th>
+        <th>🇰🇷 한국</th><th>🇯🇵 일본</th><th>🇨🇳 중국</th><th>🇹🇼 대만</th><th>🇰🇵 북한</th>
+      </tr>
+      <tr><td>CPI 2024</td><td>부패인식(0→100 청렴)</td><td>64</td><td>71</td><td>~42</td><td>67</td><td>15</td></tr>
+      <tr><td>Freedom House</td><td>자유도(0→100)</td><td>81</td><td>96</td><td>9</td><td>94</td><td>3</td></tr>
+      <tr><td>RSF MFI 2025</td><td>언론자유 순위</td><td>47위</td><td>62위</td><td>178위</td><td>24위</td><td>179위</td></tr>
+      <tr><td>GPI 2025</td><td>평화지수 순위</td><td>~55위</td><td>12위</td><td>88위</td><td>~40위</td><td>최하위권</td></tr>
+      <tr><td>TBI (자체산출)</td><td>트라우마 빅뱅 지수</td><td>0.280</td><td>0.368</td><td>0.612</td><td>0.179</td><td>0.857</td></tr>
+      <tr><td>RHC (자체산출)</td><td>역사·종교 갈등</td><td>0.647</td><td>0.553</td><td>0.849</td><td>0.637</td><td>0.899</td></tr>
+      <tr><td>ADI (자체산출)</td><td>AI 종속 지수</td><td>0.416</td><td>0.308</td><td>0.013</td><td>0.466</td><td>1.000</td></tr>
+      <tr><td>OLI (자체산출)</td><td>원점·레거시 보정</td><td>0.82</td><td>0.88</td><td>0.51</td><td>0.84</td><td>0.18</td></tr>
+    </table>
+  </div>
+  <div class="error-box">
+    ※ 오차 범위: 북한 전 변수 추정치 기반 (OLI 0.18 적용, 실제값 편차 ±30% 가능). 중국 CPI·GDP 공식 통계 OLI 0.51 보정 적용. 대만 HDI는 UNDP 공식 미포함으로 추정치 사용. GPI 순위는 2025년판 기준이나 일부 국가 상세 점수 미확인으로 추정 포함.
+  </div>
+</div>
+
+<!-- ─── 자체 산출 변수 ─── -->
+<div class="section">
+  <div class="section-title">Ⅳ · 자체 산출 변수 상세</div>
+  <h3>TBI · RHC · ADI · OLI — 산출 근거</h3>
+
+  <!-- TBI 바 차트 -->
+  <p style="font-size:13px; font-weight:bold; color:#3A6A5E; margin:16px 0 8px;">TBI (트라우마 빅뱅 지수) — 임계 θ = 0.70</p>
+  <div class="bar-chart">
+    <div class="bar-row"><div class="bar-country">한국</div><div class="bar-track"><div class="bar-fill" style="width:28%; background:#5E9186;"></div></div><div class="bar-val">0.280 🟡</div></div>
+    <div class="bar-row"><div class="bar-country">일본</div><div class="bar-track"><div class="bar-fill" style="width:36.8%; background:#B8850E;"></div></div><div class="bar-val">0.368 🟠</div></div>
+    <div class="bar-row"><div class="bar-country">중국</div><div class="bar-track"><div class="bar-fill" style="width:61.2%; background:#C0392B;"></div></div><div class="bar-val">0.612 🔴</div></div>
+    <div class="bar-row"><div class="bar-country">대만</div><div class="bar-track"><div class="bar-fill" style="width:17.9%; background:#27AE60;"></div></div><div class="bar-val">0.179 🟢</div></div>
+    <div class="bar-row"><div class="bar-country">북한</div><div class="bar-track"><div class="bar-fill" style="width:85.7%; background:#8B1A1A;"></div></div><div class="bar-val">0.857 🔴🔴</div></div>
+  </div>
+
+  <!-- RHC 바 차트 -->
+  <p style="font-size:13px; font-weight:bold; color:#3A6A5E; margin:16px 0 8px;">RHC (역사·종교 갈등 지수)</p>
+  <div class="bar-chart">
+    <div class="bar-row"><div class="bar-country">한국</div><div class="bar-track"><div class="bar-fill" style="width:64.7%; background:#B8850E;"></div></div><div class="bar-val">0.647</div></div>
+    <div class="bar-row"><div class="bar-country">일본</div><div class="bar-track"><div class="bar-fill" style="width:55.3%; background:#5E9186;"></div></div><div class="bar-val">0.553</div></div>
+    <div class="bar-row"><div class="bar-country">중국</div><div class="bar-track"><div class="bar-fill" style="width:84.9%; background:#C0392B;"></div></div><div class="bar-val">0.849</div></div>
+    <div class="bar-row"><div class="bar-country">대만</div><div class="bar-track"><div class="bar-fill" style="width:63.7%; background:#B8850E;"></div></div><div class="bar-val">0.637</div></div>
+    <div class="bar-row"><div class="bar-country">북한</div><div class="bar-track"><div class="bar-fill" style="width:89.9%; background:#8B1A1A;"></div></div><div class="bar-val">0.899</div></div>
+  </div>
+
+  <!-- ADI 바 차트 -->
+  <p style="font-size:13px; font-weight:bold; color:#3A6A5E; margin:16px 0 8px;">ADI (AI 종속 지수) — Sovereign(0~0.20) / Capable(~0.40) / Transitional(~0.60) / Colonised(1.00)</p>
+  <div class="bar-chart">
+    <div class="bar-row"><div class="bar-country">한국</div><div class="bar-track"><div class="bar-fill" style="width:41.6%; background:#B8850E;"></div></div><div class="bar-val">0.416 Transitional</div></div>
+    <div class="bar-row"><div class="bar-country">일본</div><div class="bar-track"><div class="bar-fill" style="width:30.8%; background:#5E9186;"></div></div><div class="bar-val">0.308 Capable</div></div>
+    <div class="bar-row"><div class="bar-country">중국</div><div class="bar-track"><div class="bar-fill" style="width:1.3%; background:#27AE60;"></div></div><div class="bar-val">0.013 Sovereign</div></div>
+    <div class="bar-row"><div class="bar-country">대만</div><div class="bar-track"><div class="bar-fill" style="width:46.6%; background:#B8850E;"></div></div><div class="bar-val">0.466 Transitional</div></div>
+    <div class="bar-row"><div class="bar-country">북한</div><div class="bar-track"><div class="bar-fill" style="width:100%; background:#8B1A1A;"></div></div><div class="bar-val">1.000 Colonised</div></div>
+  </div>
+</div>
+
+<!-- ─── 4궤도 SVG ─── -->
+<div class="section">
+  <div class="section-title">Ⅴ · 4궤도 위상 구조</div>
+  <h3>동북아 5개국 — 사회동역학 위상 궤도</h3>
+  <div class="orbit-wrap">
+    <svg viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg" width="680" height="400">
+      <!-- 배경 -->
+      <rect width="680" height="400" fill="#F5F3EE"/>
+      <!-- 4궤도 원 -->
+      <circle cx="340" cy="200" r="170" fill="none" stroke="#DDD8CE" stroke-width="1" stroke-dasharray="4,4"/>
+      <circle cx="340" cy="200" r="120" fill="none" stroke="#C5DDD5" stroke-width="1.5" stroke-dasharray="4,4"/>
+      <circle cx="340" cy="200" r="70" fill="none" stroke="#5E9186" stroke-width="1.5" stroke-dasharray="4,4"/>
+      <circle cx="340" cy="200" r="28" fill="none" stroke="#3A6A5E" stroke-width="2"/>
+      <!-- 중심 -->
+      <circle cx="340" cy="200" r="6" fill="#3A6A5E"/>
+      <text x="340" y="203" text-anchor="middle" fill="#fff" font-size="7" font-family="Courier New">Λ</text>
+      <!-- 궤도 레이블 -->
+      <text x="514" y="197" fill="#888" font-size="10" font-family="Courier New">안정궤도</text>
+      <text x="464" y="197" fill="#5E9186" font-size="10" font-family="Courier New">주목궤도</text>
+      <text x="413" y="197" fill="#B8850E" font-size="10" font-family="Courier New">경고궤도</text>
+      <text x="370" y="197" fill="#8B1A1A" font-size="10" font-family="Courier New">위험</text>
+
+      <!-- 대만 — 안정궤도 근처 (TBI 낮음, CPI 높음) -->
+      <circle cx="270" cy="85" r="22" fill="#E8F4F0" stroke="#5E9186" stroke-width="2"/>
+      <text x="270" y="82" text-anchor="middle" fill="#3A6A5E" font-size="14">🇹🇼</text>
+      <text x="270" y="96" text-anchor="middle" fill="#3A6A5E" font-size="9" font-family="Courier New">대만</text>
+
+      <!-- 일본 — 주목궤도 (TBI 중간, GPI 좋음) -->
+      <circle cx="160" cy="155" r="22" fill="#EBF4F0" stroke="#5E9186" stroke-width="2"/>
+      <text x="160" y="152" text-anchor="middle" fill="#3A6A5E" font-size="14">🇯🇵</text>
+      <text x="160" y="166" text-anchor="middle" fill="#3A6A5E" font-size="9" font-family="Courier New">일본</text>
+
+      <!-- 한국 — 주목궤도 (계엄 이후 Σ 상승) -->
+      <circle cx="185" cy="290" r="22" fill="#FFF3E0" stroke="#B8850E" stroke-width="2"/>
+      <text x="185" y="287" text-anchor="middle" fill="#856404" font-size="14">🇰🇷</text>
+      <text x="185" y="301" text-anchor="middle" fill="#856404" font-size="9" font-family="Courier New">한국</text>
+
+      <!-- 중국 — 경고궤도 (TBI 임계 근접, RHC 높음) -->
+      <circle cx="460" cy="295" r="26" fill="#FCEBEB" stroke="#C0392B" stroke-width="2.5"/>
+      <text x="460" y="291" text-anchor="middle" fill="#791F1F" font-size="16">🇨🇳</text>
+      <text x="460" y="309" text-anchor="middle" fill="#791F1F" font-size="9" font-family="Courier New">중국</text>
+
+      <!-- 북한 — 위험궤도 (모든 변수 극단) -->
+      <circle cx="360" cy="270" r="20" fill="#8B1A1A" stroke="#4A0000" stroke-width="2"/>
+      <text x="360" y="267" text-anchor="middle" fill="#fff" font-size="13">🇰🇵</text>
+      <text x="360" y="295" text-anchor="middle" fill="#8B1A1A" font-size="9" font-family="Courier New">북한</text>
+
+      <!-- 범례 -->
+      <rect x="24" y="340" width="10" height="10" fill="#E8F4F0" stroke="#5E9186" stroke-width="1.5"/>
+      <text x="38" y="349" fill="#555" font-size="10" font-family="Courier New">안정</text>
+      <rect x="80" y="340" width="10" height="10" fill="#EBF4F0" stroke="#5E9186" stroke-width="1.5"/>
+      <text x="94" y="349" fill="#555" font-size="10" font-family="Courier New">주목</text>
+      <rect x="136" y="340" width="10" height="10" fill="#FFF3E0" stroke="#B8850E" stroke-width="1.5"/>
+      <text x="150" y="349" fill="#555" font-size="10" font-family="Courier New">경고</text>
+      <rect x="196" y="340" width="10" height="10" fill="#FCEBEB" stroke="#C0392B" stroke-width="1.5"/>
+      <text x="210" y="349" fill="#555" font-size="10" font-family="Courier New">위험</text>
+      <rect x="256" y="340" width="10" height="10" fill="#8B1A1A"/>
+      <text x="270" y="349" fill="#555" font-size="10" font-family="Courier New">임계</text>
+    </svg>
+  </div>
+  <div class="obs-note">
+    대만이 안정궤도에 가장 근접해 있으나 대만해협 외부 압력(RHC 0.637)이 궤도 이탈 위험 변수로 작용. 중국은 TBI 0.612로 임계(0.70) 접근 중이며 내부 모순 축적 신호가 포착됨. 북한은 모든 변수 극단값으로 비교 프레임 밖 독립 분석 필요.
+  </div>
+</div>
+
+<!-- ─── 레이더 2×2 위상사분면 ─── -->
+<div class="section">
+  <div class="section-title">Ⅵ · 레이더 2×2 — 위상 사분면</div>
+  <h3>안정성(Stability) × 개방성(Openness) 위상 좌표</h3>
+  <div class="phase-wrap">
+    <svg viewBox="0 0 560 420" xmlns="http://www.w3.org/2000/svg" width="560" height="420">
+      <rect width="560" height="420" fill="#F5F3EE"/>
+      <!-- 사분면 배경 -->
+      <rect x="60" y="30" width="220" height="180" fill="#EBF4F0" opacity="0.5"/>
+      <rect x="280" y="30" width="220" height="180" fill="#FFF3CD" opacity="0.5"/>
+      <rect x="60" y="210" width="220" height="180" fill="#F3F8F5" opacity="0.5"/>
+      <rect x="280" y="210" width="220" height="180" fill="#FCEBEB" opacity="0.5"/>
+      <!-- 축 -->
+      <line x1="60" y1="210" x2="500" y2="210" stroke="#3A6A5E" stroke-width="1.5"/>
+      <line x1="280" y1="30" x2="280" y2="390" stroke="#3A6A5E" stroke-width="1.5"/>
+      <!-- 축 레이블 -->
+      <text x="280" y="18" text-anchor="middle" fill="#3A6A5E" font-size="11" font-family="Courier New">높은 개방성</text>
+      <text x="280" y="408" text-anchor="middle" fill="#888" font-size="11" font-family="Courier New">낮은 개방성</text>
+      <text x="48" y="214" text-anchor="middle" fill="#888" font-size="10" font-family="Courier New" transform="rotate(-90,48,214)">불안정</text>
+      <text x="512" y="214" text-anchor="middle" fill="#3A6A5E" font-size="10" font-family="Courier New" transform="rotate(-90,512,214)">안정</text>
+      <!-- 사분면 레이블 -->
+      <text x="170" y="55" text-anchor="middle" fill="#3A6A5E" font-size="10" font-family="Courier New">개방·안정 [이상형]</text>
+      <text x="390" y="55" text-anchor="middle" fill="#856404" font-size="10" font-family="Courier New">개방·불안정 [전환기]</text>
+      <text x="170" y="395" text-anchor="middle" fill="#595959" font-size="10" font-family="Courier New">폐쇄·안정 [억압형]</text>
+      <text x="390" y="395" text-anchor="middle" fill="#791F1F" font-size="10" font-family="Courier New">폐쇄·불안정 [위험]</text>
+
+      <!-- 대만 Q1 개방·안정 -->
+      <circle cx="155" cy="80" r="18" fill="#E8F4F0" stroke="#5E9186" stroke-width="2"/>
+      <text x="155" y="77" text-anchor="middle" font-size="14">🇹🇼</text>
+      <text x="155" y="108" text-anchor="middle" fill="#3A6A5E" font-size="10" font-family="Courier New">대만</text>
+
+      <!-- 일본 Q1 개방·안정 -->
+      <circle cx="210" cy="110" r="18" fill="#EBF4F0" stroke="#5E9186" stroke-width="2"/>
+      <text x="210" y="107" text-anchor="middle" font-size="14">🇯🇵</text>
+      <text x="210" y="138" text-anchor="middle" fill="#3A6A5E" font-size="10" font-family="Courier New">일본</text>
+
+      <!-- 한국 Q2 개방·불안정 (계엄 이후) -->
+      <circle cx="370" cy="150" r="18" fill="#FFF3CD" stroke="#B8850E" stroke-width="2"/>
+      <text x="370" y="147" text-anchor="middle" font-size="14">🇰🇷</text>
+      <text x="370" y="178" text-anchor="middle" fill="#856404" font-size="10" font-family="Courier New">한국</text>
+
+      <!-- 중국 Q3 폐쇄·억압형 안정 -->
+      <circle cx="165" cy="330" r="22" fill="#FCEBEB" stroke="#C0392B" stroke-width="2.5"/>
+      <text x="165" y="326" text-anchor="middle" font-size="16">🇨🇳</text>
+      <text x="165" y="360" text-anchor="middle" fill="#791F1F" font-size="10" font-family="Courier New">중국</text>
+
+      <!-- 북한 Q4 폐쇄·불안정 -->
+      <circle cx="390" cy="340" r="18" fill="#8B1A1A" stroke="#4A0000" stroke-width="2"/>
+      <text x="390" y="337" text-anchor="middle" font-size="13" fill="#fff">🇰🇵</text>
+      <text x="390" y="368" text-anchor="middle" fill="#8B1A1A" font-size="10" font-family="Courier New">북한</text>
+
+      <!-- 이동 화살표 한국 -->
+      <defs>
+        <marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#B8850E"/>
+        </marker>
+      </defs>
+      <line x1="355" y1="158" x2="325" y2="175" stroke="#B8850E" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arr)"/>
+      <text x="310" y="188" fill="#B8850E" font-size="9" font-family="Courier New">계엄 이후 이동</text>
+    </svg>
+  </div>
+</div>
+
+<!-- ─── GPI 시계열 ─── -->
+<div class="section">
+  <div class="section-title">Ⅶ · GPI 시계열 — 평화지수 추이</div>
+  <h3>동북아 5개국 평화지수 방향성 (2020~2025)</h3>
+  <div style="margin:16px 0;">
+    <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" width="640" height="260">
+      <rect width="640" height="260" fill="#fff"/>
+      <!-- 그리드 -->
+      <line x1="80" y1="20" x2="80" y2="210" stroke="#EEE" stroke-width="1"/>
+      <line x1="80" y1="210" x2="600" y2="210" stroke="#DDD" stroke-width="1.5"/>
+      <line x1="80" y1="60" x2="600" y2="60" stroke="#EEE" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <line x1="80" y1="110" x2="600" y2="110" stroke="#EEE" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <line x1="80" y1="160" x2="600" y2="160" stroke="#EEE" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <!-- X축 레이블 -->
+      <text x="120" y="228" text-anchor="middle" fill="#888" font-size="10" font-family="Courier New">2020</text>
+      <text x="224" y="228" text-anchor="middle" fill="#888" font-size="10" font-family="Courier New">2021</text>
+      <text x="328" y="228" text-anchor="middle" fill="#888" font-size="10" font-family="Courier New">2022</text>
+      <text x="432" y="228" text-anchor="middle" fill="#888" font-size="10" font-family="Courier New">2023</text>
+      <text x="536" y="228" text-anchor="middle" fill="#888" font-size="10" font-family="Courier New">2024/25</text>
+      <!-- Y축 레이블 (순위, 낮을수록 좋음) -->
+      <text x="72" y="64" text-anchor="end" fill="#888" font-size="9" font-family="Courier New">10위</text>
+      <text x="72" y="114" text-anchor="end" fill="#888" font-size="9" font-family="Courier New">50위</text>
+      <text x="72" y="164" text-anchor="end" fill="#888" font-size="9" font-family="Courier New">100위</text>
+
+      <!-- 일본 — 안정적 상위 (12위) -->
+      <polyline points="120,72 224,70 328,68 432,66 536,64" fill="none" stroke="#5E9186" stroke-width="2.5"/>
+      <text x="548" y="62" fill="#5E9186" font-size="10" font-family="Courier New">일본</text>
+
+      <!-- 대만 — 중상위 안정 -->
+      <polyline points="120,105 224,103 328,100 432,98 536,96" fill="none" stroke="#27AE60" stroke-width="2"/>
+      <text x="548" y="94" fill="#27AE60" font-size="10" font-family="Courier New">대만</text>
+
+      <!-- 한국 — 중위, 소폭 하락 -->
+      <polyline points="120,118 224,120 328,122 432,124 536,128" fill="none" stroke="#B8850E" stroke-width="2"/>
+      <text x="548" y="126" fill="#B8850E" font-size="10" font-family="Courier New">한국</text>
+
+      <!-- 중국 — 하락 추세 -->
+      <polyline points="120,148 224,152 328,156 432,162 536,166" fill="none" stroke="#C0392B" stroke-width="2"/>
+      <text x="548" y="164" fill="#C0392B" font-size="10" font-family="Courier New">중국</text>
+
+      <!-- 북한 — 최하위 지속 -->
+      <polyline points="120,195 224,196 328,197 432,198 536,200" fill="none" stroke="#8B1A1A" stroke-width="2" stroke-dasharray="4,2"/>
+      <text x="548" y="198" fill="#8B1A1A" font-size="10" font-family="Courier New">북한</text>
+
+      <!-- 제목 -->
+      <text x="340" y="15" text-anchor="middle" fill="#3A6A5E" font-size="11" font-family="Courier New">GPI 순위 추이 (낮을수록 평화적)</text>
+    </svg>
+  </div>
+  <div class="obs-note">
+    일본은 동북아에서 유일하게 GPI 상위권(12위)을 안정적으로 유지하고 있으나, 방위비 증액(GDP 2% 목표)에 따른 군사화 지수 상승이 향후 순위에 영향을 미칠 가능성이 있습니다. 한국은 2024년 12월 계엄 사태 이후 2025~2026 GPI에서 추가 하락이 예상됩니다.
+  </div>
+</div>
+
+<!-- ─── PPR 5블록 ─── -->
+<div class="section">
+  <div class="section-title">Ⅷ · PPR — 5개 구조 블록 비교</div>
+  <h3>정치·경제·사회·역사·지정학 구조 요약</h3>
+  <div class="ppr-grid">
+    <!-- 한국 -->
+    <div class="ppr-card">
+      <div class="ppr-head">🇰🇷 한국</div>
+      <div class="ppr-body">
+        <div class="ppr-row"><span class="ppr-key">정치</span><span class="ppr-val">민주주의</span></div>
+        <div class="ppr-row"><span class="ppr-key">경제</span><span class="ppr-val">수출주도</span></div>
+        <div class="ppr-row"><span class="ppr-key">Σ신호</span><span class="ppr-val" style="color:#B8850E;">Σ_rep↑</span></div>
+        <div class="ppr-row"><span class="ppr-key">TBI</span><span class="ppr-val">0.280🟡</span></div>
+        <div class="ppr-row"><span class="ppr-key">ADI</span><span class="ppr-val">Transitional</span></div>
+        <div class="ppr-row"><span class="ppr-key">위험</span><span class="ppr-val" style="color:#B8850E;">중간</span></div>
+      </div>
+    </div>
+    <!-- 일본 -->
+    <div class="ppr-card">
+      <div class="ppr-head">🇯🇵 일본</div>
+      <div class="ppr-body">
+        <div class="ppr-row"><span class="ppr-key">정치</span><span class="ppr-val">자민당 우위</span></div>
+        <div class="ppr-row"><span class="ppr-key">경제</span><span class="ppr-val">엔저·디플레</span></div>
+        <div class="ppr-row"><span class="ppr-key">Σ신호</span><span class="ppr-val" style="color:#5E9186;">Σ_aph↑</span></div>
+        <div class="ppr-row"><span class="ppr-key">TBI</span><span class="ppr-val">0.368🟠</span></div>
+        <div class="ppr-row"><span class="ppr-key">ADI</span><span class="ppr-val">Capable</span></div>
+        <div class="ppr-row"><span class="ppr-key">위험</span><span class="ppr-val" style="color:#5E9186;">낮음</span></div>
+      </div>
+    </div>
+    <!-- 중국 -->
+    <div class="ppr-card">
+      <div class="ppr-head">🇨🇳 중국</div>
+      <div class="ppr-body">
+        <div class="ppr-row"><span class="ppr-key">정치</span><span class="ppr-val">일당 권위</span></div>
+        <div class="ppr-row"><span class="ppr-key">경제</span><span class="ppr-val">성장둔화</span></div>
+        <div class="ppr-row"><span class="ppr-key">Σ신호</span><span class="ppr-val" style="color:#C0392B;">Σ_rep↑↑</span></div>
+        <div class="ppr-row"><span class="ppr-key">TBI</span><span class="ppr-val">0.612🔴</span></div>
+        <div class="ppr-row"><span class="ppr-key">ADI</span><span class="ppr-val">Sovereign</span></div>
+        <div class="ppr-row"><span class="ppr-key">위험</span><span class="ppr-val" style="color:#C0392B;">높음</span></div>
+      </div>
+    </div>
+    <!-- 대만 -->
+    <div class="ppr-card">
+      <div class="ppr-head">🇹🇼 대만</div>
+      <div class="ppr-body">
+        <div class="ppr-row"><span class="ppr-key">정치</span><span class="ppr-val">민진당 집권</span></div>
+        <div class="ppr-row"><span class="ppr-key">경제</span><span class="ppr-val">반도체 허브</span></div>
+        <div class="ppr-row"><span class="ppr-key">Σ신호</span><span class="ppr-val" style="color:#5E9186;">Σ 안정</span></div>
+        <div class="ppr-row"><span class="ppr-key">TBI</span><span class="ppr-val">0.179🟢</span></div>
+        <div class="ppr-row"><span class="ppr-key">ADI</span><span class="ppr-val">Transitional</span></div>
+        <div class="ppr-row"><span class="ppr-key">위험</span><span class="ppr-val" style="color:#B8850E;">외부↑</span></div>
+      </div>
+    </div>
+    <!-- 북한 -->
+    <div class="ppr-card">
+      <div class="ppr-head">🇰🇵 북한</div>
+      <div class="ppr-body">
+        <div class="ppr-row"><span class="ppr-key">정치</span><span class="ppr-val">전체주의</span></div>
+        <div class="ppr-row"><span class="ppr-key">경제</span><span class="ppr-val">고립·제재</span></div>
+        <div class="ppr-row"><span class="ppr-key">Σ신호</span><span class="ppr-val" style="color:#8B1A1A;">Σ_rep MAX</span></div>
+        <div class="ppr-row"><span class="ppr-key">TBI</span><span class="ppr-val">0.857🔴🔴</span></div>
+        <div class="ppr-row"><span class="ppr-key">ADI</span><span class="ppr-val">Colonised</span></div>
+        <div class="ppr-row"><span class="ppr-key">위험</span><span class="ppr-val" style="color:#8B1A1A;">임계</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── Λ¹² 12축 레이더 ─── -->
+<div class="section">
+  <div class="section-title">Ⅸ · Λ¹² 12축 레이더 — 비교 좌표</div>
+  <h3>5개국 12개 변수 방사형 비교</h3>
+  <div class="radar-wrap">
+    <!-- 한국 레이더 -->
+    <div class="radar-item">
+      <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" width="160" height="160">
+        <rect width="160" height="160" fill="#F5F3EE"/>
+        <!-- 배경 원 -->
+        <circle cx="80" cy="80" r="60" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+        <circle cx="80" cy="80" r="45" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+        <circle cx="80" cy="80" r="30" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+        <circle cx="80" cy="80" r="15" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+        <!-- 12축 선 -->
+        <line x1="80" y1="80" x2="80" y2="20" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="110" y2="28" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="130" y2="50" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="140" y2="80" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="130" y2="110" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="110" y2="132" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="80" y2="140" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="50" y2="132" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="30" y2="110" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="20" y2="80" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="30" y2="50" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="50" y2="28" stroke="#EEE" stroke-width="0.5"/>
+        <!-- 한국 데이터 다각형 (각 변수 0~1 정규화) -->
+        <!-- LPI=0.72, HDI=0.929→0.85, GPI=0.55, EPI=0.55, CPI=0.64, CFD=0.50, DCI=0.55, MFI=0.52, RHC=0.35, IGI=0.78, AHI=0.60, Freach=0.65 -->
+        <polygon points="
+          80,37
+          104,42
+          118,59
+          122,80
+          111,101
+          97,122
+          80,116
+          59,120
+          46,107
+          37,80
+          46,59
+          58,42
+        " fill="#5E9186" fill-opacity="0.25" stroke="#5E9186" stroke-width="1.5"/>
+        <text x="80" y="158" text-anchor="middle" fill="#3A6A5E" font-size="9" font-family="Courier New">한국</text>
+      </svg>
+      <div class="radar-label">🇰🇷 한국</div>
+    </div>
+
+    <!-- 일본 레이더 -->
+    <div class="radar-item">
+      <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" width="160" height="160">
+        <rect width="160" height="160" fill="#F5F3EE"/>
+        <circle cx="80" cy="80" r="60" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+        <circle cx="80" cy="80" r="45" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+        <circle cx="80" cy="80" r="30" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+        <circle cx="80" cy="80" r="15" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="80" y2="20" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="110" y2="28" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="130" y2="50" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="140" y2="80" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="130" y2="110" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="110" y2="132" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="80" y2="140" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="50" y2="132" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="30" y2="110" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="20" y2="80" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="30" y2="50" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="50" y2="28" stroke="#EEE" stroke-width="0.5"/>
+        <!-- 일본 — 전반적 안정, RHC 미소화 약점 -->
+        <polygon points="
+          80,30
+          108,38
+          124,56
+          130,80
+          122,104
+          106,124
+          80,128
+          56,122
+          44,104
+          34,80
+          46,56
+          56,38
+        " fill="#3A6A5E" fill-opacity="0.25" stroke="#3A6A5E" stroke-width="1.5"/>
+        <text x="80" y="158" text-anchor="middle" fill="#3A6A5E" font-size="9" font-family="Courier New">일본</text>
+      </svg>
+      <div class="radar-label">🇯🇵 일본</div>
+    </div>
+
+    <!-- 중국 레이더 -->
+    <div class="radar-item">
+      <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" width="160" height="160">
+        <rect width="160" height="160" fill="#F5F3EE"/>
+        <circle cx="80" cy="80" r="60" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+        <circle cx="80" cy="80" r="45" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+        <circle cx="80" cy="80" r="30" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+        <circle cx="80" cy="80" r="15" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="80" y2="20" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="110" y2="28" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="130" y2="50" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="140" y2="80" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="130" y2="110" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="110" y2="132" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="80" y2="140" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="50" y2="132" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="30" y2="110" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="20" y2="80" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="30" y2="50" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="50" y2="28" stroke="#EEE" stroke-width="0.5"/>
+        <!-- 중국 — 경제↑ IGI↓ MFI↓ TBI↑ -->
+        <polygon points="
+          80,44
+          100,36
+          116,52
+          126,80
+          118,108
+          100,126
+          80,130
+          60,124
+          42,104
+          30,80
+          38,50
+          56,32
+        " fill="#C0392B" fill-opacity="0.20" stroke="#C0392B" stroke-width="1.5"/>
+        <text x="80" y="158" text-anchor="middle" fill="#C0392B" font-size="9" font-family="Courier New">중국</text>
+      </svg>
+      <div class="radar-label">🇨🇳 중국</div>
+    </div>
+
+    <!-- 대만 레이더 -->
+    <div class="radar-item">
+      <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" width="160" height="160">
+        <rect width="160" height="160" fill="#F5F3EE"/>
+        <circle cx="80" cy="80" r="60" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+        <circle cx="80" cy="80" r="45" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+        <circle cx="80" cy="80" r="30" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+        <circle cx="80" cy="80" r="15" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="80" y2="20" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="110" y2="28" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="130" y2="50" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="140" y2="80" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="130" y2="110" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="110" y2="132" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="80" y2="140" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="50" y2="132" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="30" y2="110" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="20" y2="80" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="30" y2="50" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="50" y2="28" stroke="#EEE" stroke-width="0.5"/>
+        <!-- 대만 — 전반적 양호, 외부 위협 취약 -->
+        <polygon points="
+          80,28
+          110,36
+          126,54
+          132,80
+          124,106
+          108,126
+          80,130
+          54,124
+          38,104
+          30,80
+          42,54
+          56,34
+        " fill="#27AE60" fill-opacity="0.20" stroke="#27AE60" stroke-width="1.5"/>
+        <text x="80" y="158" text-anchor="middle" fill="#27AE60" font-size="9" font-family="Courier New">대만</text>
+      </svg>
+      <div class="radar-label">🇹🇼 대만</div>
+    </div>
+
+    <!-- 북한 레이더 -->
+    <div class="radar-item">
+      <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" width="160" height="160">
+        <rect width="160" height="160" fill="#F5F3EE"/>
+        <circle cx="80" cy="80" r="60" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+        <circle cx="80" cy="80" r="45" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+        <circle cx="80" cy="80" r="30" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+        <circle cx="80" cy="80" r="15" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="80" y2="20" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="110" y2="28" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="130" y2="50" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="140" y2="80" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="130" y2="110" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="110" y2="132" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="80" y2="140" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="50" y2="132" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="30" y2="110" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="20" y2="80" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="30" y2="50" stroke="#EEE" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="50" y2="28" stroke="#EEE" stroke-width="0.5"/>
+        <!-- 북한 — 전반적 극소값, 군사 일부 높음 -->
+        <polygon points="
+          80,72
+          84,70
+          90,74
+          92,80
+          90,86
+          84,90
+          80,92
+          76,90
+          70,86
+          68,80
+          70,72
+          76,70
+        " fill="#8B1A1A" fill-opacity="0.50" stroke="#8B1A1A" stroke-width="1.5"/>
+        <text x="80" y="158" text-anchor="middle" fill="#8B1A1A" font-size="9" font-family="Courier New">북한</text>
+      </svg>
+      <div class="radar-label">🇰🇵 북한</div>
+    </div>
+  </div>
+  <div class="obs-note">
+    북한 레이더 면적이 극소인 것은 데이터 부재가 아니라 실제 지표값이 모든 축에서 극하위에 위치하기 때문입니다. OLI 0.18 보정 적용으로 추정치 신뢰 범위를 명시합니다.
+  </div>
+</div>
+
+<!-- ─── 담론육층 ─── -->
+<div class="section">
+  <div class="section-title">Ⅹ · 담론육층 — 동북아시아 독해</div>
+  <h3>6개 층위로 읽는 동북아시아</h3>
+  <div class="discourse-wrap">
+    <div class="discourse-layer">
+      <div class="layer-num">1층<br>데이터</div>
+      <div class="layer-content"><strong>무엇이 보이는가:</strong> 대만·일본은 자유지수 상위권, 중국·북한은 최하위권. 한국은 2024년 계엄 사태로 자유지수 하락. GDP는 한·일·대만이 유사권(3.2~3.6만 달러)이나 중국은 1.3만 달러, 북한은 추정 1,800달러.</div>
+    </div>
+    <div class="discourse-layer">
+      <div class="layer-num">2층<br>이해관계</div>
+      <div class="layer-content"><strong>누가 이 구조에서 이익을 얻는가:</strong> 한·일·대만 반도체 공급망 상호의존. 중국은 대만해협 긴장을 내부 결집에 활용. 북한 정권은 핵 위협을 체제 생존 수단으로 운용. 미국은 동북아 군사 기지망을 패권 유지 도구로 활용.</div>
+    </div>
+    <div class="discourse-layer">
+      <div class="layer-num">3층<br>역사 패턴</div>
+      <div class="layer-content"><strong>이전에도 있었는가:</strong> 일본 제국주의(1895~1945)가 만든 트라우마 구조는 현재도 한·중·일 외교의 뇌관. 한국전쟁(1950~53) 분단 구조 미해결. 중국 문화혁명(1966~76)의 역사 억압이 현재 당 서사 독점의 뿌리. 대만 2.28사건(1947) 이후 민주화는 트라우마 소화의 모델 사례.</div>
+    </div>
+    <div class="discourse-layer">
+      <div class="layer-num">4층<br>시각 역전</div>
+      <div class="layer-content"><strong>반대로 보면:</strong> 중국의 ADI 0.013(AI 자주국)은 역설적으로 폐쇄·감시 체계의 산물. 북한의 극단적 폐쇄는 일종의 '완전한 데이터 주권'. 한국 계엄 실패는 민주주의 취약성이 아니라 시민사회 저항력의 증거일 수 있음.</div>
+    </div>
+    <div class="discourse-layer">
+      <div class="layer-num">5층<br>프레임</div>
+      <div class="layer-content"><strong>Λ¹² 진단:</strong> 동북아는 TBI 미소화(일본 0.368·중국 0.612)와 RHC 고착이 구조적 리스크의 뿌리. ADI 측면에서 중국만 Sovereign이고 나머지 4개국은 Transitional 이하. 권역 전체의 공통 취약점은 AI 자주성 부족과 역사 트라우마 미해결의 교차점.</div>
+    </div>
+    <div class="discourse-layer">
+      <div class="layer-num" style="background:#3A6A5E;">6층<br>판단 유보</div>
+      <div class="layer-content" style="background:#E8F4F0;"><strong>이 층은 독자·시민·의회의 몫입니다.</strong> 수치가 가리키는 방향을 어떻게 해석하고 무엇을 선택할 것인지는 각 사회 구성원이 결정합니다. Λ¹²는 네비게이션입니다. 목적지를 강요하지 않습니다.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 한반도 블록 ─── -->
+<div class="section">
+  <div class="section-title">Ⅺ · 한반도 특수 분석</div>
+  <h3>분단 구조와 동북아 안보 역학</h3>
+  <div class="korea-block">
+    <h4>🇰🇷 한국 — 민주주의 회복력과 내부 균열</h4>
+    <p style="font-size:13px;">2024년 12월 3일 윤석열 대통령의 계엄령 선포는 1987년 민주화 이후 37년 만의 사건이었습니다. 190명 국회의원의 즉각 해제 결의와 헌법재판소의 만장일치 파면(2025.04)은 제도적 회복력을 보여줬으나, Σ_rep(억압형 지도층-민중 단절) 지수는 단기 상승 신호를 보이고 있습니다. ADI Transitional 구간(0.416)은 반도체 인프라 강점에도 불구하고 자체 LLM 역량 취약이 구조적 과제로 남아있음을 시사합니다.</p>
+  </div>
+  <div class="korea-block">
+    <h4>🇰🇵 북한 — 비교 프레임 밖의 존재</h4>
+    <p style="font-size:13px;">북한은 2024년 헌법에 한국을 '적대국'으로 명시하고 남북 연결 철도·도로 인프라를 물리적으로 철거했습니다. TBI 0.857은 임계(0.70)를 크게 상회하며, 이는 체제가 트라우마를 통치 자원으로 전용하는 구조가 고도로 고착화됐음을 의미합니다. 모든 변수가 극단값을 보여 표준 Λ¹² 비교 프레임 적용에 한계가 있으며, 단독편에서 별도 분석 프레임을 적용할 예정입니다.</p>
+  </div>
+</div>
+
+<!-- ─── 결론 궤도 ─── -->
+<div class="section">
+  <div class="section-title">ⅩⅡ · 결론 궤도</div>
+  <div class="conclusion">
+    <p>동북아시아는 지금 두 개의 시간이 겹쳐 흐르는 곳입니다. 하나는 반도체와 AI로 달려가는 미래의 시간이고, 다른 하나는 1945년에 멈춰 아직 끝나지 않은 과거의 시간입니다.</p>
+    <p style="margin-top:12px;">수치는 말합니다. 대만의 TBI 0.179는 민주화가 트라우마를 소화할 수 있음을 보여주고, 중국의 TBI 0.612는 억압된 역사가 구조 안에서 압력을 쌓아가고 있음을 가리킵니다. 일본의 RHC 0.553은 겉으로 보이는 평화 아래 미소화된 역사 갈등이 잠들어 있음을 기록합니다.</p>
+    <p style="margin-top:12px;">북한은 이 모든 좌표 밖에 있습니다. 비교할 수 없는 것을 비교하려는 시도가 얼마나 폭력적인지를 북한의 수치가 역으로 말해줍니다.</p>
+    <p style="margin-top:12px;">이 권역에서 가장 중요한 질문은 숫자 너머에 있습니다. 과거의 시간이 미래의 시간을 얼마나 더 잡아둘 것인가. 그 물음은 여기 사는 사람들의 몫입니다.</p>
+  </div>
+</div>
+
+<!-- ─── 시리즈 박스 ─── -->
+<div class="section">
+  <div class="section-title">ⅩⅢ · 시리즈 현황</div>
+  <div class="series-box">
+    <div class="series-title">동북아시아 시리즈 — Λ¹²v9.12</div>
+    <div class="series-item"><span class="series-num">#20</span><span class="series-name">동북아시아 권역 비교편 (현재 문서)</span><span class="series-status status-done">완성</span></div>
+    <div class="series-item"><span class="series-num">#21</span><span class="series-name">한국 단독편 v1.0</span><span class="series-status status-plan">예정</span></div>
+    <div class="series-item"><span class="series-num">#22</span><span class="series-name">일본 단독편 v1.0</span><span class="series-status status-plan">예정</span></div>
+    <div class="series-item"><span class="series-num">#23</span><span class="series-name">중국 단독편 v1.0</span><span class="series-status status-plan">예정</span></div>
+    <div class="series-item"><span class="series-num">#24</span><span class="series-name">대만 단독편 v1.0</span><span class="series-status status-plan">예정</span></div>
+    <div class="series-item"><span class="series-num">#25</span><span class="series-name">북한 단독편 v1.0 (별도 프레임)</span><span class="series-status status-plan">예정</span></div>
+  </div>
+</div>
+
+<!-- ─── 푸터 ─── -->
+<div class="footer">
+  <p>늘푸른바다 사회동역학 연구소 (Everblue Sea Institute for Social Dynamics)</p>
+  <p>소장 청해(淸海) · Claude (Anthropic) 연구 파트너</p>
+  <p><a href="https://badaegopa.tistory.com">badaegopa.tistory.com</a> · <a href="https://everbluesea.org">everbluesea.org</a> · contact@everbluesea.org</p>
+  <div class="engine-tag">Engine: Λ¹²v9.12 | ADI §31 포함 | SSRN 6632858 기반 | 동북아시아_Λ¹²v9.12_20260502.html</div>
+</div>
+
+</body>
+</html>

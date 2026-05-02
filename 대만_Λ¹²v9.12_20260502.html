@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>대만 단독편 — Λ¹²v9.12 | 늘푸른바다 사회동역학 연구소</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#F5F3EE; color:#2C2C2C; font-family:Georgia,'Times New Roman',serif; line-height:1.75; }
+
+.header {
+  background:linear-gradient(135deg,#1B4F8A 0%,#2E6DB4 50%,#1A3A6B 100%);
+  padding:48px 40px 36px; position:relative; overflow:hidden;
+}
+.header::before {
+  content:'民'; position:absolute; right:40px; top:10px;
+  font-size:160px; color:rgba(255,255,255,0.06);
+  font-family:Georgia,serif; font-weight:bold; line-height:1;
+}
+.header-badge {
+  display:inline-block; background:rgba(255,255,255,0.18); color:#fff;
+  font-family:'Courier New',monospace; font-size:11px;
+  padding:4px 12px; border-radius:2px; letter-spacing:1.5px; margin-bottom:16px;
+}
+.header h1 { color:#fff; font-size:30px; font-weight:normal; margin-bottom:6px; }
+.header h2 { color:rgba(255,255,255,0.85); font-size:15px; font-weight:normal; letter-spacing:0.5px; }
+.header-meta { margin-top:20px; color:rgba(255,255,255,0.65); font-family:'Courier New',monospace; font-size:11px; letter-spacing:1px; }
+
+.engine-box { background:#fff; border-left:4px solid #B8850E; padding:14px 20px; margin:24px 40px; font-family:'Courier New',monospace; font-size:12px; color:#595959; }
+.engine-box strong { color:#B8850E; }
+
+.section { padding:32px 40px; border-bottom:1px solid #DDD8CE; }
+.section-title { font-size:13px; font-family:'Courier New',monospace; color:#1B4F8A; letter-spacing:2px; text-transform:uppercase; margin-bottom:16px; }
+.section h3 { font-size:20px; color:#1F1F1F; font-weight:normal; margin-bottom:14px; line-height:1.4; }
+.section p { font-size:14px; color:#3A3A3A; margin-bottom:10px; text-align:justify; }
+
+.minjung-box { background:#F0F5FF; border-left:4px solid #2E6DB4; padding:20px 24px; margin:14px 0; border-radius:2px; }
+.minjung-box p { font-size:14px; color:#1A2A4A; line-height:1.85; margin-bottom:8px; }
+
+.term-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:14px 0; }
+.term-item { background:#fff; border:1px solid #DDD8CE; padding:12px 14px; border-radius:2px; }
+.term-item .term-key { font-family:'Courier New',monospace; font-size:12px; color:#1B4F8A; font-weight:bold; margin-bottom:4px; }
+.term-item .term-val { font-size:12px; color:#444; }
+
+.data-table-wrap { margin:16px 0; overflow-x:auto; }
+.data-table { width:100%; border-collapse:collapse; font-size:13px; }
+.data-table th { background:#1B4F8A; color:#fff; padding:10px 14px; text-align:center; font-family:'Courier New',monospace; font-size:11px; letter-spacing:0.5px; font-weight:normal; }
+.data-table th:first-child { text-align:left; }
+.data-table td { padding:9px 14px; border-bottom:1px solid #EEE; text-align:center; font-family:'Courier New',monospace; font-size:12px; }
+.data-table td:first-child { text-align:left; font-family:Georgia,serif; font-size:13px; color:#2C2C2C; }
+.data-table tr:nth-child(even) td { background:#F5F3EE; }
+.data-table tr:hover td { background:#EBF4FF; }
+
+.formula-box { background:#fff; border:1px solid #DDD8CE; border-top:3px solid #1B4F8A; padding:20px 24px; margin:16px 0; }
+.formula-box .formula-title { font-family:'Courier New',monospace; font-size:11px; color:#1B4F8A; letter-spacing:2px; margin-bottom:12px; }
+.formula-box .formula-eq { font-family:'Courier New',monospace; font-size:14px; color:#1F1F1F; background:#F5F3EE; padding:12px 16px; border-radius:2px; margin:8px 0; letter-spacing:0.5px; line-height:1.6; }
+.formula-box .formula-note { font-size:12px; color:#666; margin-top:8px; }
+
+.bar-chart { margin:16px 0; }
+.bar-row { display:grid; grid-template-columns:120px 1fr 100px; gap:8px; align-items:center; margin-bottom:7px; }
+.bar-country { font-size:12px; color:#444; text-align:right; }
+.bar-track { background:#EEE; border-radius:2px; height:18px; overflow:hidden; }
+.bar-fill { height:100%; border-radius:2px; }
+.bar-val { font-family:'Courier New',monospace; font-size:11px; color:#333; }
+
+.svg-wrap { text-align:center; margin:16px 0; }
+.obs-note { background:#EEF3FF; border:1px solid #C5D5EE; border-radius:3px; padding:14px 18px; margin:14px 0; font-size:13px; color:#1A2A4A; line-height:1.7; }
+.obs-note::before { content:'◈ 관찰 신호'; display:block; font-family:'Courier New',monospace; font-size:10px; color:#1B4F8A; letter-spacing:1px; margin-bottom:6px; }
+
+.error-box { background:#FAEEDA; border-left:3px solid #B8850E; padding:12px 16px; margin:14px 0; font-size:12px; color:#633806; font-family:'Courier New',monospace; }
+
+.ppr-card { background:#fff; border:1px solid #DDD8CE; border-radius:3px; overflow:hidden; margin-bottom:14px; }
+.ppr-head { background:#1B4F8A; color:#fff; font-size:12px; font-family:'Courier New',monospace; padding:8px 14px; letter-spacing:1px; }
+.ppr-body { padding:14px; }
+.ppr-row { display:flex; justify-content:space-between; font-size:12px; padding:4px 0; border-bottom:1px solid #F0EDE8; }
+.ppr-row:last-child { border-bottom:none; }
+.ppr-key { color:#666; }
+.ppr-val { font-family:'Courier New',monospace; font-weight:bold; color:#1B4F8A; }
+
+.discourse-layer { display:grid; grid-template-columns:130px 1fr; gap:0; margin-bottom:2px; }
+.layer-num { background:#1B4F8A; color:#fff; font-family:'Courier New',monospace; font-size:11px; padding:12px 14px; display:flex; align-items:center; }
+.layer-content { background:#fff; border:1px solid #DDD8CE; border-left:none; padding:12px 18px; font-size:13px; color:#2C2C2C; line-height:1.7; }
+.layer-content strong { color:#1B4F8A; }
+
+.signal-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:14px 0; }
+.signal-card { background:#fff; border:1px solid #DDD8CE; padding:14px; border-radius:2px; text-align:center; }
+.signal-card .sig-icon { font-size:24px; margin-bottom:6px; }
+.signal-card .sig-label { font-size:11px; color:#888; font-family:'Courier New',monospace; margin-bottom:4px; }
+.signal-card .sig-val { font-size:18px; font-family:'Courier New',monospace; font-weight:bold; color:#1B4F8A; }
+.signal-card .sig-note { font-size:10px; color:#666; margin-top:4px; }
+
+.paradox-box { background:#FFF8E8; border:2px solid #B8850E; border-radius:3px; padding:20px 24px; margin:14px 0; }
+.paradox-box h4 { color:#B8850E; font-size:14px; margin-bottom:10px; }
+.paradox-box p { font-size:13px; color:#3A2A10; line-height:1.75; margin-bottom:8px; }
+
+.conclusion { background:#EEF3FF; border-left:4px solid #2E6DB4; padding:24px 32px; margin:20px 40px; border-radius:2px; }
+.conclusion p { font-size:15px; line-height:1.95; color:#1F1F1F; text-align:justify; margin-bottom:12px; }
+.conclusion p:last-child { margin-bottom:0; }
+
+.series-box { background:#fff; border:1px solid #DDD8CE; margin:20px 40px; padding:20px; }
+.series-title { font-family:'Courier New',monospace; font-size:11px; color:#1B4F8A; letter-spacing:2px; margin-bottom:12px; }
+.series-item { display:flex; gap:12px; padding:6px 0; border-bottom:1px solid #F0EDE8; font-size:12px; }
+.series-item:last-child { border-bottom:none; }
+.series-num { font-family:'Courier New',monospace; color:#B8850E; min-width:40px; }
+.series-status { margin-left:auto; font-family:'Courier New',monospace; font-size:10px; padding:2px 8px; border-radius:2px; }
+.status-done { background:#E8F4F0; color:#27500A; }
+.status-plan { background:#F5F3EE; color:#888; }
+.status-now { background:#EEF3FF; color:#1B4F8A; }
+
+.footer { background:#EEF3FF; padding:28px 40px; text-align:center; border-top:1px solid #DDD8CE; }
+.footer p { font-size:12px; color:#1B4F8A; margin-bottom:4px; font-family:'Courier New',monospace; }
+.footer a { color:#2E6DB4; text-decoration:none; }
+.footer .engine-tag { margin-top:10px; font-size:10px; color:#888; letter-spacing:1px; }
+
+@media(max-width:768px){
+  .section,.engine-box,.conclusion,.series-box,.footer{margin-left:16px;margin-right:16px;padding-left:16px;padding-right:16px;}
+  .header{padding:32px 16px 24px;}
+  .term-grid,.signal-grid{grid-template-columns:1fr;}
+  .bar-row{grid-template-columns:80px 1fr 70px;}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-badge">TAIWAN STANDALONE REPORT · #24 · Λ¹²v9.12</div>
+  <h1>🇹🇼 대만 단독편</h1>
+  <h2>민주주의의 기적, 그리고 가장 위험한 섬 — 대만 사회동역학 심층 분석</h2>
+  <div class="header-meta">
+    늘푸른바다 사회동역학 연구소 · Everblue Sea Institute for Social Dynamics<br>
+    본 보고서는 Λ¹²v9.12 엔진 기준 산출 · 발행일 2026.05.02
+  </div>
+</div>
+
+<div class="engine-box">
+  <strong>ENGINE:</strong> Λ¹²v9.12 | ADI §31 포함 | SSRN 6632858 기반<br>
+  <strong>보정식:</strong> Λ¹²_corrected = Λ¹²_raw ÷ OLI × (1−TBI×θ) × (1−ADI×γ) × exp(−k×t) | OLI=0.84 적용<br>
+  <strong>특이 변수:</strong> 외부 위협(중국 군사압박)이 내부 변수에 복합 작용 — RHC의 외부 구성요소 가중치 상향
+</div>
+
+<div class="section">
+  <div class="section-title">연구 목적 선언</div>
+  <h3>이 보고서는 2,340만 대만 민중의 삶을 관찰자의 시선으로 기록합니다</h3>
+  <div class="minjung-box">
+    <p>대만 민중은 세계에서 가장 역설적인 삶을 살고 있습니다. 가장 활기찬 민주주의를 만들었지만 UN에 가입할 수 없습니다. 세계 반도체의 90%를 만들지만 그 반도체가 중국의 군사 야욕을 더 강하게 만들 수도 있습니다. 가장 큰 위협에서 가장 큰 기회를 만들어온 사람들 — 그것이 대만 민중입니다.</p>
+    <p>Λ¹²는 이 역설의 구조를 읽습니다. 내부의 강점과 외부의 위협이 동시에 어디를 가리키는지를.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">§0 · 용어 해설</div>
+  <h3>이 보고서의 핵심 개념</h3>
+  <div class="term-grid">
+    <div class="term-item"><div class="term-key">TSMC 실리콘 방패</div><div class="term-val">대만 반도체의 전략적 가치가 중국의 무력 침공을 억제하는 논리. 동시에 중국이 대만을 더 원하게 만드는 역설.</div></div>
+    <div class="term-item"><div class="term-key">2.28 사건</div><div class="term-val">1947년 2월 28일 국민당 정권의 대만 민중 학살. 수만 명 사망. 민주화 이후 공식 추모 제도화 — TBI 소화의 모델 사례.</div></div>
+    <div class="term-item"><div class="term-key">백색테러</div><div class="term-val">1949~1987년 계엄 기간 국민당의 정치탄압. 약 14만 명 투옥, 3~4천 명 처형. 대만 TBI의 역사적 뿌리.</div></div>
+    <div class="term-item"><div class="term-key">DPP-KMT 구조</div><div class="term-val">민진당(독립 성향) vs 국민당(친중 성향)의 양당 경쟁. 2024년 제3당 TPP 부상으로 3각 구도 진입.</div></div>
+    <div class="term-item"><div class="term-key">산업 양극화</div><div class="term-val">반도체·ICT 주도 고성장 vs 여타 산업 정체. 상위 10% 소득이 전체의 48% 점유(2024). GDP 성장이 체감으로 이어지지 않는 구조.</div></div>
+    <div class="term-item"><div class="term-key">인지전(認知戰)</div><div class="term-val">중국의 대만 대상 디스인포메이션 공작. 2024년 선거 전 DDoS 3,370% 급증. 민주주의 신뢰 약화 목적.</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅰ · 관찰자 시선</div>
+  <h3>세계에서 가장 위험한 곳에서 가장 강한 민주주의</h3>
+  <p>대만은 이코노미스트가 "지구에서 가장 위험한 곳"이라고 부른 섬입니다. 동시에 Freedom House 94점, RSF 언론자유 24위, HDI 0.926으로 세계 최상위 자유민주주의 국가입니다. 이 두 사실은 모순이 아닙니다 — 대만의 본질입니다.</p>
+  <p>2024년 1월 라이칭더(賴清德) 총통 당선, 세 번 연속 민진당 집권. 그러나 입법원은 국민당·TPP가 장악. 헌법재판소 마비 시도. 예산 삭감. 2025년 KMT 의원 소환투표 전패. 대만 민주주의는 역동적이지만 그 역동성이 내부 마찰도 만들고 있습니다.</p>
+
+  <div class="signal-grid">
+    <div class="signal-card">
+      <div class="sig-icon">🏆</div>
+      <div class="sig-label">Freedom House 2025</div>
+      <div class="sig-val">94/100</div>
+      <div class="sig-note">아시아태평양 2위 (NZ 다음)</div>
+    </div>
+    <div class="signal-card">
+      <div class="sig-icon">💻</div>
+      <div class="sig-label">GDP 성장 2025</div>
+      <div class="sig-val">8.68%</div>
+      <div class="sig-note">아시아 최고 수준 / AI 반도체 수혜</div>
+    </div>
+    <div class="signal-card">
+      <div class="sig-icon">⚠️</div>
+      <div class="sig-label">소득 불평등</div>
+      <div class="sig-val">상위10%=48%</div>
+      <div class="sig-note">성장이 분배로 이어지지 않음</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅱ · 국가 통치 구조</div>
+  <h3>성숙한 민주주의, 그러나 정치 교착의 현실</h3>
+  <p>대만은 1996년 첫 직선제 대통령 선거 이후 30년 동안 평화적 정권 교체를 반복해왔습니다. Freedom House 점수는 2011년 87점에서 2024년 94점으로 지속 상승 — 전 세계 자유지수가 19년 연속 하락하는 동안 대만은 반대로 움직였습니다.</p>
+
+  <div class="ppr-card">
+    <div class="ppr-head">2024~2025 주요 정치 구조</div>
+    <div class="ppr-body">
+      <div class="ppr-row"><span class="ppr-key">대통령</span><span class="ppr-val">라이칭더(DPP) 2024.05 취임</span></div>
+      <div class="ppr-row"><span class="ppr-key">입법원</span><span class="ppr-val">KMT 다수 + TPP 캐스팅보트 구조</span></div>
+      <div class="ppr-row"><span class="ppr-key">헌법위기</span><span class="ppr-val">KMT·TPP, 헌재 정족수 개정·판사 인준 거부</span></div>
+      <div class="ppr-row"><span class="ppr-key">소환투표</span><span class="ppr-val">2025 KMT 31개 의석 소환투표 전패</span></div>
+      <div class="ppr-row"><span class="ppr-key">Freedom House</span><span class="ppr-val">94/100 — 2011년 이후 지속 상승</span></div>
+    </div>
+  </div>
+
+  <div class="obs-note">
+    대만 민주주의의 아킬레스건: ①의회-행정부 교착이 방위예산 삭감까지 이어짐 ②중국의 인지전이 민주 프로세스를 역이용하는 구조 ③제3당 TPP 부상으로 정책 불안정성 증가. 그러나 이 모든 갈등이 제도 내에서 해소되고 있다는 점이 대만 민주주의의 실질적 강점.
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅲ · 기본 통계</div>
+  <h3>대만 핵심 지표 (2024~2025 기준)</h3>
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <tr><th>지표</th><th>수치</th><th>비고</th><th>출처</th></tr>
+      <tr><td>GDP per capita (IMF)</td><td>USD 34,430</td><td>한국(36,624)과 유사권</td><td>IMF 2025.04</td></tr>
+      <tr><td>GDP 성장률 2025</td><td>8.68%</td><td>아시아 최고 / AI 반도체 수혜</td><td>Taiwan DGBAS</td></tr>
+      <tr><td>HDI</td><td>~0.926</td><td>UNDP 공식 미포함 추정</td><td>추정</td></tr>
+      <tr><td>실업률</td><td>~3.7%</td><td>10년 평균</td><td>Focus Economics</td></tr>
+      <tr><td>소득 상위 10% 점유</td><td>48%</td><td>하위 50%는 12%</td><td>World Inequality Report 2024</td></tr>
+      <tr><td>가계부채/GDP</td><td>93%</td><td>한국·일본·미국 상회</td><td>Taiwan Central Bank 2024</td></tr>
+      <tr><td>TSMC 세계 시장점유</td><td>90%+ (첨단)</td><td>글로벌 AI 칩의 핵심</td><td>TSMC 2024</td></tr>
+      <tr><td>Freedom House</td><td>94/100 (Free)</td><td>아시아태평양 2위</td><td>Freedom House 2025</td></tr>
+      <tr><td>RSF 언론자유</td><td>24위/180</td><td>아시아태평양 2위</td><td>RSF 2025</td></tr>
+      <tr><td>CPI (부패인식)</td><td>67/100</td><td>동북아 최고 수준</td><td>TI 2024</td></tr>
+    </table>
+  </div>
+  <div class="error-box">
+    ※ 대만은 UN 및 UNDP 공식 회원국이 아니므로 HDI는 추정치 사용. IMF는 'Taiwan Province of China'로 표기하나 본 보고서는 사회동역학적 실체 기준으로 분석. OLI=0.84: 통계 인프라 우수하나 외부 승인 제약으로 일부 국제 비교 어려움.
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅳ · 기본 좌표 · 공식 박스</div>
+  <h3>Λ¹²v9.12 대만 산출</h3>
+  <div class="formula-box">
+    <div class="formula-title">ΛSCORE FORMULA — TAIWAN</div>
+    <div class="formula-eq">Λ¹²_corrected = Λ¹²_raw ÷ 0.84 × (1 − 0.179 × 0.70) × (1 − 0.466 × 0.35) × exp(−k×t)</div>
+    <div class="formula-eq">TBI 보정항: (1 − 0.179 × 0.70) = (1 − 0.125) = 0.875 [TBI 낮아 보정 효과 미미]</div>
+    <div class="formula-eq">ADI 보정항: (1 − 0.466 × 0.35) = (1 − 0.163) = 0.837 [Transitional — 주의 구간]</div>
+    <div class="formula-note">※ TBI 0.179는 동북아 최저 — 2.28사건 트라우마의 민주화 소화가 작동한 결과. ADI 0.466은 TSMC 인프라 강점에도 불구하고 소프트웨어 AI 자주성 취약. 외부 위협(RHC 0.637)이 내부 안정성을 상쇄하는 구조.</div>
+  </div>
+
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <tr><th>변수</th><th>값</th><th>분류</th><th>비고</th></tr>
+      <tr><td>LPI</td><td>0.82 (추정)</td><td>안정</td><td>높은 생활수준</td></tr>
+      <tr><td>HDI</td><td>~0.926</td><td>안정</td><td>세계 상위권</td></tr>
+      <tr><td>GPI</td><td>~40위→0.67</td><td>주목</td><td>중국 위협 반영</td></tr>
+      <tr><td>CPI</td><td>67→0.67</td><td>안정</td><td>동북아 최고</td></tr>
+      <tr><td>CFD</td><td>0.42 (자체)</td><td>주목</td><td>통독 정체성 갈등</td></tr>
+      <tr><td>DCI</td><td>0.38 (자체)</td><td>안정</td><td>세대 단층 낮음</td></tr>
+      <tr><td>MFI</td><td>24위→0.87</td><td>안정</td><td>아태 2위</td></tr>
+      <tr><td>RHC</td><td>0.637</td><td>주목</td><td>외부압박이 주요인</td></tr>
+      <tr><td>IGI</td><td>0.12 (자체)</td><td>안정</td><td>제도 억압 낮음</td></tr>
+      <tr><td>AHI</td><td>0.55 (자체)</td><td>주목</td><td>산업 양극화 진행</td></tr>
+      <tr><td>F_reach</td><td>0.62 (추정)</td><td>주목</td><td>식량 자급 과제</td></tr>
+      <tr><td>ADI</td><td>0.466</td><td>Transitional</td><td>TSMC강점↑/LLM취약</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅴ · 레이더 2×2 위상 사분면</div>
+  <h3>안정성 × 개방성 — 대만의 위치</h3>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 520 400" xmlns="http://www.w3.org/2000/svg" width="520" height="400">
+      <rect width="520" height="400" fill="#F5F3EE"/>
+      <rect x="50" y="30" width="210" height="170" fill="#EBF4F0" opacity="0.5"/>
+      <rect x="260" y="30" width="210" height="170" fill="#FFF3CD" opacity="0.4"/>
+      <rect x="50" y="200" width="210" height="170" fill="#FAEEDA" opacity="0.4"/>
+      <rect x="260" y="200" width="210" height="170" fill="#FCEBEB" opacity="0.3"/>
+      <line x1="50" y1="200" x2="470" y2="200" stroke="#555" stroke-width="1.5"/>
+      <line x1="260" y1="30" x2="260" y2="370" stroke="#555" stroke-width="1.5"/>
+      <text x="260" y="18" text-anchor="middle" fill="#3A6A5E" font-size="11" font-family="Courier New">높은 개방성</text>
+      <text x="260" y="388" text-anchor="middle" fill="#888" font-size="11" font-family="Courier New">낮은 개방성</text>
+      <text x="36" y="204" text-anchor="middle" fill="#888" font-size="10" font-family="Courier New" transform="rotate(-90,36,204)">불안정</text>
+      <text x="484" y="204" text-anchor="middle" fill="#3A6A5E" font-size="10" font-family="Courier New" transform="rotate(-90,484,204)">안정</text>
+      <text x="155" y="52" text-anchor="middle" fill="#3A6A5E" font-size="10" font-family="Courier New">개방·안정 [이상형]</text>
+      <text x="365" y="52" text-anchor="middle" fill="#856404" font-size="10" font-family="Courier New">개방·불안정</text>
+      <text x="155" y="380" text-anchor="middle" fill="#A0522D" font-size="10" font-family="Courier New">폐쇄·안정</text>
+      <text x="365" y="380" text-anchor="middle" fill="#791F1F" font-size="10" font-family="Courier New">폐쇄·불안정</text>
+
+      <!-- 대만 위치 — Q1 개방·안정 (가장 이상적) -->
+      <circle cx="148" cy="78" r="26" fill="#EEF3FF" stroke="#1B4F8A" stroke-width="2.5"/>
+      <text x="148" y="74" text-anchor="middle" font-size="20">🇹🇼</text>
+      <text x="148" y="112" text-anchor="middle" fill="#1B4F8A" font-size="11" font-family="Courier New" font-weight="bold">대만 현재</text>
+
+      <!-- 외부 위협 화살표 -->
+      <defs>
+        <marker id="redarr2" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#8B1A1A"/>
+        </marker>
+      </defs>
+      <line x1="148" y1="104" x2="148" y2="165" stroke="#8B1A1A" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#redarr2)"/>
+      <text x="168" y="140" fill="#8B1A1A" font-size="9" font-family="Courier New">중국 군사압박</text>
+      <text x="168" y="152" fill="#8B1A1A" font-size="9" font-family="Courier New">지속 시 이동 위험</text>
+
+      <!-- 비교 국가 -->
+      <circle cx="188" cy="108" r="14" fill="#EBF4F0" stroke="#5E9186" stroke-width="1.5"/>
+      <text x="188" y="106" text-anchor="middle" font-size="12">🇯🇵</text>
+      <text x="188" y="132" text-anchor="middle" fill="#3A6A5E" font-size="9" font-family="Courier New">일본</text>
+
+      <circle cx="350" cy="155" r="14" fill="#FFF3CD" stroke="#B8850E" stroke-width="1.5"/>
+      <text x="350" y="153" text-anchor="middle" font-size="12">🇰🇷</text>
+      <text x="350" y="179" text-anchor="middle" fill="#856404" font-size="9" font-family="Courier New">한국</text>
+
+      <circle cx="140" cy="312" r="22" fill="#FCEBEB" stroke="#8B1A1A" stroke-width="2"/>
+      <text x="140" y="308" text-anchor="middle" font-size="16">🇨🇳</text>
+      <text x="140" y="342" text-anchor="middle" fill="#8B1A1A" font-size="9" font-family="Courier New">중국</text>
+
+      <text x="50" y="70" fill="#1B4F8A" font-size="10" font-family="Courier New">※ 내부 강점 최고</text>
+      <text x="50" y="83" fill="#1B4F8A" font-size="10" font-family="Courier New">외부 압박이 유일</text>
+      <text x="50" y="96" fill="#1B4F8A" font-size="10" font-family="Courier New">구조적 위협</text>
+    </svg>
+  </div>
+  <div class="obs-note">
+    대만은 동북아 5개국 중 위상사분면 Q1(개방·안정)에 유일하게 위치합니다. 그러나 중국의 군사적 압박이 지속될 경우 Q2(개방·불안정) 방향으로의 이동 가능성이 내재합니다. 대만의 Achilles건은 내부가 아니라 외부에 있습니다.
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅵ · GPI 시계열</div>
+  <h3>평화지수 추이 — 외부 위협의 그림자</h3>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" width="600" height="220">
+      <rect width="600" height="220" fill="#fff"/>
+      <line x1="70" y1="20" x2="70" y2="180" stroke="#EEE" stroke-width="1"/>
+      <line x1="70" y1="180" x2="570" y2="180" stroke="#CCC" stroke-width="1.5"/>
+      <line x1="70" y1="60" x2="570" y2="60" stroke="#EEE" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <line x1="70" y1="100" x2="570" y2="100" stroke="#EEE" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <line x1="70" y1="140" x2="570" y2="140" stroke="#EEE" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <text x="62" y="64" text-anchor="end" fill="#888" font-size="9" font-family="Courier New">30위</text>
+      <text x="62" y="104" text-anchor="end" fill="#888" font-size="9" font-family="Courier New">50위</text>
+      <text x="62" y="144" text-anchor="end" fill="#888" font-size="9" font-family="Courier New">70위</text>
+      <text x="112" y="198" text-anchor="middle" fill="#888" font-size="9" font-family="Courier New">2016</text>
+      <text x="216" y="198" text-anchor="middle" fill="#888" font-size="9" font-family="Courier New">2018</text>
+      <text x="320" y="198" text-anchor="middle" fill="#888" font-size="9" font-family="Courier New">2020</text>
+      <text x="424" y="198" text-anchor="middle" fill="#888" font-size="9" font-family="Courier New">2022</text>
+      <text x="528" y="198" text-anchor="middle" fill="#888" font-size="9" font-family="Courier New">2024/25</text>
+
+      <!-- 대만 GPI — 안정적 중상위권 유지 -->
+      <polyline points="112,88 164,90 216,90 268,92 320,94 372,96 424,98 476,97 528,96"
+        fill="none" stroke="#1B4F8A" stroke-width="2.5"/>
+      <circle cx="528" cy="96" r="4" fill="#1B4F8A"/>
+      <text x="540" y="94" fill="#1B4F8A" font-size="10" font-family="Courier New">대만</text>
+
+      <!-- 중국 PLA 위협 증가 구간 표시 -->
+      <rect x="400" y="20" width="160" height="160" fill="#FCEBEB" opacity="0.15"/>
+      <text x="480" y="36" text-anchor="middle" fill="#8B1A1A" font-size="9" font-family="Courier New">PLA 군사압박 강화</text>
+      <text x="480" y="48" text-anchor="middle" fill="#8B1A1A" font-size="9" font-family="Courier New">(2022~현재)</text>
+
+      <text x="300" y="18" text-anchor="middle" fill="#1B4F8A" font-size="11" font-family="Courier New">GPI 순위 추이 (낮을수록 평화적)</text>
+    </svg>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅶ · 핵심 역설 분석</div>
+  <h3>TSMC 실리콘 방패 — 보호막인가 표적인가</h3>
+  <div class="paradox-box">
+    <h4>⚖️ 역설의 구조</h4>
+    <p><strong>논리 A (방패론):</strong> "중국은 대만을 침공하면 세계 반도체 공급의 90%를 파괴한다. 글로벌 경제 붕괴를 감수할 수 없다. TSMC가 억지력이다."</p>
+    <p><strong>논리 B (표적론):</strong> "TSMC의 가치 때문에 중국이 대만을 더 원한다. 이 전략적 자산이 오히려 침공 동기를 강화한다."</p>
+    <p>Academia Sinica의 Wu Jieh-min: <em>"현재 시나리오에서 TSMC의 위치는 중국이 대만을 더욱 원하게 만든다."</em></p>
+    <p>Λ¹² 관점: ADI 0.466(Transitional)은 반도체 하드웨어의 강점과 AI 소프트웨어 자주성 취약의 불균형을 반영합니다. TSMC가 만드는 칩은 강점이지만, 그 칩 위에서 돌아가는 AI 생태계는 여전히 외부 의존적입니다.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅷ · PPR — 5개 구조 블록</div>
+  <h3>정치·경제·사회·역사·지정학 심층 분석</h3>
+  <div class="ppr-card">
+    <div class="ppr-head">PPR-1 · 정치 구조</div>
+    <div class="ppr-body">
+      <div class="ppr-row"><span class="ppr-key">체제</span><span class="ppr-val">자유민주주의 / 94/100</span></div>
+      <div class="ppr-row"><span class="ppr-key">2024 선거</span><span class="ppr-val">라이칭더 당선(40%) / DPP 3연속 집권</span></div>
+      <div class="ppr-row"><span class="ppr-key">정치 교착</span><span class="ppr-val">KMT·TPP 입법원 장악 / 헌재 마비 시도</span></div>
+      <div class="ppr-row"><span class="ppr-key">중국 인지전</span><span class="ppr-val">선거 前 DDoS 3,370% 급증 / 딥페이크 확산</span></div>
+    </div>
+  </div>
+  <div class="ppr-card">
+    <div class="ppr-head">PPR-2 · 경제 구조</div>
+    <div class="ppr-body">
+      <div class="ppr-row"><span class="ppr-key">GDP 성장</span><span class="ppr-val">2025년 8.68% / AI 반도체 수혜</span></div>
+      <div class="ppr-row"><span class="ppr-key">TSMC</span><span class="ppr-val">세계 시장점유 90%+ / GDP 8% 기여</span></div>
+      <div class="ppr-row"><span class="ppr-key">산업 양극화</span><span class="ppr-val">ICT↑↑ / 여타 산업 정체</span></div>
+      <div class="ppr-row"><span class="ppr-key">소득 불평등</span><span class="ppr-val">상위10%=48% / 가계부채 93%GDP</span></div>
+      <div class="ppr-row"><span class="ppr-key">대중 의존</span><span class="ppr-val">수출의 ~33% 중국향 / 점진적 다변화 중</span></div>
+    </div>
+  </div>
+  <div class="ppr-card">
+    <div class="ppr-head">PPR-3 · 사회 구조</div>
+    <div class="ppr-body">
+      <div class="ppr-row"><span class="ppr-key">성별 대표성</span><span class="ppr-val">입법원 여성 41.6% / 최초 LGBT+ 의원</span></div>
+      <div class="ppr-row"><span class="ppr-key">원주민</span><span class="ppr-val">16개 원주민 집단 / 인구 2% / 의석 보장</span></div>
+      <div class="ppr-row"><span class="ppr-key">정체성 갈등</span><span class="ppr-val">통독 의식 분화 / CFD 0.42</span></div>
+      <div class="ppr-row"><span class="ppr-key">주거</span><span class="ppr-val">부동산 급등 / 소비 억제 요인</span></div>
+    </div>
+  </div>
+  <div class="ppr-card">
+    <div class="ppr-head">PPR-4 · 역사 구조</div>
+    <div class="ppr-body">
+      <div class="ppr-row"><span class="ppr-key">TBI</span><span class="ppr-val">0.179 — 동북아 최저 / 소화 성공 사례</span></div>
+      <div class="ppr-row"><span class="ppr-key">2.28 사건</span><span class="ppr-val">민주화 후 공식 추모 제도화 (2.28기념일)</span></div>
+      <div class="ppr-row"><span class="ppr-key">백색테러</span><span class="ppr-val">1949~87 계엄 / 진상규명위원회 운영 중</span></div>
+      <div class="ppr-row"><span class="ppr-key">2025 2.28</span><span class="ppr-val">라이 총통 78주년 추모 — "중국의 최대 위협" 발언</span></div>
+    </div>
+  </div>
+  <div class="ppr-card">
+    <div class="ppr-head">PPR-5 · 지정학 구조</div>
+    <div class="ppr-body">
+      <div class="ppr-row"><span class="ppr-key">중국 군사압박</span><span class="ppr-val">PLA 정기 군사훈련 / 22개 분리독립 제재지침</span></div>
+      <div class="ppr-row"><span class="ppr-key">미국</span><span class="ppr-val">TRA·CHIPS법 / 전략적 모호성 유지</span></div>
+      <div class="ppr-row"><span class="ppr-key">4기둥 평화</span><span class="ppr-val">라이 총통 4대 평화 행동 계획 공식화</span></div>
+      <div class="ppr-row"><span class="ppr-key">외교 고립</span><span class="ppr-val">UN 미가입 / 공식 수교국 12개 (2025)</span></div>
+      <div class="ppr-row"><span class="ppr-key">ADI</span><span class="ppr-val">0.466 Transitional / 하드웨어↑ 소프트웨어↓</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅸ · Λ¹² 12축 레이더</div>
+  <h3>12개 변수 방사형 — 대만의 구조적 강점과 취약점</h3>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" width="400" height="400">
+      <rect width="400" height="400" fill="#F5F3EE"/>
+      <circle cx="200" cy="200" r="150" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+      <circle cx="200" cy="200" r="112" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+      <circle cx="200" cy="200" r="75" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+      <circle cx="200" cy="200" r="37" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+      <line x1="200" y1="200" x2="200" y2="50" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="275" y2="62" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="330" y2="118" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="350" y2="200" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="330" y2="282" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="275" y2="338" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="200" y2="350" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="125" y2="338" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="70" y2="282" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="50" y2="200" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="70" y2="118" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="125" y2="62" stroke="#EEE" stroke-width="0.7"/>
+      <!-- 대만 — 전반적 강점, RHC·ADI 취약 -->
+      <polygon points="
+        200,68
+        265,78
+        318,120
+        338,200
+        316,274
+        266,330
+        200,340
+        138,326
+        84,276
+        60,200
+        82,126
+        136,76
+      " fill="#1B4F8A" fill-opacity="0.20" stroke="#1B4F8A" stroke-width="2"/>
+      <text x="200" y="42" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">LPI</text>
+      <text x="286" y="54" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">HDI</text>
+      <text x="344" y="108" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">GPI</text>
+      <text x="362" y="202" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">CPI</text>
+      <text x="344" y="294" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">CFD</text>
+      <text x="286" y="350" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">DCI</text>
+      <text x="200" y="366" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">MFI</text>
+      <text x="114" y="350" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">RHC</text>
+      <text x="56" y="294" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">IGI</text>
+      <text x="38" y="202" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">AHI</text>
+      <text x="56" y="108" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">F_reach</text>
+      <text x="114" y="54" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">ADI</text>
+    </svg>
+  </div>
+  <div class="obs-note">
+    대만은 LPI·HDI·CPI·MFI·IGI 5개 축에서 동북아 최상위권을 기록합니다. 취약 구간은 RHC(외부 압박 반영)와 ADI(AI 자주성). 이 두 취약점은 모두 외부 구조에서 기인합니다 — 중국의 존재와 글로벌 AI 패권 구조.
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅹ · 담론육층 — 대만 독해</div>
+  <h3>6개 층위로 읽는 대만</h3>
+  <div style="margin:14px 0;">
+    <div class="discourse-layer">
+      <div class="layer-num">1층<br>데이터</div>
+      <div class="layer-content"><strong>무엇이 보이는가:</strong> Freedom House 94/100, GDP 성장 8.68%(2025), CPI 67. 동시에 소득 상위 10%가 48% 점유, 가계부채 93%GDP, 부동산 급등. 숫자는 두 대만을 동시에 가리킵니다.</div>
+    </div>
+    <div class="discourse-layer">
+      <div class="layer-num">2층<br>이해관계</div>
+      <div class="layer-content"><strong>누가 이익을 얻는가:</strong> TSMC·ICT 대기업은 AI 붐의 수혜자. 중소기업·서비스업 종사자는 인플레이션과 주거비 상승의 피해자. 중국은 대만의 경제 의존(수출 33%)을 레버리지로 활용. 미국은 TSMC를 통해 반도체 공급망 안보를 확보하면서 전략적 모호성을 유지.</div>
+    </div>
+    <div class="discourse-layer">
+      <div class="layer-num">3층<br>역사 패턴</div>
+      <div class="layer-content"><strong>이전에도 있었는가:</strong> 2.28 사건(1947)→백색테러→계엄(1949~1987)→민주화(1996~)의 경로는 억압에서 자유로의 전환을 보여줍니다. TBI 0.179는 이 전환이 실질적으로 작동했음을 수치로 확인해줍니다. 역사 트라우마를 제도적으로 소화한 동북아의 유일한 사례.</div>
+    </div>
+    <div class="discourse-layer">
+      <div class="layer-num">4층<br>시각 역전</div>
+      <div class="layer-content"><strong>반대로 보면:</strong> 대만의 국제적 고립(UN 미가입, 수교국 12개)은 약점으로 보이지만 — 오히려 이 고립이 내부 결속력을 강화했을 수 있습니다. 외부의 위협이 대만 정체성을 만들어낸 역설. '세계에서 가장 위험한 곳'이 동시에 '세계에서 가장 강한 민주주의 중 하나'인 것은 우연이 아닐 수 있습니다.</div>
+    </div>
+    <div class="discourse-layer">
+      <div class="layer-num">5층<br>프레임</div>
+      <div class="layer-content"><strong>Λ¹² 위상 진단:</strong> 대만은 내부 변수(TBI·IGI·MFI·CPI)에서는 Q1 안정형. 그러나 외부 변수(RHC 외부 구성요소)가 전체 좌표를 압박하는 '외부 의존형 취약 구조'. ADI 0.466은 하드웨어 강점과 소프트웨어 취약의 불균형이 장기 과제임을 시사. 가장 큰 리스크는 경제-안보-정치 삼각의 동시 압박 시나리오.</div>
+    </div>
+    <div class="discourse-layer">
+      <div class="layer-num" style="background:#3A6A5E;">6층<br>판단 유보</div>
+      <div class="layer-content" style="background:#E8F4F0;"><strong>이 층은 2,340만 대만 민중의 몫입니다.</strong> 외부의 위협 앞에서 어떤 선택을 할 것인지 — 그것은 어떤 프레임워크도 대신할 수 없습니다.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">ⅩⅠ · 오차 범위</div>
+  <div class="error-box">
+    ※ 대만 HDI: UNDP 공식 미포함으로 추정치 사용 (±0.005 오차 가능). GPI 순위: 중국의 군사적 위협이 GPI 측정 방법에 완전히 반영되지 않을 수 있음. ADI: TSMC의 하드웨어 역량이 AI 소프트웨어 자주성으로 이어지는 속도를 과대/과소 평가할 가능성. 경제 데이터: 2025년 급성장은 AI 반도체 수요의 단기 급증 요인 포함 — 지속 가능성 별도 검토 필요.
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">ⅩⅡ · 결론 궤도</div>
+  <div class="conclusion">
+    <p>대만은 세계가 설계한 역설 안에서 살고 있습니다. 세계에서 가장 위험한 지정학적 위치에서 가장 강한 민주주의를 만들었습니다. 가장 원하는 기술을 만들면서 가장 원치 않는 표적이 됐습니다.</p>
+    <p>TBI 0.179는 말합니다 — 과거의 상처를 제도로 소화할 수 있다는 것을. 2.28의 기억이 2025년에도 총통이 직접 추모하는 날이 됐다는 것이 그 증거입니다. 이것이 대만이 동북아에서 가장 낮은 TBI를 가진 이유입니다.</p>
+    <p>그러나 Λ¹²가 읽는 또 다른 신호가 있습니다. ADI 0.466 — 칩을 만드는 나라가 칩 위에서 돌아가는 생태계에서는 아직 자주적이지 않다는 신호. GDP 8.68% 성장이 상위 10%의 48% 소득 점유와 함께 있다는 신호.</p>
+    <p>대만의 다음 질문은 외부가 아닐 수도 있습니다. 강한 민주주의가 모두를 위한 민주주의가 되는 것 — 그 물음이 조용히 시작되고 있습니다.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">ⅩⅢ · 시리즈 현황</div>
+  <div class="series-box">
+    <div class="series-title">동북아시아 시리즈 — Λ¹²v9.12</div>
+    <div class="series-item"><span class="series-num">#20</span><span class="series-name">동북아시아 권역 비교편</span><span class="series-status status-done">완성</span></div>
+    <div class="series-item"><span class="series-num">#21</span><span class="series-name">한국 단독편 v1.0</span><span class="series-status status-plan">예정</span></div>
+    <div class="series-item"><span class="series-num">#22</span><span class="series-name">일본 단독편 v1.0</span><span class="series-status status-plan">예정</span></div>
+    <div class="series-item"><span class="series-num">#23</span><span class="series-name">중국 단독편 v1.0</span><span class="series-status status-done">완성</span></div>
+    <div class="series-item"><span class="series-num">#24</span><span class="series-name">대만 단독편 v1.0 (현재 문서)</span><span class="series-status status-now">완성</span></div>
+    <div class="series-item"><span class="series-num">#25</span><span class="series-name">북한 단독편 v1.0</span><span class="series-status status-plan">예정</span></div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>늘푸른바다 사회동역학 연구소 (Everblue Sea Institute for Social Dynamics)</p>
+  <p>소장 청해(淸海) · Claude (Anthropic) 연구 파트너</p>
+  <p><a href="https://badaegopa.tistory.com">badaegopa.tistory.com</a> · <a href="https://everbluesea.org">everbluesea.org</a> · contact@everbluesea.org</p>
+  <div class="engine-tag">Engine: Λ¹²v9.12 | ADI §31 포함 | SSRN 6632858 기반 | 대만_Λ¹²v9.12_20260502.html</div>
+</div>
+</body>
+</html>

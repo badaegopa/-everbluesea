@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>중국 단독편 — Λ¹²v9.12 | 늘푸른바다 사회동역학 연구소</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#F5F3EE; color:#2C2C2C; font-family:Georgia,'Times New Roman',serif; line-height:1.75; }
+
+.header {
+  background:linear-gradient(135deg,#7B3F3F 0%,#A0522D 50%,#8B1A1A 100%);
+  padding:48px 40px 36px; position:relative; overflow:hidden;
+}
+.header::before {
+  content:'中'; position:absolute; right:40px; top:10px;
+  font-size:160px; color:rgba(255,255,255,0.06);
+  font-family:Georgia,serif; font-weight:bold; line-height:1;
+}
+.header-badge {
+  display:inline-block; background:rgba(255,255,255,0.18); color:#fff;
+  font-family:'Courier New',monospace; font-size:11px;
+  padding:4px 12px; border-radius:2px; letter-spacing:1.5px; margin-bottom:16px;
+}
+.header h1 { color:#fff; font-size:30px; font-weight:normal; margin-bottom:6px; }
+.header h2 { color:rgba(255,255,255,0.85); font-size:15px; font-weight:normal; letter-spacing:0.5px; }
+.header-meta { margin-top:20px; color:rgba(255,255,255,0.65); font-family:'Courier New',monospace; font-size:11px; letter-spacing:1px; }
+
+.engine-box {
+  background:#fff; border-left:4px solid #B8850E;
+  padding:14px 20px; margin:24px 40px;
+  font-family:'Courier New',monospace; font-size:12px; color:#595959;
+}
+.engine-box strong { color:#B8850E; }
+
+.section { padding:32px 40px; border-bottom:1px solid #DDD8CE; }
+.section-title {
+  font-size:13px; font-family:'Courier New',monospace; color:#8B1A1A;
+  letter-spacing:2px; text-transform:uppercase; margin-bottom:16px;
+}
+.section h3 { font-size:20px; color:#1F1F1F; font-weight:normal; margin-bottom:14px; line-height:1.4; }
+.section p { font-size:14px; color:#3A3A3A; margin-bottom:10px; text-align:justify; }
+
+/* 민중 시선 */
+.minjung-box {
+  background:#fff8f0; border-left:4px solid #A0522D;
+  padding:20px 24px; margin:14px 0; border-radius:2px;
+}
+.minjung-box p { font-size:14px; color:#3A2010; line-height:1.85; margin-bottom:8px; }
+.minjung-box p:last-child { margin-bottom:0; }
+
+/* 용어 해설 */
+.term-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:14px 0; }
+.term-item {
+  background:#fff; border:1px solid #DDD8CE;
+  padding:12px 14px; border-radius:2px;
+}
+.term-item .term-key { font-family:'Courier New',monospace; font-size:12px; color:#8B1A1A; font-weight:bold; margin-bottom:4px; }
+.term-item .term-val { font-size:12px; color:#444; }
+
+/* 데이터 테이블 */
+.data-table-wrap { margin:16px 0; overflow-x:auto; }
+.data-table { width:100%; border-collapse:collapse; font-size:13px; }
+.data-table th {
+  background:#8B1A1A; color:#fff; padding:10px 14px;
+  text-align:center; font-family:'Courier New',monospace;
+  font-size:11px; letter-spacing:0.5px; font-weight:normal;
+}
+.data-table th:first-child { text-align:left; }
+.data-table td { padding:9px 14px; border-bottom:1px solid #EEE; text-align:center; font-family:'Courier New',monospace; font-size:12px; }
+.data-table td:first-child { text-align:left; font-family:Georgia,serif; font-size:13px; color:#2C2C2C; }
+.data-table tr:nth-child(even) td { background:#F5F3EE; }
+.data-table tr:hover td { background:#FAEEDA; }
+
+/* 공식 박스 */
+.formula-box {
+  background:#fff; border:1px solid #DDD8CE; border-top:3px solid #8B1A1A;
+  padding:20px 24px; margin:16px 0;
+}
+.formula-box .formula-title { font-family:'Courier New',monospace; font-size:11px; color:#8B1A1A; letter-spacing:2px; margin-bottom:12px; }
+.formula-box .formula-eq {
+  font-family:'Courier New',monospace; font-size:14px; color:#1F1F1F;
+  background:#F5F3EE; padding:12px 16px; border-radius:2px; margin:8px 0;
+  letter-spacing:0.5px; line-height:1.6;
+}
+.formula-box .formula-note { font-size:12px; color:#666; margin-top:8px; }
+
+/* 바 차트 */
+.bar-chart { margin:16px 0; }
+.bar-row { display:grid; grid-template-columns:120px 1fr 80px; gap:8px; align-items:center; margin-bottom:7px; }
+.bar-country { font-size:12px; color:#444; text-align:right; }
+.bar-track { background:#EEE; border-radius:2px; height:18px; overflow:hidden; }
+.bar-fill { height:100%; border-radius:2px; }
+.bar-val { font-family:'Courier New',monospace; font-size:11px; color:#333; }
+
+/* SVG wrap */
+.svg-wrap { text-align:center; margin:16px 0; }
+.svg-wrap svg { max-width:100%; }
+
+/* 관찰 신호 */
+.obs-note {
+  background:#F3F0E8; border:1px solid #DDD8CE; border-radius:3px;
+  padding:14px 18px; margin:14px 0; font-size:13px; color:#3A2A1A; line-height:1.7;
+}
+.obs-note::before {
+  content:'◈ 관찰 신호'; display:block;
+  font-family:'Courier New',monospace; font-size:10px;
+  color:#8B1A1A; letter-spacing:1px; margin-bottom:6px;
+}
+
+/* 오차 박스 */
+.error-box {
+  background:#FAEEDA; border-left:3px solid #B8850E;
+  padding:12px 16px; margin:14px 0;
+  font-size:12px; color:#633806; font-family:'Courier New',monospace;
+}
+
+/* PPR 카드 */
+.ppr-card { background:#fff; border:1px solid #DDD8CE; border-radius:3px; overflow:hidden; margin-bottom:14px; }
+.ppr-head { background:#8B1A1A; color:#fff; font-size:12px; font-family:'Courier New',monospace; padding:8px 14px; letter-spacing:1px; }
+.ppr-body { padding:14px; }
+.ppr-row { display:flex; justify-content:space-between; font-size:12px; padding:4px 0; border-bottom:1px solid #F0EDE8; }
+.ppr-row:last-child { border-bottom:none; }
+.ppr-key { color:#666; }
+.ppr-val { font-family:'Courier New',monospace; font-weight:bold; color:#8B1A1A; }
+
+/* 담론육층 */
+.discourse-layer { display:grid; grid-template-columns:130px 1fr; gap:0; margin-bottom:2px; }
+.layer-num { background:#8B1A1A; color:#fff; font-family:'Courier New',monospace; font-size:11px; padding:12px 14px; display:flex; align-items:center; }
+.layer-content { background:#fff; border:1px solid #DDD8CE; border-left:none; padding:12px 18px; font-size:13px; color:#2C2C2C; line-height:1.7; }
+.layer-content strong { color:#8B1A1A; }
+
+/* 위상 진단 */
+.phase-diag {
+  background:#fff; border:2px solid #8B1A1A; border-radius:3px;
+  padding:20px 24px; margin:14px 0;
+}
+.phase-diag h4 { color:#8B1A1A; font-size:15px; margin-bottom:12px; }
+.phase-diag p { font-size:13px; color:#2C2C2C; line-height:1.75; margin-bottom:8px; }
+
+/* 결론 궤도 */
+.conclusion {
+  background:#F8F0E8; border-left:4px solid #A0522D;
+  padding:24px 32px; margin:20px 40px; border-radius:2px;
+}
+.conclusion p { font-size:15px; line-height:1.95; color:#1F1F1F; text-align:justify; margin-bottom:12px; }
+.conclusion p:last-child { margin-bottom:0; }
+
+/* 시리즈 박스 */
+.series-box { background:#fff; border:1px solid #DDD8CE; margin:20px 40px; padding:20px; }
+.series-title { font-family:'Courier New',monospace; font-size:11px; color:#8B1A1A; letter-spacing:2px; margin-bottom:12px; }
+.series-item { display:flex; gap:12px; padding:6px 0; border-bottom:1px solid #F0EDE8; font-size:12px; }
+.series-item:last-child { border-bottom:none; }
+.series-num { font-family:'Courier New',monospace; color:#B8850E; min-width:40px; }
+.series-status { margin-left:auto; font-family:'Courier New',monospace; font-size:10px; padding:2px 8px; border-radius:2px; }
+.status-done { background:#E8F4F0; color:#27500A; }
+.status-wip { background:#FFF3CD; color:#856404; }
+.status-plan { background:#F5F3EE; color:#888; }
+.status-now { background:#FCEBEB; color:#791F1F; }
+
+/* 인용 */
+.quote { border-left:3px solid #B8850E; padding:10px 16px; margin:14px 0; font-style:italic; color:#4A3A1A; font-size:14px; background:#FFFBF5; }
+
+/* 신호 배지 */
+.signal-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:14px 0; }
+.signal-card { background:#fff; border:1px solid #DDD8CE; padding:14px; border-radius:2px; text-align:center; }
+.signal-card .sig-icon { font-size:24px; margin-bottom:6px; }
+.signal-card .sig-label { font-size:11px; color:#888; font-family:'Courier New',monospace; margin-bottom:4px; }
+.signal-card .sig-val { font-size:18px; font-family:'Courier New',monospace; font-weight:bold; color:#8B1A1A; }
+.signal-card .sig-note { font-size:10px; color:#666; margin-top:4px; }
+
+/* 한반도 블록 */
+.korea-block { background:#EEF6F3; border:1px solid #C5DDD5; padding:20px 24px; margin:14px 0; border-radius:3px; }
+.korea-block h4 { color:#3A6A5E; font-size:14px; margin-bottom:10px; font-weight:bold; }
+.korea-block p { font-size:13px; color:#2C2C2C; line-height:1.75; }
+
+/* 푸터 */
+.footer { background:#EBF4F0; padding:28px 40px; text-align:center; border-top:1px solid #DDD8CE; }
+.footer p { font-size:12px; color:#3A6A5E; margin-bottom:4px; font-family:'Courier New',monospace; }
+.footer a { color:#5E9186; text-decoration:none; }
+.footer .engine-tag { margin-top:10px; font-size:10px; color:#888; letter-spacing:1px; }
+
+/* 반응형 */
+@media(max-width:768px){
+  .section,.engine-box,.conclusion,.series-box,.footer{margin-left:16px;margin-right:16px;padding-left:16px;padding-right:16px;}
+  .header{padding:32px 16px 24px;}
+  .term-grid,.signal-grid{grid-template-columns:1fr;}
+  .bar-row{grid-template-columns:80px 1fr 60px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ─── 헤더 ─── -->
+<div class="header">
+  <div class="header-badge">CHINA STANDALONE REPORT · #23 · Λ¹²v9.12</div>
+  <h1>🇨🇳 중국 단독편</h1>
+  <h2>억압된 기억과 팽창하는 힘 — 중국 사회동역학 심층 분석</h2>
+  <div class="header-meta">
+    늘푸른바다 사회동역학 연구소 · Everblue Sea Institute for Social Dynamics<br>
+    본 보고서는 Λ¹²v9.12 엔진 기준 산출 · 발행일 2026.05.02
+  </div>
+</div>
+
+<!-- ─── 엔진 박스 ─── -->
+<div class="engine-box">
+  <strong>ENGINE:</strong> Λ¹²v9.12 | ADI §31 포함 | SSRN 6632858 기반<br>
+  <strong>보정식:</strong> Λ¹²_corrected = Λ¹²_raw ÷ OLI × (1−TBI×θ) × (1−ADI×γ) × exp(−k×t) | OLI=0.51 적용<br>
+  <strong>데이터 편향 경고:</strong> 중국 공식 통계 OLI 0.51 보정 적용 — 실제 성장률 Rhodium 추정 2.4~2.8% vs 공식 4.8~5.0%
+</div>
+
+<!-- ─── 연구 목적 ─── -->
+<div class="section">
+  <div class="section-title">연구 목적 선언</div>
+  <h3>이 보고서는 14억 중국 민중의 현실을 관찰자의 시선으로 기록합니다</h3>
+  <div class="minjung-box">
+    <p>상하이의 탕핑(躺平·드러눕기) 청년, 헝다(恒大) 붕괴로 집을 잃은 중산층, 신장의 위구르인, 홍콩의 마지막 민주당원, 티베트의 라마승 — 이들은 모두 같은 국경 안에 살고 있습니다. 그러나 그들이 경험하는 중국은 전혀 다른 나라입니다.</p>
+    <p>Λ¹² 프레임워크는 이 다름을 숫자로 포착하려 합니다. 중국공산당의 서사도, 서방의 비판도 아닌 — 구조가 말하는 것을 듣기 위해서입니다. 판단은 독자의 몫입니다.</p>
+  </div>
+</div>
+
+<!-- ─── 용어 해설 ─── -->
+<div class="section">
+  <div class="section-title">§0 · 용어 해설</div>
+  <h3>이 보고서에서 사용하는 핵심 개념</h3>
+  <div class="term-grid">
+    <div class="term-item"><div class="term-key">TBI (트라우마 빅뱅 지수)</div><div class="term-val">역사적 충격(H) × 문화적 미소화(C) × 서사 미통합(N). 임계 θ=0.70 초과 시 구조적 위험 신호.</div></div>
+    <div class="term-item"><div class="term-key">Σ_rep (억압형 단절)</div><div class="term-val">지도층이 민중의 불만을 내부로 향하지 못하게 표적을 전환하거나 억압하는 구조.</div></div>
+    <div class="term-item"><div class="term-key">ADI (AI 종속 지수)</div><div class="term-val">외부 AI 플랫폼 의존도·데이터 주권 상실률을 자체 AI 역량·인프라로 나눈 값. 낮을수록 AI 자주국.</div></div>
+    <div class="term-item"><div class="term-key">OLI (원점-레거시 보정)</div><div class="term-val">통계 신뢰도·제도 성숙도·데이터 접근성 복합 보정계수. 중국 OLI=0.51 적용.</div></div>
+    <div class="term-item"><div class="term-key">탕핑 (躺平)</div><div class="term-val">눕다. 과도한 경쟁·노동 착취에 저항하는 중국 청년층의 집단적 체념·이탈 현상. Σ_aph 신호.</div></div>
+    <div class="term-item"><div class="term-key">DCI (세대 단층 지수)</div><div class="term-val">성장 경험 세대(부모) vs 정체 경험 세대(자녀) 간 가치관·체제 인식 단층. 불가역적 균열의 2계 미분.</div></div>
+  </div>
+</div>
+
+<!-- ─── 관찰자 시선 ─── -->
+<div class="section">
+  <div class="section-title">Ⅰ · 관찰자 시선</div>
+  <h3>두 개의 중국, 하나의 국경</h3>
+  <p>현재 중국은 동시에 두 가지 현실을 살고 있습니다. 하나는 <strong>세계 2위 경제대국, AI 자주국, 글로벌 제조 허브</strong>로서의 중국입니다. 다른 하나는 <strong>청년 실업 16~46%(추정), 부동산 위기, 소수민족 탄압, 역사 서사 독점</strong>이 구조화된 중국입니다.</p>
+  <p>이 두 현실은 모순이 아닙니다. 같은 뿌리에서 자랍니다. 자본이 선택한 발전 모델이 외부 성과를 만들어내는 동안, 그 비용은 민중·자연·역사에 청구됐습니다. Λ¹² 프레임워크는 그 청구서를 읽으려 합니다.</p>
+  <div class="signal-grid">
+    <div class="signal-card">
+      <div class="sig-icon">⚠️</div>
+      <div class="sig-label">TBI 임계 근접</div>
+      <div class="sig-val">0.612</div>
+      <div class="sig-note">임계 θ=0.70 접근 중</div>
+    </div>
+    <div class="signal-card">
+      <div class="sig-icon">🔒</div>
+      <div class="sig-label">ADI — 역설적 강점</div>
+      <div class="sig-val">0.013</div>
+      <div class="sig-note">AI Sovereign (폐쇄 기반)</div>
+    </div>
+    <div class="signal-card">
+      <div class="sig-icon">📉</div>
+      <div class="sig-label">청년실업률(공식)</div>
+      <div class="sig-val">16.5%</div>
+      <div class="sig-note">독립추정 최대 46.5%</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 국가 통치 구조 ─── -->
+<div class="section">
+  <div class="section-title">Ⅱ · 국가 통치 구조</div>
+  <h3>중국공산당 — 1당 체제의 작동 원리</h3>
+  <p>중국의 공식 통치 구조는 전국인민대표대회(전인대)를 최고 권력기관으로 하고 있으나, 실질적 권력은 중국공산당(CCP) 정치국 상무위원회 7인에게 집중됩니다. 시진핑 총서기는 2018년 헌법 개정을 통해 국가주석 임기 제한을 철폐, 사실상 종신 집권 구조를 확립했습니다.</p>
+
+  <div class="ppr-card">
+    <div class="ppr-head">권력 구조 3층</div>
+    <div class="ppr-body">
+      <div class="ppr-row"><span class="ppr-key">1층 — 당(黨)</span><span class="ppr-val">CCP 정치국 상무위 7인 / 실질 최고권력</span></div>
+      <div class="ppr-row"><span class="ppr-key">2층 — 군(軍)</span><span class="ppr-val">인민해방군 PLA / 당의 군대 (국가 군대 아님)</span></div>
+      <div class="ppr-row"><span class="ppr-key">3층 — 국가(國)</span><span class="ppr-val">전인대·국무원 / 당 결정 집행 기구</span></div>
+    </div>
+  </div>
+
+  <p>Freedom House 2025 기준 자유도 점수 9/100으로 세계 최하위권에 위치합니다. RSF 언론자유지수 178위(2025)는 중국이 세계 최다 언론인 구금 국가임을 반영합니다. 2025년 HRW 연간 보고서는 시진핑 정권이 이념적 획일성 강요를 더욱 강화했다고 기록하고 있습니다.</p>
+
+  <div class="obs-note">
+    2024~2026 주요 통치 신호: 신장 위구르 강제노동 관련 국제 제재 지속, 홍콩 마지막 민주정당 해산(2025.06), 티베트 고위 라마 의문사(2025.03), 헌법개정 통한 소수민족 정책 법제화 추진. 시진핑 8·9월 티베트·신장 방문 — "강한 통제" 시위.
+  </div>
+</div>
+
+<!-- ─── 기본 통계 ─── -->
+<div class="section">
+  <div class="section-title">Ⅲ · 기본 통계</div>
+  <h3>중국 핵심 지표 (2024~2025 기준)</h3>
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <tr><th>지표</th><th>공식 수치</th><th>OLI 보정 추정</th><th>출처</th></tr>
+      <tr><td>GDP 성장률 2024</td><td>4.8~5.0%</td><td>2.4~2.8% (Rhodium)</td><td>NBS / Rhodium Group</td></tr>
+      <tr><td>청년실업률(16~24세)</td><td>16.5% (2025.03)</td><td>최대 46.5% 독립추정</td><td>NBS / 독립연구자</td></tr>
+      <tr><td>GDP per capita</td><td>USD 13,400</td><td>PPP 기준 USD 23,400</td><td>World Bank 2024</td></tr>
+      <tr><td>HDI</td><td>0.788 (75위)</td><td>UNDP 2025</td><td>UNDP</td></tr>
+      <tr><td>CPI (부패인식)</td><td>42/100</td><td>OLI 보정 실질 ~35</td><td>Transparency International 2024</td></tr>
+      <tr><td>GPI (평화지수)</td><td>88위/163</td><td>군사화 도메인 악화</td><td>IEP 2025</td></tr>
+      <tr><td>부동산 개발투자</td><td>-9.9% YoY (Q1 2025)</td><td>—</td><td>NBS Q1 2025</td></tr>
+      <tr><td>지방정부 부채/GDP</td><td>38% (온예산, 2025.10)</td><td>LGFV 포함 ~84%</td><td>World Bank / IMF</td></tr>
+      <tr><td>Freedom House</td><td>9/100 (Not Free)</td><td>—</td><td>Freedom House 2025</td></tr>
+      <tr><td>RSF 언론자유</td><td>178위/180</td><td>—</td><td>RSF 2025</td></tr>
+    </table>
+  </div>
+  <div class="error-box">
+    ※ OLI=0.51 적용 근거: 중국 NBS 통계의 정치적 개입 가능성(청년실업 통계 발표 중단 2023, GDP 목표 선달성 구조 반복), 신장·티베트 데이터 접근 제한, 독립 감사 불가. Rhodium Group 등 복수 독립기관 수치 병기.
+  </div>
+</div>
+
+<!-- ─── 기본 좌표 · 공식 ─── -->
+<div class="section">
+  <div class="section-title">Ⅳ · 기본 좌표 · 공식 박스</div>
+  <h3>Λ¹²v9.12 중국 산출 변수</h3>
+
+  <div class="formula-box">
+    <div class="formula-title">ΛSCORE FORMULA — CHINA</div>
+    <div class="formula-eq">Λ¹²_corrected = Λ¹²_raw ÷ 0.51 × (1 − 0.612 × 0.70) × (1 − 0.013 × 0.35) × exp(−k×t)</div>
+    <div class="formula-eq">TBI 보정항: (1 − 0.612 × 0.70) = (1 − 0.429) = 0.571</div>
+    <div class="formula-eq">ADI 보정항: (1 − 0.013 × 0.35) = (1 − 0.005) ≈ 0.995 [ADI 강점으로 보정 미미]</div>
+    <div class="formula-note">※ TBI가 임계(0.70)에 근접할수록 보정 후 Λ-Score는 급격히 하락. ADI는 역설적으로 보정 없이 강점으로 작용 — 그러나 이 강점이 폐쇄 체제의 산물임을 해석에 반드시 포함해야 함.</div>
+  </div>
+
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <tr><th>변수</th><th>값</th><th>분류</th><th>방향(DIRECTION)</th></tr>
+      <tr><td>LPI (생활수준)</td><td>0.52 (추정)</td><td>주목</td><td>+1 (위험방향)</td></tr>
+      <tr><td>HDI</td><td>0.788</td><td>중간</td><td>-1</td></tr>
+      <tr><td>GPI</td><td>88위→0.46</td><td>위험</td><td>+1</td></tr>
+      <tr><td>CPI</td><td>42→0.42</td><td>주목</td><td>+1</td></tr>
+      <tr><td>CFD (문화단층)</td><td>0.78 (자체)</td><td>위험</td><td>+1</td></tr>
+      <tr><td>DCI (세대단층)</td><td>0.72 (자체)</td><td>위험</td><td>+1</td></tr>
+      <tr><td>MFI (언론자유)</td><td>178위→0.08</td><td>위험</td><td>-1</td></tr>
+      <tr><td>RHC (역사갈등)</td><td>0.849</td><td>위험</td><td>+1</td></tr>
+      <tr><td>IGI (제도억압)</td><td>0.88 (자체)</td><td>위험</td><td>-1</td></tr>
+      <tr><td>AHI (자본-노동)</td><td>0.61 (추정)</td><td>주목</td><td>+1</td></tr>
+      <tr><td>F_reach (식량)</td><td>0.58 (추정)</td><td>주목</td><td>-1</td></tr>
+      <tr><td>ADI (AI종속)</td><td>0.013</td><td>Sovereign</td><td>-1</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ─── 레이더 2×2 ─── -->
+<div class="section">
+  <div class="section-title">Ⅴ · 레이더 2×2 — 위상 사분면</div>
+  <h3>안정성 × 개방성 위상 좌표 — 중국의 위치</h3>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 520 400" xmlns="http://www.w3.org/2000/svg" width="520" height="400">
+      <rect width="520" height="400" fill="#F5F3EE"/>
+      <!-- 사분면 -->
+      <rect x="50" y="30" width="210" height="170" fill="#EBF4F0" opacity="0.4"/>
+      <rect x="260" y="30" width="210" height="170" fill="#FFF3CD" opacity="0.4"/>
+      <rect x="50" y="200" width="210" height="170" fill="#FAEEDA" opacity="0.5"/>
+      <rect x="260" y="200" width="210" height="170" fill="#FCEBEB" opacity="0.4"/>
+      <!-- 축 -->
+      <line x1="50" y1="200" x2="470" y2="200" stroke="#555" stroke-width="1.5"/>
+      <line x1="260" y1="30" x2="260" y2="370" stroke="#555" stroke-width="1.5"/>
+      <!-- 레이블 -->
+      <text x="260" y="18" text-anchor="middle" fill="#3A6A5E" font-size="11" font-family="Courier New">높은 개방성</text>
+      <text x="260" y="388" text-anchor="middle" fill="#888" font-size="11" font-family="Courier New">낮은 개방성</text>
+      <text x="36" y="204" text-anchor="middle" fill="#888" font-size="10" font-family="Courier New" transform="rotate(-90,36,204)">불안정</text>
+      <text x="484" y="204" text-anchor="middle" fill="#3A6A5E" font-size="10" font-family="Courier New" transform="rotate(-90,484,204)">안정</text>
+      <!-- 사분면 레이블 -->
+      <text x="155" y="52" text-anchor="middle" fill="#3A6A5E" font-size="10" font-family="Courier New">개방·안정</text>
+      <text x="365" y="52" text-anchor="middle" fill="#856404" font-size="10" font-family="Courier New">개방·불안정</text>
+      <text x="155" y="380" text-anchor="middle" fill="#A0522D" font-size="10" font-family="Courier New">폐쇄·억압 안정</text>
+      <text x="365" y="380" text-anchor="middle" fill="#791F1F" font-size="10" font-family="Courier New">폐쇄·불안정</text>
+
+      <!-- 중국 위치 — Q3 폐쇄·억압 안정 -->
+      <circle cx="140" cy="310" r="28" fill="#FCEBEB" stroke="#8B1A1A" stroke-width="2.5"/>
+      <text x="140" y="306" text-anchor="middle" font-size="22">🇨🇳</text>
+      <text x="140" y="346" text-anchor="middle" fill="#8B1A1A" font-size="11" font-family="Courier New" font-weight="bold">중국 현재</text>
+
+      <!-- 동방향 화살표 — TBI 임계 근접 시 -->
+      <defs>
+        <marker id="redarr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#8B1A1A"/>
+        </marker>
+      </defs>
+      <line x1="168" y1="310" x2="230" y2="310" stroke="#8B1A1A" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#redarr)"/>
+      <text x="240" y="308" fill="#8B1A1A" font-size="9" font-family="Courier New">TBI 임계 시</text>
+      <text x="240" y="320" fill="#8B1A1A" font-size="9" font-family="Courier New">이동 방향</text>
+
+      <!-- 비교 국가들 -->
+      <circle cx="155" cy="80" r="14" fill="#E8F4F0" stroke="#5E9186" stroke-width="1.5"/>
+      <text x="155" y="78" text-anchor="middle" font-size="12">🇹🇼</text>
+      <text x="155" y="104" text-anchor="middle" fill="#3A6A5E" font-size="9" font-family="Courier New">대만</text>
+
+      <circle cx="190" cy="110" r="14" fill="#EBF4F0" stroke="#5E9186" stroke-width="1.5"/>
+      <text x="190" y="108" text-anchor="middle" font-size="12">🇯🇵</text>
+      <text x="190" y="134" text-anchor="middle" fill="#3A6A5E" font-size="9" font-family="Courier New">일본</text>
+
+      <circle cx="350" cy="155" r="14" fill="#FFF3CD" stroke="#B8850E" stroke-width="1.5"/>
+      <text x="350" y="153" text-anchor="middle" font-size="12">🇰🇷</text>
+      <text x="350" y="179" text-anchor="middle" fill="#856404" font-size="9" font-family="Courier New">한국</text>
+
+      <!-- 설명 텍스트 -->
+      <text x="50" y="260" fill="#8B1A1A" font-size="10" font-family="Courier New">※ 폐쇄 체제 유지로 안정</text>
+      <text x="50" y="273" fill="#8B1A1A" font-size="10" font-family="Courier New">그러나 TBI 압력 축적 중</text>
+    </svg>
+  </div>
+  <div class="obs-note">
+    중국은 현재 '폐쇄·억압형 안정(Q3)' 구간에 위치합니다. 이는 개방된 민주주의의 안정이 아니라 통제 기반 안정입니다. TBI 0.612가 임계(0.70)에 도달할 경우 Q4(폐쇄·불안정)로의 이동 가능성이 구조적으로 내재되어 있습니다. 이 이동의 트리거는 경제 위기(부동산·청년실업)와 세대 단층 임계점의 동시 도달일 가능성이 높습니다.
+  </div>
+</div>
+
+<!-- ─── GPI 시계열 ─── -->
+<div class="section">
+  <div class="section-title">Ⅵ · GPI 시계열 — 평화지수 추이</div>
+  <h3>중국 평화지수 방향성 (2015~2025)</h3>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" width="600" height="220">
+      <rect width="600" height="220" fill="#fff"/>
+      <!-- 그리드 -->
+      <line x1="70" y1="20" x2="70" y2="180" stroke="#EEE" stroke-width="1"/>
+      <line x1="70" y1="180" x2="570" y2="180" stroke="#CCC" stroke-width="1.5"/>
+      <line x1="70" y1="60" x2="570" y2="60" stroke="#EEE" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <line x1="70" y1="100" x2="570" y2="100" stroke="#EEE" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <line x1="70" y1="140" x2="570" y2="140" stroke="#EEE" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <!-- Y축 -->
+      <text x="62" y="64" text-anchor="end" fill="#888" font-size="9" font-family="Courier New">60위</text>
+      <text x="62" y="104" text-anchor="end" fill="#888" font-size="9" font-family="Courier New">80위</text>
+      <text x="62" y="144" text-anchor="end" fill="#888" font-size="9" font-family="Courier New">100위</text>
+      <!-- X축 -->
+      <text x="112" y="198" text-anchor="middle" fill="#888" font-size="9" font-family="Courier New">2015</text>
+      <text x="204" y="198" text-anchor="middle" fill="#888" font-size="9" font-family="Courier New">2017</text>
+      <text x="296" y="198" text-anchor="middle" fill="#888" font-size="9" font-family="Courier New">2019</text>
+      <text x="388" y="198" text-anchor="middle" fill="#888" font-size="9" font-family="Courier New">2021</text>
+      <text x="480" y="198" text-anchor="middle" fill="#888" font-size="9" font-family="Courier New">2023</text>
+      <text x="560" y="198" text-anchor="middle" fill="#888" font-size="9" font-family="Courier New">2025</text>
+      <!-- 중국 GPI 하락 추세 (순위 상승=악화) -->
+      <polyline points="112,90 158,92 204,96 250,98 296,102 342,108 388,114 434,118 480,128 520,138 560,148"
+        fill="none" stroke="#8B1A1A" stroke-width="2.5"/>
+      <!-- 데이터 포인트 -->
+      <circle cx="112" cy="90" r="4" fill="#8B1A1A"/>
+      <circle cx="296" cy="102" r="4" fill="#8B1A1A"/>
+      <circle cx="480" cy="128" r="4" fill="#8B1A1A"/>
+      <circle cx="560" cy="148" r="4" fill="#8B1A1A"/>
+      <!-- 주요 이벤트 표시 -->
+      <line x1="388" y1="20" x2="388" y2="180" stroke="#B8850E" stroke-width="0.8" stroke-dasharray="3,2"/>
+      <text x="390" y="35" fill="#B8850E" font-size="9" font-family="Courier New">코로나</text>
+      <line x1="342" y1="20" x2="342" y2="180" stroke="#A0522D" stroke-width="0.8" stroke-dasharray="3,2"/>
+      <text x="344" y="35" fill="#A0522D" font-size="9" font-family="Courier New">홍콩NSL</text>
+      <!-- 방향 레이블 -->
+      <text x="570" y="146" fill="#8B1A1A" font-size="10" font-family="Courier New">88위</text>
+      <text x="300" y="18" text-anchor="middle" fill="#8B1A1A" font-size="11" font-family="Courier New">GPI 순위 하락 추세 (순위↑ = 평화 악화)</text>
+    </svg>
+  </div>
+</div>
+
+<!-- ─── 로지스틱 분기 ─── -->
+<div class="section">
+  <div class="section-title">Ⅶ · 로지스틱 분기 — 임계점 분석</div>
+  <h3>중국 체제 변화 임계점 시나리오</h3>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 600 260" xmlns="http://www.w3.org/2000/svg" width="600" height="260">
+      <rect width="600" height="260" fill="#fff"/>
+      <!-- 축 -->
+      <line x1="60" y1="20" x2="60" y2="220" stroke="#CCC" stroke-width="1.5"/>
+      <line x1="60" y1="220" x2="560" y2="220" stroke="#CCC" stroke-width="1.5"/>
+      <text x="310" y="250" text-anchor="middle" fill="#888" font-size="10" font-family="Courier New">시간 (경제·정치 압력 축적)</text>
+      <text x="30" y="120" text-anchor="middle" fill="#888" font-size="10" font-family="Courier New" transform="rotate(-90,30,120)">사회 안정성</text>
+
+      <!-- 임계선 -->
+      <line x1="310" y1="20" x2="310" y2="220" stroke="#8B1A1A" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="315" y="35" fill="#8B1A1A" font-size="9" font-family="Courier New">TBI 임계 θ=0.70</text>
+      <text x="315" y="47" fill="#8B1A1A" font-size="9" font-family="Courier New">도달 추정 시점</text>
+
+      <!-- 현재 위치 표시 -->
+      <line x1="240" y1="20" x2="240" y2="220" stroke="#B8850E" stroke-width="1" stroke-dasharray="3,2"/>
+      <text x="200" y="35" fill="#B8850E" font-size="9" font-family="Courier New">현재</text>
+      <text x="193" y="47" fill="#B8850E" font-size="9" font-family="Courier New">TBI=0.612</text>
+
+      <!-- 안정 경로 (위쪽) -->
+      <path d="M60,120 Q150,115 240,112 Q270,111 310,100 Q360,80 420,70 Q480,62 560,58"
+        fill="none" stroke="#5E9186" stroke-width="2" stroke-dasharray="5,3"/>
+      <text x="540" y="52" fill="#5E9186" font-size="9" font-family="Courier New">개혁 경로</text>
+
+      <!-- 현재 경로 (중간) -->
+      <path d="M60,120 Q150,118 240,112 Q275,108 310,105 Q330,105 340,118 Q360,138 420,152 Q480,162 560,168"
+        fill="none" stroke="#B8850E" stroke-width="2.5"/>
+      <text x="540" y="162" fill="#B8850E" font-size="9" font-family="Courier New">현재 궤도</text>
+
+      <!-- 위기 경로 (아래쪽) -->
+      <path d="M60,120 Q150,118 240,112 Q275,108 310,105 Q320,104 340,160 Q370,195 420,200 Q480,205 560,208"
+        fill="none" stroke="#8B1A1A" stroke-width="2" stroke-dasharray="5,3"/>
+      <text x="540" y="202" fill="#8B1A1A" font-size="9" font-family="Courier New">위기 경로</text>
+
+      <!-- 현재 위치 점 -->
+      <circle cx="240" cy="112" r="6" fill="#B8850E"/>
+      <text x="248" y="115" fill="#B8850E" font-size="10" font-family="Courier New" font-weight="bold">현재</text>
+
+      <!-- 범례 -->
+      <line x1="70" y1="240" x2="100" y2="240" stroke="#5E9186" stroke-width="2" stroke-dasharray="5,3"/>
+      <text x="104" y="243" fill="#5E9186" font-size="9" font-family="Courier New">구조개혁+분배</text>
+      <line x1="200" y1="240" x2="230" y2="240" stroke="#B8850E" stroke-width="2.5"/>
+      <text x="234" y="243" fill="#B8850E" font-size="9" font-family="Courier New">현재 궤도</text>
+      <line x1="330" y1="240" x2="360" y2="240" stroke="#8B1A1A" stroke-width="2" stroke-dasharray="5,3"/>
+      <text x="364" y="243" fill="#8B1A1A" font-size="9" font-family="Courier New">경제충격+청년반발</text>
+    </svg>
+  </div>
+  <div class="obs-note">
+    현재 궤도(주황)는 TBI 임계 도달 직전까지 표면적 안정을 유지하다 분기점에서 급격한 경로 전환 가능성을 보여줍니다. 트리거 조건: ①부동산 위기 장기화로 중산층 자산 추가 손실, ②청년실업 공식 수치 20% 돌파, ③DCI(세대단층) 임계 도달의 동시 발생. 이 세 조건이 겹치는 시점이 구조적 분기점입니다.
+  </div>
+</div>
+
+<!-- ─── PPR 5블록 ─── -->
+<div class="section">
+  <div class="section-title">Ⅷ · PPR — 5개 구조 블록</div>
+  <h3>정치·경제·사회·역사·지정학 심층 분석</h3>
+
+  <div class="ppr-card">
+    <div class="ppr-head">PPR-1 · 정치 구조</div>
+    <div class="ppr-body">
+      <div class="ppr-row"><span class="ppr-key">체제</span><span class="ppr-val">1당 권위주의 / 시진핑 종신화</span></div>
+      <div class="ppr-row"><span class="ppr-key">Freedom House</span><span class="ppr-val">9/100 (Not Free)</span></div>
+      <div class="ppr-row"><span class="ppr-key">주요 신호</span><span class="ppr-val">이념 획일성 강요 강화 (HRW 2026)</span></div>
+      <div class="ppr-row"><span class="ppr-key">IGI 자체산출</span><span class="ppr-val">0.88 / 제도 억압 극高</span></div>
+    </div>
+  </div>
+
+  <div class="ppr-card">
+    <div class="ppr-head">PPR-2 · 경제 구조</div>
+    <div class="ppr-body">
+      <div class="ppr-row"><span class="ppr-key">GDP 성장 공식</span><span class="ppr-val">5.0% (2024) / OLI 보정 2.4~2.8%</span></div>
+      <div class="ppr-row"><span class="ppr-key">청년실업</span><span class="ppr-val">공식 16.5% / 독립추정 최대 46.5%</span></div>
+      <div class="ppr-row"><span class="ppr-key">부동산</span><span class="ppr-val">개발투자 -9.9% YoY (Q1 2025)</span></div>
+      <div class="ppr-row"><span class="ppr-key">지방부채</span><span class="ppr-val">온예산 38%GDP / LGFV 포함 ~84%</span></div>
+      <div class="ppr-row"><span class="ppr-key">미중 관세</span><span class="ppr-val">트럼프 145% 부과 / 대미 수출 -29% YoY</span></div>
+    </div>
+  </div>
+
+  <div class="ppr-card">
+    <div class="ppr-head">PPR-3 · 사회 구조</div>
+    <div class="ppr-body">
+      <div class="ppr-row"><span class="ppr-key">탕핑 현상</span><span class="ppr-val">Σ_aph 신호 — 청년층 체제 포기형 이탈</span></div>
+      <div class="ppr-row"><span class="ppr-key">신장·위구르</span><span class="ppr-val">강제노동·문화말살·디지털 감시 체계</span></div>
+      <div class="ppr-row"><span class="ppr-key">홍콩</span><span class="ppr-val">자유도 40/100 (Not Free 임박) / 민주정당 해산</span></div>
+      <div class="ppr-row"><span class="ppr-key">DCI</span><span class="ppr-val">0.72 — 성장세대 vs 정체세대 단층 심화</span></div>
+      <div class="ppr-row"><span class="ppr-key">인구</span><span class="ppr-val">2021년 정점 후 감소 / 2050년 -1억 예상</span></div>
+    </div>
+  </div>
+
+  <div class="ppr-card">
+    <div class="ppr-head">PPR-4 · 역사 구조</div>
+    <div class="ppr-body">
+      <div class="ppr-row"><span class="ppr-key">TBI</span><span class="ppr-val">0.612 (임계 θ=0.70 근접)</span></div>
+      <div class="ppr-row"><span class="ppr-key">미소화 트라우마</span><span class="ppr-val">남경대학살·문화혁명·천안문 — 당 서사 독점</span></div>
+      <div class="ppr-row"><span class="ppr-key">N (서사 미통합)</span><span class="ppr-val">0.85 — 민간 재해석 불가 구조</span></div>
+      <div class="ppr-row"><span class="ppr-key">RHC</span><span class="ppr-val">0.849 — 내부(위구르·티베트) + 외부(한·일·대만) 복합</span></div>
+    </div>
+  </div>
+
+  <div class="ppr-card">
+    <div class="ppr-head">PPR-5 · 지정학 구조</div>
+    <div class="ppr-body">
+      <div class="ppr-row"><span class="ppr-key">대만해협</span><span class="ppr-val">무력 통일 배제 불가 — 군사화 지속</span></div>
+      <div class="ppr-row"><span class="ppr-key">남중국해</span><span class="ppr-val">인공섬 군사화 완료 / 필리핀·베트남 충돌</span></div>
+      <div class="ppr-row"><span class="ppr-key">미중 무역전쟁</span><span class="ppr-val">관세 145% vs 125% / 반도체 수출통제</span></div>
+      <div class="ppr-row"><span class="ppr-key">일대일로</span><span class="ppr-val">아프리카·중앙아·동남아 영향권 확대</span></div>
+      <div class="ppr-row"><span class="ppr-key">ADI</span><span class="ppr-val">0.013 Sovereign — 바이두·화웨이·딥시크 독자 체계</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 12축 레이더 ─── -->
+<div class="section">
+  <div class="section-title">Ⅸ · Λ¹² 12축 레이더 좌표</div>
+  <h3>12개 변수 방사형 — 중국 vs 동북아 평균</h3>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" width="400" height="400">
+      <rect width="400" height="400" fill="#F5F3EE"/>
+      <!-- 배경 원 4개 -->
+      <circle cx="200" cy="200" r="150" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+      <circle cx="200" cy="200" r="112" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+      <circle cx="200" cy="200" r="75" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+      <circle cx="200" cy="200" r="37" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+      <!-- 12축 선 -->
+      <line x1="200" y1="200" x2="200" y2="50" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="275" y2="62" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="330" y2="118" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="350" y2="200" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="330" y2="282" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="275" y2="338" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="200" y2="350" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="125" y2="338" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="70" y2="282" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="50" y2="200" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="70" y2="118" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="125" y2="62" stroke="#EEE" stroke-width="0.7"/>
+
+      <!-- 중국 데이터 (각 축 0~1, 위험방향 높을수록 큼) -->
+      <!-- LPI=0.52, HDI_inv=0.21, GPI=0.46, CPI_inv=0.58, CFD=0.78, DCI=0.72, MFI_inv=0.92, RHC=0.85, IGI_inv=0.88, AHI=0.61, Freach_inv=0.42, ADI=0.013 -->
+      <polygon points="
+        200,122
+        254,107
+        300,140
+        311,200
+        289,259
+        259,309
+        200,317
+        143,309
+        91,264
+        73,200
+        89,148
+        135,107
+      " fill="#8B1A1A" fill-opacity="0.22" stroke="#8B1A1A" stroke-width="2"/>
+
+      <!-- 동북아 평균 비교 (점선) -->
+      <polygon points="
+        200,110
+        268,98
+        316,132
+        330,200
+        308,268
+        268,322
+        200,330
+        132,322
+        92,268
+        70,200
+        84,132
+        132,98
+      " fill="none" stroke="#5E9186" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+
+      <!-- 축 레이블 -->
+      <text x="200" y="42" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">LPI</text>
+      <text x="286" y="54" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">HDI</text>
+      <text x="344" y="108" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">GPI</text>
+      <text x="362" y="202" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">CPI</text>
+      <text x="344" y="294" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">CFD</text>
+      <text x="286" y="350" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">DCI</text>
+      <text x="200" y="366" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">MFI</text>
+      <text x="114" y="350" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">RHC</text>
+      <text x="56" y="294" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">IGI</text>
+      <text x="38" y="202" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">AHI</text>
+      <text x="56" y="108" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">F_reach</text>
+      <text x="114" y="54" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">ADI</text>
+
+      <!-- 범례 -->
+      <rect x="240" y="370" width="12" height="8" fill="#8B1A1A" fill-opacity="0.4" stroke="#8B1A1A" stroke-width="1"/>
+      <text x="256" y="378" fill="#8B1A1A" font-size="9" font-family="Courier New">중국</text>
+      <line x1="295" y1="374" x2="312" y2="374" stroke="#5E9186" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="316" y="378" fill="#5E9186" font-size="9" font-family="Courier New">동북아평균</text>
+    </svg>
+  </div>
+  <div class="obs-note">
+    중국의 레이더는 MFI(언론자유)·IGI(제도억압)·RHC(역사갈등)·CFD(문화단층) 4개 축에서 동북아 평균을 크게 상회(위험 방향)합니다. ADI만 유일하게 극소값으로 '강점'으로 해석되나, 이는 폐쇄 체계가 만들어낸 역설적 결과입니다.
+  </div>
+</div>
+
+<!-- ─── 담론육층 ─── -->
+<div class="section">
+  <div class="section-title">Ⅹ · 담론육층 — 중국 독해</div>
+  <h3>6개 층위로 읽는 중국의 지금</h3>
+  <div style="margin:14px 0;">
+    <div class="discourse-layer">
+      <div class="layer-num">1층<br>데이터</div>
+      <div class="layer-content"><strong>무엇이 보이는가:</strong> GDP 공식 5% 성장 vs 독립추정 2.4~2.8%. 청년실업 공식 16.5% vs 독립추정 최대 46.5%. 부동산 개발투자 -9.9%. 지방부채 GDP 대비 급증. 언론자유 178위. Freedom House 9/100.</div>
+    </div>
+    <div class="discourse-layer">
+      <div class="layer-num">2층<br>이해관계</div>
+      <div class="layer-content"><strong>누가 이 구조에서 이익을 얻는가:</strong> 중국공산당은 경제 성과를 체제 정당성의 핵심 자원으로 사용해왔습니다. 성장이 둔화될수록 대만·신장·남중국해를 통한 민족주의 동원이 정치적으로 유용해집니다. 부동산 위기의 비용은 중산층 가계에 전가되고, 국유기업은 보호받는 구조입니다.</div>
+    </div>
+    <div class="discourse-layer">
+      <div class="layer-num">3층<br>역사 패턴</div>
+      <div class="layer-content"><strong>이전에도 있었는가:</strong> 중국 역대 왕조의 붕괴 패턴은 성장→내부 모순 축적→자연재해/경제위기→민란→왕조 교체의 순환이었습니다. 천안문(1989)은 경제 개방 10년 후 의식이 깨어난 시점에 발생했습니다. 현재의 부동산 위기와 청년실업은 구조적으로 유사한 압력을 형성하고 있습니다. 단, 1989년과 달리 2025년의 디지털 감시 체계는 조직화 가능성을 구조적으로 억압하고 있습니다.</div>
+    </div>
+    <div class="discourse-layer">
+      <div class="layer-num">4층<br>시각 역전</div>
+      <div class="layer-content"><strong>반대로 보면:</strong> ADI 0.013(AI 자주국)은 역설입니다. 이 강점은 자유가 만든 혁신이 아니라 폐쇄가 만든 고립입니다. 바이두는 구글이 없어서 성장했고, 딥시크는 엔비디아 수출통제에 대응하는 과정에서 탄생했습니다. 탕핑(躺平)은 패배가 아닙니다 — 불합리한 게임의 규칙을 거부하는 조용한 저항일 수 있습니다.</div>
+    </div>
+    <div class="discourse-layer">
+      <div class="layer-num">5층<br>프레임</div>
+      <div class="layer-content"><strong>Λ¹² 위상 진단:</strong> 중국은 현재 '거짓 안정(False Stability)' 구간에 위치합니다. TBI 0.612는 임계(0.70) 63㎞ 전입니다. DCI 0.72는 세대 단층이 이미 임계를 넘었음을 시사합니다. ADI의 역설적 강점은 외부 충격 흡수력을 높이지만 내부 개혁 동력을 약화시킵니다. 지방부채+부동산+청년실업의 삼중 압력이 동시에 임계에 도달하는 시점이 구조적 분기점입니다.</div>
+    </div>
+    <div class="discourse-layer">
+      <div class="layer-num" style="background:#3A6A5E;">6층<br>판단 유보</div>
+      <div class="layer-content" style="background:#E8F4F0;"><strong>이 층은 독자·시민·의회의 몫입니다.</strong> 14억의 삶이 이 구조 안에서 어떤 방향으로 움직여야 하는지는 Λ¹²가 대답할 수 없습니다. 수치가 가리키는 구조를 보는 것, 그 다음은 각 사회가 결정합니다.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 오차 범위 ─── -->
+<div class="section">
+  <div class="section-title">ⅩⅠ · 오차 범위 · 데이터 한계</div>
+  <h3>신뢰 구간과 데이터 편향 명시</h3>
+  <div class="error-box">
+    OLI=0.51 적용 근거: ①청년실업 통계 발표 2023년 중단 후 재개, ②GDP 목표 선달성의 반복적 패턴 (Rhodium Group 지속 지적), ③신장·티베트 독립 감사 불가, ④민간 기업 재무 투명성 제한. 실제 경제 수치는 공식 발표 대비 -30~50% 하향 보정 가능성.
+  </div>
+  <div class="obs-note">
+    자체 산출 변수(TBI·RHC·DCI·CFD·IGI·ADI)는 공개 데이터 기반 추정치입니다. 특히 북한·신장·티베트 관련 수치는 접근 제한으로 편차가 클 수 있습니다. 모든 수치는 방향성 파악을 위한 지표이며 절대값으로 해석해서는 안 됩니다.
+  </div>
+</div>
+
+<!-- ─── 한반도 연결 ─── -->
+<div class="section">
+  <div class="section-title">ⅩⅡ · 한반도·동북아 연결 분석</div>
+  <h3>중국의 구조 변화가 동북아에 미치는 파급</h3>
+  <div class="korea-block">
+    <h4>중국발 구조적 리스크의 동북아 전파 경로</h4>
+    <p>중국의 부동산 위기가 장기화될 경우 한국·대만 수출의 대중 의존도(한국 약 25%, 대만 약 40%)가 직격탄을 맞습니다. 중국의 DCI 세대 단층이 임계를 넘을 경우 내부 압력을 대만해협 긴장으로 전환할 정치적 동기가 강화됩니다. ADI 강점(AI·반도체 자주화)은 장기적으로 한국 반도체 산업의 중국 시장 접근을 더욱 제한하는 방향으로 작용할 것입니다.</p>
+  </div>
+</div>
+
+<!-- ─── 결론 궤도 ─── -->
+<div class="section">
+  <div class="section-title">ⅩⅢ · 결론 궤도</div>
+  <div class="conclusion">
+    <p>중국은 지금 두 종류의 힘이 같은 방향으로 달리고 있는 나라입니다. 하나는 안으로 향하는 힘 — 억압, 감시, 서사 독점입니다. 다른 하나는 밖으로 향하는 힘 — AI 자주화, 군사력 확장, 경제 영향권 확대입니다.</p>
+    <p>이 두 힘이 같은 방향으로 달릴 수 있는 것은 내부를 완전히 잠갔기 때문입니다. 그런데 잠긴 공간 안에서 압력은 계속 쌓입니다. 천안문은 10년이 걸렸습니다. 탕핑은 10년도 걸리지 않았습니다. 그 다음 세대는 탕핑조차 하지 않을 수 있습니다.</p>
+    <p>TBI 0.612가 말하는 것은 무엇인가. 기억을 지운다고 트라우마가 사라지지는 않습니다. 서사를 독점한다고 역사가 변하지는 않습니다. 억압된 것은 사라지지 않고, 다른 형태로 돌아옵니다.</p>
+    <p>다만 언제, 어떤 형태로 돌아오는지는 — 이 보고서가 대답할 수 없는 질문입니다. 그것은 14억의 몫이기 때문입니다.</p>
+  </div>
+</div>
+
+<!-- ─── 시리즈 박스 ─── -->
+<div class="section">
+  <div class="section-title">ⅩⅣ · 시리즈 현황</div>
+  <div class="series-box">
+    <div class="series-title">동북아시아 시리즈 — Λ¹²v9.12</div>
+    <div class="series-item"><span class="series-num">#20</span><span class="series-name">동북아시아 권역 비교편</span><span class="series-status status-done">완성</span></div>
+    <div class="series-item"><span class="series-num">#21</span><span class="series-name">한국 단독편 v1.0</span><span class="series-status status-plan">예정</span></div>
+    <div class="series-item"><span class="series-num">#22</span><span class="series-name">일본 단독편 v1.0</span><span class="series-status status-plan">예정</span></div>
+    <div class="series-item"><span class="series-num">#23</span><span class="series-name">중국 단독편 v1.0 (현재 문서)</span><span class="series-status status-now">완성</span></div>
+    <div class="series-item"><span class="series-num">#24</span><span class="series-name">대만 단독편 v1.0</span><span class="series-status status-plan">예정</span></div>
+    <div class="series-item"><span class="series-num">#25</span><span class="series-name">북한 단독편 v1.0 (별도 프레임)</span><span class="series-status status-plan">예정</span></div>
+  </div>
+</div>
+
+<!-- ─── 푸터 ─── -->
+<div class="footer">
+  <p>늘푸른바다 사회동역학 연구소 (Everblue Sea Institute for Social Dynamics)</p>
+  <p>소장 청해(淸海) · Claude (Anthropic) 연구 파트너</p>
+  <p><a href="https://badaegopa.tistory.com">badaegopa.tistory.com</a> · <a href="https://everbluesea.org">everbluesea.org</a> · contact@everbluesea.org</p>
+  <div class="engine-tag">Engine: Λ¹²v9.12 | ADI §31 포함 | SSRN 6632858 기반 | 중국_Λ¹²v9.12_20260502.html</div>
+</div>
+
+</body>
+</html>

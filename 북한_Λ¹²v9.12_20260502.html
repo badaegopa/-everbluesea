@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>북한 단독편 — Λ¹²v9.12 | 늘푸른바다 사회동역학 연구소</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#1A1A1A; color:#E0E0E0; font-family:Georgia,'Times New Roman',serif; line-height:1.75; }
+.header { background:linear-gradient(135deg,#0A0A0A 0%,#1A0A0A 50%,#0A0A0A 100%); padding:48px 40px 36px; position:relative; overflow:hidden; border-bottom:2px solid #333; }
+.header::before { content:'閉'; position:absolute; right:40px; top:10px; font-size:160px; color:rgba(255,255,255,0.04); font-family:Georgia,serif; font-weight:bold; line-height:1; }
+.header-badge { display:inline-block; background:rgba(255,255,255,0.10); color:#CCC; font-family:'Courier New',monospace; font-size:11px; padding:4px 12px; border-radius:2px; letter-spacing:1.5px; margin-bottom:16px; border:1px solid #444; }
+.header h1 { color:#E0E0E0; font-size:30px; font-weight:normal; margin-bottom:6px; }
+.header h2 { color:rgba(220,220,220,0.75); font-size:15px; font-weight:normal; letter-spacing:0.5px; }
+.header-meta { margin-top:20px; color:rgba(200,200,200,0.55); font-family:'Courier New',monospace; font-size:11px; letter-spacing:1px; }
+.engine-box { background:#222; border-left:4px solid #B8850E; padding:14px 20px; margin:24px 40px; font-family:'Courier New',monospace; font-size:12px; color:#AAA; }
+.engine-box strong { color:#B8850E; }
+.section { padding:32px 40px; border-bottom:1px solid #333; }
+.section-title { font-size:13px; font-family:'Courier New',monospace; color:#888; letter-spacing:2px; text-transform:uppercase; margin-bottom:16px; }
+.section h3 { font-size:20px; color:#E0E0E0; font-weight:normal; margin-bottom:14px; line-height:1.4; }
+.section p { font-size:14px; color:#C0C0C0; margin-bottom:10px; text-align:justify; }
+.warning-box { background:#1A1010; border:2px solid #8B1A1A; padding:20px 24px; margin:14px 0; border-radius:2px; }
+.warning-box .warning-title { font-family:'Courier New',monospace; font-size:12px; color:#C0392B; letter-spacing:2px; margin-bottom:12px; }
+.warning-box p { font-size:14px; color:#C0A0A0; line-height:1.85; margin-bottom:8px; }
+.data-table-wrap { margin:16px 0; overflow-x:auto; }
+.data-table { width:100%; border-collapse:collapse; font-size:13px; }
+.data-table th { background:#2A1A1A; color:#CCC; padding:10px 14px; text-align:center; font-family:'Courier New',monospace; font-size:11px; letter-spacing:0.5px; font-weight:normal; border-bottom:1px solid #444; }
+.data-table th:first-child { text-align:left; }
+.data-table td { padding:9px 14px; border-bottom:1px solid #333; text-align:center; font-family:'Courier New',monospace; font-size:12px; color:#BBB; }
+.data-table td:first-child { text-align:left; font-family:Georgia,serif; font-size:13px; color:#DDD; }
+.data-table tr:nth-child(even) td { background:#1E1E1E; }
+.formula-box { background:#1A1A1A; border:1px solid #444; border-top:3px solid #8B1A1A; padding:20px 24px; margin:16px 0; }
+.formula-box .formula-title { font-family:'Courier New',monospace; font-size:11px; color:#888; letter-spacing:2px; margin-bottom:12px; }
+.formula-box .formula-eq { font-family:'Courier New',monospace; font-size:13px; color:#DDD; background:#111; padding:12px 16px; border-radius:2px; margin:8px 0; letter-spacing:0.5px; line-height:1.6; border-left:3px solid #555; }
+.formula-box .formula-note { font-size:12px; color:#777; margin-top:8px; }
+.obs-note { background:#1A1A2A; border:1px solid #333366; border-radius:3px; padding:14px 18px; margin:14px 0; font-size:13px; color:#BBBBDD; line-height:1.7; }
+.obs-note::before { content:'◈ 관찰 신호 (추정치 기반)'; display:block; font-family:'Courier New',monospace; font-size:10px; color:#6666AA; letter-spacing:1px; margin-bottom:6px; }
+.error-box { background:#1A1500; border-left:3px solid #B8850E; padding:12px 16px; margin:14px 0; font-size:12px; color:#C0A060; font-family:'Courier New',monospace; }
+.ppr-card { background:#222; border:1px solid #444; border-radius:3px; overflow:hidden; margin-bottom:14px; }
+.ppr-head { background:#2A1A1A; color:#CCC; font-size:12px; font-family:'Courier New',monospace; padding:8px 14px; letter-spacing:1px; border-bottom:1px solid #444; }
+.ppr-body { padding:14px; }
+.ppr-row { display:flex; justify-content:space-between; font-size:12px; padding:4px 0; border-bottom:1px solid #333; }
+.ppr-row:last-child { border-bottom:none; }
+.ppr-key { color:#777; }
+.ppr-val { font-family:'Courier New',monospace; font-weight:bold; color:#CC6666; }
+.discourse-layer { display:grid; grid-template-columns:130px 1fr; gap:0; margin-bottom:2px; }
+.layer-num { background:#2A1A1A; color:#AAA; font-family:'Courier New',monospace; font-size:11px; padding:12px 14px; display:flex; align-items:center; border:1px solid #444; border-right:none; }
+.layer-content { background:#1E1E1E; border:1px solid #444; padding:12px 18px; font-size:13px; color:#C0C0C0; line-height:1.7; }
+.layer-content strong { color:#CC9966; }
+.signal-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:14px 0; }
+.signal-card { background:#222; border:1px solid #444; padding:14px; border-radius:2px; text-align:center; }
+.signal-card .sig-icon { font-size:24px; margin-bottom:6px; }
+.signal-card .sig-label { font-size:11px; color:#777; font-family:'Courier New',monospace; margin-bottom:4px; }
+.signal-card .sig-val { font-size:18px; font-family:'Courier New',monospace; font-weight:bold; color:#CC4444; }
+.signal-card .sig-note { font-size:10px; color:#666; margin-top:4px; }
+.frame-box { background:#0A0A1A; border:2px solid #444488; padding:20px 24px; margin:14px 0; border-radius:2px; }
+.frame-box h4 { color:#8888CC; font-size:14px; margin-bottom:12px; font-family:'Courier New',monospace; letter-spacing:1px; }
+.frame-box p { font-size:13px; color:#AAAACC; line-height:1.75; margin-bottom:8px; }
+.svg-wrap { text-align:center; margin:16px 0; }
+.conclusion { background:#111; border-left:4px solid #555; padding:24px 32px; margin:20px 40px; border-radius:2px; }
+.conclusion p { font-size:15px; line-height:1.95; color:#D0D0D0; text-align:justify; margin-bottom:12px; }
+.conclusion p:last-child { margin-bottom:0; }
+.series-box { background:#1E1E1E; border:1px solid #444; margin:20px 40px; padding:20px; }
+.series-title { font-family:'Courier New',monospace; font-size:11px; color:#777; letter-spacing:2px; margin-bottom:12px; }
+.series-item { display:flex; gap:12px; padding:6px 0; border-bottom:1px solid #333; font-size:12px; }
+.series-item:last-child { border-bottom:none; }
+.series-num { font-family:'Courier New',monospace; color:#B8850E; min-width:40px; }
+.series-name { color:#BBB; }
+.series-status { margin-left:auto; font-family:'Courier New',monospace; font-size:10px; padding:2px 8px; border-radius:2px; }
+.status-done { background:#1A2A1A; color:#4A8A4A; }
+.status-now { background:#2A1A1A; color:#CC6666; }
+.footer { background:#111; padding:28px 40px; text-align:center; border-top:1px solid #333; }
+.footer p { font-size:12px; color:#666; margin-bottom:4px; font-family:'Courier New',monospace; }
+.footer a { color:#888; text-decoration:none; }
+.footer .engine-tag { margin-top:10px; font-size:10px; color:#555; letter-spacing:1px; }
+@media(max-width:768px){ .section,.engine-box,.conclusion,.series-box,.footer{margin-left:16px;margin-right:16px;padding-left:16px;padding-right:16px;} .header{padding:32px 16px 24px;} .signal-grid{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<!-- ─── 헤더 ─── -->
+<div class="header">
+  <div class="header-badge">NORTH KOREA STANDALONE REPORT · #25 · Λ¹²v9.12 · 별도 프레임</div>
+  <h1>🇰🇵 북한 단독편</h1>
+  <h2>비교 불가능한 존재 — 표준 Λ¹² 외부에서 읽는 조선민주주의인민공화국</h2>
+  <div class="header-meta">늘푸른바다 사회동역학 연구소 · Λ¹²v9.12 엔진 기준 · 발행일 2026.05.02</div>
+</div>
+
+<div class="engine-box">
+  <strong>ENGINE:</strong> Λ¹²v9.12 | 별도 프레임 적용 | OLI=0.18 (데이터 신뢰도 극소)<br>
+  <strong>경고:</strong> 이 보고서의 모든 수치는 외부 추정치입니다. 실상과 ±30~50% 이상 차이 가능. 방향성 파악 목적으로만 사용.<br>
+  <strong>데이터 출처:</strong> UN·SIPRI·HRW·Freedom House·FAO/WFP·탈북민 증언 조합
+</div>
+
+<!-- ─── 연구 목적 ─── -->
+<div class="section">
+  <div class="section-title">연구 목적 — 특수 선언</div>
+  <h3>왜 비교 불가능한 존재를 분석하는가</h3>
+  <div class="warning-box">
+    <div class="warning-title">⚠ 프레임 한계 명시</div>
+    <p>북한은 표준 Λ¹² 비교 프레임의 적용 한계를 드러내는 사례입니다. TBI 0.857, ADI 1.000, Freedom House 3/100 — 이 수치들은 비교가 아니라 구별 불가능의 영역에 있습니다.</p>
+    <p>이 보고서는 북한 2,600만 민중의 삶을 수치로 환원하지 않습니다. 수치는 구조를 가리키는 방향 지시자일 뿐입니다. 그 구조 안에 살고 있는 사람들의 실상은 숫자 너머에 있습니다.</p>
+  </div>
+</div>
+
+<!-- ─── 핵심 지표 배지 ─── -->
+<div class="section">
+  <div class="section-title">§0 · 핵심 지표</div>
+  <div class="signal-grid">
+    <div class="signal-card"><div class="sig-icon">🔒</div><div class="sig-label">Freedom House 2025</div><div class="sig-val">3/100</div><div class="sig-note">세계 최하위권</div></div>
+    <div class="signal-card"><div class="sig-icon">📰</div><div class="sig-label">RSF 언론자유 2025</div><div class="sig-val">179위</div><div class="sig-note">언론=국가 선전 도구</div></div>
+    <div class="signal-card"><div class="sig-icon">⚠️</div><div class="sig-label">TBI (트라우마 지수)</div><div class="sig-val">0.857</div><div class="sig-note">임계(0.70) 대폭 초과</div></div>
+    <div class="signal-card"><div class="sig-icon">🌐</div><div class="sig-label">ADI (AI종속)</div><div class="sig-val">1.000</div><div class="sig-note">완전 고립=AI 문명 배제</div></div>
+    <div class="signal-card"><div class="sig-icon">🍚</div><div class="sig-label">식량 불안 인구</div><div class="sig-val">42%</div><div class="sig-note">FAO/WFP 2024</div></div>
+    <div class="signal-card"><div class="sig-icon">🔬</div><div class="sig-label">OLI 데이터 신뢰도</div><div class="sig-val">0.18</div><div class="sig-note">동북아 최저 / 추정치 기반</div></div>
+  </div>
+</div>
+
+<!-- ─── 권력 구조 3층 4궤도 SVG ─── -->
+<div class="section">
+  <div class="section-title">Ⅰ · 권력 구조 — 4궤도 SVG</div>
+  <h3>수령-당-군-국가 4궤도 동심원 구조</h3>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg" width="480" height="480">
+      <rect width="480" height="480" fill="#111"/>
+      <!-- 배경 동심원 4개 -->
+      <circle cx="240" cy="240" r="200" fill="none" stroke="#2A1A1A" stroke-width="1"/>
+      <circle cx="240" cy="240" r="155" fill="none" stroke="#2A1A1A" stroke-width="1"/>
+      <circle cx="240" cy="240" r="108" fill="none" stroke="#2A1A1A" stroke-width="1"/>
+      <circle cx="240" cy="240" r="60" fill="none" stroke="#2A1A1A" stroke-width="1"/>
+
+      <!-- 궤도 4 — 외부: 민중·성분제도 -->
+      <circle cx="240" cy="240" r="200" fill="#1A0808" stroke="#4A1A1A" stroke-width="2"/>
+      <text x="240" y="60" text-anchor="middle" fill="#884444" font-size="11" font-family="Courier New">궤도 4 — 민중 · 성분제도</text>
+      <!-- 성분 분류 표시 -->
+      <text x="240" y="90" text-anchor="middle" fill="#663333" font-size="10" font-family="Courier New">핵심(28%) | 동요(45%) | 적대(27%)</text>
+
+      <!-- 궤도 3 — 국가기관 -->
+      <circle cx="240" cy="240" r="155" fill="#1A0A0A" stroke="#552222" stroke-width="2"/>
+      <text x="240" y="102" text-anchor="middle" fill="#AA5555" font-size="11" font-family="Courier New">궤도 3 — 최고인민회의 · 내각</text>
+
+      <!-- 궤도 2 — 군 + 당 -->
+      <circle cx="240" cy="240" r="108" fill="#220A0A" stroke="#772222" stroke-width="2"/>
+      <text x="240" y="148" text-anchor="middle" fill="#CC6666" font-size="11" font-family="Courier New">궤도 2 — 조선로동당 · 인민군</text>
+
+      <!-- 궤도 1 — 수령 -->
+      <circle cx="240" cy="240" r="60" fill="#3A0808" stroke="#AA2222" stroke-width="3"/>
+      <text x="240" y="233" text-anchor="middle" fill="#FFAAAA" font-size="15" font-family="Courier New" font-weight="bold">수령</text>
+      <text x="240" y="252" text-anchor="middle" fill="#CC8888" font-size="10" font-family="Courier New">김정은</text>
+
+      <!-- 방사형 선 (4방향) -->
+      <line x1="240" y1="60" x2="240" y2="180" stroke="#441A1A" stroke-width="0.8" stroke-dasharray="4,3"/>
+      <line x1="420" y1="240" x2="348" y2="240" stroke="#441A1A" stroke-width="0.8" stroke-dasharray="4,3"/>
+      <line x1="240" y1="420" x2="240" y2="300" stroke="#441A1A" stroke-width="0.8" stroke-dasharray="4,3"/>
+      <line x1="60" y1="240" x2="132" y2="240" stroke="#441A1A" stroke-width="0.8" stroke-dasharray="4,3"/>
+
+      <!-- 외부 위성 표시: 중국·러시아 -->
+      <circle cx="440" cy="100" r="22" fill="#111" stroke="#445555" stroke-width="1.5"/>
+      <text x="440" y="97" text-anchor="middle" font-size="16">🇨🇳</text>
+      <text x="440" y="128" text-anchor="middle" fill="#446655" font-size="9" font-family="Courier New">중국</text>
+      <text x="440" y="140" text-anchor="middle" fill="#446655" font-size="9" font-family="Courier New">경제 90%+</text>
+      <line x1="418" y1="110" x2="400" y2="175" stroke="#335544" stroke-width="1" stroke-dasharray="4,3"/>
+
+      <circle cx="440" cy="380" r="22" fill="#111" stroke="#554444" stroke-width="1.5"/>
+      <text x="440" y="377" text-anchor="middle" font-size="16">🇷🇺</text>
+      <text x="440" y="408" text-anchor="middle" fill="#665544" font-size="9" font-family="Courier New">러시아</text>
+      <text x="440" y="420" text-anchor="middle" fill="#665544" font-size="9" font-family="Courier New">군사협력</text>
+      <line x1="418" y1="370" x2="400" y2="310" stroke="#554433" stroke-width="1" stroke-dasharray="4,3"/>
+
+      <!-- 미국 봉쇄 표시 -->
+      <circle cx="45" cy="240" r="18" fill="#111" stroke="#336633" stroke-width="1"/>
+      <text x="45" y="236" text-anchor="middle" font-size="13">🇺🇸</text>
+      <text x="45" y="265" text-anchor="middle" fill="#336633" font-size="9" font-family="Courier New">제재</text>
+      <!-- 봉쇄선 -->
+      <line x1="63" y1="240" x2="40" y2="240" stroke="#336633" stroke-width="0.8" stroke-dasharray="3,2"/>
+
+      <!-- 핵 아이콘 -->
+      <text x="240" y="420" text-anchor="middle" fill="#AA4444" font-size="11" font-family="Courier New">☢ 핵탄두 40~50기 추정 (SIPRI)</text>
+      <text x="240" y="438" text-anchor="middle" fill="#774444" font-size="10" font-family="Courier New">체제 생존의 최후 보루</text>
+
+      <!-- 제목 -->
+      <text x="240" y="18" text-anchor="middle" fill="#888" font-size="12" font-family="Courier New">북한 권력 4궤도 구조 — Λ¹²v9.12</text>
+    </svg>
+  </div>
+  <div class="obs-note">4궤도 모두 수령을 향해 수렴합니다. 다른 민주주의 국가의 4궤도가 균형과 견제로 작동하는 것과 달리, 북한의 4궤도는 단방향 명령 전달 구조입니다. 국가기관·군·당 모두 수령의 의지를 집행하는 도구로 기능합니다.</div>
+</div>
+
+<!-- ─── 위상 사분면 ─── -->
+<div class="section">
+  <div class="section-title">Ⅱ · 위상 사분면 — 북한의 위치</div>
+  <h3>안정성 × 개방성 좌표 — 프레임 외부</h3>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 520 400" xmlns="http://www.w3.org/2000/svg" width="520" height="400">
+      <rect width="520" height="400" fill="#111"/>
+      <!-- 사분면 -->
+      <rect x="50" y="30" width="210" height="170" fill="#1A2A1A" opacity="0.5"/>
+      <rect x="260" y="30" width="210" height="170" fill="#2A2A10" opacity="0.4"/>
+      <rect x="50" y="200" width="210" height="170" fill="#2A1A10" opacity="0.4"/>
+      <rect x="260" y="200" width="210" height="170" fill="#2A1010" opacity="0.5"/>
+      <!-- 축 -->
+      <line x1="50" y1="200" x2="470" y2="200" stroke="#444" stroke-width="1.5"/>
+      <line x1="260" y1="30" x2="260" y2="370" stroke="#444" stroke-width="1.5"/>
+      <!-- 레이블 -->
+      <text x="260" y="18" text-anchor="middle" fill="#5A8A5A" font-size="11" font-family="Courier New">높은 개방성</text>
+      <text x="260" y="390" text-anchor="middle" fill="#666" font-size="11" font-family="Courier New">낮은 개방성</text>
+      <text x="36" y="204" text-anchor="middle" fill="#666" font-size="10" font-family="Courier New" transform="rotate(-90,36,204)">불안정</text>
+      <text x="484" y="204" text-anchor="middle" fill="#5A8A5A" font-size="10" font-family="Courier New" transform="rotate(-90,484,204)">안정</text>
+      <text x="155" y="52" text-anchor="middle" fill="#4A7A4A" font-size="10" font-family="Courier New">개방·안정</text>
+      <text x="365" y="52" text-anchor="middle" fill="#6A6A30" font-size="10" font-family="Courier New">개방·불안정</text>
+      <text x="155" y="380" text-anchor="middle" fill="#6A4A30" font-size="10" font-family="Courier New">폐쇄·안정(표면)</text>
+      <text x="365" y="380" text-anchor="middle" fill="#7A3030" font-size="10" font-family="Courier New">폐쇄·불안정</text>
+
+      <!-- 북한 — Q3 극단 (폐쇄·표면안정) -->
+      <circle cx="80" cy="360" r="26" fill="#2A0808" stroke="#AA2222" stroke-width="2.5"/>
+      <text x="80" y="356" text-anchor="middle" font-size="20">🇰🇵</text>
+      <text x="80" y="394" text-anchor="middle" fill="#AA4444" font-size="10" font-family="Courier New" font-weight="bold">북한</text>
+
+      <!-- 프레임 외부 표시 -->
+      <rect x="52" y="202" width="76" height="76" fill="none" stroke="#AA2222" stroke-width="1" stroke-dasharray="3,2"/>
+      <text x="88" y="292" text-anchor="middle" fill="#884444" font-size="8" font-family="Courier New">프레임</text>
+      <text x="88" y="302" text-anchor="middle" fill="#884444" font-size="8" font-family="Courier New">극단 구간</text>
+
+      <!-- 비교 국가들 -->
+      <circle cx="148" cy="80" r="14" fill="#0A1A2A" stroke="#336688" stroke-width="1.5"/>
+      <text x="148" y="78" text-anchor="middle" font-size="12">🇹🇼</text>
+      <text x="148" y="104" text-anchor="middle" fill="#446688" font-size="9" font-family="Courier New">대만(94)</text>
+
+      <circle cx="188" cy="108" r="14" fill="#0A1A1A" stroke="#447755" stroke-width="1.5"/>
+      <text x="188" y="106" text-anchor="middle" font-size="12">🇯🇵</text>
+      <text x="188" y="132" text-anchor="middle" fill="#447755" font-size="9" font-family="Courier New">일본(96)</text>
+
+      <circle cx="345" cy="148" r="14" fill="#0A1A10" stroke="#447755" stroke-width="1.5"/>
+      <text x="345" y="146" text-anchor="middle" font-size="12">🇰🇷</text>
+      <text x="345" y="172" text-anchor="middle" fill="#447755" font-size="9" font-family="Courier New">한국(81)</text>
+
+      <circle cx="140" cy="305" r="20" fill="#2A0808" stroke="#884444" stroke-width="2"/>
+      <text x="140" y="301" text-anchor="middle" font-size="14">🇨🇳</text>
+      <text x="140" y="330" text-anchor="middle" fill="#884444" font-size="9" font-family="Courier New">중국(9)</text>
+
+      <!-- Freedom House 점수 레이블 -->
+      <text x="470" y="395" text-anchor="end" fill="#555" font-size="9" font-family="Courier New">괄호 = Freedom House 점수</text>
+    </svg>
+  </div>
+  <div class="obs-note">북한은 좌표 극단(좌하단)에 위치합니다. 중국(9점)조차 비교 구간 내에 있지만, 북한(3점)은 프레임 극단 구간에서도 별도로 표시됩니다. '표면적 안정'은 억압과 감시 체계가 조직화 가능성을 원천 차단하기 때문입니다 — 이것은 안정이 아니라 봉쇄입니다.</div>
+</div>
+
+<!-- ─── 12축 레이더 ─── -->
+<div class="section">
+  <div class="section-title">Ⅲ · Λ¹² 12축 레이더 — 북한 vs 동북아 평균</div>
+  <h3>극단 구간의 12축 방사형</h3>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 400 420" xmlns="http://www.w3.org/2000/svg" width="400" height="420">
+      <rect width="400" height="420" fill="#111"/>
+      <!-- 배경 원 -->
+      <circle cx="200" cy="210" r="150" fill="none" stroke="#333" stroke-width="0.5"/>
+      <circle cx="200" cy="210" r="112" fill="none" stroke="#333" stroke-width="0.5"/>
+      <circle cx="200" cy="210" r="75" fill="none" stroke="#333" stroke-width="0.5"/>
+      <circle cx="200" cy="210" r="37" fill="none" stroke="#333" stroke-width="0.5"/>
+      <!-- 12축 -->
+      <line x1="200" y1="210" x2="200" y2="60" stroke="#2A2A2A" stroke-width="0.7"/>
+      <line x1="200" y1="210" x2="275" y2="72" stroke="#2A2A2A" stroke-width="0.7"/>
+      <line x1="200" y1="210" x2="330" y2="128" stroke="#2A2A2A" stroke-width="0.7"/>
+      <line x1="200" y1="210" x2="350" y2="210" stroke="#2A2A2A" stroke-width="0.7"/>
+      <line x1="200" y1="210" x2="330" y2="292" stroke="#2A2A2A" stroke-width="0.7"/>
+      <line x1="200" y1="210" x2="275" y2="348" stroke="#2A2A2A" stroke-width="0.7"/>
+      <line x1="200" y1="210" x2="200" y2="360" stroke="#2A2A2A" stroke-width="0.7"/>
+      <line x1="200" y1="210" x2="125" y2="348" stroke="#2A2A2A" stroke-width="0.7"/>
+      <line x1="200" y1="210" x2="70" y2="292" stroke="#2A2A2A" stroke-width="0.7"/>
+      <line x1="200" y1="210" x2="50" y2="210" stroke="#2A2A2A" stroke-width="0.7"/>
+      <line x1="200" y1="210" x2="70" y2="128" stroke="#2A2A2A" stroke-width="0.7"/>
+      <line x1="200" y1="210" x2="125" y2="72" stroke="#2A2A2A" stroke-width="0.7"/>
+      <!-- 북한 — 대부분 변수 극단. LPI 극소, TBI/RHC/IGI 극대 -->
+      <!-- LPI극소→안쪽, GPI극대→바깥, CPI극소→안쪽, MFI극대→바깥, RHC극대, IGI극대, ADI=1.0 -->
+      <polygon points="
+        200,197
+        243,82
+        318,130
+        340,210
+        318,286
+        265,346
+        200,360
+        125,346
+        62,284
+        54,210
+        72,130
+        127,73
+      " fill="#8B1A1A" fill-opacity="0.35" stroke="#CC2222" stroke-width="2"/>
+
+      <!-- 동북아 평균 비교 -->
+      <polygon points="
+        200,115
+        262,104
+        308,138
+        322,210
+        304,274
+        264,318
+        200,328
+        136,318
+        96,274
+        78,210
+        92,138
+        136,104
+      " fill="none" stroke="#446655" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+
+      <!-- 축 레이블 -->
+      <text x="200" y="52" text-anchor="middle" fill="#666" font-size="9" font-family="Courier New">LPI</text>
+      <text x="286" y="64" text-anchor="middle" fill="#666" font-size="9" font-family="Courier New">HDI(추정)</text>
+      <text x="344" y="118" text-anchor="middle" fill="#666" font-size="9" font-family="Courier New">GPI</text>
+      <text x="362" y="212" text-anchor="middle" fill="#666" font-size="9" font-family="Courier New">CPI</text>
+      <text x="344" y="304" text-anchor="middle" fill="#666" font-size="9" font-family="Courier New">CFD</text>
+      <text x="286" y="360" text-anchor="middle" fill="#666" font-size="9" font-family="Courier New">DCI</text>
+      <text x="200" y="376" text-anchor="middle" fill="#666" font-size="9" font-family="Courier New">MFI</text>
+      <text x="114" y="360" text-anchor="middle" fill="#666" font-size="9" font-family="Courier New">RHC</text>
+      <text x="56" y="304" text-anchor="middle" fill="#666" font-size="9" font-family="Courier New">IGI</text>
+      <text x="38" y="212" text-anchor="middle" fill="#666" font-size="9" font-family="Courier New">AHI</text>
+      <text x="56" y="118" text-anchor="middle" fill="#666" font-size="9" font-family="Courier New">F_reach</text>
+      <text x="114" y="64" text-anchor="middle" fill="#666" font-size="9" font-family="Courier New">ADI</text>
+
+      <!-- 범례 -->
+      <rect x="240" y="390" width="10" height="8" fill="#8B1A1A" fill-opacity="0.5" stroke="#CC2222" stroke-width="1"/>
+      <text x="254" y="398" fill="#AA4444" font-size="9" font-family="Courier New">북한(추정)</text>
+      <line x1="310" y1="394" x2="328" y2="394" stroke="#446655" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="332" y="398" fill="#446655" font-size="9" font-family="Courier New">동북아 평균</text>
+    </svg>
+  </div>
+  <div class="obs-note">북한의 레이더는 MFI·RHC·IGI·ADI(역방향) 4개 축에서 동북아 평균의 외부 극단에 위치합니다. 반면 LPI(생활수준)·AHI(자본-노동)는 극소값을 기록합니다. 이 비대칭이 북한 구조의 핵심입니다: 억압 지수는 최대, 생활 지수는 최소.</div>
+</div>
+
+<!-- ─── GPI 시계열 ─── -->
+<div class="section">
+  <div class="section-title">Ⅳ · GPI 시계열 — 평화지수 추이</div>
+  <h3>북한 평화지수 추이 vs 동북아 (2016~2025)</h3>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 600 230" xmlns="http://www.w3.org/2000/svg" width="600" height="230">
+      <rect width="600" height="230" fill="#111"/>
+      <!-- 그리드 -->
+      <line x1="70" y1="20" x2="70" y2="190" stroke="#333" stroke-width="1"/>
+      <line x1="70" y1="190" x2="570" y2="190" stroke="#444" stroke-width="1.5"/>
+      <line x1="70" y1="60" x2="570" y2="60" stroke="#2A2A2A" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <line x1="70" y1="100" x2="570" y2="100" stroke="#2A2A2A" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <line x1="70" y1="140" x2="570" y2="140" stroke="#2A2A2A" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <!-- Y축 레이블 -->
+      <text x="62" y="64" text-anchor="end" fill="#666" font-size="9" font-family="Courier New">10위</text>
+      <text x="62" y="104" text-anchor="end" fill="#666" font-size="9" font-family="Courier New">90위</text>
+      <text x="62" y="144" text-anchor="end" fill="#666" font-size="9" font-family="Courier New">150위</text>
+      <text x="62" y="184" text-anchor="end" fill="#666" font-size="9" font-family="Courier New">163위</text>
+      <!-- X축 -->
+      <text x="112" y="208" text-anchor="middle" fill="#666" font-size="9" font-family="Courier New">2016</text>
+      <text x="210" y="208" text-anchor="middle" fill="#666" font-size="9" font-family="Courier New">2018</text>
+      <text x="308" y="208" text-anchor="middle" fill="#666" font-size="9" font-family="Courier New">2020</text>
+      <text x="406" y="208" text-anchor="middle" fill="#666" font-size="9" font-family="Courier New">2022</text>
+      <text x="504" y="208" text-anchor="middle" fill="#666" font-size="9" font-family="Courier New">2024/25</text>
+
+      <!-- 북한 — 최하위 고착 -->
+      <polyline points="112,176 162,178 210,178 258,180 308,180 356,182 406,183 456,183 504,184"
+        fill="none" stroke="#CC2222" stroke-width="2.5"/>
+      <circle cx="504" cy="184" r="4" fill="#CC2222"/>
+      <text x="518" y="182" fill="#CC2222" font-size="9" font-family="Courier New">북한(~153위)</text>
+
+      <!-- 한국 -->
+      <polyline points="112,106 162,108 210,108 258,109 308,111 356,113 406,114 456,117 504,122"
+        fill="none" stroke="#446655" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <text x="518" y="120" fill="#446655" font-size="9" font-family="Courier New">한국</text>
+
+      <!-- 일본 -->
+      <polyline points="112,68 162,70 210,71 258,73 308,74 356,76 406,78 456,79 504,79"
+        fill="none" stroke="#665544" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <text x="518" y="77" fill="#665544" font-size="9" font-family="Courier New">일본</text>
+
+      <!-- 중국 -->
+      <polyline points="112,120 162,122 210,124 258,126 308,128 356,132 406,136 456,140 504,146"
+        fill="none" stroke="#664444" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <text x="518" y="144" fill="#664444" font-size="9" font-family="Courier New">중국</text>
+
+      <text x="300" y="15" text-anchor="middle" fill="#666" font-size="11" font-family="Courier New">GPI 순위 추이 (↑ = 평화 악화)</text>
+    </svg>
+  </div>
+</div>
+
+<!-- ─── 로지스틱 분기 ─── -->
+<div class="section">
+  <div class="section-title">Ⅴ · 로지스틱 분기 — 체제 임계 분석</div>
+  <h3>북한 체제 지속 가능성 3경로</h3>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 600 270" xmlns="http://www.w3.org/2000/svg" width="600" height="270">
+      <rect width="600" height="270" fill="#111"/>
+      <!-- 축 -->
+      <line x1="60" y1="20" x2="60" y2="230" stroke="#444" stroke-width="1.5"/>
+      <line x1="60" y1="230" x2="560" y2="230" stroke="#444" stroke-width="1.5"/>
+      <text x="310" y="258" text-anchor="middle" fill="#666" font-size="10" font-family="Courier New">시간 (내부 압력 + 외부 충격 축적)</text>
+      <text x="30" y="125" text-anchor="middle" fill="#666" font-size="10" font-family="Courier New" transform="rotate(-90,30,125)">체제 안정성</text>
+
+      <!-- 현재 위치 -->
+      <line x1="220" y1="20" x2="220" y2="230" stroke="#B8850E" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="222" y="35" fill="#B8850E" font-size="9" font-family="Courier New">현재</text>
+
+      <!-- 임계선 -->
+      <line x1="350" y1="20" x2="350" y2="230" stroke="#AA2222" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="352" y="35" fill="#AA2222" font-size="9" font-family="Courier New">임계</text>
+
+      <!-- 경로 A: 현상 유지 (주황, 가장 가능성 높음) -->
+      <path d="M60,120 Q160,118 220,115 Q280,112 350,110 Q420,108 490,108 Q530,108 560,108"
+        fill="none" stroke="#B8850E" stroke-width="2.5"/>
+      <text x="540" y="104" fill="#B8850E" font-size="9" font-family="Courier New">현상유지</text>
+
+      <!-- 경로 B: 점진 개혁 (녹색, 가능성 낮음) -->
+      <path d="M60,120 Q160,118 220,115 Q280,112 350,105 Q420,90 490,75 Q530,66 560,62"
+        fill="none" stroke="#446655" stroke-width="2" stroke-dasharray="5,3"/>
+      <text x="540" y="58" fill="#446655" font-size="9" font-family="Courier New">개혁경로</text>
+
+      <!-- 경로 C: 급변 붕괴 (적색, 가능성 불명확) -->
+      <path d="M60,120 Q160,118 220,115 Q280,112 350,110 Q360,110 380,160 Q410,200 450,215 Q500,225 560,228"
+        fill="none" stroke="#CC2222" stroke-width="2" stroke-dasharray="5,3"/>
+      <text x="540" y="222" fill="#CC2222" font-size="9" font-family="Courier New">급변붕괴</text>
+
+      <!-- 현재 위치 점 -->
+      <circle cx="220" cy="115" r="6" fill="#B8850E"/>
+      <text x="226" y="112" fill="#B8850E" font-size="9" font-family="Courier New" font-weight="bold">현재</text>
+
+      <!-- 범례 -->
+      <line x1="70" y1="250" x2="100" y2="250" stroke="#B8850E" stroke-width="2.5"/>
+      <text x="104" y="253" fill="#B8850E" font-size="9" font-family="Courier New">현상유지 (가장 가능)</text>
+      <line x1="250" y1="250" x2="280" y2="250" stroke="#446655" stroke-width="2" stroke-dasharray="5,3"/>
+      <text x="284" y="253" fill="#446655" font-size="9" font-family="Courier New">개혁경로 (낮음)</text>
+      <line x1="400" y1="250" x2="430" y2="250" stroke="#CC2222" stroke-width="2" stroke-dasharray="5,3"/>
+      <text x="434" y="253" fill="#CC2222" font-size="9" font-family="Courier New">급변붕괴 (불명확)</text>
+    </svg>
+  </div>
+  <div class="obs-note">
+    북한은 이론적으로 TBI 임계(0.70)를 이미 대폭 초과(0.857)했습니다. 그러나 체제가 유지되는 이유 — 디지털 감시·성분제도·핵 억지·중국 후원이 조직화 가능성을 원천 차단합니다. 임계를 넘어도 붕괴가 발생하지 않는 구조적 예외 사례. 급변 시나리오의 트리거는 중국의 정책 전환 또는 내부 엘리트 분열의 연동으로 추정됩니다.
+  </div>
+</div>
+
+<!-- ─── TBI 구성 분해 ─── -->
+<div class="section">
+  <div class="section-title">Ⅵ · TBI 분해 — 트라우마 빅뱅 지수</div>
+  <h3>TBI=0.857 — 무엇이 이 수치를 만드는가</h3>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 600 180" xmlns="http://www.w3.org/2000/svg" width="600" height="180">
+      <rect width="600" height="180" fill="#111"/>
+      <!-- TBI = H × C × N 막대 -->
+      <!-- H(역사충격) -->
+      <text x="20" y="40" fill="#888" font-size="11" font-family="Courier New">H 역사충격</text>
+      <rect x="120" y="25" width="448" height="22" fill="#2A1A1A" rx="2"/>
+      <rect x="120" y="25" width="426" height="22" fill="#CC2222" rx="2"/>
+      <text x="556" y="41" fill="#CC4444" font-size="10" font-family="Courier New">0.95</text>
+      <text x="124" y="41" fill="#FFB0B0" font-size="9" font-family="Courier New">식민(0.95)·전쟁(0.90)·기근(0.95) 복합</text>
+
+      <!-- C(문화 미소화) -->
+      <text x="20" y="85" fill="#888" font-size="11" font-family="Courier New">C 미소화</text>
+      <rect x="120" y="70" width="448" height="22" fill="#2A1A1A" rx="2"/>
+      <rect x="120" y="70" width="404" height="22" fill="#AA2222" rx="2"/>
+      <text x="534" y="86" fill="#CC4444" font-size="10" font-family="Courier New">0.90</text>
+      <text x="124" y="86" fill="#FFB0B0" font-size="9" font-family="Courier New">단일 서사 강제 / 외부 정보 차단 / 재해석 불가</text>
+
+      <!-- N(서사 미통합) -->
+      <text x="20" y="130" fill="#888" font-size="11" font-family="Courier New">N 서사통합</text>
+      <rect x="120" y="115" width="448" height="22" fill="#2A1A1A" rx="2"/>
+      <rect x="120" y="115" width="426" height="22" fill="#881A1A" rx="2"/>
+      <text x="556" y="131" fill="#CC4444" font-size="10" font-family="Courier New">0.95</text>
+      <text x="124" y="131" fill="#FFB0B0" font-size="9" font-family="Courier New">민간 재해석 완전 불가 / 체제 서사만 허용</text>
+
+      <!-- TBI 결과 -->
+      <text x="20" y="168" fill="#CC4444" font-size="11" font-family="Courier New" font-weight="bold">TBI = H × C × N = 0.95 × 0.90 × 0.95 ≈ 0.857</text>
+      <text x="400" y="168" fill="#884444" font-size="10" font-family="Courier New">θ(임계)=0.70 → 초과 +0.157</text>
+    </svg>
+  </div>
+  <div class="obs-note">북한의 TBI가 다른 국가와 질적으로 다른 이유: 다른 국가의 TBI는 과거 충격의 미소화 결과이지만, 북한의 TBI는 체제가 트라우마를 현재 진행형으로 생산하고 통치 자원으로 사용하는 구조입니다. "미제 침략의 위협"이 지속되는 한, 수령에게 복종해야 한다는 논리 — 이것은 트라우마의 전용(轉用)입니다.</div>
+</div>
+
+<!-- ─── 기본 통계 테이블 ─── -->
+<div class="section">
+  <div class="section-title">Ⅶ · 추정 기본 통계</div>
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <tr><th>지표</th><th>추정 수치</th><th>신뢰도</th><th>출처</th></tr>
+      <tr><td>인구</td><td>약 2,600만 명</td><td>중간</td><td>UN DESA 2024</td></tr>
+      <tr><td>GDP per capita</td><td>USD ~1,800 추정</td><td>낮음</td><td>CIA Factbook 추정</td></tr>
+      <tr><td>Freedom House</td><td>3/100</td><td>높음</td><td>Freedom House 2025</td></tr>
+      <tr><td>RSF MFI</td><td>179위/180</td><td>높음</td><td>RSF 2025</td></tr>
+      <tr><td>CPI (부패)</td><td>15/100</td><td>중간</td><td>TI 2024</td></tr>
+      <tr><td>핵탄두 보유</td><td>40~50기 추정</td><td>낮음</td><td>SIPRI 2024</td></tr>
+      <tr><td>정치범 수용소</td><td>8~12만 명 추정</td><td>낮음</td><td>UN 북한인권보고서 2024</td></tr>
+      <tr><td>식량 불안 인구</td><td>42%</td><td>중간</td><td>FAO/WFP 2024</td></tr>
+      <tr><td>OLI (데이터 신뢰도)</td><td>0.18</td><td>—</td><td>Λ¹²v9.12 자체 산출</td></tr>
+    </table>
+  </div>
+  <div class="error-box">※ 전체 데이터 OLI=0.18 적용. 공식 통계 없음. 위성 분석·탈북민 증언·국제기구 간접 추정 조합. 실제값과 ±30~50% 이상 차이 가능. 방향성(나쁨의 방향)은 신뢰할 수 있으나 절대값은 참고 수준.</div>
+</div>
+
+<!-- ─── Λ¹² 공식 ─── -->
+<div class="section">
+  <div class="section-title">Ⅷ · Λ¹² 변수 — 별도 프레임</div>
+  <div class="formula-box">
+    <div class="formula-title">ΛSCORE — NORTH KOREA (별도 프레임)</div>
+    <div class="formula-eq">표준 Λ¹² 산출 불가 — OLI=0.18 극소로 보정 후 신뢰도 임계 미달</div>
+    <div class="formula-eq">TBI=0.857 → TBI 보정항 = (1 − 0.857 × 0.70) = (1 − 0.600) = 0.400</div>
+    <div class="formula-eq">ADI=1.000 → ADI 보정항 = (1 − 1.000 × 0.35) = 0.650</div>
+    <div class="formula-eq">복합 보정: raw ÷ 0.18 × 0.400 × 0.650 → 대부분 변수에서 신뢰구간 초과</div>
+    <div class="formula-note">※ 이 산출은 북한이 표준 비교 프레임 외부에 있음을 확인하는 의미. 수치보다 구조적 해석이 중요합니다.</div>
+  </div>
+
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <tr><th>변수</th><th>추정값</th><th>신뢰도</th><th>비고</th></tr>
+      <tr><td>LPI</td><td>~0.08 (극소)</td><td>낮음</td><td>식량불안 42% / 배급제 부분 붕괴</td></tr>
+      <tr><td>GPI</td><td>153위 / 최하위권</td><td>높음</td><td>핵무장·군사화 구조</td></tr>
+      <tr><td>CPI</td><td>15/100</td><td>중간</td><td>당 엘리트 부패 구조화</td></tr>
+      <tr><td>MFI</td><td>179위</td><td>높음</td><td>언론=국가 선전 도구</td></tr>
+      <tr><td>IGI</td><td>~0.98 (극高)</td><td>중간</td><td>성분제도·정치범수용소</td></tr>
+      <tr><td>TBI</td><td>0.857</td><td>중간</td><td>식민+전쟁+기근+수용소 복합</td></tr>
+      <tr><td>RHC</td><td>0.899</td><td>중간</td><td>내부계층갈등+외부적대 구조</td></tr>
+      <tr><td>ADI</td><td>1.000 (상한)</td><td>중간</td><td>AI 완전 차단 / 역설적 '주권'</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ─── PPR 블록 ─── -->
+<div class="section">
+  <div class="section-title">Ⅸ · PPR — 5개 구조 블록</div>
+  <div class="ppr-card"><div class="ppr-head">PPR-1 · 정치·체제</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">2024.10 헌법개정</span><span class="ppr-val">한국 '적대국' 명시 / 통일 포기 선언</span></div>
+    <div class="ppr-row"><span class="ppr-key">남북 인프라</span><span class="ppr-val">철도·도로·상징물 물리 철거</span></div>
+    <div class="ppr-row"><span class="ppr-key">권력 구조</span><span class="ppr-val">수령-당-군-국가 4궤도 / 단방향 명령</span></div>
+    <div class="ppr-row"><span class="ppr-key">성분제도</span><span class="ppr-val">핵심(28%) / 동요(45%) / 적대(27%)</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-2 · 핵·군사</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">2025.01 미사일</span><span class="ppr-val">Hwasong-16B IRBM 발사 / 황해도</span></div>
+    <div class="ppr-row"><span class="ppr-key">핵 독트린</span><span class="ppr-val">핵 선제 사용 법제화 / 체제 보장 수단</span></div>
+    <div class="ppr-row"><span class="ppr-key">대러 협력</span><span class="ppr-val">우크라이나전 포탄·병력 제공 보도</span></div>
+    <div class="ppr-row"><span class="ppr-key">재래전</span><span class="ppr-val">전투기 341기 / 아시아 12위 규모</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-3 · 민중 생활</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">식량</span><span class="ppr-val">인구 42% 식량 불안 / FAO·WFP 2024</span></div>
+    <div class="ppr-row"><span class="ppr-key">정치범</span><span class="ppr-val">수용소 8~12만 명 추정 / UN</span></div>
+    <div class="ppr-row"><span class="ppr-key">스마트폰</span><span class="ppr-val">내부망 전용 / 국가 모니터링 강화</span></div>
+    <div class="ppr-row"><span class="ppr-key">균열 신호</span><span class="ppr-val">외부 영상 유통 증가 → 단속 강화 대응</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-4 · 역사</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">TBI 구성</span><span class="ppr-val">일제 식민(H=0.95) + 한국전쟁 + 기근</span></div>
+    <div class="ppr-row"><span class="ppr-key">트라우마 전용</span><span class="ppr-val">체제가 트라우마를 통치 자원으로 사용</span></div>
+    <div class="ppr-row"><span class="ppr-key">N=0.95</span><span class="ppr-val">서사 미통합 극대 / 민간 재해석 불가</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-5 · 지정학</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">중국</span><span class="ppr-val">최대 후원국 / 경제 90%+ 의존</span></div>
+    <div class="ppr-row"><span class="ppr-key">러시아</span><span class="ppr-val">2024~25 군사협력 심화 / 우크라전</span></div>
+    <div class="ppr-row"><span class="ppr-key">미국</span><span class="ppr-val">제재 지속 / 외교 채널 단절 상태</span></div>
+    <div class="ppr-row"><span class="ppr-key">ADI 역설</span><span class="ppr-val">완전 고립=데이터 주권 극대 / AI 배제</span></div>
+  </div></div>
+</div>
+
+<!-- ─── 프레임 한계 ─── -->
+<div class="section">
+  <div class="section-title">Ⅹ · 특수 프레임 — 비교 불가능성</div>
+  <div class="frame-box">
+    <h4>◈ 왜 북한은 표준 프레임 외부인가</h4>
+    <p><strong>① 데이터 부재:</strong> OLI 0.18은 수치가 없어서가 아니라, 있는 수치를 신뢰할 수 없어서입니다. 공식 데이터가 없고, 추정치의 불확실성이 너무 큽니다.</p>
+    <p><strong>② 변수의 포화:</strong> TBI 0.857, ADI 1.000, IGI 극高 — 이 수치들은 비교의 의미가 없는 포화 상태입니다. 중국(Freedom House 9)이 나쁘고 북한(3)이 더 나쁘다는 서열이 아니라, 북한은 다른 범주에 있습니다.</p>
+    <p><strong>③ 트라우마의 구조적 전용:</strong> 다른 국가의 TBI는 과거 충격의 미소화 결과이지만, 북한의 TBI는 현재 진행형입니다. 체제가 트라우마를 생산하고 통치 자원으로 사용하는 구조 — 이것은 다른 국가와 질적으로 다릅니다.</p>
+  </div>
+</div>
+
+<!-- ─── 담론육층 ─── -->
+<div class="section">
+  <div class="section-title">ⅩⅠ · 담론육층 — 북한 독해</div>
+  <div style="margin:14px 0;">
+    <div class="discourse-layer"><div class="layer-num">1층<br>데이터</div><div class="layer-content"><strong>무엇이 보이는가:</strong> Freedom House 3/100. RSF 179위. 식량불안 42%. 정치범수용소 8~12만. 핵탄두 40~50기. 이 숫자들은 외부 관찰의 한계 안에서 포착된 단편들입니다. 실상은 이보다 나을 수도, 나쁠 수도 있습니다.</div></div>
+    <div class="discourse-layer"><div class="layer-num">2층<br>이해관계</div><div class="layer-content"><strong>누가 이익을 얻는가:</strong> 김씨 정권은 핵으로 체제 생존을 보장받습니다. 당 엘리트는 성분제도로 특권을 세습합니다. 중국은 북한을 완충 국가로 유지해 미군을 압록강 이남에 묶어둡니다. 러시아는 우크라이나전에서 북한 군수를 활용합니다.</div></div>
+    <div class="discourse-layer"><div class="layer-num">3층<br>역사 패턴</div><div class="layer-content"><strong>이전에도 있었는가:</strong> 식민 지배→분단→전쟁→기근(고난의 행군 수십만 사망)→핵 개발. 피해와 고립이 체제 정당성의 자원이 되는 구조가 70년을 지속했습니다. "외부의 적이 있기 때문에 단결해야 한다" — 이 서사의 반복 구조.</div></div>
+    <div class="discourse-layer"><div class="layer-num">4층<br>시각 역전</div><div class="layer-content"><strong>반대로 보면:</strong> 스마트폰 시장 확대는 체제 균열 신호일 수 있습니다. 외부 정보 유입이 증가할수록 단일 서사의 균열 가능성이 높아집니다. 그러나 동시에 국가 모니터링도 정교해집니다 — 기술이 해방과 통제를 동시에 가져오는 북한판 딜레마.</div></div>
+    <div class="discourse-layer"><div class="layer-num">5층<br>프레임</div><div class="layer-content"><strong>Λ¹² 구조 진단:</strong> 북한은 TBI·Σ_rep·IGI 세 변수 모두 임계 초과 상태입니다. 이론적으로는 구조 붕괴 임계를 넘었으나 실제로 체제가 유지됩니다 — 디지털 감시·성분제도가 조직화 가능성을 원천 차단하기 때문입니다. 임계를 넘어도 붕괴가 발생하지 않는 구조적 예외 사례.</div></div>
+    <div class="discourse-layer"><div class="layer-num" style="background:#333;">6층<br>판단 유보</div><div class="layer-content" style="background:#1A1A1A; color:#BBB;"><strong>이 층은 2,600만 북한 민중의 몫입니다.</strong> 외부 관찰자가 그들을 대신해 판단할 수 없습니다. 다만 이 구조가 얼마나 오래 지속될 수 있는지 — 그 물음은 이 보고서가 대답할 수 없습니다.</div></div>
+  </div>
+</div>
+
+<!-- ─── 결론 ─── -->
+<div class="section">
+  <div class="section-title">ⅩⅡ · 결론 궤도</div>
+  <div class="conclusion">
+    <p>북한은 이 보고서 시리즈에서 가장 어두운 페이지입니다. 수치는 말합니다 — TBI 0.857, Freedom House 3, ADI 1.000. 그러나 이 수치들이 진짜로 말하는 것은 숫자가 아닙니다.</p>
+    <p>2,600만 명의 사람들이 그 안에 살고 있습니다. 외부 세계에 대한 정보를 차단당한 채, 단일 서사가 규정하는 현실 안에서 살아갑니다. 스마트폰이 보급되면서 균열의 가능성이 조금씩 커지고 있지만, 동시에 감시도 정교해지고 있습니다.</p>
+    <p>비교 불가능한 것을 억지로 비교하는 것이 폭력이듯이, 알 수 없는 것을 안다고 말하는 것도 폭력입니다. 이 보고서는 그 한계를 인정하면서 끝납니다.</p>
+  </div>
+</div>
+
+<!-- ─── 시리즈 ─── -->
+<div class="section">
+  <div class="series-box">
+    <div class="series-title">동북아시아 시리즈 — Λ¹²v9.12 전체 완성</div>
+    <div class="series-item"><span class="series-num">#20</span><span class="series-name">동북아시아 권역 비교편</span><span class="series-status status-done">완성</span></div>
+    <div class="series-item"><span class="series-num">#21</span><span class="series-name">한국 단독편</span><span class="series-status status-done">완성</span></div>
+    <div class="series-item"><span class="series-num">#22</span><span class="series-name">일본 단독편</span><span class="series-status status-done">완성</span></div>
+    <div class="series-item"><span class="series-num">#23</span><span class="series-name">중국 단독편</span><span class="series-status status-done">완성</span></div>
+    <div class="series-item"><span class="series-num">#24</span><span class="series-name">대만 단독편</span><span class="series-status status-done">완성</span></div>
+    <div class="series-item"><span class="series-num">#25</span><span class="series-name">북한 단독편 v1.1 (별도 프레임 · 도식 추가)</span><span class="series-status status-now">완성</span></div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>늘푸른바다 사회동역학 연구소 (Everblue Sea Institute for Social Dynamics)</p>
+  <p>소장 청해(淸海) · Claude (Anthropic) 연구 파트너</p>
+  <p><a href="https://badaegopa.tistory.com">badaegopa.tistory.com</a> · <a href="https://everbluesea.org">everbluesea.org</a> · contact@everbluesea.org</p>
+  <div class="engine-tag">Engine: Λ¹²v9.12 | 별도 프레임 | OLI=0.18 | SSRN 6632858 기반 | 북한_Λ¹²v9.12_20260502.html</div>
+</div>
+</body>
+</html>

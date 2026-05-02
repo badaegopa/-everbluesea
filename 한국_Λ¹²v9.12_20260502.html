@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>한국 단독편 — Λ¹²v9.12 | 늘푸른바다 사회동역학 연구소</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#F5F3EE; color:#2C2C2C; font-family:Georgia,'Times New Roman',serif; line-height:1.75; }
+.header { background:linear-gradient(135deg,#1A5C38 0%,#2D8A58 50%,#1A4A2E 100%); padding:48px 40px 36px; position:relative; overflow:hidden; }
+.header::before { content:'大'; position:absolute; right:40px; top:10px; font-size:160px; color:rgba(255,255,255,0.06); font-family:Georgia,serif; font-weight:bold; line-height:1; }
+.header-badge { display:inline-block; background:rgba(255,255,255,0.18); color:#fff; font-family:'Courier New',monospace; font-size:11px; padding:4px 12px; border-radius:2px; letter-spacing:1.5px; margin-bottom:16px; }
+.header h1 { color:#fff; font-size:30px; font-weight:normal; margin-bottom:6px; }
+.header h2 { color:rgba(255,255,255,0.85); font-size:15px; font-weight:normal; letter-spacing:0.5px; }
+.header-meta { margin-top:20px; color:rgba(255,255,255,0.65); font-family:'Courier New',monospace; font-size:11px; letter-spacing:1px; }
+.engine-box { background:#fff; border-left:4px solid #B8850E; padding:14px 20px; margin:24px 40px; font-family:'Courier New',monospace; font-size:12px; color:#595959; }
+.engine-box strong { color:#B8850E; }
+.section { padding:32px 40px; border-bottom:1px solid #DDD8CE; }
+.section-title { font-size:13px; font-family:'Courier New',monospace; color:#1A5C38; letter-spacing:2px; text-transform:uppercase; margin-bottom:16px; }
+.section h3 { font-size:20px; color:#1F1F1F; font-weight:normal; margin-bottom:14px; line-height:1.4; }
+.section p { font-size:14px; color:#3A3A3A; margin-bottom:10px; text-align:justify; }
+.minjung-box { background:#F0FFF5; border-left:4px solid #2D8A58; padding:20px 24px; margin:14px 0; border-radius:2px; }
+.minjung-box p { font-size:14px; color:#1A3A2A; line-height:1.85; margin-bottom:8px; }
+.term-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:14px 0; }
+.term-item { background:#fff; border:1px solid #DDD8CE; padding:12px 14px; border-radius:2px; }
+.term-item .term-key { font-family:'Courier New',monospace; font-size:12px; color:#1A5C38; font-weight:bold; margin-bottom:4px; }
+.term-item .term-val { font-size:12px; color:#444; }
+.data-table-wrap { margin:16px 0; overflow-x:auto; }
+.data-table { width:100%; border-collapse:collapse; font-size:13px; }
+.data-table th { background:#1A5C38; color:#fff; padding:10px 14px; text-align:center; font-family:'Courier New',monospace; font-size:11px; letter-spacing:0.5px; font-weight:normal; }
+.data-table th:first-child { text-align:left; }
+.data-table td { padding:9px 14px; border-bottom:1px solid #EEE; text-align:center; font-family:'Courier New',monospace; font-size:12px; }
+.data-table td:first-child { text-align:left; font-family:Georgia,serif; font-size:13px; color:#2C2C2C; }
+.data-table tr:nth-child(even) td { background:#F5F3EE; }
+.data-table tr:hover td { background:#EBF5EF; }
+.formula-box { background:#fff; border:1px solid #DDD8CE; border-top:3px solid #1A5C38; padding:20px 24px; margin:16px 0; }
+.formula-box .formula-title { font-family:'Courier New',monospace; font-size:11px; color:#1A5C38; letter-spacing:2px; margin-bottom:12px; }
+.formula-box .formula-eq { font-family:'Courier New',monospace; font-size:14px; color:#1F1F1F; background:#F5F3EE; padding:12px 16px; border-radius:2px; margin:8px 0; letter-spacing:0.5px; line-height:1.6; }
+.formula-box .formula-note { font-size:12px; color:#666; margin-top:8px; }
+.bar-chart { margin:16px 0; }
+.bar-row { display:grid; grid-template-columns:140px 1fr 100px; gap:8px; align-items:center; margin-bottom:7px; }
+.bar-country { font-size:12px; color:#444; text-align:right; }
+.bar-track { background:#EEE; border-radius:2px; height:18px; overflow:hidden; }
+.bar-fill { height:100%; border-radius:2px; }
+.bar-val { font-family:'Courier New',monospace; font-size:11px; color:#333; }
+.svg-wrap { text-align:center; margin:16px 0; }
+.obs-note { background:#F0FFF5; border:1px solid #C5EED5; border-radius:3px; padding:14px 18px; margin:14px 0; font-size:13px; color:#1A3A2A; line-height:1.7; }
+.obs-note::before { content:'◈ 관찰 신호'; display:block; font-family:'Courier New',monospace; font-size:10px; color:#1A5C38; letter-spacing:1px; margin-bottom:6px; }
+.error-box { background:#FAEEDA; border-left:3px solid #B8850E; padding:12px 16px; margin:14px 0; font-size:12px; color:#633806; font-family:'Courier New',monospace; }
+.ppr-card { background:#fff; border:1px solid #DDD8CE; border-radius:3px; overflow:hidden; margin-bottom:14px; }
+.ppr-head { background:#1A5C38; color:#fff; font-size:12px; font-family:'Courier New',monospace; padding:8px 14px; letter-spacing:1px; }
+.ppr-body { padding:14px; }
+.ppr-row { display:flex; justify-content:space-between; font-size:12px; padding:4px 0; border-bottom:1px solid #F0EDE8; }
+.ppr-row:last-child { border-bottom:none; }
+.ppr-key { color:#666; }
+.ppr-val { font-family:'Courier New',monospace; font-weight:bold; color:#1A5C38; }
+.discourse-layer { display:grid; grid-template-columns:130px 1fr; gap:0; margin-bottom:2px; }
+.layer-num { background:#1A5C38; color:#fff; font-family:'Courier New',monospace; font-size:11px; padding:12px 14px; display:flex; align-items:center; }
+.layer-content { background:#fff; border:1px solid #DDD8CE; border-left:none; padding:12px 18px; font-size:13px; color:#2C2C2C; line-height:1.7; }
+.layer-content strong { color:#1A5C38; }
+.signal-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:14px 0; }
+.signal-card { background:#fff; border:1px solid #DDD8CE; padding:14px; border-radius:2px; text-align:center; }
+.signal-card .sig-icon { font-size:24px; margin-bottom:6px; }
+.signal-card .sig-label { font-size:11px; color:#888; font-family:'Courier New',monospace; margin-bottom:4px; }
+.signal-card .sig-val { font-size:18px; font-family:'Courier New',monospace; font-weight:bold; color:#1A5C38; }
+.signal-card .sig-note { font-size:10px; color:#666; margin-top:4px; }
+.resilience-box { background:#E8F5EE; border:2px solid #2D8A58; border-radius:3px; padding:20px 24px; margin:14px 0; }
+.resilience-box h4 { color:#1A5C38; font-size:14px; margin-bottom:10px; }
+.resilience-box p { font-size:13px; color:#1A3A2A; line-height:1.75; margin-bottom:8px; }
+.conclusion { background:#F0FFF5; border-left:4px solid #2D8A58; padding:24px 32px; margin:20px 40px; border-radius:2px; }
+.conclusion p { font-size:15px; line-height:1.95; color:#1F1F1F; text-align:justify; margin-bottom:12px; }
+.conclusion p:last-child { margin-bottom:0; }
+.series-box { background:#fff; border:1px solid #DDD8CE; margin:20px 40px; padding:20px; }
+.series-title { font-family:'Courier New',monospace; font-size:11px; color:#1A5C38; letter-spacing:2px; margin-bottom:12px; }
+.series-item { display:flex; gap:12px; padding:6px 0; border-bottom:1px solid #F0EDE8; font-size:12px; }
+.series-item:last-child { border-bottom:none; }
+.series-num { font-family:'Courier New',monospace; color:#B8850E; min-width:40px; }
+.series-status { margin-left:auto; font-family:'Courier New',monospace; font-size:10px; padding:2px 8px; border-radius:2px; }
+.status-done { background:#E8F4F0; color:#27500A; }
+.status-plan { background:#F5F3EE; color:#888; }
+.status-now { background:#E8F5EE; color:#1A5C38; }
+.footer { background:#EBF5EF; padding:28px 40px; text-align:center; border-top:1px solid #DDD8CE; }
+.footer p { font-size:12px; color:#1A5C38; margin-bottom:4px; font-family:'Courier New',monospace; }
+.footer a { color:#2D8A58; text-decoration:none; }
+.footer .engine-tag { margin-top:10px; font-size:10px; color:#888; letter-spacing:1px; }
+@media(max-width:768px){ .section,.engine-box,.conclusion,.series-box,.footer{margin-left:16px;margin-right:16px;padding-left:16px;padding-right:16px;} .header{padding:32px 16px 24px;} .term-grid,.signal-grid{grid-template-columns:1fr;} .bar-row{grid-template-columns:90px 1fr 70px;} }
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-badge">SOUTH KOREA STANDALONE REPORT · #21 · Λ¹²v9.12</div>
+  <h1>🇰🇷 한국 단독편</h1>
+  <h2>계엄의 밤과 민주주의의 회복력 — 한국 사회동역학 심층 분석</h2>
+  <div class="header-meta">늘푸른바다 사회동역학 연구소 · 본 보고서는 Λ¹²v9.12 엔진 기준 산출 · 발행일 2026.05.02</div>
+</div>
+<div class="engine-box">
+  <strong>ENGINE:</strong> Λ¹²v9.12 | ADI §31 포함 | SSRN 6632858 기반<br>
+  <strong>보정식:</strong> Λ¹²_corrected = Λ¹²_raw ÷ OLI × (1−TBI×θ) × (1−ADI×γ) × exp(−k×t) | OLI=0.82<br>
+  <strong>특이 변수:</strong> 2024.12.03 계엄령 선포 사건이 Σ_rep 지수 단기 급등 → 이후 민주주의 회복력 작동 확인
+</div>
+<div class="section">
+  <div class="section-title">연구 목적 선언</div>
+  <h3>이 보고서는 5,180만 한국 민중의 현실을 관찰자의 시선으로 기록합니다</h3>
+  <div class="minjung-box">
+    <p>2024년 12월 3일 밤 10시 23분, 대통령이 계엄령을 선포했습니다. 6시간 후 국회가 190 대 0으로 해제를 결의했습니다. 시민들은 국회 앞에 모였고, 군인들은 돌아갔습니다. 이 사건은 한국 민주주의의 취약성과 회복력을 동시에 보여준 밤이었습니다.</p>
+    <p>Λ¹²는 묻습니다: 이 사건이 일탈인가, 구조인가. 수치가 가리키는 방향을 읽으면 답이 보입니다.</p>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">§0 · 용어 해설</div>
+  <h3>핵심 개념</h3>
+  <div class="term-grid">
+    <div class="term-item"><div class="term-key">Σ_rep (억압형 단절)</div><div class="term-val">지도층이 내부 불만을 억압하거나 표적 전환으로 분출시키는 구조. 계엄 선포는 Σ_rep의 극단적 표출.</div></div>
+    <div class="term-item"><div class="term-key">민주주의 회복력</div><div class="term-val">제도가 위기 시 자정 능력을 발휘하는 구조적 특성. 190명 만장일치 해제 → 헌재 만장일치 파면이 증거.</div></div>
+    <div class="term-item"><div class="term-key">Korea Discount</div><div class="term-val">한국 주식시장이 기업 실적 대비 저평가되는 현상. 지배구조·지정학·정치 불안이 복합 원인.</div></div>
+    <div class="term-item"><div class="term-key">DCI 세대 단층</div><div class="term-val">압축 성장 세대(586세대) vs 저성장 청년세대의 가치관·기회 격차. 합계출산율 0.75로 인구 위기 진입.</div></div>
+    <div class="term-item"><div class="term-key">한일 역사 갈등</div><div class="term-val">강제징용·위안부 미해결이 외교 구조화. 윤 정권 한일관계 개선 후 이재명 정권 재조정 가능성.</div></div>
+    <div class="term-item"><div class="term-key">내재적 고정점</div><div class="term-val">EII §29 개념. 외부 인정에 의존하지 않는 내적 안정성. 한국 시민사회가 계엄 위기에서 보여준 자율성.</div></div>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">Ⅰ · 관찰자 시선</div>
+  <h3>37년 만의 계엄, 6시간 만의 해제 — 민주주의의 두 얼굴</h3>
+  <p>한국은 1987년 민주화 이후 37년 동안 군사 쿠데타 없이 정권 교체를 반복해온 나라입니다. 그 37년의 공백이 2024년 12월 3일 밤 깨졌습니다. 그러나 더 중요한 것은 깨진 방식이 아니라 봉합된 방식입니다 — 190명의 국회의원, 수천 명의 시민, 헌법재판소 만장일치. 제도가 작동했습니다.</p>
+  <div class="signal-grid">
+    <div class="signal-card">
+      <div class="sig-icon">⚖️</div>
+      <div class="sig-label">헌재 파면 표결</div>
+      <div class="sig-val">8:0</div>
+      <div class="sig-note">만장일치 — 제도 회복력 확인</div>
+    </div>
+    <div class="signal-card">
+      <div class="sig-icon">📉</div>
+      <div class="sig-label">GDP 성장 전망 2025</div>
+      <div class="sig-val">1.0~1.5%</div>
+      <div class="sig-note">정치 위기의 경제 비용</div>
+    </div>
+    <div class="signal-card">
+      <div class="sig-icon">👶</div>
+      <div class="sig-label">합계출산율 2024</div>
+      <div class="sig-val">0.75</div>
+      <div class="sig-note">세계 최저 수준 / 인구 위기</div>
+    </div>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">Ⅱ · 국가 통치 구조</div>
+  <h3>강한 대통령제, 분열된 정치 지형</h3>
+  <div class="ppr-card">
+    <div class="ppr-head">2024~2025 정치 구조 주요 사건</div>
+    <div class="ppr-body">
+      <div class="ppr-row"><span class="ppr-key">2024.12.03</span><span class="ppr-val">윤석열 계엄 선포 (오후 10:23)</span></div>
+      <div class="ppr-row"><span class="ppr-key">2024.12.03</span><span class="ppr-val">국회 190:0 해제 결의 (새벽 04:30)</span></div>
+      <div class="ppr-row"><span class="ppr-key">2024.12.14</span><span class="ppr-val">국회 탄핵소추 가결</span></div>
+      <div class="ppr-row"><span class="ppr-key">2025.01.15</span><span class="ppr-val">윤 전 대통령 구속 (현직 대통령 최초)</span></div>
+      <div class="ppr-row"><span class="ppr-key">2025.04.04</span><span class="ppr-val">헌재 8:0 만장일치 파면 확정</span></div>
+      <div class="ppr-row"><span class="ppr-key">2025.06.03</span><span class="ppr-val">이재명 대통령 당선 (대선)</span></div>
+      <div class="ppr-row"><span class="ppr-key">2026.02.19</span><span class="ppr-val">윤 등 내란죄 유죄 판결</span></div>
+    </div>
+  </div>
+  <div class="resilience-box">
+    <h4>🛡️ 민주주의 회복력 — 제도가 작동한 증거</h4>
+    <p>계엄 선포 6시간 내 국회 해제, 111일 헌재 심리, 만장일치 파면, 60일 내 대선 실시. 이 속도와 질서는 1987년 민주화가 제도적으로 내면화됐음을 보여줍니다. BTI 2026은 "한국의 민주적 제도는 일반적으로 효과적이고 안정적"이라고 평가합니다. Freedom House 81/100 유지(2025).</p>
+    <p>단, 동시에 포착되는 신호: 정치 극단화 심화, 딥페이크 정치 공작, 기독교 보수 집단의 정치 영향력 확대, 소환투표·탄핵 반복으로 제도 피로 축적.</p>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">Ⅲ · 기본 통계</div>
+  <h3>한국 핵심 지표 (2024~2025 기준)</h3>
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <tr><th>지표</th><th>수치</th><th>비고</th><th>출처</th></tr>
+      <tr><td>GDP per capita 2024</td><td>USD 36,024</td><td>일본(34,500) 첫 추월</td><td>한국은행 2025.02</td></tr>
+      <tr><td>GDP 성장 2025</td><td>1.0~1.5%</td><td>계엄 위기 경제 비용</td><td>한국은행 / OECD</td></tr>
+      <tr><td>HDI 2022</td><td>0.929 (19위)</td><td>UNDP 2025</td><td>UNDP</td></tr>
+      <tr><td>CPI 2024</td><td>64/100 (30위)</td><td>상승 추세</td><td>TI 2024</td></tr>
+      <tr><td>Freedom House 2025</td><td>81/100 (Free)</td><td>계엄 후 2점 하락</td><td>Freedom House</td></tr>
+      <tr><td>RSF MFI 2025</td><td>47위/180</td><td>—</td><td>RSF 2025</td></tr>
+      <tr><td>합계출산율 2024</td><td>0.75</td><td>세계 최저권</td><td>통계청</td></tr>
+      <tr><td>청년실업 2025.03</td><td>7.5%</td><td>4년래 최고</td><td>통계청</td></tr>
+      <tr><td>소비자심리지수 2024.12</td><td>88.4</td><td>2년 내 최저</td><td>한국은행</td></tr>
+      <tr><td>대미 관세협정 2025.10</td><td>15% 협정</td><td>USD 350억 투자 조건</td><td>코리아 전략무역투자협정</td></tr>
+    </table>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">Ⅳ · 기본 좌표 · 공식 박스</div>
+  <h3>Λ¹²v9.12 한국 산출</h3>
+  <div class="formula-box">
+    <div class="formula-title">ΛSCORE FORMULA — SOUTH KOREA</div>
+    <div class="formula-eq">Λ¹²_corrected = Λ¹²_raw ÷ 0.82 × (1 − 0.280 × 0.70) × (1 − 0.416 × 0.35) × exp(−k×t)</div>
+    <div class="formula-eq">TBI 보정항: (1 − 0.280 × 0.70) = (1 − 0.196) = 0.804</div>
+    <div class="formula-eq">ADI 보정항: (1 − 0.416 × 0.35) = (1 − 0.146) = 0.854 [Transitional — 반도체 강점/LLM 취약]</div>
+    <div class="formula-note">※ TBI 0.280은 일본(0.368)보다 낮음 — 36년 민주화 누적 소화 효과. 계엄 사태는 TBI에 단기 교란 요인. ADI 0.416 Transitional: 삼성·SK하이닉스 반도체 강점이 완충하나 자체 AI 생태계(LLM·클라우드) 취약이 과제.</div>
+  </div>
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <tr><th>변수</th><th>값</th><th>분류</th><th>비고</th></tr>
+      <tr><td>LPI</td><td>0.72</td><td>주목</td><td>청년실업·주거 부담</td></tr>
+      <tr><td>HDI</td><td>0.929</td><td>안정</td><td>세계 19위</td></tr>
+      <tr><td>GPI</td><td>~55위</td><td>주목</td><td>북핵·군사화 반영</td></tr>
+      <tr><td>CPI</td><td>64→0.64</td><td>주목</td><td>개선 추세</td></tr>
+      <tr><td>CFD</td><td>0.58</td><td>주목</td><td>진영 갈등 심화</td></tr>
+      <tr><td>DCI</td><td>0.55</td><td>주목</td><td>출산율 위기·세대단층</td></tr>
+      <tr><td>MFI</td><td>47위</td><td>주목</td><td>계엄 후 하락</td></tr>
+      <tr><td>RHC</td><td>0.647</td><td>위험</td><td>한일·남북 갈등</td></tr>
+      <tr><td>IGI</td><td>0.22</td><td>안정</td><td>제도 억압 낮음</td></tr>
+      <tr><td>AHI</td><td>0.60</td><td>주목</td><td>소득 양극화</td></tr>
+      <tr><td>F_reach</td><td>0.65</td><td>주목</td><td>식량 자급률 과제</td></tr>
+      <tr><td>ADI</td><td>0.416</td><td>Transitional</td><td>반도체↑/LLM↓</td></tr>
+    </table>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">Ⅴ · 레이더 2×2 위상 사분면</div>
+  <h3>안정성 × 개방성 — 한국의 위치</h3>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 520 400" xmlns="http://www.w3.org/2000/svg" width="520" height="400">
+      <rect width="520" height="400" fill="#F5F3EE"/>
+      <rect x="50" y="30" width="210" height="170" fill="#EBF4F0" opacity="0.5"/>
+      <rect x="260" y="30" width="210" height="170" fill="#FFF3CD" opacity="0.4"/>
+      <rect x="50" y="200" width="210" height="170" fill="#FAEEDA" opacity="0.4"/>
+      <rect x="260" y="200" width="210" height="170" fill="#FCEBEB" opacity="0.3"/>
+      <line x1="50" y1="200" x2="470" y2="200" stroke="#555" stroke-width="1.5"/>
+      <line x1="260" y1="30" x2="260" y2="370" stroke="#555" stroke-width="1.5"/>
+      <text x="260" y="18" text-anchor="middle" fill="#3A6A5E" font-size="11" font-family="Courier New">높은 개방성</text>
+      <text x="260" y="388" text-anchor="middle" fill="#888" font-size="11" font-family="Courier New">낮은 개방성</text>
+      <text x="36" y="204" text-anchor="middle" fill="#888" font-size="10" font-family="Courier New" transform="rotate(-90,36,204)">불안정</text>
+      <text x="484" y="204" text-anchor="middle" fill="#3A6A5E" font-size="10" font-family="Courier New" transform="rotate(-90,484,204)">안정</text>
+      <text x="155" y="52" text-anchor="middle" fill="#3A6A5E" font-size="10" font-family="Courier New">개방·안정</text>
+      <text x="365" y="52" text-anchor="middle" fill="#856404" font-size="10" font-family="Courier New">개방·불안정</text>
+      <text x="155" y="380" text-anchor="middle" fill="#A0522D" font-size="10" font-family="Courier New">폐쇄·안정</text>
+      <text x="365" y="380" text-anchor="middle" fill="#791F1F" font-size="10" font-family="Courier New">폐쇄·불안정</text>
+      <!-- 한국 — Q2 개방·불안정 (계엄 이후) -->
+      <circle cx="345" cy="148" r="24" fill="#FFF3CD" stroke="#B8850E" stroke-width="2.5"/>
+      <text x="345" y="144" text-anchor="middle" font-size="18">🇰🇷</text>
+      <text x="345" y="180" text-anchor="middle" fill="#856404" font-size="11" font-family="Courier New" font-weight="bold">한국 현재</text>
+      <!-- 회복 화살표 -->
+      <defs><marker id="grnarr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#1A5C38"/></marker></defs>
+      <line x1="321" y1="148" x2="248" y2="130" stroke="#1A5C38" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#grnarr)"/>
+      <text x="218" y="122" fill="#1A5C38" font-size="9" font-family="Courier New">회복 가능</text>
+      <text x="218" y="134" fill="#1A5C38" font-size="9" font-family="Courier New">경로 (이재명 정권)</text>
+      <!-- 비교 -->
+      <circle cx="148" cy="78" r="14" fill="#EEF3FF" stroke="#1B4F8A" stroke-width="1.5"/>
+      <text x="148" y="76" text-anchor="middle" font-size="12">🇹🇼</text>
+      <text x="148" y="102" text-anchor="middle" fill="#1B4F8A" font-size="9" font-family="Courier New">대만</text>
+      <circle cx="188" cy="108" r="14" fill="#EBF4F0" stroke="#5E9186" stroke-width="1.5"/>
+      <text x="188" y="106" text-anchor="middle" font-size="12">🇯🇵</text>
+      <text x="188" y="132" text-anchor="middle" fill="#3A6A5E" font-size="9" font-family="Courier New">일본</text>
+      <circle cx="140" cy="312" r="22" fill="#FCEBEB" stroke="#8B1A1A" stroke-width="2"/>
+      <text x="140" y="308" text-anchor="middle" font-size="16">🇨🇳</text>
+      <text x="140" y="342" text-anchor="middle" fill="#8B1A1A" font-size="9" font-family="Courier New">중국</text>
+    </svg>
+  </div>
+  <div class="obs-note">계엄 사태 이후 한국은 Q1(개방·안정)에서 Q2(개방·불안정)로 단기 이동했습니다. 이재명 정권의 확장 재정 정책과 소비 심리 회복이 진행 중이나, 정치 극단화와 대미 관세 협정 조건(USD 350억 투자 의무)이 구조적 과제로 남아 있습니다.</div>
+</div>
+<div class="section">
+  <div class="section-title">Ⅵ · GPI 시계열</div>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" width="600" height="200">
+      <rect width="600" height="200" fill="#fff"/>
+      <line x1="70" y1="20" x2="70" y2="170" stroke="#EEE" stroke-width="1"/>
+      <line x1="70" y1="170" x2="570" y2="170" stroke="#CCC" stroke-width="1.5"/>
+      <line x1="70" y1="60" x2="570" y2="60" stroke="#EEE" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <line x1="70" y1="110" x2="570" y2="110" stroke="#EEE" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <text x="62" y="64" text-anchor="end" fill="#888" font-size="9" font-family="Courier New">40위</text>
+      <text x="62" y="114" text-anchor="end" fill="#888" font-size="9" font-family="Courier New">60위</text>
+      <text x="112" y="188" text-anchor="middle" fill="#888" font-size="9" font-family="Courier New">2016</text>
+      <text x="236" y="188" text-anchor="middle" fill="#888" font-size="9" font-family="Courier New">2019</text>
+      <text x="360" y="188" text-anchor="middle" fill="#888" font-size="9" font-family="Courier New">2022</text>
+      <text x="484" y="188" text-anchor="middle" fill="#888" font-size="9" font-family="Courier New">2024</text>
+      <text x="550" y="188" text-anchor="middle" fill="#888" font-size="9" font-family="Courier New">2025</text>
+      <!-- 한국 GPI 안정적 중위권 유지 후 2025 하락 예상 -->
+      <polyline points="112,98 174,100 236,102 298,104 360,106 422,108 484,110 520,115 550,122" fill="none" stroke="#1A5C38" stroke-width="2.5"/>
+      <circle cx="550" cy="122" r="4" fill="#B8850E"/>
+      <text x="558" y="120" fill="#B8850E" font-size="9" font-family="Courier New">계엄↓</text>
+      <text x="300" y="15" text-anchor="middle" fill="#1A5C38" font-size="11" font-family="Courier New">한국 GPI 순위 추이</text>
+      <!-- 계엄 사건 표시 -->
+      <line x1="520" y1="20" x2="520" y2="170" stroke="#B8850E" stroke-width="1" stroke-dasharray="3,2"/>
+      <text x="522" y="32" fill="#B8850E" font-size="9" font-family="Courier New">계엄</text>
+      <text x="522" y="44" fill="#B8850E" font-size="9" font-family="Courier New">2024.12</text>
+    </svg>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">Ⅶ · PPR — 5개 구조 블록</div>
+  <div class="ppr-card"><div class="ppr-head">PPR-1 · 정치</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">체제</span><span class="ppr-val">자유민주주의 / Freedom House 81</span></div>
+    <div class="ppr-row"><span class="ppr-key">계엄→파면</span><span class="ppr-val">민주화 이후 최대 정치위기 → 제도 해결</span></div>
+    <div class="ppr-row"><span class="ppr-key">2025.06 대선</span><span class="ppr-val">이재명(민주당) 당선 — 진보 정권 교체</span></div>
+    <div class="ppr-row"><span class="ppr-key">극단화</span><span class="ppr-val">진영 딥페이크·가짜뉴스 / 기독교 보수 정치화</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-2 · 경제</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">GDP per capita</span><span class="ppr-val">USD 36,024 (일본 추월)</span></div>
+    <div class="ppr-row"><span class="ppr-key">2025 성장</span><span class="ppr-val">1.0~1.5% — 계엄 충격</span></div>
+    <div class="ppr-row"><span class="ppr-key">반도체</span><span class="ppr-val">삼성·SK하이닉스 / 미중 경쟁 사이 균형</span></div>
+    <div class="ppr-row"><span class="ppr-key">대미 협정</span><span class="ppr-val">관세 15% 조건 / USD 350억 투자 의무</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-3 · 사회</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">출산율</span><span class="ppr-val">0.75 (2024) — 세계 최저권</span></div>
+    <div class="ppr-row"><span class="ppr-key">청년실업</span><span class="ppr-val">7.5% (2025.03) — 4년 최고</span></div>
+    <div class="ppr-row"><span class="ppr-key">주거</span><span class="ppr-val">수도권 부동산 고공 / 청년 자산 접근 제한</span></div>
+    <div class="ppr-row"><span class="ppr-key">젠더 갈등</span><span class="ppr-val">남녀 갈등 구조화 / CFD 0.58 반영</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-4 · 역사</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">TBI</span><span class="ppr-val">0.280 — 민주화 소화 진행 중</span></div>
+    <div class="ppr-row"><span class="ppr-key">일제 식민 미해결</span><span class="ppr-val">강제징용·위안부 → 한일 외교 뇌관</span></div>
+    <div class="ppr-row"><span class="ppr-key">한국전쟁</span><span class="ppr-val">분단 구조 지속 / 남북 철도·도로 철거</span></div>
+    <div class="ppr-row"><span class="ppr-key">민주화 운동</span><span class="ppr-val">5.18→6.10→촛불 → 제도적 흡수</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-5 · 지정학</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">북핵</span><span class="ppr-val">2025.01 Hwasong-16B 발사 / 위협 고도화</span></div>
+    <div class="ppr-row"><span class="ppr-key">한미동맹</span><span class="ppr-val">USFK 유지 / 방위비 분담 재협상</span></div>
+    <div class="ppr-row"><span class="ppr-key">대중 관계</span><span class="ppr-val">수출 25% 의존 / 사드 갈등 잠재</span></div>
+    <div class="ppr-row"><span class="ppr-key">ADI</span><span class="ppr-val">0.416 Transitional / 반도체↑ AI생태계↓</span></div>
+  </div></div>
+</div>
+<div class="section">
+  <div class="section-title">Ⅷ · Λ¹² 12축 레이더</div>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" width="400" height="400">
+      <rect width="400" height="400" fill="#F5F3EE"/>
+      <circle cx="200" cy="200" r="150" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+      <circle cx="200" cy="200" r="112" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+      <circle cx="200" cy="200" r="75" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+      <circle cx="200" cy="200" r="37" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+      <line x1="200" y1="200" x2="200" y2="50" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="275" y2="62" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="330" y2="118" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="350" y2="200" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="330" y2="282" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="275" y2="338" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="200" y2="350" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="125" y2="338" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="70" y2="282" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="50" y2="200" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="70" y2="118" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="125" y2="62" stroke="#EEE" stroke-width="0.7"/>
+      <!-- 한국 — 중간 수준 전반적 균형, CFD·RHC 돌출 -->
+      <polygon points="200,110 258,106 304,136 316,200 296,260 260,316 200,320 142,314 90,262 72,200 90,142 140,104" fill="#1A5C38" fill-opacity="0.18" stroke="#1A5C38" stroke-width="2"/>
+      <text x="200" y="42" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">LPI</text>
+      <text x="286" y="54" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">HDI</text>
+      <text x="344" y="108" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">GPI</text>
+      <text x="362" y="202" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">CPI</text>
+      <text x="344" y="294" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">CFD</text>
+      <text x="286" y="350" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">DCI</text>
+      <text x="200" y="366" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">MFI</text>
+      <text x="114" y="350" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">RHC</text>
+      <text x="56" y="294" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">IGI</text>
+      <text x="38" y="202" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">AHI</text>
+      <text x="56" y="108" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">F_reach</text>
+      <text x="114" y="54" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">ADI</text>
+    </svg>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">Ⅸ · 담론육층 — 한국 독해</div>
+  <div style="margin:14px 0;">
+    <div class="discourse-layer"><div class="layer-num">1층<br>데이터</div><div class="layer-content"><strong>무엇이 보이는가:</strong> GDP per capita 36,024달러로 일본 첫 추월. HDI 0.929 세계 19위. 동시에 합계출산율 0.75 세계 최저권, 청년실업 7.5%, 소비자심리 88.4. 성장과 위기가 같은 숫자 안에 공존.</div></div>
+    <div class="discourse-layer"><div class="layer-num">2층<br>이해관계</div><div class="layer-content"><strong>누가 이익을 얻는가:</strong> 재벌 대기업(삼성·SK·현대)은 반도체 AI 붐 수혜. 청년·소상공인은 물가·주거·실업 압박. 정치권은 탄핵·계엄·선거를 자원으로 활용. 미국은 방위비·무역협정에서 한국의 지정학적 의존을 레버리지로 사용.</div></div>
+    <div class="discourse-layer"><div class="layer-num">3층<br>역사 패턴</div><div class="layer-content"><strong>이전에도 있었는가:</strong> 한국은 20세기에만 일제 식민→분단→전쟁→군부독재→민주화를 압축 경험했습니다. 2024년 계엄은 이 역사의 반복처럼 보이지만 — 제도가 막았다는 점에서 다릅니다. 5.18(1980)과 2024.12.03의 차이가 37년 민주화의 실질입니다.</div></div>
+    <div class="discourse-layer"><div class="layer-num">4층<br>시각 역전</div><div class="layer-content"><strong>반대로 보면:</strong> 합계출산율 0.75는 위기 지표지만 — 한국 청년이 아이를 낳지 않는 선택은 경제적 합리성의 결과입니다. 이는 정책 실패가 아니라 구조 실패의 신호. ADI 0.416은 반도체 강국이 AI 생태계에서 왜 여전히 의존적인지를 가리킵니다 — 하드웨어와 소프트웨어 사이의 구조적 단절.</div></div>
+    <div class="discourse-layer"><div class="layer-num">5층<br>프레임</div><div class="layer-content"><strong>Λ¹² 위상 진단:</strong> 한국은 계엄 사태로 Q1에서 Q2로 단기 이동했으나 제도적 회복력으로 복귀 가능 구간에 있습니다. 그러나 DCI(세대단층 0.55)와 CFD(진영갈등 0.58)의 구조적 상승이 장기 과제입니다. 가장 심각한 변수는 인구 위기 — 이것은 정책으로 빠르게 되돌리기 어려운 구조적 전환입니다.</div></div>
+    <div class="discourse-layer"><div class="layer-num" style="background:#3A6A5E;">6층<br>판단 유보</div><div class="layer-content" style="background:#E8F4F0;"><strong>이 층은 5,180만 한국 민중의 몫입니다.</strong> 민주주의의 회복력을 어떻게 지속 가능하게 만들 것인가 — 수치는 방향을 가리킬 뿐입니다.</div></div>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">Ⅹ · 오차 범위</div>
+  <div class="error-box">※ GPI 2025 순위 계엄 사태 반영 여부 미확인 — 2026 발표 시 하락 가능성. ADI 산출 시 삼성·SK하이닉스의 하드웨어 역량이 소프트웨어 AI 생태계로 전환되는 속도를 과대평가할 가능성. 합계출산율 2025년 추가 하락 가능 — 0.7 미만 진입 시 DCI 재산출 필요.</div>
+</div>
+<div class="section">
+  <div class="section-title">ⅩⅠ · 결론 궤도</div>
+  <div class="conclusion">
+    <p>2024년 12월 3일 밤, 한국은 스스로를 시험했습니다. 37년 동안 쌓아온 민주주의가 6시간을 버텼습니다. 그것이 한국의 현재 주소입니다.</p>
+    <p>TBI 0.280은 말합니다 — 식민과 전쟁과 독재의 기억을 한국 민중이 부분적으로 소화해왔다는 것을. 촛불이 그랬고, 2024년 12월의 밤이 그랬습니다. 그러나 소화는 완성이 아닙니다. 과정입니다.</p>
+    <p>합계출산율 0.75가 말하는 것은 무엇인가. 아이를 낳지 않는 나라가 진짜 두려워하는 것이 무엇인지 — 그 물음이 한국의 다음 10년을 규정할 것입니다. 반도체가 세계를 먹여 살리는 동안, 한국 청년은 자신의 미래를 어디서 찾고 있는가.</p>
+    <p>Λ¹²는 답하지 않습니다. 다만 수치가 가리키는 곳을 보여줄 뿐입니다. 그 다음은 5,180만의 몫입니다.</p>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title">ⅩⅡ · 시리즈 현황</div>
+  <div class="series-box">
+    <div class="series-title">동북아시아 시리즈 — Λ¹²v9.12</div>
+    <div class="series-item"><span class="series-num">#20</span><span class="series-name">동북아시아 권역 비교편</span><span class="series-status status-done">완성</span></div>
+    <div class="series-item"><span class="series-num">#21</span><span class="series-name">한국 단독편 v1.0 (현재 문서)</span><span class="series-status status-now">완성</span></div>
+    <div class="series-item"><span class="series-num">#22</span><span class="series-name">일본 단독편 v1.0</span><span class="series-status status-plan">예정</span></div>
+    <div class="series-item"><span class="series-num">#23</span><span class="series-name">중국 단독편 v1.0</span><span class="series-status status-done">완성</span></div>
+    <div class="series-item"><span class="series-num">#24</span><span class="series-name">대만 단독편 v1.0</span><span class="series-status status-done">완성</span></div>
+    <div class="series-item"><span class="series-num">#25</span><span class="series-name">북한 단독편 v1.0</span><span class="series-status status-plan">예정</span></div>
+  </div>
+</div>
+<div class="footer">
+  <p>늘푸른바다 사회동역학 연구소 (Everblue Sea Institute for Social Dynamics)</p>
+  <p>소장 청해(淸海) · Claude (Anthropic) 연구 파트너</p>
+  <p><a href="https://badaegopa.tistory.com">badaegopa.tistory.com</a> · <a href="https://everbluesea.org">everbluesea.org</a> · contact@everbluesea.org</p>
+  <div class="engine-tag">Engine: Λ¹²v9.12 | ADI §31 포함 | SSRN 6632858 기반 | 한국_Λ¹²v9.12_20260502.html</div>
+</div>
+</body>
+</html>
