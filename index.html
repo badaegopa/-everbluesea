@@ -1504,7 +1504,26 @@ function scrollToRegion(regionId) {
     'tools':          { icon:'🔧', ko:'도구·분석',   en:'Tools & Analysis',   color:'#4A7FA8', bg:'#D4E5F0' },
   };
 
-  function parseName(fn) {
+  const LABEL_MAP = {
+  'taiwan': '대만 (Taiwan)',
+  'northkorea': '북한 (North Korea)',
+  'northeast-asia': '동북아비교 (Northeast Asia)',
+  'korea': '한국 (Korea)',
+  'japan': '일본 (Japan)',
+  'china': '중국 (China)',
+  'south-asia-1': '남아시아-1 (South Asia 1)',
+  'southeast-asia-2': '동남아비교-2 (Southeast Asia 2)',
+  'southeast-asia-1': '동남아비교-1 (Southeast Asia 1)',
+  'west-europe-1': '서유럽-1 (West Europe 1)',
+  'south-europe-1': '남유럽-1 (South Europe 1)',
+  'north-europe-1': '북유럽-1 (North Europe 1)',
+  'east-europe-1': '동유럽-1 (East Europe 1)',
+  'balkans-1': '발칸-1 (Balkans 1)'
+};
+
+function parseName(fn) {
+  const key = fn.replace('.html','').replace(/^v[\d.]+_/,'').replace(/_\d{8}.*/,'').replace(/_/g,'-');
+  if (LABEL_MAP[key]) return LABEL_MAP[key];
     return fn.replace('.html','')
       .replace(/^v[\d.]+_/,'')
       .replace(/_\d{8}.*/,'')
