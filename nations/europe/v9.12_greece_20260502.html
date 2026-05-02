@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>그리스 단독편 — Λ¹²v9.12 | 늘푸른바다 사회동역학 연구소</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#F5F3EE; color:#2C2C2C; font-family:Georgia,'Times New Roman',serif; line-height:1.75; }
+.header { background:linear-gradient(135deg,#1A4A6B 0%,#1A6B4A 50%,#0A3A5A 100%); padding:48px 40px 36px; position:relative; overflow:hidden; }
+.header::before { content:'復'; position:absolute; right:40px; top:10px; font-size:160px; color:rgba(255,255,255,0.06); font-family:Georgia,serif; font-weight:bold; line-height:1; }
+.header-badge { display:inline-block; background:rgba(255,255,255,0.18); color:#fff; font-family:'Courier New',monospace; font-size:11px; padding:4px 12px; border-radius:2px; letter-spacing:1.5px; margin-bottom:16px; }
+.header h1 { color:#fff; font-size:30px; font-weight:normal; margin-bottom:6px; }
+.header h2 { color:rgba(255,255,255,0.85); font-size:15px; font-weight:normal; }
+.header-meta { margin-top:20px; color:rgba(255,255,255,0.65); font-family:'Courier New',monospace; font-size:11px; letter-spacing:1px; }
+.engine-box { background:#fff; border-left:4px solid #B8850E; padding:14px 20px; margin:24px 40px; font-family:'Courier New',monospace; font-size:12px; color:#595959; }
+.engine-box strong { color:#B8850E; }
+.section { padding:32px 40px; border-bottom:1px solid #DDD8CE; }
+.section-title { font-size:13px; font-family:'Courier New',monospace; color:#1A4A6B; letter-spacing:2px; text-transform:uppercase; margin-bottom:16px; }
+.section h3 { font-size:20px; color:#1F1F1F; font-weight:normal; margin-bottom:14px; }
+.section p { font-size:14px; color:#3A3A3A; margin-bottom:10px; text-align:justify; }
+.minjung-box { background:#EEF5F0; border-left:4px solid #1A6B4A; padding:20px 24px; margin:14px 0; border-radius:2px; }
+.minjung-box p { font-size:14px; color:#0A2A1A; line-height:1.85; margin-bottom:8px; }
+.term-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:14px 0; }
+.term-item { background:#fff; border:1px solid #DDD8CE; padding:12px 14px; border-radius:2px; }
+.term-item .term-key { font-family:'Courier New',monospace; font-size:12px; color:#1A4A6B; font-weight:bold; margin-bottom:4px; }
+.term-item .term-val { font-size:12px; color:#444; }
+.data-table-wrap { margin:16px 0; overflow-x:auto; }
+.data-table { width:100%; border-collapse:collapse; font-size:13px; }
+.data-table th { background:#1A4A6B; color:#fff; padding:10px 14px; text-align:center; font-family:'Courier New',monospace; font-size:11px; font-weight:normal; }
+.data-table th:first-child { text-align:left; }
+.data-table td { padding:9px 14px; border-bottom:1px solid #EEE; text-align:center; font-family:'Courier New',monospace; font-size:12px; }
+.data-table td:first-child { text-align:left; font-family:Georgia,serif; font-size:13px; }
+.data-table tr:nth-child(even) td { background:#F5F3EE; }
+.formula-box { background:#fff; border:1px solid #DDD8CE; border-top:3px solid #1A4A6B; padding:20px 24px; margin:16px 0; }
+.formula-box .formula-title { font-family:'Courier New',monospace; font-size:11px; color:#1A4A6B; letter-spacing:2px; margin-bottom:12px; }
+.formula-box .formula-eq { font-family:'Courier New',monospace; font-size:13px; color:#1F1F1F; background:#F5F3EE; padding:12px 16px; border-radius:2px; margin:8px 0; line-height:1.6; }
+.formula-box .formula-note { font-size:12px; color:#666; margin-top:8px; }
+.svg-wrap { text-align:center; margin:16px 0; }
+.obs-note { background:#EEF5F0; border:1px solid #B5D5C5; border-radius:3px; padding:14px 18px; margin:14px 0; font-size:13px; color:#0A2A1A; line-height:1.7; }
+.obs-note::before { content:'◈ 관찰 신호'; display:block; font-family:'Courier New',monospace; font-size:10px; color:#1A4A6B; letter-spacing:1px; margin-bottom:6px; }
+.error-box { background:#FAEEDA; border-left:3px solid #B8850E; padding:12px 16px; margin:14px 0; font-size:12px; color:#633806; font-family:'Courier New',monospace; }
+.ppr-card { background:#fff; border:1px solid #DDD8CE; border-radius:3px; overflow:hidden; margin-bottom:14px; }
+.ppr-head { background:#1A4A6B; color:#fff; font-size:12px; font-family:'Courier New',monospace; padding:8px 14px; letter-spacing:1px; }
+.ppr-body { padding:14px; }
+.ppr-row { display:flex; justify-content:space-between; font-size:12px; padding:4px 0; border-bottom:1px solid #F0EDE8; }
+.ppr-row:last-child { border-bottom:none; }
+.ppr-key { color:#666; }
+.ppr-val { font-family:'Courier New',monospace; font-weight:bold; color:#1A4A6B; }
+.discourse-layer { display:grid; grid-template-columns:130px 1fr; gap:0; margin-bottom:2px; }
+.layer-num { background:#1A4A6B; color:#fff; font-family:'Courier New',monospace; font-size:11px; padding:12px 14px; display:flex; align-items:center; }
+.layer-content { background:#fff; border:1px solid #DDD8CE; border-left:none; padding:12px 18px; font-size:13px; color:#2C2C2C; line-height:1.7; }
+.layer-content strong { color:#1A4A6B; }
+.signal-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:14px 0; }
+.signal-card { background:#fff; border:1px solid #DDD8CE; padding:14px; border-radius:2px; text-align:center; }
+.signal-card .sig-label { font-size:11px; color:#888; font-family:'Courier New',monospace; margin-bottom:4px; }
+.signal-card .sig-val { font-size:16px; font-family:'Courier New',monospace; font-weight:bold; color:#1A4A6B; }
+.signal-card .sig-note { font-size:10px; color:#666; margin-top:4px; }
+.conclusion { background:#EEF5F0; border-left:4px solid #1A6B4A; padding:24px 32px; margin:20px 40px; border-radius:2px; }
+.conclusion p { font-size:15px; line-height:1.95; color:#1F1F1F; text-align:justify; margin-bottom:12px; }
+.conclusion p:last-child { margin-bottom:0; }
+.series-box { background:#fff; border:1px solid #DDD8CE; margin:20px 40px; padding:20px; }
+.series-title { font-family:'Courier New',monospace; font-size:11px; color:#1A4A6B; letter-spacing:2px; margin-bottom:12px; }
+.series-item { display:flex; gap:12px; padding:6px 0; border-bottom:1px solid #F0EDE8; font-size:12px; }
+.series-item:last-child { border-bottom:none; }
+.series-num { font-family:'Courier New',monospace; color:#B8850E; min-width:40px; }
+.series-status { margin-left:auto; font-family:'Courier New',monospace; font-size:10px; padding:2px 8px; border-radius:2px; }
+.status-done { background:#E8F4F0; color:#27500A; }
+.status-now { background:#EEF5F0; color:#1A4A6B; }
+.status-plan { background:#F5F3EE; color:#888; }
+.footer { background:#EBF5F0; padding:28px 40px; text-align:center; border-top:1px solid #DDD8CE; }
+.footer p { font-size:12px; color:#1A4A6B; margin-bottom:4px; font-family:'Courier New',monospace; }
+.footer a { color:#1A6B4A; text-decoration:none; }
+.footer .engine-tag { margin-top:10px; font-size:10px; color:#888; letter-spacing:1px; }
+@media(max-width:768px){ .section,.engine-box,.conclusion,.series-box,.footer{padding-left:16px;padding-right:16px;margin-left:0;margin-right:0;} .header{padding:32px 16px 24px;} .term-grid,.signal-grid{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-badge">GREECE STANDALONE · #E-03 · Λ¹²v9.12</div>
+  <h1>🇬🇷 그리스 단독편</h1>
+  <h2>부채의 나라에서 흑자의 나라로 — 회복의 숫자와 민중의 현실 사이</h2>
+  <div class="header-meta">늘푸른바다 사회동역학 연구소 · Λ¹²v9.12 엔진 기준 · 발행일 2026.05.02</div>
+</div>
+
+<div class="engine-box">
+  <strong>ENGINE:</strong> Λ¹²v9.12 | ADI §31 포함 | SSRN 6632858 기반<br>
+  <strong>특이사항:</strong> GDP 흑자 전환 vs 부채/GDP 153% 공존 / 프레다터 스파이웨어 스캔들<br>
+  <strong>보정식:</strong> Λ¹²_corrected = Λ¹²_raw ÷ OLI × (1−TBI×θ) × (1−ADI×γ) × exp(−k×t) | OLI=0.81
+</div>
+
+<div class="section">
+  <div class="section-title">연구 목적</div>
+  <h3>이 보고서는 1,050만 그리스 민중의 현실을 관찰자의 시선으로 기록합니다</h3>
+  <div class="minjung-box">
+    <p>그리스는 2010년대 유럽 재정위기의 상징이었습니다. IMF·EU 구제금융, 긴축, 연금 삭감, 청년 실업 50%. 그리고 2024년 — EU 6개국 중 하나인 재정흑자 국가가 됐습니다. GDP 대비 부채 비율은 200%에서 153%로 떨어졌습니다.</p>
+    <p>그런데 Λ-Score 0.397 Danger. 왜인가. 숫자는 회복됐지만 — 스파이웨어 스캔들, 부패 구조, 이민 pushback, 그리고 2023년 57명을 죽인 템피 열차 사고가 보여주는 국가 인프라 실패. 회복의 숫자와 민중의 현실 사이 간극이 Λ¹²가 읽는 것입니다.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">§0 · 용어 해설</div>
+  <div class="term-grid">
+    <div class="term-item"><div class="term-key">그레키트(Grexit) 위기</div><div class="term-val">2010~2018 유로존 탈퇴 위기. 3차 구제금융 총 2,890억 유로. 긴축으로 청년 실업 50% 기록. TBI의 역사적 배경.</div></div>
+    <div class="term-item"><div class="term-key">미초타키스 (Kyriakos Mitsotakis)</div><div class="term-val">2019년부터 총리. 뉴데모크라시(ND) 보수당. 재정 회복 성과. 동시에 스파이웨어 스캔들·부패 의혹 지속.</div></div>
+    <div class="term-item"><div class="term-key">프레다터 스파이웨어 스캔들</div><div class="term-val">야당 지도자·언론인 92명 이상 감청. '그리스판 워터게이트'. EU 의회 법치 위반 비판 결의. 책임자 기소 없음.</div></div>
+    <div class="term-item"><div class="term-key">템피 열차 사고(2023)</div><div class="term-val">2월 57명 사망. 대학생 집중 피해. 인프라·인력 방치가 원인. 정부 책임 규탄 대규모 시위. 기소 없음.</div></div>
+    <div class="term-item"><div class="term-key">황금여명(Golden Dawn)</div><div class="term-val">재정위기 시 부상한 신나치 정당. 2019년 의석 전멸. 지도부 범죄조직 유죄 판결. 해산. 극우 포퓰리즘의 구조적 취약성 노출.</div></div>
+    <div class="term-item"><div class="term-key">티서(Tisza) 유사 현상</div><div class="term-val">2025년 말 그리스 피해자 어머니 카리스티아누 31.8% 지지. 기성 정치 외부에서 '카타르시스' 운동 부상.</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅰ · 관찰자 시선</div>
+  <h3>회복의 역설 — 흑자 국가의 Danger 진단</h3>
+  <p>2024년 그리스는 재정흑자 1.3% 달성, 투자등급 신용 회복, 관광 기록 경신. 미초타키스는 "그리스가 정상으로 돌아왔다"고 선언했습니다. 숫자는 그 말을 지지합니다.</p>
+  <p>그러나 가계 소비가 GDP의 69%(유로존 최고), 생산성은 낮고, 렌트 급등으로 청년 주거난 심화, 부패 구조 불변, 스파이웨어 스캔들 책임자 기소 없음. 회복은 거시지표의 회복이고 — 민중의 삶은 다른 속도로 움직이고 있습니다.</p>
+  <div class="signal-grid">
+    <div class="signal-card"><div class="sig-label">재정흑자 2024</div><div class="sig-val">+1.3% GDP</div><div class="sig-note">EU 6개국만 달성</div></div>
+    <div class="signal-card"><div class="sig-label">부채/GDP</div><div class="sig-val">153.6%</div><div class="sig-note">200%에서 하락 중</div></div>
+    <div class="signal-card"><div class="sig-label">감청 피해자</div><div class="sig-val">92명+</div><div class="sig-note">스파이웨어 스캔들</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅱ · 기본 통계</div>
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <tr><th>지표</th><th>수치</th><th>비고</th><th>출처</th></tr>
+      <tr><td>인구</td><td>약 1,050만 명</td><td>감소 추세</td><td>Eurostat</td></tr>
+      <tr><td>GDP per capita</td><td>USD ~22,000</td><td>EU 하위권</td><td>IMF 2024</td></tr>
+      <tr><td>재정흑자 2024</td><td>+1.3% GDP</td><td>EU 6개국만</td><td>Eurostat 2024</td></tr>
+      <tr><td>부채/GDP</td><td>153.6%</td><td>200%→하락</td><td>Eurostat 2024</td></tr>
+      <tr><td>실업률</td><td>~10% (2024)</td><td>EU 최고권</td><td>ELSTAT</td></tr>
+      <tr><td>Freedom House 2025</td><td>79/100 (Free)</td><td>스캔들 영향 하락</td><td>FH 2025</td></tr>
+      <tr><td>템피 사고(2023)</td><td>사망 57명</td><td>기소 없음</td><td>그리스 언론</td></tr>
+      <tr><td>관광 수입 2024</td><td>GDP ~25%</td><td>역대 최고</td><td>그리스 관광부</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅲ · 기본 좌표 · 공식</div>
+  <div class="formula-box">
+    <div class="formula-title">ΛSCORE FORMULA — GREECE</div>
+    <div class="formula-eq">Λ¹²_corrected = Λ¹²_raw ÷ 0.81 × (1 − 0.580 × 0.70) × (1 − 0.390 × 0.35) × exp(−k×t)</div>
+    <div class="formula-eq">TBI 보정항: (1 − 0.580 × 0.70) = (1 − 0.406) = 0.594 [그레키트 위기 트라우마]</div>
+    <div class="formula-eq">ADI 보정항: (1 − 0.390 × 0.35) = (1 − 0.137) = 0.863</div>
+    <div class="formula-note">※ 그리스 TBI 0.580의 핵심 — 재정위기 10년(2010~2019)이 청년 세대에게 남긴 구조적 트라우마. 독일·네덜란드 주도 긴축이 부과한 외생적 고통. 민중이 주민투표(2015)에서 거부했지만 결국 수용할 수밖에 없었던 경험. 이것이 정치 신뢰 하락과 포퓰리즘 부상의 뿌리.</div>
+  </div>
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <tr><th>변수</th><th>값</th><th>분류</th><th>비고</th></tr>
+      <tr><td>LPI</td><td>0.58</td><td>주목</td><td>회복 중·렌트 급등</td></tr>
+      <tr><td>GPI</td><td>~60위</td><td>주목</td><td>터키 갈등</td></tr>
+      <tr><td>CPI</td><td>49/100</td><td>주목</td><td>EU 하위</td></tr>
+      <tr><td>CFD</td><td>0.62</td><td>위험</td><td>이민·세대 갈등</td></tr>
+      <tr><td>DCI</td><td>0.60</td><td>위험</td><td>위기 세대 단층</td></tr>
+      <tr><td>MFI</td><td>~89위</td><td>주목</td><td>스파이웨어 후 하락</td></tr>
+      <tr><td>RHC</td><td>0.620</td><td>위험</td><td>터키·키프로스 갈등</td></tr>
+      <tr><td>IGI</td><td>0.62</td><td>위험</td><td>부패 구조 지속</td></tr>
+      <tr><td>TBI</td><td>0.580</td><td>주목</td><td>그레키트 위기</td></tr>
+      <tr><td>ADI</td><td>0.390</td><td>Transitional</td><td>중간 수준</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅳ · 위상 사분면</div>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 520 400" xmlns="http://www.w3.org/2000/svg" width="520" height="400">
+      <rect width="520" height="400" fill="#F5F3EE"/>
+      <rect x="50" y="30" width="210" height="170" fill="#EBF4F0" opacity="0.5"/>
+      <rect x="260" y="30" width="210" height="170" fill="#FFF3CD" opacity="0.4"/>
+      <rect x="50" y="200" width="210" height="170" fill="#FAEEDA" opacity="0.4"/>
+      <rect x="260" y="200" width="210" height="170" fill="#FCEBEB" opacity="0.4"/>
+      <line x1="50" y1="200" x2="470" y2="200" stroke="#555" stroke-width="1.5"/>
+      <line x1="260" y1="30" x2="260" y2="370" stroke="#555" stroke-width="1.5"/>
+      <text x="260" y="18" text-anchor="middle" fill="#3A6A5E" font-size="11" font-family="Courier New">높은 개방성</text>
+      <text x="260" y="388" text-anchor="middle" fill="#888" font-size="11" font-family="Courier New">낮은 개방성</text>
+      <text x="36" y="204" text-anchor="middle" fill="#888" font-size="10" font-family="Courier New" transform="rotate(-90,36,204)">불안정</text>
+      <text x="484" y="204" text-anchor="middle" fill="#3A6A5E" font-size="10" font-family="Courier New" transform="rotate(-90,484,204)">안정</text>
+      <text x="155" y="52" text-anchor="middle" fill="#3A6A5E" font-size="10" font-family="Courier New">개방·안정</text>
+      <text x="365" y="52" text-anchor="middle" fill="#856404" font-size="10" font-family="Courier New">개방·불안정</text>
+      <text x="155" y="380" text-anchor="middle" fill="#A0522D" font-size="10" font-family="Courier New">폐쇄·안정</text>
+      <text x="365" y="380" text-anchor="middle" fill="#791F1F" font-size="10" font-family="Courier New">폐쇄·불안정</text>
+      <!-- 그리스 Q2 — 개방·불안정 -->
+      <circle cx="345" cy="128" r="24" fill="#EEF5F0" stroke="#1A4A6B" stroke-width="2.5"/>
+      <text x="345" y="124" text-anchor="middle" font-size="18">🇬🇷</text>
+      <text x="345" y="162" text-anchor="middle" fill="#1A4A6B" font-size="11" font-family="Courier New" font-weight="bold">그리스</text>
+      <!-- 회복 화살표 -->
+      <defs><marker id="grarr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#1A6B4A"/></marker></defs>
+      <line x1="325" y1="120" x2="248" y2="105" stroke="#1A6B4A" stroke-width="1.2" stroke-dasharray="4,2" marker-end="url(#grarr)"/>
+      <text x="215" y="98" fill="#1A6B4A" font-size="9" font-family="Courier New">재정회복</text>
+      <text x="215" y="110" fill="#1A6B4A" font-size="9" font-family="Courier New">방향성</text>
+      <!-- 2015 최저점 표시 -->
+      <circle cx="385" cy="250" r="6" fill="#FAEEDA" stroke="#B8850E" stroke-width="1.5"/>
+      <text x="395" y="248" fill="#B8850E" font-size="9" font-family="Courier New">2015 최저점</text>
+      <text x="395" y="260" fill="#B8850E" font-size="9" font-family="Courier New">(그레키트 위기)</text>
+      <defs><marker id="bluarr2" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#1A4A6B"/></marker></defs>
+      <line x1="385" y1="244" x2="360" y2="152" stroke="#1A4A6B" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#bluarr2)"/>
+      <!-- 비교 -->
+      <circle cx="188" cy="108" r="14" fill="#EBF4F0" stroke="#5E9186" stroke-width="1.5"/>
+      <text x="188" y="106" text-anchor="middle" font-size="12">🇩🇪</text>
+    </svg>
+  </div>
+  <div class="obs-note">그리스는 Q2(개방·불안정) 구간에서 Q1(개방·안정) 방향으로 이동 중입니다. 재정지표는 회복됐지만 민중의 신뢰 회복은 훨씬 느립니다. 스파이웨어 스캔들·템피 사고 무책임이 이 이동을 가로막고 있습니다.</div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅴ · PPR — 5개 구조 블록</div>
+  <div class="ppr-card"><div class="ppr-head">PPR-1 · 정치</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">체제</span><span class="ppr-val">Freedom House 79 / 의회 민주주의</span></div>
+    <div class="ppr-row"><span class="ppr-key">스파이웨어</span><span class="ppr-val">야당·언론 92명 감청 / 책임자 기소 없음</span></div>
+    <div class="ppr-row"><span class="ppr-key">야당 분열</span><span class="ppr-val">시리자 한자릿수 / '누가 대안?' 진공상태</span></div>
+    <div class="ppr-row"><span class="ppr-key">카리스티아누</span><span class="ppr-val">피해자 어머니 31.8% / 기성정치 외부 도전</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-2 · 경제</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">재정흑자</span><span class="ppr-val">+1.3% GDP (2024) / EU 6개국만</span></div>
+    <div class="ppr-row"><span class="ppr-key">부채</span><span class="ppr-val">153.6% GDP / 200%에서 하락 중</span></div>
+    <div class="ppr-row"><span class="ppr-key">관광</span><span class="ppr-val">GDP 25% / 소비 편중 구조 지속</span></div>
+    <div class="ppr-row"><span class="ppr-key">렌트</span><span class="ppr-val">급등 / 청년 주거 위기 심화</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-3 · 사회</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">실업</span><span class="ppr-val">~10% / EU 최고권 / 청년 더 높음</span></div>
+    <div class="ppr-row"><span class="ppr-key">동성결혼</span><span class="ppr-val">2024.02 합법화 / 동방정교회 반발</span></div>
+    <div class="ppr-row"><span class="ppr-key">이민</span><span class="ppr-val">Pushback 논란 / EU 인권 비판</span></div>
+    <div class="ppr-row"><span class="ppr-key">황금여명</span><span class="ppr-val">2019 해산·유죄 / 재정위기 극우의 교훈</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-4 · 역사</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">TBI</span><span class="ppr-val">0.580 / 그레키트 위기 세대 트라우마</span></div>
+    <div class="ppr-row"><span class="ppr-key">군부독재</span><span class="ppr-val">1967~74 / 민주주의 취약성의 역사</span></div>
+    <div class="ppr-row"><span class="ppr-key">2015 국민투표</span><span class="ppr-val">긴축 거부→수용 / 제도 불신 뿌리</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-5 · 지정학</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">터키</span><span class="ppr-val">에게해 영토 갈등 / 키프로스 문제</span></div>
+    <div class="ppr-row"><span class="ppr-key">EU·NATO</span><span class="ppr-val">핵심 회원국 / 방위 강화 추진</span></div>
+    <div class="ppr-row"><span class="ppr-key">이스라엘</span><span class="ppr-val">미초타키스 2025.03 넷냐후 회동 / 논란</span></div>
+    <div class="ppr-row"><span class="ppr-key">이민 허브</span><span class="ppr-val">유럽 관문 / EU 부담 공유 갈등</span></div>
+  </div></div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅵ · 담론육층</div>
+  <div style="margin:14px 0;">
+    <div class="discourse-layer"><div class="layer-num">1층<br>데이터</div><div class="layer-content"><strong>무엇이 보이는가:</strong> 재정흑자 1.3%, 부채 153.6%, 투자등급 회복. 동시에 실업 10%, 렌트 급등, CPI 49, 스파이웨어 92명 감청, 템피 57명 사망 무책임. 두 그리스가 같은 숫자 안에 있습니다.</div></div>
+    <div class="discourse-layer"><div class="layer-num">2층<br>이해관계</div><div class="layer-content"><strong>누가 이익을 얻는가:</strong> 뉴데모크라시 엘리트는 재정 회복 서사로 권력을 유지합니다. 관광 산업은 GDP 25%를 점유하지만 지역 주민의 렌트를 올립니다. 독일·네덜란드 채권자들은 그리스 긴축으로 원금+이자를 회수했습니다. 스파이웨어 납품업체는 92명의 감청으로 이익을 얻었습니다.</div></div>
+    <div class="discourse-layer"><div class="layer-num">3층<br>역사 패턴</div><div class="layer-content"><strong>이전에도 있었는가:</strong> 그리스 정치는 구조적 부패와 족벌주의가 반복됩니다. 미초타키스 가문은 아버지도 총리였고, 황금여명은 재정위기 시 부상했다 해산됐습니다. 2015년 시리자의 긴축 거부→수용은 제도 내에서 변화가 어렵다는 것을 민중에게 각인시켰습니다. 카리스티아누 현상은 이 반복의 다음 장입니다.</div></div>
+    <div class="discourse-layer"><div class="layer-num">4층<br>시각 역전</div><div class="layer-content"><strong>반대로 보면:</strong> 그리스 재정 회복은 긴축의 승리인가, 아니면 민중의 고통이 지불한 비용인가. 부채 153%는 '줄었다'는 서사이지만 여전히 EU 최고 수준입니다. 동성결혼 합법화는 진보적 성과이지만 동방정교회와의 갈등을 내포합니다. 카리스티아누 31.8%는 기성 정치에 대한 분노의 크기입니다.</div></div>
+    <div class="discourse-layer"><div class="layer-num">5층<br>프레임</div><div class="layer-content"><strong>Λ¹² 위상 진단:</strong> 그리스는 Q2(개방·불안정)에서 Q1 방향으로 이동 중이나 이 이동이 진짜 구조 변화인지 표면 회복인지가 핵심 질문입니다. 2026년 EU 회복기금(RRF) 종료 이후 성장 동력이 유지될 수 있는가 — 관광 편중 구조가 생산성 혁신으로 이어지지 않으면 재정 회복은 취약합니다.</div></div>
+    <div class="discourse-layer"><div class="layer-num" style="background:#3A6A5E;">6층<br>판단 유보</div><div class="layer-content" style="background:#E8F4F0;"><strong>이 층은 1,050만 그리스 민중의 몫입니다.</strong> 숫자의 회복이 신뢰의 회복으로 이어질 것인가, 아니면 카리스티아누 현상이 그 간극을 정치화할 것인가 — 그것은 그리스 민중이 결정합니다.</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅶ · 결론 궤도</div>
+  <div class="conclusion">
+    <p>그리스는 유럽에서 가장 극적인 재정 회복을 이룬 나라입니다. 200%를 넘던 부채 비율이 153%가 됐고, 흑자 국가가 됐습니다. 이것은 진짜 성과입니다.</p>
+    <p>그러나 TBI 0.580이 말하는 것 — 그레키트 위기 10년이 남긴 트라우마는 숫자가 회복됐다고 사라지지 않습니다. 2015년 국민투표에서 '아니오'를 외쳤지만 결국 긴축을 받아들여야 했던 경험. 그 경험이 제도와 정치에 대한 신뢰를 구조적으로 손상시켰습니다.</p>
+    <p>스파이웨어 92명. 템피 57명. 책임자 기소 없음. 이것이 회복의 숫자 뒤에 있는 또 다른 숫자입니다. 카리스티아누 31.8%는 이 간극이 정치화되고 있음을 보여줍니다.</p>
+    <p>그리스는 지금 어디에 있는가 — 진짜 회복의 입구인가, 아니면 다음 위기의 입구인가. 2026년 EU 기금이 종료되는 시점이 그 답을 줄 것입니다.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="series-box">
+    <div class="series-title">단독편 시리즈 — Λ¹²v9.12</div>
+    <div class="series-item"><span class="series-num">C-01</span><span>캄보디아</span><span class="series-status status-done">완성</span></div>
+    <div class="series-item"><span class="series-num">E-01</span><span>보스니아</span><span class="series-status status-done">완성</span></div>
+    <div class="series-item"><span class="series-num">E-02</span><span>헝가리</span><span class="series-status status-done">완성</span></div>
+    <div class="series-item"><span class="series-num">E-03</span><span>그리스 (현재)</span><span class="series-status status-now">완성</span></div>
+    <div class="series-item"><span class="series-num">E-04</span><span>영국 단독편 v1.0</span><span class="series-status status-plan">예정</span></div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>늘푸른바다 사회동역학 연구소 (Everblue Sea Institute for Social Dynamics)</p>
+  <p>소장 청해(淸海) · Claude (Anthropic) 연구 파트너</p>
+  <p><a href="https://badaegopa.tistory.com">badaegopa.tistory.com</a> · <a href="https://everbluesea.org">everbluesea.org</a> · contact@everbluesea.org</p>
+  <div class="engine-tag">Engine: Λ¹²v9.12 | ADI §31 | SSRN 6632858 | greece_lambda12_v912_20260502.html</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>헝가리 단독편 — Λ¹²v9.12 | 늘푸른바다 사회동역학 연구소</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#F5F3EE; color:#2C2C2C; font-family:Georgia,'Times New Roman',serif; line-height:1.75; }
+.header { background:linear-gradient(135deg,#8B2A00 0%,#CC4400 50%,#6B1A00 100%); padding:48px 40px 36px; position:relative; overflow:hidden; }
+.header::before { content:'法'; position:absolute; right:40px; top:10px; font-size:160px; color:rgba(255,255,255,0.06); font-family:Georgia,serif; font-weight:bold; line-height:1; }
+.header-badge { display:inline-block; background:rgba(255,255,255,0.18); color:#fff; font-family:'Courier New',monospace; font-size:11px; padding:4px 12px; border-radius:2px; letter-spacing:1.5px; margin-bottom:16px; }
+.header h1 { color:#fff; font-size:30px; font-weight:normal; margin-bottom:6px; }
+.header h2 { color:rgba(255,255,255,0.85); font-size:15px; font-weight:normal; }
+.header-meta { margin-top:20px; color:rgba(255,255,255,0.65); font-family:'Courier New',monospace; font-size:11px; letter-spacing:1px; }
+.engine-box { background:#fff; border-left:4px solid #B8850E; padding:14px 20px; margin:24px 40px; font-family:'Courier New',monospace; font-size:12px; color:#595959; }
+.engine-box strong { color:#B8850E; }
+.section { padding:32px 40px; border-bottom:1px solid #DDD8CE; }
+.section-title { font-size:13px; font-family:'Courier New',monospace; color:#8B2A00; letter-spacing:2px; text-transform:uppercase; margin-bottom:16px; }
+.section h3 { font-size:20px; color:#1F1F1F; font-weight:normal; margin-bottom:14px; }
+.section p { font-size:14px; color:#3A3A3A; margin-bottom:10px; text-align:justify; }
+.minjung-box { background:#FFF5F0; border-left:4px solid #CC4400; padding:20px 24px; margin:14px 0; border-radius:2px; }
+.minjung-box p { font-size:14px; color:#3A1A00; line-height:1.85; margin-bottom:8px; }
+.term-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:14px 0; }
+.term-item { background:#fff; border:1px solid #DDD8CE; padding:12px 14px; border-radius:2px; }
+.term-item .term-key { font-family:'Courier New',monospace; font-size:12px; color:#8B2A00; font-weight:bold; margin-bottom:4px; }
+.term-item .term-val { font-size:12px; color:#444; }
+.data-table-wrap { margin:16px 0; overflow-x:auto; }
+.data-table { width:100%; border-collapse:collapse; font-size:13px; }
+.data-table th { background:#8B2A00; color:#fff; padding:10px 14px; text-align:center; font-family:'Courier New',monospace; font-size:11px; font-weight:normal; }
+.data-table th:first-child { text-align:left; }
+.data-table td { padding:9px 14px; border-bottom:1px solid #EEE; text-align:center; font-family:'Courier New',monospace; font-size:12px; }
+.data-table td:first-child { text-align:left; font-family:Georgia,serif; font-size:13px; }
+.data-table tr:nth-child(even) td { background:#F5F3EE; }
+.formula-box { background:#fff; border:1px solid #DDD8CE; border-top:3px solid #8B2A00; padding:20px 24px; margin:16px 0; }
+.formula-box .formula-title { font-family:'Courier New',monospace; font-size:11px; color:#8B2A00; letter-spacing:2px; margin-bottom:12px; }
+.formula-box .formula-eq { font-family:'Courier New',monospace; font-size:13px; color:#1F1F1F; background:#F5F3EE; padding:12px 16px; border-radius:2px; margin:8px 0; line-height:1.6; }
+.formula-box .formula-note { font-size:12px; color:#666; margin-top:8px; }
+.svg-wrap { text-align:center; margin:16px 0; }
+.obs-note { background:#FFF5F0; border:1px solid #E5C5B5; border-radius:3px; padding:14px 18px; margin:14px 0; font-size:13px; color:#3A1A00; line-height:1.7; }
+.obs-note::before { content:'◈ 관찰 신호'; display:block; font-family:'Courier New',monospace; font-size:10px; color:#8B2A00; letter-spacing:1px; margin-bottom:6px; }
+.error-box { background:#FAEEDA; border-left:3px solid #B8850E; padding:12px 16px; margin:14px 0; font-size:12px; color:#633806; font-family:'Courier New',monospace; }
+.ppr-card { background:#fff; border:1px solid #DDD8CE; border-radius:3px; overflow:hidden; margin-bottom:14px; }
+.ppr-head { background:#8B2A00; color:#fff; font-size:12px; font-family:'Courier New',monospace; padding:8px 14px; letter-spacing:1px; }
+.ppr-body { padding:14px; }
+.ppr-row { display:flex; justify-content:space-between; font-size:12px; padding:4px 0; border-bottom:1px solid #F0EDE8; }
+.ppr-row:last-child { border-bottom:none; }
+.ppr-key { color:#666; }
+.ppr-val { font-family:'Courier New',monospace; font-weight:bold; color:#8B2A00; }
+.discourse-layer { display:grid; grid-template-columns:130px 1fr; gap:0; margin-bottom:2px; }
+.layer-num { background:#8B2A00; color:#fff; font-family:'Courier New',monospace; font-size:11px; padding:12px 14px; display:flex; align-items:center; }
+.layer-content { background:#fff; border:1px solid #DDD8CE; border-left:none; padding:12px 18px; font-size:13px; color:#2C2C2C; line-height:1.7; }
+.layer-content strong { color:#8B2A00; }
+.signal-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:14px 0; }
+.signal-card { background:#fff; border:1px solid #DDD8CE; padding:14px; border-radius:2px; text-align:center; }
+.signal-card .sig-label { font-size:11px; color:#888; font-family:'Courier New',monospace; margin-bottom:4px; }
+.signal-card .sig-val { font-size:16px; font-family:'Courier New',monospace; font-weight:bold; color:#8B2A00; }
+.signal-card .sig-note { font-size:10px; color:#666; margin-top:4px; }
+.timeline-box { background:#fff; border:1px solid #DDD8CE; padding:16px 20px; margin:14px 0; }
+.tl-row { display:grid; grid-template-columns:80px 1fr; gap:12px; padding:6px 0; border-bottom:1px solid #F5F3EE; font-size:12px; }
+.tl-row:last-child { border-bottom:none; }
+.tl-year { font-family:'Courier New',monospace; color:#8B2A00; font-weight:bold; }
+.tl-event { color:#444; }
+.conclusion { background:#FFF5F0; border-left:4px solid #CC4400; padding:24px 32px; margin:20px 40px; border-radius:2px; }
+.conclusion p { font-size:15px; line-height:1.95; color:#1F1F1F; text-align:justify; margin-bottom:12px; }
+.conclusion p:last-child { margin-bottom:0; }
+.series-box { background:#fff; border:1px solid #DDD8CE; margin:20px 40px; padding:20px; }
+.series-title { font-family:'Courier New',monospace; font-size:11px; color:#8B2A00; letter-spacing:2px; margin-bottom:12px; }
+.series-item { display:flex; gap:12px; padding:6px 0; border-bottom:1px solid #F0EDE8; font-size:12px; }
+.series-item:last-child { border-bottom:none; }
+.series-num { font-family:'Courier New',monospace; color:#B8850E; min-width:40px; }
+.series-status { margin-left:auto; font-family:'Courier New',monospace; font-size:10px; padding:2px 8px; border-radius:2px; }
+.status-done { background:#E8F4F0; color:#27500A; }
+.status-now { background:#FFF5F0; color:#8B2A00; }
+.status-plan { background:#F5F3EE; color:#888; }
+.footer { background:#FFF0E8; padding:28px 40px; text-align:center; border-top:1px solid #DDD8CE; }
+.footer p { font-size:12px; color:#8B2A00; margin-bottom:4px; font-family:'Courier New',monospace; }
+.footer a { color:#CC4400; text-decoration:none; }
+.footer .engine-tag { margin-top:10px; font-size:10px; color:#888; letter-spacing:1px; }
+@media(max-width:768px){ .section,.engine-box,.conclusion,.series-box,.footer{padding-left:16px;padding-right:16px;margin-left:0;margin-right:0;} .header{padding:32px 16px 24px;} .term-grid,.signal-grid{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-badge">HUNGARY STANDALONE · #E-02 · Λ¹²v9.12</div>
+  <h1>🇭🇺 헝가리 단독편</h1>
+  <h2>민주주의를 도구로 민주주의를 해체하다 — 오르반의 15년</h2>
+  <div class="header-meta">늘푸른바다 사회동역학 연구소 · Λ¹²v9.12 엔진 기준 · 발행일 2026.05.02</div>
+</div>
+
+<div class="engine-box">
+  <strong>ENGINE:</strong> Λ¹²v9.12 | ADI §31 포함 | SSRN 6632858 기반<br>
+  <strong>특이사항:</strong> EU 내 유일 'Partly Free' 국가 / V-Dem '선거 권위주의' 분류<br>
+  <strong>보정식:</strong> Λ¹²_corrected = Λ¹²_raw ÷ OLI × (1−TBI×θ) × (1−ADI×γ) × exp(−k×t) | OLI=0.80
+</div>
+
+<div class="section">
+  <div class="section-title">연구 목적</div>
+  <h3>이 보고서는 980만 헝가리 민중의 현실을 관찰자의 시선으로 기록합니다</h3>
+  <div class="minjung-box">
+    <p>헝가리는 민주주의를 해체한 독재자가 아직도 민주주의 선거에서 이기는 나라입니다. 오르반은 쿠데타를 한 것이 아닙니다 — 의회 다수를 이용해 헌법을 바꾸고, 법원을 장악하고, 언론을 통제하고, 선거 규칙을 자기에게 유리하게 재설계했습니다.</p>
+    <p>이것이 21세기 민주주의 후퇴의 교과서입니다. Λ¹²는 이 구조가 어떻게 작동하는지를 읽습니다.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">§0 · 용어 해설</div>
+  <div class="term-grid">
+    <div class="term-item"><div class="term-key">오르반 (Viktor Orbán)</div><div class="term-val">2010년부터 총리 재직. V-Dem '선거 권위주의' 분류. 자신을 "비자유민주주의"(illiberal democracy) 건설자로 공개 선언.</div></div>
+    <div class="term-item"><div class="term-key">피데스(Fidesz)</div><div class="term-val">오르반의 집권당. 2010~2022년 4연속 집권. 의회 3분의 2 지배로 헌법 단독 개정 가능. 현재 15차 헌법 개정 완료.</div></div>
+    <div class="term-item"><div class="term-key">선거 권위주의</div><div class="term-val">선거를 실시하지만 공정하지 않은 체제. 선거구 재획정·미디어 장악·야당 제약으로 결과를 사전 결정. V-Dem 정의.</div></div>
+    <div class="term-item"><div class="term-key">주권보호법(2023)</div><div class="term-val">외국 영향력 의심 개인·단체 조사 권한. 독립언론·NGO·야당 탄압 도구로 활용. EU 비자유적 법률로 규탄.</div></div>
+    <div class="term-item"><div class="term-key">티서(Tisza) 당</div><div class="term-val">전 피데스 내부인 페테르 마야르가 2024년 창당. EU 선거 30% 득표. 오르반 체제 최초 실질적 야권 도전자.</div></div>
+    <div class="term-item"><div class="term-key">EU 제재·자금 동결</div><div class="term-val">2025.01 EU, 법치주의 위반으로 10억 달러 지원 동결. EU 역사상 전례 없는 조치. 헝가리는 EU 보조금 GDP의 3~4%.</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅰ · 관찰자 시선</div>
+  <h3>EU 내부의 '비자유민주주의' — 15년 해체 타임라인</h3>
+  <p>2010년 오르반 재집권 당시 헝가리는 Freedom House 기준 '자유로운 민주주의'였습니다. 15년 후 헝가리는 EU 27개국 중 유일하게 'Partly Free' 분류를 받는 나라입니다. V-Dem은 '선거 권위주의', EU 의회는 '선거 권위주의', Freedom House는 '혼합 체제'로 분류합니다.</p>
+  <div class="signal-grid">
+    <div class="signal-card"><div class="sig-label">EU 내 유일 Partly Free</div><div class="sig-val">57/100</div><div class="sig-note">Freedom House 2025</div></div>
+    <div class="signal-card"><div class="sig-label">EU 지원 동결(2025.01)</div><div class="sig-val">$10억</div><div class="sig-note">법치 위반 / EU 사상 최초</div></div>
+    <div class="signal-card"><div class="sig-label">헌법 개정 횟수</div><div class="sig-val">15회</div><div class="sig-note">피데스 단독 / 2011~2025</div></div>
+  </div>
+
+  <div class="timeline-box">
+    <div class="tl-row"><div class="tl-year">2010</div><div class="tl-event">피데스 2/3 의석 확보 → 헌법 개정 권한</div></div>
+    <div class="tl-row"><div class="tl-year">2011</div><div class="tl-event">신헌법(기본법) 단독 제정 · 선거구 재획정</div></div>
+    <div class="tl-row"><div class="tl-year">2014</div><div class="tl-event">오르반 "비자유민주주의" 공개 선언 / 3연속 집권</div></div>
+    <div class="tl-row"><div class="tl-year">2019</div><div class="tl-event">V-Dem '선거 권위주의' 최초 분류 / EU 내 최초</div></div>
+    <div class="tl-row"><div class="tl-year">2022</div><div class="tl-event">4연속 집권 / EU 의회 '선거 권위주의' 결의</div></div>
+    <div class="tl-row"><div class="tl-year">2024</div><div class="tl-event">EU 선거 티서 30% 득표 / 오르반 정권 균열 시작</div></div>
+    <div class="tl-row"><div class="tl-year">2025.01</div><div class="tl-event">EU, 10억 달러 지원 동결 / 헝가리 EU 의장국 종료</div></div>
+    <div class="tl-row"><div class="tl-year">2025.04</div><div class="tl-event">15차 헌법 개정 / 프라이드 금지·성별 이진법 법제화</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅱ · 기본 통계</div>
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <tr><th>지표</th><th>수치</th><th>비고</th><th>출처</th></tr>
+      <tr><td>인구</td><td>약 980만 명</td><td>감소 추세</td><td>Eurostat</td></tr>
+      <tr><td>GDP per capita</td><td>USD ~21,000</td><td>EU 평균 하회</td><td>IMF 2024</td></tr>
+      <tr><td>Freedom House</td><td>57/100 (Partly Free)</td><td>EU 유일</td><td>FH 2025</td></tr>
+      <tr><td>V-Dem 민주주의</td><td>0.32 (선거 권위주의)</td><td>2010년 0.65→하락</td><td>V-Dem 2024</td></tr>
+      <tr><td>합계출산율 2024</td><td>1.39</td><td>하락 추세 지속</td><td>헝가리 통계청</td></tr>
+      <tr><td>실업률 2025.12</td><td>4.4%</td><td>낮은 수준 유지</td><td>Cato 2025</td></tr>
+      <tr><td>EU 지원 동결</td><td>10억 달러</td><td>2025.01 / 법치 위반</td><td>EU 집행위</td></tr>
+      <tr><td>헌법 개정</td><td>15회</td><td>피데스 단독</td><td>BTI 2026</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅲ · 기본 좌표 · 공식</div>
+  <div class="formula-box">
+    <div class="formula-title">ΛSCORE FORMULA — HUNGARY</div>
+    <div class="formula-eq">Λ¹²_corrected = Λ¹²_raw ÷ 0.80 × (1 − 0.420 × 0.70) × (1 − 0.352 × 0.35) × exp(−k×t)</div>
+    <div class="formula-eq">TBI 보정항: (1 − 0.420 × 0.70) = (1 − 0.294) = 0.706</div>
+    <div class="formula-eq">ADI 보정항: (1 − 0.352 × 0.35) = (1 − 0.123) = 0.877 [Transitional]</div>
+    <div class="formula-note">※ 헝가리의 핵심 변수는 TBI가 아니라 IGI(제도 억압 지수)입니다. 폭력적 트라우마가 아닌 '법적 제도 해체'를 통한 민주주의 후퇴 — 이것이 헝가리를 캄보디아·보스니아와 구별하는 지점입니다. CFD(문화 단층)은 이민 혐오+LGBTQ 탄압+소로스 음모론이 복합된 국내 분열.</div>
+  </div>
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <tr><th>변수</th><th>값</th><th>분류</th><th>비고</th></tr>
+      <tr><td>LPI</td><td>0.68</td><td>주목</td><td>EU 하위 / 임금 정체</td></tr>
+      <tr><td>GPI</td><td>~25위</td><td>안정</td><td>군사 위협 낮음</td></tr>
+      <tr><td>CPI</td><td>42/100</td><td>주목</td><td>EU 최하위권 부패</td></tr>
+      <tr><td>CFD</td><td>0.68</td><td>위험</td><td>이민·LGBTQ·이념 분열</td></tr>
+      <tr><td>DCI</td><td>0.55</td><td>주목</td><td>청년층 해외 이탈</td></tr>
+      <tr><td>MFI</td><td>~72위</td><td>주목</td><td>국가 미디어 장악</td></tr>
+      <tr><td>RHC</td><td>0.520</td><td>주목</td><td>EU-헝가리 갈등</td></tr>
+      <tr><td>IGI</td><td>0.82</td><td>위험</td><td>제도 해체 15년 누적</td></tr>
+      <tr><td>TBI</td><td>0.420</td><td>주목</td><td>공산체제 트라우마</td></tr>
+      <tr><td>ADI</td><td>0.352</td><td>Transitional</td><td>중간 수준</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅳ · 위상 사분면 · 민주주의 후퇴 경로</div>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg" width="520" height="420">
+      <rect width="520" height="420" fill="#F5F3EE"/>
+      <rect x="50" y="30" width="210" height="170" fill="#EBF4F0" opacity="0.5"/>
+      <rect x="260" y="30" width="210" height="170" fill="#FFF3CD" opacity="0.4"/>
+      <rect x="50" y="200" width="210" height="170" fill="#FAEEDA" opacity="0.4"/>
+      <rect x="260" y="200" width="210" height="170" fill="#FCEBEB" opacity="0.4"/>
+      <line x1="50" y1="200" x2="470" y2="200" stroke="#555" stroke-width="1.5"/>
+      <line x1="260" y1="30" x2="260" y2="370" stroke="#555" stroke-width="1.5"/>
+      <text x="260" y="18" text-anchor="middle" fill="#3A6A5E" font-size="11" font-family="Courier New">높은 개방성</text>
+      <text x="260" y="388" text-anchor="middle" fill="#888" font-size="11" font-family="Courier New">낮은 개방성</text>
+      <text x="36" y="204" text-anchor="middle" fill="#888" font-size="10" font-family="Courier New" transform="rotate(-90,36,204)">불안정</text>
+      <text x="484" y="204" text-anchor="middle" fill="#3A6A5E" font-size="10" font-family="Courier New" transform="rotate(-90,484,204)">안정</text>
+      <!-- 2010 시작점 -->
+      <circle cx="148" cy="88" r="8" fill="#EBF4F0" stroke="#5E9186" stroke-width="1.5"/>
+      <text x="148" y="86" text-anchor="middle" font-size="8" fill="#5E9186">2010</text>
+      <!-- 이동 경로 화살표 -->
+      <defs><marker id="orbanarr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#8B2A00"/></marker></defs>
+      <path d="M148,92 Q200,130 260,148 Q310,162 355,170" fill="none" stroke="#8B2A00" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#orbanarr)"/>
+      <text x="220" y="148" fill="#8B2A00" font-size="9" font-family="Courier New">15년 후퇴 경로</text>
+      <!-- 현재 위치 -->
+      <circle cx="360" cy="172" r="24" fill="#FFF5F0" stroke="#8B2A00" stroke-width="2.5"/>
+      <text x="360" y="168" text-anchor="middle" font-size="18">🇭🇺</text>
+      <text x="360" y="205" text-anchor="middle" fill="#8B2A00" font-size="11" font-family="Courier New" font-weight="bold">현재</text>
+      <!-- 티서 반발 화살표 -->
+      <defs><marker id="greenarr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#3A6A5E"/></marker></defs>
+      <line x1="340" y1="160" x2="280" y2="130" stroke="#3A6A5E" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#greenarr)"/>
+      <text x="270" y="122" fill="#3A6A5E" font-size="9" font-family="Courier New">티서 등장</text>
+      <text x="270" y="134" fill="#3A6A5E" font-size="9" font-family="Courier New">회복 가능성?</text>
+      <!-- 비교 -->
+      <circle cx="148" cy="78" r="14" fill="#EEF3FF" stroke="#1B4F8A" stroke-width="1.5"/>
+      <text x="148" y="76" text-anchor="middle" font-size="12">🇹🇼</text>
+      <text x="148" y="50" fill="#8B2A00" font-size="9" font-family="Courier New">헝가리 2010년 시작</text>
+    </svg>
+  </div>
+  <div class="obs-note">헝가리의 이동 경로가 Λ¹²에서 유의미한 이유 — Q1(개방·안정)에서 출발해 15년 동안 Q2(개방·불안정) 방향으로 서서히 이동했습니다. 이것은 쿠데타가 아니라 제도 해체를 통한 점진적 권위주의화의 궤도입니다. 2024년 티서 당의 EU 선거 30% 득표가 이 경로를 되돌릴 수 있는 변곡점인지 주목됩니다.</div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅴ · 12축 레이더</div>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" width="400" height="400">
+      <rect width="400" height="400" fill="#F5F3EE"/>
+      <circle cx="200" cy="200" r="150" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+      <circle cx="200" cy="200" r="112" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+      <circle cx="200" cy="200" r="75" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+      <circle cx="200" cy="200" r="37" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+      <line x1="200" y1="200" x2="200" y2="50" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="275" y2="62" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="330" y2="118" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="350" y2="200" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="330" y2="282" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="275" y2="338" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="200" y2="350" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="125" y2="338" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="70" y2="282" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="50" y2="200" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="70" y2="118" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="125" y2="62" stroke="#EEE" stroke-width="0.7"/>
+      <!-- 헝가리 — IGI·CFD 높음, LPI·GPI 중간 -->
+      <polygon points="200,122 258,108 308,140 316,200 304,262 262,318 200,322 140,318 96,264 82,200 94,142 140,106" fill="#8B2A00" fill-opacity="0.20" stroke="#8B2A00" stroke-width="2"/>
+      <!-- EU 평균 비교 -->
+      <polygon points="200,108 260,96 310,128 326,200 310,266 268,316 200,326 132,316 90,266 74,200 90,128 132,96" fill="none" stroke="#5E9186" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+      <text x="200" y="42" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">LPI</text>
+      <text x="286" y="54" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">HDI</text>
+      <text x="344" y="108" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">GPI</text>
+      <text x="362" y="202" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">CPI</text>
+      <text x="344" y="294" text-anchor="middle" fill="#CC2222" font-size="9" font-family="Courier New">CFD</text>
+      <text x="286" y="350" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">DCI</text>
+      <text x="200" y="366" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">MFI</text>
+      <text x="114" y="350" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">RHC</text>
+      <text x="56" y="294" text-anchor="middle" fill="#CC2222" font-size="9" font-family="Courier New">IGI</text>
+      <text x="38" y="202" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">AHI</text>
+      <text x="56" y="108" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">TBI</text>
+      <text x="114" y="54" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">ADI</text>
+      <rect x="230" y="380" width="10" height="8" fill="#8B2A00" fill-opacity="0.35" stroke="#8B2A00" stroke-width="1"/>
+      <text x="244" y="388" fill="#8B2A00" font-size="9" font-family="Courier New">헝가리</text>
+      <line x1="296" y1="384" x2="314" y2="384" stroke="#5E9186" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="318" y="388" fill="#5E9186" font-size="9" font-family="Courier New">EU 평균</text>
+    </svg>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅵ · PPR — 5개 구조 블록</div>
+  <div class="ppr-card"><div class="ppr-head">PPR-1 · 정치</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">체제</span><span class="ppr-val">선거 권위주의 / Partly Free 57</span></div>
+    <div class="ppr-row"><span class="ppr-key">피데스</span><span class="ppr-val">4연속 집권 / 헌법 15회 단독 개정</span></div>
+    <div class="ppr-row"><span class="ppr-key">티서 부상</span><span class="ppr-val">2024 EU선거 30% 득표 / 첫 실질 도전</span></div>
+    <div class="ppr-row"><span class="ppr-key">선거구 재획정</span><span class="ppr-val">2024.12 또 개정 / 부다페스트 야권 불리</span></div>
+    <div class="ppr-row"><span class="ppr-key">소주권보호법</span><span class="ppr-val">2023 제정 / NGO·언론 탄압 도구</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-2 · 경제</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">EU 지원 동결</span><span class="ppr-val">10억 달러 / 2025.01 / 법치 위반</span></div>
+    <div class="ppr-row"><span class="ppr-key">실업률</span><span class="ppr-val">4.4% (2025.12) / 낮은 수준</span></div>
+    <div class="ppr-row"><span class="ppr-key">러시아 의존</span><span class="ppr-val">팩스 에너지 / 대러 제재 반대 입장</span></div>
+    <div class="ppr-row"><span class="ppr-key">부패</span><span class="ppr-val">CPI 42 / EU 최하위권 / 족벌 경제</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-3 · 사회</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">LGBTQ</span><span class="ppr-val">2025.04 헌법 프라이드 금지 / 성별 이진법</span></div>
+    <div class="ppr-row"><span class="ppr-key">출산율</span><span class="ppr-val">1.39 (2024) / 친가족 정책에도 하락</span></div>
+    <div class="ppr-row"><span class="ppr-key">이민 혐오</span><span class="ppr-val">국가 캠페인 / 소로스 음모론 공식화</span></div>
+    <div class="ppr-row"><span class="ppr-key">언론</span><span class="ppr-val">국영 TV '피데스 선전' 규탄 / 독립 언론 압박</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-4 · 역사</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">TBI</span><span class="ppr-val">0.420 / 소련 점령+공산체제 트라우마</span></div>
+    <div class="ppr-row"><span class="ppr-key">1956년 혁명</span><span class="ppr-val">소련 진압 / 오르반 반공주의의 역사적 자원</span></div>
+    <div class="ppr-row"><span class="ppr-key">트리아논 조약</span><span class="ppr-val">1920 영토 상실 / 민족주의의 역사 뿌리</span></div>
+    <div class="ppr-row"><span class="ppr-key">공산체제 청산</span><span class="ppr-key">불완전 / IGI 상승의 역사 배경</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-5 · 지정학</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">EU</span><span class="ppr-val">지원 동결 / 법치 위반 조사 / 갈등 심화</span></div>
+    <div class="ppr-row"><span class="ppr-key">러시아</span><span class="ppr-val">오르반-푸틴 우호 / 대러 제재 무력화</span></div>
+    <div class="ppr-row"><span class="ppr-key">NATO</span><span class="ppr-val">회원국이지만 우크라이나 지원 차단</span></div>
+    <div class="ppr-row"><span class="ppr-key">중국</span><span class="ppr-val">일대일로 참여 / 부다페스트 푸단대 논란</span></div>
+  </div></div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅶ · 담론육층</div>
+  <div style="margin:14px 0;">
+    <div class="discourse-layer"><div class="layer-num">1층<br>데이터</div><div class="layer-content"><strong>무엇이 보이는가:</strong> V-Dem 0.32 선거 권위주의. Freedom House 57 Partly Free. CPI 42 EU 최하위권. IGI 0.82. 헌법 개정 15회. EU 10억 달러 동결. 실업률 4.4%. 두 가지 숫자가 동시에 존재합니다 — 경제 지표는 나쁘지 않지만 민주주의 지표는 EU 최저.</div></div>
+    <div class="discourse-layer"><div class="layer-num">2층<br>이해관계</div><div class="layer-content"><strong>누가 이익을 얻는가:</strong> 피데스 엘리트는 EU 보조금을 족벌 기업으로 재분배하는 구조로 이익을 얻습니다. 오르반은 이민 혐오·반소로스·반LGBTQ 캠페인으로 정치적 동원을 유지합니다. 러시아는 헝가리를 통해 EU 제재를 무력화하는 레버리지를 얻습니다. 러시아 가스 의존 에너지 기업들은 대러 제재 반대로 이익을 얻습니다.</div></div>
+    <div class="discourse-layer"><div class="layer-num">3층<br>역사 패턴</div><div class="layer-content"><strong>이전에도 있었는가:</strong> 오르반의 반공주의는 1956년 혁명과 소련 점령의 역사적 트라우마를 자원으로 사용합니다. 트리아논 조약(1920) 영토 상실은 헝가리 민족주의의 역사적 뿌리입니다. 공산체제가 완전히 청산되지 않은 상태에서 권위주의적 지도자에 대한 민중의 친숙함이 남아있었습니다. 오르반은 이것을 정확히 읽었습니다.</div></div>
+    <div class="discourse-layer"><div class="layer-num">4층<br>시각 역전</div><div class="layer-content"><strong>반대로 보면:</strong> 오르반이 15년간 선거에서 이긴 것은 단순히 부정선거 때문만이 아닙니다. 헝가리 민중의 일부는 실제로 오르반을 원했습니다 — 이민 위협, EU 관료주의에 대한 불만, 경제 안정. 그러나 2024년 티서 30% 득표는 — 이 선택이 바뀌고 있음을 보여줍니다. 헝가리 민중이 스스로 되돌릴 수 있을까.</div></div>
+    <div class="discourse-layer"><div class="layer-num">5층<br>프레임</div><div class="layer-content"><strong>Λ¹² 위상 진단:</strong> 헝가리의 IGI 0.82는 폭력적 억압이 아니라 제도 해체를 통한 것입니다. 이것이 더 위험한 이유 — 폭력적 억압은 저항을 만들지만, 제도 해체는 저항의 수단 자체를 제거합니다. 그러나 2024년 티서의 등장이 '제도 내부에서 아직 저항이 가능하다'는 신호를 보내고 있습니다. 2026년 국회의원 선거가 진짜 임계점.</div></div>
+    <div class="discourse-layer"><div class="layer-num" style="background:#3A6A5E;">6층<br>판단 유보</div><div class="layer-content" style="background:#E8F4F0;"><strong>이 층은 980만 헝가리 민중의 몫입니다.</strong> 제도 내부에서 아직 되돌릴 수 있는가, 아니면 이미 너무 멀리 왔는가 — 2026년 선거가 그 답을 줄 것입니다.</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅷ · 결론 궤도</div>
+  <div class="conclusion">
+    <p>헝가리는 21세기 민주주의 해체의 교과서입니다. 총을 한 발도 쏘지 않았습니다. 법을 이용했습니다. 의회를 이용했습니다. 선거를 이용했습니다. 그리고 민주주의를 해체했습니다.</p>
+    <p>IGI 0.82가 말하는 것 — 제도가 해체되면 저항의 수단도 사라집니다. 법원이 장악됐고, 언론이 통제됐고, 선거구가 재획정됐습니다. 그러나 2024년 티서 당이 EU 선거에서 30%를 얻었습니다. 사람들은 여전히 투표합니다. 제도가 해체됐어도 민중은 아직 포기하지 않았습니다.</p>
+    <p>2026년 국회의원 선거. 오르반이 설계한 선거구에서, 오르반이 통제하는 미디어와 함께, 티서가 싸울 것입니다. 민주주의를 도구로 민주주의를 해체한 사람에게, 민주주의로 맞설 수 있는가 — 그것이 헝가리가 우리에게 던지는 질문입니다.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="series-box">
+    <div class="series-title">단독편 시리즈 — Λ¹²v9.12</div>
+    <div class="series-item"><span class="series-num">C-01</span><span>캄보디아</span><span class="series-status status-done">완성</span></div>
+    <div class="series-item"><span class="series-num">E-01</span><span>보스니아</span><span class="series-status status-done">완성</span></div>
+    <div class="series-item"><span class="series-num">E-02</span><span>헝가리 (현재)</span><span class="series-status status-now">완성</span></div>
+    <div class="series-item"><span class="series-num">E-03</span><span>그리스 단독편 v1.0</span><span class="series-status status-plan">예정</span></div>
+    <div class="series-item"><span class="series-num">E-04</span><span>영국 단독편 v1.0</span><span class="series-status status-plan">예정</span></div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>늘푸른바다 사회동역학 연구소 (Everblue Sea Institute for Social Dynamics)</p>
+  <p>소장 청해(淸海) · Claude (Anthropic) 연구 파트너</p>
+  <p><a href="https://badaegopa.tistory.com">badaegopa.tistory.com</a> · <a href="https://everbluesea.org">everbluesea.org</a> · contact@everbluesea.org</p>
+  <div class="engine-tag">Engine: Λ¹²v9.12 | ADI §31 | SSRN 6632858 | hungary_lambda12_v912_20260502.html</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>캄보디아 단독편 — Λ¹²v9.12 | 늘푸른바다 사회동역학 연구소</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#F5F3EE; color:#2C2C2C; font-family:Georgia,'Times New Roman',serif; line-height:1.75; }
+.header { background:linear-gradient(135deg,#4A2C6B 0%,#6B3A8A 50%,#3A1F5C 100%); padding:48px 40px 36px; position:relative; overflow:hidden; }
+.header::before { content:'高'; position:absolute; right:40px; top:10px; font-size:160px; color:rgba(255,255,255,0.06); font-family:Georgia,serif; font-weight:bold; line-height:1; }
+.header-badge { display:inline-block; background:rgba(255,255,255,0.18); color:#fff; font-family:'Courier New',monospace; font-size:11px; padding:4px 12px; border-radius:2px; letter-spacing:1.5px; margin-bottom:16px; }
+.header h1 { color:#fff; font-size:30px; font-weight:normal; margin-bottom:6px; }
+.header h2 { color:rgba(255,255,255,0.85); font-size:15px; font-weight:normal; }
+.header-meta { margin-top:20px; color:rgba(255,255,255,0.65); font-family:'Courier New',monospace; font-size:11px; letter-spacing:1px; }
+.engine-box { background:#fff; border-left:4px solid #B8850E; padding:14px 20px; margin:24px 40px; font-family:'Courier New',monospace; font-size:12px; color:#595959; }
+.engine-box strong { color:#B8850E; }
+.section { padding:32px 40px; border-bottom:1px solid #DDD8CE; }
+.section-title { font-size:13px; font-family:'Courier New',monospace; color:#4A2C6B; letter-spacing:2px; text-transform:uppercase; margin-bottom:16px; }
+.section h3 { font-size:20px; color:#1F1F1F; font-weight:normal; margin-bottom:14px; }
+.section p { font-size:14px; color:#3A3A3A; margin-bottom:10px; text-align:justify; }
+.minjung-box { background:#F5F0FF; border-left:4px solid #6B3A8A; padding:20px 24px; margin:14px 0; border-radius:2px; }
+.minjung-box p { font-size:14px; color:#2A1A4A; line-height:1.85; margin-bottom:8px; }
+.term-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:14px 0; }
+.term-item { background:#fff; border:1px solid #DDD8CE; padding:12px 14px; border-radius:2px; }
+.term-item .term-key { font-family:'Courier New',monospace; font-size:12px; color:#4A2C6B; font-weight:bold; margin-bottom:4px; }
+.term-item .term-val { font-size:12px; color:#444; }
+.data-table-wrap { margin:16px 0; overflow-x:auto; }
+.data-table { width:100%; border-collapse:collapse; font-size:13px; }
+.data-table th { background:#4A2C6B; color:#fff; padding:10px 14px; text-align:center; font-family:'Courier New',monospace; font-size:11px; font-weight:normal; }
+.data-table th:first-child { text-align:left; }
+.data-table td { padding:9px 14px; border-bottom:1px solid #EEE; text-align:center; font-family:'Courier New',monospace; font-size:12px; }
+.data-table td:first-child { text-align:left; font-family:Georgia,serif; font-size:13px; }
+.data-table tr:nth-child(even) td { background:#F5F3EE; }
+.formula-box { background:#fff; border:1px solid #DDD8CE; border-top:3px solid #4A2C6B; padding:20px 24px; margin:16px 0; }
+.formula-box .formula-title { font-family:'Courier New',monospace; font-size:11px; color:#4A2C6B; letter-spacing:2px; margin-bottom:12px; }
+.formula-box .formula-eq { font-family:'Courier New',monospace; font-size:13px; color:#1F1F1F; background:#F5F3EE; padding:12px 16px; border-radius:2px; margin:8px 0; line-height:1.6; }
+.formula-box .formula-note { font-size:12px; color:#666; margin-top:8px; }
+.svg-wrap { text-align:center; margin:16px 0; }
+.obs-note { background:#F5F0FF; border:1px solid #C5B5E5; border-radius:3px; padding:14px 18px; margin:14px 0; font-size:13px; color:#2A1A4A; line-height:1.7; }
+.obs-note::before { content:'◈ 관찰 신호'; display:block; font-family:'Courier New',monospace; font-size:10px; color:#4A2C6B; letter-spacing:1px; margin-bottom:6px; }
+.error-box { background:#FAEEDA; border-left:3px solid #B8850E; padding:12px 16px; margin:14px 0; font-size:12px; color:#633806; font-family:'Courier New',monospace; }
+.ppr-card { background:#fff; border:1px solid #DDD8CE; border-radius:3px; overflow:hidden; margin-bottom:14px; }
+.ppr-head { background:#4A2C6B; color:#fff; font-size:12px; font-family:'Courier New',monospace; padding:8px 14px; letter-spacing:1px; }
+.ppr-body { padding:14px; }
+.ppr-row { display:flex; justify-content:space-between; font-size:12px; padding:4px 0; border-bottom:1px solid #F0EDE8; }
+.ppr-row:last-child { border-bottom:none; }
+.ppr-key { color:#666; }
+.ppr-val { font-family:'Courier New',monospace; font-weight:bold; color:#4A2C6B; }
+.discourse-layer { display:grid; grid-template-columns:130px 1fr; gap:0; margin-bottom:2px; }
+.layer-num { background:#4A2C6B; color:#fff; font-family:'Courier New',monospace; font-size:11px; padding:12px 14px; display:flex; align-items:center; }
+.layer-content { background:#fff; border:1px solid #DDD8CE; border-left:none; padding:12px 18px; font-size:13px; color:#2C2C2C; line-height:1.7; }
+.layer-content strong { color:#4A2C6B; }
+.signal-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:14px 0; }
+.signal-card { background:#fff; border:1px solid #DDD8CE; padding:14px; border-radius:2px; text-align:center; }
+.signal-card .sig-icon { font-size:24px; margin-bottom:6px; }
+.signal-card .sig-label { font-size:11px; color:#888; font-family:'Courier New',monospace; margin-bottom:4px; }
+.signal-card .sig-val { font-size:18px; font-family:'Courier New',monospace; font-weight:bold; color:#4A2C6B; }
+.signal-card .sig-note { font-size:10px; color:#666; margin-top:4px; }
+.conclusion { background:#F5F0FF; border-left:4px solid #6B3A8A; padding:24px 32px; margin:20px 40px; border-radius:2px; }
+.conclusion p { font-size:15px; line-height:1.95; color:#1F1F1F; text-align:justify; margin-bottom:12px; }
+.conclusion p:last-child { margin-bottom:0; }
+.series-box { background:#fff; border:1px solid #DDD8CE; margin:20px 40px; padding:20px; }
+.series-title { font-family:'Courier New',monospace; font-size:11px; color:#4A2C6B; letter-spacing:2px; margin-bottom:12px; }
+.series-item { display:flex; gap:12px; padding:6px 0; border-bottom:1px solid #F0EDE8; font-size:12px; }
+.series-item:last-child { border-bottom:none; }
+.series-num { font-family:'Courier New',monospace; color:#B8850E; min-width:40px; }
+.series-status { margin-left:auto; font-family:'Courier New',monospace; font-size:10px; padding:2px 8px; border-radius:2px; }
+.status-done { background:#E8F4F0; color:#27500A; }
+.status-now { background:#F5F0FF; color:#4A2C6B; }
+.status-plan { background:#F5F3EE; color:#888; }
+.footer { background:#F0EBF8; padding:28px 40px; text-align:center; border-top:1px solid #DDD8CE; }
+.footer p { font-size:12px; color:#4A2C6B; margin-bottom:4px; font-family:'Courier New',monospace; }
+.footer a { color:#6B3A8A; text-decoration:none; }
+.footer .engine-tag { margin-top:10px; font-size:10px; color:#888; letter-spacing:1px; }
+@media(max-width:768px){ .section,.engine-box,.conclusion,.series-box,.footer{padding-left:16px;padding-right:16px;margin-left:0;margin-right:0;} .header{padding:32px 16px 24px;} .term-grid,.signal-grid{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-badge">CAMBODIA STANDALONE · #C-01 · Λ¹²v9.12</div>
+  <h1>🇰🇭 캄보디아 단독편</h1>
+  <h2>왕조가 된 정당 — 훈센에서 훈마넷으로, 킬링필드에서 사이버 스캠까지</h2>
+  <div class="header-meta">늘푸른바다 사회동역학 연구소 · Λ¹²v9.12 엔진 기준 · 발행일 2026.05.02</div>
+</div>
+
+<div class="engine-box">
+  <strong>ENGINE:</strong> Λ¹²v9.12 | ADI §31 포함 | SSRN 6632858 기반<br>
+  <strong>Λ-Score:</strong> 0.462 (Danger) — 동남아 6개국 최고위험<br>
+  <strong>보정식:</strong> Λ¹²_corrected = Λ¹²_raw ÷ OLI × (1−TBI×θ) × (1−ADI×γ) × exp(−k×t) | OLI=0.72
+</div>
+
+<div class="section">
+  <div class="section-title">연구 목적</div>
+  <h3>이 보고서는 1,800만 캄보디아 민중의 현실을 관찰자의 시선으로 기록합니다</h3>
+  <div class="minjung-box">
+    <p>킬링필드(1975~79)에서 인구의 4분의 1이 학살됐습니다. 그 학살을 이끈 크메르루주를 몰아낸 것은 베트남이었고, 그 베트남의 도움으로 권력을 잡은 것이 훈센이었습니다. 1985년부터 2023년까지 38년. 그리고 그 권력을 아들에게 물려줬습니다.</p>
+    <p>Λ¹²는 묻습니다 — 트라우마에서 시작한 권력이 트라우마를 어떻게 통치 자원으로 사용하는가. 그 구조가 지금 사이버 스캠 산업과 어떻게 연결되어 있는가.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">§0 · 용어 해설</div>
+  <div class="term-grid">
+    <div class="term-item"><div class="term-key">킬링필드(킬링 필드)</div><div class="term-val">1975~79년 크메르루주의 캄보디아 대학살. 최소 150~200만 명 사망. 지식인·도시민·소수민족 집중 피해. TBI의 핵심 구성 요소.</div></div>
+    <div class="term-item"><div class="term-key">CPP (캄보디아인민당)</div><div class="term-val">1985년 이후 사실상 1당 지배체제. 2017년 마지막 야당 해산 후 완전한 1당 국가화.</div></div>
+    <div class="term-item"><div class="term-key">왕조 세습</div><div class="term-val">2023년 훈센→훈마넷 총리직 세습. 내무·국방부도 아버지→아들 대물림. 민주주의 외형의 세습 권력.</div></div>
+    <div class="term-item"><div class="term-key">사이버 스캠 산업</div><div class="term-val">GDP의 40~60% 규모로 추정. 외국인 10~20만 명을 강제 노동. 국가 최고위층 비호 의혹. UN 추정 연간 수십억 달러.</div></div>
+    <div class="term-item"><div class="term-key">Σ_rep (억압형 단절)</div><div class="term-val">CPP가 반대 세력을 체포·추방·협박으로 억압. 촛불당 해산, 독립언론 폐쇄, 야당 정치인 암살.</div></div>
+    <div class="term-item"><div class="term-key">캄보디아-태국 국경분쟁</div><div class="term-val">2025.07.24 무력 충돌 — 사망 38명, 부상 200명, 피난민 30만 명. 12.07 휴전 붕괴. TBI의 외부 압력 추가.</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅰ · 관찰자 시선</div>
+  <h3>GDP 7% 성장 국가가 왜 동남아 최고위험인가</h3>
+  <p>캄보디아는 지난 20년간 연평균 7% 성장한 동남아 경제 성공 사례처럼 보입니다. 그러나 Λ-Score 0.462 — 동남아 6개국 중 최고위험. 이 역설이 캄보디아의 본질입니다.</p>
+  <p>성장의 과실은 민중에게 가지 않았습니다. 비공식 고용 88%, 최저임금 월 208달러(2025), 최저 GDP per capita. 성장이 있었지만 분배가 없었습니다. CPP 엘리트와 훈센 가문이 성장의 구조를 장악했습니다.</p>
+  <div class="signal-grid">
+    <div class="signal-card"><div class="sig-icon">⚠️</div><div class="sig-label">Λ-Score (Danger)</div><div class="sig-val">0.462</div><div class="sig-note">동남아 6개국 1위 위험</div></div>
+    <div class="signal-card"><div class="sig-icon">🏛️</div><div class="sig-label">Freedom House 2025</div><div class="sig-val">24/100</div><div class="sig-note">Not Free</div></div>
+    <div class="signal-card"><div class="sig-icon">💰</div><div class="sig-label">사이버 스캠/GDP</div><div class="sig-val">40~60%</div><div class="sig-note">UN 추정 / 국가 비호 의혹</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅱ · 권력 구조 — 4궤도 SVG</div>
+  <h3>훈센 왕조의 4궤도 구조</h3>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 480 460" xmlns="http://www.w3.org/2000/svg" width="480" height="460">
+      <rect width="480" height="460" fill="#F5F3EE"/>
+      <!-- 궤도 4 — 민중 -->
+      <circle cx="240" cy="220" r="200" fill="#F0EBF8" stroke="#C5B5E5" stroke-width="2"/>
+      <text x="240" y="42" text-anchor="middle" fill="#4A2C6B" font-size="11" font-family="Courier New">궤도 4 — 민중 · 비공식고용 88%</text>
+      <!-- 궤도 3 — 의회·사법 -->
+      <circle cx="240" cy="220" r="155" fill="#EAE0F5" stroke="#A080CC" stroke-width="2"/>
+      <text x="240" y="82" text-anchor="middle" fill="#5A3A7A" font-size="11" font-family="Courier New">궤도 3 — 의회·사법 (CPP 장악)</text>
+      <!-- 궤도 2 — 군·경찰 -->
+      <circle cx="240" cy="220" r="108" fill="#D8C8EE" stroke="#7A50AA" stroke-width="2"/>
+      <text x="240" y="128" text-anchor="middle" fill="#6B3A8A" font-size="11" font-family="Courier New">궤도 2 — 군 · 경찰 · CPP</text>
+      <!-- 궤도 1 — 훈센 가문 -->
+      <circle cx="240" cy="220" r="60" fill="#B090D8" stroke="#4A2C6B" stroke-width="3"/>
+      <text x="240" y="213" text-anchor="middle" fill="#fff" font-size="13" font-family="Courier New" font-weight="bold">훈센 가문</text>
+      <text x="240" y="230" text-anchor="middle" fill="#EEE" font-size="10" font-family="Courier New">38년 → 세습</text>
+      <!-- 중국 외부 위성 -->
+      <circle cx="430" cy="90" r="22" fill="#FFF" stroke="#AA3333" stroke-width="1.5"/>
+      <text x="430" y="87" text-anchor="middle" font-size="16">🇨🇳</text>
+      <text x="430" y="118" text-anchor="middle" fill="#AA3333" font-size="9" font-family="Courier New">중국</text>
+      <text x="430" y="130" text-anchor="middle" fill="#AA3333" font-size="9" font-family="Courier New">외채 44%</text>
+      <line x1="408" y1="100" x2="390" y2="160" stroke="#AA3333" stroke-width="1" stroke-dasharray="4,3"/>
+      <!-- 사이버스캠 표시 -->
+      <text x="240" y="400" text-anchor="middle" fill="#4A2C6B" font-size="11" font-family="Courier New">💻 사이버 스캠 GDP 40~60% 추정 (UN)</text>
+      <text x="240" y="418" text-anchor="middle" fill="#7A5090" font-size="10" font-family="Courier New">최고위층 비호 의혹 | 강제노동 10~20만 명</text>
+      <!-- 세습 화살표 -->
+      <text x="50" y="200" fill="#4A2C6B" font-size="10" font-family="Courier New">훈센(1985~2023)</text>
+      <text x="50" y="214" fill="#4A2C6B" font-size="10" font-family="Courier New">↓ 세습</text>
+      <text x="50" y="228" fill="#4A2C6B" font-size="10" font-family="Courier New">훈마넷(2023~)</text>
+      <text x="240" y="8" text-anchor="middle" fill="#4A2C6B" font-size="12" font-family="Courier New">캄보디아 권력 4궤도 — Λ¹²v9.12</text>
+    </svg>
+  </div>
+  <div class="obs-note">4궤도 모두 훈센 가문을 향해 수렴합니다. 총리직은 아들에게, 상원의장직은 훈센 본인이, 내무·국방부는 각각 이전 장관의 아들에게 세습됐습니다. 형식적 민주주의의 외피를 두른 가문 왕조입니다.</div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅲ · 기본 통계</div>
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <tr><th>지표</th><th>수치</th><th>비고</th><th>출처</th></tr>
+      <tr><td>인구</td><td>약 1,800만 명</td><td>—</td><td>UN 2025</td></tr>
+      <tr><td>GDP per capita</td><td>USD 2,762 (2025)</td><td>동남아 최하위권</td><td>Worldometers</td></tr>
+      <tr><td>GDP 성장</td><td>~5.5% (2024)</td><td>팬데믹 前 평균 7%</td><td>Focus Economics</td></tr>
+      <tr><td>비공식 고용</td><td>88%</td><td>동남아 최고</td><td>UNDP 2024</td></tr>
+      <tr><td>최저임금(의류)</td><td>USD 208/월</td><td>2025 기준</td><td>BTI 2026</td></tr>
+      <tr><td>Freedom House</td><td>24/100 (Not Free)</td><td>—</td><td>FH 2025</td></tr>
+      <tr><td>정치범</td><td>59명 (2025.01)</td><td>LICADHO 집계</td><td>LICADHO 2025</td></tr>
+      <tr><td>사이버스캠/GDP</td><td>40~60% 추정</td><td>국가 비호 의혹</td><td>UN / Global SD 2025</td></tr>
+      <tr><td>캄보-태국 충돌</td><td>사망 38명</td><td>2025.07 / 12월 휴전 붕괴</td><td>Global SD 2025</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅳ · 기본 좌표 · 공식</div>
+  <div class="formula-box">
+    <div class="formula-title">ΛSCORE FORMULA — CAMBODIA</div>
+    <div class="formula-eq">Λ¹²_corrected = Λ¹²_raw ÷ 0.72 × (1 − 0.820 × 0.70) × (1 − 0.380 × 0.35) × exp(−k×t)</div>
+    <div class="formula-eq">TBI 보정항: (1 − 0.820 × 0.70) = (1 − 0.574) = 0.426 [TBI 극高 — 킬링필드 미소화]</div>
+    <div class="formula-eq">ADI 보정항: (1 − 0.380 × 0.35) = (1 − 0.133) = 0.867 [Transitional]</div>
+    <div class="formula-note">※ TBI 0.820이 이 보고서의 핵심 변수. 킬링필드 트라우마가 제도적으로 소화되지 않은 채 CPP의 통치 자원으로 전용됐습니다. "크메르루주의 공포를 기억하는가 — 그래서 우리가 필요하다"는 서사가 38년 집권의 심리적 기반.</div>
+  </div>
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <tr><th>변수</th><th>값</th><th>분류</th><th>비고</th></tr>
+      <tr><td>LPI</td><td>0.28</td><td>위험</td><td>극빈층 비율 높음</td></tr>
+      <tr><td>GPI</td><td>~110위</td><td>위험</td><td>태국 충돌 후 급락</td></tr>
+      <tr><td>CPI</td><td>22/100</td><td>위험</td><td>동남아 최하위</td></tr>
+      <tr><td>CFD</td><td>0.62</td><td>위험</td><td>민족·도농 분열</td></tr>
+      <tr><td>DCI</td><td>0.58</td><td>주목</td><td>청년 불만 축적</td></tr>
+      <tr><td>MFI</td><td>~150위</td><td>위험</td><td>독립언론 전멸</td></tr>
+      <tr><td>RHC</td><td>0.826</td><td>위험</td><td>킬링필드+태국분쟁</td></tr>
+      <tr><td>IGI</td><td>0.88</td><td>위험</td><td>정치범·언론탄압</td></tr>
+      <tr><td>TBI</td><td>0.820</td><td>위험</td><td>킬링필드 미소화</td></tr>
+      <tr><td>ADI</td><td>0.380</td><td>Transitional</td><td>중국 플랫폼 의존</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅴ · 위상 사분면</div>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 520 400" xmlns="http://www.w3.org/2000/svg" width="520" height="400">
+      <rect width="520" height="400" fill="#F5F3EE"/>
+      <rect x="50" y="30" width="210" height="170" fill="#EBF4F0" opacity="0.5"/>
+      <rect x="260" y="30" width="210" height="170" fill="#FFF3CD" opacity="0.4"/>
+      <rect x="50" y="200" width="210" height="170" fill="#FAEEDA" opacity="0.4"/>
+      <rect x="260" y="200" width="210" height="170" fill="#FCEBEB" opacity="0.4"/>
+      <line x1="50" y1="200" x2="470" y2="200" stroke="#555" stroke-width="1.5"/>
+      <line x1="260" y1="30" x2="260" y2="370" stroke="#555" stroke-width="1.5"/>
+      <text x="260" y="18" text-anchor="middle" fill="#3A6A5E" font-size="11" font-family="Courier New">높은 개방성</text>
+      <text x="260" y="388" text-anchor="middle" fill="#888" font-size="11" font-family="Courier New">낮은 개방성</text>
+      <text x="36" y="204" text-anchor="middle" fill="#888" font-size="10" font-family="Courier New" transform="rotate(-90,36,204)">불안정</text>
+      <text x="484" y="204" text-anchor="middle" fill="#3A6A5E" font-size="10" font-family="Courier New" transform="rotate(-90,484,204)">안정</text>
+      <text x="155" y="52" text-anchor="middle" fill="#3A6A5E" font-size="10" font-family="Courier New">개방·안정</text>
+      <text x="365" y="52" text-anchor="middle" fill="#856404" font-size="10" font-family="Courier New">개방·불안정</text>
+      <text x="155" y="380" text-anchor="middle" fill="#A0522D" font-size="10" font-family="Courier New">폐쇄·안정</text>
+      <text x="365" y="380" text-anchor="middle" fill="#791F1F" font-size="10" font-family="Courier New">폐쇄·불안정</text>
+      <!-- 캄보디아 Q4 — 폐쇄·불안정 -->
+      <circle cx="370" cy="328" r="26" fill="#F5F0FF" stroke="#4A2C6B" stroke-width="2.5"/>
+      <text x="370" y="324" text-anchor="middle" font-size="20">🇰🇭</text>
+      <text x="370" y="362" text-anchor="middle" fill="#4A2C6B" font-size="11" font-family="Courier New" font-weight="bold">캄보디아</text>
+      <!-- 비교 -->
+      <circle cx="148" cy="78" r="14" fill="#EEF3FF" stroke="#1B4F8A" stroke-width="1.5"/>
+      <text x="148" y="76" text-anchor="middle" font-size="12">🇹🇼</text>
+      <circle cx="140" cy="312" r="18" fill="#FCEBEB" stroke="#8B1A1A" stroke-width="2"/>
+      <text x="140" y="308" text-anchor="middle" font-size="14">🇨🇳</text>
+      <circle cx="120" cy="348" r="14" fill="#1A1A1A" stroke="#444" stroke-width="1.5"/>
+      <text x="120" y="346" text-anchor="middle" font-size="12">🇰🇵</text>
+      <text x="100" y="368" text-anchor="middle" fill="#666" font-size="9" font-family="Courier New">북한</text>
+      <text x="280" y="290" fill="#4A2C6B" font-size="10" font-family="Courier New">Q4 — 폐쇄·불안정</text>
+      <text x="280" y="303" fill="#4A2C6B" font-size="10" font-family="Courier New">TBI 0.820 누적 중</text>
+    </svg>
+  </div>
+  <div class="obs-note">캄보디아는 Q4(폐쇄·불안정) 구간에 위치합니다. 북한·중국과 같은 사분면이지만 구조는 다릅니다 — 북한은 완전 봉쇄, 중국은 억압형 안정, 캄보디아는 겉으로는 개방 경제이나 정치적으로는 폐쇄된 혼합 구조입니다. 이 불일치가 Λ-Score를 높이는 핵심 요인입니다.</div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅵ · GPI 시계열</div>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 600 210" xmlns="http://www.w3.org/2000/svg" width="600" height="210">
+      <rect width="600" height="210" fill="#fff"/>
+      <line x1="70" y1="20" x2="70" y2="180" stroke="#EEE" stroke-width="1"/>
+      <line x1="70" y1="180" x2="570" y2="180" stroke="#CCC" stroke-width="1.5"/>
+      <line x1="70" y1="60" x2="570" y2="60" stroke="#EEE" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <line x1="70" y1="110" x2="570" y2="110" stroke="#EEE" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <text x="62" y="64" text-anchor="end" fill="#888" font-size="9" font-family="Courier New">80위</text>
+      <text x="62" y="114" text-anchor="end" fill="#888" font-size="9" font-family="Courier New">110위</text>
+      <text x="112" y="198" text-anchor="middle" fill="#888" font-size="9" font-family="Courier New">2016</text>
+      <text x="236" y="198" text-anchor="middle" fill="#888" font-size="9" font-family="Courier New">2019</text>
+      <text x="360" y="198" text-anchor="middle" fill="#888" font-size="9" font-family="Courier New">2022</text>
+      <text x="484" y="198" text-anchor="middle" fill="#888" font-size="9" font-family="Courier New">2024</text>
+      <text x="550" y="198" text-anchor="middle" fill="#888" font-size="9" font-family="Courier New">2025</text>
+      <!-- 캄보디아 GPI — 하락 추세 -->
+      <polyline points="112,95 162,96 236,98 300,100 360,104 422,108 484,112 520,118 550,135" fill="none" stroke="#4A2C6B" stroke-width="2.5"/>
+      <circle cx="550" cy="135" r="4" fill="#4A2C6B"/>
+      <text x="558" y="133" fill="#4A2C6B" font-size="9" font-family="Courier New">~130위</text>
+      <!-- 태국 충돌 표시 -->
+      <line x1="520" y1="20" x2="520" y2="180" stroke="#B8850E" stroke-width="1" stroke-dasharray="3,2"/>
+      <text x="522" y="34" fill="#B8850E" font-size="9" font-family="Courier New">태국</text>
+      <text x="522" y="46" fill="#B8850E" font-size="9" font-family="Courier New">충돌</text>
+      <text x="300" y="15" text-anchor="middle" fill="#4A2C6B" font-size="11" font-family="Courier New">캄보디아 GPI 순위 추이 (↑ = 평화 악화)</text>
+    </svg>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅶ · TBI 분해 — 킬링필드의 구조</div>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 600 175" xmlns="http://www.w3.org/2000/svg" width="600" height="175">
+      <rect width="600" height="175" fill="#F5F3EE"/>
+      <text x="20" y="30" fill="#666" font-size="11" font-family="Courier New">H 역사충격</text>
+      <rect x="120" y="15" width="448" height="22" fill="#EEE" rx="2"/>
+      <rect x="120" y="15" width="426" height="22" fill="#4A2C6B" rx="2"/>
+      <text x="556" y="31" fill="#4A2C6B" font-size="10" font-family="Courier New">0.95</text>
+      <text x="124" y="31" fill="#EEE" font-size="9" font-family="Courier New">킬링필드 150~200만 사망 / 식민 / 내전 복합</text>
+      <text x="20" y="75" fill="#666" font-size="11" font-family="Courier New">C 미소화</text>
+      <rect x="120" y="60" width="448" height="22" fill="#EEE" rx="2"/>
+      <rect x="120" y="60" width="385" height="22" fill="#6B3A8A" rx="2"/>
+      <text x="516" y="76" fill="#6B3A8A" font-size="10" font-family="Courier New">0.86</text>
+      <text x="124" y="76" fill="#EEE" font-size="9" font-family="Courier New">가해자(크메르루주→CPP) 통합 / 공식 진상규명 미완</text>
+      <text x="20" y="120" fill="#666" font-size="11" font-family="Courier New">N 서사통합</text>
+      <rect x="120" y="105" width="448" height="22" fill="#EEE" rx="2"/>
+      <rect x="120" y="105" width="404" height="22" fill="#8A5AAA" rx="2"/>
+      <text x="536" y="121" fill="#6B3A8A" font-size="10" font-family="Courier New">0.90</text>
+      <text x="124" y="121" fill="#EEE" font-size="9" font-family="Courier New">CPP 독점 서사 / 크메르루주 재해석 불가</text>
+      <text x="20" y="162" fill="#4A2C6B" font-size="11" font-family="Courier New" font-weight="bold">TBI = 0.95 × 0.86 × 0.90 ≈ 0.820 | 임계 θ=0.70 초과 +0.120</text>
+    </svg>
+  </div>
+  <div class="obs-note">킬링필드의 가해자 일부(크메르루주 출신)가 CPP에 흡수되어 현재 지방·중앙 정부 직위를 유지하고 있습니다(BTI 2026). 이것은 트라우마의 미소화가 아니라 — 가해자가 피해자 위에서 계속 통치하는 구조입니다.</div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅷ · 12축 레이더</div>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" width="400" height="400">
+      <rect width="400" height="400" fill="#F5F3EE"/>
+      <circle cx="200" cy="200" r="150" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+      <circle cx="200" cy="200" r="112" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+      <circle cx="200" cy="200" r="75" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+      <circle cx="200" cy="200" r="37" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+      <line x1="200" y1="200" x2="200" y2="50" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="275" y2="62" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="330" y2="118" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="350" y2="200" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="330" y2="282" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="275" y2="338" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="200" y2="350" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="125" y2="338" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="70" y2="282" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="50" y2="200" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="70" y2="118" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="125" y2="62" stroke="#EEE" stroke-width="0.7"/>
+      <!-- 캄보디아 — 위험 변수 극대 -->
+      <polygon points="200,170 250,105 310,138 330,200 308,272 260,336 200,340 134,330 72,274 60,200 80,132 138,98" fill="#4A2C6B" fill-opacity="0.25" stroke="#4A2C6B" stroke-width="2"/>
+      <!-- 동남아 평균 비교 -->
+      <polygon points="200,120 262,104 308,138 322,200 302,262 264,314 200,322 136,314 96,262 78,200 92,138 136,104" fill="none" stroke="#5E9186" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+      <text x="200" y="42" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">LPI</text>
+      <text x="286" y="54" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">HDI</text>
+      <text x="344" y="108" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">GPI</text>
+      <text x="362" y="202" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">CPI</text>
+      <text x="344" y="294" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">CFD</text>
+      <text x="286" y="350" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">DCI</text>
+      <text x="200" y="366" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">MFI</text>
+      <text x="114" y="350" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">RHC</text>
+      <text x="56" y="294" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">IGI</text>
+      <text x="38" y="202" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">AHI</text>
+      <text x="56" y="108" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">TBI</text>
+      <text x="114" y="54" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">ADI</text>
+      <rect x="240" y="375" width="10" height="8" fill="#4A2C6B" fill-opacity="0.35" stroke="#4A2C6B" stroke-width="1"/>
+      <text x="254" y="383" fill="#4A2C6B" font-size="9" font-family="Courier New">캄보디아</text>
+      <line x1="308" y1="379" x2="326" y2="379" stroke="#5E9186" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="330" y="383" fill="#5E9186" font-size="9" font-family="Courier New">동남아 평균</text>
+    </svg>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅸ · PPR — 5개 구조 블록</div>
+  <div class="ppr-card"><div class="ppr-head">PPR-1 · 정치</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">체제</span><span class="ppr-val">1당 권위주의 / Freedom House 24</span></div>
+    <div class="ppr-row"><span class="ppr-key">훈마넷 취임</span><span class="ppr-val">2023.08 / 38년 만의 세습 권력 이양</span></div>
+    <div class="ppr-row"><span class="ppr-key">상원장</span><span class="ppr-val">훈센 본인 / 2024.04 6년 임기 선출</span></div>
+    <div class="ppr-row"><span class="ppr-key">야당</span><span class="ppr-val">촛불당 2023 해산 / 정치범 59명(2025.01)</span></div>
+    <div class="ppr-row"><span class="ppr-key">시민권 박탈</span><span class="ppr-val">2025.07 헌법 개정 / 반대 세력 표적</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-2 · 경제</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">GDP per capita</span><span class="ppr-val">USD 2,762 / 동남아 최하위권</span></div>
+    <div class="ppr-row"><span class="ppr-key">비공식 고용</span><span class="ppr-val">88% / 의류·농업·건설 집중</span></div>
+    <div class="ppr-row"><span class="ppr-key">사이버 스캠</span><span class="ppr-val">GDP 40~60% 추정 / 국가 비호</span></div>
+    <div class="ppr-row"><span class="ppr-key">대중 의존</span><span class="ppr-val">외채 44% 중국 / 중국 해군기지</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-3 · 사회</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">최저임금</span><span class="ppr-val">USD 208/월 / 생계 불충분</span></div>
+    <div class="ppr-row"><span class="ppr-key">젠더불평등</span><span class="ppr-val">GII 116위 / 동남아 최저</span></div>
+    <div class="ppr-row"><span class="ppr-key">디지털 접근</span><span class="ppr-val">도시 편중 / 농촌 배제</span></div>
+    <div class="ppr-row"><span class="ppr-key">강제노동</span><span class="ppr-val">사이버스캠 피해자 10~20만 명</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-4 · 역사</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">TBI</span><span class="ppr-val">0.820 — 킬링필드 미소화 극高</span></div>
+    <div class="ppr-row"><span class="ppr-key">크메르루주 흡수</span><span class="ppr-val">가해자→CPP 통합 / 지방정부 유지</span></div>
+    <div class="ppr-row"><span class="ppr-key">진상규명</span><span class="ppr-val">UN 하이브리드 재판 — 제한적</span></div>
+    <div class="ppr-row"><span class="ppr-key">프랑스 식민</span><span class="ppr-key">1863~1953 / HCDI 복합 적용</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-5 · 지정학</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">중국</span><span class="ppr-val">최대 후원국 / 해군기지 / 외채 44%</span></div>
+    <div class="ppr-row"><span class="ppr-key">태국 분쟁</span><span class="ppr-val">2025.07 무력 충돌 / 12.07 휴전 붕괴</span></div>
+    <div class="ppr-row"><span class="ppr-key">미국</span><span class="ppr-val">2023 선거 불공정 규탄 / 제재</span></div>
+    <div class="ppr-row"><span class="ppr-key">아세안</span><span class="ppr-val">중국 친화 노선 / 남중국해 성명 차단</span></div>
+  </div></div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅹ · 담론육층</div>
+  <div style="margin:14px 0;">
+    <div class="discourse-layer"><div class="layer-num">1층<br>데이터</div><div class="layer-content"><strong>무엇이 보이는가:</strong> Freedom House 24/100. 정치범 59명. 사이버 스캠 GDP 40~60%. 비공식 고용 88%. 최저임금 월 208달러. GDP 성장 5.5%. 이 숫자들이 동시에 존재하는 나라.</div></div>
+    <div class="discourse-layer"><div class="layer-num">2층<br>이해관계</div><div class="layer-content"><strong>누가 이익을 얻는가:</strong> 훈센 가문은 세습 권력으로 국가 자산을 관리합니다. CPP 엘리트는 사이버 스캠 산업의 비호로 수익을 올립니다. 중국은 캄보디아를 아세안 내 친중 거점으로 활용하며 해군기지를 확보했습니다. 글로벌 의류 바이어들은 월 208달러 노동력의 수혜자입니다.</div></div>
+    <div class="discourse-layer"><div class="layer-num">3층<br>역사 패턴</div><div class="layer-content"><strong>이전에도 있었는가:</strong> 킬링필드(1975~79) → 베트남 침공→훈센 집권(1985) → 파리평화협정(1991) → UN 감시 선거(1993) → 쿠데타(1997) → 1당 지배 완성(2017) → 세습(2023). 외부 민주화 시도가 반복적으로 내부 권력 강화로 귀결되는 패턴. 아이러니하게도 UN 선거 지원이 훈센 장기집권의 합법성 외피를 제공했습니다.</div></div>
+    <div class="discourse-layer"><div class="layer-num">4층<br>시각 역전</div><div class="layer-content"><strong>반대로 보면:</strong> 사이버 스캠 피해자 10~20만 명 중 대부분이 외국인입니다. 캄보디아가 이 산업을 유지하는 것은 자국 노동력 착취가 아니라 — 외국인 노동력 착취입니다. 이것은 식민 착취의 역전인가, 아니면 다른 형태의 착취인가. 경계가 모호합니다. Λ¹²는 이 경계에서 판단을 멈춥니다.</div></div>
+    <div class="discourse-layer"><div class="layer-num">5층<br>프레임</div><div class="layer-content"><strong>Λ¹² 위상 진단:</strong> 캄보디아는 Q4(폐쇄·불안정) 구간에 위치하며 TBI 0.820이 가장 위험한 변수입니다. 킬링필드 트라우마가 CPP의 통치 자원으로 전용된 구조는 역설적으로 체제 안정성을 높이지만 — 그 안정은 억압 위에 세워진 것입니다. 태국 국경 충돌(2025)이 외부 TBI 요인을 추가했습니다. 로지스틱 분기 시점이 가까워지고 있습니다.</div></div>
+    <div class="discourse-layer"><div class="layer-num" style="background:#3A6A5E;">6층<br>판단 유보</div><div class="layer-content" style="background:#E8F4F0;"><strong>이 층은 1,800만 캄보디아 민중의 몫입니다.</strong> 킬링필드를 기억하는 세대가 사라지고 있습니다. 그 기억이 사라질 때 CPP의 통치 자원도 함께 사라질 것인가 — 아니면 새로운 형태로 재생산될 것인가. 그 물음에 답할 수 있는 것은 캄보디아 청년 세대뿐입니다.</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">ⅩⅠ · 오차 범위</div>
+  <div class="error-box">※ OLI=0.72: 독립언론 전멸, 정부 통계 신뢰도 제한. 사이버 스캠 GDP 비율(40~60%)은 UN 추정치로 오차 범위 넓음. TBI 0.820은 킬링필드 피해 규모 추정치(150~200만)의 불확실성 포함. ADI 0.380: 중국 플랫폼 의존도 직접 측정 불가 — 간접 추정.</div>
+</div>
+
+<div class="section">
+  <div class="section-title">ⅩⅡ · 결론 궤도</div>
+  <div class="conclusion">
+    <p>캄보디아는 세계에서 가장 정교한 트라우마 통치를 하는 나라 중 하나입니다. "우리가 없었다면 크메르루주가 돌아왔을 것이다" — 이 서사가 38년을 지탱했고, 이제 아들에게 물려졌습니다.</p>
+    <p>TBI 0.820이 말하는 것 — 킬링필드의 기억이 소화되지 않은 채 권력의 도구로 남아있다는 것입니다. 진상규명이 없었고, 가해자의 일부는 지금도 지방정부를 운영하고 있습니다. 이것은 트라우마의 치유가 아니라 트라우마의 동결입니다.</p>
+    <p>그러나 킬링필드를 기억하는 세대가 점점 줄어들고 있습니다. 청년 세대는 그 공포가 아니라 월 208달러 최저임금과 사이버 스캠 산업을 보고 자랐습니다. 그들이 CPP의 서사를 믿을 이유가 점점 얇아지고 있습니다.</p>
+    <p>Λ-Score 0.462는 동남아 최고위험을 가리킵니다. 그 수치가 언제, 어떤 방향으로 움직일지 — 그것은 훈마넷이 아니라 캄보디아 청년이 결정할 것입니다.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="series-box">
+    <div class="series-title">유럽·아시아 단독편 시리즈 — Λ¹²v9.12</div>
+    <div class="series-item"><span class="series-num">C-01</span><span>캄보디아 단독편 v1.0 (현재)</span><span class="series-status status-now">완성</span></div>
+    <div class="series-item"><span class="series-num">E-01</span><span>보스니아 단독편 v1.0</span><span class="series-status status-plan">예정</span></div>
+    <div class="series-item"><span class="series-num">E-02</span><span>헝가리 단독편 v1.0</span><span class="series-status status-plan">예정</span></div>
+    <div class="series-item"><span class="series-num">E-03</span><span>그리스 단독편 v1.0</span><span class="series-status status-plan">예정</span></div>
+    <div class="series-item"><span class="series-num">E-04</span><span>영국 단독편 v1.0</span><span class="series-status status-plan">예정</span></div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>늘푸른바다 사회동역학 연구소 (Everblue Sea Institute for Social Dynamics)</p>
+  <p>소장 청해(淸海) · Claude (Anthropic) 연구 파트너</p>
+  <p><a href="https://badaegopa.tistory.com">badaegopa.tistory.com</a> · <a href="https://everbluesea.org">everbluesea.org</a> · contact@everbluesea.org</p>
+  <div class="engine-tag">Engine: Λ¹²v9.12 | ADI §31 | SSRN 6632858 | cambodia_lambda12_v912_20260502.html</div>
+</div>
+</body>
+</html>

@@ -33,6 +33,11 @@
 - north-europe-1 → 북유럽-1 (North Europe 1)
 - east-europe-1 → 동유럽-1 (East Europe 1)
 - balkans-1 → 발칸-1 (Balkans 1)
+- uk → 영국 (UK)
+- greece → 그리스 (Greece)
+- hungary → 헝가리 (Hungary)
+- bosnia → 보스니아 (Bosnia)
+- cambodia → 캄보디아 (Cambodia)
 
 ## 디자인 표준 v2.2 파스텔
 - 배경: #F5F3EE / 그린: #5E9186 / 텍스트그린: #3A6A5E

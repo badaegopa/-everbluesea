@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>영국 단독편 — Λ¹²v9.12 | 늘푸른바다 사회동역학 연구소</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#F5F3EE; color:#2C2C2C; font-family:Georgia,'Times New Roman',serif; line-height:1.75; }
+.header { background:linear-gradient(135deg,#2C1A4A 0%,#4A2C6B 40%,#1A0F2E 100%); padding:48px 40px 36px; position:relative; overflow:hidden; }
+.header::before { content:'裂'; position:absolute; right:40px; top:10px; font-size:160px; color:rgba(255,255,255,0.06); font-family:Georgia,serif; font-weight:bold; line-height:1; }
+.header-badge { display:inline-block; background:rgba(255,255,255,0.18); color:#fff; font-family:'Courier New',monospace; font-size:11px; padding:4px 12px; border-radius:2px; letter-spacing:1.5px; margin-bottom:16px; }
+.header h1 { color:#fff; font-size:30px; font-weight:normal; margin-bottom:6px; }
+.header h2 { color:rgba(255,255,255,0.85); font-size:15px; font-weight:normal; }
+.header-meta { margin-top:20px; color:rgba(255,255,255,0.65); font-family:'Courier New',monospace; font-size:11px; letter-spacing:1px; }
+.engine-box { background:#fff; border-left:4px solid #B8850E; padding:14px 20px; margin:24px 40px; font-family:'Courier New',monospace; font-size:12px; color:#595959; }
+.engine-box strong { color:#B8850E; }
+.section { padding:32px 40px; border-bottom:1px solid #DDD8CE; }
+.section-title { font-size:13px; font-family:'Courier New',monospace; color:#2C1A4A; letter-spacing:2px; text-transform:uppercase; margin-bottom:16px; }
+.section h3 { font-size:20px; color:#1F1F1F; font-weight:normal; margin-bottom:14px; }
+.section p { font-size:14px; color:#3A3A3A; margin-bottom:10px; text-align:justify; }
+.minjung-box { background:#F0EBF8; border-left:4px solid #4A2C6B; padding:20px 24px; margin:14px 0; border-radius:2px; }
+.minjung-box p { font-size:14px; color:#1A0A2A; line-height:1.85; margin-bottom:8px; }
+.term-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:14px 0; }
+.term-item { background:#fff; border:1px solid #DDD8CE; padding:12px 14px; border-radius:2px; }
+.term-item .term-key { font-family:'Courier New',monospace; font-size:12px; color:#2C1A4A; font-weight:bold; margin-bottom:4px; }
+.term-item .term-val { font-size:12px; color:#444; }
+.data-table-wrap { margin:16px 0; overflow-x:auto; }
+.data-table { width:100%; border-collapse:collapse; font-size:13px; }
+.data-table th { background:#2C1A4A; color:#fff; padding:10px 14px; text-align:center; font-family:'Courier New',monospace; font-size:11px; font-weight:normal; }
+.data-table th:first-child { text-align:left; }
+.data-table td { padding:9px 14px; border-bottom:1px solid #EEE; text-align:center; font-family:'Courier New',monospace; font-size:12px; }
+.data-table td:first-child { text-align:left; font-family:Georgia,serif; font-size:13px; }
+.data-table tr:nth-child(even) td { background:#F5F3EE; }
+.formula-box { background:#fff; border:1px solid #DDD8CE; border-top:3px solid #2C1A4A; padding:20px 24px; margin:16px 0; }
+.formula-box .formula-title { font-family:'Courier New',monospace; font-size:11px; color:#2C1A4A; letter-spacing:2px; margin-bottom:12px; }
+.formula-box .formula-eq { font-family:'Courier New',monospace; font-size:13px; color:#1F1F1F; background:#F5F3EE; padding:12px 16px; border-radius:2px; margin:8px 0; line-height:1.6; }
+.formula-box .formula-note { font-size:12px; color:#666; margin-top:8px; }
+.svg-wrap { text-align:center; margin:16px 0; }
+.obs-note { background:#F0EBF8; border:1px solid #C5B5D5; border-radius:3px; padding:14px 18px; margin:14px 0; font-size:13px; color:#1A0A2A; line-height:1.7; }
+.obs-note::before { content:'◈ 관찰 신호'; display:block; font-family:'Courier New',monospace; font-size:10px; color:#2C1A4A; letter-spacing:1px; margin-bottom:6px; }
+.ppr-card { background:#fff; border:1px solid #DDD8CE; border-radius:3px; overflow:hidden; margin-bottom:14px; }
+.ppr-head { background:#2C1A4A; color:#fff; font-size:12px; font-family:'Courier New',monospace; padding:8px 14px; letter-spacing:1px; }
+.ppr-body { padding:14px; }
+.ppr-row { display:flex; justify-content:space-between; font-size:12px; padding:4px 0; border-bottom:1px solid #F0EDE8; }
+.ppr-row:last-child { border-bottom:none; }
+.ppr-key { color:#666; }
+.ppr-val { font-family:'Courier New',monospace; font-weight:bold; color:#2C1A4A; }
+.discourse-layer { display:grid; grid-template-columns:130px 1fr; gap:0; margin-bottom:2px; }
+.layer-num { background:#2C1A4A; color:#fff; font-family:'Courier New',monospace; font-size:11px; padding:12px 14px; display:flex; align-items:center; }
+.layer-content { background:#fff; border:1px solid #DDD8CE; border-left:none; padding:12px 18px; font-size:13px; color:#2C2C2C; line-height:1.7; }
+.layer-content strong { color:#2C1A4A; }
+.signal-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:14px 0; }
+.signal-card { background:#fff; border:1px solid #DDD8CE; padding:14px; border-radius:2px; text-align:center; }
+.signal-card .sig-label { font-size:11px; color:#888; font-family:'Courier New',monospace; margin-bottom:4px; }
+.signal-card .sig-val { font-size:16px; font-family:'Courier New',monospace; font-weight:bold; color:#2C1A4A; }
+.signal-card .sig-note { font-size:10px; color:#666; margin-top:4px; }
+.class-bar { margin:14px 0; }
+.class-row { display:grid; grid-template-columns:100px 1fr 60px; gap:8px; align-items:center; margin-bottom:6px; }
+.class-label { font-size:12px; color:#444; text-align:right; }
+.class-track { background:#EEE; border-radius:2px; height:20px; overflow:hidden; }
+.class-fill { height:100%; border-radius:2px; }
+.class-val { font-family:'Courier New',monospace; font-size:11px; color:#333; }
+.conclusion { background:#F0EBF8; border-left:4px solid #4A2C6B; padding:24px 32px; margin:20px 40px; border-radius:2px; }
+.conclusion p { font-size:15px; line-height:1.95; color:#1F1F1F; text-align:justify; margin-bottom:12px; }
+.conclusion p:last-child { margin-bottom:0; }
+.series-box { background:#fff; border:1px solid #DDD8CE; margin:20px 40px; padding:20px; }
+.series-title { font-family:'Courier New',monospace; font-size:11px; color:#2C1A4A; letter-spacing:2px; margin-bottom:12px; }
+.series-item { display:flex; gap:12px; padding:6px 0; border-bottom:1px solid #F0EDE8; font-size:12px; }
+.series-item:last-child { border-bottom:none; }
+.series-num { font-family:'Courier New',monospace; color:#B8850E; min-width:40px; }
+.series-status { margin-left:auto; font-family:'Courier New',monospace; font-size:10px; padding:2px 8px; border-radius:2px; }
+.status-done { background:#E8F4F0; color:#27500A; }
+.status-now { background:#F0EBF8; color:#2C1A4A; }
+.footer { background:#EDE8F5; padding:28px 40px; text-align:center; border-top:1px solid #DDD8CE; }
+.footer p { font-size:12px; color:#2C1A4A; margin-bottom:4px; font-family:'Courier New',monospace; }
+.footer a { color:#4A2C6B; text-decoration:none; }
+.footer .engine-tag { margin-top:10px; font-size:10px; color:#888; letter-spacing:1px; }
+@media(max-width:768px){ .section,.engine-box,.conclusion,.series-box,.footer{padding-left:16px;padding-right:16px;margin-left:0;margin-right:0;} .header{padding:32px 16px 24px;} .term-grid,.signal-grid{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-badge">UK STANDALONE · #E-04 · Λ¹²v9.12</div>
+  <h1>🇬🇧 영국 단독편</h1>
+  <h2>33.7%로 이긴 선거 — 브렉시트 이후 계급·세대·지역의 삼중 단층</h2>
+  <div class="header-meta">늘푸른바다 사회동역학 연구소 · Λ¹²v9.12 엔진 기준 · 발행일 2026.05.02</div>
+</div>
+
+<div class="engine-box">
+  <strong>ENGINE:</strong> Λ¹²v9.12 | ADI §31 포함 | SSRN 6632858 기반<br>
+  <strong>특이사항:</strong> 역대 최소 득표율(33.7%)로 최대 의석 / 브렉시트 여파 지속 / NHS 사상 최악<br>
+  <strong>보정식:</strong> Λ¹²_corrected = Λ¹²_raw ÷ OLI × (1−TBI×θ) × (1−ADI×γ) × exp(−k×t) | OLI=0.83
+</div>
+
+<div class="section">
+  <div class="section-title">연구 목적</div>
+  <h3>이 보고서는 6,700만 영국 민중의 현실을 관찰자의 시선으로 기록합니다</h3>
+  <div class="minjung-box">
+    <p>2024년 7월 4일. 노동당 키어 스타머가 1832년 이후 최대 의석으로 집권했습니다. 그러나 득표율은 33.7% — 보통선거 도입 이후 다수당 정부 중 역대 최저입니다. 압도적 의석이지만 민중의 지지는 역대 최소.</p>
+    <p>이 역설이 지금 영국의 좌표입니다. 브렉시트가 갈라놓은 계급·세대·지역의 단층, 사상 최악의 NHS 대기열, 브렉시트 후 GDP 비용, Reform UK의 부상. Λ¹²는 이 단층들이 어떻게 연결되어 있는지 읽습니다.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">§0 · 용어 해설</div>
+  <div class="term-grid">
+    <div class="term-item"><div class="term-key">스타머 (Keir Starmer)</div><div class="term-val">2024.07 총리 취임. 14년 보수당 집권 종식. 노동당 '최소 사회민주주의' 노선. 33.7% 득표율·59.7% 투표율로 집권.</div></div>
+    <div class="term-item"><div class="term-key">브렉시트 여파</div><div class="term-val">2016 국민투표 후 경제 비용 누적. 영국 GDP, 2008~2024년 미국의 절반 성장. 1인당 GDP 실질 -2% (같은 기간 미국 +70%).</div></div>
+    <div class="term-item"><div class="term-key">NHS 위기</div><div class="term-val">2016년 이후 모든 목표 미달성. 대기 목록 역대 최대. 응급·암·선택 진료 모두 기준 미충족. 스타머 "개혁 없이 돈 없다".</div></div>
+    <div class="term-item"><div class="term-key">Reform UK</div><div class="term-val">나이절 패라지 주도 극우 포퓰리즘 정당. 2024년 14.3% 득표 5석. 2025 지방선거 대약진 예상. DCI의 핵심 신호.</div></div>
+    <div class="term-item"><div class="term-key">삼중 단층</div><div class="term-val">계급 단층(노동자·중산층 분리), 세대 단층(청년 주거난·고령자 자산), 지역 단층(런던·북부잉글랜드). DCI·CFD 복합 상승 원인.</div></div>
+    <div class="term-item"><div class="term-key">£20억 재정 구멍</div><div class="term-val">스타머 정부 상속한 재정 적자. 채권시장 긴장. 부채이자 공공지출 8% 이상. IMF 경고.</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅰ · 관찰자 시선</div>
+  <h3>압도적 의석 + 최소 지지 — 취약한 기반 위의 거대 정부</h3>
+  <p>노동당은 411석을 얻었습니다. 보수당은 121석으로 붕괴했습니다. 그러나 이 의석 지도는 실제 민심 지도가 아닙니다 — 영국의 소선거구제가 33.7%의 지지를 65%의 의석으로 변환한 것입니다. 스타머는 강한 민의가 아니라 보수당의 붕괴로 집권했습니다.</p>
+  <div class="signal-grid">
+    <div class="signal-card"><div class="sig-label">스타머 득표율</div><div class="sig-val">33.7%</div><div class="sig-note">보통선거 이후 최저 다수당</div></div>
+    <div class="signal-card"><div class="sig-label">영국 1인당 GDP 변화</div><div class="sig-val">-2%</div><div class="sig-note">2008~2024 / 미국은 +70%</div></div>
+    <div class="signal-card"><div class="sig-label">보수당 8년 총리</div><div class="sig-val">5명</div><div class="sig-note">브렉시트~2024 정치 혼돈</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅱ · 계급·세대·지역 삼중 단층</div>
+  <div class="class-bar">
+    <div style="font-family:'Courier New',monospace;font-size:11px;color:#2C1A4A;margin-bottom:10px;letter-spacing:1px;">CFD 분해 — 영국 사회 단층 구조</div>
+    <div class="class-row"><div class="class-label">계급 단층</div><div class="class-track"><div class="class-fill" style="width:82%;background:#2C1A4A;"></div></div><div class="class-val">0.82</div></div>
+    <div class="class-row"><div class="class-label">세대 단층</div><div class="class-track"><div class="class-fill" style="width:78%;background:#4A2C6B;"></div></div><div class="class-val">0.78</div></div>
+    <div class="class-row"><div class="class-label">지역 단층</div><div class="class-track"><div class="class-fill" style="width:75%;background:#6B4A8A;"></div></div><div class="class-val">0.75</div></div>
+    <div class="class-row"><div class="class-label">브렉시트 잔존</div><div class="class-track"><div class="class-fill" style="width:68%;background:#8A6AAA;"></div></div><div class="class-val">0.68</div></div>
+  </div>
+  <div class="obs-note">영국 CFD의 특이점 — 이민·인종 갈등이 아니라 브렉시트가 만든 계층·세대 분열이 핵심입니다. 브렉시트 투표는 정확히 계급(노동자계급 Leave, 전문직 Remain)·세대(고령자 Leave, 청년 Remain)·지역(북잉글랜드 Leave, 런던 Remain) 단층선을 따라 갈라졌습니다. 이 단층이 현재 Reform UK 부상으로 이어지고 있습니다.</div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅲ · 기본 통계</div>
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <tr><th>지표</th><th>수치</th><th>비고</th><th>출처</th></tr>
+      <tr><td>인구</td><td>약 6,700만 명</td><td>이민 유입 지속</td><td>ONS 2024</td></tr>
+      <tr><td>GDP per capita</td><td>USD ~49,000</td><td>미국의 약 65%</td><td>IMF 2024</td></tr>
+      <tr><td>GDP 성장률</td><td>~0.9% (2024)</td><td>주요국 중 최저권</td><td>ONS</td></tr>
+      <tr><td>Freedom House</td><td>93/100 (Free)</td><td>안정적</td><td>FH 2025</td></tr>
+      <tr><td>NHS 대기</td><td>역대 최대</td><td>2016년 이후 목표 미달</td><td>NHS England</td></tr>
+      <tr><td>Reform UK 득표</td><td>14.3% (2024)</td><td>극우 포퓰리즘 부상</td><td>BBC</td></tr>
+      <tr><td>부채이자/지출</td><td>8% 이상</td><td>2024~25 회계연도</td><td>OBR</td></tr>
+      <tr><td>재정 구멍</td><td>£200억</td><td>스타머 정부 상속</td><td>HM Treasury</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅳ · 기본 좌표 · 공식</div>
+  <div class="formula-box">
+    <div class="formula-title">ΛSCORE FORMULA — UK</div>
+    <div class="formula-eq">Λ¹²_corrected = Λ¹²_raw ÷ 0.83 × (1 − 0.480 × 0.70) × (1 − 0.368 × 0.35) × exp(−k×t)</div>
+    <div class="formula-eq">TBI 보정항: (1 − 0.480 × 0.70) = (1 − 0.336) = 0.664 [브렉시트+식민 역사 복합]</div>
+    <div class="formula-eq">ADI 보정항: (1 − 0.368 × 0.35) = (1 − 0.129) = 0.871</div>
+    <div class="formula-note">※ 영국 TBI의 핵심은 두 가지입니다: ① 브렉시트가 만든 사회 분열의 '현재 진행형 트라우마' ② 제국주의 역사에 대한 청산 없는 서사 — BLM, 로즈 동상 철거 논쟁이 이것의 표면화. CFD 0.75는 민족·인종이 아닌 계급·세대·지역 단층으로 구성.</div>
+  </div>
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <tr><th>변수</th><th>값</th><th>분류</th><th>비고</th></tr>
+      <tr><td>LPI</td><td>0.72</td><td>주목</td><td>생활비 위기 지속</td></tr>
+      <tr><td>GPI</td><td>~34위</td><td>안정</td><td>핵보유국·NATO</td></tr>
+      <tr><td>CPI</td><td>71/100</td><td>주목</td><td>상대적 안정</td></tr>
+      <tr><td>CFD</td><td>0.75</td><td>위험</td><td>계급·세대·지역 삼중</td></tr>
+      <tr><td>DCI</td><td>0.65</td><td>위험</td><td>Reform UK 세대 단절</td></tr>
+      <tr><td>MFI</td><td>~24위</td><td>안정</td><td>독립 언론 건재</td></tr>
+      <tr><td>RHC</td><td>0.580</td><td>주목</td><td>제국주의 역사 부채</td></tr>
+      <tr><td>IGI</td><td>0.45</td><td>주목</td><td>제도 상대적 건재</td></tr>
+      <tr><td>TBI</td><td>0.480</td><td>주목</td><td>브렉시트+식민 복합</td></tr>
+      <tr><td>ADI</td><td>0.368</td><td>Transitional</td><td>중간 수준</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅴ · 위상 사분면</div>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 520 400" xmlns="http://www.w3.org/2000/svg" width="520" height="400">
+      <rect width="520" height="400" fill="#F5F3EE"/>
+      <rect x="50" y="30" width="210" height="170" fill="#EBF4F0" opacity="0.5"/>
+      <rect x="260" y="30" width="210" height="170" fill="#FFF3CD" opacity="0.4"/>
+      <rect x="50" y="200" width="210" height="170" fill="#FAEEDA" opacity="0.4"/>
+      <rect x="260" y="200" width="210" height="170" fill="#FCEBEB" opacity="0.4"/>
+      <line x1="50" y1="200" x2="470" y2="200" stroke="#555" stroke-width="1.5"/>
+      <line x1="260" y1="30" x2="260" y2="370" stroke="#555" stroke-width="1.5"/>
+      <text x="260" y="18" text-anchor="middle" fill="#3A6A5E" font-size="11" font-family="Courier New">높은 개방성</text>
+      <text x="260" y="388" text-anchor="middle" fill="#888" font-size="11" font-family="Courier New">낮은 개방성</text>
+      <text x="36" y="204" text-anchor="middle" fill="#888" font-size="10" font-family="Courier New" transform="rotate(-90,36,204)">불안정</text>
+      <text x="484" y="204" text-anchor="middle" fill="#3A6A5E" font-size="10" font-family="Courier New" transform="rotate(-90,484,204)">안정</text>
+      <!-- 영국 Q1 — 개방·안정 (높은 자유도) -->
+      <circle cx="168" cy="98" r="24" fill="#F0EBF8" stroke="#2C1A4A" stroke-width="2.5"/>
+      <text x="168" y="94" text-anchor="middle" font-size="18">🇬🇧</text>
+      <text x="168" y="132" text-anchor="middle" fill="#2C1A4A" font-size="11" font-family="Courier New" font-weight="bold">영국</text>
+      <!-- 불안 방향 화살표 -->
+      <defs><marker id="ukarr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#8B2A2A"/></marker></defs>
+      <line x1="185" y1="105" x2="250" y2="130" stroke="#8B2A2A" stroke-width="1.2" stroke-dasharray="4,2" marker-end="url(#ukarr)"/>
+      <text x="255" y="125" fill="#8B2A2A" font-size="9" font-family="Courier New">Reform UK</text>
+      <text x="255" y="137" fill="#8B2A2A" font-size="9" font-family="Courier New">압력 방향</text>
+      <!-- 비교 국가들 -->
+      <circle cx="148" cy="68" r="14" fill="#EEF3FF" stroke="#1B4F8A" stroke-width="1.5"/>
+      <text x="148" y="66" text-anchor="middle" font-size="12">🇩🇪</text>
+      <circle cx="188" cy="68" r="14" fill="#EEF3FF" stroke="#3A5E8A" stroke-width="1.5"/>
+      <text x="188" y="66" text-anchor="middle" font-size="12">🇫🇷</text>
+      <text x="80" y="148" fill="#2C1A4A" font-size="9" font-family="Courier New">브렉시트 여파</text>
+      <text x="80" y="160" fill="#2C1A4A" font-size="9" font-family="Courier New">CFD 0.75 상승</text>
+      <text x="80" y="172" fill="#2C1A4A" font-size="9" font-family="Courier New">Reform UK 압박</text>
+    </svg>
+  </div>
+  <div class="obs-note">영국은 Q1(개방·안정) 구간에 있지만 CFD 0.75·DCI 0.65 상승 추세가 Q2(개방·불안정) 방향 압력을 주고 있습니다. Freedom House 93점의 강한 민주주의 제도가 이 압력을 흡수하고 있으나 — Reform UK의 급부상이 이 흡수 능력의 한계를 시험하는 중입니다.</div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅵ · GPI 및 브렉시트 비용 시계열</div>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 600 210" xmlns="http://www.w3.org/2000/svg" width="600" height="210">
+      <rect width="600" height="210" fill="#fff"/>
+      <line x1="70" y1="20" x2="70" y2="180" stroke="#EEE" stroke-width="1"/>
+      <line x1="70" y1="180" x2="570" y2="180" stroke="#CCC" stroke-width="1.5"/>
+      <line x1="70" y1="80" x2="570" y2="80" stroke="#EEE" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <line x1="70" y1="130" x2="570" y2="130" stroke="#EEE" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <text x="62" y="84" text-anchor="end" fill="#888" font-size="9" font-family="Courier New">고</text>
+      <text x="62" y="134" text-anchor="middle" fill="#888" font-size="9" font-family="Courier New">저</text>
+      <text x="112" y="198" text-anchor="middle" fill="#888" font-size="9" font-family="Courier New">2016</text>
+      <text x="200" y="198" text-anchor="middle" fill="#888" font-size="9" font-family="Courier New">2019</text>
+      <text x="310" y="198" text-anchor="middle" fill="#888" font-size="9" font-family="Courier New">2022</text>
+      <text x="440" y="198" text-anchor="middle" fill="#888" font-size="9" font-family="Courier New">2024</text>
+      <text x="510" y="198" text-anchor="middle" fill="#888" font-size="9" font-family="Courier New">2025</text>
+      <!-- 영국 GDP per capita 미국 대비 격차 -->
+      <polyline points="112,75 155,74 200,78 250,82 310,90 370,100 440,115 480,118 510,120" fill="none" stroke="#2C1A4A" stroke-width="2.5"/>
+      <circle cx="510" cy="120" r="4" fill="#2C1A4A"/>
+      <text x="518" y="118" fill="#2C1A4A" font-size="9" font-family="Courier New">GDP 격차</text>
+      <!-- Reform UK -->
+      <polyline points="310,180 370,165 440,145 480,135 510,128" fill="none" stroke="#CC2200" stroke-width="2" stroke-dasharray="4,2"/>
+      <circle cx="510" cy="128" r="4" fill="#CC2200"/>
+      <text x="518" y="132" fill="#CC2200" font-size="9" font-family="Courier New">Reform UK</text>
+      <!-- 브렉시트 수직선 -->
+      <line x1="112" y1="20" x2="112" y2="180" stroke="#B8850E" stroke-width="1" stroke-dasharray="3,2"/>
+      <text x="116" y="34" fill="#B8850E" font-size="9" font-family="Courier New">브렉시트</text>
+      <text x="116" y="46" fill="#B8850E" font-size="9" font-family="Courier New">투표</text>
+      <!-- 스타머 수직선 -->
+      <line x1="440" y1="20" x2="440" y2="180" stroke="#5E9186" stroke-width="1" stroke-dasharray="3,2"/>
+      <text x="444" y="34" fill="#5E9186" font-size="9" font-family="Courier New">스타머</text>
+      <text x="444" y="46" fill="#5E9186" font-size="9" font-family="Courier New">집권</text>
+      <text x="300" y="15" text-anchor="middle" fill="#2C1A4A" font-size="11" font-family="Courier New">영국 GDP 격차 확대 & Reform UK 부상 추이</text>
+    </svg>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅶ · PPR — 5개 구조 블록</div>
+  <div class="ppr-card"><div class="ppr-head">PPR-1 · 정치</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">스타머 집권</span><span class="ppr-val">33.7% / 1832년 이후 최대 의석 역설</span></div>
+    <div class="ppr-row"><span class="ppr-key">보수당 붕괴</span><span class="ppr-val">8년 5총리 / 브렉시트 혼돈 결과</span></div>
+    <div class="ppr-row"><span class="ppr-key">Reform UK</span><span class="ppr-val">14.3% 5석 / 2025 지방선거 대약진 예상</span></div>
+    <div class="ppr-row"><span class="ppr-key">앤젤라 레이너</span><span class="ppr-val">2025.09 세금 스캔들 사임 / 초기 타격</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-2 · 경제</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">GDP 성장</span><span class="ppr-val">~0.9% / 주요국 최저권</span></div>
+    <div class="ppr-row"><span class="ppr-key">브렉시트 비용</span><span class="ppr-val">GDP 4% 장기 손실 추정</span></div>
+    <div class="ppr-row"><span class="ppr-key">£200억 구멍</span><span class="ppr-val">스타머 상속 / 부채이자 지출 8%+</span></div>
+    <div class="ppr-row"><span class="ppr-key">생활비 위기</span><span class="ppr-val">주거·에너지·식품 급등 지속</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-3 · 사회</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">NHS</span><span class="ppr-val">사상 최악 대기 / 2016년 이후 목표 미달</span></div>
+    <div class="ppr-row"><span class="ppr-key">주거</span><span class="ppr-val">청년 주택 보유 격감 / 렌트 급등</span></div>
+    <div class="ppr-row"><span class="ppr-key">교육 격차</span><span class="ppr-val">취약계층 GCSE 18% 하위 / 팬데믹 손실</span></div>
+    <div class="ppr-row"><span class="ppr-key">이민</span><span class="ppr-val">순유입 20만 / 스타머 축소 방침</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-4 · 역사</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">TBI</span><span class="ppr-val">0.480 / 브렉시트+제국 역사 복합</span></div>
+    <div class="ppr-row"><span class="ppr-key">BLM·로즈 논쟁</span><span class="ppr-val">식민 역사 미청산 표면화</span></div>
+    <div class="ppr-row"><span class="ppr-key">브렉시트 분열</span><span class="ppr-val">계급·세대·지역 단층 영구화</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-5 · 지정학</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">EU 리셋</span><span class="ppr-val">스타머 EU 관계 복원 추진 / 제한적</span></div>
+    <div class="ppr-row"><span class="ppr-key">NATO</span><span class="ppr-val">GDP 2.5% 방위 공약 / 우크라이나 지지</span></div>
+    <div class="ppr-row"><span class="ppr-key">핵·상임이사국</span><span class="ppr-val">UN 안보리 P5 / 전략 자산</span></div>
+    <div class="ppr-row"><span class="ppr-key">스코틀랜드·웨일스</span><span class="ppr-val">분권 긴장 지속 / SNP 독립 압박</span></div>
+  </div></div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅷ · 담론육층</div>
+  <div style="margin:14px 0;">
+    <div class="discourse-layer"><div class="layer-num">1층<br>데이터</div><div class="layer-content"><strong>무엇이 보이는가:</strong> Freedom House 93 / GDP 성장 0.9% / 1인당 GDP 미국 대비 35% 낮음 / NHS 사상 최악 대기 / Reform UK 14.3% / 스타머 득표 33.7%. 강한 민주주의 제도와 약한 경제 성과가 공존합니다.</div></div>
+    <div class="discourse-layer"><div class="layer-num">2층<br>이해관계</div><div class="layer-content"><strong>누가 이익을 얻는가:</strong> 브렉시트를 주도한 엘리트들은 EU 규제에서 벗어났지만 경제 비용은 민중이 부담했습니다. 런던 금융 자본은 EU 패스포팅을 잃었지만 규제 완화로 보상받았습니다. Reform UK는 노동자계급의 분노를 이민 혐오로 전환하여 정치적 자산으로 삼습니다. 주택 보유 세대는 주거 공급 제한으로 자산 가치를 유지합니다.</div></div>
+    <div class="discourse-layer"><div class="layer-num">3층<br>역사 패턴</div><div class="layer-content"><strong>이전에도 있었는가:</strong> 영국의 계급 단층은 산업혁명 이후 구조입니다. 대처리즘(1980년대)이 북부 제조업을 해체하고 금융 서비스로 대체했을 때 계급-지역 단층이 고착됐습니다. 브렉시트는 이 단층의 정치적 표현이었습니다. Reform UK는 이 역사의 다음 장입니다.</div></div>
+    <div class="discourse-layer"><div class="layer-num">4층<br>시각 역전</div><div class="layer-content"><strong>반대로 보면:</strong> 영국의 강점은 제도입니다. Freedom House 93점, 독립 언론, 사법부 독립 — 이것이 많은 압력을 흡수합니다. NHS의 위기는 동시에 영국 민중이 공공의료를 포기하지 않겠다는 집단적 의지의 증거이기도 합니다. 33.7% 스타머의 취약한 기반이 오히려 개혁 유인이 될 수 있습니다.</div></div>
+    <div class="discourse-layer"><div class="layer-num">5층<br>프레임</div><div class="layer-content"><strong>Λ¹² 위상 진단:</strong> 영국은 Q1(개방·안정)이지만 CFD·DCI 상승 추세가 Q2 방향 압력을 주고 있습니다. 핵심 변수 — Reform UK가 2026년 지방선거에서 실질 권력을 잡는다면 이 압력은 구조화됩니다. 스타머의 33.7% 기반은 이 시험을 버티기 어렵습니다. DCI 0.65가 그 취약성의 숫자입니다.</div></div>
+    <div class="discourse-layer"><div class="layer-num" style="background:#3A6A5E;">6층<br>판단 유보</div><div class="layer-content" style="background:#E8F4F0;"><strong>이 층은 6,700만 영국 민중의 몫입니다.</strong> 브렉시트가 만든 단층을 어떻게 봉합할 것인가 — 아니면 봉합하지 않고 살아갈 것인가. 그 선택은 영국 민중이 합니다. Λ¹²는 그 선택의 조건을 보여줄 뿐입니다.</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅸ · 결론 궤도</div>
+  <div class="conclusion">
+    <p>영국은 1945년 이후 가장 큰 선거 승리를 거뒀지만 — 가장 취약한 민의 기반 위에 서 있습니다. 33.7%. 이것은 스타머의 강점이 아니라 보수당의 붕괴입니다.</p>
+    <p>CFD 0.75가 말하는 것 — 브렉시트는 단순한 정책 결정이 아니었습니다. 40년간 누적된 계급·세대·지역의 분노가 투표함으로 표현된 것이었습니다. 그 분노는 아직 해소되지 않았습니다. NHS는 여전히 대기 중이고, 주거는 여전히 비싸고, 북부 잉글랜드는 여전히 뒤처져 있습니다.</p>
+    <p>Reform UK 14.3%. 이것이 다음 신호입니다. 2026년 지방선거가 그 다음 임계점이 될 것입니다. 민주주의 제도가 강한 나라이기 때문에 — 이 분노는 제도 안에서 표현될 것입니다. 그것이 영국의 강점이자 동시에 스타머가 반드시 응답해야 하는 이유입니다.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="series-box">
+    <div class="series-title">단독편 시리즈 완결 — Λ¹²v9.12</div>
+    <div class="series-item"><span class="series-num">C-01</span><span>캄보디아 단독편 v1.0</span><span class="series-status status-done">완성</span></div>
+    <div class="series-item"><span class="series-num">E-01</span><span>보스니아 단독편 v1.0</span><span class="series-status status-done">완성</span></div>
+    <div class="series-item"><span class="series-num">E-02</span><span>헝가리 단독편 v1.0</span><span class="series-status status-done">완성</span></div>
+    <div class="series-item"><span class="series-num">E-03</span><span>그리스 단독편 v1.0</span><span class="series-status status-done">완성</span></div>
+    <div class="series-item"><span class="series-num">E-04</span><span>영국 단독편 v1.0 (현재)</span><span class="series-status status-now">완성</span></div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>늘푸른바다 사회동역학 연구소 (Everblue Sea Institute for Social Dynamics)</p>
+  <p>소장 청해(淸海) · Claude (Anthropic) 연구 파트너</p>
+  <p><a href="https://badaegopa.tistory.com">badaegopa.tistory.com</a> · <a href="https://everbluesea.org">everbluesea.org</a> · contact@everbluesea.org</p>
+  <div class="engine-tag">Engine: Λ¹²v9.12 | ADI §31 | SSRN 6632858 | uk_lambda12_v912_20260502.html</div>
+</div>
+</body>
+</html>

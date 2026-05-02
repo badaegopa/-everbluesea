@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>보스니아 단독편 — Λ¹²v9.12 | 늘푸른바다 사회동역학 연구소</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#F5F3EE; color:#2C2C2C; font-family:Georgia,'Times New Roman',serif; line-height:1.75; }
+.header { background:linear-gradient(135deg,#1A3A5C 0%,#2A5A8C 50%,#0F2A4A 100%); padding:48px 40px 36px; position:relative; overflow:hidden; }
+.header::before { content:'分'; position:absolute; right:40px; top:10px; font-size:160px; color:rgba(255,255,255,0.06); font-family:Georgia,serif; font-weight:bold; line-height:1; }
+.header-badge { display:inline-block; background:rgba(255,255,255,0.18); color:#fff; font-family:'Courier New',monospace; font-size:11px; padding:4px 12px; border-radius:2px; letter-spacing:1.5px; margin-bottom:16px; }
+.header h1 { color:#fff; font-size:30px; font-weight:normal; margin-bottom:6px; }
+.header h2 { color:rgba(255,255,255,0.85); font-size:15px; font-weight:normal; }
+.header-meta { margin-top:20px; color:rgba(255,255,255,0.65); font-family:'Courier New',monospace; font-size:11px; letter-spacing:1px; }
+.engine-box { background:#fff; border-left:4px solid #B8850E; padding:14px 20px; margin:24px 40px; font-family:'Courier New',monospace; font-size:12px; color:#595959; }
+.engine-box strong { color:#B8850E; }
+.section { padding:32px 40px; border-bottom:1px solid #DDD8CE; }
+.section-title { font-size:13px; font-family:'Courier New',monospace; color:#1A3A5C; letter-spacing:2px; text-transform:uppercase; margin-bottom:16px; }
+.section h3 { font-size:20px; color:#1F1F1F; font-weight:normal; margin-bottom:14px; }
+.section p { font-size:14px; color:#3A3A3A; margin-bottom:10px; text-align:justify; }
+.minjung-box { background:#EEF3F8; border-left:4px solid #2A5A8C; padding:20px 24px; margin:14px 0; border-radius:2px; }
+.minjung-box p { font-size:14px; color:#1A2A3A; line-height:1.85; margin-bottom:8px; }
+.term-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:14px 0; }
+.term-item { background:#fff; border:1px solid #DDD8CE; padding:12px 14px; border-radius:2px; }
+.term-item .term-key { font-family:'Courier New',monospace; font-size:12px; color:#1A3A5C; font-weight:bold; margin-bottom:4px; }
+.term-item .term-val { font-size:12px; color:#444; }
+.data-table-wrap { margin:16px 0; overflow-x:auto; }
+.data-table { width:100%; border-collapse:collapse; font-size:13px; }
+.data-table th { background:#1A3A5C; color:#fff; padding:10px 14px; text-align:center; font-family:'Courier New',monospace; font-size:11px; font-weight:normal; }
+.data-table th:first-child { text-align:left; }
+.data-table td { padding:9px 14px; border-bottom:1px solid #EEE; text-align:center; font-family:'Courier New',monospace; font-size:12px; }
+.data-table td:first-child { text-align:left; font-family:Georgia,serif; font-size:13px; }
+.data-table tr:nth-child(even) td { background:#F5F3EE; }
+.formula-box { background:#fff; border:1px solid #DDD8CE; border-top:3px solid #1A3A5C; padding:20px 24px; margin:16px 0; }
+.formula-box .formula-title { font-family:'Courier New',monospace; font-size:11px; color:#1A3A5C; letter-spacing:2px; margin-bottom:12px; }
+.formula-box .formula-eq { font-family:'Courier New',monospace; font-size:13px; color:#1F1F1F; background:#F5F3EE; padding:12px 16px; border-radius:2px; margin:8px 0; line-height:1.6; }
+.formula-box .formula-note { font-size:12px; color:#666; margin-top:8px; }
+.svg-wrap { text-align:center; margin:16px 0; }
+.obs-note { background:#EEF3F8; border:1px solid #B5C5D5; border-radius:3px; padding:14px 18px; margin:14px 0; font-size:13px; color:#1A2A3A; line-height:1.7; }
+.obs-note::before { content:'◈ 관찰 신호'; display:block; font-family:'Courier New',monospace; font-size:10px; color:#1A3A5C; letter-spacing:1px; margin-bottom:6px; }
+.error-box { background:#FAEEDA; border-left:3px solid #B8850E; padding:12px 16px; margin:14px 0; font-size:12px; color:#633806; font-family:'Courier New',monospace; }
+.ppr-card { background:#fff; border:1px solid #DDD8CE; border-radius:3px; overflow:hidden; margin-bottom:14px; }
+.ppr-head { background:#1A3A5C; color:#fff; font-size:12px; font-family:'Courier New',monospace; padding:8px 14px; letter-spacing:1px; }
+.ppr-body { padding:14px; }
+.ppr-row { display:flex; justify-content:space-between; font-size:12px; padding:4px 0; border-bottom:1px solid #F0EDE8; }
+.ppr-row:last-child { border-bottom:none; }
+.ppr-key { color:#666; }
+.ppr-val { font-family:'Courier New',monospace; font-weight:bold; color:#1A3A5C; }
+.discourse-layer { display:grid; grid-template-columns:130px 1fr; gap:0; margin-bottom:2px; }
+.layer-num { background:#1A3A5C; color:#fff; font-family:'Courier New',monospace; font-size:11px; padding:12px 14px; display:flex; align-items:center; }
+.layer-content { background:#fff; border:1px solid #DDD8CE; border-left:none; padding:12px 18px; font-size:13px; color:#2C2C2C; line-height:1.7; }
+.layer-content strong { color:#1A3A5C; }
+.signal-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:14px 0; }
+.signal-card { background:#fff; border:1px solid #DDD8CE; padding:14px; border-radius:2px; text-align:center; }
+.signal-card .sig-icon { font-size:24px; margin-bottom:6px; }
+.signal-card .sig-label { font-size:11px; color:#888; font-family:'Courier New',monospace; margin-bottom:4px; }
+.signal-card .sig-val { font-size:18px; font-family:'Courier New',monospace; font-weight:bold; color:#1A3A5C; }
+.signal-card .sig-note { font-size:10px; color:#666; margin-top:4px; }
+.ethnic-bar { margin:14px 0; }
+.ethnic-row { display:grid; grid-template-columns:80px 1fr 60px; gap:8px; align-items:center; margin-bottom:6px; }
+.ethnic-label { font-size:12px; color:#444; text-align:right; }
+.ethnic-track { background:#EEE; border-radius:2px; height:20px; overflow:hidden; }
+.ethnic-fill { height:100%; border-radius:2px; }
+.ethnic-val { font-family:'Courier New',monospace; font-size:11px; color:#333; }
+.conclusion { background:#EEF3F8; border-left:4px solid #2A5A8C; padding:24px 32px; margin:20px 40px; border-radius:2px; }
+.conclusion p { font-size:15px; line-height:1.95; color:#1F1F1F; text-align:justify; margin-bottom:12px; }
+.conclusion p:last-child { margin-bottom:0; }
+.series-box { background:#fff; border:1px solid #DDD8CE; margin:20px 40px; padding:20px; }
+.series-title { font-family:'Courier New',monospace; font-size:11px; color:#1A3A5C; letter-spacing:2px; margin-bottom:12px; }
+.series-item { display:flex; gap:12px; padding:6px 0; border-bottom:1px solid #F0EDE8; font-size:12px; }
+.series-item:last-child { border-bottom:none; }
+.series-num { font-family:'Courier New',monospace; color:#B8850E; min-width:40px; }
+.series-status { margin-left:auto; font-family:'Courier New',monospace; font-size:10px; padding:2px 8px; border-radius:2px; }
+.status-done { background:#E8F4F0; color:#27500A; }
+.status-now { background:#EEF3F8; color:#1A3A5C; }
+.status-plan { background:#F5F3EE; color:#888; }
+.footer { background:#EBF0F8; padding:28px 40px; text-align:center; border-top:1px solid #DDD8CE; }
+.footer p { font-size:12px; color:#1A3A5C; margin-bottom:4px; font-family:'Courier New',monospace; }
+.footer a { color:#2A5A8C; text-decoration:none; }
+.footer .engine-tag { margin-top:10px; font-size:10px; color:#888; letter-spacing:1px; }
+@media(max-width:768px){ .section,.engine-box,.conclusion,.series-box,.footer{padding-left:16px;padding-right:16px;margin-left:0;margin-right:0;} .header{padding:32px 16px 24px;} .term-grid,.signal-grid{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-badge">BOSNIA STANDALONE · #E-01 · Λ¹²v9.12</div>
+  <h1>🇧🇦 보스니아 단독편</h1>
+  <h2>데이턴의 함정 — 30년간 얼어붙은 민족 분쟁과 분리의 유혹</h2>
+  <div class="header-meta">늘푸른바다 사회동역학 연구소 · Λ¹²v9.12 엔진 기준 · 발행일 2026.05.02</div>
+</div>
+
+<div class="engine-box">
+  <strong>ENGINE:</strong> Λ¹²v9.12 | ADI §31 포함 | SSRN 6632858 기반<br>
+  <strong>Λ-Score:</strong> 0.508 (Danger) — 유럽 전체 최고위험<br>
+  <strong>보정식:</strong> Λ¹²_corrected = Λ¹²_raw ÷ OLI × (1−TBI×θ) × (1−ADI×γ) × exp(−k×t) | OLI=0.76
+</div>
+
+<div class="section">
+  <div class="section-title">연구 목적</div>
+  <h3>이 보고서는 340만 보스니아 민중의 현실을 관찰자의 시선으로 기록합니다</h3>
+  <div class="minjung-box">
+    <p>1992~95년 보스니아 전쟁. 스레브레니차에서 8,000명의 보스니아 무슬림이 학살됐습니다. 국제 재판소는 이것을 집단학살로 인정했습니다. 그러나 2024년, 스레브레니차를 행정구역으로 포함하는 공화국의 대통령은 "그것은 집단학살이 아니었다"고 공개적으로 말했습니다.</p>
+    <p>Λ¹² 0.508 — 유럽 전체 최고위험. 이 숫자는 30년 전 전쟁이 아직 끝나지 않았음을 말합니다.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">§0 · 용어 해설</div>
+  <div class="term-grid">
+    <div class="term-item"><div class="term-key">데이턴 협정 (1995)</div><div class="term-val">보스니아 전쟁 종식 평화협정. 국가를 두 실체(연방·스르프스카)로 분할. 평화를 가져왔지만 기능 불가능한 국가 구조를 만들었다는 평가.</div></div>
+    <div class="term-item"><div class="term-key">레푸블리카 스르프스카(RS)</div><div class="term-val">보스니아 내 세르비아계 실체. 인구 약 34%. 도도크 대통령이 30년간 지배. 분리독립 위협 반복.</div></div>
+    <div class="term-item"><div class="term-key">도도크 (Milorad Dodik)</div><div class="term-val">RS 대통령. 2025.02 법원 판결 불이행으로 징역 1년·6년 피선거권 박탈. 세르비아·러시아 지지. EU·미국 제재 대상.</div></div>
+    <div class="term-item"><div class="term-key">스레브레니차 집단학살</div><div class="term-val">1995년 7월. 8,000명 보스니아 무슬림 학살. ICJ·ICTY 집단학살 판결. RS는 공식 부인. TBI의 핵심 미소화 사건.</div></div>
+    <div class="term-item"><div class="term-key">고등대표 (High Representative)</div><div class="term-val">데이턴 협정 감독 국제 직위. 광범위한 입법·행정 권한 보유. RS는 정당성 부인. 사실상 준보호령 상태.</div></div>
+    <div class="term-item"><div class="term-key">인구 이탈</div><div class="term-val">연간 5만 명 이탈 추정. EU 가입 지연으로 청년층 대규모 탈출. 국가 유지 가능성 위협.</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅰ · 관찰자 시선</div>
+  <h3>세계에서 가장 복잡한 민주주의 — 그러나 작동 불능</h3>
+  <p>보스니아는 세 민족(보스니아크·세르비아계·크로아티아계)이 국가를 공동 운영하는 구조입니다. 데이턴 협정이 만든 이 구조는 전쟁을 멈췄지만 국가를 마비시켰습니다. EU 가입을 위한 14개 우선과제 중 2023년까지 달성한 것은 단 1개였습니다.</p>
+  <p>2025년 2월 도도크에게 유죄판결이 내려지자 RS는 국가 기관에서 자국 대표를 철수시키려 했습니다. EUFOR은 병력을 증강했고, NATO 사무총장이 직접 사라예보를 방문했습니다. 유럽 한복판에서 국가 분열의 현실적 위협이 발생한 것입니다.</p>
+  <div class="signal-grid">
+    <div class="signal-card"><div class="sig-icon">⚠️</div><div class="sig-label">Λ-Score (Danger)</div><div class="sig-val">0.508</div><div class="sig-note">유럽 전체 최고위험</div></div>
+    <div class="signal-card"><div class="sig-icon">🏛️</div><div class="sig-label">EU 우선과제 달성</div><div class="sig-val">1/14</div><div class="sig-note">2023년 기준</div></div>
+    <div class="signal-card"><div class="sig-icon">✈️</div><div class="sig-label">연간 인구 이탈</div><div class="sig-val">5만 명</div><div class="sig-note">청년·고학력 집중</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅱ · 민족 구성 · 3중 분열 구조</div>
+  <h3>보스니아 민족 구성 (1991/2013 비교)</h3>
+  <div class="ethnic-bar">
+    <div class="ethnic-row"><div class="ethnic-label">보스니아크</div><div class="ethnic-track"><div class="ethnic-fill" style="width:50%;background:#1A3A5C;"></div></div><div class="ethnic-val">~50%</div></div>
+    <div class="ethnic-row"><div class="ethnic-label">세르비아계</div><div class="ethnic-track"><div class="ethnic-fill" style="width:31%;background:#8B2A2A;"></div></div><div class="ethnic-val">~31%</div></div>
+    <div class="ethnic-row"><div class="ethnic-label">크로아티아계</div><div class="ethnic-track"><div class="ethnic-fill" style="width:15%;background:#B8850E;"></div></div><div class="ethnic-val">~15%</div></div>
+    <div class="ethnic-row"><div class="ethnic-label">기타</div><div class="ethnic-track"><div class="ethnic-fill" style="width:4%;background:#AAA;"></div></div><div class="ethnic-val">~4%</div></div>
+  </div>
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 520 300" xmlns="http://www.w3.org/2000/svg" width="520" height="300">
+      <rect width="520" height="300" fill="#F5F3EE"/>
+      <!-- 보스니아 지도 단순화 SVG -->
+      <!-- 연방(FBiH) 영역 -->
+      <ellipse cx="200" cy="160" rx="130" ry="90" fill="#C5D8F0" stroke="#1A3A5C" stroke-width="2" opacity="0.8"/>
+      <text x="200" y="152" text-anchor="middle" fill="#1A3A5C" font-size="11" font-family="Courier New" font-weight="bold">보스니아-헤르체고비나</text>
+      <text x="200" y="166" text-anchor="middle" fill="#1A3A5C" font-size="10" font-family="Courier New">연방(FBiH)</text>
+      <text x="200" y="180" text-anchor="middle" fill="#1A3A5C" font-size="9" font-family="Courier New">보스니아크+크로아티아계</text>
+      <!-- RS 영역 -->
+      <ellipse cx="370" cy="155" rx="110" ry="75" fill="#F0C5C5" stroke="#8B2A2A" stroke-width="2" opacity="0.8"/>
+      <text x="370" y="147" text-anchor="middle" fill="#8B2A2A" font-size="11" font-family="Courier New" font-weight="bold">레푸블리카</text>
+      <text x="370" y="161" text-anchor="middle" fill="#8B2A2A" font-size="11" font-family="Courier New">스르프스카(RS)</text>
+      <text x="370" y="175" text-anchor="middle" fill="#8B2A2A" font-size="9" font-family="Courier New">세르비아계 / 도도크</text>
+      <!-- 고등대표 -->
+      <rect x="10" y="220" width="500" height="28" fill="#FAEEDA" rx="2"/>
+      <text x="260" y="238" text-anchor="middle" fill="#B8850E" font-size="11" font-family="Courier New">고등대표(OHR) 감독 하 준보호령 상태 — RS는 정당성 부인</text>
+      <!-- 분리 화살표 -->
+      <defs><marker id="redarr4" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#8B2A2A"/></marker></defs>
+      <line x1="370" y1="80" x2="370" y2="40" stroke="#8B2A2A" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#redarr4)"/>
+      <text x="380" y="35" fill="#8B2A2A" font-size="9" font-family="Courier New">분리독립 위협</text>
+      <text x="380" y="47" fill="#8B2A2A" font-size="9" font-family="Courier New">2025 EUFOR 증강</text>
+      <text x="260" y="18" text-anchor="middle" fill="#1A3A5C" font-size="12" font-family="Courier New">보스니아 행정 구조 — Λ¹²v9.12</text>
+    </svg>
+  </div>
+  <div class="obs-note">데이턴 협정의 역설: 전쟁을 멈추기 위해 민족별 영토를 인정했지만, 그 인정이 민족 분열을 제도화했습니다. 30년이 지난 지금 이 구조는 EU 가입도, 개혁도, 통합도 불가능하게 만드는 고착 구조입니다.</div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅲ · 기본 통계</div>
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <tr><th>지표</th><th>수치</th><th>비고</th><th>출처</th></tr>
+      <tr><td>인구</td><td>약 340만 명</td><td>이탈로 감소 추세</td><td>World Bank</td></tr>
+      <tr><td>GDP per capita</td><td>USD ~7,500</td><td>발칸 최하위권</td><td>IMF 2024</td></tr>
+      <tr><td>GDP 성장 2024</td><td>2.8%</td><td>지역 평균 하회</td><td>World Bank</td></tr>
+      <tr><td>연간 인구 이탈</td><td>~5만 명</td><td>청년·고학력 집중</td><td>미국 국무부</td></tr>
+      <tr><td>EU 우선과제 달성</td><td>1/14</td><td>2023 기준</td><td>Freedom House</td></tr>
+      <tr><td>EU 지지율</td><td>68% (2024)</td><td>2022년 76%에서 하락</td><td>IRI 2024</td></tr>
+      <tr><td>도도크 선고</td><td>징역 1년</td><td>2025.02 / 피선거권 6년 박탈</td><td>BiH 법원</td></tr>
+      <tr><td>민족 혐오범죄</td><td>91건 (2025 초)</td><td>UN 집계</td><td>UN 2025</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅳ · 기본 좌표 · 공식</div>
+  <div class="formula-box">
+    <div class="formula-title">ΛSCORE FORMULA — BOSNIA</div>
+    <div class="formula-eq">Λ¹²_corrected = Λ¹²_raw ÷ 0.76 × (1 − 0.890 × 0.70) × (1 − 0.420 × 0.35) × exp(−k×t)</div>
+    <div class="formula-eq">TBI 보정항: (1 − 0.890 × 0.70) = (1 − 0.623) = 0.377 [TBI 극高 — 스레브레니차 미소화]</div>
+    <div class="formula-eq">ADI 보정항: (1 − 0.420 × 0.35) = (1 − 0.147) = 0.853</div>
+    <div class="formula-note">※ TBI 0.890이 Λ-Score를 유럽 최고로 끌어올리는 핵심 변수. 스레브레니차 집단학살을 부인하는 정치 세력이 여전히 공식 권력을 행사하는 구조 — 이것은 트라우마의 미소화가 아니라 가해자가 공식 국가 기관을 장악한 상태입니다.</div>
+  </div>
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <tr><th>변수</th><th>값</th><th>분류</th><th>비고</th></tr>
+      <tr><td>LPI</td><td>0.45</td><td>주목</td><td>저임금·실업</td></tr>
+      <tr><td>GPI</td><td>~65위</td><td>주목</td><td>RS 분리 위협</td></tr>
+      <tr><td>CPI</td><td>35/100</td><td>위험</td><td>구조적 부패</td></tr>
+      <tr><td>CFD</td><td>0.92</td><td>위험</td><td>3민족 분열 극高</td></tr>
+      <tr><td>DCI</td><td>0.68</td><td>위험</td><td>청년 이탈·세대단층</td></tr>
+      <tr><td>MFI</td><td>~70위</td><td>주목</td><td>민족별 미디어 분절</td></tr>
+      <tr><td>RHC</td><td>0.938</td><td>위험</td><td>전쟁 트라우마 미소화</td></tr>
+      <tr><td>IGI</td><td>0.55</td><td>주목</td><td>기관 마비</td></tr>
+      <tr><td>TBI</td><td>0.890</td><td>위험</td><td>스레브레니차 부인 구조</td></tr>
+      <tr><td>ADI</td><td>0.420</td><td>Transitional</td><td>EU 의존 전환 중</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅴ · 위상 사분면</div>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 520 400" xmlns="http://www.w3.org/2000/svg" width="520" height="400">
+      <rect width="520" height="400" fill="#F5F3EE"/>
+      <rect x="50" y="30" width="210" height="170" fill="#EBF4F0" opacity="0.5"/>
+      <rect x="260" y="30" width="210" height="170" fill="#FFF3CD" opacity="0.4"/>
+      <rect x="50" y="200" width="210" height="170" fill="#FAEEDA" opacity="0.4"/>
+      <rect x="260" y="200" width="210" height="170" fill="#FCEBEB" opacity="0.4"/>
+      <line x1="50" y1="200" x2="470" y2="200" stroke="#555" stroke-width="1.5"/>
+      <line x1="260" y1="30" x2="260" y2="370" stroke="#555" stroke-width="1.5"/>
+      <text x="260" y="18" text-anchor="middle" fill="#3A6A5E" font-size="11" font-family="Courier New">높은 개방성</text>
+      <text x="260" y="388" text-anchor="middle" fill="#888" font-size="11" font-family="Courier New">낮은 개방성</text>
+      <text x="36" y="204" text-anchor="middle" fill="#888" font-size="10" font-family="Courier New" transform="rotate(-90,36,204)">불안정</text>
+      <text x="484" y="204" text-anchor="middle" fill="#3A6A5E" font-size="10" font-family="Courier New" transform="rotate(-90,484,204)">안정</text>
+      <text x="155" y="52" text-anchor="middle" fill="#3A6A5E" font-size="10" font-family="Courier New">개방·안정</text>
+      <text x="365" y="52" text-anchor="middle" fill="#856404" font-size="10" font-family="Courier New">개방·불안정</text>
+      <text x="155" y="380" text-anchor="middle" fill="#A0522D" font-size="10" font-family="Courier New">폐쇄·안정</text>
+      <text x="365" y="380" text-anchor="middle" fill="#791F1F" font-size="10" font-family="Courier New">폐쇄·불안정</text>
+      <!-- 보스니아 Q2 — 개방·불안정 -->
+      <circle cx="358" cy="80" r="26" fill="#EEF3F8" stroke="#1A3A5C" stroke-width="2.5"/>
+      <text x="358" y="76" text-anchor="middle" font-size="20">🇧🇦</text>
+      <text x="358" y="114" text-anchor="middle" fill="#1A3A5C" font-size="11" font-family="Courier New" font-weight="bold">보스니아</text>
+      <!-- 분열 화살표 — 여러 방향 -->
+      <defs><marker id="bluearr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#1A3A5C"/></marker>
+      <marker id="redarr5" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#8B2A2A"/></marker></defs>
+      <line x1="358" y1="106" x2="358" y2="155" stroke="#8B2A2A" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#redarr5)"/>
+      <text x="370" y="130" fill="#8B2A2A" font-size="9" font-family="Courier New">RS 분리 위협</text>
+      <!-- 비교 국가들 -->
+      <circle cx="148" cy="78" r="14" fill="#EEF3FF" stroke="#1B4F8A" stroke-width="1.5"/>
+      <text x="148" y="76" text-anchor="middle" font-size="12">🇹🇼</text>
+      <circle cx="345" cy="148" r="14" fill="#FFF3CD" stroke="#B8850E" stroke-width="1.5"/>
+      <text x="345" y="146" text-anchor="middle" font-size="12">🇰🇷</text>
+      <text x="80" y="60" fill="#1A3A5C" font-size="10" font-family="Courier New">※ Q2 — 개방 체제</text>
+      <text x="80" y="73" fill="#1A3A5C" font-size="10" font-family="Courier New">내부 분열 극高</text>
+      <text x="80" y="86" fill="#1A3A5C" font-size="10" font-family="Courier New">TBI 0.890 최고</text>
+    </svg>
+  </div>
+  <div class="obs-note">보스니아는 Q2(개방·불안정) 구간에 위치합니다. 민주주의 형식은 갖추고 있으나 내부 민족 분열이 극단적입니다. CFD 0.92는 동북아·동남아 전체를 포함한 분석 국가 중 최고 수준의 문화 단층입니다. RS의 분리 압박이 지속되면 Q4(폐쇄·불안정)로 이동할 위험이 있습니다.</div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅵ · TBI 분해 — 스레브레니차의 구조</div>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 600 175" xmlns="http://www.w3.org/2000/svg" width="600" height="175">
+      <rect width="600" height="175" fill="#F5F3EE"/>
+      <text x="20" y="30" fill="#666" font-size="11" font-family="Courier New">H 역사충격</text>
+      <rect x="120" y="15" width="448" height="22" fill="#EEE" rx="2"/>
+      <rect x="120" y="15" width="439" height="22" fill="#1A3A5C" rx="2"/>
+      <text x="570" y="31" fill="#1A3A5C" font-size="10" font-family="Courier New">0.98</text>
+      <text x="124" y="31" fill="#EEE" font-size="9" font-family="Courier New">스레브레니차 집단학살 8,000명 / 사라예보 포위 4년 / 20만 사망</text>
+      <text x="20" y="75" fill="#666" font-size="11" font-family="Courier New">C 미소화</text>
+      <rect x="120" y="60" width="448" height="22" fill="#EEE" rx="2"/>
+      <rect x="120" y="60" width="412" height="22" fill="#2A5A8C" rx="2"/>
+      <text x="542" y="76" fill="#1A3A5C" font-size="10" font-family="Courier New">0.92</text>
+      <text x="124" y="76" fill="#EEE" font-size="9" font-family="Courier New">RS 공식 집단학살 부인 / 가해자 정치세력이 현재 권력 행사</text>
+      <text x="20" y="120" fill="#666" font-size="11" font-family="Courier New">N 서사통합</text>
+      <rect x="120" y="105" width="448" height="22" fill="#EEE" rx="2"/>
+      <rect x="120" y="105" width="394" height="22" fill="#3A6A9C" rx="2"/>
+      <text x="524" y="121" fill="#1A3A5C" font-size="10" font-family="Courier New">0.88</text>
+      <text x="124" y="121" fill="#EEE" font-size="9" font-family="Courier New">민족별 분리 서사 / 통합 역사 교육 불가 / 두 학교 한 건물</text>
+      <text x="20" y="162" fill="#1A3A5C" font-size="11" font-family="Courier New" font-weight="bold">TBI = 0.98 × 0.92 × 0.88 ≈ 0.890 | θ=0.70 초과 +0.190</text>
+    </svg>
+  </div>
+  <div class="obs-note">"두 학교 한 건물(Two Schools Under One Roof)" — 같은 건물에서 보스니아크 아이들과 세르비아계 아이들이 다른 교과서로, 다른 언어로, 분리된 공간에서 교육을 받습니다. 이것이 보스니아 N(서사 미통합) 0.88의 현실입니다.</div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅶ · 12축 레이더</div>
+  <div class="svg-wrap">
+    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" width="400" height="400">
+      <rect width="400" height="400" fill="#F5F3EE"/>
+      <circle cx="200" cy="200" r="150" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+      <circle cx="200" cy="200" r="112" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+      <circle cx="200" cy="200" r="75" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+      <circle cx="200" cy="200" r="37" fill="none" stroke="#DDD8CE" stroke-width="0.5"/>
+      <line x1="200" y1="200" x2="200" y2="50" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="275" y2="62" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="330" y2="118" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="350" y2="200" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="330" y2="282" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="275" y2="338" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="200" y2="350" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="125" y2="338" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="70" y2="282" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="50" y2="200" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="70" y2="118" stroke="#EEE" stroke-width="0.7"/>
+      <line x1="200" y1="200" x2="125" y2="62" stroke="#EEE" stroke-width="0.7"/>
+      <!-- 보스니아 — CFD·RHC·TBI 극대 -->
+      <polygon points="200,118 254,104 304,134 316,200 308,268 268,338 200,344 128,338 68,272 58,200 80,134 136,98" fill="#1A3A5C" fill-opacity="0.22" stroke="#1A3A5C" stroke-width="2"/>
+      <!-- 유럽 평균 비교 -->
+      <polygon points="200,120 258,108 306,138 318,200 302,260 264,312 200,322 136,312 98,260 82,200 94,138 136,108" fill="none" stroke="#5E9186" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.5"/>
+      <text x="200" y="42" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">LPI</text>
+      <text x="286" y="54" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">HDI</text>
+      <text x="344" y="108" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">GPI</text>
+      <text x="362" y="202" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">CPI</text>
+      <text x="344" y="294" text-anchor="middle" fill="#CC2222" font-size="9" font-family="Courier New">CFD</text>
+      <text x="286" y="350" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">DCI</text>
+      <text x="200" y="366" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">MFI</text>
+      <text x="114" y="350" text-anchor="middle" fill="#CC2222" font-size="9" font-family="Courier New">RHC</text>
+      <text x="56" y="294" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">IGI</text>
+      <text x="38" y="202" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">AHI</text>
+      <text x="56" y="108" text-anchor="middle" fill="#CC2222" font-size="9" font-family="Courier New">TBI</text>
+      <text x="114" y="54" text-anchor="middle" fill="#444" font-size="9" font-family="Courier New">ADI</text>
+      <text x="200" y="384" text-anchor="middle" fill="#CC2222" font-size="9" font-family="Courier New">※ 빨간 레이블 = 위험 극High 변수</text>
+      <rect x="230" y="390" width="10" height="8" fill="#1A3A5C" fill-opacity="0.35" stroke="#1A3A5C" stroke-width="1"/>
+      <text x="244" y="398" fill="#1A3A5C" font-size="9" font-family="Courier New">보스니아</text>
+      <line x1="296" y1="394" x2="314" y2="394" stroke="#5E9186" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="318" y="398" fill="#5E9186" font-size="9" font-family="Courier New">유럽 평균</text>
+    </svg>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅷ · PPR — 5개 구조 블록</div>
+  <div class="ppr-card"><div class="ppr-head">PPR-1 · 정치</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">체제</span><span class="ppr-val">데이턴 민족 분할 구조 / 기능 마비</span></div>
+    <div class="ppr-row"><span class="ppr-key">도도크 선고</span><span class="ppr-val">2025.02 징역1년·피선거권6년 박탈</span></div>
+    <div class="ppr-row"><span class="ppr-key">RS 대응</span><span class="ppr-val">국가기관 철수 시도 / EUFOR 증강</span></div>
+    <div class="ppr-row"><span class="ppr-key">집단학살 부인</span><span class="ppr-val">RS 공식 입장 / UN 규탄 결의 반대</span></div>
+    <div class="ppr-row"><span class="ppr-key">제도 마비</span><span class="ppr-val">행정 14층 구조 / 민족 거부권 남발</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-2 · 경제</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">GDP per capita</span><span class="ppr-val">~USD 7,500 / 발칸 최하위권</span></div>
+    <div class="ppr-row"><span class="ppr-key">인구 이탈</span><span class="ppr-val">연 5만 명 / 청년·고학력 집중</span></div>
+    <div class="ppr-row"><span class="ppr-key">고용주 부담</span><span class="ppr-val">연방 69% / RS 52% 사회보험 부담</span></div>
+    <div class="ppr-row"><span class="ppr-key">외국인 투자</span><span class="ppr-val">제도 마비로 기피 / 개선 불투명</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-3 · 사회</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">두 학교 한 건물</span><span class="ppr-val">민족 분리 교육 / 서사 통합 불가</span></div>
+    <div class="ppr-row"><span class="ppr-key">혐오범죄</span><span class="ppr-val">91건 (2025 초) UN 집계</span></div>
+    <div class="ppr-row"><span class="ppr-key">소수자</span><span class="ppr-val">유대인·로마·LGBTQ 구조적 차별</span></div>
+    <div class="ppr-row"><span class="ppr-key">EU 지지</span><span class="ppr-val">68% (2024) / 2022년 76%→하락</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-4 · 역사</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">TBI</span><span class="ppr-val">0.890 — 유럽 전체 최고</span></div>
+    <div class="ppr-row"><span class="ppr-key">스레브레니차</span><span class="ppr-val">ICJ 집단학살 판결 / RS 공식 부인</span></div>
+    <div class="ppr-row"><span class="ppr-key">전쟁범죄 처리</span><span class="ppr-val">2005년 이후 15%만 해결</span></div>
+    <div class="ppr-row"><span class="ppr-key">데이턴 30주년</span><span class="ppr-val">2025년 / 통합 vs 분열 기로</span></div>
+  </div></div>
+  <div class="ppr-card"><div class="ppr-head">PPR-5 · 지정학</div><div class="ppr-body">
+    <div class="ppr-row"><span class="ppr-key">EU</span><span class="ppr-val">후보국 / 가입 협상 사실상 정체</span></div>
+    <div class="ppr-row"><span class="ppr-key">러시아</span><span class="ppr-val">도도크 지지 / 서방 제재에 맞서</span></div>
+    <div class="ppr-row"><span class="ppr-key">세르비아</span><span class="ppr-val">도도크 판결 '불법' 선언 / 긴장 고조</span></div>
+    <div class="ppr-row"><span class="ppr-key">NATO·EUFOR</span><span class="ppr-val">2025.03 병력 증강 / 분리 억지</span></div>
+  </div></div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅸ · 담론육층</div>
+  <div style="margin:14px 0;">
+    <div class="discourse-layer"><div class="layer-num">1층<br>데이터</div><div class="layer-content"><strong>무엇이 보이는가:</strong> Λ-Score 0.508 유럽 최고. TBI 0.890. CFD 0.92. EU 우선과제 1/14 달성. 연간 5만 명 이탈. 민족 혐오범죄 91건. 이 숫자들이 말하는 것 — 보스니아는 30년간 정지해 있습니다.</div></div>
+    <div class="discourse-layer"><div class="layer-num">2층<br>이해관계</div><div class="layer-content"><strong>누가 이익을 얻는가:</strong> 민족 정치 엘리트들은 분열이 지속될수록 자신들의 권력 기반이 유지됩니다. 도도크는 세르비아 지지와 러시아 연대를 레버리지로 국내 사법 판결에 저항합니다. 민족 기업인들은 14층 행정 구조에서 각자의 독점적 계약을 유지합니다. 통합은 이들 모두의 이익을 해칩니다.</div></div>
+    <div class="discourse-layer"><div class="layer-num">3층<br>역사 패턴</div><div class="layer-content"><strong>이전에도 있었는가:</strong> 발칸은 제국들의 경계선이 겹치는 곳이었습니다. 오스만·합스부르크·유고슬라비아. 각 제국이 민족 구조를 이용해 통치했고, 각 제국이 무너질 때 민족 갈등이 폭발했습니다. 1992~95년 전쟁은 유고슬라비아 해체가 만든 것이고, 데이턴은 그 전쟁을 멈추었지만 다음 폭발의 씨앗을 심었습니다.</div></div>
+    <div class="discourse-layer"><div class="layer-num">4층<br>시각 역전</div><div class="layer-content"><strong>반대로 보면:</strong> EU 지지율 68%는 낮지 않습니다. 보스니아 민중은 통합을 원합니다 — 민족 정치 엘리트들이 그것을 막는 것입니다. 인구 이탈은 위기 신호이지만 — 동시에 "이 구조를 더 이상 견디지 않겠다"는 민중의 표결입니다. 다만 표결 방법이 투표가 아니라 이민이라는 것이 비극입니다.</div></div>
+    <div class="discourse-layer"><div class="layer-num">5층<br>프레임</div><div class="layer-content"><strong>Λ¹² 위상 진단:</strong> 보스니아의 CFD 0.92는 단순한 문화 갈등이 아닙니다 — 집단학살의 기억을 두고 한쪽은 "학살"이라 부르고 다른 쪽은 "부인"하는 구조입니다. 이것은 담론육층 3층(역사 패턴)이 화해 없이 동결된 상태. TBI 0.890이 임계(0.70)를 크게 초과하고 있으나, 국제 감독(OHR·EUFOR·NATO)이 물리적 충돌을 억제하는 구조. 국제 감독이 철수되는 시점이 진짜 임계점입니다.</div></div>
+    <div class="discourse-layer"><div class="layer-num" style="background:#3A6A5E;">6층<br>판단 유보</div><div class="layer-content" style="background:#E8F4F0;"><strong>이 층은 340만 보스니아 민중의 몫입니다.</strong> 매년 5만 명씩 떠나는 나라에서 누가 통합을 만들어갈 것인가 — 그 물음을 Λ¹²는 대신 답할 수 없습니다.</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">Ⅹ · 결론 궤도</div>
+  <div class="conclusion">
+    <p>보스니아는 유럽에서 가장 오래된 현재 진행형 전쟁이 살고 있는 나라입니다. 총성은 멈췄지만 — 스레브레니차를 학살이라 부르는 사람과 부인하는 사람이 같은 국가를 운영합니다. 그 국가는 작동하지 않습니다.</p>
+    <p>TBI 0.890이 말하는 것 — 8,000명의 죽음이 "없었다"고 말하는 사람이 공식 권력을 행사하는 한, 이 트라우마는 소화되지 않습니다. 소화되지 않은 트라우마는 다음 세대에게 전달됩니다. 두 학교 한 건물에서 자라는 아이들에게.</p>
+    <p>데이턴 협정 30주년(2025). 평화를 가져온 협정이 동시에 분열을 제도화한 협정이었다는 것 — 이것이 보스니아의 근본 모순입니다. 이 모순을 해결할 주체는 국제 사회가 아니라 보스니아 민중입니다. 그런데 그 민중은 매년 5만 명씩 떠나고 있습니다.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="series-box">
+    <div class="series-title">단독편 시리즈 — Λ¹²v9.12</div>
+    <div class="series-item"><span class="series-num">C-01</span><span>캄보디아 단독편 v1.0</span><span class="series-status status-done">완성</span></div>
+    <div class="series-item"><span class="series-num">E-01</span><span>보스니아 단독편 v1.0 (현재)</span><span class="series-status status-now">완성</span></div>
+    <div class="series-item"><span class="series-num">E-02</span><span>헝가리 단독편 v1.0</span><span class="series-status status-plan">예정</span></div>
+    <div class="series-item"><span class="series-num">E-03</span><span>그리스 단독편 v1.0</span><span class="series-status status-plan">예정</span></div>
+    <div class="series-item"><span class="series-num">E-04</span><span>영국 단독편 v1.0</span><span class="series-status status-plan">예정</span></div>
+  </div>
+</div>
+
+<div class="footer">
+  <p>늘푸른바다 사회동역학 연구소 (Everblue Sea Institute for Social Dynamics)</p>
+  <p>소장 청해(淸海) · Claude (Anthropic) 연구 파트너</p>
+  <p><a href="https://badaegopa.tistory.com">badaegopa.tistory.com</a> · <a href="https://everbluesea.org">everbluesea.org</a> · contact@everbluesea.org</p>
+  <div class="engine-tag">Engine: Λ¹²v9.12 | ADI §31 | SSRN 6632858 | bosnia_lambda12_v912_20260502.html</div>
+</div>
+</body>
+</html>
