@@ -1540,6 +1540,7 @@ function scrollToRegion(regionId) {
     'northeast-asia': { icon:'🌏', ko:'동북아시아',  en:'Northeast Asia',     color:'#4D7A6A', bg:'#D4E5DF' },
     'south-asia':     { icon:'🏔', ko:'남아시아',   en:'South Asia',         color:'#8B6B9E', bg:'#E8DEF0' },
     'americas':       { icon:'🌎', ko:'남북미',     en:'The Americas',       color:'#9B4040', bg:'#F0D8D8' },
+    'climate':        { icon:'🌊', ko:'기후멸절',    en:'Climate Extinction', color:'#3A6A8E', bg:'#D4E0EC' },
     'ldc':            { icon:'⚖️', ko:'최빈국 특집', en:'Least Developed',    color:'#7A746C', bg:'#E4E0D7' },
     'tools':          { icon:'🔧', ko:'도구·분석',   en:'Tools & Analysis',   color:'#4A7FA8', bg:'#D4E5F0' },
   };
@@ -1570,13 +1571,19 @@ function scrollToRegion(regionId) {
   'latam-regional': '남북미 권역 (LatAm Regional)',
   'latam-2nd-series': '남북미-2차 (LatAm 2nd Series)',
   'latam-3rd-series': '남북미-3차 (LatAm 3rd Series)',
-  'latam-4th-smallstates': '남북미-4차 소국 (LatAm 4th SmallStates)'
+  'latam-4th-smallstates': '남북미-4차 소국 (LatAm 4th SmallStates)',
+  'climateextinction-4nations': '기후멸절 4개국 비교 (Climate Extinction)',
+  'maldives': '몰디브 (Maldives)',
+  'tuvalu': '투발루 (Tuvalu)',
+  'kiribati': '키리바시 (Kiribati)',
+  'marshallislands': '마셜제도 (Marshall Islands)'
 };
 
 function parseName(fn) {
   const stripped = fn.replace('.html','')
     .replace(/^v[\d.]+_/,'')
-    .replace(/_Lambda12v912/i,'')
+    .replace(/_Lambda12v\d+/i,'')
+    .replace(/_GEI/i,'')
     .replace(/_\d{8}.*/,'');
   const key = stripped.replace(/_/g,'-').toLowerCase();
   if (LABEL_MAP[key]) return LABEL_MAP[key];
@@ -1596,7 +1603,7 @@ function parseName(fn) {
 
       const subRes = await fetch(folder.url, {headers:{'Accept':'application/vnd.github.v3+json'}});
       if (!subRes.ok) continue;
-      const files = (await subRes.json()).filter(f => f.name.endsWith('.html') && (f.name.startsWith('v') || f.name.includes('Lambda12v912')));
+      const files = (await subRes.json()).filter(f => f.name.endsWith('.html') && (f.name.startsWith('v') || /Lambda12v\d+/i.test(f.name)));
       if (files.length === 0) continue;
 
       const rows = files.sort((a,b)=>b.name.localeCompare(a.name)).map(f => {

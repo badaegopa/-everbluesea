@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>기후소멸 위기국가 특별보고서 — 늘푸른바다 사회동역학 연구소</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500&family=Courier+Prime:wght@400;700&display=swap');
+
+  :root {
+    --bg: #F5F3EE;
+    --green: #5E9186;
+    --green-dark: #3A6A5E;
+    --gold: #B8850E;
+    --card: #FFFFFF;
+    --border: #DDD8CE;
+    --text: #2C2C2C;
+    --text-light: #666;
+    --ocean: #1A4A6B;
+    --ocean-light: #2E6A9E;
+    --danger: #C0392B;
+    --warning: #E67E22;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, #0A1628 0%, #1A3A5C 40%, #0D2A3A 100%);
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232E6A9E' fill-opacity='0.08'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    animation: drift 20s linear infinite;
+  }
+
+  @keyframes drift {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-60px); }
+  }
+
+  .hero-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    color: #7BA8C4;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .hero-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 1.3;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .hero-title span {
+    color: #7BC4E8;
+  }
+
+  .hero-sub {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(16px, 2.5vw, 22px);
+    color: #A8C8E0;
+    font-weight: 300;
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  .hero-meta {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    color: #5A8EAA;
+    letter-spacing: 2px;
+    position: relative;
+  }
+
+  .wave-divider {
+    width: 100%;
+    height: 60px;
+    background: var(--bg);
+    clip-path: ellipse(55% 100% at 50% 100%);
+    margin-top: -1px;
+  }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .section {
+    padding: 60px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .section-num {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    color: var(--gold);
+    font-weight: 700;
+    letter-spacing: 2px;
+    white-space: nowrap;
+  }
+
+  .section-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--green-dark);
+    line-height: 1.3;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 4px;
+  }
+
+  /* ── CALLOUT ── */
+  .callout {
+    background: linear-gradient(135deg, #0A1628 0%, #1A3A5C 100%);
+    border-left: 4px solid #7BC4E8;
+    padding: 32px 40px;
+    border-radius: 0 8px 8px 0;
+    margin: 32px 0;
+  }
+
+  .callout p {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 18px;
+    color: #E8F4FF;
+    line-height: 1.9;
+    font-weight: 300;
+  }
+
+  .callout em {
+    color: #7BC4E8;
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  /* ── NATION CARDS ── */
+  .nations-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin: 32px 0;
+  }
+
+  .nation-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .nation-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+  }
+
+  .nation-card-header {
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nation-flag-emoji {
+    font-size: 32px;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .nation-name-kr {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--green-dark);
+  }
+
+  .nation-name-en {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    color: var(--text-light);
+    letter-spacing: 2px;
+  }
+
+  .nation-card-body {
+    padding: 20px 24px;
+  }
+
+  .nation-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 8px 0;
+    border-bottom: 1px solid #F0EDE8;
+  }
+
+  .nation-stat:last-child { border-bottom: none; }
+
+  .stat-label {
+    font-size: 13px;
+    color: var(--text-light);
+  }
+
+  .stat-value {
+    font-family: 'Courier Prime', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .stat-value.danger { color: var(--danger); }
+  .stat-value.warning { color: var(--warning); }
+  .stat-value.ocean { color: var(--ocean-light); }
+
+  .gei-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #C0392B, #E74C3C);
+    color: white;
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-top: 12px;
+  }
+
+  /* ── DATA TABLE ── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 14px;
+  }
+
+  .data-table th {
+    background: var(--green);
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+
+  .data-table th:first-child { border-radius: 6px 0 0 0; }
+  .data-table th:last-child { border-radius: 0 6px 0 0; }
+
+  .data-table td {
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+
+  .data-table tr:nth-child(even) td { background: #FAFAF8; }
+  .data-table tr:hover td { background: #F0EDE8; }
+
+  .data-table .num {
+    font-family: 'Courier Prime', monospace;
+    font-weight: 700;
+  }
+
+  .data-table .red { color: var(--danger); }
+  .data-table .orange { color: var(--warning); }
+  .data-table .blue { color: var(--ocean-light); }
+  .data-table .green { color: var(--green-dark); }
+
+  /* ── TIMELINE ── */
+  .timeline {
+    position: relative;
+    padding-left: 32px;
+    margin: 24px 0;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--ocean-light), var(--danger));
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 24px;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: -28px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--card);
+    box-shadow: 0 0 0 2px currentColor;
+  }
+
+  .timeline-dot.now { color: var(--ocean-light); background: var(--ocean-light); }
+  .timeline-dot.warn { color: var(--warning); background: var(--warning); }
+  .timeline-dot.crisis { color: #E74C3C; background: #E74C3C; }
+  .timeline-dot.extinct { color: var(--danger); background: var(--danger); }
+
+  .timeline-year {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  .timeline-content {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text);
+  }
+
+  /* ── SUPPORT TABLE ── */
+  .support-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 24px 0;
+  }
+
+  .support-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  .support-card-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--green);
+  }
+
+  .support-item {
+    font-size: 13px;
+    padding: 6px 0;
+    border-bottom: 1px solid #F0EDE8;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  .support-item:last-child { border-bottom: none; }
+
+  .support-name { color: var(--text); flex: 1; }
+  .support-amount {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  /* ── GAP VISUAL ── */
+  .gap-visual {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    margin: 24px 0;
+  }
+
+  .gap-bar-wrapper { margin: 16px 0; }
+
+  .gap-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 8px;
+  }
+
+  .gap-bar {
+    height: 28px;
+    border-radius: 4px;
+    background: #F0EDE8;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .gap-fill {
+    height: 100%;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+    transition: width 1s ease;
+  }
+
+  .gap-fill.actual { background: linear-gradient(90deg, var(--ocean), var(--ocean-light)); }
+  .gap-fill.needed { background: linear-gradient(90deg, var(--green), var(--green-dark)); }
+  .gap-fill.debt { background: linear-gradient(90deg, #E74C3C, #C0392B); }
+
+  /* ── FALEPILI ── */
+  .falepili-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 24px 0;
+  }
+
+  .falepili-side {
+    padding: 24px;
+    border-radius: 10px;
+  }
+
+  .falepili-side.hope {
+    background: #F0F8F5;
+    border: 1px solid var(--green);
+  }
+
+  .falepili-side.concern {
+    background: #FEF5F5;
+    border: 1px solid #E74C3C;
+  }
+
+  .falepili-side-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid currentColor;
+  }
+
+  .falepili-side.hope .falepili-side-title { color: var(--green-dark); }
+  .falepili-side.concern .falepili-side-title { color: var(--danger); }
+
+  .falepili-item {
+    font-size: 13px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    line-height: 1.6;
+  }
+
+  .falepili-item:last-child { border-bottom: none; }
+
+  /* ── CSZ PROPOSAL ── */
+  .csz-box {
+    background: linear-gradient(135deg, #F5F3EE, #EBF4F0);
+    border: 2px solid var(--green);
+    border-radius: 12px;
+    padding: 36px;
+    margin: 24px 0;
+  }
+
+  .csz-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 8px;
+  }
+
+  .csz-en {
+    font-family: 'Courier Prime', monospace;
+    font-size: 13px;
+    color: var(--text-light);
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+  }
+
+  .csz-formula {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 24px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 14px;
+    color: var(--ocean);
+    line-height: 2;
+    margin: 20px 0;
+  }
+
+  .csz-candidates {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .csz-candidate {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+  }
+
+  .csz-candidate-name {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--green-dark);
+    margin-bottom: 4px;
+  }
+
+  .csz-candidate-score {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    color: var(--text-light);
+  }
+
+  /* ── COMPARISON ── */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 24px 0;
+  }
+
+  .compare-side {
+    padding: 28px;
+  }
+
+  .compare-side.israel {
+    background: #F5F8FF;
+    border-right: 1px solid var(--border);
+  }
+
+  .compare-side.maldives {
+    background: #F0F8F5;
+  }
+
+  .compare-side-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--green-dark);
+  }
+
+  .compare-row {
+    display: flex;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    font-size: 13px;
+  }
+
+  .compare-row:last-child { border-bottom: none; }
+
+  .compare-key {
+    color: var(--text-light);
+    width: 80px;
+    flex-shrink: 0;
+  }
+
+  .compare-val { color: var(--text); font-weight: 500; }
+
+  /* ── RADAR ── */
+  .radar-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin: 24px 0;
+    align-items: start;
+  }
+
+  /* ── 6층 질문 ── */
+  .layer6 {
+    background: linear-gradient(160deg, #0A1628, #1A3A5C);
+    border-radius: 12px;
+    padding: 48px 40px;
+    margin: 40px 0;
+    text-align: center;
+  }
+
+  .layer6-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    color: #5A8EAA;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .layer6-text {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(16px, 2.5vw, 22px);
+    color: #E8F4FF;
+    line-height: 2.0;
+    font-weight: 300;
+  }
+
+  .layer6-text em {
+    color: #7BC4E8;
+    font-style: normal;
+  }
+
+  /* ── INDIVIDUAL REPORTS ── */
+  .individual-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin: 32px 0;
+  }
+
+  .individual-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .individual-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  }
+
+  .individual-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--ocean), var(--green));
+  }
+
+  .individual-card-flag { font-size: 40px; margin-bottom: 12px; display: block; }
+
+  .individual-card-name {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 4px;
+  }
+
+  .individual-card-en {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    color: var(--text-light);
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+  }
+
+  .individual-card-desc {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  .individual-card-link {
+    display: inline-block;
+    background: var(--green);
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 8px 18px;
+    border-radius: 20px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: background 0.2s;
+  }
+
+  .individual-card-link:hover { background: var(--green-dark); }
+
+  /* ── BODY TEXT ── */
+  .body-text {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+
+  .body-text strong { color: var(--green-dark); }
+
+  .highlight-box {
+    background: #EBF4F0;
+    border-left: 3px solid var(--green);
+    padding: 16px 20px;
+    border-radius: 0 6px 6px 0;
+    margin: 20px 0;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .source-tag {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    color: var(--text-light);
+    background: #F0EDE8;
+    padding: 2px 8px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 12px;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: #EBF4F0;
+    padding: 40px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-institute {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 8px;
+  }
+
+  .footer-meta {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    color: var(--text-light);
+    line-height: 2;
+  }
+
+  .footer-link {
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  /* ── SVG RADAR ── */
+  .radar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .container { padding: 0 20px; }
+    .nations-grid, .individual-grid, .falepili-grid, .radar-section { grid-template-columns: 1fr; }
+    .support-grid { grid-template-columns: 1fr; }
+    .csz-candidates { grid-template-columns: repeat(2, 1fr); }
+    .compare-grid { grid-template-columns: 1fr; }
+    .hero { padding: 60px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-label">늘푸른바다 사회동역학 연구소 · Climate Extinction Series · §34 GEI</div>
+  <h1 class="hero-title">
+    그들의 잘못이 <span>아니다</span>
+  </h1>
+  <p class="hero-sub">기후소멸 위기국가 특별보고서 — 4개국 통합편</p>
+  <div class="hero-meta">MALDIVES · TUVALU · KIRIBATI · MARSHALL ISLANDS · Lambda12 v9.13 · 2026-05-04</div>
+</div>
+<div class="wave-divider"></div>
+
+<div class="container">
+
+  <!-- ── §1 서문 ── -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">§01</span>
+      <h2 class="section-title">시리즈 서문</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <p class="body-text">
+      멸종위기 동물 한 마리에 전 세계 언론이 1면을 할애하고, 국제 모금이 이루어지며, 정부간 협약이 체결된다. 24시간 무장 경호가 붙는다. 그러나 <strong>52만 명이 사는 나라가 바다에 잠기고 있다는 사실</strong>은 기후총회 때만 잠깐 등장했다 사라진다.
+    </p>
+
+    <div class="callout">
+      <p>
+        몰디브, 투발루, 키리바시, 마셜제도. 이 네 나라가 한 일은 <em>산호초 위에서 태어난 것</em>뿐이다.<br>
+        그들이 배출한 CO₂는 전 세계의 0.003%에 불과하다.<br>
+        그러나 그들이 감당하는 기후 피해는 <em>자국 GDP의 27~71%</em>에 달한다.
+      </p>
+    </div>
+
+    <p class="body-text">
+      이 보고서는 Λ¹² v9.13 프레임워크의 신규 모듈 <strong>§34 GEI(Geographic Extinction Index, 지리적 소멸지수)</strong>를 최초 적용한 특별 시리즈다. §32 NSAAC가 국가 기능의 소멸을 진단한다면, §34 GEI는 <strong>국토 물리 자체의 소멸</strong>을 다룬다. 이것은 기존 12축 어디에도 없는 차원이다.
+    </p>
+
+    <p class="body-text">
+      어쩌면 이 보고서가 이 나라들의 <strong>마지막 살아있는 기록</strong>이 될 수도 있다. 박물관에 전시되기 전에, 살아있을 때 남기는 것이 이 시리즈의 존재 이유다.
+    </p>
+  </div>
+
+  <!-- ── §2 GEI 이론 ── -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">§02</span>
+      <h2 class="section-title">§34 GEI — 지리적 소멸지수</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <p class="body-text">
+      GEI는 Λ¹² 기본 엔진(§1~§26)의 전제를 무너뜨리는 상황을 포착한다. 기본 엔진은 <strong>국토의 물리적 존재</strong>를 전제로 설계됐다. GEI는 그 전제 자체가 소멸하는 국가를 위한 별도 진단 체계다.
+    </p>
+
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:28px;margin:20px 0;">
+      <div style="font-family:'Courier Prime',monospace;font-size:15px;color:var(--ocean);line-height:2.2;text-align:center;">
+        GEI = (SLR_rate × EAI × Pop_density) / (Support_intensity × CSZ_probability)<br>
+        <span style="font-size:11px;color:var(--text-light);">
+          SLR: 해수면상승속도 | EAI: 해발고도역지수 | Pop: 인구밀도<br>
+          Support: 국제지원강도 | CSZ: 기후주권자치구 가능성
+        </span>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <strong>§32 NSAAC vs §34 GEI 핵심 구분</strong><br>
+      NSAAC(아이티): 국가 기능이 비국가 무력조직에 대체됨 → Lambda &gt; 1.0<br>
+      GEI(몰디브 등): 국가 기능과 무관하게 <strong>물리적 국토 자체가 소멸</strong> → 별도 스케일 필요<br>
+      두 상황 모두 기존 Lambda 정규화 스케일의 전제가 무너지는 경우다.
+    </div>
+
+    <p class="body-text">
+      §33 BBD(거품경계역학)와의 연결: GEI 대상 국가들은 FTI(유막두께지수)가 아무리 높아도 의미가 없다. <strong>거품이 놓인 판 자체가 사라지고 있기 때문이다.</strong> BBD에서 가장 잔인한 케이스다.
+    </p>
+  </div>
+
+  <!-- ── §3 4개국 개요 ── -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">§03</span>
+      <h2 class="section-title">4개국 개요 비교</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="nations-grid">
+
+      <div class="nation-card">
+        <div class="nation-card-header">
+          <span class="nation-flag-emoji">🇲🇻</span>
+          <div class="nation-name-kr">몰디브</div>
+          <div class="nation-name-en">REPUBLIC OF MALDIVES</div>
+        </div>
+        <div class="nation-card-body">
+          <div class="nation-stat">
+            <span class="stat-label">인구</span>
+            <span class="stat-value">52만명</span>
+          </div>
+          <div class="nation-stat">
+            <span class="stat-label">평균 해발고도</span>
+            <span class="stat-value danger">1.5m</span>
+          </div>
+          <div class="nation-stat">
+            <span class="stat-label">산호섬 수</span>
+            <span class="stat-value">1,192개</span>
+          </div>
+          <div class="nation-stat">
+            <span class="stat-label">지하수 오염</span>
+            <span class="stat-value danger">97% 염수화</span>
+          </div>
+          <div class="nation-stat">
+            <span class="stat-label">해안 침식</span>
+            <span class="stat-value warning">90% 심각</span>
+          </div>
+          <div class="nation-stat">
+            <span class="stat-label">2050년 전망</span>
+            <span class="stat-value danger">80% 거주불가</span>
+          </div>
+          <div class="nation-stat">
+            <span class="stat-label">CO₂ 기여도</span>
+            <span class="stat-value ocean">0.003%</span>
+          </div>
+          <div class="gei-badge">GEI: 극고위험</div>
+        </div>
+      </div>
+
+      <div class="nation-card">
+        <div class="nation-card-header">
+          <span class="nation-flag-emoji">🇹🇻</span>
+          <div class="nation-name-kr">투발루</div>
+          <div class="nation-name-en">TUVALU</div>
+        </div>
+        <div class="nation-card-body">
+          <div class="nation-stat">
+            <span class="stat-label">인구</span>
+            <span class="stat-value">11,000명</span>
+          </div>
+          <div class="nation-stat">
+            <span class="stat-label">평균 해발고도</span>
+            <span class="stat-value danger">2m</span>
+          </div>
+          <div class="nation-stat">
+            <span class="stat-label">해수면 상승</span>
+            <span class="stat-value danger">30년간 21cm</span>
+          </div>
+          <div class="nation-stat">
+            <span class="stat-label">상승 속도</span>
+            <span class="stat-value warning">글로벌 평균 1.5배</span>
+          </div>
+          <div class="nation-stat">
+            <span class="stat-label">2050년 침수일</span>
+            <span class="stat-value danger">연 25일↑</span>
+          </div>
+          <div class="nation-stat">
+            <span class="stat-label">2100년 전망</span>
+            <span class="stat-value danger">95% 수몰</span>
+          </div>
+          <div class="nation-stat">
+            <span class="stat-label">호주 이민 신청</span>
+            <span class="stat-value warning">인구의 90%+</span>
+          </div>
+          <div class="gei-badge">GEI: 극고위험</div>
+        </div>
+      </div>
+
+      <div class="nation-card">
+        <div class="nation-card-header">
+          <span class="nation-flag-emoji">🇰🇮</span>
+          <div class="nation-name-kr">키리바시</div>
+          <div class="nation-name-en">REPUBLIC OF KIRIBATI</div>
+        </div>
+        <div class="nation-card-body">
+          <div class="nation-stat">
+            <span class="stat-label">인구</span>
+            <span class="stat-value">12만명</span>
+          </div>
+          <div class="nation-stat">
+            <span class="stat-label">평균 해발고도</span>
+            <span class="stat-value danger">2m 미만</span>
+          </div>
+          <div class="nation-stat">
+            <span class="stat-label">구성</span>
+            <span class="stat-value">33개 환초</span>
+          </div>
+          <div class="nation-stat">
+            <span class="stat-label">2050년 침수일</span>
+            <span class="stat-value danger">연 65일</span>
+          </div>
+          <div class="nation-stat">
+            <span class="stat-label">GDP 피해(2100)</span>
+            <span class="stat-value danger">15~29%</span>
+          </div>
+          <div class="nation-stat">
+            <span class="stat-label">피지 토지 매입</span>
+            <span class="stat-value ocean">2,000에이커</span>
+          </div>
+          <div class="nation-stat">
+            <span class="stat-label">중국 지원</span>
+            <span class="stat-value warning">인프라 투자 중</span>
+          </div>
+          <div class="gei-badge">GEI: 극고위험</div>
+        </div>
+      </div>
+
+      <div class="nation-card">
+        <div class="nation-card-header">
+          <span class="nation-flag-emoji">🇲🇭</span>
+          <div class="nation-name-kr">마셜제도</div>
+          <div class="nation-name-en">REPUBLIC OF THE MARSHALL ISLANDS</div>
+        </div>
+        <div class="nation-card-body">
+          <div class="nation-stat">
+            <span class="stat-label">인구</span>
+            <span class="stat-value">4.2만명</span>
+          </div>
+          <div class="nation-stat">
+            <span class="stat-label">최고 해발고도</span>
+            <span class="stat-value danger">2m 미만</span>
+          </div>
+          <div class="nation-stat">
+            <span class="stat-label">핵실험 횟수</span>
+            <span class="stat-value danger">67회 (1946~58)</span>
+          </div>
+          <div class="nation-stat">
+            <span class="stat-label">히로시마 환산</span>
+            <span class="stat-value danger">20년간 매일 1발</span>
+          </div>
+          <div class="nation-stat">
+            <span class="stat-label">GDP 피해(2100)</span>
+            <span class="stat-value danger">27~43%</span>
+          </div>
+          <div class="nation-stat">
+            <span class="stat-label">루닛 돔</span>
+            <span class="stat-value warning">핵폐기물 수몰 위기</span>
+          </div>
+          <div class="nation-stat">
+            <span class="stat-label">이중 피해</span>
+            <span class="stat-value danger">핵 + 기후</span>
+          </div>
+          <div class="gei-badge">GEI: 극고위험 + 핵유산</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── §4 수몰 타임라인 ── -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">§04</span>
+      <h2 class="section-title">수몰 타임라인 — 카운트다운</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot now"></div>
+        <div class="timeline-year">2026 현재</div>
+        <div class="timeline-content">
+          몰디브: 97% 지하수 염수화 완료, 90% 섬 심각한 침식 진행 중.<br>
+          투발루: 해수면 30년간 21cm 상승, 글로벌 평균의 1.5배 속도.<br>
+          키리바시: 연간 5일 미만이었던 침수일이 급격히 증가 중.<br>
+          마셜제도: 루닛 돔(핵폐기물 보관시설) 균열 진행, 해수면 상승으로 누출 위험.
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot warn"></div>
+        <div class="timeline-year">2030~2040</div>
+        <div class="timeline-content">
+          30년 내 최소 15cm 해수면 상승 확정(NASA). 이미 배출된 온실가스로 불가역적.<br>
+          몰디브 외곽 도서 주민 강제 이주 시작 예상.<br>
+          키리바시: 연 25일 이상 침수 구간 급격히 확대.
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot crisis"></div>
+        <div class="timeline-year">2050</div>
+        <div class="timeline-content">
+          몰디브 80% 섬 거주불가 전망(IPCC).<br>
+          투발루 수도 푸나푸티 50% 수몰 예상(NASA).<br>
+          키리바시 연 65일 침수 — 지속 거주 사실상 불가능.<br>
+          4개국 모두 GDP 3% 이상 연간 기후 충격. 자체 회복 불능.
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot extinct"></div>
+        <div class="timeline-year">2100</div>
+        <div class="timeline-content">
+          투발루 95% 수몰 예상.<br>
+          마셜제도 GDP 27~43% 소멸.<br>
+          키리바시 GDP 15~29% 소멸.<br>
+          몰디브 국토 전체 수몰 가능(해수면 1m 상승 시 전 국토 수몰).<br>
+          <strong>이 시점이 지금으로부터 74년 후다. 오늘 태어난 아이가 74세 되는 해.</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── §5 지원 현황 ── -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">§05</span>
+      <h2 class="section-title">지원 현황 — 숫자가 말하는 것</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="gap-visual">
+      <h3 style="font-family:'Noto Serif KR',serif;font-size:16px;color:var(--green-dark);margin-bottom:24px;">연간 기후 적응 자금 — 필요 vs 실제</h3>
+
+      <div class="gap-bar-wrapper">
+        <div class="gap-label">
+          <span>실제 지원액</span>
+          <span style="font-family:'Courier Prime',monospace;font-weight:700;color:var(--ocean-light);">US$ 20억/년</span>
+        </div>
+        <div class="gap-bar">
+          <div class="gap-fill actual" style="width:16.7%">$20억</div>
+        </div>
+      </div>
+
+      <div class="gap-bar-wrapper">
+        <div class="gap-label">
+          <span>전문가 권고 필요액</span>
+          <span style="font-family:'Courier Prime',monospace;font-weight:700;color:var(--green-dark);">US$ 120억/년</span>
+        </div>
+        <div class="gap-bar">
+          <div class="gap-fill needed" style="width:100%">$120억</div>
+        </div>
+      </div>
+
+      <div class="gap-bar-wrapper">
+        <div class="gap-label">
+          <span>지원금 중 부채 비율</span>
+          <span style="font-family:'Courier Prime',monospace;font-weight:700;color:var(--danger);">44%</span>
+        </div>
+        <div class="gap-bar">
+          <div class="gap-fill debt" style="width:44%">갚아야 할 빚</div>
+        </div>
+      </div>
+
+      <p style="font-size:13px;color:var(--text-light);margin-top:16px;">
+        출처: Global Center on Adaptation, State and Trends 2025 · Climate Policy Initiative 2025
+      </p>
+    </div>
+
+    <div class="support-grid">
+      <div class="support-card">
+        <div class="support-card-title">🏛️ 주요 지원 국가</div>
+        <div class="support-item">
+          <span class="support-name">호주</span>
+          <span class="support-amount">팔레피리 연합 + AUD 153M+</span>
+        </div>
+        <div class="support-item">
+          <span class="support-name">뉴질랜드</span>
+          <span class="support-amount">이민 쿼터 + 개발지원</span>
+        </div>
+        <div class="support-item">
+          <span class="support-name">중국</span>
+          <span class="support-amount">키리바시 인프라 투자</span>
+        </div>
+        <div class="support-item">
+          <span class="support-name">EU</span>
+          <span class="support-amount">IRIS 이니셔티브 참여</span>
+        </div>
+        <div class="support-item">
+          <span class="support-name">인도</span>
+          <span class="support-amount">IRIS $35M 공동출자</span>
+        </div>
+        <div class="support-item">
+          <span class="support-name">미국</span>
+          <span class="support-amount">마셜제도 핵 보상(불충분)</span>
+        </div>
+      </div>
+
+      <div class="support-card">
+        <div class="support-card-title">🌐 주요 국제기구·단체</div>
+        <div class="support-item">
+          <span class="support-name">GCF (녹색기후기금)</span>
+          <span class="support-amount">본부: 인천 송도</span>
+        </div>
+        <div class="support-item">
+          <span class="support-name">AOSIS</span>
+          <span class="support-amount">39개국 소도서국연합</span>
+        </div>
+        <div class="support-item">
+          <span class="support-name">GCA (글로벌적응센터)</span>
+          <span class="support-amount">정책 연구·권고</span>
+        </div>
+        <div class="support-item">
+          <span class="support-name">Rising Nations Initiative</span>
+          <span class="support-amount">UN 주권보존 프로그램</span>
+        </div>
+        <div class="support-item">
+          <span class="support-name">IRIS</span>
+          <span class="support-amount">인프라 복원력 $35M</span>
+        </div>
+        <div class="support-item">
+          <span class="support-name">Greenpeace</span>
+          <span class="support-amount">마셜제도 핵·기후 조사</span>
+        </div>
+      </div>
+
+      <div class="support-card">
+        <div class="support-card-title">⚠️ 지원의 구조적 한계</div>
+        <div class="support-item">
+          <span class="support-name">실제 접근 가능액</span>
+          <span class="support-amount">$1.9B/년 (필요의 16%)</span>
+        </div>
+        <div class="support-item">
+          <span class="support-name">44% 부채 형태</span>
+          <span class="support-amount">갚아야 할 지원금</span>
+        </div>
+        <div class="support-item">
+          <span class="support-name">글로벌 기후자금 비중</span>
+          <span class="support-amount">0.2%만 SIDS에</span>
+        </div>
+        <div class="support-item">
+          <span class="support-name">민간자본 추적 불가</span>
+          <span class="support-amount">사실상 제로</span>
+        </div>
+        <div class="support-item">
+          <span class="support-name">선례 공포</span>
+          <span class="support-amount">자치구 제공 거부</span>
+        </div>
+        <div class="support-item">
+          <span class="support-name">시간 착시</span>
+          <span class="support-amount">"아직 급하지 않다"</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── §6 팔레피리 연합 ── -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">§06</span>
+      <h2 class="section-title">팔레피리 연합 — 희망인가, 신식민인가</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <p class="body-text">
+      2023년 11월 호주와 투발루가 체결한 <strong>팔레피리 연합(Falepili Union)</strong>은 세계 최초의 기후 이동성 양자 협약이다. 2024년 8월 공식 발효됐다. '팔레피리'는 투발루 문화에서 <em>아무 대가 없이 이웃을 돌보는 행위</em>를 뜻한다.
+    </p>
+
+    <div class="falepili-grid">
+      <div class="falepili-side hope">
+        <div class="falepili-side-title">희망의 측면</div>
+        <div class="falepili-item">연간 280명 영주권 — 인구의 2.5% 선택지 제공</div>
+        <div class="falepili-item">AUD 38M 해안 적응 프로젝트 (거주 가능 토지 확장)</div>
+        <div class="falepili-item">AUD 50M 해저 통신케이블 — 디지털 연결</div>
+        <div class="falepili-item">법적 구속력 있는 투발루 주권 영속성 인정 (세계 최초)</div>
+        <div class="falepili-item">자유 왕래 — 투발루와 호주 간 이동 유지</div>
+        <div class="falepili-item">사회보호·의료·교육 접근 보장</div>
+      </div>
+      <div class="falepili-side concern">
+        <div class="falepili-side-title">우려의 측면</div>
+        <div class="falepili-item">안보 거부권: 제3국 안보협약 시 호주 사전 동의 필수</div>
+        <div class="falepili-item">야당: "이주권을 대가로 주권을 경매에 부쳤다"</div>
+        <div class="falepili-item">협상 과정에서 투발루 주민 공청회 없음</div>
+        <div class="falepili-item">협약문 영어로만 공개 — 지역어 번역 부재</div>
+        <div class="falepili-item">호주의 태평양 영향력 확장 수단이라는 비판</div>
+        <div class="falepili-item">CO₂ 실질 감축 의무 전혀 없음</div>
+      </div>
+    </div>
+
+    <div class="highlight-box">
+      <strong>Λ¹² 분석:</strong> 팔레피리 연합은 §33 BBD에서 말하는 <em>작은 거품이 큰 거품에 흡수되는 구조</em>의 실제 사례다. 호주는 투발루의 해양 주권(90만㎢ — 나이지리아 크기)이라는 전략 자산을 확보했고, 투발루는 생존 선택지를 얻었다. 그러나 이 구조는 팔레피리의 본래 의미 — 대가 없는 돌봄 — 와 정반대다.
+    </div>
+  </div>
+
+  <!-- ── §7 이스라엘 vs 몰디브 ── -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">§07</span>
+      <h2 class="section-title">이스라엘은 되고 몰디브는 왜 안 되는가</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <p class="body-text">
+      이 질문이 이 보고서의 핵심이다. 두 사례는 표면적으로 다르지만 구조적으로 같은 질문을 한다. <strong>국제사회는 어떤 민족의 이주와 정착을 지원하고, 어떤 민족에게는 침묵하는가.</strong>
+    </p>
+
+    <div class="compare-grid">
+      <div class="compare-side israel">
+        <div class="compare-side-title">🇮🇱 이스라엘 사례 (1947~48)</div>
+        <div class="compare-row"><span class="compare-key">동기</span><span class="compare-val">강대국의 지정학적 이해관계 (중동 거점)</span></div>
+        <div class="compare-row"><span class="compare-key">지원 방식</span><span class="compare-val">UN 결의 + 영국 밸푸어 선언 + 미국 외교력</span></div>
+        <div class="compare-row"><span class="compare-key">토지 제공</span><span class="compare-val">기존 거주민 있는 토지</span></div>
+        <div class="compare-row"><span class="compare-key">국제 반응</span><span class="compare-val">즉각적·구체적·법적 구속력</span></div>
+        <div class="compare-row"><span class="compare-key">핵심 이유</span><span class="compare-val">강대국 이익과 일치</span></div>
+      </div>
+      <div class="compare-side maldives">
+        <div class="compare-side-title">🇲🇻 몰디브 등 사례 (현재)</div>
+        <div class="compare-row"><span class="compare-key">동기</span><span class="compare-val">기후정의 — 강대국 이해관계 없음</span></div>
+        <div class="compare-row"><span class="compare-key">지원 방식</span><span class="compare-val">선언문·공약·목표치 — 대부분 미이행</span></div>
+        <div class="compare-row"><span class="compare-key">토지 제공</span><span class="compare-val">논의조차 없음</span></div>
+        <div class="compare-row"><span class="compare-key">국제 반응</span><span class="compare-val">기후총회 때 잠깐 등장, 침묵</span></div>
+        <div class="compare-row"><span class="compare-key">핵심 이유</span><span class="compare-val">강대국 이익과 무관</span></div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p>
+        잔인하게 단순한 답이 있다.<br>
+        <em>이스라엘 = 강대국의 이해관계가 있었다.</em><br>
+        <em>몰디브 = 강대국의 이해관계가 없다.</em><br><br>
+        그러나 소장이 제안하는 접근은 다르다. <em>강대국의 이익이 아니라 국제 공감대</em>로, 자발적·협력적·공존형 자치구를 만드는 것. 이것이 CSZ 개념이다.
+      </p>
+    </div>
+  </div>
+
+  <!-- ── §8 CSZ 제안 ── -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">§08</span>
+      <h2 class="section-title">CSZ 제안 — 기후주권자치구</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="csz-box">
+      <div class="csz-title">Climate Sovereignty Zone (CSZ)</div>
+      <div class="csz-en">기후주권자치구 — 신규 국제법 범주 제안</div>
+      <p class="body-text" style="font-size:14px;">
+        국토가 물리적으로 소멸하는 국가의 주권과 문화를 국제 공동체가 보장하는 새로운 법적 틀. 이스라엘 모델(분쟁·강제·배타)이 아닌, 자발적·협력적·공존형 자치구 개념이다.
+      </p>
+
+      <div class="csz-formula">
+        CSZ 가능성 지수 =<br>
+        &nbsp;&nbsp;(수용국 가용 영토 × 국제 공감도 × 자본 동원 가능성)<br>
+        &nbsp;&nbsp;/ (수용국 내부 저항 × 선례 공포 지수)
+      </div>
+
+      <h4 style="font-size:14px;color:var(--green-dark);margin-bottom:12px;font-family:'Noto Serif KR',serif;">남미 수용국 후보 평가</h4>
+      <div class="csz-candidates">
+        <div class="csz-candidate">
+          <div class="csz-candidate-name">🇬🇾 가이아나</div>
+          <div class="csz-candidate-score">가능성: ★★★★</div>
+          <div class="csz-candidate-score">저밀도·오일머니·해안선</div>
+        </div>
+        <div class="csz-candidate">
+          <div class="csz-candidate-name">🇨🇱 칠레</div>
+          <div class="csz-candidate-score">가능성: ★★★</div>
+          <div class="csz-candidate-score">긴 해안선·파타고니아</div>
+        </div>
+        <div class="csz-candidate">
+          <div class="csz-candidate-name">🇪🇨 에콰도르</div>
+          <div class="csz-candidate-score">가능성: ★★★</div>
+          <div class="csz-candidate-score">해양문화 친숙</div>
+        </div>
+        <div class="csz-candidate">
+          <div class="csz-candidate-name">🇫🇯 피지</div>
+          <div class="csz-candidate-score">가능성: ★★★★</div>
+          <div class="csz-candidate-score">키리바시 이미 매입</div>
+        </div>
+      </div>
+
+      <div class="highlight-box" style="margin-top:20px;background:rgba(255,255,255,0.6);">
+        <strong>선례</strong>: 바티칸(이탈리아 영토 내 독립국), 아올란드 제도(핀란드 내 스웨덴어권 자치구), 코소보(국제 공동체 지원 독립). CSZ는 새로운 발명이 아니다. <strong>기존 국제법 구조의 기후 위기 적용</strong>이다.
+      </div>
+    </div>
+  </div>
+
+  <!-- ── §9 마셜제도 특수 상황 ── -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">§09</span>
+      <h2 class="section-title">마셜제도 — 이중 피해의 잔인함</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="callout">
+      <p>
+        <em>"인류의 좋음을 위해(for the good of mankind)"</em> — 1946년 미 해군 제독이 비키니 환초 167명 주민에게 한 말이다.<br>
+        그들은 20년간 돌아오지 못했다. 그리고 지금 그 땅은 기후 변화로 다시 사라지고 있다.<br>
+        <em>이것은 실수가 아니었다. 의도적이고 계획적이었다.</em>
+      </p>
+    </div>
+
+    <p class="body-text">
+      마셜제도는 세계에서 유일하게 <strong>핵 피해와 기후 피해를 동시에 받는 국가</strong>다. 1946~1958년 미국이 이 환초에서 핵실험을 67회 실시했다. 히로시마 원폭 위력의 20년치 분량이 이 작은 섬들에 터졌다.
+    </p>
+
+    <table class="data-table">
+      <tr>
+        <th>항목</th>
+        <th>수치</th>
+        <th>비고</th>
+      </tr>
+      <tr>
+        <td>핵실험 횟수</td>
+        <td class="num red">67회</td>
+        <td>1946~1958년</td>
+      </tr>
+      <tr>
+        <td>총 폭발력</td>
+        <td class="num red">108 메가톤</td>
+        <td>히로시마 매일 1발 × 20년</td>
+      </tr>
+      <tr>
+        <td>가장 큰 실험</td>
+        <td class="num red">Castle Bravo</td>
+        <td>히로시마의 1,000배</td>
+      </tr>
+      <tr>
+        <td>전 세계 초과 암 사망</td>
+        <td class="num red">약 10만명 추정</td>
+        <td>IEER·Greenpeace 2025</td>
+      </tr>
+      <tr>
+        <td>루닛 돔</td>
+        <td class="num orange">균열 진행</td>
+        <td>핵폐기물 수몰 위기</td>
+      </tr>
+      <tr>
+        <td>2100년 GDP 피해</td>
+        <td class="num red">27~43%</td>
+        <td>기후 변화만으로</td>
+      </tr>
+      <tr>
+        <td>미국 보상</td>
+        <td class="num orange">불충분 판정</td>
+        <td>마셜제도 정부 지속 요구</td>
+      </tr>
+    </table>
+
+    <div class="highlight-box">
+      핵 실험으로 강제 이주, 방사능 오염으로 생업 상실, 그리고 기후 변화로 국토 소멸. 마셜제도는 <strong>강대국의 두 가지 죄악이 교차하는 지점</strong>에 놓여있다. 냉전의 죄와 산업화의 죄가 함께. 그러나 루닛 돔은 지금도 "안전하다"는 평가를 받고 있다. 해수면이 올라오고 있는데.
+    </div>
+  </div>
+
+  <!-- ── §10 문화 소멸 ── -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">§10</span>
+      <h2 class="section-title">무엇이 사라지는가 — 문명의 소멸</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <table class="data-table">
+      <tr>
+        <th>국가</th>
+        <th>언어</th>
+        <th>역사</th>
+        <th>소멸 위기 문화유산</th>
+      </tr>
+      <tr>
+        <td><strong>몰디브</strong></td>
+        <td>디베히어 (독자 문자 타나 보유)</td>
+        <td>800년 술탄국 + 불교→이슬람 층위</td>
+        <td>산호 조각 건축, 인도양 항해 문명, 3% 세계 산호초</td>
+      </tr>
+      <tr>
+        <td><strong>투발루</strong></td>
+        <td>투발루어 (폴리네시아계)</td>
+        <td>3000년 전 이주, 1978년 독립</td>
+        <td>파텔레 춤, 조상 카누 제작술, 라군 농업, 부계·전통 집회 문화</td>
+      </tr>
+      <tr>
+        <td><strong>키리바시</strong></td>
+        <td>기리바시어 (미크로네시아계)</td>
+        <td>식민 이전 광대한 해양 항법 전통</td>
+        <td>별자리 항해술, 조상 땅 소유권 개념, 마네아바(공동집회소) 문화</td>
+      </tr>
+      <tr>
+        <td><strong>마셜제도</strong></td>
+        <td>마셜어 (모계 사회 전통)</td>
+        <td>핵실험 이전 전통 모계 사회</td>
+        <td>오픈 오션 항법, 모계 토지 소유권, 비키니 원주민 문화 (이미 소멸 진행)</td>
+      </tr>
+    </table>
+
+    <div class="callout">
+      <p>
+        투발루는 2022년 세계 최초의 <em>디지털 국가(Digital Nation)</em>를 메타버스에 선언했다. 국토가 수몰돼도 국가가 존재한다는 선언이다.<br>
+        투발루 헌법은 이미 개정됐다. <em>"해수면 상승으로 영토를 잃어도 투발루의 국가성과 주권은 영속한다."</em><br>
+        이것은 절박함인가, 아니면 인류가 배워야 할 새로운 주권 개념인가.
+      </p>
+    </div>
+  </div>
+
+  <!-- ── §11 BBD 연결 ── -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">§11</span>
+      <h2 class="section-title">§33 BBD 연결 — 판이 사라지는 거품</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <p class="body-text">
+      §33 BBD(거품경계역학)에서 GEI 대상 국가들은 가장 잔인한 위치에 있다. FTI(유막두께지수)가 아무리 높아도, STI(표면장력)가 아무리 강해도 의미가 없다. <strong>거품이 놓인 판 자체가 사라지고 있다.</strong>
+    </p>
+
+    <table class="data-table">
+      <tr>
+        <th>BBD 변수</th>
+        <th>의미</th>
+        <th>GEI 국가 상태</th>
+      </tr>
+      <tr>
+        <td>FTI (유막두께)</td>
+        <td>내부 결속·제도 강도</td>
+        <td class="orange">관련없음 — 판 자체가 소멸</td>
+      </tr>
+      <tr>
+        <td>STI (표면장력)</td>
+        <td>외부 압력 저항력</td>
+        <td class="orange">관련없음 — 물리적 기반 부재</td>
+      </tr>
+      <tr>
+        <td>TPI (삼중점)</td>
+        <td>세 패권 동시 접촉</td>
+        <td class="blue">해당 — 미·중·호주 이해관계 교차</td>
+      </tr>
+      <tr>
+        <td>AMV (흡수합병벡터)</td>
+        <td>에너지 이동 방향</td>
+        <td class="red">흡수됨 — 팔레피리 구조</td>
+      </tr>
+      <tr>
+        <td class="num">§34 GEI (신규)</td>
+        <td>지리적 소멸 속도</td>
+        <td class="red">극고위험 — 기존 모듈 적용 불가</td>
+      </tr>
+    </table>
+
+    <div class="highlight-box">
+      §32 NSAAC = 아이티 = 유막이 소멸한 거품 (Lambda &gt; 1.0)<br>
+      §34 GEI = 몰디브 등 = 거품이 놓인 <strong>수면 자체가 상승</strong>하는 상황<br>
+      두 경우 모두 기존 Lambda 스케일의 전제가 무너진다. 그러나 그 원인과 메커니즘은 근본적으로 다르다.
+    </div>
+  </div>
+
+  <!-- ── §12 선한파이프라인 ── -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">§12</span>
+      <h2 class="section-title">선한파이프라인 — 현재 진단</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <p class="body-text">
+      소장의 선한파이프라인 4조건(다원성·밀도·방향성·지속성)으로 현재 4개국을 향한 국제 지원 파이프라인을 진단한다.
+    </p>
+
+    <table class="data-table">
+      <tr>
+        <th>조건</th>
+        <th>정의</th>
+        <th>현재 상태</th>
+        <th>평가</th>
+      </tr>
+      <tr>
+        <td>① 다원성</td>
+        <td>다양한 공급자</td>
+        <td>GCF·AOSIS·일부 양자</td>
+        <td class="orange">극히 제한적</td>
+      </tr>
+      <tr>
+        <td>② 밀도</td>
+        <td>연결의 촘촘함</td>
+        <td>필요액의 16% 실제 지원</td>
+        <td class="red">위험 수준 희박</td>
+      </tr>
+      <tr>
+        <td>③ 방향성</td>
+        <td>흐름의 명확성</td>
+        <td>44%가 부채 형태 역류</td>
+        <td class="red">왜곡·역류</td>
+      </tr>
+      <tr>
+        <td>④ 지속성</td>
+        <td>미래 세대까지</td>
+        <td>선거 주기별 변동</td>
+        <td class="red">지속성 없음</td>
+      </tr>
+    </table>
+
+    <div class="callout">
+      <p>
+        파이프라인이 없는 게 아니다. <em>연결 자체를 거부당하고 있다.</em><br>
+        필요한 것은 자선이 아니다. 밀도 높고, 방향이 명확하고, 지속 가능한 <em>구조적 파이프라인</em>이다.<br>
+        워런 버핏과 같은 자본가들이 말라리아에는 수십억을 쓰면서 몰디브에 침묵하는 이유 — ROI가 보이지 않기 때문이다. 그러나 <em>도덕적 ROI</em>는 어떻게 계산하는가.
+      </p>
+    </div>
+  </div>
+
+  <!-- ── §13 6층 질문 ── -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">§13</span>
+      <h2 class="section-title">결론 궤도 — 담론 6층</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="layer6">
+      <div class="layer6-label">담론육층 · 제6층 · 비수치 영역</div>
+      <div class="layer6-text">
+        멸종위기 동물에게는 24시간 무장 경호를 붙이면서<br>
+        <em>멸종위기 문명에게는 빚을 준다.</em><br><br>
+        우리는 에어컨을 켜고 이 보고서를 읽고 있다.<br>
+        <em>그 전기가 만든 CO₂가 몰디브를 잠기게 하고 있다.</em><br><br>
+        살아있을 때 외면하고,<br>
+        사라지고 나서 박물관에 전시한다.<br><br>
+        <em>우리는 무엇을 보존하고 싶은가.</em>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── §14 단독편 ── -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">§14</span>
+      <h2 class="section-title">단독 보고서 시리즈</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <p class="body-text">각 국가의 심층 분석은 단독편에서 다룬다. 이란편 수준의 전체 섹션으로 구성된다.</p>
+
+    <div class="individual-grid">
+      <div class="individual-card">
+        <span class="individual-card-flag">🇲🇻</span>
+        <div class="individual-card-name">몰디브 단독편</div>
+        <div class="individual-card-en">MALDIVES · STANDALONE REPORT</div>
+        <div class="individual-card-desc">
+          평균 해발 1.5m. 1,192개 산호섬. 97% 지하수 염수화. 세계 3% 산호초 보유국이자 세계에서 가장 빠르게 사라지는 나라. 훌후말레 인공섬 프로젝트의 한계와 CSZ 적용 가능성.
+        </div>
+        <a href="Maldives_Lambda12v913_GEI_20260504.html" class="individual-card-link">단독 보고서 보기 →</a>
+      </div>
+
+      <div class="individual-card">
+        <span class="individual-card-flag">🇹🇻</span>
+        <div class="individual-card-name">투발루 단독편</div>
+        <div class="individual-card-en">TUVALU · STANDALONE REPORT</div>
+        <div class="individual-card-desc">
+          인구 11,000명. 팔레피리 연합의 실제 의미. 디지털 국가 선언. 30년간 21cm 해수면 상승. 인구의 90%가 호주 이민을 신청한 나라의 이야기.
+        </div>
+        <a href="Tuvalu_Lambda12v913_GEI_20260504.html" class="individual-card-link">단독 보고서 보기 →</a>
+      </div>
+
+      <div class="individual-card">
+        <span class="individual-card-flag">🇰🇮</span>
+        <div class="individual-card-name">키리바시 단독편</div>
+        <div class="individual-card-en">KIRIBATI · STANDALONE REPORT</div>
+        <div class="individual-card-desc">
+          33개 환초. 피지에 2,000에이커 토지 매입 — CSZ의 선례. 중국과의 관계 전환. 2050년 연 65일 침수 전망. 광대한 해양 영토(브리티시제도보다 넓은 EEZ)의 역설.
+        </div>
+        <a href="Kiribati_Lambda12v913_GEI_20260504.html" class="individual-card-link">단독 보고서 보기 →</a>
+      </div>
+
+      <div class="individual-card">
+        <span class="individual-card-flag">🇲🇭</span>
+        <div class="individual-card-name">마셜제도 단독편</div>
+        <div class="individual-card-en">MARSHALL ISLANDS · STANDALONE REPORT</div>
+        <div class="individual-card-desc">
+          67회 핵실험 + 기후 수몰. 루닛 돔의 역설. "인류의 좋음을 위해" 희생된 사람들. 핵 피해와 기후 피해의 이중 고통. 세계에서 가장 억울한 나라.
+        </div>
+        <a href="MarshallIslands_Lambda12v913_GEI_20260504.html" class="individual-card-link">단독 보고서 보기 →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 참고자료 ── -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">§15</span>
+      <h2 class="section-title">주요 데이터 출처</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <table class="data-table" style="font-size:13px;">
+      <tr><th>기관</th><th>자료명</th><th>연도</th></tr>
+      <tr><td>Nature Sustainability</td><td>Small Island Developing States under threat by rising seas</td><td>2023</td></tr>
+      <tr><td>Scientific Reports (Nature)</td><td>Impacts of sea level rise and adaptation across Asia and Pacific</td><td>2025</td></tr>
+      <tr><td>Global Center on Adaptation</td><td>State and Trends in Adaptation 2025: SIDS</td><td>2025</td></tr>
+      <tr><td>Climate Policy Initiative</td><td>State and Trends of Climate Adaptation Finance in SIDS</td><td>2025</td></tr>
+      <tr><td>NASA JPL</td><td>Sea Level Rise for Pacific Islands Analysis</td><td>2024</td></tr>
+      <tr><td>UN News</td><td>Tuvalu battle against rising sea levels</td><td>2026</td></tr>
+      <tr><td>Carnegie Endowment</td><td>Australia-Tuvalu Falepili Union Treaty</td><td>2025</td></tr>
+      <tr><td>IEER / Greenpeace</td><td>Legacy of US Nuclear Testing in Marshall Islands</td><td>2025</td></tr>
+      <tr><td>ScienceDirect</td><td>Scale and access to Green Climate Fund: SIDS</td><td>2024</td></tr>
+      <tr><td>Wikipedia / UNDP</td><td>Climate change in the Maldives</td><td>2026</td></tr>
+    </table>
+  </div>
+
+</div><!-- /container -->
+
+<!-- ── FOOTER ── -->
+<div class="footer">
+  <div class="footer-institute">늘푸른바다 사회동역학 연구소 (Everblue Sea Institute for Social Dynamics)</div>
+  <div class="footer-meta">
+    소장 청해(淸海) · SYNTHESIS Framework · Lambda12 v9.13 · §34 GEI 최초 적용<br>
+    <a href="https://badaegopa.tistory.com" class="footer-link">badaegopa.tistory.com</a> · 
+    <a href="https://everbluesea.org" class="footer-link">everbluesea.org</a> · 
+    SSRN 6632858 · 2026-05-04<br>
+    <span style="color:#AAA;font-size:11px;">본 보고서는 공공 데이터 및 학술 자료에 기반하며 관찰자 입장에서 작성됩니다. 6층 판단은 독자의 몫입니다.</span>
+  </div>
+</div>
+
+</body>
+</html>
