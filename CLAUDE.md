@@ -2,21 +2,24 @@
 > everbluesea.org | GitHub: badaegopa/-everbluesea
 
 ## 레포 구조
-- index.html : 메인 (모든 JS/CSS 인라인, ~1671줄)
+- index.html : 메인 (모든 JS/CSS 인라인, ~1641줄)
 - nations/{region}/ : 국가 보고서 (europe/middle-east/northeast-asia/southeast-asia/south-asia/americas)
 - briefings/ : 금현물 브리핑 HTML
 - papers/ : 논문
 - tools/ : 도구
 
 ## index.html 핵심 위치
-- line ~1497 : REGIONS 맵 (지역-아이콘-색상)
-- line ~1507 : LABEL_MAP (파일명→한글 표시명) + parseName() 함수
-- line ~1527 : 파일 필터 f.name.startsWith("v") — v로 시작해야 목록 표시
+- line ~1537 : REGIONS 맵 (지역-아이콘-색상)
+- line ~1547 : LABEL_MAP (파일명→한글 표시명) + parseName() 함수
+- line ~1599 : 파일 필터 — startsWith("v") OR includes("Lambda12v912")
 
 ## 파일명 규칙 (중요)
-- 반드시 v로 시작: v{버전}_{국가명}_{날짜}.html
-- 예: v9.12_korea_20260502.html
-- v로 시작 안 하면 목록 미표시 (iran_flow_standalone.html = iframe 전용)
+- 두 패턴 중 하나여야 목록에 표시됨:
+  - (구) `v{버전}_{국가명}_{날짜}.html` — 예: `v9.12_korea_20260502.html`
+  - (신) `{국가명}_Lambda12v912_{날짜}.html` — 예: `Brazil_Lambda12v912_20260504.html` (대문자 시작 OK)
+- 위치: 반드시 `nations/{region}/` 폴더 안 (루트에 두면 자동 목록 미표시)
+- 어느 패턴도 안 맞으면 목록 미표시 (예: `iran_flow_standalone.html` = iframe 전용)
+- parseName(): `_Lambda12v912` 토큰 제거 + 키 소문자화 후 LABEL_MAP 조회
 
 ## LABEL_MAP 현황 (새 보고서 추가시 여기도 추가)
 - taiwan → 대만 (Taiwan)
@@ -38,6 +41,13 @@
 - hungary → 헝가리 (Hungary)
 - bosnia → 보스니아 (Bosnia)
 - cambodia → 캄보디아 (Cambodia)
+- argentina → 아르헨티나 (Argentina)
+- brazil → 브라질 (Brazil)
+- mexico → 멕시코 (Mexico)
+- latam-regional → 남북미 권역 (LatAm Regional)
+- latam-2nd-series → 남북미-2차 (LatAm 2nd Series)
+- latam-3rd-series → 남북미-3차 (LatAm 3rd Series)
+- latam-4th-smallstates → 남북미-4차 소국 (LatAm 4th SmallStates)
 
 ## 디자인 표준 v2.2 파스텔
 - 배경: #F5F3EE / 그린: #5E9186 / 텍스트그린: #3A6A5E
