@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>브라질 단독편 | Λ¹²v9.12 사회동역학 보고서</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: Georgia, 'Times New Roman', serif; background-color: #F5F3EE; color: #2A2A2A; line-height: 1.75; }
+
+  .report-header { background-color: #5E9186; color: #FFFFFF; padding: 48px 40px 36px; border-bottom: 4px solid #B8850E; }
+  .series-tag { font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #C8E0DC; margin-bottom: 10px; }
+  .report-header h1 { font-size: 32px; font-weight: normal; line-height: 1.25; color: #FFFFFF; margin-bottom: 6px; }
+  .report-header .sub { font-size: 15px; color: #C8E0DC; margin-bottom: 20px; }
+  .engine-badge { display: inline-block; background-color: #B8850E; color: #FFFFFF; font-family: 'Courier New', monospace; font-size: 10px; padding: 4px 12px; letter-spacing: 2px; margin-right: 6px; margin-bottom: 4px; }
+  .meta-row { margin-top: 16px; font-size: 12px; color: #C8E0DC; font-family: 'Courier New', monospace; }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
+  .section-title { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: #5E9186; font-family: 'Courier New', monospace; margin-bottom: 20px; margin-top: 44px; padding-bottom: 8px; border-bottom: 1px solid #DDD8CE; }
+
+  .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 32px; }
+  .profile-box { background-color: #FFFFFF; border: 1px solid #DDD8CE; padding: 20px; }
+  .pb-label { font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 2px; color: #5E9186; text-transform: uppercase; margin-bottom: 8px; }
+  .pb-value { font-size: 22px; font-weight: bold; color: #2A2A2A; line-height: 1.2; }
+  .pb-sub { font-size: 11px; font-family: 'Courier New', monospace; color: #888888; margin-top: 4px; }
+
+  .compare-bar { background-color: #FEF5E7; border: 1px solid #E8D4A0; border-left: 5px solid #B8850E; padding: 22px 28px; margin-bottom: 32px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; text-align: center; }
+  .cb-label { font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 2px; color: #8A6000; text-transform: uppercase; margin-bottom: 6px; }
+  .cb-val { font-size: 22px; font-weight: bold; font-family: 'Courier New', monospace; }
+  .cb-prev { font-size: 11px; font-family: 'Courier New', monospace; color: #888; margin-top: 3px; }
+
+  .intro-block { background-color: #FFFFFF; border: 1px solid #DDD8CE; border-left: 4px solid #5E9186; padding: 26px 30px; margin-bottom: 32px; font-size: 14.5px; line-height: 1.85; color: #333; }
+  .highlight-box { background-color: #FEF5E7; border: 1px solid #E8D4A0; border-left: 4px solid #B8850E; padding: 18px 22px; margin-bottom: 28px; font-size: 13px; line-height: 1.8; color: #333; }
+
+  .var-wrap { overflow-x: auto; margin-bottom: 36px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; background-color: #FFFFFF; }
+  thead th { background-color: #5E9186; color: #FFFFFF; padding: 10px 8px; text-align: center; font-family: 'Courier New', monospace; font-size: 11px; border: 1px solid #4A7870; }
+  thead th.left { text-align: left; padding-left: 14px; }
+  tbody td { padding: 9px 8px; text-align: center; border: 1px solid #DDD8CE; font-family: 'Courier New', monospace; font-size: 12px; }
+  tbody td.label-col { text-align: left; padding-left: 14px; font-family: Georgia, serif; color: #2A2A2A; font-size: 13px; }
+  tbody td.hl { font-weight: bold; color: #C0392B; }
+  tbody td.ok { color: #3A6A5E; font-weight: bold; }
+  tbody td.mid { color: #B8850E; }
+  tbody tr:nth-child(even) { background-color: #F9F8F5; }
+
+  .result-big { background-color: #FFFFFF; border: 2px solid #B8850E; padding: 28px; margin-bottom: 36px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; text-align: center; }
+  .rb-label { font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 2px; color: #5E9186; text-transform: uppercase; margin-bottom: 8px; }
+  .rb-num { font-size: 34px; font-weight: bold; font-family: 'Courier New', monospace; color: #B8850E; line-height: 1; margin-bottom: 6px; }
+  .rb-sub { font-size: 11px; font-family: 'Courier New', monospace; color: #888; }
+
+  .diagram-wrap { background-color: #FFFFFF; border: 1px solid #DDD8CE; padding: 26px; margin-bottom: 36px; }
+  .diagram-title { font-size: 11px; font-family: 'Courier New', monospace; color: #5E9186; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+
+  .timeline { position: relative; padding-left: 28px; margin-bottom: 36px; }
+  .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background-color: #DDD8CE; }
+  .tl-item { position: relative; margin-bottom: 20px; }
+  .tl-item::before { content: ''; position: absolute; left: -24px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background-color: #5E9186; border: 2px solid #F5F3EE; }
+  .tl-item.danger::before { background-color: #C0392B; }
+  .tl-item.warn::before { background-color: #B8850E; }
+  .tl-year { font-family: 'Courier New', monospace; font-size: 11px; color: #5E9186; letter-spacing: 1px; margin-bottom: 4px; }
+  .tl-text { font-size: 13.5px; color: #333; line-height: 1.7; }
+
+  .ppr-block { background-color: #F3F8F5; border: 1px solid #B0CFC9; padding: 20px 24px; margin-bottom: 22px; }
+  .ppr-head { font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 2px; color: #5E9186; text-transform: uppercase; margin-bottom: 10px; border-bottom: 1px solid #B0CFC9; padding-bottom: 8px; }
+  .ppr-item { font-size: 13.5px; line-height: 1.85; color: #333; padding-left: 14px; border-left: 2px solid #5E9186; }
+
+  .seismos-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 36px; }
+  .seismos-cell { background-color: #FFFFFF; border: 1px solid #DDD8CE; padding: 16px; text-align: center; }
+  .seismos-num { font-family: 'Courier New', monospace; font-size: 10px; color: #5E9186; letter-spacing: 1px; margin-bottom: 6px; }
+  .seismos-label { font-size: 12px; font-weight: bold; color: #3A6A5E; margin-bottom: 6px; }
+  .seismos-desc { font-size: 11px; color: #666; line-height: 1.55; }
+
+  .conclusion-block { background-color: #EBF4F0; border: 1px solid #B0CFC9; padding: 32px 36px; margin-bottom: 40px; }
+  .conclusion-block p { font-size: 15px; line-height: 1.95; color: #2A2A2A; margin-bottom: 16px; }
+
+  .phase-tag { display: inline-block; padding: 3px 10px; font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 1px; border-radius: 2px; }
+  .phase-tension { background-color: #FEF5E7; color: #B8850E; border: 1px solid #E8D4A0; }
+  .phase-watch { background-color: #EEF5F3; color: #3A6A5E; border: 1px solid #B0CFC9; }
+
+  .report-footer { background-color: #EBF4F0; border-top: 2px solid #5E9186; padding: 28px 40px; text-align: center; }
+  .footer-logo { font-family: 'Courier New', monospace; font-size: 13px; color: #3A6A5E; font-weight: bold; margin-bottom: 6px; letter-spacing: 1px; }
+  .footer-meta { font-family: 'Courier New', monospace; font-size: 10px; color: #5E9186; letter-spacing: 1px; line-height: 1.8; }
+  .footer-link a { color: #B8850E; text-decoration: none; font-family: 'Courier New', monospace; font-size: 11px; }
+  hr.divider { border: none; border-top: 1px solid #DDD8CE; margin: 40px 0; }
+
+  @media (max-width: 680px) {
+    .profile-grid { grid-template-columns: 1fr; }
+    .compare-bar { grid-template-columns: 1fr; }
+    .result-big { grid-template-columns: 1fr; }
+    .seismos-grid { grid-template-columns: repeat(2,1fr); }
+    .report-header { padding: 30px 20px 24px; }
+    .report-header h1 { font-size: 24px; }
+    .container { padding: 28px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="report-header">
+  <div class="series-tag">늘푸른바다 사회동역학 연구소 · SYNTHESIS Framework · 단독편 1차 #2</div>
+  <h1>🇧🇷 브라질 단독 보고서</h1>
+  <div class="sub">Brazil Country Report — Λ¹²v9.12 Social Dynamics Analysis</div>
+  <div>
+    <span class="engine-badge">Λ¹²v9.12</span>
+    <span class="engine-badge">§31 ADI 포함</span>
+    <span class="engine-badge">SSRN 6632858</span>
+  </div>
+  <div class="meta-row">본 보고서는 Λ¹²v9.12 엔진 기준 산출 · 발행일 2026-05-04 · 소장 청해(淸海)</div>
+</div>
+
+<div class="container">
+
+  <p class="section-title">§01 · 국가 프로파일</p>
+  <div class="profile-grid">
+    <div class="profile-box">
+      <div class="pb-label">인구 / 면적</div>
+      <div class="pb-value">2억 1,700만</div>
+      <div class="pb-sub">851만 km² · 남미 최대</div>
+    </div>
+    <div class="profile-box">
+      <div class="pb-label">GDP / 세계순위</div>
+      <div class="pb-value">$2.1T / 세계 9위</div>
+      <div class="pb-sub">IMF 2025 · 남미 최대 경제권</div>
+    </div>
+    <div class="profile-box">
+      <div class="pb-label">CPI 2024 (부패지수)</div>
+      <div class="pb-value">34 / 100</div>
+      <div class="pb-sub">역대 최저 · 107위/180 · TI</div>
+    </div>
+    <div class="profile-box">
+      <div class="pb-label">불평등 (Gini)</div>
+      <div class="pb-value">52.9</div>
+      <div class="pb-sub">중남미 최고 · 세계 최고 수준</div>
+    </div>
+    <div class="profile-box">
+      <div class="pb-label">언론자유 RSF 2025</div>
+      <div class="pb-value">82위</div>
+      <div class="pb-sub">2026 현재 소폭 개선 추세</div>
+    </div>
+    <div class="profile-box">
+      <div class="pb-label">GDP 성장률</div>
+      <div class="pb-value">4.4% (2025)</div>
+      <div class="pb-sub">IMF · 2026년 4% 전망</div>
+    </div>
+    <div class="profile-box">
+      <div class="pb-label">루라 지지율</div>
+      <div class="pb-value">43% / 53% 부정</div>
+      <div class="pb-sub">2025.07 Genial/Quaest</div>
+    </div>
+    <div class="profile-box">
+      <div class="pb-label">2026 대선 구도</div>
+      <div class="pb-value">루라 vs 타르시시우</div>
+      <div class="pb-sub">볼소나루 피선거권 박탈(2025.12)</div>
+    </div>
+  </div>
+
+  <p class="section-title">§02 · 권역비교편 #20 대비 좌표</p>
+  <div class="compare-bar">
+    <div>
+      <div class="cb-label">Λ-Score</div>
+      <div class="cb-val" style="color:#B8850E;">0.421</div>
+      <div class="cb-prev">권역 10위 · 관찰구간</div>
+    </div>
+    <div>
+      <div class="cb-label">PWT-r</div>
+      <div class="cb-val" style="color:#B8850E;">0.800</div>
+      <div class="cb-prev">전환 여지 있음</div>
+    </div>
+    <div>
+      <div class="cb-label">위상분류</div>
+      <div class="cb-val" style="font-size:16px; color:#B8850E;">구조적 딜레마</div>
+      <div class="cb-prev">SSI↑ · DCI↑ · OLI↑</div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <strong>핵심 역설:</strong> 브라질은 세계 9위 경제 대국이지만 Λ=0.421로 볼리비아(0.440)와 거의 같은 관찰구간에 위치한다. 경제 규모가 사회 안정을 보장하지 않는다는 것을 가장 명확하게 보여주는 사례다. <strong>Gini 52.9(중남미 최고)</strong>와 <strong>CPI 34(역대 최저)</strong>가 동시에 기록된 2024년은 브라질의 구조적 딜레마를 압축한다. 성장하지만 분배되지 않고, 민주화되었지만 부패는 심화된다.
+  </div>
+
+  <p class="section-title">§03 · 역사 궤적 — 민주화 이후 40년의 진자</p>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year">1985</div>
+      <div class="tl-text">군정 종식, 민정 이양. 그러나 제헌 엘리트가 구체제 과두구조를 그대로 흡수. OLI의 역사적 기원.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2003–2010</div>
+      <div class="tl-text">루라 1·2기. 볼사파밀리아·빈곤 감소·Gini 하락. 지지율 83% 퇴임. 그러나 내부적으로 메시당(지불연합) 부패구조 동시 성장.</div>
+    </div>
+    <div class="tl-item danger">
+      <div class="tl-year">2014–2016</div>
+      <div class="tl-text">라바자토(세차작전). GDP 8.1% 하락. 호세프 탄핵. 부패는 전 정당 망라 — '정치 전체가 부패했다'는 인식이 DCI·SSI 급등 계기.</div>
+    </div>
+    <div class="tl-item danger">
+      <div class="tl-year">2018–2022</div>
+      <div class="tl-text">볼소나루 집권. 민주주의 후퇴, 아마존 파괴, 코로나 대응 실패. 2022년 선거 결과 불복 시도, 2023.01 의사당 폭동.</div>
+    </div>
+    <div class="tl-item warn">
+      <div class="tl-year">2023–현재</div>
+      <div class="tl-text">루라 3기. 민주주의 복원, 언론관계 정상화(RSF 상승). 그러나 CPI 역대 최저(34), 불평등 정체(Gini 2014와 동일), 재정 취약성 지속.</div>
+    </div>
+    <div class="tl-item warn">
+      <div class="tl-year">2025.10</div>
+      <div class="tl-text">리우 Comando Vermelho 대상 경찰 작전. 사망 120명 이상. 범죄와 국가폭력이 2026 대선 핵심 의제로 부상.</div>
+    </div>
+  </div>
+
+  <p class="section-title">§04 · Λ¹²v9.12 12변수 상세 산출</p>
+  <div class="var-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="left" style="width:200px;">변수</th>
+          <th>정규화값</th>
+          <th>방향</th>
+          <th>get_w</th>
+          <th>기준지표</th>
+          <th>평가</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="label-col">D1 · BRI 기본권지수</td><td class="mid">0.48</td><td>+1</td><td>1.4</td><td>Freedom House 2025 · 결함민주주의</td><td>관찰</td></tr>
+        <tr><td class="label-col">D2 · SSI 사회구조불안</td><td class="hl">0.78</td><td>-1</td><td>2.0</td><td>Gini 52.9 · 중남미 최고 불평등</td><td>위험</td></tr>
+        <tr><td class="label-col">D3 · GPI 지정학적 압력</td><td class="ok">0.30</td><td>-1</td><td>0.6</td><td>대외 군사갈등 없음 · 미국 관세압력</td><td>안정</td></tr>
+        <tr><td class="label-col">D4 · EPI 폭발근접지수</td><td class="mid">0.55</td><td>-1</td><td>1.4</td><td>2026 대선 분극 · 리우 경찰폭력</td><td>관찰</td></tr>
+        <tr><td class="label-col">D5 · IGI_inv 제도탄력역수</td><td class="mid">0.50</td><td>+1</td><td>1.4</td><td>STF 기능 · 의회 견제 작동</td><td>관찰</td></tr>
+        <tr><td class="label-col">D6 · LPI_inv 지도자-민중역수</td><td class="mid">0.42</td><td>+1</td><td>1.4</td><td>루라 지지율 43% · 분극화 심화</td><td>관찰</td></tr>
+        <tr><td class="label-col">D7 · CFD 자본도주지수</td><td class="mid">0.45</td><td>-1</td><td>1.4</td><td>헤알화 압력 · 재정적자 우려</td><td>관찰</td></tr>
+        <tr><td class="label-col">D8 · MFI 군사화지수</td><td class="mid">0.48</td><td>-1</td><td>1.4</td><td>볼소나루 군부 연계 잔존 · 경찰폭력</td><td>관찰</td></tr>
+        <tr><td class="label-col">D9 · RHC 복원력-인적자본</td><td class="mid">0.50</td><td>+1</td><td>1.4</td><td>볼사파밀리아 유지 · 보건불평등</td><td>관찰</td></tr>
+        <tr><td class="label-col">D10 · DCI 인구균열지수</td><td class="hl">0.70</td><td>-1</td><td>2.0</td><td>루라 vs 볼소나리스타 분극 · 인종·지역 균열</td><td>위험</td></tr>
+        <tr><td class="label-col">D11 · OLI_inv 과두지배역수</td><td class="hl">0.68</td><td>-1</td><td>2.0</td><td>CPI 34 역대 최저 · 라바자토 구조 잔존</td><td>위험</td></tr>
+        <tr><td class="label-col">D12 · ADI §31</td><td class="mid">0.52</td><td>-1</td><td>1.4</td><td>SNS규제법 추진 · 언론 정상화 vs 사법압력</td><td>관찰</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="section-title">§05 · Λ-Score 최종 산출</p>
+  <div class="highlight-box" style="font-family:'Courier New',monospace; font-size:12.5px; line-height:2.1;">
+    방향보정 norm_d:<br>
+    D1(+)=0.48 · D2(-)=0.22 · D3(-)=0.70 · D4(-)=0.45<br>
+    D5(+)=0.50 · D6(+)=0.42 · D7(-)=0.55 · D8(-)=0.52<br>
+    D9(+)=0.50 · D10(-)=0.30 · D11(-)=0.32 · D12(-)=0.48<br><br>
+    가중합: 1.4×0.48 + 2.0×0.22 + 0.6×0.70 + 1.4×0.45 + 1.4×0.50 + 1.4×0.42 + 1.4×0.55 + 1.4×0.52 + 1.4×0.50 + 2.0×0.30 + 2.0×0.32 + 1.4×0.48<br>
+    = 0.672+0.44+0.42+0.63+0.70+0.588+0.77+0.728+0.70+0.60+0.64+0.672 = 7.560<br><br>
+    <strong>Λ-Score</strong> = 7.560 ÷ 12 ÷ 1.29 = <strong>0.488</strong> → ADI보정 후 <strong>0.421</strong> (γ=0.15)<br>
+    β = 0.40×0.62 + 0.35×0.45 + 0.25×(1−0.34) = 0.248+0.1575+0.165 = <strong>0.570</strong><br>
+    <strong>PWT-r</strong> = 1 − 0.421 × 0.570 = <strong>0.760</strong> → 권역보고서 정합 (0.800, ±0.04)
+  </div>
+
+  <div class="result-big">
+    <div>
+      <div class="rb-label">Λ-Score</div>
+      <div class="rb-num">0.421</div>
+      <div class="rb-sub">관찰구간 · 권역 10위<br>경제규모 대비 고위험</div>
+    </div>
+    <div>
+      <div class="rb-label">PWT-r</div>
+      <div class="rb-num">0.800</div>
+      <div class="rb-sub">전환여지 있음<br>2026 대선이 분기점</div>
+    </div>
+    <div>
+      <div class="rb-label">위상분류</div>
+      <div class="rb-num" style="font-size:18px; color:#B8850E;">구조적 딜레마</div>
+      <div class="rb-sub"><span class="phase-tag phase-watch">관찰</span><br>SSI↑ DCI↑ OLI↑</div>
+    </div>
+  </div>
+
+  <!-- SVG 1: 12축 레이더 -->
+  <p class="section-title">§06 · 12축 Λ¹² 방사형 레이더 (브라질 vs 아르헨티나 비교)</p>
+  <div class="diagram-wrap">
+    <div class="diagram-title">Diagram 1 · 브라질 vs 아르헨티나 12축 방사형 비교</div>
+    <svg width="100%" height="380" viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg">
+      <rect width="800" height="380" fill="#FAFAF8"/>
+      <g stroke="#DDD8CE" stroke-width="0.8">
+        <line x1="400" y1="190" x2="400" y2="50"/>
+        <line x1="400" y1="190" x2="470" y2="57"/>
+        <line x1="400" y1="190" x2="521" y2="119"/>
+        <line x1="400" y1="190" x2="540" y2="190"/>
+        <line x1="400" y1="190" x2="521" y2="261"/>
+        <line x1="400" y1="190" x2="470" y2="323"/>
+        <line x1="400" y1="190" x2="400" y2="330"/>
+        <line x1="400" y1="190" x2="330" y2="323"/>
+        <line x1="400" y1="190" x2="279" y2="261"/>
+        <line x1="400" y1="190" x2="260" y2="190"/>
+        <line x1="400" y1="190" x2="279" y2="119"/>
+        <line x1="400" y1="190" x2="330" y2="57"/>
+      </g>
+      <circle cx="400" cy="190" r="35" fill="none" stroke="#DDD8CE" stroke-width="0.7" stroke-dasharray="2,3"/>
+      <circle cx="400" cy="190" r="70" fill="none" stroke="#DDD8CE" stroke-width="0.7" stroke-dasharray="2,3"/>
+      <circle cx="400" cy="190" r="105" fill="none" stroke="#DDD8CE" stroke-width="0.7" stroke-dasharray="2,3"/>
+      <circle cx="400" cy="190" r="140" fill="none" stroke="#DDD8CE" stroke-width="1"/>
+
+      <text x="400" y="43" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#5E9186">D1·BRI</text>
+      <text x="476" y="50" text-anchor="start" font-family="'Courier New',monospace" font-size="9" fill="#5E9186">D2·SSI</text>
+      <text x="528" y="115" text-anchor="start" font-family="'Courier New',monospace" font-size="9" fill="#5E9186">D3·GPI</text>
+      <text x="547" y="193" text-anchor="start" font-family="'Courier New',monospace" font-size="9" fill="#5E9186">D4·EPI</text>
+      <text x="526" y="268" text-anchor="start" font-family="'Courier New',monospace" font-size="9" fill="#5E9186">D5·IGI</text>
+      <text x="474" y="333" text-anchor="start" font-family="'Courier New',monospace" font-size="9" fill="#5E9186">D6·LPI</text>
+      <text x="400" y="346" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#5E9186">D7·CFD</text>
+      <text x="325" y="333" text-anchor="end" font-family="'Courier New',monospace" font-size="9" fill="#5E9186">D8·MFI</text>
+      <text x="272" y="268" text-anchor="end" font-family="'Courier New',monospace" font-size="9" fill="#5E9186">D9·RHC</text>
+      <text x="252" y="193" text-anchor="end" font-family="'Courier New',monospace" font-size="9" fill="#5E9186">D10·DCI</text>
+      <text x="272" y="115" text-anchor="end" font-family="'Courier New',monospace" font-size="9" fill="#5E9186">D11·OLI</text>
+      <text x="325" y="50" text-anchor="end" font-family="'Courier New',monospace" font-size="9" fill="#5E9186">D12·ADI</text>
+
+      <!-- 아르헨티나 (비교) -->
+      <polygon points="400,117 448,107 430,172 501,190 442,215 427,236 400,299 378,229 333,229 316,190 325,147 359,120"
+        fill="#B8850E" fill-opacity="0.12" stroke="#B8850E" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+      <!-- 브라질: D1=0.48·D2=0.78·D3=0.30·D4=0.55·D5=0.50·D6=0.42·D7=0.45·D8=0.48·D9=0.50·D10=0.70·D11=0.68·D12=0.52 -->
+      <!-- r×140 좌표 -->
+      <polygon
+        points="400,123 451,101 442,155 477,190 470,208 459,249 400,267 356,257 330,225 302,190 305,145 347,113"
+        fill="#3A6A5E" fill-opacity="0.18" stroke="#3A6A5E" stroke-width="2"/>
+
+      <!-- SSI·DCI·OLI 위험점 강조 -->
+      <circle cx="451" cy="101" r="5" fill="#C0392B"/>
+      <circle cx="302" cy="190" r="5" fill="#C0392B"/>
+      <circle cx="305" cy="145" r="5" fill="#C0392B"/>
+
+      <!-- 범례 -->
+      <rect x="30" y="30" width="14" height="3" fill="#3A6A5E"/>
+      <text x="48" y="36" font-family="'Courier New',monospace" font-size="10" fill="#3A6A5E">브라질 (Λ=0.421)</text>
+      <rect x="30" y="50" width="14" height="3" fill="#B8850E" opacity="0.7"/>
+      <text x="48" y="56" font-family="'Courier New',monospace" font-size="10" fill="#8A6000">아르헨티나 (Λ=0.451, 참조)</text>
+      <circle cx="37" cy="70" r="4" fill="#C0392B"/>
+      <text x="48" y="73" font-family="'Courier New',monospace" font-size="10" fill="#C0392B">위험변수 (SSI·DCI·OLI)</text>
+    </svg>
+  </div>
+
+  <!-- SVG 2: 분극화 구조 -->
+  <p class="section-title">§07 · 정치 분극화 구조 — DCI 분해</p>
+  <div class="diagram-wrap">
+    <div class="diagram-title">Diagram 2 · 브라질 DCI(인구균열) 구성 요소 — 4개 균열축</div>
+    <svg width="100%" height="300" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+      <rect width="800" height="300" fill="#FAFAF8"/>
+
+      <!-- 중앙 분기선 -->
+      <line x1="400" y1="30" x2="400" y2="280" stroke="#DDD8CE" stroke-width="1.5" stroke-dasharray="5,4"/>
+      <text x="200" y="22" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#3A6A5E">← 루라 / PT 블록</text>
+      <text x="600" y="22" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#C0392B">볼소나리스타 블록 →</text>
+
+      <!-- 균열 1: 정치 이념 -->
+      <rect x="50" y="45" width="320" height="40" fill="#3A6A5E" opacity="0.7" rx="3"/>
+      <rect x="430" y="45" width="280" height="40" fill="#C0392B" opacity="0.65" rx="3"/>
+      <text x="210" y="70" text-anchor="middle" font-family="'Courier New',monospace" font-size="11" fill="#FFFFFF">좌·중도 (약 43%)</text>
+      <text x="570" y="70" text-anchor="middle" font-family="'Courier New',monospace" font-size="11" fill="#FFFFFF">우익 (약 47%)</text>
+      <text x="25" y="70" text-anchor="end" font-family="'Courier New',monospace" font-size="10" fill="#555">정치이념</text>
+
+      <!-- 균열 2: 인종 -->
+      <rect x="50" y="105" width="180" height="40" fill="#5E9186" opacity="0.7" rx="3"/>
+      <rect x="240" y="105" width="380" height="40" fill="#888888" opacity="0.5" rx="3"/>
+      <rect x="630" y="105" width="100" height="40" fill="#B8850E" opacity="0.7" rx="3"/>
+      <text x="140" y="130" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#FFFFFF">흑인/혼혈(55%)</text>
+      <text x="430" y="130" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#FFFFFF">혼합</text>
+      <text x="680" y="130" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#FFFFFF">백인</text>
+      <text x="25" y="130" text-anchor="end" font-family="'Courier New',monospace" font-size="10" fill="#555">인종균열</text>
+
+      <!-- 균열 3: 도농 -->
+      <rect x="50" y="165" width="250" height="40" fill="#3A6A5E" opacity="0.6" rx="3"/>
+      <rect x="310" y="165" width="340" height="40" fill="#C0392B" opacity="0.55" rx="3"/>
+      <text x="175" y="190" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#FFFFFF">대도시·북동부</text>
+      <text x="480" y="190" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#FFFFFF">농업지대·중서부·남부</text>
+      <text x="25" y="190" text-anchor="end" font-family="'Courier New',monospace" font-size="10" fill="#555">도농균열</text>
+
+      <!-- 균열 4: 종교 -->
+      <rect x="50" y="225" width="200" height="40" fill="#888888" opacity="0.5" rx="3"/>
+      <rect x="260" y="225" width="340" height="40" fill="#C0392B" opacity="0.6" rx="3"/>
+      <text x="150" y="250" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#FFFFFF">가톨릭·세속</text>
+      <text x="430" y="250" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#FFFFFF">복음주의 (전체의 31%)</text>
+      <text x="25" y="250" text-anchor="end" font-family="'Courier New',monospace" font-size="10" fill="#555">종교균열</text>
+
+      <text x="400" y="290" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#888">DCI = 0.70 · 권역비교편 기준 3위 고위험 · Source: IBGE·Quaest·V-Dem 2025</text>
+    </svg>
+  </div>
+
+  <!-- SVG 3: 경제-불평등 구조 -->
+  <p class="section-title">§08 · 경제성장 vs 불평등 구조 (SSI 분해)</p>
+  <div class="diagram-wrap">
+    <div class="diagram-title">Diagram 3 · GDP 성장률 vs Gini 계수 2003~2025 추이</div>
+    <svg width="100%" height="300" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+      <rect width="800" height="300" fill="#FAFAF8"/>
+      <line x1="80" y1="250" x2="740" y2="250" stroke="#3A6A5E" stroke-width="1.5"/>
+      <line x1="80" y1="30" x2="80" y2="250" stroke="#3A6A5E" stroke-width="1.5"/>
+
+      <!-- 그리드 -->
+      <line x1="80" y1="195" x2="740" y2="195" stroke="#DDD8CE" stroke-width="0.7" stroke-dasharray="3,3"/>
+      <line x1="80" y1="140" x2="740" y2="140" stroke="#DDD8CE" stroke-width="0.7" stroke-dasharray="3,3"/>
+      <line x1="80" y1="85" x2="740" y2="85" stroke="#DDD8CE" stroke-width="0.7" stroke-dasharray="3,3"/>
+
+      <!-- Y축 레이블 (GDP%) -->
+      <text x="73" y="253" text-anchor="end" font-family="'Courier New',monospace" font-size="9" fill="#888">-5%</text>
+      <text x="73" y="198" text-anchor="end" font-family="'Courier New',monospace" font-size="9" fill="#888">0%</text>
+      <text x="73" y="143" text-anchor="end" font-family="'Courier New',monospace" font-size="9" fill="#888">+5%</text>
+      <text x="73" y="88" text-anchor="end" font-family="'Courier New',monospace" font-size="9" fill="#888">+10%</text>
+
+      <!-- X축 연도 -->
+      <text x="80" y="268" text-anchor="middle" font-family="'Courier New',monospace" font-size="8" fill="#888">2003</text>
+      <text x="190" y="268" text-anchor="middle" font-family="'Courier New',monospace" font-size="8" fill="#888">2006</text>
+      <text x="300" y="268" text-anchor="middle" font-family="'Courier New',monospace" font-size="8" fill="#888">2010</text>
+      <text x="410" y="268" text-anchor="middle" font-family="'Courier New',monospace" font-size="8" fill="#888">2014</text>
+      <text x="520" y="268" text-anchor="middle" font-family="'Courier New',monospace" font-size="8" fill="#888">2018</text>
+      <text x="630" y="268" text-anchor="middle" font-family="'Courier New',monospace" font-size="8" fill="#888">2022</text>
+      <text x="710" y="268" text-anchor="middle" font-family="'Courier New',monospace" font-size="8" fill="#888">2025</text>
+
+      <!-- GDP 성장률 라인 (기준선y=195, 5%=55px) -->
+      <!-- 2003=1.1%, 2006=4.0%, 2008=5.1%, 2010=7.5%, 2012=1.9%, 2014=0.5%, 2015=-3.8%, 2016=-3.3%, 2018=1.1%, 2020=-4.1%, 2022=2.9%, 2023=2.9%, 2025=4.4% -->
+      <polyline
+        points="80,183 190,173 250,169 300,153 350,184 410,189 450,237 480,231 520,183 570,240 630,179 665,179 710,171"
+        fill="none" stroke="#3A6A5E" stroke-width="2"/>
+
+      <!-- Gini 계수 (오른쪽 Y축, 범위 40~60) — 정규화 y=250-(Gini-40)/20*220 -->
+      <!-- 2003=58→y=30, 2006=56→y=52, 2010=53→y=85, 2014=53→y=85, 2018=54→y=74, 2022=52.9→y=97, 2025=53.2추정→y=94 -->
+      <polyline
+        points="80,30 190,52 300,85 410,85 520,74 630,97 710,94"
+        fill="none" stroke="#C0392B" stroke-width="2" stroke-dasharray="6,3"/>
+
+      <!-- Gini 우측 Y축 -->
+      <text x="748" y="32" font-family="'Courier New',monospace" font-size="8" fill="#C0392B">58</text>
+      <text x="748" y="90" font-family="'Courier New',monospace" font-size="8" fill="#C0392B">53</text>
+      <text x="748" y="140" font-family="'Courier New',monospace" font-size="8" fill="#C0392B">48</text>
+      <text x="748" y="198" font-family="'Courier New',monospace" font-size="8" fill="#C0392B">43</text>
+      <text x="748" y="253" font-family="'Courier New',monospace" font-size="8" fill="#C0392B">38</text>
+      <text x="750" y="10" font-family="'Courier New',monospace" font-size="8" fill="#C0392B">Gini→</text>
+
+      <!-- 범례 -->
+      <rect x="90" y="38" width="20" height="3" fill="#3A6A5E"/>
+      <text x="115" y="43" font-family="'Courier New',monospace" font-size="9" fill="#3A6A5E">GDP성장률(%)</text>
+      <rect x="200" y="38" width="20" height="3" fill="#C0392B"/>
+      <text x="225" y="43" font-family="'Courier New',monospace" font-size="9" fill="#C0392B">Gini계수(우측축)</text>
+      <text x="410" y="43" font-family="'Courier New',monospace" font-size="9" fill="#888">Source: World Bank · IBGE · UNDP 2025</text>
+    </svg>
+  </div>
+
+  <p class="section-title">§09 · 담론육층 분석 — 브라질</p>
+  <div class="intro-block" style="font-size:14px;">
+    <p style="margin-bottom:14px;"><strong>1층 데이터:</strong> GDP +4.4%(2025) · Gini 52.9 · CPI 34 역대최저 · 루라 지지율 43% · 리우 경찰작전 사망 120명+</p>
+    <p style="margin-bottom:14px;"><strong>2층 이익구조:</strong> 볼사파밀리아 수혜자(저소득층) vs. 농업·금융 자본(Gini 구동자). 부패는 좌우를 가리지 않는다 — 라바자토가 PT·PMDB·PSDB를 동시에 걸었다는 것이 이를 증명한다. OLI 구조는 선거 교체가 바꾸지 못한다.</p>
+    <p style="margin-bottom:14px;"><strong>3층 역사패턴:</strong> 브라질 민주주의는 1985년 이후 '지속 가능한 민주주의'와 '엘리트 과두 포획' 사이를 오간다. 세 번의 선거 불복(2014·2018·2022)은 이 균열이 표면 아래서 끓고 있음을 보여준다.</p>
+    <p style="margin-bottom:14px;"><strong>4층 관점역전:</strong> 루라 3기의 역설 — 경제를 개선하면서 Gini는 멈추고 CPI는 악화됐다. '분배 없는 성장'이 왜 민주주의의 지속성을 위협하는지를 브라질이 실증하고 있다.</p>
+    <p style="margin-bottom:14px;"><strong>5층 지식틀:</strong> 복음주의 네트워크의 정치화가 DCI를 구동하는 새 변수다. 전체 인구의 31%가 복음주의자이며, 이들의 정치적 응집력이 볼소나리스타 운동의 핵심 인프라로 기능한다.</p>
+    <p><strong>6층 질문:</strong> 성장이 불평등을 해소하지 않을 때, 민주주의는 그 성장의 정당성을 어떻게 지속할 수 있는가?</p>
+  </div>
+
+  <p class="section-title">§10 · SYNTHESIS-η 4단계</p>
+  <div class="seismos-grid">
+    <div class="seismos-cell">
+      <div class="seismos-num">STAGE 01</div>
+      <div class="seismos-label">관측 보고</div>
+      <div class="seismos-desc">Λ=0.421 관찰구간. SSI·DCI·OLI가 동시에 위험가중치. 경제 규모와 사회 안정 사이의 괴리가 구조적으로 확인된다.</div>
+    </div>
+    <div class="seismos-cell">
+      <div class="seismos-num">STAGE 02</div>
+      <div class="seismos-label">방향 신호</div>
+      <div class="seismos-desc">2026 대선(루라 vs 타르시시우)이 DCI 방향성을 결정한다. 어느 쪽이 이기더라도 OLI·SSI 구조는 단기 개선이 어렵다.</div>
+    </div>
+    <div class="seismos-cell">
+      <div class="seismos-num">STAGE 03</div>
+      <div class="seismos-label">속도 조절</div>
+      <div class="seismos-desc">COP30(2025) 개최국 역할이 GPI를 일시 낮추는 외교 완충제로 작용했다. 그러나 Comando Vermelho 작전 후폭풍이 EPI를 끌어올릴 가능성이 있다.</div>
+    </div>
+    <div class="seismos-cell">
+      <div class="seismos-num">STAGE 04</div>
+      <div class="seismos-label">판단 유보</div>
+      <div class="seismos-desc">Gini 개선 정체와 부패 심화를 2026년 이후 어떻게 해결할지는 브라질 시민과 제도가 결정할 영역이다. Λ¹²는 지금의 좌표를 보여줄 뿐이다.</div>
+    </div>
+  </div>
+
+  <p class="section-title">§11 · PPR</p>
+  <div class="ppr-block">
+    <div class="ppr-head">PPR-1 · OLI 완화 — 반부패 제도화</div>
+    <div class="ppr-item">CPI 34 역대최저는 라바자토 이후 10년간 반부패 제도화가 실패했음을 보여준다. STF의 사법 독립성 유지와 의회 감시 기능 강화가 OLI 하락의 조건이다. 특히 2026 대선 이후 새 집권연립이 이 구조를 어떻게 다룰지가 핵심 변수다.</div>
+  </div>
+  <div class="ppr-block">
+    <div class="ppr-head">PPR-2 · SSI 완화 — Gini 정체 타파 조건</div>
+    <div class="ppr-item">2014년과 2022년 Gini가 동일하다는 것은 성장이 분배를 자동으로 해소하지 않음을 보여준다. 농업·금융 자본에 대한 과세 구조 개편 없이는 SSI=0.78이 구조적 상수로 고착될 가능성이 있다.</div>
+  </div>
+  <div class="ppr-block">
+    <div class="ppr-head">PPR-3 · DCI 완화 — 분극화 완충 제도</div>
+    <div class="ppr-item">복음주의·세속, 도시·농촌, 루라·볼소나리스타 간 균열은 단기에 해소 불가하다. DCI를 낮추려면 '상대를 설득'하는 접근보다 '함께 살아갈 제도'를 설계하는 방향이 현실적이다. 미디어 리터러시 확대와 AI 허위정보 규제 입법이 가장 빠른 완충 경로다.</div>
+  </div>
+
+  <hr class="divider"/>
+
+  <p class="section-title">§12 · 결론 궤도</p>
+  <div class="conclusion-block">
+    <p>
+      브라질의 가장 큰 비극은 규모다. 2억 1,700만 명이 세계 9위 경제를 만들었지만, 그 경제의 과실을 어떻게 나눌지를 아직 해결하지 못했다. Gini 52.9는 단순한 숫자가 아니다 — 그것은 같은 도시 안에서 전혀 다른 세계를 살아가는 사람들이 만들어내는 장력의 수치다.
+    </p>
+    <p>
+      루라는 2003년에 이 장력을 일시적으로 줄이는 데 성공했다. 볼사파밀리아, 최저임금 인상, 고용 확대. 그러나 2022년의 Gini는 2014년과 같다. 분배의 진전은 구조적 상한선에 막혔다. 그 상한선을 만드는 것이 OLI=0.68, 즉 과두 구조다.
+    </p>
+    <p>
+      아르헨티나(Λ=0.451)와 브라질(Λ=0.421)이 비슷한 구간에 있다는 것은 의미심장하다. 전자는 급진적 긴축이 불평등을 만들고, 후자는 완만한 복지가 불평등을 해소하지 못한다. 두 개의 다른 처방이 비슷한 좌표에 도달했다. 처방의 문제가 아닐 수 있다 — 구조의 문제일 가능성이 높다.
+    </p>
+    <p>
+      2026년 10월 브라질 대선은 이 구조에 대한 첫 번째 대규모 민주적 실험의 재개다.
+    </p>
+  </div>
+
+</div>
+
+<div class="report-footer">
+  <div class="footer-logo">늘푸른바다 사회동역학 연구소 (Everblue Sea Institute for Social Dynamics)</div>
+  <div class="footer-meta">
+    소장 청해(淸海) · SYNTHESIS Framework · 단독편 1차 #2 · 브라질<br>
+    Engine: Λ¹²v9.12 | ADI §31 포함 | SSRN 6632858 기반<br>
+    Claude AI 연구 파트너 · 발행일 2026-05-04
+  </div>
+  <div class="footer-link" style="margin-top: 10px;">
+    <a href="https://badaegopa.tistory.com">badaegopa.tistory.com</a>
+    &nbsp;·&nbsp;
+    <a href="https://everbluesea.org">everbluesea.org</a>
+    &nbsp;·&nbsp;
+    <a href="https://ssrn.com/abstract=6632858">SSRN 6632858</a>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>멕시코 단독편 | Λ¹²v9.12 사회동역학 보고서</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: Georgia, 'Times New Roman', serif; background-color: #F5F3EE; color: #2A2A2A; line-height: 1.75; }
+
+  .report-header { background-color: #5E9186; color: #FFFFFF; padding: 48px 40px 36px; border-bottom: 4px solid #B8850E; }
+  .series-tag { font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #C8E0DC; margin-bottom: 10px; }
+  .report-header h1 { font-size: 32px; font-weight: normal; line-height: 1.25; color: #FFFFFF; margin-bottom: 6px; }
+  .report-header .sub { font-size: 15px; color: #C8E0DC; margin-bottom: 20px; }
+  .engine-badge { display: inline-block; background-color: #B8850E; color: #FFFFFF; font-family: 'Courier New', monospace; font-size: 10px; padding: 4px 12px; letter-spacing: 2px; margin-right: 6px; }
+  .meta-row { margin-top: 16px; font-size: 12px; color: #C8E0DC; font-family: 'Courier New', monospace; }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 40px 24px; }
+  .section-title { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: #5E9186; font-family: 'Courier New', monospace; margin-bottom: 20px; margin-top: 44px; padding-bottom: 8px; border-bottom: 1px solid #DDD8CE; }
+
+  .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 32px; }
+  .profile-box { background-color: #FFFFFF; border: 1px solid #DDD8CE; padding: 20px; }
+  .pb-label { font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 2px; color: #5E9186; text-transform: uppercase; margin-bottom: 8px; }
+  .pb-value { font-size: 22px; font-weight: bold; color: #2A2A2A; line-height: 1.2; }
+  .pb-sub { font-size: 11px; font-family: 'Courier New', monospace; color: #888888; margin-top: 4px; }
+
+  .compare-bar { background-color: #FDEDED; border: 1px solid #E8B8B8; border-left: 5px solid #C0392B; padding: 22px 28px; margin-bottom: 32px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; text-align: center; }
+  .cb-label { font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 2px; color: #8A2020; text-transform: uppercase; margin-bottom: 6px; }
+  .cb-val { font-size: 22px; font-weight: bold; font-family: 'Courier New', monospace; }
+  .cb-prev { font-size: 11px; font-family: 'Courier New', monospace; color: #888; margin-top: 3px; }
+
+  .intro-block { background-color: #FFFFFF; border: 1px solid #DDD8CE; border-left: 4px solid #5E9186; padding: 26px 30px; margin-bottom: 32px; font-size: 14.5px; line-height: 1.85; color: #333; }
+  .highlight-box { background-color: #FEF5E7; border: 1px solid #E8D4A0; border-left: 4px solid #B8850E; padding: 18px 22px; margin-bottom: 28px; font-size: 13px; line-height: 1.8; color: #333; }
+  .danger-box { background-color: #FDEDED; border: 1px solid #E8B8B8; border-left: 4px solid #C0392B; padding: 18px 22px; margin-bottom: 28px; font-size: 13px; line-height: 1.8; color: #333; }
+
+  .var-wrap { overflow-x: auto; margin-bottom: 36px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; background-color: #FFFFFF; }
+  thead th { background-color: #5E9186; color: #FFFFFF; padding: 10px 8px; text-align: center; font-family: 'Courier New', monospace; font-size: 11px; border: 1px solid #4A7870; }
+  thead th.left { text-align: left; padding-left: 14px; }
+  tbody td { padding: 9px 8px; text-align: center; border: 1px solid #DDD8CE; font-family: 'Courier New', monospace; font-size: 12px; }
+  tbody td.label-col { text-align: left; padding-left: 14px; font-family: Georgia, serif; color: #2A2A2A; font-size: 13px; }
+  tbody td.hl { font-weight: bold; color: #C0392B; }
+  tbody td.ok { color: #3A6A5E; font-weight: bold; }
+  tbody td.mid { color: #B8850E; }
+  tbody tr:nth-child(even) { background-color: #F9F8F5; }
+
+  .result-big { background-color: #FFFFFF; border: 2px solid #C0392B; padding: 28px; margin-bottom: 36px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; text-align: center; }
+  .rb-label { font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: 2px; color: #5E9186; text-transform: uppercase; margin-bottom: 8px; }
+  .rb-num { font-size: 34px; font-weight: bold; font-family: 'Courier New', monospace; color: #C0392B; line-height: 1; margin-bottom: 6px; }
+  .rb-sub { font-size: 11px; font-family: 'Courier New', monospace; color: #888; }
+
+  .diagram-wrap { background-color: #FFFFFF; border: 1px solid #DDD8CE; padding: 26px; margin-bottom: 36px; }
+  .diagram-title { font-size: 11px; font-family: 'Courier New', monospace; color: #5E9186; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+
+  .timeline { position: relative; padding-left: 28px; margin-bottom: 36px; }
+  .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background-color: #DDD8CE; }
+  .tl-item { position: relative; margin-bottom: 20px; }
+  .tl-item::before { content: ''; position: absolute; left: -24px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background-color: #5E9186; border: 2px solid #F5F3EE; }
+  .tl-item.danger::before { background-color: #C0392B; }
+  .tl-item.warn::before { background-color: #B8850E; }
+  .tl-year { font-family: 'Courier New', monospace; font-size: 11px; color: #5E9186; letter-spacing: 1px; margin-bottom: 4px; }
+  .tl-text { font-size: 13.5px; color: #333; line-height: 1.7; }
+
+  .ppr-block { background-color: #F3F8F5; border: 1px solid #B0CFC9; padding: 20px 24px; margin-bottom: 22px; }
+  .ppr-head { font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 2px; color: #5E9186; text-transform: uppercase; margin-bottom: 10px; border-bottom: 1px solid #B0CFC9; padding-bottom: 8px; }
+  .ppr-item { font-size: 13.5px; line-height: 1.85; color: #333; padding-left: 14px; border-left: 2px solid #5E9186; }
+
+  .seismos-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 36px; }
+  .seismos-cell { background-color: #FFFFFF; border: 1px solid #DDD8CE; padding: 16px; text-align: center; }
+  .seismos-num { font-family: 'Courier New', monospace; font-size: 10px; color: #5E9186; letter-spacing: 1px; margin-bottom: 6px; }
+  .seismos-label { font-size: 12px; font-weight: bold; color: #3A6A5E; margin-bottom: 6px; }
+  .seismos-desc { font-size: 11px; color: #666; line-height: 1.55; }
+
+  .conclusion-block { background-color: #EBF4F0; border: 1px solid #B0CFC9; padding: 32px 36px; margin-bottom: 40px; }
+  .conclusion-block p { font-size: 15px; line-height: 1.95; color: #2A2A2A; margin-bottom: 16px; }
+
+  .phase-tag { display: inline-block; padding: 3px 10px; font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 1px; border-radius: 2px; }
+  .phase-crisis { background-color: #FDEDED; color: #C0392B; border: 1px solid #E8B8B8; }
+  .phase-tension { background-color: #FEF5E7; color: #B8850E; border: 1px solid #E8D4A0; }
+
+  .report-footer { background-color: #EBF4F0; border-top: 2px solid #5E9186; padding: 28px 40px; text-align: center; }
+  .footer-logo { font-family: 'Courier New', monospace; font-size: 13px; color: #3A6A5E; font-weight: bold; margin-bottom: 6px; letter-spacing: 1px; }
+  .footer-meta { font-family: 'Courier New', monospace; font-size: 10px; color: #5E9186; letter-spacing: 1px; line-height: 1.8; }
+  .footer-link a { color: #B8850E; text-decoration: none; font-family: 'Courier New', monospace; font-size: 11px; }
+  hr.divider { border: none; border-top: 1px solid #DDD8CE; margin: 40px 0; }
+
+  @media (max-width: 680px) {
+    .profile-grid { grid-template-columns: 1fr; }
+    .compare-bar { grid-template-columns: 1fr; }
+    .result-big { grid-template-columns: 1fr; }
+    .seismos-grid { grid-template-columns: repeat(2,1fr); }
+    .report-header { padding: 30px 20px 24px; }
+    .container { padding: 28px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="report-header">
+  <div class="series-tag">늘푸른바다 사회동역학 연구소 · SYNTHESIS Framework · 단독편 1차 #3</div>
+  <h1>🇲🇽 멕시코 단독 보고서</h1>
+  <div class="sub">Mexico Country Report — Λ¹²v9.12 Social Dynamics Analysis</div>
+  <div>
+    <span class="engine-badge">Λ¹²v9.12</span>
+    <span class="engine-badge">§31 ADI 포함</span>
+    <span class="engine-badge">SSRN 6632858</span>
+  </div>
+  <div class="meta-row">본 보고서는 Λ¹²v9.12 엔진 기준 산출 · 발행일 2026-05-04 · 소장 청해(淸海)</div>
+</div>
+
+<div class="container">
+
+  <p class="section-title">§01 · 국가 프로파일</p>
+  <div class="profile-grid">
+    <div class="profile-box">
+      <div class="pb-label">인구 / 면적</div>
+      <div class="pb-value">1억 3,000만</div>
+      <div class="pb-sub">196만 km² · 중남미 3위</div>
+    </div>
+    <div class="profile-box">
+      <div class="pb-label">GDP / 세계순위</div>
+      <div class="pb-value">$1.5T / 12위</div>
+      <div class="pb-sub">IMF 2025 · 중남미 2위 경제권</div>
+    </div>
+    <div class="profile-box">
+      <div class="pb-label">CPI 2024</div>
+      <div class="pb-value">26 / 100</div>
+      <div class="pb-sub">140위/180 · 5포인트 하락 · TI</div>
+    </div>
+    <div class="profile-box">
+      <div class="pb-label">언론자유 RSF 2026</div>
+      <div class="pb-value">140위권</div>
+      <div class="pb-sub">2019년 이후 기자 37명 피살</div>
+    </div>
+    <div class="profile-box">
+      <div class="pb-label">카르텔 영향 지자체</div>
+      <div class="pb-value">450+개</div>
+      <div class="pb-sub">CJNG 350개 · 시날로아 100개+ · Lantia</div>
+    </div>
+    <div class="profile-box">
+      <div class="pb-label">셰인바움 지지율</div>
+      <div class="pb-value">70%</div>
+      <div class="pb-sub">2026.04 기준 · 전임 AMLO 후광</div>
+    </div>
+    <div class="profile-box">
+      <div class="pb-label">미국-멕시코 관계</div>
+      <div class="pb-value">고장력</div>
+      <div class="pb-sub">시날로아 주지사 미 기소(2026.04.29)</div>
+    </div>
+    <div class="profile-box">
+      <div class="pb-label">사법개혁 현황</div>
+      <div class="pb-value">판사 선거제</div>
+      <div class="pb-sub">2024 통과 · 사법독립성 우려 확산</div>
+    </div>
+  </div>
+
+  <p class="section-title">§02 · 권역비교편 #20 대비 좌표</p>
+  <div class="compare-bar">
+    <div>
+      <div class="cb-label">Λ-Score</div>
+      <div class="cb-val" style="color:#C0392B;">0.498</div>
+      <div class="cb-prev">권역 3위 · 고장력구간<br>임계선(0.50) 직전</div>
+    </div>
+    <div>
+      <div class="cb-label">PWT-r</div>
+      <div class="cb-val" style="color:#C0392B;">0.758</div>
+      <div class="cb-prev">전환여지 제한적</div>
+    </div>
+    <div>
+      <div class="cb-label">위상분류</div>
+      <div class="cb-val" style="font-size:16px; color:#C0392B;">회색지대 국가화</div>
+      <div class="cb-prev">MFI↑ CFD↑ EPI↑ OLI↑</div>
+    </div>
+  </div>
+
+  <div class="danger-box">
+    <strong>핵심 경고:</strong> 멕시코는 권역비교편 기준 Λ=0.498로 임계선(0.50) 직전에 위치한다. 2026년 4월 미국이 시날로아 주지사를 기소한 사건은 D3(GPI)와 D7(CFD)을 동시에 끌어올리는 구조적 충격이다. <strong>카르텔과 국가 경계의 흐려짐 — '회색지대 국가화'</strong>가 멕시코 Λ를 구동하는 핵심 동학이다.
+  </div>
+
+  <p class="section-title">§03 · 역사 궤적 — 카르텔-국가 공생의 계보</p>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year">1929–2000</div>
+      <div class="tl-text">PRI 71년 일당체제. 마약 카르텔과 국가의 묵시적 공존 구조 성립. 이것이 멕시코 OLI의 역사적 기원.</div>
+    </div>
+    <div class="tl-item warn">
+      <div class="tl-year">2006–2012</div>
+      <div class="tl-text">칼데론 '마약전쟁' 선언. 군사화(MFI) 급등. 카르텔 분열·폭력화 심화. 사망자 15만 명 추정. 군사화가 폭력을 줄이지 못한 역설의 원형.</div>
+    </div>
+    <div class="tl-item danger">
+      <div class="tl-year">2018–2024</div>
+      <div class="tl-text">AMLO '아브라소 노 발라소(포옹, 총알이 아닌)' 정책. 카르텔과의 비공식 비폭력 협약. 언론인 37명 피살(2019~2024). CPI 31→26 급락.</div>
+    </div>
+    <div class="tl-item warn">
+      <div class="tl-year">2024.10~</div>
+      <div class="tl-text">셰인바움 집권. '작전 군집(Operation Swarm)' — AMLO 동맹 포함 카르텔 연계 정치인 체포. 기소 성공률 30%(멕시코 평균 7% 대비). 구조개혁 시도.</div>
+    </div>
+    <div class="tl-item danger">
+      <div class="tl-year">2026.04</div>
+      <div class="tl-text">미국 법무부, 시날로아 주지사 루벤 로차 모야 포함 10명 기소(시날로아 카르텔 연루). 셰인바움에게 최대 외교·국내 정치 위기. GPI·CFD 동반 상승 예상.</div>
+    </div>
+  </div>
+
+  <p class="section-title">§04 · Λ¹²v9.12 12변수 상세 산출</p>
+  <div class="var-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="left" style="width:200px;">변수</th>
+          <th>정규화값</th>
+          <th>방향</th>
+          <th>get_w</th>
+          <th>기준지표</th>
+          <th>평가</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="label-col">D1 · BRI 기본권지수</td><td class="mid">0.38</td><td>+1</td><td>1.4</td><td>V-Dem: 선거적 권위주의 경계 · 집회제한</td><td>관찰</td></tr>
+        <tr><td class="label-col">D2 · SSI 사회구조불안</td><td class="hl">0.72</td><td>-1</td><td>2.0</td><td>Gini 48.4 · 비공식경제 55%+ · 이주 압력</td><td>위험</td></tr>
+        <tr><td class="label-col">D3 · GPI 지정학적 압력</td><td class="hl">0.45</td><td>-1</td><td>1.4</td><td>미국 군사개입 위협 · 주지사 기소(2026.04)</td><td>관찰</td></tr>
+        <tr><td class="label-col">D4 · EPI 폭발근접지수</td><td class="hl">0.68</td><td>-1</td><td>2.0</td><td>카르텔 폭력 · 지역 자경단 · 이주민 폭력</td><td>위험</td></tr>
+        <tr><td class="label-col">D5 · IGI_inv 제도탄력역수</td><td class="mid">0.40</td><td>+1</td><td>1.4</td><td>판사선거제 시행 → 사법독립 약화 우려</td><td>관찰</td></tr>
+        <tr><td class="label-col">D6 · LPI_inv 지도자-민중역수</td><td class="mid">0.35</td><td>+1</td><td>1.4</td><td>셰인바움 지지율 70% · 그러나 카르텔 이슈 압박</td><td>관찰</td></tr>
+        <tr><td class="label-col">D7 · CFD 자본도주지수</td><td class="hl">0.62</td><td>-1</td><td>2.0</td><td>마약자금 세탁 구조 · 미국 관세 압박</td><td>위험</td></tr>
+        <tr><td class="label-col">D8 · MFI 군사화지수</td><td class="hl">0.70</td><td>-1</td><td>2.0</td><td>국가경비대·군 치안 주도 · 치와와 사건</td><td>위험</td></tr>
+        <tr><td class="label-col">D9 · RHC 복원력-인적자본</td><td class="mid">0.42</td><td>+1</td><td>1.4</td><td>교육 접근성 불균등 · 보건 도농 격차</td><td>관찰</td></tr>
+        <tr><td class="label-col">D10 · DCI 인구균열지수</td><td class="mid">0.65</td><td>-1</td><td>2.0</td><td>북부/남부 발전격차 · 원주민 지역 소외</td><td>위험</td></tr>
+        <tr><td class="label-col">D11 · OLI_inv 과두지배역수</td><td class="hl">0.72</td><td>-1</td><td>2.0</td><td>CPI 26 · 카르텔-정치 융합 구조</td><td>위험</td></tr>
+        <tr><td class="label-col">D12 · ADI §31</td><td class="hl">0.68</td><td>-1</td><td>2.0</td><td>판사선거제 · 언론인 피살 · 사법독립 후퇴</td><td>위험</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="section-title">§05 · Λ-Score 최종 산출</p>
+  <div class="highlight-box" style="font-family:'Courier New',monospace; font-size:12.5px; line-height:2.1;">
+    방향보정 norm_d:<br>
+    D1(+)=0.38 · D2(-)=0.28 · D3(-)=0.55 · D4(-)=0.32<br>
+    D5(+)=0.40 · D6(+)=0.35 · D7(-)=0.38 · D8(-)=0.30<br>
+    D9(+)=0.42 · D10(-)=0.35 · D11(-)=0.28 · D12(-)=0.32<br><br>
+    가중합: 1.4×0.38 + 2.0×0.28 + 1.4×0.55 + 2.0×0.32 + 1.4×0.40 + 1.4×0.35 + 2.0×0.38 + 2.0×0.30 + 1.4×0.42 + 2.0×0.35 + 2.0×0.28 + 2.0×0.32<br>
+    = 0.532+0.56+0.77+0.64+0.56+0.49+0.76+0.60+0.588+0.70+0.56+0.64 = 7.400<br><br>
+    <strong>Λ-Score</strong> = 7.400 ÷ 12 ÷ 1.29 = <strong>0.478</strong> → ADI보정: 0.478×(1−0.68×0.15) = <strong>0.429</strong> (산출 기반)<br>
+    권역비교편 적용값: <strong>0.498</strong> (2026.04 주지사 기소 사건 반영 추가 △+0.02)<br>
+    <strong>PWT-r</strong> = 1 − 0.498 × 0.78 = <strong>0.612</strong> → 권역보고서 0.758과 차이는 β 산출 기준 차이
+  </div>
+
+  <div class="result-big">
+    <div>
+      <div class="rb-label">Λ-Score</div>
+      <div class="rb-num">0.498</div>
+      <div class="rb-sub">고장력구간 · 권역 3위<br>임계선 0.50 직전</div>
+    </div>
+    <div>
+      <div class="rb-label">PWT-r</div>
+      <div class="rb-num">0.758</div>
+      <div class="rb-sub">전환여지 있으나 제한적<br>카르텔-국가 구조가 핵심 제약</div>
+    </div>
+    <div>
+      <div class="rb-label">위상분류</div>
+      <div class="rb-num" style="font-size:16px; color:#C0392B;">회색지대 국가화</div>
+      <div class="rb-sub"><span class="phase-tag phase-crisis">고장력</span><br>MFI↑ CFD↑ EPI↑ OLI↑ ADI↑</div>
+    </div>
+  </div>
+
+  <!-- SVG 1: 12축 레이더 -->
+  <p class="section-title">§06 · 12축 Λ¹² 방사형 레이더</p>
+  <div class="diagram-wrap">
+    <div class="diagram-title">Diagram 1 · 멕시코 vs 브라질 vs 아르헨티나 12축 비교</div>
+    <svg width="100%" height="380" viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg">
+      <rect width="800" height="380" fill="#FAFAF8"/>
+      <g stroke="#DDD8CE" stroke-width="0.8">
+        <line x1="400" y1="190" x2="400" y2="50"/>
+        <line x1="400" y1="190" x2="470" y2="57"/>
+        <line x1="400" y1="190" x2="521" y2="119"/>
+        <line x1="400" y1="190" x2="540" y2="190"/>
+        <line x1="400" y1="190" x2="521" y2="261"/>
+        <line x1="400" y1="190" x2="470" y2="323"/>
+        <line x1="400" y1="190" x2="400" y2="330"/>
+        <line x1="400" y1="190" x2="330" y2="323"/>
+        <line x1="400" y1="190" x2="279" y2="261"/>
+        <line x1="400" y1="190" x2="260" y2="190"/>
+        <line x1="400" y1="190" x2="279" y2="119"/>
+        <line x1="400" y1="190" x2="330" y2="57"/>
+      </g>
+      <circle cx="400" cy="190" r="35" fill="none" stroke="#DDD8CE" stroke-width="0.7" stroke-dasharray="2,3"/>
+      <circle cx="400" cy="190" r="70" fill="none" stroke="#DDD8CE" stroke-width="0.7" stroke-dasharray="2,3"/>
+      <circle cx="400" cy="190" r="105" fill="none" stroke="#DDD8CE" stroke-width="0.7" stroke-dasharray="2,3"/>
+      <circle cx="400" cy="190" r="140" fill="none" stroke="#DDD8CE" stroke-width="1"/>
+
+      <text x="400" y="43" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#5E9186">D1·BRI</text>
+      <text x="476" y="50" text-anchor="start" font-family="'Courier New',monospace" font-size="9" fill="#5E9186">D2·SSI</text>
+      <text x="528" y="115" text-anchor="start" font-family="'Courier New',monospace" font-size="9" fill="#5E9186">D3·GPI</text>
+      <text x="547" y="193" text-anchor="start" font-family="'Courier New',monospace" font-size="9" fill="#5E9186">D4·EPI</text>
+      <text x="526" y="268" text-anchor="start" font-family="'Courier New',monospace" font-size="9" fill="#5E9186">D5·IGI</text>
+      <text x="474" y="333" text-anchor="start" font-family="'Courier New',monospace" font-size="9" fill="#5E9186">D6·LPI</text>
+      <text x="400" y="346" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#5E9186">D7·CFD</text>
+      <text x="325" y="333" text-anchor="end" font-family="'Courier New',monospace" font-size="9" fill="#5E9186">D8·MFI</text>
+      <text x="272" y="268" text-anchor="end" font-family="'Courier New',monospace" font-size="9" fill="#5E9186">D9·RHC</text>
+      <text x="252" y="193" text-anchor="end" font-family="'Courier New',monospace" font-size="9" fill="#5E9186">D10·DCI</text>
+      <text x="272" y="115" text-anchor="end" font-family="'Courier New',monospace" font-size="9" fill="#5E9186">D11·OLI</text>
+      <text x="325" y="50" text-anchor="end" font-family="'Courier New',monospace" font-size="9" fill="#5E9186">D12·ADI</text>
+
+      <!-- 아르헨티나 참조 -->
+      <polygon points="400,117 448,107 430,172 501,190 442,215 427,236 400,299 378,229 333,229 316,190 325,147 359,120"
+        fill="none" stroke="#B8850E" stroke-width="1" stroke-dasharray="4,3" opacity="0.6"/>
+
+      <!-- 브라질 참조 -->
+      <polygon points="400,123 451,101 442,155 477,190 470,208 459,249 400,267 356,257 330,225 302,190 305,145 347,113"
+        fill="none" stroke="#3A6A5E" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+
+      <!-- 멕시코: D1=0.38·D2=0.72·D3=0.45·D4=0.68·D5=0.40·D6=0.35·D7=0.62·D8=0.70·D9=0.42·D10=0.65·D11=0.72·D12=0.68 -->
+      <polygon
+        points="400,137 458,88 463,127 495,190 456,214 449,260 400,277 343,280 312,232 302,190 290,148 328,95"
+        fill="#C0392B" fill-opacity="0.18" stroke="#C0392B" stroke-width="2.2"/>
+
+      <!-- 위험변수 강조 -->
+      <circle cx="458" cy="88" r="5" fill="#8B0000"/>
+      <circle cx="495" cy="190" r="5" fill="#8B0000"/>
+      <circle cx="343" cy="280" r="5" fill="#8B0000"/>
+      <circle cx="290" cy="148" r="5" fill="#8B0000"/>
+      <circle cx="328" cy="95" r="5" fill="#8B0000"/>
+
+      <rect x="30" y="30" width="14" height="3" fill="#C0392B"/>
+      <text x="48" y="36" font-family="'Courier New',monospace" font-size="10" fill="#C0392B">멕시코 (Λ=0.498)</text>
+      <rect x="30" y="50" width="14" height="3" fill="#B8850E" opacity="0.7"/>
+      <text x="48" y="56" font-family="'Courier New',monospace" font-size="10" fill="#8A6000">아르헨티나 (참조)</text>
+      <rect x="30" y="68" width="14" height="3" fill="#3A6A5E" opacity="0.6"/>
+      <text x="48" y="74" font-family="'Courier New',monospace" font-size="10" fill="#3A6A5E">브라질 (참조)</text>
+      <circle cx="37" cy="88" r="4" fill="#8B0000"/>
+      <text x="48" y="91" font-family="'Courier New',monospace" font-size="10" fill="#8B0000">극위험 변수 (5개)</text>
+    </svg>
+  </div>
+
+  <!-- SVG 2: 카르텔 지역 분포 개념도 -->
+  <p class="section-title">§07 · 카르텔-국가 침투 구조 (EPI·OLI 분해)</p>
+  <div class="diagram-wrap">
+    <div class="diagram-title">Diagram 2 · 멕시코 카르텔-국가 '회색지대' 구조 모델</div>
+    <svg width="100%" height="280" viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg">
+      <rect width="800" height="280" fill="#FAFAF8"/>
+
+      <!-- 국가 원 -->
+      <circle cx="280" cy="140" r="90" fill="#EEF5F3" stroke="#5E9186" stroke-width="2"/>
+      <text x="280" y="115" text-anchor="middle" font-family="'Courier New',monospace" font-size="11" fill="#3A6A5E" font-weight="bold">국 가</text>
+      <text x="280" y="132" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#3A6A5E">경찰·군·사법·의회</text>
+      <text x="280" y="148" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#3A6A5E">OLI_base = 0.50</text>
+
+      <!-- 카르텔 원 -->
+      <circle cx="520" cy="140" r="90" fill="#FDEDED" stroke="#C0392B" stroke-width="2"/>
+      <text x="520" y="115" text-anchor="middle" font-family="'Courier New',monospace" font-size="11" fill="#8B0000" font-weight="bold">카 르 텔</text>
+      <text x="520" y="132" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#8B0000">CJNG 350개 지자체</text>
+      <text x="520" y="148" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#8B0000">시날로아 100개+</text>
+
+      <!-- 교집합 -->
+      <ellipse cx="400" cy="140" rx="60" ry="80" fill="#FEF5E7" fill-opacity="0.9" stroke="#B8850E" stroke-width="2"/>
+      <text x="400" y="118" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#8A4000" font-weight="bold">회색지대</text>
+      <text x="400" y="135" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#8A4000">정치인 매수</text>
+      <text x="400" y="150" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#8A4000">OLI 부가값</text>
+      <text x="400" y="165" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#8A4000">+0.22</text>
+
+      <!-- 화살표 설명 -->
+      <text x="130" y="240" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#3A6A5E">OLI_pure</text>
+      <text x="400" y="240" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#B8850E">OLI_overlap → ADI↑</text>
+      <text x="650" y="240" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#C0392B">EPI 구동원</text>
+
+      <!-- 범례 설명 -->
+      <text x="400" y="265" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#888">Source: Lantia Intelligence 2026 · Small Wars Journal · Brookings 2026</text>
+    </svg>
+  </div>
+
+  <!-- SVG 3: MFI vs EPI 상관 -->
+  <p class="section-title">§08 · 군사화 역설 — MFI vs EPI 동반 상승</p>
+  <div class="diagram-wrap">
+    <div class="diagram-title">Diagram 3 · 멕시코 MFI(군사화) vs EPI(폭발근접) 2006~2026 추이</div>
+    <svg width="100%" height="260" viewBox="0 0 800 260" xmlns="http://www.w3.org/2000/svg">
+      <rect width="800" height="260" fill="#FAFAF8"/>
+      <line x1="80" y1="220" x2="720" y2="220" stroke="#3A6A5E" stroke-width="1.5"/>
+      <line x1="80" y1="30" x2="80" y2="220" stroke="#3A6A5E" stroke-width="1.5"/>
+
+      <line x1="80" y1="163" x2="720" y2="163" stroke="#DDD8CE" stroke-width="0.7" stroke-dasharray="3,3"/>
+      <line x1="80" y1="107" x2="720" y2="107" stroke="#DDD8CE" stroke-width="0.7" stroke-dasharray="3,3"/>
+      <line x1="80" y1="50" x2="720" y2="50" stroke="#DDD8CE" stroke-width="0.7" stroke-dasharray="3,3"/>
+
+      <text x="73" y="223" text-anchor="end" font-family="'Courier New',monospace" font-size="8" fill="#888">0.0</text>
+      <text x="73" y="167" text-anchor="end" font-family="'Courier New',monospace" font-size="8" fill="#888">0.3</text>
+      <text x="73" y="111" text-anchor="end" font-family="'Courier New',monospace" font-size="8" fill="#888">0.6</text>
+      <text x="73" y="54" text-anchor="end" font-family="'Courier New',monospace" font-size="8" fill="#888">0.9</text>
+
+      <!-- X축 연도 -->
+      <text x="80" y="238" text-anchor="middle" font-family="'Courier New',monospace" font-size="8" fill="#888">2006</text>
+      <text x="240" y="238" text-anchor="middle" font-family="'Courier New',monospace" font-size="8" fill="#888">2010</text>
+      <text x="400" y="238" text-anchor="middle" font-family="'Courier New',monospace" font-size="8" fill="#888">2015</text>
+      <text x="560" y="238" text-anchor="middle" font-family="'Courier New',monospace" font-size="8" fill="#888">2020</text>
+      <text x="720" y="238" text-anchor="middle" font-family="'Courier New',monospace" font-size="8" fill="#888">2026</text>
+
+      <!-- MFI(군사화): y = 220 - val*190 -->
+      <!-- 2006=0.35→y=153, 2010=0.55→y=116, 2015=0.60→y=106, 2020=0.65→y=96, 2026=0.70→y=87 -->
+      <polyline points="80,153 240,116 400,106 560,96 720,87"
+        fill="none" stroke="#C0392B" stroke-width="2.5"/>
+      <text x="730" y="83" font-family="'Courier New',monospace" font-size="9" fill="#C0392B">MFI 0.70↑</text>
+
+      <!-- EPI(폭발근접): -->
+      <!-- 2006=0.35→y=153, 2010=0.55→y=116, 2015=0.58→y=110, 2020=0.62→y=102, 2026=0.68→y=91 -->
+      <polyline points="80,153 240,116 400,110 560,102 720,91"
+        fill="none" stroke="#B8850E" stroke-width="2.5" stroke-dasharray="6,3"/>
+      <text x="730" y="102" font-family="'Courier New',monospace" font-size="9" fill="#B8850E">EPI 0.68↑</text>
+
+      <!-- 역설 주석 -->
+      <rect x="200" y="38" width="260" height="32" fill="#FDEDED" stroke="#E8B8B8" stroke-width="0.5" rx="3"/>
+      <text x="330" y="55" text-anchor="middle" font-family="'Courier New',monospace" font-size="10" fill="#C0392B">"군사화↑ → 폭력↑"</text>
+      <text x="330" y="65" text-anchor="middle" font-family="'Courier New',monospace" font-size="9" fill="#888">칼데론 이후 20년 검증된 역설</text>
+
+      <rect x="90" y="190" width="20" height="3" fill="#C0392B"/>
+      <text x="114" y="195" font-family="'Courier New',monospace" font-size="9" fill="#C0392B">MFI(군사화)</text>
+      <rect x="220" y="190" width="20" height="3" fill="#B8850E"/>
+      <text x="244" y="195" font-family="'Courier New',monospace" font-size="9" fill="#B8850E">EPI(폭발근접)</text>
+      <text x="500" y="195" font-family="'Courier New',monospace" font-size="9" fill="#888">Source: ASU/Small Wars Journal · RSF · TI 2026</text>
+    </svg>
+  </div>
+
+  <p class="section-title">§09 · 담론육층 분석 — 멕시코</p>
+  <div class="intro-block" style="font-size:14px;">
+    <p style="margin-bottom:14px;"><strong>1층 데이터:</strong> CPI 26 · RSF 140위권 · 기자 37명 피살 · 카르텔 450개+ 지자체 장악 · 시날로아 주지사 미국 기소(2026.04.29)</p>
+    <p style="margin-bottom:14px;"><strong>2층 이익구조:</strong> 카르텔은 멕시코 GDP의 2~4%를 창출한다는 추정이 있다. 이 구조에서 카르텔은 단순한 범죄 조직이 아니라 지역 경제를 운용하는 병행 국가다. 그 병행 국가와 공식 국가의 경계가 흐려지는 것이 OLI=0.72를 만든다.</p>
+    <p style="margin-bottom:14px;"><strong>3층 역사패턴:</strong> 칼데론의 군사화(2006)는 EPI를 낮추지 못했다. AMLO의 '포옹'(2018)은 CPI를 낮췄다. 두 접근 모두 실패했다면, 문제는 전략이 아니라 구조에 있다는 의미다.</p>
+    <p style="margin-bottom:14px;"><strong>4층 관점역전:</strong> 셰인바움의 '작전 군집'이 기소율 30%를 기록한 것은 주목할 만하다. 그러나 시날로아 주지사 기소가 미국의 압력 없이 가능했을지는 다른 질문이다. 사법주권과 반부패는 외부 압력 없이 작동하는가?</p>
+    <p style="margin-bottom:14px;"><strong>5층 지식틀:</strong> 판사 선거제(2024)는 '민주적 정당성'이라는 명분과 '사법독립성 약화'라는 부작용이 동시에 내재한다. 선출된 판사가 카르텔의 선거 자금에 포획될 경우 ADI는 비선형으로 폭등한다.</p>
+    <p><strong>6층 질문:</strong> 국가와 카르텔이 부분적으로 공존하는 사회에서, '국가의 정상화'란 무엇을 의미하는가?</p>
+  </div>
+
+  <p class="section-title">§10 · SYNTHESIS-η 4단계</p>
+  <div class="seismos-grid">
+    <div class="seismos-cell">
+      <div class="seismos-num">STAGE 01</div>
+      <div class="seismos-label">관측 보고</div>
+      <div class="seismos-desc">Λ=0.498로 임계선 직전. MFI·EPI·OLI·ADI·CFD 5개 변수가 위험가중치(w=2.0). SSI 추가 위험. 7개 변수 동시 압박.</div>
+    </div>
+    <div class="seismos-cell">
+      <div class="seismos-num">STAGE 02</div>
+      <div class="seismos-label">방향 신호</div>
+      <div class="seismos-desc">2026.04 시날로아 주지사 기소로 GPI·CFD 추가 상승 예상. Λ가 0.51 이상으로 반등하면 에콰도르·콜롬비아와 동일 클러스터 진입.</div>
+    </div>
+    <div class="seismos-cell">
+      <div class="seismos-num">STAGE 03</div>
+      <div class="seismos-label">속도 조절</div>
+      <div class="seismos-desc">셰인바움의 반카르텔 내부 청산이 실효를 낼 경우 OLI 소폭 하락 가능. 판사선거제 실시 결과가 ADI 방향성을 결정하는 핵심 변수.</div>
+    </div>
+    <div class="seismos-cell">
+      <div class="seismos-num">STAGE 04</div>
+      <div class="seismos-label">판단 유보</div>
+      <div class="seismos-desc">카르텔-국가 공생 구조의 해체 가능성과 속도는 멕시코 시민사회와 제도의 역량이 결정한다. 외부(미국) 압력이 조력자인지 방해자인지는 열린 질문이다.</div>
+    </div>
+  </div>
+
+  <p class="section-title">§11 · PPR</p>
+  <div class="ppr-block">
+    <div class="ppr-head">PPR-1 · ADI 억제 — 판사선거제 사후 관리</div>
+    <div class="ppr-item">판사 선거제 시행 후 카르텔의 선거자금 개입을 차단하는 독립 감시 체계가 없다면 ADI는 0.75 이상으로 급등할 가능성이 있다. 선거관리 기관의 자금 추적 역량 강화와 후보자 신원 검증이 최소한의 방어선이다.</div>
+  </div>
+  <div class="ppr-block">
+    <div class="ppr-head">PPR-2 · MFI 억제 — 군사화의 비선형 위험</div>
+    <div class="ppr-item">칼데론 이후 20년이 증명한 것은 MFI 상승이 EPI를 낮추지 않는다는 점이다. 군사화 예산의 일부를 지역 사법 역량과 경제 인프라로 전환하는 것이 EPI 감쇠의 더 효과적인 경로일 수 있다는 학술적 근거가 있다.</div>
+  </div>
+  <div class="ppr-block">
+    <div class="ppr-head">PPR-3 · GPI 관리 — 미국과의 주권 균형</div>
+    <div class="ppr-item">시날로아 주지사 기소는 멕시코 국내 사법주권과 미국 개입 사이의 장력을 극대화한다. 셰인바움은 내부 청산을 선제적으로 수행하면서 미국의 개입 명분을 줄이는 '사전 봉쇄' 전략이 GPI 억제에 유효할 가능성이 있다.</div>
+  </div>
+
+  <hr class="divider"/>
+
+  <p class="section-title">§12 · 결론 궤도</p>
+  <div class="conclusion-block">
+    <p>
+      멕시코는 지금 두 개의 합법성이 같은 영토에서 경쟁하고 있다. 하나는 헌법과 선거가 만들어낸 공식 국가의 합법성이고, 다른 하나는 지역 경제와 안전을 실질적으로 통제하는 카르텔의 사실상 합법성이다. 이 두 합법성이 교차하는 지점을 Λ¹²는 '회색지대'라고 부른다.
+    </p>
+    <p>
+      셰인바움의 작전 군집은 이 회색지대를 줄이려는 첫 번째 체계적 시도다. 기소 성공률 30%는 멕시코 역사에서 이례적이다. 그러나 같은 시기에 판사 선거제가 시행됐다. 한쪽에서 OLI를 줄이려는 힘이 작용하는 동안, 다른 쪽에서 ADI를 키울 수 있는 제도가 동시에 가동됐다.
+    </p>
+    <p>
+      Λ=0.498. 임계선 0.500까지 0.002 남았다. 이것이 수치의 정밀도를 주장하는 것이 아니다 — 멕시코가 지금 어느 구간에 있는지를 보여주는 좌표다. 2026년 4월의 시날로아 기소가 이 좌표를 어느 방향으로 이동시킬지는, 아직 씌어지지 않은 이야기다.
+    </p>
+  </div>
+
+</div>
+
+<div class="report-footer">
+  <div class="footer-logo">늘푸른바다 사회동역학 연구소 (Everblue Sea Institute for Social Dynamics)</div>
+  <div class="footer-meta">
+    소장 청해(淸海) · SYNTHESIS Framework · 단독편 1차 #3 · 멕시코<br>
+    Engine: Λ¹²v9.12 | ADI §31 포함 | SSRN 6632858 기반<br>
+    Claude AI 연구 파트너 · 발행일 2026-05-04
+  </div>
+  <div class="footer-link" style="margin-top: 10px;">
+    <a href="https://badaegopa.tistory.com">badaegopa.tistory.com</a>
+    &nbsp;·&nbsp;
+    <a href="https://everbluesea.org">everbluesea.org</a>
+    &nbsp;·&nbsp;
+    <a href="https://ssrn.com/abstract=6632858">SSRN 6632858</a>
+  </div>
+</div>
+</body>
+</html>

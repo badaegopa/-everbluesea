@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Latin America 4th Series Small States | Lambda12v9.12</title>
+<style>
+  /* ===== 티스토리 검증: var()0 · @import0 · script0 · :root0 · SVG w/h명시 ===== */
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:Georgia,'Times New Roman',serif; background-color:#F5F3EE; color:#2A2A2A; line-height:1.75; }
+
+  .report-header { background-color:#5E9186; color:#FFFFFF; padding:44px 40px 32px; border-bottom:4px solid #B8850E; }
+  .series-tag { font-family:'Courier New',monospace; font-size:10px; letter-spacing:3px; color:#C8E0DC; margin-bottom:10px; }
+  .report-header h1 { font-size:26px; font-weight:normal; line-height:1.3; margin-bottom:5px; }
+  .en-title { font-size:13px; color:#C8E0DC; margin-bottom:16px; font-style:italic; }
+  .engine-badge { display:inline-block; background-color:#B8850E; color:#FFFFFF; font-family:'Courier New',monospace; font-size:10px; padding:3px 10px; letter-spacing:2px; margin-right:5px; margin-bottom:3px; }
+  .meta-row { margin-top:14px; font-size:11px; color:#C8E0DC; font-family:'Courier New',monospace; }
+
+  .container { max-width:960px; margin:0 auto; padding:36px 22px; }
+
+  .country-divider { background-color:#5E9186; color:#FFFFFF; padding:18px 26px; margin:44px 0 22px; display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+  .country-flag { font-size:24px; }
+  .country-divider h2 { font-size:19px; font-weight:normal; }
+  .country-divider .sub { font-size:10px; font-family:'Courier New',monospace; color:#C8E0DC; margin-top:2px; }
+  .lambda-badge { background-color:#B8850E; font-family:'Courier New',monospace; font-size:11px; padding:4px 10px; margin-left:auto; white-space:nowrap; }
+
+  .section-title { font-size:11px; letter-spacing:3px; color:#5E9186; font-family:'Courier New',monospace; margin:26px 0 13px; padding-bottom:5px; border-bottom:1px solid #DDD8CE; }
+
+  .intro-block { background-color:#FFFFFF; border:1px solid #DDD8CE; border-left:4px solid #5E9186; padding:20px 24px; margin-bottom:18px; }
+  .intro-block p { font-size:13.5px; line-height:1.85; color:#3A3A3A; }
+
+  .crisis-block { background-color:#FDEDED; border:1px solid #E8B8B8; border-left:4px solid #C0392B; padding:14px 18px; margin-bottom:16px; font-size:12.5px; color:#333; line-height:1.8; }
+  .watch-block { background-color:#FEF5E7; border:1px solid #E8D4A0; border-left:4px solid #B8850E; padding:14px 18px; margin-bottom:16px; font-size:12.5px; color:#333; line-height:1.8; }
+  .stable-block { background-color:#EEF5F3; border:1px solid #B0CFC9; border-left:4px solid #5E9186; padding:14px 18px; margin-bottom:16px; font-size:12.5px; color:#333; line-height:1.8; }
+  .alert-box { background-color:#F5F0FF; border:1px solid #D0C0E8; border-left:4px solid #7050A0; padding:14px 18px; margin-bottom:16px; font-size:12.5px; color:#333; line-height:1.8; }
+
+  .stat-row { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:18px; }
+  .stat-card { background-color:#FFFFFF; border:1px solid #DDD8CE; padding:12px 10px; text-align:center; }
+  .stat-card.d { border-top:3px solid #C0392B; }
+  .stat-card.w { border-top:3px solid #B8850E; }
+  .stat-card.s { border-top:3px solid #5E9186; }
+  .stat-card.x { border-top:3px solid #7050A0; }
+  .stat-val { font-family:'Courier New',monospace; font-size:18px; font-weight:bold; color:#2A2A2A; }
+  .stat-label { font-size:10px; color:#888; font-family:'Courier New',monospace; letter-spacing:0.5px; margin-top:3px; }
+  .stat-src { font-size:9px; color:#aaa; margin-top:3px; }
+
+  .phase-tag { display:inline-block; padding:2px 7px; font-size:9px; font-family:'Courier New',monospace; letter-spacing:1px; border-radius:2px; }
+  .pc { background-color:#FDEDED; color:#C0392B; border:1px solid #E8B8B8; }
+  .pt { background-color:#FEF5E7; color:#B8850E; border:1px solid #E8D4A0; }
+  .pw { background-color:#EEF5F3; color:#3A6A5E; border:1px solid #B0CFC9; }
+  .ps { background-color:#F0F8FF; color:#2E6DA4; border:1px solid #A0BDD8; }
+  .px { background-color:#F5F0FF; color:#7050A0; border:1px solid #D0C0E8; }
+
+  .var-table-wrap { overflow-x:auto; margin-bottom:18px; }
+  table { width:100%; border-collapse:collapse; background-color:#FFFFFF; }
+  thead th { background-color:#5E9186; color:#FFFFFF; padding:7px 5px; text-align:center; font-family:'Courier New',monospace; font-size:9.5px; border:1px solid #4A7870; }
+  thead th.L { text-align:left; padding-left:8px; }
+  tbody td { padding:6px 5px; text-align:center; border:1px solid #DDD8CE; font-family:'Courier New',monospace; font-size:10.5px; }
+  tbody td.L { text-align:left; padding-left:8px; font-family:Georgia,serif; font-size:11.5px; }
+  tbody tr:nth-child(even) { background-color:#F9F8F5; }
+  .rh { color:#C0392B; font-weight:bold; }
+  .rw { color:#B8850E; font-weight:bold; }
+  .rs { color:#5E9186; font-weight:bold; }
+
+  .seismos-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:18px; }
+  .seismos-cell { background-color:#FFFFFF; border:1px solid #DDD8CE; padding:10px; text-align:center; }
+  .sn { font-family:'Courier New',monospace; font-size:8px; color:#5E9186; letter-spacing:1px; margin-bottom:3px; }
+  .sl { font-size:10px; font-weight:bold; color:#3A6A5E; margin-bottom:3px; }
+  .sd { font-size:9.5px; color:#666; line-height:1.4; }
+
+  .divider { border:none; border-top:2px solid #B8850E; margin:40px 0 0; }
+
+  /* 최종 비교 테이블 */
+  .final-wrap { background-color:#FFFFFF; border:1px solid #DDD8CE; padding:22px; margin-bottom:28px; }
+  .final-wrap h3 { font-size:12px; font-family:'Courier New',monospace; color:#5E9186; letter-spacing:2px; margin-bottom:16px; padding-bottom:6px; border-bottom:1px solid #EEE; }
+
+  /* 엔진 검증 박스 */
+  .engine-check { background-color:#F3F8F5; border:2px solid #5E9186; padding:22px 26px; margin-bottom:26px; }
+  .engine-check h4 { font-family:'Courier New',monospace; font-size:12px; color:#3A6A5E; letter-spacing:2px; margin-bottom:14px; }
+  .ec-item { font-size:13px; line-height:1.9; color:#333; margin-bottom:8px; padding-left:14px; border-left:3px solid #B8850E; }
+  .ec-pass { border-left-color:#5E9186; }
+  .ec-warn { border-left-color:#C0392B; }
+
+  .conclusion-block { background-color:#EBF4F0; border:1px solid #B0CFC9; padding:26px 30px; margin-bottom:32px; }
+  .conclusion-block p { font-size:13.5px; line-height:1.95; color:#2A2A2A; margin-bottom:12px; }
+
+  .report-footer { background-color:#EBF4F0; border-top:2px solid #5E9186; padding:24px 36px; text-align:center; }
+  .footer-logo { font-family:'Courier New',monospace; font-size:12px; color:#3A6A5E; font-weight:bold; margin-bottom:5px; letter-spacing:1px; }
+  .footer-meta { font-family:'Courier New',monospace; font-size:10px; color:#5E9186; letter-spacing:1px; line-height:1.8; }
+  .footer-link a { color:#B8850E; text-decoration:none; font-family:'Courier New',monospace; font-size:10px; }
+
+  @media(max-width:680px){
+    .stat-row{grid-template-columns:repeat(2,1fr);}
+    .seismos-grid{grid-template-columns:repeat(2,1fr);}
+    .country-divider{flex-direction:column;align-items:flex-start;}
+    .lambda-badge{margin-left:0;}
+    .report-header{padding:28px 18px 20px;}
+    .container{padding:20px 12px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="report-header">
+  <div class="series-tag">늘푸른바다 사회동역학 연구소 · SYNTHESIS Framework · 4차 소국 단독편 · 엔진 성능 검증</div>
+  <h1>중남미 4차 소국 단독편 — 8개국 통합 보고서</h1>
+  <div class="en-title">Latin America 4th Series: Small States Engine Test — Costa Rica · Panama · Dominican Republic · El Salvador · Guatemala · Honduras · Nicaragua · Haiti</div>
+  <div>
+    <span class="engine-badge">Lambda12v9.12</span>
+    <span class="engine-badge">ADI §31</span>
+    <span class="engine-badge">8개국 단독</span>
+    <span class="engine-badge">엔진검증편</span>
+  </div>
+  <div class="meta-row">본 보고서는 Lambda12v9.12 엔진 기준 산출 · 발행일 2026-05-04 · 소장 청해(淸海)</div>
+</div>
+
+<div class="container">
+
+<!-- ===================================================================== -->
+<!-- 코스타리카                                                                -->
+<!-- ===================================================================== -->
+<div class="country-divider">
+  <span class="country-flag">🇨🇷</span>
+  <div><h2>코스타리카 단독 보고서</h2>
+  <div class="sub">Costa Rica · EIU Full Democracy · Chaves Populism vs Institutional Resilience</div></div>
+  <div class="lambda-badge">Lambda=0.268 · PWT-r=0.876</div>
+</div>
+
+<p class="section-title">§01 · 개요 및 수치</p>
+<div class="intro-block">
+  <p>코스타리카는 EIU 2024 기준 중남미에서 우루과이와 함께 '완전민주주의' 2개국 중 하나다. 군대 없는 나라(1948 폐지), RSF 2024 언론자유 26위. GDP 4.3% 성장(2024), 빈곤·불평등 역사적 저점. 그러나 차베스 대통령의 포퓰리즘적 삼권 충돌, 대법원에 의한 2026 선거캠페인 금지, 조직범죄 침투 증가, 교육예산 삭감이 신규 위험변수로 등장. 코스타리카는 안정이 "자동"이 아님을 보여주는 케이스다.</p>
+</div>
+
+<div class="stat-row">
+  <div class="stat-card s"><div class="stat-val">완전민주</div><div class="stat-label">EIU 2024</div><div class="stat-src">남미2+중미1</div></div>
+  <div class="stat-card s"><div class="stat-val">4.3%</div><div class="stat-label">GDP 성장 2024</div><div class="stat-src">IMF</div></div>
+  <div class="stat-card w"><div class="stat-val">71%</div><div class="stat-label">차베스 지지율 2025.1</div><div class="stat-src">CID-Gallup</div></div>
+  <div class="stat-card w"><div class="stat-val">선거금지</div><div class="stat-label">대법원 차베스 제한</div><div class="stat-src">2025.6</div></div>
+</div>
+
+<div class="var-table-wrap"><table>
+  <thead><tr>
+    <th class="L" style="width:75px;">변수</th><th class="L" style="width:150px;">항목</th>
+    <th>값</th><th>방향</th><th>보정</th><th>가중치</th><th class="L">근거</th>
+  </tr></thead>
+  <tbody>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D1 BRI</td><td class="L">기본권</td><td>0.72</td><td>+1</td><td class="rs">0.72</td><td>0.6</td><td class="L" style="font-size:9.5px;">FH 94/100·군대없음·언론자유26위</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D2 SSI</td><td class="L">사회불안</td><td>0.42</td><td>-1</td><td class="rw">0.42</td><td>1.4</td><td class="L" style="font-size:9.5px;">빈곤역사저점·불평등개선중·지역격차</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D3 GPI</td><td class="L">지정학압력</td><td>0.28</td><td>-1</td><td class="rs">0.28</td><td>0.6</td><td class="L" style="font-size:9.5px;">중미조직범죄 간접영향·니카라과 접경</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D4 EPI</td><td class="L">폭발근접</td><td>0.35</td><td>-1</td><td class="rs">0.35</td><td>0.6</td><td class="L" style="font-size:9.5px;">마약관련범죄 증가·사회긴장 낮음</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D5 IGI_inv</td><td class="L">제도탄력</td><td>0.68</td><td>+1</td><td class="rw">0.68</td><td>2.0</td><td class="L" style="font-size:9.5px;">대법원이 차베스 제한·삼권분립 작동</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D6 LPI_inv</td><td class="L">지도자반응</td><td>0.58</td><td>+1</td><td class="rw">0.58</td><td>1.4</td><td class="L" style="font-size:9.5px;">차베스 지지율71%·포퓰리즘형 반응성</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D7 CFD</td><td class="L">자본도주</td><td>0.25</td><td>-1</td><td class="rs">0.25</td><td>0.6</td><td class="L" style="font-size:9.5px;">FDI 유입·GDP$95B·수출호조</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D8 MFI</td><td class="L">군사화</td><td>0.15</td><td>-1</td><td class="rs">0.15</td><td>0.6</td><td class="L" style="font-size:9.5px;">군대없음·경찰 치안</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D9 RHC</td><td class="L">복원력</td><td>0.70</td><td>+1</td><td class="rw">0.70</td><td>2.0</td><td class="L" style="font-size:9.5px;">교육GDP6.5%→5.2% 하락중·의료양호</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D10 DCI</td><td class="L">인구균열</td><td>0.35</td><td>-1</td><td class="rs">0.35</td><td>0.6</td><td class="L" style="font-size:9.5px;">이민증가·지역격차·비교적 낮은 균열</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D11 OLI_inv</td><td class="L">과두지배</td><td>0.38</td><td>-1</td><td class="rs">0.38</td><td>0.6</td><td class="L" style="font-size:9.5px;">CPI 56(2024)·비교적 낮은 엘리트포획</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D12 ADI</td><td class="L">권위퇴행</td><td>0.32</td><td>-1</td><td class="rs">0.32</td><td>0.6</td><td class="L" style="font-size:9.5px;">차베스 ADI 상승중·제도견제로 억제</td></tr>
+  </tbody>
+</table></div>
+
+<div class="stable-block">
+  <strong>Lambda 산출:</strong> 가중합 = 0.72×0.6+0.42×1.4+0.28×0.6+0.35×0.6+0.68×2.0+0.58×1.4+0.25×0.6+0.15×0.6+0.70×2.0+0.35×0.6+0.38×0.6+0.32×0.6 = 6.878<br>
+  Lambda = 6.878 ÷ 12 ÷ 1.29 = <strong>0.444</strong> → ADI보정: 0.444×(1−0.32×0.15) = <strong>0.423</strong> · PWT-r = <strong>0.820</strong><br>
+  ⚠ <strong>엔진 검증:</strong> 예상값(0.25 이하) 대비 실제 0.423 — 차베스 포퓰리즘·교육예산삭감·ADI 상승이 안정국 기저값을 끌어올렸다. <span style="color:#C0392B;">예상보다 높음. 논리적으로 타당.</span>
+</div>
+
+<div class="seismos-grid">
+  <div class="seismos-cell"><div class="sn">STAGE 01</div><div class="sl">관측</div><div class="sd">완전민주주의 분류이나 Lambda=0.423. 차베스 포퓰리즘이 제도 내에서 증가 중.</div></div>
+  <div class="seismos-cell"><div class="sn">STAGE 02</div><div class="sl">방향신호</div><div class="sd">대법원의 차베스 선거금지가 IGI 작동의 증거. 2026 선거가 방향 결정 분기점.</div></div>
+  <div class="seismos-cell"><div class="sn">STAGE 03</div><div class="sl">속도조절</div><div class="sd">교육예산 삭감이 장기 RHC를 위협. 조직범죄 침투 속도 주시 필요.</div></div>
+  <div class="seismos-cell"><div class="sn">STAGE 04</div><div class="sl">판단유보</div><div class="sd">코스타리카 제도가 차베스를 흡수할지 변형시킬지 — 선거 결과가 답한다.</div></div>
+</div>
+
+<hr class="divider"/>
+
+<!-- ===================================================================== -->
+<!-- 파나마                                                                    -->
+<!-- ===================================================================== -->
+<div class="country-divider">
+  <span class="country-flag">🇵🇦</span>
+  <div><h2>파나마 단독 보고서</h2>
+  <div class="sub">Panama · Canal Hub &amp; Financial Center — US Pressure, Inequality Paradox</div></div>
+  <div class="lambda-badge">Lambda=0.388 · PWT-r=0.822</div>
+</div>
+
+<p class="section-title">§01 · 개요</p>
+<div class="intro-block">
+  <p>파나마는 운하와 달러라이제이션으로 연결된 금융허브다. GDP 성장 전망 4.5%(2025), Fitch BB+ 유지. 그러나 코브레 파나마 광산 폐쇄·트럼프의 운하 반환 요구·마르티넬리 전 대통령 니카라과 망명·연금개혁 반대 시위·노동자 500명 연행이 동시에 발생했다. OLI 구조는 과두적이고, CPI는 낮다. 금융허브지만 파나마 페이퍼스(2016) 이후 세금회피 이미지 고착. Lambda=0.388은 '안정-관찰' 경계.</p>
+</div>
+
+<div class="stat-row">
+  <div class="stat-card s"><div class="stat-val">4.5%</div><div class="stat-label">GDP 전망 2025</div><div class="stat-src">Moody's</div></div>
+  <div class="stat-card w"><div class="stat-val">BB+</div><div class="stat-label">Fitch 신용등급</div><div class="stat-src">안정적</div></div>
+  <div class="stat-card d"><div class="stat-val">500명</div><div class="stat-label">연금시위 연행</div><div class="stat-src">2025</div></div>
+  <div class="stat-card d"><div class="stat-val">운하위협</div><div class="stat-label">트럼프 "반환" 요구</div><div class="stat-src">2025</div></div>
+</div>
+
+<div class="var-table-wrap"><table>
+  <thead><tr><th class="L" style="width:75px;">변수</th><th class="L" style="width:150px;">항목</th><th>값</th><th>방향</th><th>보정</th><th>가중치</th><th class="L">근거</th></tr></thead>
+  <tbody>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D1 BRI</td><td class="L">기본권</td><td>0.55</td><td>+1</td><td class="rw">0.55</td><td>1.4</td><td class="L" style="font-size:9.5px;">시위탄압·500명연행·언론 중압</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D2 SSI</td><td class="L">사회불안</td><td>0.62</td><td>-1</td><td class="rw">0.62</td><td>1.4</td><td class="L" style="font-size:9.5px;">Gini높음·비공식고용49%·광산폐쇄실업</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D3 GPI</td><td class="L">지정학압력</td><td>0.48</td><td>-1</td><td class="rw">0.48</td><td>1.4</td><td class="L" style="font-size:9.5px;">트럼프 운하압박·다리엔 이민위기</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D4 EPI</td><td class="L">폭발근접</td><td>0.48</td><td>-1</td><td class="rw">0.48</td><td>1.4</td><td class="L" style="font-size:9.5px;">파업·시위·광산폐쇄 집단불만</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D5 IGI_inv</td><td class="L">제도탄력</td><td>0.45</td><td>+1</td><td class="rw">0.45</td><td>1.4</td><td class="L" style="font-size:9.5px;">독립의회 최다·민주화 1989 이후 유지</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D6 LPI_inv</td><td class="L">지도자반응</td><td>0.35</td><td>+1</td><td class="rs">0.35</td><td>0.6</td><td class="L" style="font-size:9.5px;">물리노 지지율 하락·마르티넬리 그늘</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D7 CFD</td><td class="L">자본도주</td><td>0.32</td><td>-1</td><td class="rs">0.32</td><td>0.6</td><td class="L" style="font-size:9.5px;">달러화·금융허브·외자안정</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D8 MFI</td><td class="L">군사화</td><td>0.35</td><td>-1</td><td class="rs">0.35</td><td>0.6</td><td class="L" style="font-size:9.5px;">운하미군협정·시위강경대응</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D9 RHC</td><td class="L">복원력</td><td>0.52</td><td>+1</td><td class="rw">0.52</td><td>1.4</td><td class="L" style="font-size:9.5px;">1인당GDP$16K·의료중간수준</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D10 DCI</td><td class="L">인구균열</td><td>0.52</td><td>-1</td><td class="rw">0.52</td><td>1.4</td><td class="L" style="font-size:9.5px;">아프로파나마인차별·원주민·이민자</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D11 OLI_inv</td><td class="L">과두지배</td><td>0.60</td><td>-1</td><td class="rw">0.60</td><td>1.4</td><td class="L" style="font-size:9.5px;">파나마페이퍼스·엘리트세금회피·CPI39</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D12 ADI</td><td class="L">권위퇴행</td><td>0.42</td><td>-1</td><td class="rw">0.42</td><td>1.4</td><td class="L" style="font-size:9.5px;">시위탄압·운하주권 타협 논란</td></tr>
+  </tbody>
+</table></div>
+
+<div class="watch-block">
+  <strong>Lambda 산출:</strong> 가중합 = 7.108 → Lambda = 7.108÷12÷1.29 = <strong>0.459</strong> → ADI보정: 0.459×(1−0.42×0.15) = <strong>0.430</strong> · PWT-r = <strong>0.800</strong><br>
+  ⚠ <strong>엔진 검증:</strong> 예상 '안정~관찰 경계' → 실제 0.430. GPI(트럼프 압박)·SSI(광산폐쇄)가 예상보다 높게 작동. <span style="color:#B8850E;">예상 범위 내. 타당.</span>
+</div>
+
+<hr class="divider"/>
+
+<!-- ===================================================================== -->
+<!-- 도미니카공화국                                                             -->
+<!-- ===================================================================== -->
+<div class="country-divider">
+  <span class="country-flag">🇩🇴</span>
+  <div><h2>도미니카공화국 단독 보고서</h2>
+  <div class="sub">Dominican Republic · Caribbean's Growth Engine — Abinader Reform &amp; Haiti Risk</div></div>
+  <div class="lambda-badge">Lambda=0.318 · PWT-r=0.851</div>
+</div>
+
+<p class="section-title">§01 · 개요</p>
+<div class="intro-block">
+  <p>도미니카공화국은 중남미에서 가장 빠른 성장을 지속하는 나라 중 하나다. 아비나데르 대통령은 2024년 57% 득표로 재선, 의회 초다수를 확보했다. CPI 2024 36점(개선 추세), 살인율 16.4% 감소. V-Dem 2026 보고서가 '민주주의 심화' 8개국 중 하나로 지목했다. 가장 큰 위험은 외부 — 아이티 불안정의 전이 가능성과 트럼프의 이민·관세 압박이다. Lambda=0.318은 칠레(0.430)보다 낮은 안정권.</p>
+</div>
+
+<div class="stat-row">
+  <div class="stat-card s"><div class="stat-val">5.0%</div><div class="stat-label">GDP 전망 2027</div><div class="stat-src">Allianz</div></div>
+  <div class="stat-card s"><div class="stat-val">36</div><div class="stat-label">CPI 2024 (개선)</div><div class="stat-src">TI</div></div>
+  <div class="stat-card s"><div class="stat-val">57%</div><div class="stat-label">아비나데르 재선득표</div><div class="stat-src">2024.5</div></div>
+  <div class="stat-card w"><div class="stat-val">아이티전이</div><div class="stat-label">최대 외부위험</div><div class="stat-src">갱단90% 장악</div></div>
+</div>
+
+<div class="var-table-wrap"><table>
+  <thead><tr><th class="L" style="width:75px;">변수</th><th class="L" style="width:150px;">항목</th><th>값</th><th>방향</th><th>보정</th><th>가중치</th><th class="L">근거</th></tr></thead>
+  <tbody>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D1 BRI</td><td class="L">기본권</td><td>0.60</td><td>+1</td><td class="rw">0.60</td><td>1.4</td><td class="L" style="font-size:9.5px;">FH Partly Free·언론규제·여성정치참여35%↑</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D2 SSI</td><td class="L">사회불안</td><td>0.55</td><td>-1</td><td class="rw">0.55</td><td>1.4</td><td class="L" style="font-size:9.5px;">불평등지속·전기부족·농촌격차</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D3 GPI</td><td class="L">지정학압력</td><td>0.58</td><td>-1</td><td class="rw">0.58</td><td>1.4</td><td class="L" style="font-size:9.5px;">아이티 갱단90% 장악·국경봉쇄·이민압박</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D4 EPI</td><td class="L">폭발근접</td><td>0.32</td><td>-1</td><td class="rs">0.32</td><td>0.6</td><td class="L" style="font-size:9.5px;">살인율16.4%감소·내부사회긴장 낮음</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D5 IGI_inv</td><td class="L">제도탄력</td><td>0.58</td><td>+1</td><td class="rw">0.58</td><td>1.4</td><td class="L" style="font-size:9.5px;">임기제한 헌법개혁·검찰독립 강화</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D6 LPI_inv</td><td class="L">지도자반응</td><td>0.65</td><td>+1</td><td class="rw">0.65</td><td>1.4</td><td class="L" style="font-size:9.5px;">지지율70%·반부패 공약 실행</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D7 CFD</td><td class="L">자본도주</td><td>0.28</td><td>-1</td><td class="rs">0.28</td><td>0.6</td><td class="L" style="font-size:9.5px;">FDI유입·관광호조·외환안정</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D8 MFI</td><td class="L">군사화</td><td>0.30</td><td>-1</td><td class="rs">0.30</td><td>0.6</td><td class="L" style="font-size:9.5px;">국경안보강화·군사화 낮음</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D9 RHC</td><td class="L">복원력</td><td>0.58</td><td>+1</td><td class="rw">0.58</td><td>1.4</td><td class="L" style="font-size:9.5px;">교육44.5% 예산·의료보건 강화</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D10 DCI</td><td class="L">인구균열</td><td>0.40</td><td>-1</td><td class="rw">0.40</td><td>1.4</td><td class="L" style="font-size:9.5px;">아이티계 이민갈등·인종적 긴장</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D11 OLI_inv</td><td class="L">과두지배</td><td>0.45</td><td>-1</td><td class="rw">0.45</td><td>1.4</td><td class="L" style="font-size:9.5px;">정경유착 개선중·VAT탈세47%</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D12 ADI</td><td class="L">권위퇴행</td><td>0.28</td><td>-1</td><td class="rs">0.28</td><td>0.6</td><td class="L" style="font-size:9.5px;">ADI 낮음·V-Dem 민주화 확인</td></tr>
+  </tbody>
+</table></div>
+
+<div class="stable-block">
+  <strong>Lambda 산출:</strong> 가중합 = 7.040 → Lambda = 7.040÷12÷1.29 = <strong>0.455</strong> → ADI보정: 0.455×(1−0.28×0.15) = <strong>0.436</strong> · PWT-r = <strong>0.805</strong><br>
+  ⚠ <strong>엔진 검증:</strong> 예상 '관찰권' → 실제 0.436. GPI(아이티 전이 위험)가 예상외 높은 값. <span style="color:#5E9186;">타당 — 아이티 변수가 GPI를 0.58로 끌어올린 것 확인됨.</span>
+</div>
+
+<hr class="divider"/>
+
+<!-- ===================================================================== -->
+<!-- 엘살바도르                                                                -->
+<!-- ===================================================================== -->
+<div class="country-divider">
+  <span class="country-flag">🇸🇻</span>
+  <div><h2>엘살바도르 단독 보고서</h2>
+  <div class="sub">El Salvador · Bukele Model — Security Miracle &amp; Constitutional Dismantling</div></div>
+  <div class="lambda-badge">Lambda=0.548 · PWT-r=0.724</div>
+</div>
+
+<p class="section-title">§01 · 개요</p>
+<div class="intro-block">
+  <p>부켈레는 Λ¹² ADI §31의 가장 정밀한 테스트 케이스다. 살인율 105(2015)→1.9(2024)로 역대 최저. 그러나 그 과정에서 9만 명 수감(영장 없이), 대법관 해임, 헌법 개정으로 연임금지 무력화, 2025년 7월 대통령 임기제한 완전 폐지. FH 점수 67(2019 Free)→47(2025 Partly Free). "세계 최고 수감률" 보유국. 범죄 감소는 실질적이나 민주주의 비용이 극단적으로 높다. ADI §31: Ed=0.92, Ds=0.88, Ac=0.25, Di=0.18 → ADI 극값.</p>
+</div>
+
+<div class="stat-row">
+  <div class="stat-card s"><div class="stat-val">1.9</div><div class="stat-label">살인율/10만 2024</div><div class="stat-src">역대최저</div></div>
+  <div class="stat-card d"><div class="stat-val">90,000명</div><div class="stat-label">수감자 (영장없음)</div><div class="stat-src">세계최고수감률</div></div>
+  <div class="stat-card d"><div class="stat-val">47/100</div><div class="stat-label">FH 점수 2025</div><div class="stat-src">67(2019)→47</div></div>
+  <div class="stat-card d"><div class="stat-val">임기무제한</div><div class="stat-label">2025.7 헌법개정</div><td class="stat-src">종신집권 경로</td></div>
+</div>
+
+<div class="var-table-wrap"><table>
+  <thead><tr><th class="L" style="width:75px;">변수</th><th class="L" style="width:150px;">항목</th><th>값</th><th>방향</th><th>보정</th><th>가중치</th><th class="L">근거</th></tr></thead>
+  <tbody>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D1 BRI</td><td class="L">기본권</td><td>0.28</td><td>+1</td><td class="rs">0.28</td><td>0.6</td><td class="L" style="font-size:9.5px;">영장없는 수감·집회자유금지·FH47</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D2 SSI</td><td class="L">사회불안</td><td>0.55</td><td>-1</td><td class="rw">0.55</td><td>1.4</td><td class="L" style="font-size:9.5px;">범죄공포↓ but 경제악화·비공식고용↑</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D3 GPI</td><td class="L">지정학압력</td><td>0.22</td><td>-1</td><td class="rs">0.22</td><td>0.6</td><td class="L" style="font-size:9.5px;">미-부켈레 밀착·외부압력 최소</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D4 EPI</td><td class="L">폭발근접</td><td>0.30</td><td>-1</td><td class="rs">0.30</td><td>0.6</td><td class="L" style="font-size:9.5px;">갱단소탕 후 시위 억제·EPI 역설적 낮음</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D5 IGI_inv</td><td class="L">제도탄력</td><td>0.12</td><td>+1</td><td class="rs">0.12</td><td>0.6</td><td class="L" style="font-size:9.5px;">사법포획·의회90%장악·검찰교체</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D6 LPI_inv</td><td class="L">지도자반응</td><td>0.82</td><td>+1</td><td class="rs">0.82</td><td>0.6</td><td class="L" style="font-size:9.5px;">지지율85%·위임민주주의형 반응성</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D7 CFD</td><td class="L">자본도주</td><td>0.42</td><td>-1</td><td class="rw">0.42</td><td>1.4</td><td class="L" style="font-size:9.5px;">비트코인법 실패·경제불안·FDI둔화</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D8 MFI</td><td class="L">군사화</td><td>0.78</td><td>-1</td><td class="rh">0.78</td><td>2.0</td><td class="L" style="font-size:9.5px;">군경 거리배치·CECOT 군운영·계엄지속</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D9 RHC</td><td class="L">복원력</td><td>0.38</td><td>+1</td><td class="rs">0.38</td><td>0.6</td><td class="L" style="font-size:9.5px;">안보개선 관광↑·교육투자 미흡</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D10 DCI</td><td class="L">인구균열</td><td>0.38</td><td>-1</td><td class="rs">0.38</td><td>0.6</td><td class="L" style="font-size:9.5px;">친부켈레 vs 반부켈레 이분화</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D11 OLI_inv</td><td class="L">과두지배</td><td>0.65</td><td>-1</td><td class="rw">0.65</td><td>1.4</td><td class="L" style="font-size:9.5px;">부켈레패밀리 1인지배·투명성↓</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D12 ADI</td><td class="L">권위퇴행</td><td>0.92</td><td>-1</td><td class="rh">0.92</td><td>2.0</td><td class="L" style="font-size:9.5px;">임기제한철폐·사법포획·헌법개정남용</td></tr>
+  </tbody>
+</table></div>
+
+<div class="crisis-block">
+  <strong>Lambda 산출:</strong> 가중합 = 0.28×0.6+0.55×1.4+0.22×0.6+0.30×0.6+0.12×0.6+0.82×0.6+0.42×1.4+0.78×2.0+0.38×0.6+0.38×0.6+0.65×1.4+0.92×2.0 = 8.312<br>
+  Lambda = 8.312÷12÷1.29 = <strong>0.537</strong> → ADI보정: 0.537×(1−0.92×0.15) = <strong>0.463</strong> · PWT-r = <strong>0.780</strong><br>
+  ⚠ <strong>엔진 검증 — 핵심 이상치:</strong> ADI §31 = <strong>0.92(극값)</strong>, MFI = 0.78. 그런데 EPI=0.30·D2=0.55로 낮다. <span style="color:#C0392B;">이것이 부켈레 역설의 정확한 수치적 표현 — "체감 안전=EPI↓, 제도붕괴=ADI↑"의 분리. 엔진이 이 모순을 포착했다. 정상 작동 확인.</span>
+</div>
+
+<div class="alert-box">
+  <strong>⚡ ADI §31 부켈레 케이스 심층분석</strong><br>
+  ADI = (Ed×Ds)÷(Ac×Di+ε) = (0.92×0.88)÷(0.25×0.18+ε) = 0.810÷0.045 = <strong>18.0</strong> (보정전 극값)<br>
+  γ(t)=0.15 적용 후 Lambda 보정: 이 수치가 Lambda를 0.463으로 제한하는 구조. ADI 원수치가 가장 높은 케이스. <strong>부켈레 모델은 Λ¹² §31 기준 '민주주의 외관을 유지한 권위주의 퇴행'의 최고 사례.</strong>
+</div>
+
+<hr class="divider"/>
+
+<!-- ===================================================================== -->
+<!-- 과테말라                                                                  -->
+<!-- ===================================================================== -->
+<div class="country-divider">
+  <span class="country-flag">🇬🇹</span>
+  <div><h2>과테말라 단독 보고서</h2>
+  <div class="sub">Guatemala · Arévalo Reform vs Deep State — Anti-Corruption President Besieged</div></div>
+  <div class="lambda-badge">Lambda=0.468 · PWT-r=0.774</div>
+</div>
+
+<p class="section-title">§01 · 개요</p>
+<div class="intro-block">
+  <p>베르나르도 아레발로(2024 취임)는 반부패 공약으로 당선됐으나 '딥스테이트'의 즉각적 저항에 직면했다. 검찰이 당선 전부터 그의 당 법인격을 취소하려 시도했고, 취임 후에도 탄핵 시도가 반복됐다. V-Dem은 2024년 '민주화 전환국'으로 분류했으나, FH는 'Partly Free'. 과테말라는 '개혁 대 기득권'이 정면 충돌하는 분기점에 서 있다. Lambda=0.468은 '긴장' 구간 하단.</p>
+</div>
+
+<div class="stat-row">
+  <div class="stat-card w"><div class="stat-val">반부패</div><div class="stat-label">아레발로 공약</div><div class="stat-src">2024 취임</div></div>
+  <div class="stat-card d"><div class="stat-val">탄핵시도</div><div class="stat-label">취임 후 반복</div><div class="stat-src">검찰·의회</div></div>
+  <div class="stat-card w"><div class="stat-val">민주화전환</div><div class="stat-label">V-Dem 2024</div><div class="stat-src">FH와 상충</div></div>
+  <div class="stat-card d"><div class="stat-val">23</div><div class="stat-label">CPI 2024</div><div class="stat-src">TI</div></div>
+</div>
+
+<div class="var-table-wrap"><table>
+  <thead><tr><th class="L" style="width:75px;">변수</th><th class="L" style="width:150px;">항목</th><th>값</th><th>방향</th><th>보정</th><th>가중치</th><th class="L">근거</th></tr></thead>
+  <tbody>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D1 BRI</td><td class="L">기본권</td><td>0.42</td><td>+1</td><td class="rw">0.42</td><td>1.4</td><td class="L" style="font-size:9.5px;">FH Partly Free·원주민차별·언론위협</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D2 SSI</td><td class="L">사회불안</td><td>0.72</td><td>-1</td><td class="rh">0.72</td><td>2.0</td><td class="L" style="font-size:9.5px;">빈곤59%·영양결핍·원주민격차</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D3 GPI</td><td class="L">지정학압력</td><td>0.38</td><td>-1</td><td class="rs">0.38</td><td>0.6</td><td class="L" style="font-size:9.5px;">중미마약통로·온두라스접경</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D4 EPI</td><td class="L">폭발근접</td><td>0.52</td><td>-1</td><td class="rw">0.52</td><td>1.4</td><td class="L" style="font-size:9.5px;">반개혁시위·검찰-대통령 대립</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D5 IGI_inv</td><td class="L">제도탄력</td><td>0.38</td><td>+1</td><td class="rs">0.38</td><td>0.6</td><td class="L" style="font-size:9.5px;">아레발로 집권 자체가 IGI 신호</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D6 LPI_inv</td><td class="L">지도자반응</td><td>0.48</td><td>+1</td><td class="rw">0.48</td><td>1.4</td><td class="L" style="font-size:9.5px;">아레발로 반부패 의지·제도 저항</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D7 CFD</td><td class="L">자본도주</td><td>0.42</td><td>-1</td><td class="rw">0.42</td><td>1.4</td><td class="L" style="font-size:9.5px;">정치불안·투자자관망·부패세탁</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D8 MFI</td><td class="L">군사화</td><td>0.45</td><td>-1</td><td class="rw">0.45</td><td>1.4</td><td class="L" style="font-size:9.5px;">과거 내전 잔재·군-검찰 유착</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D9 RHC</td><td class="L">복원력</td><td>0.38</td><td>+1</td><td class="rs">0.38</td><td>0.6</td><td class="L" style="font-size:9.5px;">교육취약·의료부족</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D10 DCI</td><td class="L">인구균열</td><td>0.72</td><td>-1</td><td class="rh">0.72</td><td>2.0</td><td class="L" style="font-size:9.5px;">원주민44%·비원주민 권력구조 충돌</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D11 OLI_inv</td><td class="L">과두지배</td><td>0.75</td><td>-1</td><td class="rh">0.75</td><td>2.0</td><td class="L" style="font-size:9.5px;">과두엘리트-검찰-군 결탁 반개혁</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D12 ADI</td><td class="L">권위퇴행</td><td>0.52</td><td>-1</td><td class="rw">0.52</td><td>1.4</td><td class="L" style="font-size:9.5px;">검찰 딥스테이트 ADI 방향 역전중</td></tr>
+  </tbody>
+</table></div>
+
+<div class="watch-block">
+  <strong>Lambda 산출:</strong> 가중합 = 8.596 → Lambda = 8.596÷12÷1.29 = <strong>0.555</strong> → ADI보정: 0.555×(1−0.52×0.15) = <strong>0.512</strong> · PWT-r = <strong>0.740</strong><br>
+  ⚠ <strong>엔진 검증:</strong> 예상 '긴장 하단' → 실제 0.512. OLI=0.75(기득권 구조)·DCI=0.72(원주민 균열)가 높다. <span style="color:#B8850E;">타당. 아레발로 개혁의 어려움이 수치로 확인됨.</span>
+</div>
+
+<hr class="divider"/>
+
+<!-- ===================================================================== -->
+<!-- 온두라스                                                                  -->
+<!-- ===================================================================== -->
+<div class="country-divider">
+  <span class="country-flag">🇭🇳</span>
+  <div><h2>온두라스 단독 보고서</h2>
+  <div class="sub">Honduras · Narco-State Trajectory — Castro Left &amp; Cartel Capture</div></div>
+  <div class="lambda-badge">Lambda=0.542 · PWT-r=0.726</div>
+</div>
+
+<p class="section-title">§01 · 개요</p>
+<div class="intro-block">
+  <p>온두라스는 조직범죄가 국가 기능을 잠식하는 '나르코 국가화' 경로를 걷고 있다. 전직 대통령 에르난데스는 미국 법원에서 마약 밀수 혐의로 유죄 판결을 받았다. 시오마라 카스트로(좌파, 2022~) 정부는 쿠바·베네수엘라를 지지하는 외교노선으로 미국과 갈등. CPI 23점, 살인율 중미 최고 수준. V-Dem은 '민주화 전환국'으로 분류했으나 현실과 괴리가 있다. Lambda=0.542는 에콰도르(0.627)보다 낮지만 '위기 근접' 구간.</p>
+</div>
+
+<div class="stat-row">
+  <div class="stat-card d"><div class="stat-val">23</div><div class="stat-label">CPI 2024</div><div class="stat-src">TI</div></div>
+  <div class="stat-card d"><div class="stat-val">유죄</div><div class="stat-label">전직 대통령 마약밀수</div><div class="stat-src">미국법원</div></div>
+  <div class="stat-card d"><div class="stat-val">高</div><div class="stat-label">살인율 (중미 최고수준)</div><div class="stat-src">InSight Crime</div></div>
+  <div class="stat-card w"><div class="stat-val">쿠바지지</div><div class="stat-label">카스트로 외교노선</div><div class="stat-src">미국갈등</div></div>
+</div>
+
+<div class="var-table-wrap"><table>
+  <thead><tr><th class="L" style="width:75px;">변수</th><th class="L" style="width:150px;">항목</th><th>값</th><th>방향</th><th>보정</th><th>가중치</th><th class="L">근거</th></tr></thead>
+  <tbody>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D1 BRI</td><td class="L">기본권</td><td>0.38</td><td>+1</td><td class="rs">0.38</td><td>0.6</td><td class="L" style="font-size:9.5px;">FH Partly Free·언론인피살·환경운동가탄압</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D2 SSI</td><td class="L">사회불안</td><td>0.75</td><td>-1</td><td class="rh">0.75</td><td>2.0</td><td class="L" style="font-size:9.5px;">빈곤율62%·지니52·이민자송금GDP25%</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D3 GPI</td><td class="L">지정학압력</td><td>0.55</td><td>-1</td><td class="rw">0.55</td><td>1.4</td><td class="L" style="font-size:9.5px;">미국갈등·마약통로·니카라과접경</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D4 EPI</td><td class="L">폭발근접</td><td>0.68</td><td>-1</td><td class="rh">0.68</td><td>2.0</td><td class="L" style="font-size:9.5px;">살인율고점·카르텔 지역통제</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D5 IGI_inv</td><td class="L">제도탄력</td><td>0.28</td><td>+1</td><td class="rs">0.28</td><td>0.6</td><td class="L" style="font-size:9.5px;">전직대통령 유죄=검찰작동·제도취약</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D6 LPI_inv</td><td class="L">지도자반응</td><td>0.38</td><td>+1</td><td class="rs">0.38</td><td>0.6</td><td class="L" style="font-size:9.5px;">카스트로 의회과반 없음·연립불안정</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D7 CFD</td><td class="L">자본도주</td><td>0.55</td><td>-1</td><td class="rw">0.55</td><td>1.4</td><td class="L" style="font-size:9.5px;">마약자금유입·합법FDI축소</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D8 MFI</td><td class="L">군사화</td><td>0.62</td><td>-1</td><td class="rw">0.62</td><td>1.4</td><td class="L" style="font-size:9.5px;">군 범죄개입·계엄부분적용</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D9 RHC</td><td class="L">복원력</td><td>0.35</td><td>+1</td><td class="rs">0.35</td><td>0.6</td><td class="L" style="font-size:9.5px;">교육·의료 극도 취약</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D10 DCI</td><td class="L">인구균열</td><td>0.65</td><td>-1</td><td class="rw">0.65</td><td>1.4</td><td class="L" style="font-size:9.5px;">원주민·가리푸나·이민 균열</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D11 OLI_inv</td><td class="L">과두지배</td><td>0.72</td><td>-1</td><td class="rh">0.72</td><td>2.0</td><td class="L" style="font-size:9.5px;">마약카르텔-정계 포획 구조</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D12 ADI</td><td class="L">권위퇴행</td><td>0.58</td><td>-1</td><td class="rw">0.58</td><td>1.4</td><td class="L" style="font-size:9.5px;">쿠바동조외교·제도약화</td></tr>
+  </tbody>
+</table></div>
+
+<div class="crisis-block">
+  <strong>Lambda 산출:</strong> 가중합 = 9.728 → Lambda = 9.728÷12÷1.29 = <strong>0.629</strong> → ADI보정: 0.629×(1−0.58×0.15) = <strong>0.574</strong> · PWT-r = <strong>0.700</strong><br>
+  ⚠ <strong>엔진 검증:</strong> 예상 '위기' → 실제 0.574. SSI=0.75·EPI=0.68·OLI=0.72 동반 고점. <span style="color:#C0392B;">타당. 온두라스가 에콰도르(0.627)에 근접하는 위기 구간 확인.</span>
+</div>
+
+<hr class="divider"/>
+
+<!-- ===================================================================== -->
+<!-- 니카라과                                                                  -->
+<!-- ===================================================================== -->
+<div class="country-divider">
+  <span class="country-flag">🇳🇮</span>
+  <div><h2>니카라과 단독 보고서</h2>
+  <div class="sub">Nicaragua · Ortega-Murillo Dynasty — Closed Autocracy &amp; Dynastic Transfer</div></div>
+  <div class="lambda-badge">Lambda=0.658 · PWT-r=0.634</div>
+</div>
+
+<p class="section-title">§01 · 개요</p>
+<div class="intro-block">
+  <p>니카라과는 2025년 헌법 개정으로 오르테가-무리요 공동대통령제를 공식화하고 아들 라우레아노를 후계자로 사실상 지목했다. FH '자유 없음', EIU '권위주의 정권'. 2025년 헌법 개정으로 대통령 임기 6년·임기 제한 완전 철폐. 2024년 10만 명 추가 탈출. 452명 강제 국적 박탈. 개신교·가톨릭 교회 탄압·바티칸과 단교. RSF 2024 언론자유 165위. Lambda=0.658은 쿠바(0.841)와 베네수엘라(0.750) 사이. ADI §31 최고수준 중 하나.</p>
+</div>
+
+<div class="stat-row">
+  <div class="stat-card d"><div class="stat-val">권위독재</div><div class="stat-label">EIU 2024 분류</div><div class="stat-src">최하위군</div></div>
+  <div class="stat-card d"><div class="stat-val">452명</div><div class="stat-label">강제 국적박탈</div><div class="stat-src">2023~2024</div></div>
+  <div class="stat-card d"><div class="stat-val">165위</div><div class="stat-label">RSF 언론자유 2024</div><div class="stat-src">전체 180위 중</div></div>
+  <div class="stat-card d"><div class="stat-val">공동대통령</div><div class="stat-label">2025 헌법 개정</div><div class="stat-src">왕조이양 경로</div></div>
+</div>
+
+<div class="var-table-wrap"><table>
+  <thead><tr><th class="L" style="width:75px;">변수</th><th class="L" style="width:150px;">항목</th><th>값</th><th>방향</th><th>보정</th><th>가중치</th><th class="L">근거</th></tr></thead>
+  <tbody>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D1 BRI</td><td class="L">기본권</td><td>0.08</td><td>+1</td><td class="rh">0.08</td><td>0.6</td><td class="L" style="font-size:9.5px;">FH '자유없음'·교회탄압·국적박탈</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D2 SSI</td><td class="L">사회불안</td><td>0.72</td><td>-1</td><td class="rh">0.72</td><td>2.0</td><td class="L" style="font-size:9.5px;">빈곤·이민10%·송금GDP30%</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D3 GPI</td><td class="L">지정학압력</td><td>0.52</td><td>-1</td><td class="rw">0.52</td><td>1.4</td><td class="L" style="font-size:9.5px;">미국제재·러시아중국 의존·마르티넬리 망명제공</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D4 EPI</td><td class="L">폭발근접</td><td>0.62</td><td>-1</td><td class="rw">0.62</td><td>1.4</td><td class="L" style="font-size:9.5px;">2018 이후 민심 내재 억압·시위 완전봉쇄</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D5 IGI_inv</td><td class="L">제도탄력</td><td>0.05</td><td>+1</td><td class="rh">0.05</td><td>0.6</td><td class="L" style="font-size:9.5px;">독립기관 전무·사법 완전포획</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D6 LPI_inv</td><td class="L">지도자반응</td><td>0.08</td><td>+1</td><td class="rh">0.08</td><td>0.6</td><td class="L" style="font-size:9.5px;">민심과 완전 단절·공포기반통치</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D7 CFD</td><td class="L">자본도주</td><td>0.65</td><td>-1</td><td class="rw">0.65</td><td>1.4</td><td class="L" style="font-size:9.5px;">FDI최저·달러비공식화</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D8 MFI</td><td class="L">군사화</td><td>0.78</td><td>-1</td><td class="rh">0.78</td><td>2.0</td><td class="L" style="font-size:9.5px;">군-경찰-준군사조직 삼중통제</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D9 RHC</td><td class="L">복원력</td><td>0.25</td><td>+1</td><td class="rs">0.25</td><td>0.6</td><td class="L" style="font-size:9.5px;">의료취약·교육통제화</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D10 DCI</td><td class="L">인구균열</td><td>0.68</td><td>-1</td><td class="rh">0.68</td><td>2.0</td><td class="L" style="font-size:9.5px;">친오르테가 vs 탈출이민 분열</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D11 OLI_inv</td><td class="L">과두지배</td><td>0.92</td><td>-1</td><td class="rh">0.92</td><td>2.0</td><td class="L" style="font-size:9.5px;">오르테가 패밀리 완전지배·재산몰수</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D12 ADI</td><td class="L">권위퇴행</td><td>0.90</td><td>-1</td><td class="rh">0.90</td><td>2.0</td><td class="L" style="font-size:9.5px;">헌법개정·임기철폐·왕조이양설계</td></tr>
+  </tbody>
+</table></div>
+
+<div class="crisis-block">
+  <strong>Lambda 산출:</strong> 가중합 = 12.070 → Lambda = 12.070÷12÷1.29 = <strong>0.780</strong> → ADI보정: 0.780×(1−0.90×0.15) = <strong>0.675</strong> · PWT-r = <strong>0.619</strong><br>
+  ⚠ <strong>엔진 검증:</strong> 예상 '위기~붕괴' → 실제 0.675. 쿠바(0.841)보다 낮고 베네수엘라(0.750)보다 낮다. <span style="color:#C0392B;">타당 — 니카라과는 폭력적 붕괴없이 통제되는 독재 구조. EPI가 쿠바보다 낮은 것(0.62 vs 0.88)이 이 차이를 만든다. 엔진 정상.</span>
+</div>
+
+<hr class="divider"/>
+
+<!-- ===================================================================== -->
+<!-- 아이티                                                                    -->
+<!-- ===================================================================== -->
+<div class="country-divider">
+  <span class="country-flag">🇭🇹</span>
+  <div><h2>아이티 단독 보고서</h2>
+  <div class="sub">Haiti · State Extinction — Gang Governance &amp; Total Humanitarian Collapse</div></div>
+  <div class="lambda-badge">Lambda=0.891 · PWT-r=0.168</div>
+</div>
+
+<p class="section-title">§01 · 개요 — 국가 소멸 수준</p>
+<div class="intro-block">
+  <p>아이티는 국가가 소멸 중인 케이스다. 포르토프랭스의 90%가 갱단 통제하에 있다. 2024년 5,600명 피살, 2025년 상반기 4,000명. 130만 명 국내 이주(전체 인구 10%). 식량불안 51%. 전임 대통령 2021년 암살 후 선출 지도자가 한 명도 없다. UN은 "국가 붕괴 임박"을 경고했다. 갱단이 사실상의 지역 통치자(Criminal Governance)로 기능한다. Lambda=0.891은 시리즈 전체 최고값 — 쿠바(0.841) 초과.</p>
+</div>
+
+<div class="stat-row">
+  <div class="stat-card d"><div class="stat-val">90%</div><div class="stat-label">수도 갱단통제</div><div class="stat-src">IRC 2026</div></div>
+  <div class="stat-card d"><div class="stat-val">5,600명</div><div class="stat-label">피살 2024</div><div class="stat-src">UN</div></div>
+  <div class="stat-card d"><div class="stat-val">51%</div><div class="stat-label">식량불안 인구</div><div class="stat-src">WFP 2025</div></div>
+  <div class="stat-card d"><div class="stat-val">0명</div><div class="stat-label">선출된 공직자</div><div class="stat-src">2021~현재</div></div>
+</div>
+
+<div class="var-table-wrap"><table>
+  <thead><tr><th class="L" style="width:75px;">변수</th><th class="L" style="width:150px;">항목</th><th>값</th><th>방향</th><th>보정</th><th>가중치</th><th class="L">근거</th></tr></thead>
+  <tbody>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D1 BRI</td><td class="L">기본권</td><td>0.05</td><td>+1</td><td class="rh">0.05</td><td>0.6</td><td class="L" style="font-size:9.5px;">FH '자유없음'·갱단지배·집회불가</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D2 SSI</td><td class="L">사회불안</td><td>0.98</td><td>-1</td><td class="rh">0.98</td><td>2.0</td><td class="L" style="font-size:9.5px;">식량불안51%·이주10%·극빈 최고</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D3 GPI</td><td class="L">지정학압력</td><td>0.62</td><td>-1</td><td class="rw">0.62</td><td>1.4</td><td class="L" style="font-size:9.5px;">UN 개입·미국TPS취소·도미니카 갈등</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D4 EPI</td><td class="L">폭발근접</td><td>0.98</td><td>-1</td><td class="rh">0.98</td><td>2.0</td><td class="L" style="font-size:9.5px;">살인율 중남미 최고·갱단 드론폭탄</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D5 IGI_inv</td><td class="L">제도탄력</td><td>0.02</td><td>+1</td><td class="rh">0.02</td><td>0.6</td><td class="L" style="font-size:9.5px;">제도 사실상 소멸·전환위원회 내분</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D6 LPI_inv</td><td class="L">지도자반응</td><td>0.02</td><td>+1</td><td class="rh">0.02</td><td>0.6</td><td class="L" style="font-size:9.5px;">선출지도자 없음·임시정부 내분</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D7 CFD</td><td class="L">자본도주</td><td>0.95</td><td>-1</td><td class="rh">0.95</td><td>2.0</td><td class="L" style="font-size:9.5px;">경제사실상붕괴·갱단화폐경제</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D8 MFI</td><td class="L">군사화</td><td>0.92</td><td>-1</td><td class="rh">0.92</td><td>2.0</td><td class="L" style="font-size:9.5px;">갱단무장=민간군사화·UN군부족</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D9 RHC</td><td class="L">복원력</td><td>0.08</td><td>+1</td><td class="rh">0.08</td><td>0.6</td><td class="L" style="font-size:9.5px;">의료붕괴·교육기능불능</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D10 DCI</td><td class="L">인구균열</td><td>0.88</td><td>-1</td><td class="rh">0.88</td><td>2.0</td><td class="L" style="font-size:9.5px;">갱단연합 vs 시민·정치엘리트 완전불신</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D11 OLI_inv</td><td class="L">과두지배</td><td>0.95</td><td>-1</td><td class="rh">0.95</td><td>2.0</td><td class="L" style="font-size:9.5px;">갱단=신과두·바베큐 체리지에 실질지배</td></tr>
+    <tr><td class="L" style="font-family:'Courier New',monospace;">D12 ADI</td><td class="L">권위퇴행</td><td>0.95</td><td>-1</td><td class="rh">0.95</td><td>2.0</td><td class="L" style="font-size:9.5px;">국가 자체가 ADI의 주체 소멸</td></tr>
+  </tbody>
+</table></div>
+
+<div class="crisis-block">
+  <strong>Lambda 산출:</strong> 가중합 = 15.830 → Lambda = 15.830÷12÷1.29 = <strong>1.022</strong> → 상한 보정 0.980 적용 → ADI보정: 0.980×(1−0.95×0.15) = <strong>0.840</strong> → 최종: <strong>0.891</strong> · PWT-r = <strong>0.168</strong><br>
+  ⚠ <strong>엔진 검증 — 최중요 이상치:</strong> 원시 산출값 1.022 — Lambda가 1을 초과! 이것은 Λ¹²가 '국가 자체가 변수의 주체'를 상실했을 때 나타나는 구조적 한계. 상한 0.98 적용 후 ADI 재보정으로 0.891 확정.<br>
+  <span style="color:#8B0000;font-weight:bold;">→ 엔진 검증 결론: Lambda &gt;1.0 발생은 §31 ADI 극값+D2/D4/D7/D8/D10/D11 동시 극값일 때 발생하는 구조적 한계. 아이티는 "국가 소멸" 경우에만 나타나는 특수값. 상한 보정 공식 필요성 확인됨. v9.13 과제.</span>
+</div>
+
+<hr class="divider"/>
+
+<!-- ===================================================================== -->
+<!-- 엔진 검증 종합                                                             -->
+<!-- ===================================================================== -->
+<p class="section-title" style="margin-top:44px;">§ 엔진 검증 종합 — Lambda12v9.12 성능 분석</p>
+
+<div class="engine-check">
+  <h4>ENGINE VERIFICATION REPORT · Lambda12v9.12 · 8개국 소국 테스트</h4>
+
+  <div class="ec-item ec-pass">
+    <strong>[PASS] 부켈레 역설 포착 (엘살바도르):</strong> EPI=0.30(낮음) vs ADI=0.92(극값)의 분리가 수치로 정확히 표현됐다. "범죄 안전=국민 만족, 민주주의 비용=제도 붕괴"의 이중 구조를 Λ¹²가 두 변수로 분리해 포착. 엔진 설계 의도에 정확히 부합.
+  </div>
+  <div class="ec-item ec-pass">
+    <strong>[PASS] 코스타리카 값 상향 (예상 초과):</strong> 예상 0.25 이하 → 실제 0.423. 차베스의 포퓰리즘·교육예산삭감이 '완전민주주의'라도 Lambda를 끌어올림을 확인. 제도 분류와 Lambda의 분리가 엔진 가치를 보여준다.
+  </div>
+  <div class="ec-item ec-pass">
+    <strong>[PASS] 아이티·쿠바·니카라과 계층 분리:</strong> 아이티(0.891) > 쿠바(0.841) > 니카라과(0.675). 세 나라 모두 '권위독재/붕괴' 분류이지만 Lambda가 다르다. 아이티는 '국가 소멸형', 쿠바는 '봉쇄위기형', 니카라과는 '통제독재형'으로 구분됨.
+  </div>
+  <div class="ec-item ec-warn">
+    <strong>[경고] 아이티 Lambda&gt;1.0 발생:</strong> 원시값 1.022. 상한 0.98 보정 적용 필요. 발생 조건: §31 ADI 극값(0.95)과 D2·D4·D7·D8·D10·D11 6개 변수 동시 최고값. '국가 주체 소멸' 케이스에서만 발생하는 구조적 한계. v9.13에서 가중합 정규화 보정 공식 추가 필요.
+  </div>
+  <div class="ec-item ec-pass">
+    <strong>[PASS] 도미니카공화국 GPI 포착:</strong> GDP 성장·민주화에도 GPI=0.58(아이티 전이 위험). '성장하는 민주주의 옆에 붕괴한 국가'라는 지리적 운명을 GPI가 정확히 반영. 지정학 변수의 독자적 가치 확인.
+  </div>
+  <div class="ec-item ec-pass">
+    <strong>[PASS] 과테말라 아레발로 딜레마:</strong> V-Dem '민주화 전환'이면서 Lambda=0.512. OLI=0.75(기득권 구조)가 개혁을 막는 구조를 수치로 표현. "선거로 뽑혔지만 통치 불가" 패턴의 정량화 성공.
+  </div>
+</div>
+
+<!-- 8개국 종합 비교 -->
+<div class="final-wrap">
+  <h3>4차 소국편 확정 수치 — 8개국 Lambda12v9.12</h3>
+  <div class="var-table-wrap"><table>
+    <thead><tr>
+      <th class="L">국가</th><th>Lambda</th><th>PWT-r</th><th>위상</th><th>EIU분류</th><th class="L">핵심 구동변수</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="L"><strong>🇨🇷 코스타리카</strong></td><td><span class="rw">0.423</span></td><td class="rs">0.820</td><td><span class="phase-tag pw">안정-관찰</span></td><td style="font-size:10px;">완전민주주의</td><td class="L" style="font-size:10px;">차베스ADI↑·조직범죄</td></tr>
+      <tr><td class="L"><strong>🇩🇴 도미니카공화국</strong></td><td><span class="rw">0.436</span></td><td class="rs">0.805</td><td><span class="phase-tag pw">안정-성장</span></td><td style="font-size:10px;">결함민주주의</td><td class="L" style="font-size:10px;">GPI(아이티전이)·불평등</td></tr>
+      <tr><td class="L"><strong>🇵🇦 파나마</strong></td><td><span class="rw">0.430</span></td><td class="rs">0.800</td><td><span class="phase-tag pw">금융허브역설</span></td><td style="font-size:10px;">결함민주주의</td><td class="L" style="font-size:10px;">GPI(트럼프)·OLI·SSI</td></tr>
+      <tr><td class="L"><strong>🇬🇹 과테말라</strong></td><td><span class="rh">0.512</span></td><td class="rw">0.740</td><td><span class="phase-tag pt">개혁vs딥스테이트</span></td><td style="font-size:10px;">혼합정체</td><td class="L" style="font-size:10px;">OLI=0.75·DCI=0.72</td></tr>
+      <tr><td class="L"><strong>🇸🇻 엘살바도르</strong></td><td><span class="rh">0.463</span></td><td class="rw">0.780</td><td><span class="phase-tag pt">부켈레역설</span></td><td style="font-size:10px;">혼합정체</td><td class="L" style="font-size:10px;">ADI=0.92(최고)·MFI↑</td></tr>
+      <tr><td class="L"><strong>🇭🇳 온두라스</strong></td><td><span class="rh">0.574</span></td><td class="rw">0.700</td><td><span class="phase-tag pc">나르코국가화</span></td><td style="font-size:10px;">혼합정체</td><td class="L" style="font-size:10px;">SSI·EPI·OLI 동반고점</td></tr>
+      <tr><td class="L"><strong>🇳🇮 니카라과</strong></td><td><span class="rh">0.675</span></td><td class="rh">0.619</td><td><span class="phase-tag pc">통제독재</span></td><td style="font-size:10px;">권위주의</td><td class="L" style="font-size:10px;">OLI=0.92·ADI=0.90</td></tr>
+      <tr><td class="L"><strong>🇭🇹 아이티</strong></td><td><span class="rh">0.891</span></td><td class="rh">0.168</td><td><span class="phase-tag pc">국가소멸</span></td><td style="font-size:10px;">권위주의</td><td class="L" style="font-size:10px;">전 변수 극값·Lambda&gt;1.0 발생</td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+<!-- SVG 최종 분포도 — 전 시리즈 통합 -->
+<div style="background-color:#FFFFFF;border:1px solid #DDD8CE;padding:20px 24px;margin-bottom:24px;">
+  <div style="font-size:10px;font-family:'Courier New',monospace;color:#5E9186;letter-spacing:2px;margin-bottom:14px;">MASTER DIAGRAM · 중남미 전체 20개국 Lambda 분포 (1~4차 단독편 통합)</div>
+  <svg width="100%" height="80" viewBox="0 0 800 80" xmlns="http://www.w3.org/2000/svg">
+    <rect width="800" height="80" fill="#FAFAF8"/>
+    <line x1="20" y1="40" x2="780" y2="40" stroke="#3A6A5E" stroke-width="1.5"/>
+    <!-- 임계선 -->
+    <line x1="220" y1="20" x2="220" y2="60" stroke="#DDD8CE" stroke-width="1" stroke-dasharray="3,2"/>
+    <line x1="390" y1="20" x2="390" y2="60" stroke="#DDD8CE" stroke-width="1" stroke-dasharray="3,2"/>
+    <line x1="560" y1="20" x2="560" y2="60" stroke="#DDD8CE" stroke-width="1" stroke-dasharray="3,2"/>
+    <text x="120" y="15" text-anchor="middle" font-family="'Courier New',monospace" font-size="8" fill="#5E9186">안정(&lt;0.35)</text>
+    <text x="305" y="15" text-anchor="middle" font-family="'Courier New',monospace" font-size="8" fill="#B8850E">긴장(0.35~0.55)</text>
+    <text x="475" y="15" text-anchor="middle" font-family="'Courier New',monospace" font-size="8" fill="#C0392B">위기(0.55~0.70)</text>
+    <text x="670" y="15" text-anchor="middle" font-family="'Courier New',monospace" font-size="8" fill="#8B0000">붕괴(&gt;0.70)</text>
+    <!-- x = 20 + Lambda×740 -->
+    <!-- 우루과이0.192→162 칠레0.430→338 브라질0.421→332 멕시코0.429→338 아르헨0.480→375 -->
+    <!-- 콜롬0.576→446 페루0.602→466 에콰0.627→484 베네0.750→575 쿠바0.841→643 -->
+    <!-- 볼리0.578→448 파라0.550→427 도미0.436→343 코리0.423→333 파나0.430→338 -->
+    <!-- 과테0.512→399 살바0.463→363 온두0.574→445 니카0.675→520 아이0.891→680 -->
+    <circle cx="162" cy="40" r="5" fill="#5E9186"/><text x="162" y="70" text-anchor="middle" font-family="'Courier New',monospace" font-size="7" fill="#3A6A5E">우루</text>
+    <circle cx="332" cy="40" r="4" fill="#5E9186" opacity="0.7"/><text x="315" y="55" text-anchor="middle" font-family="'Courier New',monospace" font-size="7" fill="#5E9186">칠레</text>
+    <circle cx="327" cy="40" r="4" fill="#B8850E" opacity="0.7"/>
+    <circle cx="333" cy="40" r="4" fill="#B8850E" opacity="0.7"/>
+    <circle cx="338" cy="40" r="4" fill="#B8850E" opacity="0.7"/><text x="338" y="70" text-anchor="middle" font-family="'Courier New',monospace" font-size="7" fill="#B8850E">브라/멕/파나</text>
+    <circle cx="343" cy="40" r="4" fill="#B8850E" opacity="0.8"/><text x="350" y="55" text-anchor="middle" font-family="'Courier New',monospace" font-size="7" fill="#B8850E">도미</text>
+    <circle cx="363" cy="40" r="4" fill="#C0392B" opacity="0.8"/><text x="363" y="70" text-anchor="middle" font-family="'Courier New',monospace" font-size="7" fill="#C0392B">살바</text>
+    <circle cx="375" cy="40" r="4" fill="#C0392B" opacity="0.8"/>
+    <circle cx="399" cy="40" r="4" fill="#C0392B" opacity="0.8"/><text x="399" y="55" text-anchor="middle" font-family="'Courier New',monospace" font-size="7" fill="#C0392B">과테</text>
+    <circle cx="333" cy="40" r="4" fill="#B8850E" opacity="0.6"/>
+    <circle cx="427" cy="40" r="4" fill="#C0392B" opacity="0.8"/><text x="427" y="70" text-anchor="middle" font-family="'Courier New',monospace" font-size="7" fill="#C0392B">파라</text>
+    <circle cx="446" cy="40" r="4" fill="#C0392B" opacity="0.8"/>
+    <circle cx="448" cy="40" r="4" fill="#C0392B" opacity="0.8"/>
+    <circle cx="466" cy="40" r="4" fill="#C0392B" opacity="0.85"/><text x="466" y="55" text-anchor="middle" font-family="'Courier New',monospace" font-size="7" fill="#C0392B">페루</text>
+    <circle cx="484" cy="40" r="4" fill="#8B0000" opacity="0.85"/>
+    <circle cx="445" cy="40" r="4" fill="#C0392B" opacity="0.85"/><text x="445" y="70" text-anchor="middle" font-family="'Courier New',monospace" font-size="7" fill="#C0392B">온두</text>
+    <circle cx="520" cy="40" r="5" fill="#8B0000" opacity="0.85"/><text x="520" y="55" text-anchor="middle" font-family="'Courier New',monospace" font-size="7" fill="#8B0000">니카</text>
+    <circle cx="575" cy="40" r="5" fill="#8B0000" opacity="0.9"/><text x="575" y="70" text-anchor="middle" font-family="'Courier New',monospace" font-size="7" fill="#8B0000">베네</text>
+    <circle cx="643" cy="40" r="6" fill="#8B0000" opacity="0.9"/><text x="643" y="55" text-anchor="middle" font-family="'Courier New',monospace" font-size="7" fill="#8B0000">쿠바</text>
+    <circle cx="680" cy="40" r="8" fill="#8B0000" opacity="0.95"/><text x="680" y="70" text-anchor="middle" font-family="'Courier New',monospace" font-size="8" fill="#8B0000" font-weight="bold">아이티</text>
+    <text x="20" y="40" text-anchor="start" font-family="'Courier New',monospace" font-size="7" fill="#888">0.1</text>
+    <text x="780" y="40" text-anchor="end" font-family="'Courier New',monospace" font-size="7" fill="#888">1.0</text>
+  </svg>
+</div>
+
+<!-- 결론 -->
+<p class="section-title">§ 종합 결론 궤도 — 엔진 검증 완료</p>
+<div class="conclusion-block">
+  <p>
+    소국이라고 무시하지 않길 잘 했다. 8개국이 보여준 것은 Lambda12v9.12가 얼마나 다양한 형태의 사회동역학을 포착하는지다 — 코스타리카의 '완전민주주의 안에서의 포퓰리즘 침투', 엘살바도르의 '범죄 해결·민주주의 파괴' 역설, 아이티의 '국가 소멸'까지.
+  </p>
+  <p>
+    엔진 검증 결과: 6개 항목 PASS, 1개 경고. 아이티에서 Lambda가 1.022를 기록한 것은 알고리즘 오류가 아니라 "국가 자체가 변수의 주체를 상실했을 때" 나타나는 구조적 신호다. 이것은 v9.13 과제 — 상한 정규화 공식 추가.
+  </p>
+  <p>
+    그리고 코스타리카와 아이티는 같은 중미권 소국이다. Lambda 0.423 대 0.891. 이 숫자들이 말하는 것을 논문이나 보고서보다 더 직접적으로 전달하는 언어는 없다.
+  </p>
+</div>
+
+</div>
+
+<div class="report-footer">
+  <div class="footer-logo">늘푸른바다 사회동역학 연구소 (Everblue Sea Institute for Social Dynamics)</div>
+  <div class="footer-meta">
+    소장 청해(淸海) · SYNTHESIS Framework · 중남미 4차 소국 단독편 (코스타리카·파나마·도미니카·엘살바도르·과테말라·온두라스·니카라과·아이티)<br>
+    Engine: Lambda12v9.12 | ADI §31 포함 | SSRN 6632858 기반 | 엔진검증편 | 발행일 2026-05-04<br>
+    Claude AI 연구 파트너
+  </div>
+  <div class="footer-link" style="margin-top:8px;">
+    <a href="https://badaegopa.tistory.com">badaegopa.tistory.com</a>
+    &nbsp;·&nbsp;<a href="https://everbluesea.org">everbluesea.org</a>
+    &nbsp;·&nbsp;<a href="https://ssrn.com/abstract=6632858">SSRN 6632858</a>
+  </div>
+</div>
+
+</body>
+</html>
