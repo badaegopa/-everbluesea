@@ -1563,17 +1563,25 @@ function scrollToRegion(regionId) {
   'greece': '그리스 (Greece)',
   'hungary': '헝가리 (Hungary)',
   'bosnia': '보스니아 (Bosnia)',
-  'cambodia': '캄보디아 (Cambodia)'
+  'cambodia': '캄보디아 (Cambodia)',
+  'argentina': '아르헨티나 (Argentina)',
+  'brazil': '브라질 (Brazil)',
+  'mexico': '멕시코 (Mexico)',
+  'latam-regional': '남북미 권역 (LatAm Regional)',
+  'latam-2nd-series': '남북미-2차 (LatAm 2nd Series)',
+  'latam-3rd-series': '남북미-3차 (LatAm 3rd Series)',
+  'latam-4th-smallstates': '남북미-4차 소국 (LatAm 4th SmallStates)'
 };
 
 function parseName(fn) {
-  const key = fn.replace('.html','').replace(/^v[\d.]+_/,'').replace(/_\d{8}.*/,'').replace(/_/g,'-');
+  const stripped = fn.replace('.html','')
+    .replace(/^v[\d.]+_/,'')
+    .replace(/_Lambda12v912/i,'')
+    .replace(/_\d{8}.*/,'');
+  const key = stripped.replace(/_/g,'-').toLowerCase();
   if (LABEL_MAP[key]) return LABEL_MAP[key];
-    return fn.replace('.html','')
-      .replace(/^v[\d.]+_/,'')
-      .replace(/_\d{8}.*/,'')
-      .replace(/_/g,' ');
-  }
+  return stripped.replace(/_/g,' ');
+}
 
   try {
     const res = await fetch(API, {headers:{'Accept':'application/vnd.github.v3+json'}});
@@ -1588,7 +1596,7 @@ function parseName(fn) {
 
       const subRes = await fetch(folder.url, {headers:{'Accept':'application/vnd.github.v3+json'}});
       if (!subRes.ok) continue;
-      const files = (await subRes.json()).filter(f => f.name.endsWith('.html') && f.name.startsWith('v'));
+      const files = (await subRes.json()).filter(f => f.name.endsWith('.html') && (f.name.startsWith('v') || f.name.includes('Lambda12v912')));
       if (files.length === 0) continue;
 
       const rows = files.sort((a,b)=>b.name.localeCompare(a.name)).map(f => {
