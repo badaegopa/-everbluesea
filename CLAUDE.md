@@ -5,7 +5,10 @@
 - index.html : 메인 (모든 JS/CSS 인라인, ~1641줄)
 - nations/{region}/ : 국가 보고서 (europe/middle-east/northeast-asia/southeast-asia/south-asia/americas/climate)
 - briefings/ : 금현물 브리핑 HTML
-- papers/ : 논문
+- papers/ : 논문 (nav `/papers/` 링크, index.html:411 — 브리핑 다음)
+  - papers/index.html : 논문 목록 페이지
+  - papers/lambda12_v9.8_ko.html : Λ¹² 사회동역학 프레임워크 v9.8 한글본 (SSRN 6509200)
+  - papers/lambda11_v2.1_ko.html : Λ¹¹ 삼중좌표 프레임워크 v2.1 한글본
 - tools/ : 도구
 
 ## index.html 핵심 위치
