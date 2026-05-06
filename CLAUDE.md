@@ -53,6 +53,10 @@
 - tuvalu → 투발루 (Tuvalu)
 - kiribati → 키리바시 (Kiribati)
 - marshallislands → 마셜제도 (Marshall Islands)
+- middleeast-regional → 중동 권역 (Middle East Regional)
+- middleeast-west → 서중동-레반트마그레브 (West Middle East)
+- middleeast-central → 중앙중동-GCC예멘 (Central Middle East)
+- middleeast-east → 동중동-이란이라크터키 (East Middle East)
 
 ## 디자인 표준 v2.2 파스텔
 - 배경: #F5F3EE / 그린: #5E9186 / 텍스트그린: #3A6A5E
@@ -63,5 +67,6 @@
 - SVG에 width/height 명시 필수
 
 ## 엔진 & 논문
-- Λ¹² v9.12 (§31 ADI 포함) | SSRN 6632858 (IN REVIEW)
-- 보고서 푸터: Engine: Λ¹²v9.12 | ADI§31포함 | SSRN6632858기반
+- Λ¹² v9.14 = v9.12(§31 ADI) + §33 BBD(거품경계역학) + §34 GEI(기후멸절지수) + §35 NCI(핵-기후복합지수) | SSRN 6632858 (IN REVIEW)
+- 엔진 버전 이력: v9.12 §31 ADI(중남미 권역까지) → v9.13 §34 GEI(기후멸절 4개국) → v9.14 §33+§34+§35 통합(중동 권역부터)
+- 보고서 푸터(v9.14): Engine: Λ¹²v9.14 | §33 BBD + §34 GEI + §35 NCI | SSRN 6632858 기반
