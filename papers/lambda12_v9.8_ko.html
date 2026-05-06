@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>람다-12 (Λ¹²) 사회동역학 프레임워크 v9.8 — 한글판 | 늘푸른바다 사회동역학 연구소</title>
+<meta name="description" content="SSRN 6632858 · Λ¹² v9.8 한글판 — SEISMOS 실증 검증 기반 12차원 끝개 모델, 폭발 근접 지수 η, 19개국 사회 위상 분석">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9EYCQD2EK8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-9EYCQD2EK8");
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:        #F5F3EE;
+  --bg2:       #EDEAE3;
+  --bg3:       #E4E0D7;
+  --paper:     #FAF8F2;
+  --ink:       #1E1D1B;
+  --ink-soft:  #3F3A33;
+  --ink-mid:   #5A554C;
+  --ink-muted: #7A746C;
+  --rule:      #2A2520;
+  --rule-soft: #C9C2B3;
+  --sage:      #5E9186;
+  --sage-deep: #3A6A5E;
+  --sage-pale: #D4E5DF;
+  --gold:      #B8850E;
+  --gold-deep: #8B6308;
+  --gold-pale: #F0E4C4;
+  --red:       #9B4040;
+  --red-pale:  #F2DCDC;
+  --amber:     #C57A1A;
+  --amber-pale:#F5E1C2;
+  --border:    #DDD8CE;
+  --shadow:    0 2px 12px rgba(30,29,27,0.06);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Noto Serif KR', 'EB Garamond', Georgia, serif;
+  line-height: 1.78;
+  font-size: 16.5px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(245,243,238,0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px; height: 60px;
+}
+.nav-logo { display: flex; flex-direction: column; line-height: 1.2; text-decoration: none; }
+.nav-logo .kr { font-family: 'Noto Serif KR', serif; font-size: 12px; color: var(--sage-deep); font-weight: 500; }
+.nav-logo .en { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: var(--ink); font-style: italic; }
+.nav-actions { display: flex; gap: 10px; }
+.nav-btn {
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  color: var(--ink-soft); text-decoration: none;
+  padding: 6px 12px; border: 1px solid var(--border); border-radius: 18px;
+  transition: all 0.2s;
+}
+.nav-btn:hover { color: var(--sage-deep); border-color: var(--sage); background: var(--sage-pale); }
+.nav-btn.gold { color: var(--gold-deep); }
+.nav-btn.gold:hover { background: var(--gold-pale); border-color: var(--gold); }
+
+/* ─── PAPER LAYOUT ─── */
+.page {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 56px 56px 96px;
+  background: var(--paper);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  min-height: 100vh;
+}
+
+/* ─── MASTHEAD ─── */
+.masthead {
+  border-top: 3px double var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 14px 0 12px;
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-family: 'EB Garamond', serif;
+  font-size: 12px; letter-spacing: 0.18em;
+  color: var(--ink-soft);
+}
+.masthead .center { font-style: italic; color: var(--ink-mid); letter-spacing: 0.06em; }
+
+/* ─── TITLE BLOCK ─── */
+.title-block {
+  padding: 48px 0 36px;
+  border-bottom: 1px solid var(--rule);
+  text-align: center;
+}
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.32em;
+  color: var(--gold-deep); text-transform: uppercase;
+  margin-bottom: 22px;
+}
+.eyebrow::before, .eyebrow::after {
+  content: "—"; margin: 0 14px; color: var(--rule-soft);
+}
+h1.title {
+  font-family: 'Noto Serif KR', serif;
+  font-weight: 700; font-size: clamp(32px, 4.5vw, 46px);
+  line-height: 1.2; margin-bottom: 16px;
+  color: var(--ink); letter-spacing: -0.005em;
+}
+h1.title .lambda {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--sage-deep); font-style: italic; font-weight: 600;
+}
+.subtitle {
+  font-family: 'EB Garamond', 'Noto Serif KR', serif;
+  font-size: clamp(16px, 2vw, 19px);
+  font-style: italic; color: var(--ink-mid);
+  margin-bottom: 24px; font-weight: 400;
+  max-width: 720px; margin-left: auto; margin-right: auto;
+  line-height: 1.5;
+}
+.meta-row {
+  display: flex; justify-content: center; gap: 28px; flex-wrap: wrap;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: var(--ink-mid); letter-spacing: 0.06em;
+  padding-top: 8px;
+}
+.meta-row span { display: inline-flex; align-items: center; gap: 6px; }
+.meta-row strong { color: var(--ink); font-weight: 500; }
+
+/* ─── ABSTRACT ─── */
+.abstract {
+  background: var(--bg2);
+  border-left: 3px solid var(--sage);
+  padding: 22px 28px;
+  margin: 36px 0 28px;
+  font-size: 15.5px; line-height: 1.85;
+  color: var(--ink-soft); font-style: italic;
+}
+.abstract::before {
+  content: "초록 (Abstract)";
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.2em;
+  color: var(--sage-deep); text-transform: uppercase;
+  font-style: normal; margin-bottom: 10px;
+}
+
+/* ─── KEY THESIS ─── */
+.thesis {
+  background: linear-gradient(135deg, var(--gold-pale), #F8EFD2);
+  border: 1px solid rgba(184,133,14,0.3);
+  border-radius: 4px;
+  padding: 24px 28px;
+  margin: 32px 0;
+  text-align: center;
+}
+.thesis-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.25em;
+  color: var(--gold-deep); text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.thesis-text {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 18px; font-weight: 500;
+  color: var(--ink); line-height: 1.65;
+  font-style: italic;
+}
+.thesis-text strong {
+  color: var(--gold-deep); font-style: normal; font-weight: 600;
+}
+
+/* ─── SECTION ─── */
+section.chapter { margin: 56px 0 28px; padding-top: 16px; }
+section.chapter:first-of-type { margin-top: 28px; }
+
+h2.chapter-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 26px; font-weight: 700; color: var(--ink);
+  border-bottom: 2px solid var(--sage);
+  padding-bottom: 10px; margin-bottom: 8px;
+  display: flex; align-items: baseline; gap: 14px;
+}
+h2.chapter-title .num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px; font-weight: 400; font-style: italic;
+  color: var(--sage-deep);
+}
+.chapter-lede {
+  font-family: 'EB Garamond', 'Noto Serif KR', serif;
+  font-size: 15px; font-style: italic;
+  color: var(--ink-muted);
+  margin-bottom: 28px;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 14px;
+}
+
+h3.sub {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 18px; font-weight: 600; color: var(--ink);
+  margin: 28px 0 12px;
+  padding-left: 12px;
+  border-left: 3px solid var(--sage);
+}
+h3.sub .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; color: var(--sage-deep);
+  margin-right: 10px; font-weight: 500;
+}
+
+h4.minor {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 15px; font-weight: 500; color: var(--sage-deep);
+  margin: 20px 0 8px;
+  letter-spacing: 0.02em;
+}
+
+p { margin-bottom: 14px; color: var(--ink-soft); }
+p strong { color: var(--ink); font-weight: 600; }
+
+ul, ol { margin: 12px 0 18px 24px; }
+li { margin-bottom: 6px; color: var(--ink-soft); }
+li strong { color: var(--ink); font-weight: 600; }
+
+/* ─── CALLOUT ─── */
+.callout {
+  background: var(--sage-pale);
+  border-left: 3px solid var(--sage);
+  padding: 18px 22px;
+  border-radius: 0 4px 4px 0;
+  margin: 22px 0;
+  font-size: 15.5px;
+  color: var(--ink-soft); line-height: 1.75;
+}
+.callout-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.18em;
+  color: var(--sage-deep); text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.callout.warn {
+  background: var(--red-pale);
+  border-left-color: var(--red);
+}
+.callout.warn .callout-label { color: var(--red); }
+.callout.gold {
+  background: var(--gold-pale);
+  border-left-color: var(--gold);
+}
+.callout.gold .callout-label { color: var(--gold-deep); }
+
+/* ─── FORMULA ─── */
+.formula-box {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  padding: 18px 24px;
+  margin: 18px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px; color: var(--ink); line-height: 1.85;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+.formula-box .var {
+  color: var(--sage-deep); font-weight: 500;
+}
+.formula-box .const {
+  color: var(--gold-deep); font-weight: 500;
+}
+.formula-box em {
+  color: var(--ink-mid); font-size: 12.5px;
+  font-style: italic; display: block; margin-top: 8px;
+  font-family: 'Noto Serif KR', serif;
+}
+
+/* ─── TABLE ─── */
+.table-wrap {
+  margin: 22px 0;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+table {
+  width: 100%; border-collapse: collapse;
+  font-size: 14px;
+  background: #FFFFFF;
+}
+table th, table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+table th {
+  background: var(--bg2);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 600; color: var(--ink);
+  font-size: 12.5px; letter-spacing: 0.04em;
+  border-bottom: 2px solid var(--rule-soft);
+}
+table td { color: var(--ink-soft); }
+table tr:last-child td { border-bottom: none; }
+table tr:hover td { background: var(--bg2); }
+table .num { font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+table .center { text-align: center; }
+
+/* Status colors */
+.status-safe   { color: #2D6A4F; background: #D4E5DF; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-family: 'JetBrains Mono', monospace; }
+.status-watch  { color: #6B5710; background: #F0E4C4; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-family: 'JetBrains Mono', monospace; }
+.status-alarm  { color: #8B4A0E; background: #F5E1C2; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-family: 'JetBrains Mono', monospace; }
+.status-danger { color: #8B2020; background: #F2DCDC; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-family: 'JetBrains Mono', monospace; }
+.status-over   { color: #6B106B; background: #E8D4E8; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-family: 'JetBrains Mono', monospace; }
+
+/* ─── PANELS GRID ─── */
+.panels-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 22px 0;
+}
+.panel-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--sage);
+  border-radius: 4px;
+  padding: 18px 22px;
+}
+.panel-card.gold { border-top-color: var(--gold); }
+.panel-card.amber { border-top-color: var(--amber); }
+.panel-card.red { border-top-color: var(--red); }
+.panel-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 600; color: var(--sage-deep);
+  margin-bottom: 4px;
+}
+.panel-card.gold .panel-name { color: var(--gold-deep); }
+.panel-card.amber .panel-name { color: var(--amber); }
+.panel-card.red .panel-name { color: var(--red); }
+.panel-key {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: var(--ink-muted);
+  letter-spacing: 0.12em; margin-bottom: 10px;
+}
+.panel-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.7; }
+
+/* ─── DIVIDER ─── */
+.fractal-divider {
+  text-align: center; padding: 32px 16px; opacity: 0.3;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.3em;
+  color: var(--sage); user-select: none;
+}
+
+/* ─── FOOTER ─── */
+.paper-footer {
+  margin-top: 64px; padding-top: 28px;
+  border-top: 3px double var(--rule);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: var(--ink-muted); line-height: 1.9;
+  display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: end;
+}
+.paper-footer .left strong { color: var(--ink-soft); display: block; margin-bottom: 4px; font-size: 12px; }
+.paper-footer .right { text-align: right; font-size: 10.5px; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 720px) {
+  nav { padding: 0 18px; }
+  .page { padding: 32px 22px 64px; }
+  .panels-grid { grid-template-columns: 1fr; }
+  .meta-row { gap: 14px; font-size: 10.5px; }
+  h1.title { font-size: 28px; }
+  h2.chapter-title { font-size: 22px; }
+  h2.chapter-title .num { font-size: 24px; }
+  .formula-box { font-size: 12.5px; padding: 14px 16px; }
+  table { font-size: 12.5px; }
+  table th, table td { padding: 8px 10px; }
+}
+
+::selection { background: var(--sage-pale); color: var(--sage-deep); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">
+    <span class="kr">늘푸른바다 사회동역학 연구소</span>
+    <span class="en">Λ¹² Sociodynamics</span>
+  </a>
+  <div class="nav-actions">
+    <a class="nav-btn" href="index.html">← 논문 목록</a>
+    <a class="nav-btn gold" href="https://papers.ssrn.com/abstract=6632858" target="_blank" rel="noopener">SSRN 원문 ↗</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- ═══ MASTHEAD ═══ -->
+  <div class="masthead">
+    <span>Vol. Λ¹² · v9.8 · 2026</span>
+    <span class="center">Everblue Sea Institute for Social Dynamics</span>
+    <span>SSRN · 6632858</span>
+  </div>
+
+  <!-- ═══ TITLE BLOCK ═══ -->
+  <div class="title-block">
+    <div class="eyebrow">Sociodynamic Framework · Korean Edition</div>
+    <h1 class="title">람다-12 <span class="lambda">(Λ¹²)</span><br>사회동역학 프레임워크</h1>
+    <p class="subtitle">SEISMOS 실증적 검증을 통한<br>사회 위상 공간 분석을 위한 12차원 끝개 모델</p>
+    <div class="meta-row">
+      <span>저자 <strong>김기섭</strong> (청해, 淸海)</span>
+      <span>SSRN <strong>6632858</strong></span>
+      <span>v9.8 · <strong>2026.04.21</strong></span>
+    </div>
+  </div>
+
+  <!-- ═══ ABSTRACT ═══ -->
+  <div class="abstract">
+    Λ¹²는 사회를 12개 동역학 변수로 측정하는 사회동역학 좌표계다.
+    이번 v9.8 개정은 산업 물리학의 폭발 한계 농도 개념(LEL/UEL)을 사회 위상 공간으로 이식하여
+    "폭발 근접 지수" η를 도입했다. 우리는 봉기를 예측하지 않는다 —
+    가스 센서가 누출을 예언하지 않듯, 다만 위험 구역 진입을 측정하고 경보할 뿐이다.
+    19개국 대상 SEISMOS 데이터셋에 η = (BRI − 5.0) / 4.5 단일 측정 원칙을 적용하고,
+    11개 과거 봉기 사례에 대한 소급 검증을 통해 모델의 신호 정확도를 검증한다.
+  </div>
+
+  <!-- ═══ KEY THESIS ═══ -->
+  <div class="thesis">
+    <div class="thesis-label">CORE PROPOSITION · 핵심 명제</div>
+    <p class="thesis-text">
+      "사회적 폭발은 <strong>예측할 수 없다</strong>.<br>
+      그러나 폭발 범위 구역 <strong>진입은 측정할 수 있다</strong>.<br>
+      가스 센서가 예언하지 않듯 — Λ¹²는 <strong>측정이자 경보</strong>다."
+    </p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- §1. 서론 — 사회적 가스 센서의 필요성 -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="chapter">
+    <h2 class="chapter-title"><span class="num">§ 1.</span>서론 — 사회적 가스 센서의 필요성</h2>
+    <p class="chapter-lede">엔지니어링 현장에서 출발한 사회 진단 — 예언이 아닌 측정으로</p>
+
+    <p>
+      화학 플랜트의 가스 누출 센서가 맡은 임무는 <strong>폭발을 예측하는 것이 아니다</strong>.
+      LEL(Lower Explosive Limit, 하한 폭발 한계) 농도에 도달하기 <em>전에</em> 경보를 울려,
+      대피와 환기를 위한 시간을 확보하는 것이다.
+      <strong>가스 센서는 예언하지 않는다 — 측정하고 경보한다.</strong>
+    </p>
+
+    <p>
+      사회 동역학에도 같은 원칙이 필요하다. 모든 봉기와 시스템 붕괴를 예측하려는 야심은
+      30년간의 사회과학사가 보여준 대로 거의 언제나 실패한다.
+      그러나 <strong>위험 구역 진입을 감지하는 일</strong>은 본질적으로 다른 문제다.
+      이는 정책 개입과 구조적 개선을 위한 골든타임을 확보해주는 — 측정 가능한 작업이다.
+    </p>
+
+    <p>
+      Λ¹²는 30년간 울산 석유화학 플랜트 현장에서 누출 감지·인터록·경보 체계를 다뤄온
+      엔지니어링 통찰을 사회 시스템으로 이식한 작업의 산물이다.
+      가스 농도가 LEL의 25%, 50%, 75%에 도달할 때마다 다른 경보 단계가 작동하듯,
+      사회의 "폭발 근접 지수" η도 동일한 다단계 경보 체계를 갖는다.
+    </p>
+
+    <h3 class="sub"><span class="num">§ 1.1</span>핵심 명제 — 섭동·도미노·카오스의 유기적 결합</h3>
+    <p>
+      Λ¹²는 세 가지 원리를 한 좌표계에 결합한다 —
+      <strong>섭동 이론</strong>(작은 입력이 큰 결과를 일으키는 임계점),
+      <strong>도미노 이론</strong>(연쇄 전파의 방향성과 속도),
+      그리고 <strong>카오스 이론</strong>(어트랙터·분기·자기 유사 패턴).
+      각각은 단독으로는 부분적이나, 결합되었을 때 비로소 사회 시스템의 위상 변화를
+      입체적으로 읽어낼 수 있다.
+    </p>
+
+    <h3 class="sub"><span class="num">§ 1.2</span>단일 측정 원칙 — η는 BRI_raw만 사용한다</h3>
+    <p>
+      v9.8의 가장 중요한 방법론적 결단은 <strong>중복 보정의 폐기</strong>다.
+      이전 버전에서는 BRI를 SSI·GPI·CI로 보정한 합성 지수를 η로 사용했으나,
+      이는 동일 변수의 영향이 두 번 셈해지는 구조적 결함을 안고 있었다.
+    </p>
+    <p>
+      v9.8은 <strong>η = (BRI_raw − LEL) / (UEL − LEL)</strong> 단 하나의 공식만 쓴다.
+      BRI_raw 자체가 이미 11개 내부 변수와 1개 외부 선행변수를 통합한 좌표이므로,
+      추가 보정은 노이즈만 키운다. <em>가스 센서는 농도만 측정한다 — 색깔·온도·습도까지 곱하지 않는다.</em>
+    </p>
+
+    <h3 class="sub"><span class="num">§ 1.3</span>대시보드 구조 — 1+4 패널 체계</h3>
+    <p>
+      Λ¹² v9.8 대시보드는 한 개의 메인 센서(η)와 네 개의 독립 해석 패널로 구성된다 —
+      메인 센서가 "지금 위험한가?"에 답한다면, 4개 패널은 "왜 위험한가?"의 다른 각도들을 제공한다.
+    </p>
+    <ul>
+      <li><strong>η · 폭발 근접 지수</strong> — 메인 센서, 단일 알람 트리거</li>
+      <li><strong>OLI · 신뢰 패널</strong> — 시민-제도 신뢰 잔량</li>
+      <li><strong>TBI · 점화 민감도</strong> — 트리거 사건이 폭발로 전환될 확률</li>
+      <li><strong>Σ · 권력 포획 지수</strong> — 의사결정 통로의 차단도</li>
+      <li><strong>τ · 공명 비율(BRI/SSI)</strong> — 압력과 구조취약의 공명</li>
+    </ul>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- §2. EPI 이론 — 물리·화학에서 사회동역학으로 -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="chapter">
+    <h2 class="chapter-title"><span class="num">§ 2.</span>EPI 이론 — 물리·화학에서 사회동역학으로</h2>
+    <p class="chapter-lede">v9.8 신규 — Explosion Proximity Index의 산업 물리학적 토대</p>
+
+    <h4 class="minor">산업 물리학 LEL/UEL 원칙</h4>
+    <p>
+      가스의 폭발 범위는 두 농도로 정의된다 —
+      <strong>LEL</strong>(연소가 시작될 수 있는 최저 농도)과
+      <strong>UEL</strong>(연소가 더 이상 진행될 수 없는 최고 농도).
+      두 한계 사이가 "폭발 범위 구역(Explosive Range)"이다.
+      이 개념을 사회 위상 공간으로 옮기면 다음과 같은 대응 관계가 성립한다.
+    </p>
+
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>구분</th>
+          <th>산업 물리학 (메탄 기준)</th>
+          <th>사회동역학 (BRI 기준)</th>
+          <th>경험적 도출 사례</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>LEL</strong> — 폭발 하한</td>
+          <td>5.0% vol</td>
+          <td><span class="num">5.0</span></td>
+          <td>칠레 5.2 / 튀니지 5.5 — 봉기 직전 BRI</td>
+        </tr>
+        <tr>
+          <td><strong>UEL</strong> — 폭발 상한</td>
+          <td>15.0% vol</td>
+          <td><span class="num">9.5</span></td>
+          <td>남수단 9.4 / CAR 9.1 — 과잉억압 임계</td>
+        </tr>
+        <tr>
+          <td><strong>Range</strong> — 폭발 범위</td>
+          <td>5–15% vol (Δ = 10)</td>
+          <td>5.0–9.5 (Δ = <span class="num">4.5</span>)</td>
+          <td>모든 봉기·붕괴 사례가 이 구간</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p>
+      LEL_social = 5.0과 UEL_social = 9.5는 이론적 가정이 아니라
+      <strong>11개 과거 봉기 사례에서 역산된 경험값</strong>이다.
+      칠레 2019(BRI 5.2)와 튀니지 2011(BRI 5.5)이 실제 봉기 직전의 최저점이었고,
+      남수단·CAR은 9 이상에서 봉기 능력 자체가 소멸된 "과잉억압 사망 구간"을 보여준다.
+    </p>
+
+    <h4 class="minor">EPI v2.0 핵심 공식</h4>
+    <div class="formula-box">
+      <span class="var">η</span> = (<span class="var">BRI_raw</span> − <span class="const">LEL_social</span>) / (<span class="const">UEL_social</span> − <span class="const">LEL_social</span>)<br><br>
+      <span class="var">η</span> = (<span class="var">BRI_raw</span> − <span class="const">5.0</span>) / <span class="const">4.5</span>
+      <em>η는 [0, 1] 정규화된 폭발 범위 구역 내 위치. 음수는 안전 구간, 1.0 초과는 과잉억압 구간을 의미한다.</em>
+    </div>
+
+    <h4 class="minor">경보 단계표 — 5단계 알람 체계</h4>
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>η 구간</th>
+          <th>BRI 구간</th>
+          <th>경보 단계</th>
+          <th>대응 권고</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="num">η &lt; 0</td>
+          <td class="num">BRI &lt; 5.0</td>
+          <td><span class="status-safe">안전 SAFE</span></td>
+          <td>정상 모니터링</td>
+        </tr>
+        <tr>
+          <td class="num">0 ≤ η &lt; 0.3</td>
+          <td class="num">5.0 ~ 6.35</td>
+          <td><span class="status-watch">주의 WATCH</span></td>
+          <td>예방적 개입 고려</td>
+        </tr>
+        <tr>
+          <td class="num">0.3 ≤ η &lt; 0.7</td>
+          <td class="num">6.35 ~ 8.15</td>
+          <td><span class="status-alarm">경보 ALARM</span></td>
+          <td>정책 개입 필요</td>
+        </tr>
+        <tr>
+          <td class="num">0.7 ≤ η ≤ 1.0</td>
+          <td class="num">8.15 ~ 9.5</td>
+          <td><span class="status-danger">위험 DANGER</span></td>
+          <td>긴급 구조 개혁</td>
+        </tr>
+        <tr>
+          <td class="num">η &gt; 1.0</td>
+          <td class="num">BRI &gt; 9.5</td>
+          <td><span class="status-over">과잉억압 OVER</span></td>
+          <td>희석 시 즉각 점화</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-label">위험 구간 비대칭성</div>
+      과잉억압 구간(η &gt; 1.0)이 가장 위험하다. 이 구간에서는 봉기 능력 자체가 억눌려 있어
+      외형상 안정으로 보이나, 작은 자유화·희석 시도가 즉각적 점화를 일으킨다.
+      구소련 글라스노스트(1986–1991)와 시리아 2011이 이 패턴의 교과서적 사례다.
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- §4. EPI 19개국 η 계산 결과 -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="chapter">
+    <h2 class="chapter-title"><span class="num">§ 4.</span>EPI 19개국 η 계산 결과</h2>
+    <p class="chapter-lede">v9.8 신규 · 단일 측정 원칙 적용 · 2026.04.21 데이터 기준</p>
+
+    <p>
+      19개국 대상 η = (BRI_raw − 5.0) / 4.5 적용 결과.
+      모든 값은 SEISMOS 데이터셋(2025 Q4 ~ 2026 Q1)을 기준으로 하며,
+      τ(BRI/SSI)와 GPI는 보조 해석 지표로 함께 제시한다.
+    </p>
+
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>국가</th>
+          <th class="center">η</th>
+          <th class="center">BRI</th>
+          <th class="center">τ (BRI/SSI)</th>
+          <th class="center">GPI</th>
+          <th class="center">경보</th>
+          <th>주요 사건 / 컨텍스트</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>남수단</strong> (S. Sudan)</td><td class="num center">0.978</td><td class="num center">9.40</td><td class="num center">2.85</td><td class="num center">8.9</td><td class="center"><span class="status-danger">DANGER</span></td><td>국가 능력 붕괴, 만성 내전</td></tr>
+        <tr><td><strong>중앙아프리카공화국</strong> (CAR)</td><td class="num center">0.911</td><td class="num center">9.10</td><td class="num center">2.42</td><td class="num center">8.5</td><td class="center"><span class="status-danger">DANGER</span></td><td>러시아 와그너 의존, 주권 공백</td></tr>
+        <tr><td><strong>니제르</strong> (Niger)</td><td class="num center">0.778</td><td class="num center">8.50</td><td class="num center">2.10</td><td class="num center">7.8</td><td class="center"><span class="status-danger">DANGER</span></td><td>2023 군사 쿠데타 후속 불안</td></tr>
+        <tr><td><strong>네팔</strong> (Nepal)</td><td class="num center">0.622</td><td class="num center">7.80</td><td class="num center">1.85</td><td class="num center">6.9</td><td class="center"><span class="status-alarm">ALARM</span></td><td>2025.09 봉기 직후 — 모델 적중</td></tr>
+        <tr><td><strong>파키스탄</strong> (Pakistan)</td><td class="num center">0.556</td><td class="num center">7.50</td><td class="num center">1.72</td><td class="num center">6.4</td><td class="center"><span class="status-alarm">ALARM</span></td><td>군부 통치, 부채 위기</td></tr>
+        <tr><td><strong>이란</strong> (Iran)</td><td class="num center">0.533</td><td class="num center">7.40</td><td class="num center">1.68</td><td class="num center">7.2</td><td class="center"><span class="status-alarm">ALARM</span></td><td>2026.02.28 전쟁 시작</td></tr>
+        <tr><td><strong>베네수엘라</strong> (Venezuela)</td><td class="num center">0.489</td><td class="num center">7.20</td><td class="num center">1.55</td><td class="num center">6.8</td><td class="center"><span class="status-alarm">ALARM</span></td><td>마두로 정권, 1,000만 난민</td></tr>
+        <tr><td><strong>스리랑카</strong> (Sri Lanka)</td><td class="num center">0.400</td><td class="num center">6.80</td><td class="num center">1.45</td><td class="num center">5.9</td><td class="center"><span class="status-alarm">ALARM</span></td><td>2022 디폴트 후 회복 부진</td></tr>
+        <tr><td><strong>중국</strong> (China)</td><td class="num center">0.267</td><td class="num center">6.20</td><td class="num center">1.32</td><td class="num center">5.4</td><td class="center"><span class="status-watch">WATCH</span></td><td>부동산 위기, 청년 실업</td></tr>
+        <tr><td><strong>이집트</strong> (Egypt)</td><td class="num center">0.178</td><td class="num center">5.80</td><td class="num center">1.20</td><td class="num center">5.1</td><td class="center"><span class="status-watch">WATCH</span></td><td>IMF 구제, 시시 군부 통치</td></tr>
+        <tr><td><strong>튀니지</strong> (Tunisia)</td><td class="num center">0.111</td><td class="num center">5.50</td><td class="num center">1.15</td><td class="num center">4.8</td><td class="center"><span class="status-watch">WATCH</span></td><td>사이드 권위주의 회귀</td></tr>
+        <tr><td><strong>일본</strong> (Japan)</td><td class="num center">0.071</td><td class="num center">5.32</td><td class="num center">0.92</td><td class="num center">3.9</td><td class="center"><span class="status-watch">WATCH</span></td><td>인구 절벽, 임금 정체</td></tr>
+        <tr><td><strong>칠레</strong> (Chile)</td><td class="num center">0.044</td><td class="num center">5.20</td><td class="num center">1.05</td><td class="num center">4.5</td><td class="center"><span class="status-watch">WATCH</span></td><td>2019 봉기 트라우마 잔존</td></tr>
+        <tr><td><strong>보츠와나</strong> (Botswana)</td><td class="num center">0.044</td><td class="num center">5.20</td><td class="num center">0.95</td><td class="num center">4.2</td><td class="center"><span class="status-watch">WATCH</span></td><td>다이아몬드 의존, 정권 교체</td></tr>
+        <tr><td><strong>미국</strong> (USA)</td><td class="num center">−0.044</td><td class="num center">4.80</td><td class="num center">1.10</td><td class="num center">5.2</td><td class="center"><span class="status-safe">SAFE*</span></td><td>양극화 심화, 안전 구간 경계</td></tr>
+        <tr><td><strong>이스라엘</strong> (Israel)</td><td class="num center">−0.044</td><td class="num center">4.80</td><td class="num center">1.20</td><td class="num center">6.5</td><td class="center"><span class="status-safe">SAFE*</span></td><td>전시 동원, 외부 압력 변환</td></tr>
+        <tr><td><strong>독일</strong> (Germany)</td><td class="num center">−0.180</td><td class="num center">4.20</td><td class="num center">0.85</td><td class="num center">3.4</td><td class="center"><span class="status-safe">SAFE</span></td><td>제조업 위기, 정치 단편화</td></tr>
+        <tr><td><strong>한국</strong> (Korea)</td><td class="num center">−0.267</td><td class="num center">3.80</td><td class="num center">0.78</td><td class="num center">3.6</td><td class="center"><span class="status-safe">SAFE</span></td><td>양극화·고령화 누적</td></tr>
+        <tr><td><strong>사우디아라비아</strong> (Saudi)</td><td class="num center">−0.333</td><td class="num center">3.50</td><td class="num center">0.65</td><td class="num center">5.8</td><td class="center"><span class="status-safe">SAFE</span></td><td>고압 제어, η 신뢰 한정</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">해석 노트</div>
+      η는 <strong>현재 시점의 정적 측정</strong>이다. 변화율(dη/dt)이 양수인 경우 — 즉
+      η가 빠르게 상승 중인 국가는 같은 η 값에서도 더 위험하다.
+      네팔 2025.09 봉기는 η가 0.4 → 0.62로 12개월 내 상승한 결과였다.
+      이 변화율 차원은 v10에서 정식으로 도입될 예정이다.
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- §5. 독립 해석 패널 -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="chapter">
+    <h2 class="chapter-title"><span class="num">§ 5.</span>독립 해석 패널</h2>
+    <p class="chapter-lede">η와 독립적으로 읽는 4개 패널 — "왜 위험한가?"의 다른 각도들</p>
+
+    <p>
+      η가 단일 메인 센서라면, 독립 해석 패널은 같은 위험을 다른 각도에서 비춘다.
+      네 패널은 서로 보정하지 않는다 — 각자 독립 신호로 읽고,
+      η와의 일치/불일치 자체가 해석의 재료가 된다.
+    </p>
+
+    <div class="panels-grid">
+      <div class="panel-card">
+        <div class="panel-name">OLI</div>
+        <div class="panel-key">신뢰 패널 · Outflow Legitimacy Index</div>
+        <p class="panel-desc">시민과 제도 사이 신뢰의 누출량. 낮을수록 정권의 정통성 잔량이 작고,
+          η와 동시에 OLI가 무너지면 봉기 능력이 결집된다.</p>
+      </div>
+      <div class="panel-card gold">
+        <div class="panel-name">TBI</div>
+        <div class="panel-key">점화 민감도 · Trigger-to-Blast Index</div>
+        <p class="panel-desc">트리거 사건이 폭발로 전환될 확률 계수. 같은 η 값에서도 TBI가 높으면
+          작은 사건(가격 인상, 단속, 사고)이 봉기를 점화한다. 튀니지 부아지지가 전형.</p>
+      </div>
+      <div class="panel-card amber">
+        <div class="panel-name">Σ</div>
+        <div class="panel-key">권력 포획 · Power Capture Coefficient</div>
+        <p class="panel-desc">의사결정 통로의 차단도. Σ가 높으면 제도적 저항 경로가 봉쇄되어
+          압력이 거리로 흘러간다. SRB 0.72, BIH 0.78이 발칸 비교편의 경고 신호였다.</p>
+      </div>
+      <div class="panel-card red">
+        <div class="panel-name">HCDI</div>
+        <div class="panel-key">부채 부담 · Household Capital Distress Index</div>
+        <p class="panel-desc">가계·국가 부채 압력. η가 같아도 HCDI가 높으면
+          "잃을 것이 적은" 인구 비율이 커진다. 스리랑카 2022, 아르헨티나 100년 역설의 핵심 변수.</p>
+      </div>
+    </div>
+
+    <h4 class="minor">τ — 공명 비율 (BRI/SSI) · 보조 해석</h4>
+    <p>
+      τ = BRI / SSI는 압력과 구조취약의 공명을 잡는다.
+      τ &gt; 2.0이면 시스템이 압력을 흡수할 구조적 여력을 잃은 상태 —
+      남수단(2.85), CAR(2.42), 니제르(2.10)가 이 구간이다.
+      τ &lt; 1.0은 구조적 강건성이 있는 시스템 — 한국(0.78), 사우디(0.65) 등.
+    </p>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- §6. 모델 검증 — 과거 봉기 예측 정확도 분석 -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="chapter">
+    <h2 class="chapter-title"><span class="num">§ 6.</span>모델 검증 — 과거 봉기 예측 정확도 분석</h2>
+    <p class="chapter-lede">11개 붕괴 사례에 대한 소급 검증 (Retrospective Validation)</p>
+
+    <p>
+      Λ¹² v9.8의 LEL = 5.0, UEL = 9.5는 다음 11개 과거 사례의 BRI 역산에서 도출된 경험값이다.
+      각 사례는 봉기·붕괴 직전 시점의 BRI를 SEISMOS 데이터셋에서 재구성하고,
+      η 신호가 사후가 아닌 <strong>사전에</strong> 위험 구간을 가리켰는지 확인했다.
+    </p>
+
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>사례</th>
+          <th class="center">시점</th>
+          <th class="center">사전 η</th>
+          <th class="center">사전 BRI</th>
+          <th>결과 / 검증</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>튀니지</strong> 자스민 혁명</td><td class="center">2010.12</td><td class="num center">0.111</td><td class="num center">5.50</td><td>WATCH 신호 후 6주 만에 점화 — TBI 동시 경보로 식별 가능했음</td></tr>
+        <tr><td><strong>이집트</strong> 타흐리르</td><td class="center">2011.01</td><td class="num center">0.222</td><td class="num center">6.00</td><td>WATCH 상단 — η + Σ 동시 신호</td></tr>
+        <tr><td><strong>리비아</strong> 가다피 붕괴</td><td class="center">2011.02</td><td class="num center">0.622</td><td class="num center">7.80</td><td>ALARM 구간, OLI 동반 붕괴</td></tr>
+        <tr><td><strong>시리아</strong> 내전 진입</td><td class="center">2011.03</td><td class="num center">1.044</td><td class="num center">9.70</td><td>OVER 구간 — 희석 시도 직후 점화의 전형</td></tr>
+        <tr><td><strong>우크라이나</strong> 마이단</td><td class="center">2013.11</td><td class="num center">0.378</td><td class="num center">6.70</td><td>ALARM, 외부 충격(EU 협정)이 트리거</td></tr>
+        <tr><td><strong>홍콩</strong> 우산혁명</td><td class="center">2014.09</td><td class="num center">0.289</td><td class="num center">6.30</td><td>WATCH/ALARM 경계, OLI 누출이 결정타</td></tr>
+        <tr><td><strong>칠레</strong> 지하철 봉기</td><td class="center">2019.10</td><td class="num center">0.044</td><td class="num center">5.20</td><td>WATCH 하단 — TBI 7.2가 사전 경보로 식별</td></tr>
+        <tr><td><strong>레바논</strong> 와츠앱 봉기</td><td class="center">2019.10</td><td class="num center">0.444</td><td class="num center">7.00</td><td>ALARM, HCDI 동반 폭증</td></tr>
+        <tr><td><strong>이라크</strong> 티슈린</td><td class="center">2019.10</td><td class="num center">0.578</td><td class="num center">7.60</td><td>ALARM, Σ 0.74 동반</td></tr>
+        <tr><td><strong>스리랑카</strong> 디폴트 봉기</td><td class="center">2022.04</td><td class="num center">0.378</td><td class="num center">6.70</td><td>ALARM + HCDI 9.0 — 이중 경보 사례</td></tr>
+        <tr><td><strong>네팔</strong> 봉기</td><td class="center">2025.09</td><td class="num center">0.622</td><td class="num center">7.80</td><td>ALARM 적중 — v9.7 사전 발표 후 검증</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="callout">
+      <div class="callout-label">검증 결과 요약</div>
+      11개 사례 중 <strong>10개가 봉기 시점의 12개월 이전부터 WATCH 이상 신호</strong>를 유지했다.
+      유일한 경계 사례는 칠레 2019(η=0.044)로, η만으로는 SAFE 경계였으나
+      TBI(트리거 점화 민감도) 패널이 사전 경보를 발했다 —
+      이는 <strong>4패널 독립 해석 체계의 정당성</strong>을 보여주는 핵심 증거다.
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- 부록 B. 모델 한계 선언 및 v10 미래 과제 -->
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="chapter">
+    <h2 class="chapter-title"><span class="num">부록 B.</span>모델 한계 선언 및 v10 미래 과제</h2>
+    <p class="chapter-lede">연구 윤리 — 무엇이 아직 부족한가</p>
+
+    <div class="callout warn">
+      <div class="callout-label">모델 한계 선언</div>
+      Λ¹² v9.8은 <strong>개념적 프레임워크이자 사회 진단 도구의 초안</strong>이다.
+      피어리뷰 저널용 완성된 실증 모델이 아니며, 이를 명시적으로 선언하는 것이 연구 윤리다.
+      현 단계에서 Λ¹²는 (1) 정책 결정의 1차 근거가 아니라 보조 신호이며,
+      (2) 인과 추론(causal inference)이 아니라 패턴 식별(pattern recognition)에 머문다.
+      독자는 η를 "예언서"가 아니라 "건강검진 수치"로 읽기를 권한다.
+    </div>
+
+    <h4 class="minor">v10 핵심 과제 (2026 하반기 ~ 2027)</h4>
+    <ol>
+      <li>
+        <strong>dη/dt 변화율의 정식 도입</strong> —
+        "지금 얼마나 위험한가"가 아니라 "얼마나 빨리 위험 구역에 진입하고 있는가"를 측정.
+        네팔 2025 사례에서 검증된 변화율 신호의 모델화.
+      </li>
+      <li>
+        <strong>자기강화 피드백 루프 모델링</strong> —
+        η가 OLI를 깎고, OLI 누출이 다시 BRI를 밀어 올리는 비선형 동학을
+        명시적 미분방정식으로 기술.
+      </li>
+      <li>
+        <strong>샘플 확장</strong> — 19개국 → 50개국 이상.
+        특히 G20 + 주요 중규모 국가 + LDC 군집을 포괄하는 지역 균형 표본.
+      </li>
+      <li>
+        <strong>BRI_raw Python 검증 코드 전체 공개</strong> —
+        오픈사이언스 원칙에 따라 데이터 전처리·집계·정규화 전 과정을
+        Jupyter notebook 형태로 GitHub에 공개. 재현 가능성 확보.
+      </li>
+      <li>
+        <strong>피어리뷰 저널 투고 준비</strong> —
+        Journal of Conflict Resolution, World Politics, 또는 PNAS 등을 후보로
+        v10 시점에 정식 학술지 심사 절차 진입.
+      </li>
+    </ol>
+
+    <p style="margin-top: 24px;">
+      v9.8은 "측정과 경보"의 단계에 머물러 있다.
+      v10에서는 "측정 + 경보 + 변화율 + 재현 가능한 코드"의 완전한 진단 도구로 진화하는 것을 목표한다.
+      그 사이의 과정은 GitHub
+      <a href="https://github.com/badaegopa/-everbluesea" target="_blank" style="color: var(--sage-deep);">badaegopa/-everbluesea</a>
+      에서 공개적으로 추적할 수 있다.
+    </p>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="fractal-divider">
+    · · · ∞ · · · 𝑓(𝑧) = 𝑧² + 𝑐 · · · attractor · · · chaos · · · fractal · · · Λ¹² · · · ∞ · · ·
+  </div>
+
+  <!-- ═══ PAPER FOOTER ═══ -->
+  <div class="paper-footer">
+    <div class="left">
+      <strong>늘푸른바다 사회동역학 연구소</strong>
+      Engine: Λ¹² v9.14 | §33 BBD + §34 GEI + §35 NCI | SSRN 6632858 기반<br>
+      Author: 김기섭 (청해, 淸海) · giseub12@gmail.com<br>
+      © 2026 Cheonghae · Λ¹² Framework under review
+    </div>
+    <div class="right">
+      SSRN: <a href="https://papers.ssrn.com/abstract=6632858" target="_blank" style="color: var(--sage-deep);">6632858</a><br>
+      Web: <a href="https://everbluesea.org" style="color: var(--sage-deep);">everbluesea.org</a><br>
+      v9.8 · 2026.04.21
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

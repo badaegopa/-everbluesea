@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>논문 (Papers) | 늘푸른바다 사회동역학 연구소</title>
+<meta name="description" content="늘푸른바다 사회동역학 연구소 SSRN 등재 논문 목록 — Λ¹² 사회동역학 프레임워크, 삼중 좌표 프레임워크">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9EYCQD2EK8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-9EYCQD2EK8");
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400&family=Noto+Sans+KR:wght@300;400;500&family=Noto+Serif+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:        #F5F3EE;
+  --bg2:       #EDEAE3;
+  --bg3:       #E4E0D7;
+  --ink:       #1E1D1B;
+  --ink-soft:  #4A4640;
+  --ink-muted: #7A746C;
+  --sage:      #5E9186;
+  --sage-lt:   #7FA896;
+  --sage-pale: #D4E5DF;
+  --sage-deep: #3A6A5E;
+  --gold:      #B8850E;
+  --gold-lt:   #D4B06A;
+  --gold-pale: #F0E4C4;
+  --gold-deep: #8B6308;
+  --blue:      #4A6FA5;
+  --border:    #DDD8CE;
+  --shadow:    0 2px 16px rgba(30,29,27,0.08);
+  --r:         6px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'EB Garamond', 'Noto Serif KR', Georgia, serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.7;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(245,243,238,0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px; height: 64px;
+}
+.nav-logo { display: flex; flex-direction: column; line-height: 1.2; text-decoration: none; }
+.nav-logo .logo-kr { font-family:'Noto Serif KR',serif; font-size:13px; color:var(--sage-deep); font-weight:500; }
+.nav-logo .logo-en { font-family:'Cormorant Garamond',serif; font-size:17px; color:var(--ink); font-weight:500; letter-spacing:0.02em; }
+.nav-back {
+  font-family:'JetBrains Mono',monospace; font-size:11px;
+  color:var(--ink-muted); text-decoration:none;
+  padding: 6px 14px; border:1px solid var(--border); border-radius:20px;
+  transition: all 0.2s;
+}
+.nav-back:hover { color: var(--sage-deep); border-color: var(--sage-lt); background: var(--sage-pale); }
+
+/* ─── HEADER ─── */
+header {
+  padding: 80px 40px 60px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
+}
+.eyebrow {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.2em;
+  color: var(--gold-deep); text-transform: uppercase;
+  background: var(--gold-pale);
+  border: 1px solid rgba(184,133,14,0.3);
+  padding: 5px 16px; border-radius: 20px;
+  margin-bottom: 24px;
+}
+h1.page-title {
+  font-family: 'Cormorant Garamond', 'Noto Serif KR', serif;
+  font-size: clamp(36px, 5vw, 56px); font-weight: 400;
+  letter-spacing: 0.02em; line-height: 1.15;
+  margin-bottom: 12px;
+}
+h1.page-title em { font-style: italic; color: var(--sage-deep); }
+.page-subtitle {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 16px; color: var(--ink-muted);
+  font-style: italic; max-width: 640px; margin: 0 auto;
+}
+
+/* ─── PAPER LIST ─── */
+main { max-width: 920px; margin: 0 auto; padding: 60px 40px 100px; }
+
+.paper-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 36px 40px;
+  margin-bottom: 28px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+.paper-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--sage), var(--sage-lt));
+}
+.paper-card.gold::before {
+  background: linear-gradient(90deg, var(--gold), var(--gold-lt));
+}
+.paper-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  border-color: rgba(94,145,134,0.4);
+}
+
+.paper-meta-row {
+  display: flex; align-items: center; gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px; letter-spacing: 0.1em;
+}
+.meta-tag {
+  padding: 3px 10px; border-radius: 10px;
+  border: 1px solid var(--border);
+}
+.meta-tag.ssrn {
+  background: var(--sage-pale); color: var(--sage-deep);
+  border-color: rgba(94,145,134,0.3);
+}
+.meta-tag.ver {
+  background: var(--gold-pale); color: var(--gold-deep);
+  border-color: rgba(184,133,14,0.3);
+}
+.meta-tag.date {
+  color: var(--ink-muted);
+}
+.meta-tag.lang {
+  background: var(--bg3); color: var(--ink-soft);
+}
+
+.paper-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 26px; font-weight: 600;
+  color: var(--ink); line-height: 1.35;
+  margin-bottom: 8px;
+}
+.paper-title .lambda {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--sage-deep); font-style: italic;
+  font-weight: 500;
+}
+.paper-subtitle {
+  font-family: 'EB Garamond', 'Noto Serif KR', serif;
+  font-size: 17px; font-style: italic;
+  color: var(--ink-soft); line-height: 1.55;
+  margin-bottom: 18px;
+}
+.paper-author {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px; color: var(--ink-muted);
+  margin-bottom: 24px;
+  padding-bottom: 18px; border-bottom: 1px dashed var(--border);
+}
+.paper-author strong { color: var(--ink); font-weight: 500; }
+
+.paper-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; letter-spacing: 0.06em;
+  padding: 10px 20px; border-radius: var(--r);
+  text-decoration: none; transition: all 0.2s;
+}
+.btn-primary {
+  background: var(--sage); color: #fff;
+  border: 1px solid var(--sage);
+}
+.btn-primary:hover { background: var(--sage-deep); border-color: var(--sage-deep); }
+.btn-outline {
+  background: transparent; color: var(--gold-deep);
+  border: 1px solid var(--gold);
+}
+.btn-outline:hover { background: var(--gold-pale); }
+
+/* ─── INFO STRIP ─── */
+.info-strip {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 24px 28px;
+  margin-bottom: 40px;
+  font-size: 14.5px; color: var(--ink-soft); line-height: 1.75;
+}
+.info-strip strong { color: var(--sage-deep); font-weight: 500; }
+.info-strip .formula {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px; color: var(--ink);
+  background: #FFFFFF;
+  padding: 2px 8px; border-radius: 4px;
+  border: 1px solid var(--border);
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--ink); color: rgba(255,255,255,0.55);
+  padding: 36px 40px;
+  border-top: 3px solid var(--sage);
+  text-align: center;
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; color: #fff; margin-bottom: 6px;
+}
+.footer-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.4); margin-bottom: 16px;
+}
+.footer-links { display: flex; justify-content: center; gap: 22px; flex-wrap: wrap; }
+.footer-links a {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: rgba(255,255,255,0.5);
+  text-decoration: none; transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--sage-lt); }
+.footer-copy { font-size: 11px; margin-top: 18px; color: rgba(255,255,255,0.3); }
+
+@media (max-width: 720px) {
+  nav { padding: 0 20px; }
+  header { padding: 60px 20px 50px; }
+  main { padding: 40px 20px 80px; }
+  .paper-card { padding: 28px 24px; }
+  .paper-title { font-size: 21px; }
+  .paper-subtitle { font-size: 15px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">
+    <span class="logo-kr">늘푸른바다 사회동역학 연구소</span>
+    <span class="logo-en">Λ¹² Sociodynamics · Papers</span>
+  </a>
+  <a href="../index.html" class="nav-back">← 메인으로</a>
+</nav>
+
+<header>
+  <div class="eyebrow">SSRN PUBLISHED PAPERS</div>
+  <h1 class="page-title">논문 <em>(Papers)</em></h1>
+  <p class="page-subtitle">
+    SSRN 등재 학술 논문 한글판 ·<br>
+    Λ¹² 사회동역학 프레임워크와 그 수학적 토대
+  </p>
+</header>
+
+<main>
+  <div class="info-strip">
+    늘푸른바다 사회동역학 연구소가 SSRN(Social Science Research Network)에 등재한 학술 논문의 <strong>한글 번역판</strong>을 제공합니다.
+    원문은 영문이며, 본 한글판은 한국어 독자를 위한 재구성입니다.
+    인용·재배포 시 SSRN의 영문 원문을 표준 출처로 명시해 주십시오.
+    <br><br>
+    핵심 엔진: <span class="formula">Λ¹² v9.14 = §31 ADI + §33 BBD + §34 GEI + §35 NCI</span>
+  </div>
+
+  <!-- Paper 1 — Λ¹² Framework -->
+  <article class="paper-card">
+    <div class="paper-meta-row">
+      <span class="meta-tag ssrn">SSRN · 6632858</span>
+      <span class="meta-tag ver">v9.8</span>
+      <span class="meta-tag date">2026.04.21</span>
+      <span class="meta-tag lang">KO · EN</span>
+    </div>
+    <h2 class="paper-title">
+      람다-12 <span class="lambda">(Λ¹²)</span> 사회동역학 프레임워크
+    </h2>
+    <p class="paper-subtitle">
+      SEISMOS 실증적 검증을 통한 사회 위상 공간 분석을 위한 12차원 끝개 모델
+    </p>
+    <p class="paper-author">
+      <strong>김기섭</strong> (청해, 淸海) · 늘푸른바다 사회동역학 연구소 ·
+      Everblue Sea Institute for Social Dynamics
+    </p>
+    <div class="paper-actions">
+      <a class="btn btn-primary" href="lambda12_v9.8_ko.html">한글판 보기 →</a>
+      <a class="btn btn-outline" href="https://papers.ssrn.com/abstract=6632858" target="_blank" rel="noopener">원문보기 ↗</a>
+    </div>
+  </article>
+
+  <!-- Paper 2 — Triple Coordinate Framework -->
+  <article class="paper-card gold">
+    <div class="paper-meta-row">
+      <span class="meta-tag ssrn">SSRN · 6509200</span>
+      <span class="meta-tag ver">v2.1</span>
+      <span class="meta-tag date">2026.04.02</span>
+      <span class="meta-tag lang">KO · EN</span>
+    </div>
+    <h2 class="paper-title">
+      사회 역학을 위한 <span class="lambda">삼중 좌표</span> 프레임워크
+    </h2>
+    <p class="paper-subtitle">
+      카오스 이론, 어트랙터 역학 및 프랙탈 자기 유사성에서 도출된 BRI, SSI 및 GPI
+    </p>
+    <p class="paper-author">
+      <strong>김기섭</strong> (청해, 淸海) · 늘푸른바다 사회동역학 연구소 ·
+      Everblue Sea Institute for Social Dynamics
+    </p>
+    <div class="paper-actions">
+      <a class="btn btn-primary" href="lambda11_v2.1_ko.html">한글판 보기 →</a>
+      <a class="btn btn-outline" href="https://papers.ssrn.com/abstract=6509200" target="_blank" rel="noopener">원문보기 ↗</a>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <div class="footer-logo">Everblue Sea Institute</div>
+  <div class="footer-sub">늘푸른바다 사회동역학 연구소 · Ulsan, Korea</div>
+  <div class="footer-links">
+    <a href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=8005878" target="_blank">SSRN Author</a>
+    <a href="https://badaegopa.tistory.com" target="_blank">Tistory</a>
+    <a href="https://brunch.co.kr/@badaegopa" target="_blank">Brunch</a>
+    <a href="https://github.com/badaegopa/-everbluesea" target="_blank">GitHub</a>
+    <a href="../index.html">everbluesea.org</a>
+  </div>
+  <p class="footer-copy">© 2026 Cheonghae (淸海) · All rights reserved · Λ¹² framework under review</p>
+</footer>
+
+</body>
+</html>

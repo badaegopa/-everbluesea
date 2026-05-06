@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사회 역학을 위한 삼중 좌표 프레임워크 v2.1 — 한글판 | 늘푸른바다 사회동역학 연구소</title>
+<meta name="description" content="SSRN 6509200 · v2.1 한글판 — 카오스 이론·어트랙터 역학·프랙탈 자기 유사성에서 도출된 BRI, SSI, GPI 삼중 좌표 사회 진단 프레임워크">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9EYCQD2EK8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-9EYCQD2EK8");
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:        #F5F3EE;
+  --bg2:       #EDEAE3;
+  --bg3:       #E4E0D7;
+  --paper:     #FAF8F2;
+  --ink:       #1E1D1B;
+  --ink-soft:  #3F3A33;
+  --ink-mid:   #5A554C;
+  --ink-muted: #7A746C;
+  --rule:      #2A2520;
+  --rule-soft: #C9C2B3;
+  --sage:      #5E9186;
+  --sage-deep: #3A6A5E;
+  --sage-pale: #D4E5DF;
+  --gold:      #B8850E;
+  --gold-deep: #8B6308;
+  --gold-pale: #F0E4C4;
+  --blue:      #4A6FA5;
+  --blue-pale: #D4DFF0;
+  --blue-deep: #2C4A75;
+  --red:       #9B4040;
+  --red-pale:  #F2DCDC;
+  --border:    #DDD8CE;
+  --shadow:    0 2px 12px rgba(30,29,27,0.06);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Noto Serif KR', 'EB Garamond', Georgia, serif;
+  line-height: 1.78;
+  font-size: 16.5px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(245,243,238,0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px; height: 60px;
+}
+.nav-logo { display: flex; flex-direction: column; line-height: 1.2; text-decoration: none; }
+.nav-logo .kr { font-family: 'Noto Serif KR', serif; font-size: 12px; color: var(--sage-deep); font-weight: 500; }
+.nav-logo .en { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: var(--ink); font-style: italic; }
+.nav-actions { display: flex; gap: 10px; }
+.nav-btn {
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  color: var(--ink-soft); text-decoration: none;
+  padding: 6px 12px; border: 1px solid var(--border); border-radius: 18px;
+  transition: all 0.2s;
+}
+.nav-btn:hover { color: var(--sage-deep); border-color: var(--sage); background: var(--sage-pale); }
+.nav-btn.gold { color: var(--gold-deep); }
+.nav-btn.gold:hover { background: var(--gold-pale); border-color: var(--gold); }
+
+/* ─── PAPER LAYOUT ─── */
+.page {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 56px 56px 96px;
+  background: var(--paper);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  min-height: 100vh;
+}
+
+/* ─── MASTHEAD ─── */
+.masthead {
+  border-top: 3px double var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 14px 0 12px;
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-family: 'EB Garamond', serif;
+  font-size: 12px; letter-spacing: 0.18em;
+  color: var(--ink-soft);
+}
+.masthead .center { font-style: italic; color: var(--ink-mid); letter-spacing: 0.06em; }
+
+/* ─── TITLE BLOCK ─── */
+.title-block {
+  padding: 48px 0 36px;
+  border-bottom: 1px solid var(--rule);
+  text-align: center;
+}
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.32em;
+  color: var(--gold-deep); text-transform: uppercase;
+  margin-bottom: 22px;
+}
+.eyebrow::before, .eyebrow::after {
+  content: "—"; margin: 0 14px; color: var(--rule-soft);
+}
+h1.title {
+  font-family: 'Noto Serif KR', serif;
+  font-weight: 700; font-size: clamp(32px, 4.5vw, 46px);
+  line-height: 1.2; margin-bottom: 16px;
+  color: var(--ink); letter-spacing: -0.005em;
+}
+h1.title .em {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--sage-deep); font-style: italic; font-weight: 600;
+}
+.subtitle {
+  font-family: 'EB Garamond', 'Noto Serif KR', serif;
+  font-size: clamp(16px, 2vw, 19px);
+  font-style: italic; color: var(--ink-mid);
+  margin-bottom: 24px; font-weight: 400;
+  max-width: 720px; margin-left: auto; margin-right: auto;
+  line-height: 1.5;
+}
+.meta-row {
+  display: flex; justify-content: center; gap: 28px; flex-wrap: wrap;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: var(--ink-mid); letter-spacing: 0.06em;
+  padding-top: 8px;
+}
+.meta-row span { display: inline-flex; align-items: center; gap: 6px; }
+.meta-row strong { color: var(--ink); font-weight: 500; }
+
+/* ─── ABSTRACT ─── */
+.abstract {
+  background: var(--bg2);
+  border-left: 3px solid var(--gold);
+  padding: 22px 28px;
+  margin: 36px 0 28px;
+  font-size: 15.5px; line-height: 1.85;
+  color: var(--ink-soft); font-style: italic;
+}
+.abstract::before {
+  content: "초록 (Abstract)";
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.2em;
+  color: var(--gold-deep); text-transform: uppercase;
+  font-style: normal; margin-bottom: 10px;
+}
+
+/* ─── SECTION ─── */
+section.chapter { margin: 56px 0 28px; padding-top: 16px; }
+section.chapter:first-of-type { margin-top: 28px; }
+
+h2.chapter-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 26px; font-weight: 700; color: var(--ink);
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 10px; margin-bottom: 8px;
+  display: flex; align-items: baseline; gap: 14px;
+}
+h2.chapter-title .num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px; font-weight: 400; font-style: italic;
+  color: var(--gold-deep);
+}
+.chapter-lede {
+  font-family: 'EB Garamond', 'Noto Serif KR', serif;
+  font-size: 15px; font-style: italic;
+  color: var(--ink-muted);
+  margin-bottom: 28px;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 14px;
+}
+
+h3.sub {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 18px; font-weight: 600; color: var(--ink);
+  margin: 28px 0 12px;
+  padding-left: 12px;
+  border-left: 3px solid var(--gold);
+}
+h3.sub .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; color: var(--gold-deep);
+  margin-right: 10px; font-weight: 500;
+}
+
+h4.minor {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 15px; font-weight: 500; color: var(--gold-deep);
+  margin: 20px 0 8px;
+  letter-spacing: 0.02em;
+}
+
+p { margin-bottom: 14px; color: var(--ink-soft); }
+p strong { color: var(--ink); font-weight: 600; }
+p em { color: var(--ink-mid); font-style: italic; }
+
+ul, ol { margin: 12px 0 18px 24px; }
+li { margin-bottom: 6px; color: var(--ink-soft); }
+li strong { color: var(--ink); font-weight: 600; }
+
+/* ─── COORDINATE CARDS ─── */
+.triple-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 28px 0;
+}
+.coord-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 22px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.coord-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 4px;
+}
+.coord-card.bri::before { background: var(--red); }
+.coord-card.ssi::before { background: var(--blue); }
+.coord-card.gpi::before { background: var(--gold); }
+.coord-symbol {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 28px; font-weight: 500;
+  margin-bottom: 4px;
+}
+.coord-card.bri .coord-symbol { color: var(--red); }
+.coord-card.ssi .coord-symbol { color: var(--blue-deep); }
+.coord-card.gpi .coord-symbol { color: var(--gold-deep); }
+.coord-name-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px; font-style: italic;
+  color: var(--ink-muted);
+  margin-bottom: 8px;
+}
+.coord-name-kr {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 16px; font-weight: 600;
+  color: var(--ink); margin-bottom: 12px;
+}
+.coord-desc {
+  font-size: 13.5px;
+  color: var(--ink-soft); line-height: 1.7;
+}
+
+/* ─── CALLOUT ─── */
+.callout {
+  background: var(--sage-pale);
+  border-left: 3px solid var(--sage);
+  padding: 18px 22px;
+  border-radius: 0 4px 4px 0;
+  margin: 22px 0;
+  font-size: 15.5px;
+  color: var(--ink-soft); line-height: 1.75;
+}
+.callout-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.18em;
+  color: var(--sage-deep); text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.callout.gold {
+  background: var(--gold-pale);
+  border-left-color: var(--gold);
+}
+.callout.gold .callout-label { color: var(--gold-deep); }
+.callout.blue {
+  background: var(--blue-pale);
+  border-left-color: var(--blue);
+}
+.callout.blue .callout-label { color: var(--blue-deep); }
+.callout.warn {
+  background: var(--red-pale);
+  border-left-color: var(--red);
+}
+.callout.warn .callout-label { color: var(--red); }
+
+/* ─── FORMULA ─── */
+.formula-box {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  padding: 18px 24px;
+  margin: 18px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px; color: var(--ink); line-height: 1.85;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+.formula-box .var { color: var(--sage-deep); font-weight: 500; }
+.formula-box .const { color: var(--gold-deep); font-weight: 500; }
+.formula-box em {
+  color: var(--ink-mid); font-size: 12.5px;
+  font-style: italic; display: block; margin-top: 8px;
+  font-family: 'Noto Serif KR', serif;
+}
+
+/* ─── TABLE ─── */
+.table-wrap {
+  margin: 22px 0;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+table {
+  width: 100%; border-collapse: collapse;
+  font-size: 14px;
+  background: #FFFFFF;
+}
+table th, table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+table th {
+  background: var(--bg2);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 600; color: var(--ink);
+  font-size: 12.5px; letter-spacing: 0.04em;
+  border-bottom: 2px solid var(--rule-soft);
+}
+table td { color: var(--ink-soft); }
+table tr:last-child td { border-bottom: none; }
+table tr:hover td { background: var(--bg2); }
+table .num { font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+table .center { text-align: center; }
+
+/* ─── QUADRANT DIAGRAM ─── */
+.quadrant-wrap {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 28px;
+  margin: 24px 0;
+  text-align: center;
+}
+.quadrant-wrap svg {
+  max-width: 100%;
+  height: auto;
+}
+.quadrant-caption {
+  font-family: 'EB Garamond', 'Noto Serif KR', serif;
+  font-style: italic;
+  font-size: 13.5px; color: var(--ink-muted);
+  margin-top: 16px;
+}
+
+/* ─── DIVIDER ─── */
+.fractal-divider {
+  text-align: center; padding: 32px 16px; opacity: 0.3;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.3em;
+  color: var(--gold); user-select: none;
+}
+
+/* ─── FOOTER ─── */
+.paper-footer {
+  margin-top: 64px; padding-top: 28px;
+  border-top: 3px double var(--rule);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: var(--ink-muted); line-height: 1.9;
+  display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: end;
+}
+.paper-footer .left strong { color: var(--ink-soft); display: block; margin-bottom: 4px; font-size: 12px; }
+.paper-footer .right { text-align: right; font-size: 10.5px; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 720px) {
+  nav { padding: 0 18px; }
+  .page { padding: 32px 22px 64px; }
+  .triple-grid { grid-template-columns: 1fr; }
+  .meta-row { gap: 14px; font-size: 10.5px; }
+  h1.title { font-size: 28px; }
+  h2.chapter-title { font-size: 22px; }
+  h2.chapter-title .num { font-size: 24px; }
+  .formula-box { font-size: 12.5px; padding: 14px 16px; }
+  table { font-size: 12.5px; }
+  table th, table td { padding: 8px 10px; }
+  .paper-footer { grid-template-columns: 1fr; }
+  .paper-footer .right { text-align: left; }
+}
+
+::selection { background: var(--gold-pale); color: var(--gold-deep); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">
+    <span class="kr">늘푸른바다 사회동역학 연구소</span>
+    <span class="en">Triple Coordinate Framework</span>
+  </a>
+  <div class="nav-actions">
+    <a class="nav-btn" href="index.html">← 논문 목록</a>
+    <a class="nav-btn gold" href="https://papers.ssrn.com/abstract=6509200" target="_blank" rel="noopener">SSRN 원문 ↗</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- ═══ MASTHEAD ═══ -->
+  <div class="masthead">
+    <span>Triple Coordinate · v2.1 · 2026</span>
+    <span class="center">Everblue Sea Institute for Social Dynamics</span>
+    <span>SSRN · 6509200</span>
+  </div>
+
+  <!-- ═══ TITLE BLOCK ═══ -->
+  <div class="title-block">
+    <div class="eyebrow">Foundational Paper · Korean Edition</div>
+    <h1 class="title">사회 역학을 위한<br><span class="em">삼중 좌표</span> 프레임워크</h1>
+    <p class="subtitle">카오스 이론, 어트랙터 역학 및<br>프랙탈 자기 유사성에서 도출된 BRI, SSI 및 GPI</p>
+    <div class="meta-row">
+      <span>저자 <strong>김기섭</strong> (청해, 淸海)</span>
+      <span>SSRN <strong>6509200</strong></span>
+      <span>v2.1 · <strong>2026.04.02</strong></span>
+    </div>
+  </div>
+
+  <!-- ═══ ABSTRACT ═══ -->
+  <div class="abstract">
+    본 논문은 사회 시스템을 동역학계로 다루기 위한 세 개의 좌표 변수 —
+    BRI(Bifurcation Resonance Index, 분기 공명 지수),
+    SSI(Structural Stability Index, 구조 안정성 지수),
+    GPI(Generative Pressure Index, 생성 압력 지수)를 제안한다.
+    세 변수는 각각 카오스 이론의 분기점 개념, 어트랙터 역학의 안정 다양체,
+    프랙탈 자기 유사성의 척도 불변성에서 도출되었으며,
+    사회 위상 공간을 4개 사분면(Q1–Q4)으로 분할하여
+    국가별 동역학적 위치를 좌표로 기술할 수 있게 한다.
+    본 v2.1은 이후 확장된 12차원 Λ¹² 프레임워크의 <strong>수학적 토대</strong>가 된다.
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="chapter">
+    <h2 class="chapter-title"><span class="num">§ 1.</span>서론 — 왜 삼중 좌표인가</h2>
+    <p class="chapter-lede">단일 지표의 한계와 동역학적 좌표의 필요성</p>
+
+    <p>
+      사회과학에서 위험을 측정하는 단일 지표는 오랫동안 사용되어 왔다 —
+      Failed States Index, Fragile States Index, Polity IV 등이 그것이다.
+      그러나 단일 합성 지표는 본질적 한계를 갖는다.
+      두 사회가 같은 점수를 받아도, 그 점수가 <strong>어떤 동역학적 경로</strong>로 도달했는지는
+      구별할 수 없기 때문이다.
+    </p>
+
+    <p>
+      예컨대 BRI 5.0이라는 동일한 압력 수치도,
+      구조적 안정성(SSI)이 높은 시스템에서는 흡수되고,
+      낮은 시스템에서는 봉기로 전환된다.
+      그리고 같은 BRI·SSI 값에서도 생성 압력(GPI)이 어디서 오는가에 따라
+      개입의 정책 지점이 완전히 달라진다.
+      <strong>한 점이 아니라 좌표가 필요하다.</strong>
+    </p>
+
+    <p>
+      본 논문이 제안하는 삼중 좌표는 사회를 <em>(BRI, SSI, GPI)</em>의
+      3차원 위상 공간 위의 점으로 다룬다.
+      이 좌표는 카오스 이론·어트랙터 역학·프랙탈 자기 유사성의 세 수학적 원리에서
+      직접 도출되며, 후속 연구의 12차원 Λ¹² 프레임워크에서 핵심 부분 좌표로 자리 잡는다.
+    </p>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="chapter">
+    <h2 class="chapter-title"><span class="num">§ 2.</span>수학적 토대 — 세 가지 원리</h2>
+    <p class="chapter-lede">카오스 · 어트랙터 · 프랙탈 — 삼중 좌표의 이론적 기원</p>
+
+    <h3 class="sub"><span class="num">§ 2.1</span>카오스 이론과 분기점 (Bifurcation)</h3>
+    <p>
+      Lorenz(1963)와 May(1976) 이래, 비선형 동역학계는 임계점에서 갑작스런 위상 전환을 겪는다.
+      이를 <strong>분기(bifurcation)</strong>라 부른다.
+      분기 직전, 시스템은 외부 섭동에 대한 반응이 비대칭적으로 증폭되며,
+      특정 주파수의 입력이 시스템 고유주파수와 공명할 때 폭발적 응답을 보인다.
+    </p>
+    <p>
+      <strong>BRI(Bifurcation Resonance Index)</strong>는 이 공명 현상의 사회적 대응물을 측정한다.
+      사회 시스템이 분기점에 얼마나 가까운지를 — 즉,
+      외부 트리거 사건이 분기를 일으킬 만큼 시스템이 충전되어 있는지를 정량화한다.
+    </p>
+
+    <h3 class="sub"><span class="num">§ 2.2</span>어트랙터 역학과 안정 다양체 (Stable Manifold)</h3>
+    <p>
+      위상 공간에서 동역학계의 궤도는 어트랙터(attractor)로 수렴한다.
+      어트랙터의 흡인 영역(basin of attraction)이 넓고 견고하면 시스템은 안정적이다 —
+      외부 충격에도 동일한 어트랙터로 복귀한다.
+      반대로 흡인 영역이 좁으면 작은 충격이 다른 어트랙터로 이행시킨다.
+    </p>
+    <p>
+      <strong>SSI(Structural Stability Index)</strong>는 사회 시스템의 안정 다양체 폭을 측정한다.
+      제도·문화·신뢰 자본이 형성하는 <em>구조적 회복력</em>의 크기다.
+      SSI가 높은 사회는 같은 BRI에서도 분기로 전환되지 않고 본래 어트랙터로 복귀한다.
+    </p>
+
+    <h3 class="sub"><span class="num">§ 2.3</span>프랙탈 자기 유사성과 척도 불변성</h3>
+    <p>
+      Mandelbrot(1982)이 보인 바, 자연 시스템의 압력은 시간 척도를 가로질러 자기 유사 패턴으로 분포한다.
+      가족 단위·지역 단위·국가 단위의 갈등 압력은 같은 통계적 구조를 가지며,
+      한 척도의 압력 누적이 더 큰 척도의 분기 조건을 형성한다.
+    </p>
+    <p>
+      <strong>GPI(Generative Pressure Index)</strong>는 이 자기 유사적 압력 누적을 측정한다.
+      시스템 외부에서 가해지는 일시적 충격이 아니라,
+      시스템 내부에서 <em>지속적으로 생성되고 누적되는</em> 압력의 양이다.
+      GPI는 BRI의 시간 적분(time integral)에 가까운 개념이다.
+    </p>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="chapter">
+    <h2 class="chapter-title"><span class="num">§ 3.</span>삼중 좌표의 정의</h2>
+    <p class="chapter-lede">BRI · SSI · GPI — 형식적 정의와 측정 차원</p>
+
+    <div class="triple-grid">
+      <div class="coord-card bri">
+        <div class="coord-symbol">BRI</div>
+        <div class="coord-name-en">Bifurcation Resonance Index</div>
+        <div class="coord-name-kr">분기 공명 지수</div>
+        <p class="coord-desc">
+          현재 시점에서 시스템이 분기점에 얼마나 가까운지 — 즉
+          외부 트리거가 위상 전환을 일으킬 만한 압력 누적도.
+          [0, 10] 척도, 5.0 이상에서 위험 구간 진입.
+        </p>
+      </div>
+      <div class="coord-card ssi">
+        <div class="coord-symbol">SSI</div>
+        <div class="coord-name-en">Structural Stability Index</div>
+        <div class="coord-name-kr">구조 안정성 지수</div>
+        <p class="coord-desc">
+          시스템의 흡인 영역 폭 — 제도적 회복력, 신뢰 자본,
+          자정 메커니즘의 강도. [0, 10] 척도,
+          높을수록 같은 BRI에서도 안정.
+        </p>
+      </div>
+      <div class="coord-card gpi">
+        <div class="coord-symbol">GPI</div>
+        <div class="coord-name-en">Generative Pressure Index</div>
+        <div class="coord-name-kr">생성 압력 지수</div>
+        <p class="coord-desc">
+          시스템 내부에서 지속 생성되는 자기 유사적 압력의 양.
+          BRI가 현재 충전량이라면 GPI는 충전 속도다.
+          dBRI/dt와 강한 상관관계.
+        </p>
+      </div>
+    </div>
+
+    <h4 class="minor">형식적 정의</h4>
+    <div class="formula-box">
+      <span class="var">BRI</span>(t) = Σᵢ wᵢ · ψᵢ(t)<br>
+      <span class="var">SSI</span>(t) = ∫_Ω 𝜇(x) dx<br>
+      <span class="var">GPI</span>(t) = lim<sub>Δt→0</sub> [<span class="var">BRI</span>(t+Δt) − <span class="var">BRI</span>(t)] / Δt + <span class="const">α</span> · 𝓕[<span class="var">BRI</span>]
+      <em>여기서 ψᵢ는 i번째 측정 차원의 공명 강도, 𝜇는 흡인 영역의 측도(measure),
+      𝓕는 자기 유사 누적 함수, α는 시간 척도 결합 계수다.</em>
+    </div>
+
+    <p>
+      세 변수는 독립이 아니다 —
+      GPI가 양의 값으로 지속되면 BRI가 증가하고,
+      BRI 증가는 SSI를 침식한다.
+      그러나 <strong>현재 시점의 측정값으로는 서로 직교</strong>로 다룰 수 있으며,
+      이것이 삼중 좌표 기술이 가능한 이유다.
+    </p>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="chapter">
+    <h2 class="chapter-title"><span class="num">§ 4.</span>Q분면 분석 — 위상 공간의 4구역</h2>
+    <p class="chapter-lede">BRI × SSI 평면의 4사분면 + GPI 방향 벡터</p>
+
+    <p>
+      삼중 좌표 (BRI, SSI, GPI) 중 BRI × SSI 평면을 절단하면,
+      각 사분면이 서로 다른 동역학적 의미를 갖는다.
+      GPI는 이 평면 위에서 <strong>방향 벡터</strong>로 작용한다 —
+      좌표가 어디로 움직이고 있는지를 가리키는 화살표다.
+    </p>
+
+    <div class="quadrant-wrap">
+      <svg width="480" height="380" viewBox="0 0 480 380" xmlns="http://www.w3.org/2000/svg">
+        <!-- Background grid -->
+        <rect x="40" y="20" width="400" height="320" fill="#FAF8F2" stroke="#DDD8CE" stroke-width="1"/>
+
+        <!-- Quadrant fills -->
+        <rect x="40" y="20" width="200" height="160" fill="#F2DCDC" opacity="0.4"/>
+        <rect x="240" y="20" width="200" height="160" fill="#F0E4C4" opacity="0.4"/>
+        <rect x="40" y="180" width="200" height="160" fill="#D4DFF0" opacity="0.4"/>
+        <rect x="240" y="180" width="200" height="160" fill="#D4E5DF" opacity="0.4"/>
+
+        <!-- Axes -->
+        <line x1="240" y1="20" x2="240" y2="340" stroke="#5A554C" stroke-width="1.5"/>
+        <line x1="40" y1="180" x2="440" y2="180" stroke="#5A554C" stroke-width="1.5"/>
+
+        <!-- Axis labels -->
+        <text x="240" y="14" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#1E1D1B" font-weight="600">SSI ↑</text>
+        <text x="450" y="184" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="11" fill="#1E1D1B" font-weight="600">→ BRI</text>
+        <text x="234" y="350" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="9" fill="#7A746C">SSI ↓</text>
+
+        <!-- Quadrant labels -->
+        <text x="140" y="60" text-anchor="middle" font-family="Noto Serif KR, serif" font-size="14" fill="#9B4040" font-weight="600">Q2</text>
+        <text x="140" y="80" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" fill="#8B2020">고압 · 안정</text>
+        <text x="140" y="96" text-anchor="middle" font-family="EB Garamond, serif" font-style="italic" font-size="10" fill="#8B2020">잠재 분기</text>
+
+        <text x="340" y="60" text-anchor="middle" font-family="Noto Serif KR, serif" font-size="14" fill="#8B6308" font-weight="600">Q1</text>
+        <text x="340" y="80" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" fill="#6B5710">고압 · 불안정</text>
+        <text x="340" y="96" text-anchor="middle" font-family="EB Garamond, serif" font-style="italic" font-size="10" fill="#6B5710">즉시 위험</text>
+
+        <text x="140" y="220" text-anchor="middle" font-family="Noto Serif KR, serif" font-size="14" fill="#2C4A75" font-weight="600">Q3</text>
+        <text x="140" y="240" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" fill="#2C4A75">저압 · 안정</text>
+        <text x="140" y="256" text-anchor="middle" font-family="EB Garamond, serif" font-style="italic" font-size="10" fill="#2C4A75">건강한 어트랙터</text>
+
+        <text x="340" y="220" text-anchor="middle" font-family="Noto Serif KR, serif" font-size="14" fill="#3A6A5E" font-weight="600">Q4</text>
+        <text x="340" y="240" text-anchor="middle" font-family="Noto Sans KR, sans-serif" font-size="11" fill="#3A6A5E">저압 · 불안정</text>
+        <text x="340" y="256" text-anchor="middle" font-family="EB Garamond, serif" font-style="italic" font-size="10" fill="#3A6A5E">서서히 침식</text>
+
+        <!-- GPI vectors -->
+        <line x1="160" y1="160" x2="190" y2="120" stroke="#B8850E" stroke-width="2" marker-end="url(#arr)"/>
+        <line x1="320" y1="200" x2="290" y2="240" stroke="#B8850E" stroke-width="2" marker-end="url(#arr)"/>
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#B8850E"/>
+          </marker>
+        </defs>
+
+        <text x="180" y="115" font-family="JetBrains Mono, monospace" font-size="9" fill="#8B6308">GPI 양</text>
+        <text x="270" y="248" font-family="JetBrains Mono, monospace" font-size="9" fill="#8B6308">GPI 음</text>
+      </svg>
+      <div class="quadrant-caption">
+        삼중 좌표 위상 공간 — BRI × SSI 평면의 4사분면과 GPI 방향 벡터
+      </div>
+    </div>
+
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>사분면</th>
+          <th class="center">BRI</th>
+          <th class="center">SSI</th>
+          <th>동역학적 의미</th>
+          <th>대표 사례</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Q1</strong> 즉시 위험</td><td class="num center">高</td><td class="num center">低</td><td>분기 공명 + 구조 취약 — 즉각적 봉기 위험</td><td>네팔 2025, 스리랑카 2022</td></tr>
+        <tr><td><strong>Q2</strong> 잠재 분기</td><td class="num center">高</td><td class="num center">高</td><td>고압이지만 구조적 흡수 — 잠재 위험, GPI 모니터링 핵심</td><td>이스라엘 전시, 미국 양극화</td></tr>
+        <tr><td><strong>Q3</strong> 건강한 어트랙터</td><td class="num center">低</td><td class="num center">高</td><td>저압 + 견고 — 안정 영역, 자정 메커니즘 작동</td><td>독일, 한국, 일본 (조건부)</td></tr>
+        <tr><td><strong>Q4</strong> 서서히 침식</td><td class="num center">低</td><td class="num center">低</td><td>겉보기 안정이나 구조 취약 — GPI 양수 시 Q1 이행</td><td>튀니지 2010, 칠레 2019</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="callout gold">
+      <div class="callout-label">GPI 방향성의 정책적 의미</div>
+      같은 사분면 내에서도 GPI 부호에 따라 정책 우선순위가 다르다.
+      Q4에서 GPI가 양수인 사회(예: 튀니지 2010)는 트리거 사건 시 즉시 Q1으로 점프한다.
+      반대로 Q1에서 GPI가 음수인 사회는 자연스러운 압력 해소 국면이며,
+      과도한 외부 개입은 오히려 흡수 과정을 방해할 수 있다.
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="chapter">
+    <h2 class="chapter-title"><span class="num">§ 5.</span>경험적 검증 — 좌표 식별 가능성</h2>
+    <p class="chapter-lede">알려진 사례에 대한 사후적 좌표 부여 (post-hoc validation)</p>
+
+    <p>
+      v2.1에서는 12개 알려진 사례에 대해 봉기·붕괴 직전 시점의 (BRI, SSI, GPI) 좌표를 역산하여,
+      4사분면 분류가 사후적으로 일관된 패턴을 보이는지 확인했다.
+    </p>
+
+    <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>사례</th>
+          <th class="center">BRI</th>
+          <th class="center">SSI</th>
+          <th class="center">GPI</th>
+          <th class="center">사분면</th>
+          <th>비고</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>튀니지 2010</td><td class="num center">5.5</td><td class="num center">3.8</td><td class="num center">+0.42</td><td class="center"><strong>Q4 → Q1</strong></td><td>저압 침식 + 양 GPI = 트리거 점화</td></tr>
+        <tr><td>이집트 2011</td><td class="num center">6.0</td><td class="num center">4.2</td><td class="num center">+0.55</td><td class="center"><strong>Q1</strong></td><td>이미 Q1, 도미노 효과로 점화</td></tr>
+        <tr><td>리비아 2011</td><td class="num center">7.8</td><td class="num center">3.2</td><td class="num center">+0.65</td><td class="center"><strong>Q1</strong></td><td>심층 Q1, 외부 개입으로 가속</td></tr>
+        <tr><td>시리아 2011</td><td class="num center">9.7</td><td class="num center">5.2</td><td class="num center">+0.18</td><td class="center"><strong>Q2 → Q1</strong></td><td>과잉억압, 희석 시 점화 패턴</td></tr>
+        <tr><td>홍콩 2014</td><td class="num center">6.3</td><td class="num center">5.5</td><td class="num center">+0.30</td><td class="center"><strong>Q1/Q2 경계</strong></td><td>SSI 잔존, 외부 압력이 결정</td></tr>
+        <tr><td>칠레 2019</td><td class="num center">5.2</td><td class="num center">4.0</td><td class="num center">+0.55</td><td class="center"><strong>Q4 → Q1</strong></td><td>저압 침식, 작은 트리거(요금)로 점화</td></tr>
+        <tr><td>스리랑카 2022</td><td class="num center">6.8</td><td class="num center">3.5</td><td class="num center">+0.72</td><td class="center"><strong>Q1</strong></td><td>HCDI 동반 폭증, 디폴트 트리거</td></tr>
+        <tr><td>네팔 2025.09</td><td class="num center">7.8</td><td class="num center">3.6</td><td class="num center">+0.45</td><td class="center"><strong>Q1</strong></td><td>SNS 검열 트리거, 모델 사전 적중</td></tr>
+        <tr><td>독일 2026</td><td class="num center">4.2</td><td class="num center">7.2</td><td class="num center">−0.05</td><td class="center"><strong>Q3</strong></td><td>안정 어트랙터, 구조 회복력 잔존</td></tr>
+        <tr><td>한국 2026</td><td class="num center">3.8</td><td class="num center">7.4</td><td class="num center">+0.10</td><td class="center"><strong>Q3</strong></td><td>안정, GPI 약한 양 — 모니터링 필요</td></tr>
+        <tr><td>미국 2026</td><td class="num center">4.8</td><td class="num center">5.5</td><td class="num center">+0.20</td><td class="center"><strong>Q2 경계</strong></td><td>양극화 진행, 잠재 분기</td></tr>
+        <tr><td>이스라엘 2026</td><td class="num center">4.8</td><td class="num center">6.5</td><td class="num center">+0.35</td><td class="center"><strong>Q2</strong></td><td>전시 동원이 SSI 일시적 강화</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="callout blue">
+      <div class="callout-label">검증 요약</div>
+      모든 봉기·붕괴 사례가 사전 시점에 <strong>Q1 또는 Q4(양의 GPI)</strong>에 위치했다.
+      Q3·Q2(음의 GPI)에서 출발한 사례 중 봉기로 전환된 사건은 본 표본에 없다.
+      이는 4사분면 분류가 사후적이지만 일관된 동역학적 의미를 갖는다는 증거다.
+      그러나 <strong>인과 추론</strong>이 아니라 <strong>패턴 식별</strong>임을 명시해 둔다.
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <section class="chapter">
+    <h2 class="chapter-title"><span class="num">§ 6.</span>한계와 후속 연구 — Λ¹²로의 확장</h2>
+    <p class="chapter-lede">v2.1 → v9.x → v10 — 삼중 좌표는 어디로 가는가</p>
+
+    <div class="callout warn">
+      <div class="callout-label">v2.1의 명시적 한계</div>
+      삼중 좌표 (BRI, SSI, GPI)는 사회 동역학을 기술하기에는 차원이 부족하다.
+      특히 부패(CI), 권력 포획(Σ), 부채 부담(HCDI), 군사 모달리티(AMI),
+      핵 차원(NI) 등은 별도의 차원으로 분리되어야 분석적 가치가 있다.
+      v2.1은 가장 환원적인 핵심 좌표만을 다룬 <strong>최소 모델</strong>이다.
+    </div>
+
+    <p>
+      본 v2.1 이후의 연구는 두 방향으로 진행되었다 —
+    </p>
+
+    <ol>
+      <li>
+        <strong>차원 확장: Λ¹² 12변수 체계로</strong> —
+        삼중 좌표에 PFI, Ω_MZ, AMI, NI, GCI, LPI, SC, PDI, CI를 추가하여
+        12차원 좌표계로 확장. 이는 SSRN 6632858 (Λ¹² v9.8) 논문의 본체가 된다.
+      </li>
+      <li>
+        <strong>경보 체계 정식화: EPI / η 도입</strong> —
+        삼중 좌표 위에서 "현재 위험도"를 단일 신호로 추출하는 방법론.
+        산업 물리학의 LEL/UEL 원칙을 차용한 폭발 근접 지수 η = (BRI − 5.0) / 4.5.
+      </li>
+    </ol>
+
+    <p>
+      따라서 본 v2.1 논문은 <strong>독립적 사용보다는 후속 12차원 모델의 수학적 기초로 읽기를 권한다</strong>.
+      삼중 좌표만으로 정책 결정이나 위험 평가를 수행하기에는
+      차원적 환원이 너무 강하다 — 그러나 사회 동역학의 가장 본질적 세 축을
+      분리해 본다는 점에서 이 환원은 학문적 정당성을 갖는다.
+    </p>
+
+    <h4 class="minor">v3.x 후속 과제 (계획)</h4>
+    <ul>
+      <li>BRI·SSI·GPI 측정 변수의 데이터 출처 표준화 (V-Dem, World Bank, ACLED 등)</li>
+      <li>3차원 위상 공간에서의 어트랙터 시각화 (Lorenz 유사 궤도)</li>
+      <li>국가별 시계열 데이터로 GPI 적분 정확도 검증</li>
+      <li>피어리뷰 저널 투고 (Conflict Management and Peace Science 후보)</li>
+    </ul>
+
+    <p>
+      삼중 좌표 프레임워크는 끝점이 아니라 출발점이다.
+      본 논문이 제시한 세 좌표 — BRI, SSI, GPI — 는 이후 발전된
+      Λ¹² 12차원 모델, EPI 폭발 근접 지수 체계, 그리고 BBD/GEI/NCI 확장의 토대가 된다.
+      독자는 본 v2.1을 <em>"왜 이 세 변수가 핵심인가"</em>의 답으로,
+      Λ¹² v9.8을 <em>"이 세 변수를 12개로 확장하면 어떻게 측정하는가"</em>의 답으로 함께 읽기를 권한다.
+    </p>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <div class="fractal-divider">
+    · · · ∞ · · · BRI · SSI · GPI · · · attractor · · · chaos · · · fractal · · · ∞ · · ·
+  </div>
+
+  <!-- ═══ PAPER FOOTER ═══ -->
+  <div class="paper-footer">
+    <div class="left">
+      <strong>늘푸른바다 사회동역학 연구소</strong>
+      Foundation: Triple Coordinate (BRI · SSI · GPI) | SSRN 6509200<br>
+      Author: 김기섭 (청해, 淸海) · giseub12@gmail.com<br>
+      © 2026 Cheonghae · Triple Coordinate Framework
+    </div>
+    <div class="right">
+      SSRN: <a href="https://papers.ssrn.com/abstract=6509200" target="_blank" style="color: var(--gold-deep);">6509200</a><br>
+      Web: <a href="https://everbluesea.org" style="color: var(--gold-deep);">everbluesea.org</a><br>
+      v2.1 · 2026.04.02
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
