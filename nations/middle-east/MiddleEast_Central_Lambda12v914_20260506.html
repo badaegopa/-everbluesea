@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>중앙중동 단독편 — GCC + 예멘 7개국 | Λ¹²v9.14</title>
+<style>
+  /* ===== 티스토리 검증: var()0 · @import0 · script0 · :root0 · SVG w/h명시 ===== */
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:Georgia,'Times New Roman',serif; background-color:#F5F3EE; color:#2A2A2A; line-height:1.75; }
+  .report-header { background-color:#5E9186; color:#FFFFFF; padding:38px 32px 28px; border-bottom:4px solid #B8850E; }
+  .series-tag { font-family:'Courier New',monospace; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:#C8E0DC; margin-bottom:10px; }
+  .report-header h1 { font-size:26px; font-weight:normal; line-height:1.3; margin-bottom:6px; color:#FFFFFF; }
+  .report-header .subtitle { font-size:13.5px; color:#C8E0DC; margin-bottom:14px; }
+  .engine-badge { display:inline-block; background-color:#B8850E; color:#FFFFFF; font-family:'Courier New',monospace; font-size:10px; padding:3px 9px; letter-spacing:2px; margin-right:5px; margin-bottom:3px; }
+  .meta-row { margin-top:12px; font-size:11px; color:#C8E0DC; font-family:'Courier New',monospace; }
+  .container { max-width:980px; margin:0 auto; padding:32px 22px; }
+  .section-title { font-size:13px; letter-spacing:3px; text-transform:uppercase; color:#5E9186; font-family:'Courier New',monospace; margin:8px 0 14px; padding-bottom:6px; border-bottom:1px solid #DDD8CE; }
+  .intro-block { background-color:#FFFFFF; border:1px solid #DDD8CE; border-left:4px solid #5E9186; padding:20px 24px; margin-bottom:28px; font-size:14px; line-height:1.85; color:#3A3A3A; }
+  .country-card { background-color:#FFFFFF; border:1px solid #DDD8CE; border-top:4px solid #5E9186; padding:18px 22px; margin-bottom:18px; }
+  .country-card.crit { border-top-color:#8B0000; }
+  .country-card.high { border-top-color:#C0392B; }
+  .country-card.mid { border-top-color:#B8850E; }
+  .country-card.low { border-top-color:#5E9186; }
+  .country-card.stab { border-top-color:#2E6DA4; }
+  .cc-head { display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px; }
+  .cc-name { font-size:18px; font-weight:bold; color:#3A6A5E; }
+  .cc-lambda { font-family:'Courier New',monospace; font-size:18px; font-weight:bold; color:#2A2A2A; }
+  .cc-pwt { font-family:'Courier New',monospace; font-size:13px; color:#666; }
+  .phase-tag { display:inline-block; padding:2px 8px; font-size:10px; font-family:'Courier New',monospace; letter-spacing:1px; border-radius:2px; }
+  .phase-crisis { background-color:#FDEDED; color:#C0392B; border:1px solid #E8B8B8; }
+  .phase-tension { background-color:#FEF5E7; color:#B8850E; border:1px solid #E8D4A0; }
+  .phase-watch { background-color:#EEF5F3; color:#3A6A5E; border:1px solid #B0CFC9; }
+  .phase-stable { background-color:#F0F8FF; color:#2E6DA4; border:1px solid #A0BDD8; }
+  .cc-meta { font-size:11.5px; font-family:'Courier New',monospace; color:#888; margin:6px 0 10px; }
+  .cc-driver { font-family:'Courier New',monospace; font-size:11.5px; color:#8A6000; background-color:#FEF5E7; border-left:3px solid #B8850E; padding:6px 10px; margin-bottom:10px; }
+  .cc-narrative { font-size:13.5px; line-height:1.8; color:#333; }
+  .cc-modules { display:flex; gap:14px; flex-wrap:wrap; margin-top:10px; padding-top:10px; border-top:1px solid #EEE; font-family:'Courier New',monospace; font-size:11px; color:#555; }
+  .cc-modules span strong { color:#3A6A5E; }
+  .compare-table { background-color:#FFFFFF; border:1px solid #DDD8CE; padding:18px 22px; margin:24px 0; }
+  table { width:100%; border-collapse:collapse; font-size:12px; }
+  thead th { background-color:#3A6A5E; color:#FFFFFF; padding:8px 6px; font-family:'Courier New',monospace; font-size:10.5px; letter-spacing:1px; }
+  tbody td { padding:7px 6px; border:1px solid #DDD8CE; font-family:'Courier New',monospace; text-align:center; }
+  tbody td.country { text-align:left; padding-left:12px; font-family:Georgia,serif; font-weight:bold; color:#3A6A5E; }
+  tbody tr:nth-child(even) { background-color:#F9F8F5; }
+  .conclusion-block { background-color:#EBF4F0; border:1px solid #B0CFC9; padding:22px 26px; margin:24px 0; font-size:14px; line-height:1.9; color:#2A2A2A; }
+  .report-footer { background-color:#EBF4F0; border-top:2px solid #5E9186; padding:22px 32px; text-align:center; }
+  .footer-logo { font-family:'Courier New',monospace; font-size:13px; color:#3A6A5E; font-weight:bold; margin-bottom:5px; letter-spacing:1px; }
+  .footer-meta { font-family:'Courier New',monospace; font-size:10px; color:#5E9186; letter-spacing:1px; line-height:1.8; }
+  .footer-link a { color:#B8850E; text-decoration:none; font-family:'Courier New',monospace; font-size:11px; }
+  @media (max-width:680px) { .report-header { padding:24px 16px 20px; } .report-header h1 { font-size:20px; } .container { padding:24px 14px; } .cc-modules { font-size:10.5px; } }
+</style>
+</head>
+<body>
+
+<div class="report-header">
+  <div class="series-tag">늘푸른바다 사회동역학 연구소 · SYNTHESIS Framework · 단독편 #21-C</div>
+  <h1>중앙중동 단독편 — GCC + 예멘 7개국</h1>
+  <div class="subtitle">Central Middle East Standalone — Gulf Cooperation Council + Yemen Bipolar Analysis</div>
+  <div>
+    <span class="engine-badge">Λ¹²v9.14</span>
+    <span class="engine-badge">§33 BBD</span>
+    <span class="engine-badge">§34 GEI</span>
+    <span class="engine-badge">§35 NCI</span>
+    <span class="engine-badge">SSRN 6632858</span>
+  </div>
+  <div class="meta-row">권역비교편 #21 분기 · 발행일 2026-05-06 · 소장 청해(淸海)</div>
+</div>
+
+<div class="container">
+
+  <p class="section-title">§00 · 중앙중동 권역 좌표 — 양극 권역</p>
+  <div class="intro-block">
+    중앙중동 7개국은 본 연구소가 측정한 어떤 권역보다 위상 분기가 극단적이다. 카타르(Λ=0.378)·UAE(0.398)의 자본극과 예멘(0.872)의 붕괴극 사이의 Λ 격차는 0.494로, 단일 권역 안의 사상 최대값이다. GCC 6국(사우디·UAE·쿠웨이트·카타르·오만·바레인)은 표면적 안정을 유지하나 BBD §33 평균이 0.797로 권역 사상 최고 — 자원 단일품목 의존이 만든 구조적 거품이 안정의 그림자다. 예멘은 내전 11년차에서 절멸 임계로 진행 중. 권역 평균 Λ=0.516은 §31 ADI 권위주의 잔여(통치 군주제)와 §33 BBD 자원거품의 합성값이다.
+  </div>
+
+  <div class="country-card crit">
+    <div class="cc-head"><span class="cc-name">🇾🇪 예멘</span><span class="cc-lambda">Λ 0.872</span><span class="cc-pwt">PWT-r 0.318</span><span class="phase-tag phase-crisis">국가붕괴</span></div>
+    <div class="cc-meta">FSI 111/120(권역 1위) · CPI 13/100 · GPI 161위(전세계 최하위) · 사망자 38만+ · 기근 위협 1,800만</div>
+    <div class="cc-driver">EPI=0.92 · MFI=0.95 · GEI=0.92 · OLI=0.90 · BRI↓=0.05 — 6변수 동시 극값</div>
+    <div class="cc-narrative">2014 후티 사나 점령 이후 11년 차. 사나(후티)·아덴(PLC)·하드라마우트(STC) 3분 통치, 2022 휴전 후 2024-25 후티 홍해 봉쇄(USS Eisenhower 작전)로 분쟁 재격화. 2026 현재 인구 절반(1,800만)이 식량지원 의존, 콜레라 누적 270만례. §35 NCI=0.55는 후티의 사우디·UAE 미사일 사정권 + 美·英 공습 누적의 합산. 회복 경로는 한 세대 이상 시계선 — 이라크·시리아 사례 대비 인적자본 손실이 더 깊다.</div>
+    <div class="cc-modules"><span><strong>BBD §33</strong> 0.78</span><span><strong>GEI §34</strong> 0.92</span><span><strong>NCI §35</strong> 0.55</span></div>
+  </div>
+
+  <div class="country-card high">
+    <div class="cc-head"><span class="cc-name">🇧🇭 바레인</span><span class="cc-lambda">Λ 0.555</span><span class="cc-pwt">PWT-r 0.665</span><span class="phase-tag phase-tension">시아수니</span></div>
+    <div class="cc-meta">FSI 65/120 · CPI 53/100 · 美 5함대 본부 · 시아 다수(60-70%) · 수니 알칼리파 통치</div>
+    <div class="cc-driver">DCI=0.72 · OLI=0.78 · BBD=0.65 · BRI↓=0.20 — 종파분할 + 정치범 1,300명</div>
+    <div class="cc-narrative">2011 진주광장 시위 이후 지속된 시아 인구의 정치적 배제 구조. 2024 의회 선거에서 시아 정당(알와삭) 후보 자격 박탈, 정치범 누적 1,300명. 이란-사우디 2023 베이징 합의 후에도 바레인은 GCC 내 對이란 강경 노선 유지. BBD=0.65는 알루미늄(ALBA) + 금융 단일의존, 사우디 압달라 다리(2026 완공) 의존도 심화. NCI=0.32는 미5함대 주둔에 따른 잠재 표적화.</div>
+    <div class="cc-modules"><span><strong>BBD §33</strong> 0.65</span><span><strong>GEI §34</strong> 0.62</span><span><strong>NCI §35</strong> 0.32</span></div>
+  </div>
+
+  <div class="country-card mid">
+    <div class="cc-head"><span class="cc-name">🇸🇦 사우디</span><span class="cc-lambda">Λ 0.521</span><span class="cc-pwt">PWT-r 0.695</span><span class="phase-tag phase-watch">MBS집권</span></div>
+    <div class="cc-meta">FSI 70/120 · CPI 59/100 · MBS 왕세자 9년차(실권) · NEOM $5천억 · Vision 2030 진행</div>
+    <div class="cc-driver">BBD=0.92(권역 최고) · OLI=0.85 · MFI=0.65 · ADI=0.72</div>
+    <div class="cc-narrative">살만 국왕(89세) 건강 악화, MBS 사실상 단독 통치. Vision 2030의 메가프로젝트(NEOM·The Line·Trojena)가 유가 $80 이상을 전제로 진행되나 2025 IPO 펀딩 차질. 2024 EU 가스 대체 수요·OPEC+ 감산이 단기 수익 보전. BBD=0.92는 권역 최고이자 본 보고서 사상 최고값 — 단일품목(석유) 의존 + 메가프로젝트 부채 + 부동산 가속의 삼중 거품. 2024 이란-사우디 외교 정상화 유지, 가자 후 이스라엘 정상화 협상 동결.</div>
+    <div class="cc-modules"><span><strong>BBD §33</strong> 0.92</span><span><strong>GEI §34</strong> 0.72</span><span><strong>NCI §35</strong> 0.45</span></div>
+  </div>
+
+  <div class="country-card mid">
+    <div class="cc-head"><span class="cc-name">🇰🇼 쿠웨이트</span><span class="cc-lambda">Λ 0.475</span><span class="cc-pwt">PWT-r 0.732</span><span class="phase-tag phase-watch">의회정지</span></div>
+    <div class="cc-meta">FSI 55/120 · CPI 46/100 · 2024.05 미샬 에미르 의회 해산 · 4년 무의회 친정</div>
+    <div class="cc-driver">BBD=0.85 · IGI↓=0.42 · OLI=0.65 · ADI=0.55</div>
+    <div class="cc-narrative">미샬 알사바 에미르가 2024-05 의회 해산·헌법 일부 정지 후 친정. GCC 내 가장 활발한 의회제(50석 직선)였으나 2026 현재 4년차 무의회 통치 중. 의원 내각 거부권 행사 누적이 명분이었으나 ADI=0.55의 구조적 상승 신호. BBD=0.85는 석유 90% 의존(GCC 평균 65% 대비 최고) + 국가펀드(KIA $9,200억) 운용 위험. 차기 에미르 승계(미샬 84세)가 임박한 정치 변수.</div>
+    <div class="cc-modules"><span><strong>BBD §33</strong> 0.85</span><span><strong>GEI §34</strong> 0.55</span><span><strong>NCI §35</strong> 0.32</span></div>
+  </div>
+
+  <div class="country-card low">
+    <div class="cc-head"><span class="cc-name">🇴🇲 오만</span><span class="cc-lambda">Λ 0.412</span><span class="cc-pwt">PWT-r 0.778</span><span class="phase-tag phase-watch">중립외교</span></div>
+    <div class="cc-meta">FSI 53/120 · CPI 55/100 · Haitham bin Tariq 술탄 6년차 · GCC 유일 중립외교</div>
+    <div class="cc-driver">BBD=0.78 · OLI=0.62 · 안정변수 우세 — RHC=0.58·DCI↓=0.30</div>
+    <div class="cc-narrative">하이삼 술탄(2020 즉위)의 Vision 2040 계승. GCC 유일의 對이란 중간자 외교(2023 사우디-이란 정상화 막후 중재) 유지. 부카무즈/도파르 이슬람반군 잔여 위협은 §31 SSI에 부분 반영. BBD=0.78은 석유 의존 75% + 신규 두쿰항(중국 일대일로) 부채 누적. NCI=0.28은 권역 최저권 — 호르무즈 해협 입구 위치 + 핵·미사일 시험구역 미보유의 합산.</div>
+    <div class="cc-modules"><span><strong>BBD §33</strong> 0.78</span><span><strong>GEI §34</strong> 0.62</span><span><strong>NCI §35</strong> 0.28</span></div>
+  </div>
+
+  <div class="country-card stab">
+    <div class="cc-head"><span class="cc-name">🇦🇪 UAE</span><span class="cc-lambda">Λ 0.398</span><span class="cc-pwt">PWT-r 0.792</span><span class="phase-tag phase-stable">자본축적</span></div>
+    <div class="cc-meta">FSI 38/120(권역 최저) · CPI 68/100(권역 1위) · MBZ 4년차 대통령 · 두바이 부동산 재가속</div>
+    <div class="cc-driver">상대 안정 — 그러나 BBD=0.72 잠재거품 · OLI=0.75 통치집중 잔여</div>
+    <div class="cc-narrative">중앙중동 최저 Λ. 무함마드 빈 자이드(MBZ) 대통령(2022 즉위) + 셰이크 칼레드 왕세자(아부다비)·셰이크 함단(두바이) 3축 통치. 2026 두바이 부동산 가격이 2008 거품 직전 수준 회복(평균 $850/sq.ft) — BBD=0.72의 잠재 위험. CPI 68은 권역 유일 EU 평균 근접값이나 OLI=0.75는 정당·노조·언론 부재의 통치집중. 2024 G42-Microsoft $15억 AI 협력으로 미·중 전략 재조정. 가자 후 이스라엘 정상화 유지.</div>
+    <div class="cc-modules"><span><strong>BBD §33</strong> 0.72</span><span><strong>GEI §34</strong> 0.45</span><span><strong>NCI §35</strong> 0.32</span></div>
+  </div>
+
+  <div class="country-card stab">
+    <div class="cc-head"><span class="cc-name">🇶🇦 카타르</span><span class="cc-lambda">Λ 0.378</span><span class="cc-pwt">PWT-r 0.808</span><span class="phase-tag phase-stable">소국균형</span></div>
+    <div class="cc-meta">FSI 41/120 · CPI 38/100 · Tamim bin Hamad 에미르 12년차 · 가스 LNG 권역 1위</div>
+    <div class="cc-driver">권역 최저 Λ — BBD=0.85 단일 위험축, 그 외 모두 권역 평균 이하</div>
+    <div class="cc-narrative">중앙중동·전체 권역 최저 Λ. 2022 월드컵 이후 외교 자본 누적 — 가자 휴전·이란-미 핵협상·아프간 탈레반 중재의 3대 채널 동시 운영. 알자지라가 권역 정보질서의 일부로 정착. BBD=0.85는 LNG 단일 의존(GDP 60%) + North Field 확장 $300억 부채의 압축 거품 — 그러나 2026 LNG 수요(EU 50% Gazprom 대체)가 단기 안전판. NCI=0.35는 미군 알우데이드 기지(중동 최대) 주둔 + 이란 인접 위치의 잠재 노출.</div>
+    <div class="cc-modules"><span><strong>BBD §33</strong> 0.85</span><span><strong>GEI §34</strong> 0.42</span><span><strong>NCI §35</strong> 0.35</span></div>
+  </div>
+
+  <p class="section-title" style="margin-top:32px;">§ 종합 · 중앙중동 7개국 Λ¹²v9.14 비교</p>
+  <div class="compare-table">
+    <table>
+      <thead><tr><th style="text-align:left;padding-left:12px;">국가</th><th>Λ-Score</th><th>권역比 Δ</th><th>PWT-r</th><th>BBD</th><th>GEI</th><th>NCI</th><th>핵심구동</th></tr></thead>
+      <tbody>
+        <tr><td class="country">🇾🇪 예멘</td><td>0.872</td><td style="color:#8B0000;">+0.356</td><td>0.318</td><td>0.78</td><td>0.92</td><td>0.55</td><td>EPI·MFI·GEI</td></tr>
+        <tr><td class="country">🇧🇭 바레인</td><td>0.555</td><td style="color:#B8850E;">+0.039</td><td>0.665</td><td>0.65</td><td>0.62</td><td>0.32</td><td>DCI·OLI·BRI</td></tr>
+        <tr><td class="country">🇸🇦 사우디</td><td>0.521</td><td>+0.005</td><td>0.695</td><td>0.92</td><td>0.72</td><td>0.45</td><td>BBD·OLI·MFI</td></tr>
+        <tr><td class="country">🇰🇼 쿠웨이트</td><td>0.475</td><td style="color:#5E9186;">−0.041</td><td>0.732</td><td>0.85</td><td>0.55</td><td>0.32</td><td>BBD·IGI·OLI</td></tr>
+        <tr><td class="country">🇴🇲 오만</td><td>0.412</td><td style="color:#5E9186;">−0.104</td><td>0.778</td><td>0.78</td><td>0.62</td><td>0.28</td><td>BBD·OLI</td></tr>
+        <tr><td class="country">🇦🇪 UAE</td><td>0.398</td><td style="color:#5E9186;">−0.118</td><td>0.792</td><td>0.72</td><td>0.45</td><td>0.32</td><td>BBD(잠재)</td></tr>
+        <tr><td class="country">🇶🇦 카타르</td><td>0.378</td><td style="color:#5E9186;">−0.138</td><td>0.808</td><td>0.85</td><td>0.42</td><td>0.35</td><td>BBD(LNG)</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:11px;color:#888;font-family:'Courier New',monospace;margin-top:10px;">권역比 Δ = 권역 평균(0.516) 기준 편차 · 양수 = 위험 상향 · BBD §33 권역 평균 = 0.793 (사상 최고)</p>
+  </div>
+
+  <p class="section-title">§ 결론 · 자본극과 붕괴극 사이</p>
+  <div class="conclusion-block">
+    <p>중앙중동 7개국은 두 개의 극단이 한 권역에 공존하는 사례다. <strong>자본극(카타르·UAE·오만)</strong>은 자원지대 + 통치군주제의 조합이 만든 안정이고, <strong>붕괴극(예멘)</strong>은 같은 자원지대가 외세개입과 결합했을 때의 결과다. 사우디·쿠웨이트·바레인은 그 사이에서 BBD(자원거품)·ADI(권위주의)·DCI(종파분할)의 압력을 안고 있다.</p>
+    <p style="margin-top:12px;">권역의 구조적 특이점은 BBD §33 평균 0.793 — 본 보고서가 측정한 어떤 권역보다 높다. 자원 단일품목 의존(석유·가스 평균 70%)과 메가프로젝트 부채(NEOM $5천억·North Field $300억·두쿰항 일대일로)의 합산이 표면 안정을 만들지만, 유가가 $60 이하로 떨어지면 BBD는 §33의 임계 함수에 따라 비선형으로 활성화된다. 2025 사우디 IPO 펀딩 차질이 이 구조의 첫 신호다.</p>
+    <p style="margin-top:12px;">예멘은 권역의 다른 6개국이 가진 자원·외교 자본의 어떤 것도 갖지 못한 경로에서 임계를 넘었다. 회복 경로는 권역 자체에 있지 않다. GCC 6국이 예멘 재건에 대한 책임을 어떻게 분담하는가가 권역 평균 Λ의 향후 5년 향방을 결정한다.</p>
+  </div>
+
+</div>
+
+<div class="report-footer">
+  <div class="footer-logo">늘푸른바다 사회동역학 연구소 (Everblue Sea Institute for Social Dynamics)</div>
+  <div class="footer-meta">소장 청해(淸海) · SYNTHESIS Framework · 단독편 #21-C · 중앙중동 7개국<br>Engine: Λ¹²v9.14 | §33 BBD + §34 GEI + §35 NCI | SSRN 6632858 기반<br>Claude AI 연구 파트너 · 발행일 2026-05-06</div>
+  <div class="footer-link" style="margin-top:8px;"><a href="https://badaegopa.tistory.com">badaegopa.tistory.com</a> · <a href="https://everbluesea.org">everbluesea.org</a> · <a href="https://ssrn.com/abstract=6632858">SSRN 6632858</a></div>
+</div>
+
+</body>
+</html>
