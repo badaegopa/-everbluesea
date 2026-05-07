@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-07T12:13:16.043399+09:00",
+  "updated_at": "2026-05-08T06:54:55.807372+09:00",
   "region": "울산광역시",
   "districts": [
     "중구",
@@ -31,21 +31,7 @@
   },
   "sgis": {
     "population": {
-      "중구": {
-        "error": "412 Client Error: Precondition Failed for url: https://sgisapi.mods.go.kr/OpenAPI3/stats/population.json?accessToken=872deec3-0437-4934-993e-3a0eda4a51d1&adm_cd=31110&low_search=0"
-      },
-      "남구": {
-        "error": "412 Client Error: Precondition Failed for url: https://sgisapi.mods.go.kr/OpenAPI3/stats/population.json?accessToken=872deec3-0437-4934-993e-3a0eda4a51d1&adm_cd=31140&low_search=0"
-      },
-      "동구": {
-        "error": "412 Client Error: Precondition Failed for url: https://sgisapi.mods.go.kr/OpenAPI3/stats/population.json?accessToken=872deec3-0437-4934-993e-3a0eda4a51d1&adm_cd=31170&low_search=0"
-      },
-      "북구": {
-        "error": "412 Client Error: Precondition Failed for url: https://sgisapi.mods.go.kr/OpenAPI3/stats/population.json?accessToken=872deec3-0437-4934-993e-3a0eda4a51d1&adm_cd=31200&low_search=0"
-      },
-      "울주군": {
-        "error": "412 Client Error: Precondition Failed for url: https://sgisapi.mods.go.kr/OpenAPI3/stats/population.json?accessToken=872deec3-0437-4934-993e-3a0eda4a51d1&adm_cd=31710&low_search=0"
-      }
+      "error": "406 Client Error: Not Acceptable for url: https://sgisapi.mods.go.kr/OpenAPI3/auth/authentication.do?consumer_key=a7f9a200a67241698800&consumer_secret=7509589f1d3142d586b2"
     }
   }
 }
