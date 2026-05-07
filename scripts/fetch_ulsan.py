@@ -32,34 +32,33 @@ ULSAN_SGG = {
 }
 
 KOSIS_BASE = "https://kosis.kr/openapi/Param/statisticsParameterData.do"
-SGIS_AUTH = "https://sgisapi.kostat.go.kr/OpenAPI3/auth/authentication.json"
+SGIS_AUTH = "https://sgisapi.kostat.go.kr/OpenAPI3/auth/authentication.do"
 SGIS_STATS_POPULATION = "https://sgisapi.kostat.go.kr/OpenAPI3/stats/population.json"
 
-# KOSIS 통계표 ID — 운영하면서 정확한 표 ID로 교체하세요.
-# 아래는 일반적으로 쓰이는 표 ID 예시입니다.
+# KOSIS 통계표 ID
 KOSIS_TABLES = {
-    # 주민등록인구 (행정안전부)
+    # 주민등록인구 (행정안전부) — 울산 시도코드 26
     "population": {
         "orgId":     "101",
-        "tblId":     "DT_1B040A3",   # 행정구역(읍면동)별/5세별 주민등록인구
-        "itmId":     "T20",          # 총인구
-        "objL1":     "ALL",          # 시군구 전체에서 울산 5개만 추출
-        "prdSe":     "M",            # 월간
-        "newEstPrdCnt": "1",         # 최신 1개월
+        "tblId":     "DT_1B040A3",
+        "itmId":     "T20",
+        "objL1":     "26",
+        "prdSe":     "M",
+        "newEstPrdCnt": "1",
     },
-    # 시군구별 취업자 / 고용률 (지역별고용조사 기반 추정 — 실제 표 ID는 KOSIS에서 확인)
+    # 고용
     "employment": {
-        "orgId":     "118",
-        "tblId":     "DT_118N_SAAA01",
+        "orgId":     "101",
+        "tblId":     "DT_1DA7002S",
         "itmId":     "ALL",
         "objL1":     "ALL",
         "prdSe":     "Y",
         "newEstPrdCnt": "1",
     },
-    # 기초생활보장 수급자 등 복지 관련 — 보건복지부 표
+    # 복지 (보건복지부)
     "welfare": {
         "orgId":     "117",
-        "tblId":     "DT_117N_A0024",
+        "tblId":     "DT_11761_N001",
         "itmId":     "ALL",
         "objL1":     "ALL",
         "prdSe":     "Y",
