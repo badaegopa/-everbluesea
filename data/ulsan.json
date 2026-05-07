@@ -1,0 +1,51 @@
+{
+  "updated_at": "2026-05-07T12:13:16.043399+09:00",
+  "region": "울산광역시",
+  "districts": [
+    "중구",
+    "남구",
+    "동구",
+    "북구",
+    "울주군"
+  ],
+  "sgg_codes": {
+    "중구": "31110",
+    "남구": "31140",
+    "동구": "31170",
+    "북구": "31200",
+    "울주군": "31710"
+  },
+  "kosis": {
+    "population": {
+      "rows_total": 0,
+      "ulsan_rows": []
+    },
+    "employment": {
+      "rows_total": 0,
+      "ulsan_rows": []
+    },
+    "welfare": {
+      "rows_total": 0,
+      "ulsan_rows": []
+    }
+  },
+  "sgis": {
+    "population": {
+      "중구": {
+        "error": "412 Client Error: Precondition Failed for url: https://sgisapi.mods.go.kr/OpenAPI3/stats/population.json?accessToken=872deec3-0437-4934-993e-3a0eda4a51d1&adm_cd=31110&low_search=0"
+      },
+      "남구": {
+        "error": "412 Client Error: Precondition Failed for url: https://sgisapi.mods.go.kr/OpenAPI3/stats/population.json?accessToken=872deec3-0437-4934-993e-3a0eda4a51d1&adm_cd=31140&low_search=0"
+      },
+      "동구": {
+        "error": "412 Client Error: Precondition Failed for url: https://sgisapi.mods.go.kr/OpenAPI3/stats/population.json?accessToken=872deec3-0437-4934-993e-3a0eda4a51d1&adm_cd=31170&low_search=0"
+      },
+      "북구": {
+        "error": "412 Client Error: Precondition Failed for url: https://sgisapi.mods.go.kr/OpenAPI3/stats/population.json?accessToken=872deec3-0437-4934-993e-3a0eda4a51d1&adm_cd=31200&low_search=0"
+      },
+      "울주군": {
+        "error": "412 Client Error: Precondition Failed for url: https://sgisapi.mods.go.kr/OpenAPI3/stats/population.json?accessToken=872deec3-0437-4934-993e-3a0eda4a51d1&adm_cd=31710&low_search=0"
+      }
+    }
+  }
+}
