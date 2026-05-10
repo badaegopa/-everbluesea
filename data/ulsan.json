@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-10T13:02:38.715334+09:00",
+  "updated_at": "2026-05-10T13:19:44.344362+09:00",
   "region": "울산광역시",
   "districts": [
     "중구",
@@ -17,7 +17,7 @@
   },
   "kosis": {
     "population": {
-      "rows_total": 0,
+      "rows_total": 1,
       "ulsan_rows": [],
       "ulsan_count": 0
     },
