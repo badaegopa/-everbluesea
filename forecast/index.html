@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<title>—</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    background: #0D0F12;
+    color: #E8E6E1;
+    font-family: 'JetBrains Mono', 'Consolas', 'Menlo', 'Courier New', monospace;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== 잠금화면 ===== */
+  #lockScreen {
+    position: fixed;
+    inset: 0;
+    background: #0D0F12;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+  .lock-box {
+    width: 320px;
+    text-align: center;
+  }
+  .lock-dot {
+    width: 8px;
+    height: 8px;
+    background: #5E9186;
+    border-radius: 50%;
+    margin: 0 auto 32px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50%      { opacity: 1; transform: scale(1.2); }
+  }
+  .lock-input {
+    width: 100%;
+    padding: 14px 16px;
+    background: #16191E;
+    border: 1px solid #2A2E35;
+    color: #E8E6E1;
+    font-family: inherit;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .lock-input:focus { border-color: #5E9186; }
+  .lock-input.error { border-color: #B85050; animation: shake 0.4s; }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25%      { transform: translateX(-6px); }
+    75%      { transform: translateX(6px); }
+  }
+  .lock-hint {
+    margin-top: 12px;
+    font-size: 11px;
+    color: #4A4E55;
+    letter-spacing: 0.05em;
+  }
+
+  /* ===== 메인 앱 ===== */
+  #app { display: none; padding: 40px 24px; max-width: 1100px; margin: 0 auto; }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #2A2E35;
+  }
+  .header-title {
+    font-size: 13px;
+    color: #5E9186;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .header-meta { font-size: 11px; color: #4A4E55; }
+  .logout-btn {
+    background: none;
+    border: 1px solid #2A2E35;
+    color: #4A4E55;
+    padding: 4px 10px;
+    font-family: inherit;
+    font-size: 10px;
+    cursor: pointer;
+    margin-left: 12px;
+    transition: all 0.2s;
+  }
+  .logout-btn:hover { color: #B8850E; border-color: #B8850E; }
+
+  /* ===== 통계 ===== */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .stat-card {
+    background: #16191E;
+    border: 1px solid #2A2E35;
+    padding: 16px;
+  }
+  .stat-label {
+    font-size: 10px;
+    color: #4A4E55;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .stat-value { font-size: 24px; color: #E8E6E1; font-weight: 500; }
+  .stat-value.gold { color: #B8850E; }
+  .stat-value.teal { color: #5E9186; }
+
+  /* ===== 새 예측 폼 ===== */
+  .new-section {
+    background: #16191E;
+    border: 1px solid #2A2E35;
+    padding: 24px;
+    margin-bottom: 32px;
+  }
+  .section-title {
+    font-size: 11px;
+    color: #B8850E;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .form-grid {
+    display: grid;
+    grid-template-columns: 140px 1fr 1fr 100px;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .form-input, .form-textarea, .form-select {
+    background: #0D0F12;
+    border: 1px solid #2A2E35;
+    color: #E8E6E1;
+    padding: 10px 12px;
+    font-family: inherit;
+    font-size: 12px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-input:focus, .form-textarea:focus, .form-select:focus { border-color: #5E9186; }
+  .form-textarea { resize: vertical; min-height: 60px; width: 100%; margin-top: 6px; }
+  .form-row-full { margin-bottom: 10px; }
+  .form-label {
+    display: block;
+    font-size: 10px;
+    color: #4A4E55;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .save-btn {
+    background: #5E9186;
+    color: #0D0F12;
+    border: none;
+    padding: 10px 24px;
+    font-family: inherit;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .save-btn:hover { background: #B8850E; }
+
+  /* ===== 카드 목록 ===== */
+  .filter-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .filter-btn {
+    background: none;
+    border: 1px solid #2A2E35;
+    color: #4A4E55;
+    padding: 6px 14px;
+    font-family: inherit;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .filter-btn:hover { color: #E8E6E1; }
+  .filter-btn.active { color: #B8850E; border-color: #B8850E; }
+
+  .card-list { display: flex; flex-direction: column; gap: 12px; }
+  .card {
+    background: #16191E;
+    border: 1px solid #2A2E35;
+    border-left: 3px solid #2A2E35;
+    padding: 18px 20px;
+    transition: border-color 0.2s;
+  }
+  .card.status-hit       { border-left-color: #5E9186; }
+  .card.status-partial   { border-left-color: #B8850E; }
+  .card.status-miss      { border-left-color: #B85050; }
+  .card.status-pending   { border-left-color: #4A4E55; }
+
+  .card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 12px;
+  }
+  .card-date {
+    font-size: 10px;
+    color: #4A4E55;
+    letter-spacing: 0.1em;
+  }
+  .card-status {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border: 1px solid;
+  }
+  .card-status.hit      { color: #5E9186; border-color: #5E9186; }
+  .card-status.partial  { color: #B8850E; border-color: #B8850E; }
+  .card-status.miss     { color: #B85050; border-color: #B85050; }
+  .card-status.pending  { color: #4A4E55; border-color: #4A4E55; }
+
+  .card-topic {
+    font-size: 14px;
+    color: #E8E6E1;
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+  .scenario {
+    display: grid;
+    grid-template-columns: 50px 1fr 60px;
+    gap: 12px;
+    padding: 8px 0;
+    align-items: start;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .scenario + .scenario { border-top: 1px dashed #2A2E35; }
+  .scenario-label {
+    color: #5E9186;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+  .scenario-text { color: #C8C6C1; }
+  .scenario-prob {
+    color: #B8850E;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .card-actions {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid #2A2E35;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .action-btn {
+    background: none;
+    border: 1px solid #2A2E35;
+    color: #4A4E55;
+    padding: 4px 10px;
+    font-family: inherit;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .action-btn:hover { color: #E8E6E1; }
+  .action-btn.hit:hover     { color: #5E9186; border-color: #5E9186; }
+  .action-btn.partial:hover { color: #B8850E; border-color: #B8850E; }
+  .action-btn.miss:hover    { color: #B85050; border-color: #B85050; }
+  .action-btn.delete:hover  { color: #B85050; border-color: #B85050; }
+  .result-text {
+    flex: 1;
+    min-width: 200px;
+    background: #0D0F12;
+    border: 1px solid #2A2E35;
+    color: #C8C6C1;
+    padding: 6px 10px;
+    font-family: inherit;
+    font-size: 11px;
+    outline: none;
+  }
+  .result-text:focus { border-color: #5E9186; }
+  .result-display {
+    flex: 1;
+    min-width: 200px;
+    color: #C8C6C1;
+    font-size: 11px;
+    line-height: 1.5;
+    padding: 4px 0;
+  }
+
+  .empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: #4A4E55;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+  }
+
+  /* ===== 데이터 도구 ===== */
+  .footer-tools {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #2A2E35;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  @media (max-width: 700px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .form-grid { grid-template-columns: 1fr; }
+    #app { padding: 24px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== 잠금화면 ===== -->
+<div id="lockScreen">
+  <div class="lock-box">
+    <div class="lock-dot"></div>
+    <input type="password" id="pwdInput" class="lock-input" autocomplete="off" autofocus>
+    <div class="lock-hint">—</div>
+  </div>
+</div>
+
+<!-- ===== 메인 앱 ===== -->
+<div id="app">
+  <div class="header">
+    <div class="header-title">FORECAST · ARCHIVE</div>
+    <div class="header-meta">
+      <span id="todayDate">—</span>
+      <button class="logout-btn" onclick="lock()">LOCK</button>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-label">Total</div>
+      <div class="stat-value" id="statTotal">0</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Resolved</div>
+      <div class="stat-value" id="statResolved">0</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Hit Rate</div>
+      <div class="stat-value gold" id="statRate">—</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Brier-like</div>
+      <div class="stat-value teal" id="statBrier">—</div>
+    </div>
+  </div>
+
+  <div class="new-section">
+    <div class="section-title">+ New Forecast</div>
+    <div class="form-grid">
+      <input type="date" id="fDate" class="form-input">
+      <input type="text" id="fTopic" class="form-input" placeholder="주제 (예: 2026 Q3 한국 환율)">
+      <input type="text" id="fHorizon" class="form-input" placeholder="대상시점 (예: 2026-09-30)">
+      <select id="fDomain" class="form-select">
+        <option value="economy">economy</option>
+        <option value="geopolitics">geopolitics</option>
+        <option value="climate">climate</option>
+        <option value="market">market</option>
+        <option value="society">society</option>
+        <option value="other">other</option>
+      </select>
+    </div>
+    <div class="form-row-full">
+      <label class="form-label">Scenario A</label>
+      <div style="display:grid; grid-template-columns: 1fr 100px; gap:10px;">
+        <input type="text" id="fScenA" class="form-input" placeholder="시나리오 A 서술">
+        <input type="number" id="fProbA" class="form-input" placeholder="확률 %" min="0" max="100">
+      </div>
+    </div>
+    <div class="form-row-full">
+      <label class="form-label">Scenario B</label>
+      <div style="display:grid; grid-template-columns: 1fr 100px; gap:10px;">
+        <input type="text" id="fScenB" class="form-input" placeholder="시나리오 B 서술">
+        <input type="number" id="fProbB" class="form-input" placeholder="확률 %" min="0" max="100">
+      </div>
+    </div>
+    <div class="form-row-full">
+      <label class="form-label">Reasoning (선택)</label>
+      <textarea id="fReason" class="form-textarea" placeholder="근거·전제·핵심변수"></textarea>
+    </div>
+    <button class="save-btn" onclick="saveForecast()">SEAL ·  봉인 저장</button>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all" onclick="setFilter('all')">All</button>
+    <button class="filter-btn" data-filter="pending" onclick="setFilter('pending')">Pending</button>
+    <button class="filter-btn" data-filter="hit" onclick="setFilter('hit')">Hit</button>
+    <button class="filter-btn" data-filter="partial" onclick="setFilter('partial')">Partial</button>
+    <button class="filter-btn" data-filter="miss" onclick="setFilter('miss')">Miss</button>
+  </div>
+
+  <div class="card-list" id="cardList"></div>
+
+  <div class="footer-tools">
+    <button class="action-btn" onclick="exportData()">EXPORT JSON</button>
+    <button class="action-btn" onclick="document.getElementById('importFile').click()">IMPORT JSON</button>
+    <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)">
+  </div>
+</div>
+
+<script>
+'use strict';
+
+const STORAGE_KEY = 'evb_forecast_v1';
+const PASSWORD    = 'everblue2026';
+const SESSION_KEY = 'evb_forecast_unlocked';
+
+let forecasts = [];
+let currentFilter = 'all';
+
+/* ===== 잠금 / 해제 ===== */
+const pwdInput = document.getElementById('pwdInput');
+pwdInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') tryUnlock();
+});
+
+function tryUnlock() {
+  if (pwdInput.value === PASSWORD) {
+    sessionStorage.setItem(SESSION_KEY, '1');
+    unlock();
+  } else {
+    pwdInput.classList.add('error');
+    pwdInput.value = '';
+    setTimeout(() => pwdInput.classList.remove('error'), 500);
+  }
+}
+
+function unlock() {
+  document.getElementById('lockScreen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  document.title = 'Forecast · Archive';
+  load();
+  render();
+  setToday();
+}
+
+function lock() {
+  sessionStorage.removeItem(SESSION_KEY);
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('lockScreen').style.display = 'flex';
+  document.title = '—';
+  pwdInput.value = '';
+  pwdInput.focus();
+}
+
+/* 세션 복구 */
+if (sessionStorage.getItem(SESSION_KEY) === '1') unlock();
+
+/* ===== 데이터 ===== */
+function load() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    forecasts = raw ? JSON.parse(raw) : [];
+  } catch (e) {
+    forecasts = [];
+  }
+}
+
+function save() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(forecasts));
+}
+
+function setToday() {
+  const d = new Date();
+  const iso = d.toISOString().slice(0, 10);
+  document.getElementById('fDate').value = iso;
+  document.getElementById('todayDate').textContent = iso;
+}
+
+/* ===== 새 예측 저장 ===== */
+function saveForecast() {
+  const date    = document.getElementById('fDate').value;
+  const topic   = document.getElementById('fTopic').value.trim();
+  const horizon = document.getElementById('fHorizon').value.trim();
+  const domain  = document.getElementById('fDomain').value;
+  const scenA   = document.getElementById('fScenA').value.trim();
+  const scenB   = document.getElementById('fScenB').value.trim();
+  const probA   = parseFloat(document.getElementById('fProbA').value);
+  const probB   = parseFloat(document.getElementById('fProbB').value);
+  const reason  = document.getElementById('fReason').value.trim();
+
+  if (!date || !topic || !scenA || !scenB || isNaN(probA) || isNaN(probB)) {
+    alert('필수 항목: 날짜, 주제, 시나리오 A/B, 확률 A/B');
+    return;
+  }
+
+  forecasts.unshift({
+    id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+    date, topic, horizon, domain,
+    scenA, scenB, probA, probB, reason,
+    status: 'pending',
+    result: '',
+    resolvedAt: ''
+  });
+
+  save();
+  render();
+
+  /* 폼 리셋 (날짜는 유지) */
+  document.getElementById('fTopic').value   = '';
+  document.getElementById('fHorizon').value = '';
+  document.getElementById('fScenA').value   = '';
+  document.getElementById('fScenB').value   = '';
+  document.getElementById('fProbA').value   = '';
+  document.getElementById('fProbB').value   = '';
+  document.getElementById('fReason').value  = '';
+  document.getElementById('fTopic').focus();
+}
+
+/* ===== 결과 입력 ===== */
+function setStatus(id, status) {
+  const f = forecasts.find(x => x.id === id);
+  if (!f) return;
+  const result = document.getElementById('result-' + id).value.trim();
+  f.status = status;
+  f.result = result;
+  f.resolvedAt = new Date().toISOString().slice(0, 10);
+  save();
+  render();
+}
+
+function deleteForecast(id) {
+  if (!confirm('이 예측을 삭제할까요?')) return;
+  forecasts = forecasts.filter(x => x.id !== id);
+  save();
+  render();
+}
+
+function reopen(id) {
+  const f = forecasts.find(x => x.id === id);
+  if (!f) return;
+  f.status = 'pending';
+  f.result = '';
+  f.resolvedAt = '';
+  save();
+  render();
+}
+
+/* ===== 필터 ===== */
+function setFilter(name) {
+  currentFilter = name;
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.filter === name);
+  });
+  render();
+}
+
+/* ===== 통계 ===== */
+function computeStats() {
+  const total = forecasts.length;
+  const resolved = forecasts.filter(f => f.status !== 'pending');
+  const hit = forecasts.filter(f => f.status === 'hit').length;
+  const partial = forecasts.filter(f => f.status === 'partial').length;
+
+  const score = hit + partial * 0.5;
+  const rate = resolved.length ? (score / resolved.length * 100) : null;
+
+  /* Brier-like: 봉인 당시 더 높은 확률을 부여한 시나리오를 "선택"으로 보고
+     실제 결과(hit=1.0, partial=0.5, miss=0.0)와의 거리 제곱 평균 */
+  let brierSum = 0, brierN = 0;
+  resolved.forEach(f => {
+    const chosenProb = Math.max(f.probA, f.probB) / 100;
+    const actual = f.status === 'hit' ? 1 : f.status === 'partial' ? 0.5 : 0;
+    brierSum += Math.pow(chosenProb - actual, 2);
+    brierN++;
+  });
+  const brier = brierN ? (brierSum / brierN).toFixed(3) : null;
+
+  return { total, resolved: resolved.length, rate, brier };
+}
+
+/* ===== 렌더 ===== */
+function render() {
+  const stats = computeStats();
+  document.getElementById('statTotal').textContent    = stats.total;
+  document.getElementById('statResolved').textContent = stats.resolved;
+  document.getElementById('statRate').textContent     = stats.rate === null ? '—' : stats.rate.toFixed(1) + '%';
+  document.getElementById('statBrier').textContent    = stats.brier === null ? '—' : stats.brier;
+
+  const list = document.getElementById('cardList');
+  const filtered = currentFilter === 'all'
+    ? forecasts
+    : forecasts.filter(f => f.status === currentFilter);
+
+  if (filtered.length === 0) {
+    list.innerHTML = '<div class="empty">— NO ENTRIES —</div>';
+    return;
+  }
+
+  list.innerHTML = filtered.map(f => renderCard(f)).join('');
+}
+
+function escapeHTML(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function renderCard(f) {
+  const statusLabel = {
+    pending: 'PENDING',
+    hit:     'HIT',
+    partial: 'PARTIAL',
+    miss:    'MISS'
+  }[f.status];
+
+  const resolvedInfo = f.status !== 'pending' && f.resolvedAt
+    ? ` · resolved ${escapeHTML(f.resolvedAt)}`
+    : '';
+
+  const horizonInfo = f.horizon ? ` → ${escapeHTML(f.horizon)}` : '';
+  const domainInfo  = f.domain ? ` · ${escapeHTML(f.domain)}` : '';
+
+  const reasonBlock = f.reason
+    ? `<div style="margin-top:10px; padding-top:10px; border-top:1px dashed #2A2E35; font-size:11px; color:#8A8E95; line-height:1.6;">${escapeHTML(f.reason)}</div>`
+    : '';
+
+  let actionsBlock;
+  if (f.status === 'pending') {
+    actionsBlock = `
+      <div class="card-actions">
+        <input type="text" id="result-${f.id}" class="result-text" placeholder="실제 결과 서술…">
+        <button class="action-btn hit"     onclick="setStatus('${f.id}','hit')">HIT</button>
+        <button class="action-btn partial" onclick="setStatus('${f.id}','partial')">PARTIAL</button>
+        <button class="action-btn miss"    onclick="setStatus('${f.id}','miss')">MISS</button>
+        <button class="action-btn delete"  onclick="deleteForecast('${f.id}')">DEL</button>
+      </div>`;
+  } else {
+    actionsBlock = `
+      <div class="card-actions">
+        <div class="result-display">${f.result ? '▸ ' + escapeHTML(f.result) : '<span style="color:#4A4E55">(결과 메모 없음)</span>'}</div>
+        <button class="action-btn" onclick="reopen('${f.id}')">REOPEN</button>
+        <button class="action-btn delete" onclick="deleteForecast('${f.id}')">DEL</button>
+      </div>`;
+  }
+
+  return `
+    <div class="card status-${f.status}">
+      <div class="card-head">
+        <div class="card-date">${escapeHTML(f.date)}${horizonInfo}${domainInfo}${resolvedInfo}</div>
+        <div class="card-status ${f.status}">${statusLabel}</div>
+      </div>
+      <div class="card-topic">${escapeHTML(f.topic)}</div>
+      <div class="scenario">
+        <div class="scenario-label">A</div>
+        <div class="scenario-text">${escapeHTML(f.scenA)}</div>
+        <div class="scenario-prob">${f.probA}%</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-label">B</div>
+        <div class="scenario-text">${escapeHTML(f.scenB)}</div>
+        <div class="scenario-prob">${f.probB}%</div>
+      </div>
+      ${reasonBlock}
+      ${actionsBlock}
+    </div>`;
+}
+
+/* ===== Export / Import ===== */
+function exportData() {
+  const blob = new Blob([JSON.stringify(forecasts, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'forecast_archive_' + new Date().toISOString().slice(0, 10) + '.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importData(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (!Array.isArray(data)) throw new Error('not an array');
+      if (confirm(`${data.length}건을 가져옵니다. 기존 데이터에 병합할까요? (취소 = 덮어쓰기)`)) {
+        const ids = new Set(forecasts.map(f => f.id));
+        data.forEach(f => { if (!ids.has(f.id)) forecasts.push(f); });
+      } else {
+        forecasts = data;
+      }
+      save();
+      render();
+    } catch (err) {
+      alert('JSON 파싱 실패: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
+</script>
+</body>
+</html>
