@@ -32,36 +32,37 @@ ULSAN_SGG = {
 }
 
 KOSIS_BASE = "https://kosis.kr/openapi/Param/statisticsParameterData.do"
-SGIS_AUTH = "https://sgisapi.kostat.go.kr/OpenAPI3/auth/authentication.do"
+SGIS_AUTH  = "https://sgisapi.kostat.go.kr/OpenAPI3/auth/authentication.do"
 SGIS_STATS_POPULATION = "https://sgisapi.kostat.go.kr/OpenAPI3/stats/population.json"
 
 # KOSIS 통계표 ID
+# ★ 수정: objL1 울산 시도코드 = "31" (기존 "26"은 서울 코드였음)
 KOSIS_TABLES = {
-    # 주민등록인구 (행정안전부) — 울산 시도코드 26
+    # 주민등록인구 (행정안전부) — 울산 시도코드 31
     "population": {
-        "orgId":     "101",
-        "tblId":     "DT_1B040A3",
-        "itmId":     "T20",
-        "objL1":     "26",
-        "prdSe":     "M",
+        "orgId":        "101",
+        "tblId":        "DT_1B040A3",
+        "itmId":        "T20",
+        "objL1":        "31",       # ★ 수정: 26(서울) → 31(울산)
+        "prdSe":        "M",
         "newEstPrdCnt": "1",
     },
-    # 고용
+    # 고용 — 울산 전체 (objL1 ALL → 울산 시도코드로 좁힘)
     "employment": {
-        "orgId":     "101",
-        "tblId":     "DT_1DA7002S",
-        "itmId":     "ALL",
-        "objL1":     "ALL",
-        "prdSe":     "Y",
+        "orgId":        "101",
+        "tblId":        "DT_1DA7002S",
+        "itmId":        "ALL",
+        "objL1":        "31",       # ★ 수정: ALL → 31(울산)
+        "prdSe":        "Y",
         "newEstPrdCnt": "1",
     },
-    # 복지 (보건복지부)
+    # 복지 (보건복지부) — 울산 시도코드
     "welfare": {
-        "orgId":     "117",
-        "tblId":     "DT_11761_N001",
-        "itmId":     "ALL",
-        "objL1":     "ALL",
-        "prdSe":     "Y",
+        "orgId":        "117",
+        "tblId":        "DT_11761_N001",
+        "itmId":        "ALL",
+        "objL1":        "31",       # ★ 수정: ALL → 31(울산)
+        "prdSe":        "Y",
         "newEstPrdCnt": "1",
     },
 }
@@ -85,15 +86,17 @@ def fetch_kosis(api_key: str, params: dict[str, str]) -> Any:
     }
     r = requests.get(KOSIS_BASE, params=q, timeout=30)
     r.raise_for_status()
-    return r.json()
+    data = r.json()
+    # ★ 디버깅: 응답 첫 2행 stderr 출력
+    if isinstance(data, list):
+        sys.stderr.write(f"[debug] kosis rows={len(data)}, sample={data[:2]}\n")
+    else:
+        sys.stderr.write(f"[debug] kosis response type={type(data)}: {str(data)[:200]}\n")
+    return data
 
 
 def filter_ulsan_rows(rows: Any) -> list[dict[str, Any]]:
-    """KOSIS 응답에서 울산 5개 시군구 행만 골라낸다.
-
-    KOSIS의 C1/C2 코드는 보통 시군구 코드 그대로이거나 앞에 시도 코드가 붙는다.
-    여기서는 5자리 시군구 코드 일치 또는 시군구명 포함으로 매칭한다.
-    """
+    """KOSIS 응답에서 울산 5개 시군구 행만 골라낸다."""
     if not isinstance(rows, list):
         return []
     out: list[dict[str, Any]] = []
@@ -108,11 +111,16 @@ def filter_ulsan_rows(rows: Any) -> list[dict[str, Any]]:
 
 
 def sgis_token(key: str, secret: str) -> str:
+    # ★ 디버깅: 인증 요청 URL 출력
+    sys.stderr.write(f"[debug] SGIS auth URL: {SGIS_AUTH}\n")
+    sys.stderr.write(f"[debug] consumer_key={key[:8]}...\n")
     r = requests.get(
         SGIS_AUTH,
         params={"consumer_key": key, "consumer_secret": secret},
         timeout=30,
+        headers={"Accept": "application/json"},  # ★ 추가: 406 방지
     )
+    sys.stderr.write(f"[debug] SGIS auth status={r.status_code}\n")
     r.raise_for_status()
     body = r.json()
     if body.get("errCd") not in (0, "0"):
@@ -124,20 +132,20 @@ def fetch_sgis_population(token: str) -> dict[str, Any]:
     """SGIS 인구통계 — 울산(시도코드 31) 시군구별."""
     out: dict[str, Any] = {}
     for name, sgg in ULSAN_SGG.items():
-        # SGIS adm_cd: 시도 2자리 또는 시군구 5자리. 5자리 그대로 전달.
         r = requests.get(
             SGIS_STATS_POPULATION,
             params={
                 "accessToken": token,
                 "adm_cd":      sgg,
-                "low_search":  "0",  # 해당 행정구역 단일 집계
+                "low_search":  "0",
             },
             timeout=30,
+            headers={"Accept": "application/json"},  # ★ 추가
         )
         try:
             r.raise_for_status()
             out[name] = r.json()
-        except Exception as e:  # 한 구역 실패해도 나머지는 진행
+        except Exception as e:
             out[name] = {"error": str(e)}
     return out
 
@@ -160,19 +168,25 @@ def main() -> int:
     for category, params in KOSIS_TABLES.items():
         try:
             raw = fetch_kosis(kosis_key, params)
+            ulsan_rows = filter_ulsan_rows(raw)
             payload["kosis"][category] = {
-                "rows_total": len(raw) if isinstance(raw, list) else 0,
-                "ulsan_rows": filter_ulsan_rows(raw),
+                "rows_total":  len(raw) if isinstance(raw, list) else 0,
+                "ulsan_rows":  ulsan_rows,
+                "ulsan_count": len(ulsan_rows),  # ★ 추가: 확인용
             }
+            sys.stderr.write(f"[ok] kosis/{category}: ulsan_rows={len(ulsan_rows)}\n")
         except Exception as e:
             payload["kosis"][category] = {"error": str(e)}
+            sys.stderr.write(f"[err] kosis/{category}: {e}\n")
 
     # SGIS — 인구통계 (구·군별)
     try:
         token = sgis_token(sgis_key, sgis_sec)
+        sys.stderr.write(f"[ok] SGIS token acquired\n")
         payload["sgis"]["population"] = fetch_sgis_population(token)
     except Exception as e:
         payload["sgis"]["population"] = {"error": str(e)}
+        sys.stderr.write(f"[err] SGIS: {e}\n")
 
     out_path = Path(__file__).resolve().parent.parent / "data" / "ulsan.json"
     out_path.parent.mkdir(parents=True, exist_ok=True)
