@@ -17,8 +17,8 @@ ULSAN_SGG = {
 }
 
 KOSIS_BASE = "https://kosis.kr/openapi/Param/statisticsParameterData.do"
-SGIS_AUTH  = "https://sgisapi.kostat.go.kr/OpenAPI3/auth/authentication.do"
-SGIS_POPULATION = "https://sgisapi.kostat.go.kr/OpenAPI3/stats/population.json"
+SGIS_AUTH  = "https://sgisapi.mods.go.kr/OpenAPI3/auth/authentication.do"
+SGIS_POPULATION = "https://sgisapi.mods.go.kr/OpenAPI3/stats/population.json"
 
 # 시군구별 주민등록인구 테이블 (objL1=ALL → 전체 시군구 받아서 울산만 필터)
 KOSIS_TABLES = {
