@@ -17,14 +17,14 @@ ULSAN_SGG = {
 }
 
 KOSIS_BASE = "https://kosis.kr/openapi/Param/statisticsParameterData.do"
-SGIS_AUTH  = "https://sgisapi.mods.go.kr/OpenAPI3/auth/authentication.do"
-SGIS_POPULATION = "https://sgisapi.mods.go.kr/OpenAPI3/stats/population.json"
+SGIS_AUTH  = "https://sgisapi.mods.go.kr/OpenAPI3/auth/authentication.json"
+SGIS_POPULATION = "https://sgisapi.kostat.go.kr/OpenAPI3/stats/population.json"
 
 # 시군구별 주민등록인구 테이블 (objL1=ALL → 전체 시군구 받아서 울산만 필터)
 KOSIS_TABLES = {
     "population": {"orgId":"101","tblId":"DT_1B040A3","itmId":"T20","objL1":"ALL","prdSe":"M","newEstPrdCnt":"1"},
-    "employment": {"orgId":"101","tblId":"DT_1DA7002S","itmId":"ALL","objL1":"ALL","prdSe":"Y","newEstPrdCnt":"1"},
-    "welfare":    {"orgId":"117","tblId":"DT_11761_N001","itmId":"ALL","objL1":"ALL","prdSe":"Y","newEstPrdCnt":"1"},
+    "employment": {"orgId":"101","tblId":"DT_1DA7002S","itmId":"ALL","objL1":"31","prdSe":"Y","newEstPrdCnt":"1"},
+    "welfare":    {"orgId":"117","tblId":"DT_11761_N001","itmId":"ALL","objL1":"31","prdSe":"Y","newEstPrdCnt":"1"},
 }
 
 def env(name):
@@ -51,7 +51,7 @@ def filter_ulsan_rows(rows):
         c2 = str(row.get("C2",""))
         c1_nm = row.get("C1_NM","")
         # 5자리 시군구 코드 매칭 또는 구명 매칭
-        if c1 in sgg_codes or c2 in sgg_codes or any(n in c1_nm for n in sgg_names):
+        if c1 in sgg_codes or c2 in sgg_codes:
             out.append(row)
     return out
 
@@ -61,7 +61,7 @@ def sgis_token(key, secret):
                      params={"consumer_key":key,"consumer_secret":secret},
                      timeout=30,
                      headers={"Accept":"application/json"},
-                     allow_redirects=False)
+                     allow_redirects=True)
     sys.stderr.write(f"[debug] SGIS status={r.status_code}\n")
     if r.status_code in (301,302,303,307,308):
         loc = r.headers.get("Location","")
