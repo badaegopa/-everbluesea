@@ -246,6 +246,42 @@ body{background:#F5F3EE;font-family:Georgia,'Times New Roman',serif;}
 </div>
 
 <script>
+// ── 실데이터 연동 ──────────────────────────────────────────
+const DATA_URL = "../data/ulsan.json";
+const GU_KEY_MAP = {남구:"nam", 동구:"dong", 중구:"jung", 북구:"buk", 울주군:"ulju"};
+let dataUpdatedAt = null;
+
+async function loadRealData() {
+  try {
+    const res = await fetch(DATA_URL + "?t=" + Date.now());
+    if (!res.ok) throw new Error("fetch fail");
+    const json = await res.json();
+    dataUpdatedAt = json.updated_at;
+    const rows = json?.kosis?.population?.ulsan_rows || [];
+    rows.forEach(row => {
+      const guKey = GU_KEY_MAP[row.C1_NM];
+      if (guKey && GU[guKey]) {
+        const pop = parseInt(row.DT);
+        GU[guKey].pop = Math.round(pop/10000*10)/10 + "만";
+        GU[guKey].popRaw = pop;
+      }
+    });
+    renderBadge();
+  } catch(e) { console.warn("실데이터 로드 실패:", e); }
+}
+
+function renderBadge() {
+  if (!dataUpdatedAt) return;
+  const dt = new Date(dataUpdatedAt);
+  const label = dt.toLocaleDateString("ko-KR",{month:"2-digit",day:"2-digit"}) + " " + dt.toLocaleTimeString("ko-KR",{hour:"2-digit",minute:"2-digit"});
+  const badge = document.createElement("div");
+  badge.id = "dataBadge";
+  badge.style.cssText = "position:fixed;bottom:12px;right:12px;background:#5E9186;color:#fff;font-size:10px;padding:4px 8px;border-radius:4px;font-family:Courier New,monospace;z-index:999;";
+  badge.textContent = "KOSIS 실데이터 " + label;
+  document.body.appendChild(badge);
+}
+
+window.addEventListener("DOMContentLoaded", loadRealData);
 // 전국 17개 시도 데이터
 const REGIONS = {
   seoul:    {name:'서울특별시', eta:0.42, desc:'인구집중·주거압력·청년유출', status:'주의'},
