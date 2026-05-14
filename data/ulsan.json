@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-14T07:08:01.907861+09:00",
+  "updated_at": "2026-05-15T07:08:32.251114+09:00",
   "region": "울산광역시",
   "districts": [
     "중구",
@@ -131,19 +131,19 @@
   "sgis": {
     "population": {
       "중구": {
-        "error": "412 Client Error: Precondition Failed for url: https://sgisapi.mods.go.kr/OpenAPI3/stats/population.json?accessToken=e7c00b57-2d53-409d-b001-58dea81042fc&adm_cd=31110&low_search=0"
+        "error": "412 Client Error: Precondition Failed for url: https://sgisapi.mods.go.kr/OpenAPI3/stats/population.json?accessToken=e10f846c-9853-48ab-90e0-66be87246daa&adm_cd=31110&low_search=0"
       },
       "남구": {
-        "error": "412 Client Error: Precondition Failed for url: https://sgisapi.mods.go.kr/OpenAPI3/stats/population.json?accessToken=e7c00b57-2d53-409d-b001-58dea81042fc&adm_cd=31140&low_search=0"
+        "error": "412 Client Error: Precondition Failed for url: https://sgisapi.mods.go.kr/OpenAPI3/stats/population.json?accessToken=e10f846c-9853-48ab-90e0-66be87246daa&adm_cd=31140&low_search=0"
       },
       "동구": {
-        "error": "412 Client Error: Precondition Failed for url: https://sgisapi.mods.go.kr/OpenAPI3/stats/population.json?accessToken=e7c00b57-2d53-409d-b001-58dea81042fc&adm_cd=31170&low_search=0"
+        "error": "412 Client Error: Precondition Failed for url: https://sgisapi.mods.go.kr/OpenAPI3/stats/population.json?accessToken=e10f846c-9853-48ab-90e0-66be87246daa&adm_cd=31170&low_search=0"
       },
       "북구": {
-        "error": "412 Client Error: Precondition Failed for url: https://sgisapi.mods.go.kr/OpenAPI3/stats/population.json?accessToken=e7c00b57-2d53-409d-b001-58dea81042fc&adm_cd=31200&low_search=0"
+        "error": "412 Client Error: Precondition Failed for url: https://sgisapi.mods.go.kr/OpenAPI3/stats/population.json?accessToken=e10f846c-9853-48ab-90e0-66be87246daa&adm_cd=31200&low_search=0"
       },
       "울주군": {
-        "error": "412 Client Error: Precondition Failed for url: https://sgisapi.mods.go.kr/OpenAPI3/stats/population.json?accessToken=e7c00b57-2d53-409d-b001-58dea81042fc&adm_cd=31710&low_search=0"
+        "error": "412 Client Error: Precondition Failed for url: https://sgisapi.mods.go.kr/OpenAPI3/stats/population.json?accessToken=e10f846c-9853-48ab-90e0-66be87246daa&adm_cd=31710&low_search=0"
       }
     }
   }
