@@ -256,8 +256,8 @@ async function loadRealData() {
     const res = await fetch(DATA_URL + "?t=" + Date.now());
     if (!res.ok) throw new Error("fetch fail");
     const json = await res.json();
-    dataUpdatedAt = json.updated_at;
-    const rows = json?.kosis?.population?.ulsan_rows || [];
+    dataUpdatedAt = json._updated;
+    const rows = json?.kosis?.["울산_구군별_인구"]?.data || [];
     rows.forEach(row => {
       const guKey = GU_KEY_MAP[row.C1_NM];
       if (guKey && GU[guKey]) {
