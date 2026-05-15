@@ -1,130 +1,120 @@
-#!/usr/bin/env python3
+"""
+DURE-η 통합 데이터 파이프라인
+KOSIS(인구/고용/복지) + SGIS(행정경계 GeoJSON) → data/ulsan.json
+"""
 from __future__ import annotations
-import json, os, sys
-from datetime import datetime, timezone, timedelta
+import json, sys, time, os
 from pathlib import Path
-from typing import Any
 import requests
 
-KST = timezone(timedelta(hours=9))
+# ── 인증키 ──────────────────────────────────────────
+KOSIS_KEY   = os.environ.get("KOSIS_API_KEY", "MzNiMDRhOTQ4ZGYxYjVjY2RhYTE2MGZjZDIwMjgzNWE=")
+SGIS_KEY    = os.environ.get("SGIS_CONSUMER_KEY",    "a7f9a200a67241698800")
+SGIS_SECRET = os.environ.get("SGIS_CONSUMER_SECRET", "7509589f1d3142d586b2")
 
-ULSAN_SGG = {
-    "중구":   "31110",
-    "남구":   "31140",
-    "동구":   "31170",
-    "북구":   "31200",
-    "울주군": "31710",
-}
+# ── 경로 ────────────────────────────────────────────
+OUTPUT = Path("data/ulsan.json")
 
+# ── KOSIS 테이블 ────────────────────────────────────
 KOSIS_BASE = "https://kosis.kr/openapi/Param/statisticsParameterData.do"
-SGIS_AUTH  = "https://sgisapi.mods.go.kr/OpenAPI3/auth/authentication.json"
-SGIS_POPULATION = "https://sgisapi.kostat.go.kr/OpenAPI3/stats/population.json"
+KOSIS_TABLES = [
+    {
+        "label": "울산_구군별_인구",
+        "params": {
+            "method": "getList", "apiKey": KOSIS_KEY,
+            "format": "json", "jsonVD": "Y",
+            "orgId": "101", "tblId": "DT_1B040A3",
+            "itmId": "T20 T21 T22",
+            "objL1": "31110 31120 31140 31170 31710",
+            "prdSe": "M", "newEstPrdCnt": "3",
+        },
+    },
+]
 
-# 시군구별 주민등록인구 테이블 (objL1=ALL → 전체 시군구 받아서 울산만 필터)
-KOSIS_TABLES = {
-    "population": {"orgId":"101","tblId":"DT_1B040A3","itmId":"T20","objL1":"ALL","prdSe":"M","newEstPrdCnt":"1"},
-    "employment": {"orgId":"101","tblId":"DT_1DA7002S","itmId":"ALL","objL1":"31","prdSe":"Y","newEstPrdCnt":"1"},
-    "welfare":    {"orgId":"117","tblId":"DT_11761_N001","itmId":"ALL","objL1":"31","prdSe":"Y","newEstPrdCnt":"1"},
-}
-
-def env(name):
-    v = os.environ.get(name)
-    if not v:
-        sys.stderr.write(f"[fatal] missing: {name}\n"); sys.exit(2)
-    return v
-
-def fetch_kosis(api_key, params):
-    q = {"method":"getList","apiKey":api_key,"format":"json","jsonVD":"Y",**params}
-    r = requests.get(KOSIS_BASE, params=q, timeout=30)
-    r.raise_for_status()
+# ── SGIS 함수 ────────────────────────────────────────
+def sgis_token() -> str | None:
+    url = (
+        "https://sgisapi.kostat.go.kr/OpenAPI3/auth/authentication.json"
+        f"?consumer_key={SGIS_KEY}&consumer_secret={SGIS_SECRET}"
+    )
+    r = requests.get(url, timeout=10)
     data = r.json()
-    sys.stderr.write(f"[debug] kosis type={type(data).__name__} len={len(data) if isinstance(data,list) else 'n/a'} sample={str(data)[:200]}\n")
-    return data
+    if data.get("errCd") == 0:
+        token = data["result"]["accessToken"]
+        print(f"  SGIS token OK: {token[:8]}...")
+        return token
+    print(f"  SGIS token FAIL: {data}")
+    return None
 
-def filter_ulsan_rows(rows):
-    if not isinstance(rows, list): return []
-    out = []
-    sgg_codes = set(ULSAN_SGG.values())
-    sgg_names = set(ULSAN_SGG.keys())
-    for row in rows:
-        c1 = str(row.get("C1",""))
-        c2 = str(row.get("C2",""))
-        c1_nm = row.get("C1_NM","")
-        # 5자리 시군구 코드 매칭 또는 구명 매칭
-        if c1 in sgg_codes or c2 in sgg_codes:
-            out.append(row)
-    return out
+def sgis_boundary(token: str) -> dict | None:
+    url = (
+        "https://sgisapi.kostat.go.kr/OpenAPI3/boundary/hadmarea.geojson"
+        f"?accessToken={token}&year=2023&adm_cd=26&low_search=1"
+    )
+    r = requests.get(url, timeout=15)
+    data = r.json()
+    if data.get("errCd") == 0:
+        count = len(data.get("features", []))
+        print(f"  SGIS boundary OK: {count} features")
+        return data
+    print(f"  SGIS boundary FAIL: {data.get('errMsg')}")
+    return None
 
-def sgis_token(key, secret):
-    sys.stderr.write(f"[debug] SGIS URL:{SGIS_AUTH}\n")
-    r = requests.get(SGIS_AUTH,
-                     params={"consumer_key":key,"consumer_secret":secret},
-                     timeout=30,
-                     headers={"Accept":"application/json"},
-                     allow_redirects=True)
-    sys.stderr.write(f"[debug] SGIS status={r.status_code}\n")
-    if r.status_code in (301,302,303,307,308):
-        loc = r.headers.get("Location","")
-        sys.stderr.write(f"[debug] redirect → {loc}\n")
-        r = requests.get(loc, timeout=30, headers={"Accept":"application/json"})
-    r.raise_for_status()
-    body = r.json()
-    if body.get("errCd") not in (0,"0"):
-        raise RuntimeError(f"SGIS auth failed: {body}")
-    return body["result"]["accessToken"]
-
-def fetch_sgis_population(token):
-    out = {}
-    for name, sgg in ULSAN_SGG.items():
-        r = requests.get(SGIS_POPULATION,
-                         params={"accessToken":token,"adm_cd":sgg,"low_search":"0"},
-                         timeout=30,
-                         headers={"Accept":"application/json"})
+# ── KOSIS 수집 ───────────────────────────────────────
+def collect_kosis() -> dict:
+    results = {}
+    for table in KOSIS_TABLES:
+        label = table["label"]
+        print(f"\n[KOSIS] {label}")
         try:
-            r.raise_for_status(); out[name] = r.json()
+            resp = requests.get(KOSIS_BASE, params=table["params"], timeout=15)
+            data = resp.json()
+            if isinstance(data, dict) and "err" in data:
+                print(f"  SKIP: {data.get('errMsg')}")
+                results[label] = {"error": data.get("errMsg")}
+            else:
+                rows = len(data) if isinstance(data, list) else 0
+                print(f"  OK: {rows} rows")
+                results[label] = {"row_count": rows, "data": data}
         except Exception as e:
-            out[name] = {"error": str(e)}
-    return out
+            print(f"  ERR: {e}")
+            results[label] = {"error": str(e)}
+        time.sleep(0.5)
+    return results
 
-def main():
-    kosis_key = env("KOSIS_API_KEY")
-    sgis_key  = env("SGIS_CONSUMER_KEY")
-    sgis_sec  = env("SGIS_CONSUMER_SECRET")
+# ── 메인 ────────────────────────────────────────────
+def main() -> int:
+    from datetime import datetime, timezone, timedelta
+    KST = timezone(timedelta(hours=9))
+    now = datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")
 
-    payload = {
-        "updated_at": datetime.now(KST).isoformat(),
-        "region": "울산광역시",
-        "districts": list(ULSAN_SGG.keys()),
-        "sgg_codes": ULSAN_SGG,
-        "kosis": {}, "sgis": {},
-    }
+    print("=" * 50)
+    print(f"DURE-η 파이프라인 시작: {now}")
+    print("=" * 50)
 
-    for category, params in KOSIS_TABLES.items():
-        try:
-            raw = fetch_kosis(kosis_key, params)
-            ulsan_rows = filter_ulsan_rows(raw)
-            payload["kosis"][category] = {
-                "rows_total":  len(raw) if isinstance(raw,list) else 0,
-                "ulsan_rows":  ulsan_rows,
-                "ulsan_count": len(ulsan_rows),
-            }
-            sys.stderr.write(f"[ok] kosis/{category}: ulsan_count={len(ulsan_rows)}\n")
-        except Exception as e:
-            payload["kosis"][category] = {"error": str(e)}
-            sys.stderr.write(f"[err] kosis/{category}: {e}\n")
+    result = {"_updated": now}
 
-    try:
-        token = sgis_token(sgis_key, sgis_sec)
-        sys.stderr.write("[ok] SGIS token OK\n")
-        payload["sgis"]["population"] = fetch_sgis_population(token)
-    except Exception as e:
-        payload["sgis"]["population"] = {"error": str(e)}
-        sys.stderr.write(f"[err] SGIS: {e}\n")
+    # 1. KOSIS
+    print("\n[1] KOSIS 수집")
+    result["kosis"] = collect_kosis()
 
-    out_path = Path(__file__).resolve().parent.parent / "data" / "ulsan.json"
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"[ok] wrote {out_path}")
+    # 2. SGIS
+    print("\n[2] SGIS 수집")
+    token = sgis_token()
+    if token:
+        boundary = sgis_boundary(token)
+        result["sgis"] = {
+            "boundary": boundary,
+            "adm_cd":   "26",
+            "year":     "2023",
+        }
+    else:
+        result["sgis"] = {"error": "token 발급 실패"}
+
+    # 3. 저장
+    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    OUTPUT.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"\n✅ 저장 완료 → {OUTPUT}")
     return 0
 
 if __name__ == "__main__":
