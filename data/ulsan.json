@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-05-18 06:52 KST",
+  "_updated": "2026-05-19 07:00 KST",
   "kosis": {
     "울산_구군별_인구": {
       "row_count": 36,
@@ -697,7 +697,7 @@
       "id": "API_0704",
       "errMsg": "Success",
       "errCd": 0,
-      "trId": "mWrN_API_0704_1779054767308",
+      "trId": "AlOM_API_0704_1779141631241",
       "features": [
         {
           "type": "Feature",
