@@ -2,8 +2,11 @@ name: NKIS 주간 데이터 수집
 
 on:
   schedule:
-    - cron: '0 1 * * 1'  # 매주 월요일 오전 10시 KST
-  workflow_dispatch:      # 수동 실행 가능
+    - cron: '0 1 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   collect:
