@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>체감온도 관리자 입력</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=DM+Mono:wght@500&display=swap');
+
+  :root {
+    --bg: #0f1117;
+    --card: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e8eaf0;
+    --muted: #6b7080;
+    --accent: #3b82f6;
+    --safe:    #22c55e;
+    --caution: #f59e0b;
+    --warning: #ef4444;
+    --stop:    #7c3aed;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans KR', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 16px 60px;
+  }
+
+  h1 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+
+  .sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 32px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 480px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px;
+    margin-bottom: 16px;
+  }
+
+  .card-title {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .field {
+    margin-bottom: 18px;
+  }
+
+  label {
+    display: block;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  input[type="number"],
+  input[type="text"],
+  input[type="password"],
+  select {
+    width: 100%;
+    background: #12151e;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 13px 16px;
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 22px;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+
+  select {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  input:focus, select:focus {
+    border-color: var(--accent);
+  }
+
+  /* 미리보기 */
+  .preview {
+    width: 100%;
+    max-width: 480px;
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+
+  .preview-label {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .preview-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 32px;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+
+  .preview-badge {
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 20px;
+    transition: all 0.3s;
+  }
+
+  /* 저장 버튼 */
+  .btn-save {
+    width: 100%;
+    max-width: 480px;
+    padding: 18px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    letter-spacing: 0.02em;
+  }
+
+  .btn-save:active {
+    opacity: 0.85;
+    transform: scale(0.99);
+  }
+
+  /* 이력 */
+  .history {
+    width: 100%;
+    max-width: 480px;
+    margin-top: 24px;
+  }
+
+  .history-title {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .history-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .history-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    min-width: 48px;
+  }
+
+  .history-zone {
+    font-size: 13px;
+    color: var(--muted);
+    flex: 1;
+  }
+
+  .history-temp {
+    font-family: 'DM Mono', monospace;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .history-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+  }
+
+  /* 토스트 */
+  .toast {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--safe);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 12px 28px;
+    border-radius: 40px;
+    opacity: 0;
+    transition: all 0.3s;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* 잠금 화면 */
+  #lock-screen {
+    width: 100%;
+    max-width: 380px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 40px 32px;
+    text-align: center;
+  }
+
+  #lock-screen h2 {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  #lock-screen p {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  #pw-input {
+    text-align: center;
+    letter-spacing: 0.3em;
+    font-size: 28px;
+  }
+
+  .btn-login {
+    width: 100%;
+    margin-top: 16px;
+    padding: 14px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .pw-error {
+    font-size: 13px;
+    color: var(--warning);
+    margin-top: 10px;
+    min-height: 20px;
+  }
+
+  #main-content { display: none; width: 100%; align-items: center; flex-direction: column; }
+</style>
+</head>
+<body>
+
+<!-- 잠금 화면 -->
+<div id="lock-screen">
+  <h2>🔒 관리자 인증</h2>
+  <p>원청 안전담당자 전용 페이지입니다.</p>
+  <div class="field">
+    <label>비밀번호</label>
+    <input type="password" id="pw-input" placeholder="••••" maxlength="8" onkeydown="if(event.key==='Enter')login()">
+  </div>
+  <button class="btn-login" onclick="login()">확인</button>
+  <div class="pw-error" id="pw-error"></div>
+</div>
+
+<!-- 메인 입력 화면 -->
+<div id="main-content">
+
+  <h1>체감온도 현황 입력</h1>
+  <p class="sub">측정 후 수치를 입력하고 저장하면 즉시 반영됩니다.</p>
+
+  <!-- 미리보기 -->
+  <div class="preview" id="preview">
+    <div>
+      <div class="preview-label">체감온도</div>
+      <div class="preview-value" id="prev-temp">--°C</div>
+    </div>
+    <div class="preview-badge" id="prev-badge">입력 대기</div>
+  </div>
+
+  <!-- 입력 카드 -->
+  <div class="card">
+    <div class="card-title">측정값 입력</div>
+
+    <div class="field">
+      <label>체감온도 (°C)</label>
+      <input type="number" id="inp-feels" step="0.1" min="0" max="60" placeholder="32.5" oninput="updatePreview()">
+    </div>
+
+    <div class="field">
+      <label>실제 기온 (°C)</label>
+      <input type="number" id="inp-real" step="0.1" min="0" max="60" placeholder="30.0">
+    </div>
+
+    <div class="field">
+      <label>습도 (%)</label>
+      <input type="number" id="inp-humid" step="1" min="0" max="100" placeholder="65">
+    </div>
+
+    <div class="field">
+      <label>작업 구역</label>
+      <select id="inp-zone">
+        <option value="전 구역">전 구역</option>
+        <option value="A구역">A구역</option>
+        <option value="B구역">B구역</option>
+        <option value="C구역">C구역</option>
+        <option value="D구역">D구역</option>
+        <option value="E구역">E구역</option>
+      </select>
+    </div>
+  </div>
+
+  <button class="btn-save" onclick="save()">저장 및 반영</button>
+
+  <!-- 입력 이력 -->
+  <div class="history">
+    <div class="history-title">오늘 입력 이력</div>
+    <div id="history-list"></div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast">✓ 저장 완료 — 현장 페이지에 반영됩니다</div>
+
+<script>
+const PASSWORD = '1234'; // 비밀번호 변경 가능
+
+const LEVELS = [
+  { key:'stop',    min:35, color:'#7c3aed', label:'작업중지' },
+  { key:'warning', min:33, color:'#ef4444', label:'경보' },
+  { key:'caution', min:31, color:'#f59e0b', label:'주의' },
+  { key:'safe',    min:0,  color:'#22c55e', label:'정상' },
+];
+
+function getLevel(t) {
+  return LEVELS.find(l => t >= l.min) || LEVELS[3];
+}
+
+function login() {
+  const v = document.getElementById('pw-input').value;
+  if (v === PASSWORD) {
+    document.getElementById('lock-screen').style.display = 'none';
+    const mc = document.getElementById('main-content');
+    mc.style.display = 'flex';
+    renderHistory();
+  } else {
+    document.getElementById('pw-error').textContent = '비밀번호가 올바르지 않습니다.';
+    document.getElementById('pw-input').value = '';
+  }
+}
+
+function updatePreview() {
+  const v = parseFloat(document.getElementById('inp-feels').value);
+  if (isNaN(v)) {
+    document.getElementById('prev-temp').textContent = '--°C';
+    document.getElementById('prev-badge').textContent = '입력 대기';
+    document.getElementById('prev-badge').style.background = '#2a2d3a';
+    document.getElementById('prev-badge').style.color = '#6b7080';
+    return;
+  }
+  const lv = getLevel(v);
+  document.getElementById('prev-temp').textContent = v.toFixed(1) + '°C';
+  document.getElementById('prev-temp').style.color = lv.color;
+  document.getElementById('prev-badge').textContent = lv.label;
+  document.getElementById('prev-badge').style.background = lv.color + '25';
+  document.getElementById('prev-badge').style.color = lv.color;
+  document.getElementById('prev-badge').style.border = '1px solid ' + lv.color + '50';
+}
+
+function now() {
+  const d = new Date();
+  return d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
+}
+
+function save() {
+  const feels = parseFloat(document.getElementById('inp-feels').value);
+  const real  = parseFloat(document.getElementById('inp-real').value);
+  const humid = parseInt(document.getElementById('inp-humid').value);
+  const zone  = document.getElementById('inp-zone').value;
+
+  if (isNaN(feels)) { alert('체감온도를 입력해주세요.'); return; }
+
+  const data = {
+    feelsLike: feels,
+    realTemp: isNaN(real) ? feels : real,
+    humidity: isNaN(humid) ? '--' : humid,
+    zone: zone,
+    time: now()
+  };
+
+  localStorage.setItem('heatwave_data', JSON.stringify(data));
+
+  // 이력 저장
+  const histKey = 'heatwave_history';
+  let hist = [];
+  try { hist = JSON.parse(localStorage.getItem(histKey) || '[]'); } catch(e) {}
+  hist.unshift(data);
+  if (hist.length > 10) hist = hist.slice(0, 10);
+  localStorage.setItem(histKey, JSON.stringify(hist));
+
+  renderHistory();
+  showToast();
+
+  // 입력 초기화
+  document.getElementById('inp-feels').value = '';
+  document.getElementById('inp-real').value = '';
+  document.getElementById('inp-humid').value = '';
+  updatePreview();
+}
+
+function renderHistory() {
+  let hist = [];
+  try { hist = JSON.parse(localStorage.getItem('heatwave_history') || '[]'); } catch(e) {}
+  const el = document.getElementById('history-list');
+  if (!hist.length) {
+    el.innerHTML = '<div style="font-size:13px;color:var(--muted);padding:12px 0;">아직 입력 이력이 없습니다.</div>';
+    return;
+  }
+  el.innerHTML = hist.map(d => {
+    const lv = getLevel(d.feelsLike);
+    return `<div class="history-item">
+      <div class="history-dot" style="background:${lv.color}"></div>
+      <div class="history-time">${d.time}</div>
+      <div class="history-zone">${d.zone}</div>
+      <div class="history-temp" style="color:${lv.color}">${d.feelsLike.toFixed(1)}°C</div>
+    </div>`;
+  }).join('');
+}
+
+function showToast() {
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+</script>
+</body>
+</html>
