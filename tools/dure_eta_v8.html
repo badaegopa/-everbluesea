@@ -1639,7 +1639,27 @@ loadDistrict("junggu");
             window._ETA_BASE[k].eta = v.eta;
           }
         });
+        /* 경보 배너 재계산 */
+        if(typeof updateBrokenWindowAlert === 'function') updateBrokenWindowAlert();
+        /* 전염계수 패널 재렌더 */
+        if(typeof showContagion === 'function' && window._currentDistKey){
+          showContagion(window._currentDistKey);
+        }
       }
+      /* mv-eta-chip 실데이터로 업데이트 */
+      document.querySelectorAll('.mv-eta-chip').forEach(chip => {
+        const txt = chip.textContent.trim();
+        const match = txt.match(/(중구|남구|동구|북구|울주군)/);
+        if(!match) return;
+        const nameMap = {'중구':'31110','남구':'31120','동구':'31140','북구':'31170','울주군':'31710'};
+        const code = nameMap[match[1]];
+        const v = etaData[code];
+        if(v && v.eta !== null){
+          const cls = v.eta < 0.50 ? 'danger' : v.eta < 0.55 ? 'warn' : 'safe';
+          chip.textContent = match[1] + ' ' + v.eta.toFixed(2);
+          chip.className = 'mv-eta-chip ' + cls;
+        }
+      });
       /* cp-eta DOM 직접 업데이트 — 순서: 중구/남구/동구/북구/울주군 */
       const ETA_ORDER = ['31110','31120','31140','31170','31710'];
       const CP_COLOR = v => v>=0.7?'#C73E1D':v>=0.5?'#9A6800':'#3A6A5E';
