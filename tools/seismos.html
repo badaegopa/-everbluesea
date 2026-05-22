@@ -279,19 +279,14 @@ async function loadRealData() {
       const badge = eta >= 0.7 ? "alrt" : eta >= 0.5 ? "caution" : "safe";
       const badgeTxt = eta >= 0.7 ? "경보" : eta >= 0.5 ? "주의" : "안전";
       const color = eta >= 0.7 ? "#C73E1D" : eta >= 0.5 ? "#9A6800" : "#3A6A5E";
-      // sim-eta 스팬 업데이트
-      document.querySelectorAll(".sim-eta").forEach(el => {
-        const card = el.closest(".sim-card, div");
-        if (card && card.textContent.includes(v.name)) {
-          el.textContent = eta.toFixed(2);
-          el.style.color = color;
-          const badgeEl = el.nextElementSibling;
-          if (badgeEl && badgeEl.classList.contains("sim-badge")) {
-            badgeEl.className = "sim-badge " + badge;
-            badgeEl.textContent = badgeTxt;
-          }
-        }
-      });
+      // sim-eta 스팬 업데이트 — id 직접 접근
+      const card = document.getElementById("sc-" + key);
+      if (card) {
+        const etaEl = card.querySelector(".sim-eta");
+        const badgeEl = card.querySelector(".sim-badge");
+        if (etaEl) { etaEl.textContent = eta.toFixed(2); etaEl.style.color = color; }
+        if (badgeEl) { badgeEl.className = "sim-badge " + badge; badgeEl.textContent = badgeTxt; }
+      }
       // GU 객체 업데이트 (대시보드용)
       if (GU[key]) {
         GU[key].eta = eta;
