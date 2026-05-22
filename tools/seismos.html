@@ -266,6 +266,39 @@ async function loadRealData() {
         GU[guKey].popRaw = pop;
       }
     });
+    // η 실데이터 연동
+    const etaData = json?.eta || {};
+    const CODE_MAP = {"31110":"jung","31120":"nam","31140":"dong","31170":"buk","31710":"ulju"};
+    const BADGE_MAP = {jung:"caution",nam:"alrt",dong:"alrt",buk:"caution",ulju:"caution"};
+    const COLOR_MAP = {jung:"#9A6800",nam:"#C73E1D",dong:"#C73E1D",buk:"#185FA5",ulju:"#5A5650"};
+    Object.entries(etaData).forEach(([code, v]) => {
+      const key = CODE_MAP[code];
+      if (!key || v.eta === null) return;
+      const eta = v.eta;
+      // badge 결정
+      const badge = eta >= 0.7 ? "alrt" : eta >= 0.5 ? "caution" : "safe";
+      const badgeTxt = eta >= 0.7 ? "경보" : eta >= 0.5 ? "주의" : "안전";
+      const color = eta >= 0.7 ? "#C73E1D" : eta >= 0.5 ? "#9A6800" : "#3A6A5E";
+      // sim-eta 스팬 업데이트
+      document.querySelectorAll(".sim-eta").forEach(el => {
+        const card = el.closest(".sim-card, div");
+        if (card && card.textContent.includes(v.name)) {
+          el.textContent = eta.toFixed(2);
+          el.style.color = color;
+          const badgeEl = el.nextElementSibling;
+          if (badgeEl && badgeEl.classList.contains("sim-badge")) {
+            badgeEl.className = "sim-badge " + badge;
+            badgeEl.textContent = badgeTxt;
+          }
+        }
+      });
+      // GU 객체 업데이트 (대시보드용)
+      if (GU[key]) {
+        GU[key].eta = eta;
+        GU[key].tfr = v.tfr;
+        GU[key].empRate = v.emp_rate;
+      }
+    });
     renderBadge();
   } catch(e) { console.warn("실데이터 로드 실패:", e); }
 }
