@@ -1630,6 +1630,32 @@ loadDistrict("junggu");
           }
         });
       }
+      /* cp-eta DOM 직접 업데이트 — 순서: 중구/남구/동구/북구/울주군 */
+      const ETA_ORDER = ['31110','31120','31140','31170','31710'];
+      const CP_COLOR = v => v>=0.7?'#C73E1D':v>=0.5?'#9A6800':'#3A6A5E';
+      const CP_BADGE = v => v>=0.7?'warn':v>=0.5?'warn':'safe';
+      const cpEls = document.querySelectorAll('.cp-eta');
+      ETA_ORDER.forEach((code, i) => {
+        const v = etaData[code];
+        if(v && v.eta !== null && cpEls[i]){
+          cpEls[i].textContent = v.eta.toFixed(2);
+          cpEls[i].style.color = CP_COLOR(v.eta);
+          cpEls[i].className = 'cp-eta ' + CP_BADGE(v.eta);
+        }
+      });
+      /* mv-eta-chip 배지도 업데이트 */
+      document.querySelectorAll('.mv-eta-chip').forEach(chip => {
+        const txt = chip.textContent;
+        const match = txt.match(/(중구|남구|동구|북구|울주군)/);
+        if(!match) return;
+        const nameMap = {'중구':'31110','남구':'31120','동구':'31140','북구':'31170','울주군':'31710'};
+        const code = nameMap[match[1]];
+        const v = etaData[code];
+        if(v && v.eta !== null){
+          chip.textContent = match[1] + ' η' + v.eta.toFixed(2);
+          chip.className = 'mv-eta-chip ' + CP_BADGE(v.eta);
+        }
+      });
       /* 활성 구군 재로드 → 슬라이더/η 즉시 반영 */
       const cur = window._currentDistKey;
       if(cur && typeof loadDistrict === 'function') loadDistrict(cur);
