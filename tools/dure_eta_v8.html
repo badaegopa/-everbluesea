@@ -1622,11 +1622,21 @@ loadDistrict("junggu");
       /* η 실데이터 연동 */
       const etaData = j.eta || {};
       const ETA_MAP = {'31110':'junggu','31120':'namgu','31140':'donggu','31170':'bukgu','31710':'ulju'};
+      /* DISTRICTS_ETA 업데이트 */
       if(typeof DISTRICTS_ETA !== 'undefined'){
         Object.entries(etaData).forEach(([code, v]) => {
           const k = ETA_MAP[code];
           if(k && v.eta !== null && DISTRICTS_ETA[k]){
             DISTRICTS_ETA[k].eta = v.eta;
+          }
+        });
+      }
+      /* ETA_BASE 업데이트 (전염계수 계산용) */
+      if(window._ETA_BASE){
+        Object.entries(etaData).forEach(([code, v]) => {
+          const k = ETA_MAP[code];
+          if(k && v.eta !== null && window._ETA_BASE[k]){
+            window._ETA_BASE[k].eta = v.eta;
           }
         });
       }
@@ -3830,6 +3840,7 @@ RA();
     bukgu:  { name:'북구',  eta:0.65, color:'#9B6040' },
     ulju:   { name:'울주군',eta:0.49, color:'#7A5A9B' },
   };
+  window._ETA_BASE = ETA_BASE; /* 실데이터 연동용 외부 노출 */
 
   /* ── 연결 가중치 행렬 w_AB (통근·통학·상권 중첩도 0~1) ── */
   /* 인접할수록 높음. 비대칭 허용 (A→B ≠ B→A) */
