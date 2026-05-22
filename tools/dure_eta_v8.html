@@ -1559,7 +1559,7 @@ loadDistrict("junggu");
    SVARS의 employ.val 을 실데이터로 자동 교체.
    고용률 데이터가 비어있으면 인구만 교체하고 추계치 유지. */
 (function loadUlsanRealtime(){
-  const C2K = {'31110':'junggu','31140':'namgu','31170':'donggu','31200':'bukgu','31710':'ulju'};
+  const C2K = {'31110':'junggu','31120':'namgu','31140':'donggu','31170':'bukgu','31710':'ulju'};
   const badge = document.getElementById('data-fresh-badge');
 
   fetch('../data/ulsan.json', {cache:'no-store'})
@@ -1619,6 +1619,17 @@ loadDistrict("junggu");
         badge.innerHTML += ' <span style="color:var(--muted);font-weight:400;">· 고용률은 추계치</span>';
       }
 
+      /* η 실데이터 연동 */
+      const etaData = j.eta || {};
+      const ETA_MAP = {'31110':'junggu','31120':'namgu','31140':'donggu','31170':'bukgu','31710':'ulju'};
+      if(typeof DISTRICTS_ETA !== 'undefined'){
+        Object.entries(etaData).forEach(([code, v]) => {
+          const k = ETA_MAP[code];
+          if(k && v.eta !== null && DISTRICTS_ETA[k]){
+            DISTRICTS_ETA[k].eta = v.eta;
+          }
+        });
+      }
       /* 활성 구군 재로드 → 슬라이더/η 즉시 반영 */
       const cur = window._currentDistKey;
       if(cur && typeof loadDistrict === 'function') loadDistrict(cur);
