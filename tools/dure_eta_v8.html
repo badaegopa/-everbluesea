@@ -525,7 +525,12 @@ body{font-family:'Noto Sans KR',sans-serif;background:#F5F3EE;color:#2C2C2A;padd
     <div>
       <div class="ht">두레에타(DURE-η) — 전국 사회구조 진단 시스템</div>
       <div class="hs">Powered by SEISMOS Engine · Λ¹² 프레임워크 · 늘푸른바다 사회동역학 연구소</div>
-      <div id="data-fresh-badge" style="font-size:10px;margin-top:4px;color:var(--muted);font-weight:600;letter-spacing:.02em;">⏳ 실데이터 로드 중…</div>
+      <div id="data-fresh-badge" style="font-size:10px;margin-top:4px;font-weight:600;letter-spacing:.02em;background:#1A1A2A;border:1px solid #3A3A4A;border-radius:4px;padding:3px 8px;overflow:hidden;position:relative;max-width:100%;">
+        <div id="badge-track" style="display:inline-flex;white-space:nowrap;animation:ticker-scroll 30s linear infinite;">
+          <span id="badge-text" style="color:#5E9186;padding:0 20px;">⏳ 실데이터 수집 중…</span>
+          <span id="badge-text2" style="color:#5E9186;padding:0 20px;">⏳ 실데이터 수집 중…</span>
+        </div>
+      </div>
     </div>
     <div class="region-wrap">
       <div class="region-btn" onclick="TD()">
@@ -1605,8 +1610,23 @@ loadDistrict("junggu");
         const d = new Date(j.updated_at);
         const pad = n => String(n).padStart(2,'0');
         const ts = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())} KST`;
-        badge.innerHTML = `📡 실데이터 연동 — KOSIS · 최종 갱신 ${ts}`;
-        badge.style.color = '#3D7A6E';
+        const items = [
+          `📡 최종 갱신 ${ts}`,
+          '✅ KOSIS 인구·고용 수집 완료',
+          '✅ ECOS 가계부채 수집 완료',
+          '✅ 재정자립도 e-나라지표 연동',
+          '✅ 순이동률 DT_1B26A01 연동',
+          '✅ 빈집률 DT_1JU1512 연동',
+          '✅ η 5구군 실측 반영 완료',
+        ];
+        const full = items.join('　　|　　') + '　　|　　';
+        const t1 = document.getElementById('badge-text');
+        const t2 = document.getElementById('badge-text2');
+        if(t1){ t1.textContent = full; t1.style.color='#5E9186'; }
+        if(t2){ t2.textContent = full; t2.style.color='#5E9186'; }
+        const track = document.getElementById('badge-track');
+        const speed = Math.max(20, Math.round(full.length * 0.22));
+        if(track) track.style.animation = `ticker-scroll ${speed}s linear infinite`;
       }
 
       /* 인구: 명 → 천명 변환 후 INDS.pop.raw 마지막값 교체 */
@@ -1651,7 +1671,7 @@ loadDistrict("junggu");
           });
         }
       } else if(badge){
-        badge.innerHTML += ' <span style="color:var(--muted);font-weight:400;">· 고용률은 추계치</span>';
+        if(document.getElementById('badge-text2')) document.getElementById('badge-text2').textContent += '　　|　　⚠ 고용률은 추계치';
       }
 
       /* η 실데이터 연동 */
@@ -1720,8 +1740,7 @@ loadDistrict("junggu");
     .catch(e => {
       console.warn('[ulsan.json] load failed:', e);
       if(badge){
-        badge.innerHTML = '⚠️ 실데이터 로드 실패 — 추계치 표시';
-        badge.style.color = '#A32D2D';
+        const bt=document.getElementById('badge-text'); if(bt){ bt.textContent='⚠️ 실데이터 로드 실패 — 추계치 표시'; bt.style.color='#C73E1D'; }
       }
     });
 })();
