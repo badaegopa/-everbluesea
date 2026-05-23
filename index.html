@@ -500,10 +500,10 @@ body.en-mode span.en { display:inline; }
 <script>
 /* DURE-η 배너: data/ulsan.json 실데이터로 구군 칩 동적 생성 (η 내림차순) */
 (function(){
-  // 임계값 — 조정 가능: η≥RED 🔴위험, ≥YELLOW 🟡주의, 그 외 🟢안정
-  const ETA_RED = 0.50, ETA_YELLOW = 0.40;
+  // 임계값 — 조정 가능: η≥GREEN 🟢안정, ≥YELLOW 🟡주의, 그 외 🔴위험 (건강 극성: η↑=양호)
+  const ETA_GREEN = 0.65, ETA_YELLOW = 0.45;
   const CHIP_STYLE = "font-size:11px;background:rgba(255,255,255,0.15);color:#E1F5EE;padding:2px 8px;border-radius:12px";
-  function marker(e){ return e >= ETA_RED ? '🔴' : (e >= ETA_YELLOW ? '🟡' : '🟢'); }
+  function marker(e){ return e >= ETA_GREEN ? '🟢' : (e >= ETA_YELLOW ? '🟡' : '🔴'); }
   fetch('data/ulsan.json', {cache:'no-store'})
     .then(function(r){ return r.json(); })
     .then(function(d){
