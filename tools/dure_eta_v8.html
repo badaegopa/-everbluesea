@@ -548,13 +548,25 @@ body{font-family:'Noto Sans KR',sans-serif;background:#F5F3EE;color:#2C2C2A;padd
     </button>
   </div>
 
-  <!-- ── 깨진 유리창 경보 배너 ── -->
-  <div id="broken-window-alert">
-    <span class="bwa-icon">🪟</span>
-    <span class="bwa-text">깨진 유리창 경보</span>
-    <span class="bwa-sub">η 임계값 초과 구·군 감지 — 광역 협력 개입 권고</span>
-    <div class="bwa-districts" id="bwa-tags"></div>
+  <!-- ── 최신 업데이트 티커 ── -->
+  <div id="update-ticker" style="background:#0A0A0F;border-bottom:1px solid #2A2A3A;height:28px;display:flex;align-items:center;overflow:hidden;position:relative;">
+    <div style="flex-shrink:0;padding:0 10px;font-size:10px;font-weight:700;color:#5E9186;letter-spacing:.08em;border-right:1px solid #2A2A3A;height:100%;display:flex;align-items:center;">
+      📡 업데이트
+    </div>
+    <div style="flex:1;overflow:hidden;position:relative;">
+      <div id="ticker-track" style="display:inline-flex;white-space:nowrap;animation:ticker-scroll 40s linear infinite;">
+        <span id="ticker-text" style="font-size:10px;color:#C8C4BB;padding:0 40px;"></span>
+        <span id="ticker-text2" style="font-size:10px;color:#C8C4BB;padding:0 40px;"></span>
+      </div>
+    </div>
   </div>
+  <style>
+  @keyframes ticker-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  #update-ticker:hover #ticker-track { animation-play-state: paused; }
+  </style>
 
   <!-- ── η 전염 계수 패널 ── -->
   <div id="contagion-panel">
@@ -1763,6 +1775,51 @@ loadDistrict("junggu");
         if(el) el.innerHTML='<div style="font-size:10px;color:#C73E1D;">⚠️ 실측 데이터 로드 실패</div>';
       });
     });
+})();
+</script>
+
+<script>
+/* ── 업데이트 티커 데이터 ── */
+(function initTicker(){
+  const UPDATES = [
+    '2026-05-24 | 구군별 순이동률·빈집률 실측 반영 — 통계청 국내인구이동통계(DT_1B26A01) · 인구주택총조사(DT_1JU1512)',
+    '2026-05-24 | 구군별 재정자립도 2026년 기준 갱신 — 지방재정365 · e-나라지표(DT_1YL20921)',
+    '2026-05-24 | 인구위기 섹션 실측 카드 추가 — 구군별 순이동·빈집률 5개 구군 차등 표시',
+    '2026-05-24 | 살림살이 섹션 재정자립도 카드 추가 — 남구 30.9% 양호 · 울주군 37.4% 최고 · 중구 17.8% 취약',
+    '2026-05-23 | η 극성 버그 수정 완료 — 1-x 변환 적용 (높을수록 양호 방향 통일)',
+    '2026-05-23 | η 9분위 등급 시스템 확정 — 🟢탁월·양호 / 🔵안정·평균상 / 🟡평균 / 🟠주목·경계 / 🔴위험·위기',
+    '2026-05-23 | Λ¹² 슬롯 대체 완료 — P1 순이동률 · G2 재정자립도 · C2 빈집률 구군별 차등 적용',
+    '2026-05-23 | 파이프라인 자동화 완성 — 매일 06:00 KST KOSIS·ECOS 자동 수집 · CI 검증 3회 완료',
+    '2026-05-22 | KOSIS 울산 지역코드 전수 검증 — 표별 코드체계 상이 확인 및 수정 완료',
+    '두레에타(DURE-η) | 울산광역시 5개 구군 사회동역학 진단 시스템 · Λ¹² 12변수 기반 · 늘푸른바다 사회동역학 연구소',
+  ];
+
+  const sep = '　　　|　　　';
+  const full = UPDATES.join(sep) + sep;
+
+  /* ulsan.json 갱신시각 읽어서 첫 항목 동적 교체 */
+  fetch('../data/ulsan.json', {cache:'no-store'})
+    .then(r=>r.json())
+    .then(j=>{
+      if(j._updated){
+        UPDATES.unshift('📡 최종 데이터 갱신: ' + j._updated + ' — KOSIS · ECOS · SGIS 파이프라인 자동 수집');
+      }
+      setTicker(UPDATES);
+    })
+    .catch(()=>setTicker(UPDATES));
+
+  function setTicker(items){
+    const sep = '　　　|　　　';
+    const full = items.join(sep) + sep;
+    const t1 = document.getElementById('ticker-text');
+    const t2 = document.getElementById('ticker-text2');
+    if(t1) t1.textContent = full;
+    if(t2) t2.textContent = full;
+    /* 글자 수에 따라 속도 조정 */
+    const track = document.getElementById('ticker-track');
+    const speed = Math.max(30, Math.round(full.length * 0.28));
+    if(track) track.style.animation = 'ticker-scroll ' + speed + 's linear infinite';
+  }
 })();
 </script>
 
