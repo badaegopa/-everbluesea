@@ -127132,7 +127132,7 @@
     }
   },
   "redesign": {
-    "_updated": "2026-05-23 18:34 KST",
+    "_updated": "2026-05-23 18:38 KST",
     "_design": {
       "eta_inputs": {
         "①순이동률": "건수/인구×100(%)",
@@ -127155,6 +127155,7 @@
       "fiscal_period": "2026",
       "grdp_period": "2022",
       "vacant_period": "2024",
+      "vacancy_note": "재개발 추진 지역 말소 미처리 포함 가능 — 단순 쇠퇴 지표로 해석 금지",
       "household_credit_period": "2025"
     },
     "eta_inputs": {

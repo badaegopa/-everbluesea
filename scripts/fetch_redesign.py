@@ -122,6 +122,11 @@ def collect_grdp(out):
 
 
 # ── ④ 빈집률 = 빈집호수/총주택 × 100 ──
+# ⚠️ 해석 주의: 빈집 통계는 재개발 추진 지역의 말소 미처리 물량을 포함할 수 있어
+#    단순 쇠퇴 지표로 해석 금지 (재개발 대기 빈집 ≠ 쇠퇴).
+VACANCY_NOTE = "재개발 추진 지역 말소 미처리 포함 가능 — 단순 쇠퇴 지표로 해석 금지"
+
+
 def collect_vacant(out):
     codes = " ".join(g["c26c"] for g in GU.values())
     vac = kosis("DT_1JU1512", "T000", codes, prdSe="Y", extra={"objL2": "00"})
@@ -138,6 +143,7 @@ def collect_vacant(out):
         if vh is not None and th:
             out["eta_inputs"][k]["vacancy_rate"] = round(vh / th * 100, 2)
         out["meta"]["vacant_period"] = r.get("PRD_DE")
+    out["meta"]["vacancy_note"] = VACANCY_NOTE
 
 
 # ── ⑥ 가계부채 → 별도 패널 (전국 단위, 구군 부재) ──
