@@ -1697,6 +1697,75 @@ loadDistrict("junggu");
 
 
 
+<script>
+/* ── redesign.json 실측 카드 렌더링 (순이동·빈집·재정) ── */
+(function loadRedesignCards(){
+  const DIST_ORDER = [
+    {code:'31110', name:'중구'},
+    {code:'31140', name:'남구'},
+    {code:'31170', name:'동구'},
+    {code:'31200', name:'북구'},
+    {code:'31710', name:'울주군'}
+  ];
+  fetch('../data/redesign.json', {cache:'no-store'})
+    .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+    .then(j=>{
+      const eta=j.eta_inputs||{};
+      const allMig=DIST_ORDER.map(d=>eta[d.code]?.net_migration_rate??0);
+      const allFis=DIST_ORDER.map(d=>eta[d.code]?.fiscal_independence??0);
+      const allVac=DIST_ORDER.map(d=>eta[d.code]?.vacancy_rate??0);
+      const minMig=Math.min(...allMig),maxMig=Math.max(...allMig);
+      const maxFis=Math.max(...allFis),maxVac=Math.max(...allVac);
+
+      const bar=(val,min,max,inv)=>{
+        const pct=max===min?50:Math.round((val-min)/(max-min)*100);
+        const fill=inv?(100-pct):pct;
+        const clr=fill>=65?'#3D7A6E':fill>=45?'#9A6800':'#C73E1D';
+        return '<div style="height:3px;background:#DDD8CE;border-radius:2px;margin-top:3px;"><div style="width:'+fill+'%;height:100%;background:'+clr+';border-radius:2px;"></div></div>';
+      };
+      const migClr=v=>v>=0?'#3D7A6E':v>=-0.1?'#9A6800':'#C73E1D';
+      const vacClr=v=>v>=8?'#C73E1D':v>=6?'#9A6800':'#3D7A6E';
+      const fisClr=v=>v>=30?'#3D7A6E':v>=20?'#9A6800':'#C73E1D';
+
+      /* 순이동+빈집 카드 */
+      const mv=document.getElementById('mig-vac-cards');
+      if(mv) mv.innerHTML=DIST_ORDER.map(d=>{
+        const r=eta[d.code]; if(!r) return '';
+        const mig=r.net_migration_rate, vac=r.vacancy_rate;
+        return '<div style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:7px 8px;font-size:10px;">'
+          +'<div style="font-weight:700;color:var(--fg);margin-bottom:4px;">'+d.name+'</div>'
+          +'<div style="display:flex;justify-content:space-between;color:var(--dim);"><span>순이동</span>'
+          +'<span style="color:'+migClr(mig)+';font-weight:700;">'+(mig>=0?'+':'')+mig.toFixed(3)+'%</span></div>'
+          +bar(mig,minMig,maxMig,true)
+          +'<div style="display:flex;justify-content:space-between;color:var(--dim);margin-top:4px;"><span>빈집률</span>'
+          +'<span style="color:'+vacClr(vac)+';font-weight:700;">'+vac.toFixed(2)+'%</span></div>'
+          +bar(vac,0,maxVac,true)+'</div>';
+      }).join('');
+
+      /* 재정자립도 카드 */
+      const fc=document.getElementById('fiscal-cards');
+      if(fc) fc.innerHTML=DIST_ORDER.map(d=>{
+        const r=eta[d.code]; if(!r) return '';
+        const fis=r.fiscal_independence;
+        return '<div style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:7px 8px;font-size:10px;">'
+          +'<div style="font-weight:700;color:var(--fg);margin-bottom:4px;">'+d.name+'</div>'
+          +'<div style="display:flex;justify-content:space-between;color:var(--dim);"><span>재정자립</span>'
+          +'<span style="color:'+fisClr(fis)+';font-weight:700;">'+fis.toFixed(1)+'%</span></div>'
+          +bar(fis,0,maxFis,false)
+          +'<div style="font-size:9px;color:var(--muted);margin-top:4px;">'+(fis>=30?'✅ 자립 양호':fis>=20?'⚠ 보통':'🔴 취약')+'</div>'
+          +'</div>';
+      }).join('');
+    })
+    .catch(e=>{
+      console.warn('[redesign.json]',e);
+      ['mig-vac-cards','fiscal-cards'].forEach(id=>{
+        const el=document.getElementById(id);
+        if(el) el.innerHTML='<div style="font-size:10px;color:#C73E1D;">⚠️ 실측 데이터 로드 실패</div>';
+      });
+    });
+})();
+</script>
+
 <!-- ════════════════════════════════════════════════
      SECTION 3 : 두레에타 울산 종합 대시보드
      (DURE_eta_ulsan_v1 통합)
@@ -1934,6 +2003,26 @@ loadDistrict("junggu");
   </div>
 </div></div>
 
+<!-- ③-1 구군별 재정자립도 실측 -->
+<div class="sec">
+  <div class="sh" onclick="T('c3b')">
+    <div class="sl">
+      <span class="st">구군별 재정자립도 — 실측 데이터</span>
+      <span class="bdg bg">지방재정365 실측</span>
+    </div>
+    <span class="ar" id="a-c3b">▼</span>
+  </div>
+  <div class="bd" id="c3b">
+    <div class="nr" style="margin-bottom:8px">
+      재정자립도(%) = 자체수입 ÷ 일반회계예산 × 100 — 높을수록 재정 독립성 양호<br>
+      <span style="font-weight:700;color:#3A6A5E">📋 출처</span> — 지방재정365 · e-나라지표(DT_1YL20921) · 2026년 기준
+    </div>
+    <div id="fiscal-cards" style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:8px"></div>
+    <div class="nr" style="color:var(--muted);">
+      ③ 1인당 GRDP · ⑥ 가계부채 — 정부 공식 구군별 데이터 없음 (시도·전국 단위만 존재)
+    </div>
+  </div>
+</div>
 
 <!-- ④ 고용·노동 -->
 <div class="sec"><div class="sh" onclick="T('c4')"><div class="sl"><span class="st">고용·노동 — 취업률·임금·산재</span><span class="bdg ba">고용 현황</span></div><span class="ar" id="a-c4">▼</span></div>
@@ -2382,6 +2471,26 @@ loadDistrict("junggu");
       <div id="youth-rows" style="min-width:480px"></div>
     </div>
     <div class="nrr" style="margin-top:6px">🚧 실데이터 연동 예정 — 통계청 인구동향·국토부 주거실태조사·행안부 주민등록통계</div>
+  </div>
+</div>
+
+<!-- ㉓ 구군별 순이동률·빈집률 실측 -->
+<div class="sec">
+  <div class="sh" onclick="T('c23')">
+    <div class="sl">
+      <span class="st">구군별 순이동률·빈집률 — 실측 데이터</span>
+      <span class="bdg bg">KOSIS 실측</span>
+    </div>
+    <span class="ar" id="a-c23">▼</span>
+  </div>
+  <div class="bd" id="c23">
+    <div class="nr" style="margin-bottom:8px">
+      순이동률 = 전입-전출 건수 ÷ 인구 × 100 (%) · 빈집률 = 빈집 ÷ 총주택 × 100 (%)<br>
+      <span style="color:#9A6800;font-weight:600">⚠ 순이동: 산단 외지 인력 유동 포함 — 정주시민 이동과 미분리. 산업 계절성 노이즈 있음</span><br>
+      <span style="color:#9A6800;font-weight:600">⚠ 빈집률: 재개발 추진 지역 말소 미처리 포함 가능 — 단순 쇠퇴 지표로 해석 금지</span><br>
+      <span style="font-weight:700;color:#3A6A5E">📋 출처</span> — 통계청 국내인구이동통계(DT_1B26A01) · 인구주택총조사(DT_1JU1512)
+    </div>
+    <div id="mig-vac-cards" style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:8px"></div>
   </div>
 </div>
 
