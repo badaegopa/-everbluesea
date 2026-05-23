@@ -235,7 +235,7 @@ def calc_eta(kosis, l12):
             "tfr":    birth.get(code),
             "aged":   aged.get(code),
             "doctors": doctors.get(code),
-            "eta":    round(score / wsm, 3) if wsm > 0 else None,
+            "eta":    round(1 - score / wsm, 3) if wsm > 0 else None,  # risk→건강 극성 (η↑=양호)
             "lambda12": {var: risk[var] for var in LAMBDA12_WEIGHTS},
             "data_quality": f"{int(round(wsm * 100))}%",
         }
