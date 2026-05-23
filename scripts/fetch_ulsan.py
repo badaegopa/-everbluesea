@@ -14,7 +14,8 @@ BASE        = "https://kosis.kr/openapi/Param/statisticsParameterData.do"
 #   - 인구  DT_1B040A3 : 31 계열 (중31110/남31140/동31170/북31200/울주31710)
 #   - 출산율 DT_1B81A17 : 26 계열 (중26010/남26020/동26030/북26040/울주26310) — 31계열은 경기도!
 GU_CODES    = "31110 31140 31170 31200 31710"   # 인구표(DT_1B040A3)
-BIRTH_CODES = "26010 26020 26030 26040 26310"   # 출산율표(DT_1B81A17)
+BIRTH_CODES = "26010 26020 26030 26040 26310"   # 출산율표(DT_1B81A17) · 재정자립도(DT_1YL20921) 동일
+CENSUS_CODES= "26010 26020 26030 26040 26510"   # 인구주택총조사(빈집·총주택) — ★울주군=26510
 
 # ── Λ¹² 12변수 가중치 (합=1.00) ─────────────────────────────────
 LAMBDA12_WEIGHTS = {
@@ -33,9 +34,9 @@ LAMBDA12_NORM = {
     "S1": (0.6,  1.8,  True,  "합계출산율(역)"),
     "S2": (80.0, 99.0, True,  "인터넷이용률%(역)"),
     "G1": (300000, 800000, False, "국방예산억원"),
-    "G2": (3e8,  9e8,  True,  "수출액$(역)"),
+    "G2": (10.0, 50.0, True,  "재정자립도%(역) — 구군별 슬롯 대체(②)"),
     "C1": (1.0,  4.0,  True,  "천명당 의사수(역)"),
-    "C2": (5.0,  40.0, False, "PM2.5㎍/㎥"),
+    "C2": (3.0,  15.0, False, "빈집률%(높을수록 위험) — 구군별 슬롯 대체(④)"),
     # S1 구별 결합용 고령비율 앵커(가중치 키 아님 — S1 risk = mean(TFR역, 고령)).
     "S1_aged": (10.0, 25.0, False, "고령인구비율%(높을수록 인구압력↑)"),
 }
@@ -62,7 +63,22 @@ TABLES = [
      "params":{"method":"getList","apiKey":KOSIS_KEY,"format":"json","jsonVD":"Y",
                "orgId":"101","tblId":"DT_1YL12501E","itmId":"ALL",
                "objL1":"31","prdSe":"Y","newEstPrdCnt":"3"}},
+    # ② 재정자립도 → G2 슬롯 (26계열, 개편전/후 2항목 → 추출시 개편전 우선)
+    {"label":"울산_재정자립도",
+     "params":{"method":"getList","apiKey":KOSIS_KEY,"format":"json","jsonVD":"Y",
+               "orgId":"101","tblId":"DT_1YL20921","itmId":"ALL",
+               "objL1":BIRTH_CODES,"prdSe":"Y","newEstPrdCnt":"1"}},
+    # ④ 빈집률 → C2 슬롯 (census 26계열, 빈집호수 / 총주택)
+    {"label":"울산_빈집",
+     "params":{"method":"getList","apiKey":KOSIS_KEY,"format":"json","jsonVD":"Y",
+               "orgId":"101","tblId":"DT_1JU1512","itmId":"T000",
+               "objL1":CENSUS_CODES,"objL2":"00","prdSe":"Y","newEstPrdCnt":"1"}},
+    {"label":"울산_총주택",
+     "params":{"method":"getList","apiKey":KOSIS_KEY,"format":"json","jsonVD":"Y",
+               "orgId":"101","tblId":"DT_1JU1501","itmId":"T10",
+               "objL1":CENSUS_CODES,"prdSe":"Y","newEstPrdCnt":"1"}},
 ]
+CENSUS2GU = {"26010":"31110","26020":"31140","26030":"31170","26040":"31200","26510":"31710"}
 
 # 캐노니컬 키(인구표 31코드) → 이름·색상 + 출산율표 26코드 매핑
 GU = {
@@ -139,8 +155,9 @@ def lambda12_values(l12):
     vals = {}
     sm = l12.get("summary", {})
     # S1 은 합계출산율(S1_tfr)을 대표값으로 사용
+    # G2(재정자립도)·C2(빈집률)는 구군별 슬롯으로 대체 → 공통값에서 제외(calc_eta에서 구군별 주입)
     keymap = {"P1": "P1", "P2": "P2", "A2": "A2", "E1": "E1", "E2": "E2",
-              "S1": "S1_tfr", "S2": "S2", "G1": "G1", "G2": "G2", "C1": "C1", "C2": "C2"}
+              "S1": "S1_tfr", "S2": "S2", "G1": "G1", "C1": "C1"}
     for var, skey in keymap.items():
         node = sm.get(skey, {})
         lt = node.get("latest") if isinstance(node, dict) else None
@@ -180,8 +197,8 @@ def l12_per_gu(l12, var, itm):
 
 
 def calc_eta(kosis, l12):
-    """Λ¹² 12변수 가중합 η. 구군별 차등: S1(출산율+고령) · C1(의사수). 나머지는 울산/전국 공통.
-    S1 risk = mean(norm(S1,출산율역), norm(S1_AGED,고령)). A1 은 fallback 0.5 고정."""
+    """Λ¹² 12변수 가중합 η. 구군별 차등: S1(출산율+고령) · C1(의사수) · G2(②재정자립도) · C2(④빈집률).
+    나머지는 울산/전국 공통. S1 risk = mean(norm(S1,출산율역), norm(S1_AGED,고령)). A1 은 fallback 0.5 고정."""
     vals = lambda12_values(l12)
 
     # 구군별 인구 (표시용)
@@ -206,6 +223,31 @@ def calc_eta(kosis, l12):
     aged    = l12_per_gu(l12, "S1_aged", "T10")
     doctors = l12_per_gu(l12, "C1", "T10")
 
+    # ② 재정자립도 → G2 (26계열, 세입과목개편전 우선)
+    fiscal = {}
+    for row in kosis.get("울산_재정자립도", {}).get("data", []):
+        code = BIRTH2GU.get(row.get("C1", ""))
+        if not code:
+            continue
+        if code not in fiscal or "개편전" in (row.get("ITM_NM") or ""):
+            try: fiscal[code] = float(row["DT"])
+            except (TypeError, ValueError): pass
+
+    # ④ 빈집률 → C2 (census 26계열: 빈집호수 / 총주택 × 100)
+    vac_h, tot_h = {}, {}
+    for row in kosis.get("울산_빈집", {}).get("data", []):
+        code = CENSUS2GU.get(row.get("C1", ""))
+        if code:
+            try: vac_h[code] = float(row["DT"])
+            except (TypeError, ValueError): pass
+    for row in kosis.get("울산_총주택", {}).get("data", []):
+        code = CENSUS2GU.get(row.get("C1", ""))
+        if code:
+            try: tot_h[code] = float(row["DT"])
+            except (TypeError, ValueError): pass
+    vacancy = {c: round(vac_h[c] / tot_h[c] * 100, 2)
+               for c in vac_h if tot_h.get(c)}
+
     # 공통(전국/울산) 변수 위험점수 — A1 은 고정값 그대로 사용
     common_risk = {var: (vals["A1"] if var == "A1" else norm(var, vals.get(var)))
                    for var in LAMBDA12_WEIGHTS}
@@ -221,6 +263,11 @@ def calc_eta(kosis, l12):
         # C1(공공서비스) 구군별 의사수
         if doctors.get(code) is not None:
             risk["C1"] = norm("C1", doctors[code])
+        # G2(②재정자립도) · C2(④빈집률) 구군별 슬롯 대체
+        if fiscal.get(code) is not None:
+            risk["G2"] = norm("G2", fiscal[code])
+        if vacancy.get(code) is not None:
+            risk["C2"] = norm("C2", vacancy[code])
 
         score = wsm = 0.0
         for var, w in LAMBDA12_WEIGHTS.items():
@@ -235,6 +282,8 @@ def calc_eta(kosis, l12):
             "tfr":    birth.get(code),
             "aged":   aged.get(code),
             "doctors": doctors.get(code),
+            "fiscal_independence": fiscal.get(code),   # ② G2 슬롯
+            "vacancy_rate":        vacancy.get(code),   # ④ C2 슬롯
             "eta":    round(1 - score / wsm, 3) if wsm > 0 else None,  # risk→건강 극성 (η↑=양호)
             "lambda12": {var: risk[var] for var in LAMBDA12_WEIGHTS},
             "data_quality": f"{int(round(wsm * 100))}%",
