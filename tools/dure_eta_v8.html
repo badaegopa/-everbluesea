@@ -1453,9 +1453,9 @@ function calcEta(){
   }
 
   /* ── 대기업 의존도 계수 적용 ── */
-  const d = activeDistrict ? DISTRICTS_ETA[activeDistrict] : null;
-  const corpDep  = d ? d.corp_dep   : 0.5;
-  const ceiling  = d ? d.eta_ceiling: 0.99;
+  const d2 = activeDistrict ? DISTRICTS_ETA[activeDistrict] : null;
+  const corpDep  = d2 ? d2.corp_dep   : 0.5;
+  const ceiling  = d2 ? d2.eta_ceiling: 0.99;
   /* 대기업 의존도 높을수록 η 수렴 상한선 아래로 눌림 */
   const corpPenalty = corpDep * 0.15;
   eta = Math.min(ceiling - corpPenalty, eta);
