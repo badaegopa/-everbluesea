@@ -562,6 +562,24 @@ body{font-family:'Noto Sans KR',sans-serif;background:#F5F3EE;color:#2C2C2A;padd
   </div>
   <style>
   @keyframes ticker-scroll {
+@keyframes new-wave {
+  0%,100%{ transform:rotate(-8deg) scale(1.0); color:#F0C040; }
+  25%    { transform:rotate( 8deg) scale(1.15); color:#FFE57A; }
+  50%    { transform:rotate(-5deg) scale(1.1);  color:#F0C040; }
+  75%    { transform:rotate( 5deg) scale(1.12); color:#FFE57A; }
+}
+.new-badge{
+  display:inline-block;
+  font-size:9px;font-weight:900;
+  color:#F0C040;
+  margin-left:6px;
+  animation:new-wave 1.2s ease-in-out infinite;
+  transform-origin:bottom center;
+  letter-spacing:.05em;
+  text-shadow:0 0 6px rgba(240,192,64,0.6);
+  vertical-align:middle;
+}
+@keyframes ticker-scroll {
     0%   { transform: translateX(0); }
     100% { transform: translateX(-50%); }
   }
@@ -2064,7 +2082,7 @@ loadDistrict("junggu");
 <div class="sec">
   <div class="sh" onclick="T('c3b')">
     <div class="sl">
-      <span class="st">구군별 재정자립도 — 실측 데이터</span>
+      <span class="st">구군별 재정자립도 — 실측 데이터</span><span class="new-badge">🚩NEW</span>
       <span class="bdg bg">지방재정365 실측</span>
     </div>
     <span class="ar" id="a-c3b">▼</span>
@@ -2535,7 +2553,7 @@ loadDistrict("junggu");
 <div class="sec">
   <div class="sh" onclick="T('c23')">
     <div class="sl">
-      <span class="st">구군별 순이동률·빈집률 — 실측 데이터</span>
+      <span class="st">구군별 순이동률·빈집률 — 실측 데이터</span><span class="new-badge">🚩NEW</span>
       <span class="bdg bg">KOSIS 실측</span>
     </div>
     <span class="ar" id="a-c23">▼</span>
