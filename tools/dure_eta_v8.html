@@ -1106,10 +1106,11 @@ function rcSelectGroup(groupKey){
   // η 평균 업데이트
   (function(){
     try{
-      const etas = Object.values(ETA_NOW || {}).filter(v=>typeof v==='number');
+      const etas = Object.values(DISTRICTS_ETA)
+        .map(d=>d.eta).filter(v=>typeof v==='number'&&v>0);
       const avg = etas.length ? (etas.reduce((a,b)=>a+b,0)/etas.length).toFixed(2) : null;
       const el = document.getElementById('rh-eta-display');
-      if(el && avg) el.textContent = 'η ' + avg;
+      if(el) el.textContent = avg ? 'η ' + avg : 'η —';
     }catch(e){}
   })();
   document.getElementById('rh-region-mode').textContent=grp.label;
@@ -1445,6 +1446,16 @@ function calcEta(){
   eta = Math.max(0.01, eta);
 
   document.getElementById('eta-val').textContent=eta.toFixed(2);
+  /* ── 울산 η 평균 실시간 갱신 ── */
+  (function(){
+    const etas = Object.values(DISTRICTS_ETA)
+      .map(d=>d.eta).filter(v=>typeof v==='number'&&v>0);
+    const el = document.getElementById('rh-eta-display');
+    if(el && etas.length){
+      const avg = (etas.reduce((a,b)=>a+b,0)/etas.length).toFixed(2);
+      el.textContent = 'η ' + avg;
+    }
+  })();
   const ej=document.getElementById('eta-judge');
   const evEl=document.getElementById('eta-val');
   const grade = getEtaGrade(eta);
