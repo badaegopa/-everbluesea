@@ -8,8 +8,36 @@ KOSIS_KEY   = os.environ.get("KOSIS_API_KEY",        "MzNiMDRhOTQ4ZGYxYjVjY2RhYT
 SGIS_KEY    = os.environ.get("SGIS_CONSUMER_KEY",    "a7f9a200a67241698800")
 SGIS_SECRET = os.environ.get("SGIS_CONSUMER_SECRET", "7509589f1d3142d586b2")
 OUTPUT      = Path("data/ulsan.json")
+OUTPUT_L12  = Path("data/lambda12.json")
 BASE        = "https://kosis.kr/openapi/Param/statisticsParameterData.do"
-GU_CODES    = "31110 31120 31140 31170 31710"
+# ⚠️ 표마다 울산 구군 코드체계가 다름 (메타 검증 완료):
+#   - 인구  DT_1B040A3 : 31 계열 (중31110/남31140/동31170/북31200/울주31710)
+#   - 출산율 DT_1B81A17 : 26 계열 (중26010/남26020/동26030/북26040/울주26310) — 31계열은 경기도!
+GU_CODES    = "31110 31140 31170 31200 31710"   # 인구표(DT_1B040A3)
+BIRTH_CODES = "26010 26020 26030 26040 26310"   # 출산율표(DT_1B81A17)
+
+# ── Λ¹² 12변수 가중치 (합=1.00) ─────────────────────────────────
+LAMBDA12_WEIGHTS = {
+    "P1": 0.10, "P2": 0.10, "A1": 0.05, "A2": 0.10,
+    "E1": 0.10, "E2": 0.10, "S1": 0.10, "S2": 0.05,
+    "G1": 0.05, "G2": 0.05, "C1": 0.10, "C2": 0.10,
+}
+# 정규화 앵커 (lo, hi, invert, 설명). risk=clamp((v-lo)/(hi-lo)); invert면 1-risk.
+# invert=True = 값이 낮을수록 위험(역지표). 앵커는 조정 가능한 가정값.
+LAMBDA12_NORM = {
+    "P1": (4.0,      8.0,      True,  "삶에 대한 만족도 0-10 (역: 낮을수록 분노↑)"),
+    "P2": (50,       300,      False, "노사분규 건수"),
+    "A2": (300000,   500000,   False, "분기 범죄발생 건수"),
+    "E1": (0.55,     0.70,     False, "순자산 지니계수"),
+    "E2": (4.0,      12.0,     False, "청년실업률 %"),
+    "S1": (0.7,      1.5,      True,  "합계출산율 (역: 저출산=인구압력↑)"),
+    "S2": (85.0,     99.0,     True,  "인터넷이용률 % (역: 낮을수록 정보접근↓)"),
+    "G1": (400000,   700000,   False, "국방예산"),
+    "G2": (4.0e8,    8.0e8,    True,  "수출액 (역: 낮을수록 외부충격↑)"),
+    "C1": (1.5,      3.5,      True,  "천명당 의사수 (역: 적을수록 접근성↓)"),
+    "C2": (5.0,      35.0,     False, "PM2.5 ㎍/㎥"),
+}
+A1_FIXED = 0.5   # 엘리트결속: 국회 API 미연결 → fallback 고정
 
 TABLES = [
     {"label":"울산_구군별_인구",
@@ -19,7 +47,7 @@ TABLES = [
     {"label":"울산_구군별_출산율",
      "params":{"method":"getList","apiKey":KOSIS_KEY,"format":"json","jsonVD":"Y",
                "orgId":"101","tblId":"DT_1B81A17","itmId":"T1",
-               "objL1":GU_CODES,"prdSe":"Y","newEstPrdCnt":"3"}},
+               "objL1":BIRTH_CODES,"prdSe":"Y","newEstPrdCnt":"3"}},
     {"label":"울산_고용현황",
      "params":{"method":"getList","apiKey":KOSIS_KEY,"format":"json","jsonVD":"Y",
                "orgId":"101","tblId":"DT_1DA7004S","itmId":"ALL",
@@ -34,13 +62,15 @@ TABLES = [
                "objL1":"31","prdSe":"Y","newEstPrdCnt":"3"}},
 ]
 
+# 캐노니컬 키(인구표 31코드) → 이름·색상 + 출산율표 26코드 매핑
 GU = {
-    "31110":{"name":"중구",  "color":"#9A6800"},
-    "31120":{"name":"남구",  "color":"#3A6A5E"},
-    "31140":{"name":"동구",  "color":"#C73E1D"},
-    "31170":{"name":"북구",  "color":"#185FA5"},
-    "31710":{"name":"울주군","color":"#5A5650"},
+    "31110":{"name":"중구",  "color":"#9A6800", "birth":"26010"},
+    "31140":{"name":"남구",  "color":"#3A6A5E", "birth":"26020"},
+    "31170":{"name":"동구",  "color":"#C73E1D", "birth":"26030"},
+    "31200":{"name":"북구",  "color":"#185FA5", "birth":"26040"},
+    "31710":{"name":"울주군","color":"#5A5650", "birth":"26310"},
 }
+BIRTH2GU = {v["birth"]: code for code, v in GU.items()}   # 26코드 → 31캐노니컬
 
 def collect_kosis():
     results = {}
@@ -75,7 +105,7 @@ def sgis_token():
     return None
 
 def sgis_boundary(token):
-    url = f"https://sgisapi.kostat.go.kr/OpenAPI3/boundary/hadmarea.geojson?accessToken={token}&year=2023&adm_cd=26&low_search=1"
+    url = f"https://sgisapi.kostat.go.kr/OpenAPI3/boundary/hadmarea.geojson?accessToken={token}&year=2023&adm_cd=31&low_search=1"
     r = requests.get(url, timeout=15)
     d = r.json()
     if d.get("errCd") == 0:
@@ -84,85 +114,102 @@ def sgis_boundary(token):
     print(f"  SGIS boundary FAIL: {d.get('errMsg')}")
     return None
 
-def calc_eta(kosis):
-    # 인구 파싱
+def load_lambda12():
+    """data/lambda12.json 읽기. 없으면 fetch_lambda12 모듈로 직접 수집 후 저장."""
+    if OUTPUT_L12.exists():
+        print(f"  lambda12.json 로드: {OUTPUT_L12}")
+        return json.loads(OUTPUT_L12.read_text(encoding="utf-8"))
+    print("  lambda12.json 없음 → KOSIS 직접 수집")
+    import fetch_lambda12 as L12   # scripts/ 가 sys.path[0]
+    kosis = L12.collect_kosis(L12.LAMBDA12_TABLES)
+    summary = L12.summarize(kosis)
+    a1 = L12.collect_a1()
+    data = {"summary": summary, "kosis": kosis,
+            "A1": {"value": a1["value"], "source": a1["source"],
+                   "unit": a1["unit"], "fallback": a1.get("fallback", False)}}
+    OUTPUT_L12.parent.mkdir(parents=True, exist_ok=True)
+    OUTPUT_L12.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+    return data
+
+
+def lambda12_values(l12):
+    """lambda12.json → {var: float}. KOSIS 변수는 summary 최신값, A1은 별도 필드."""
+    vals = {}
+    sm = l12.get("summary", {})
+    # S1 은 합계출산율(S1_tfr)을 대표값으로 사용
+    keymap = {"P1": "P1", "P2": "P2", "A2": "A2", "E1": "E1", "E2": "E2",
+              "S1": "S1_tfr", "S2": "S2", "G1": "G1", "G2": "G2", "C1": "C1", "C2": "C2"}
+    for var, skey in keymap.items():
+        node = sm.get(skey, {})
+        lt = node.get("latest") if isinstance(node, dict) else None
+        try:
+            vals[var] = float(lt["value"]) if lt and lt.get("value") not in (None, "", "-") else None
+        except (TypeError, ValueError):
+            vals[var] = None
+    vals["A1"] = l12.get("A1", {}).get("value", A1_FIXED)
+    return vals
+
+
+def norm(var, v):
+    """값 v → 0~1 위험점수 (LAMBDA12_NORM 앵커, invert 반영). v=None 이면 None."""
+    if v is None:
+        return None
+    lo, hi, invert, _ = LAMBDA12_NORM[var]
+    r = (v - lo) / (hi - lo)
+    r = min(max(r, 0.0), 1.0)
+    return round(1.0 - r, 4) if invert else round(r, 4)
+
+
+def calc_eta(kosis, l12):
+    """Λ¹² 12변수 가중합 η. 11개 변수는 lambda12.json(울산/전국) 공통값,
+    S1(인구압력)만 구군별 합계출산율로 차등 적용. A1 은 fallback 0.5 고정."""
+    vals = lambda12_values(l12)
+
+    # 구군별 인구 (표시용)
     pop = {}
-    for row in kosis.get("울산_구군별_인구",{}).get("data",[]):
-        c1 = row.get("C1","")
-        if c1 in GU and row.get("ITM_NM")=="총인구수":
+    for row in kosis.get("울산_구군별_인구", {}).get("data", []):
+        c1 = row.get("C1", "")
+        if c1 in GU and row.get("ITM_NM") == "총인구수":
             try: pop[c1] = int(row["DT"])
             except: pass
 
-    # 출산율 파싱 (최신 연도)
+    # 구군별 합계출산율 (최신 연도) — S1 차등용. 출산율표는 26코드 → 31캐노니컬로 변환.
     birth = {}
     seen = set()
-    for row in sorted(kosis.get("울산_구군별_출산율",{}).get("data",[]),
-                      key=lambda x: x.get("PRD_DE",""), reverse=True):
-        c1 = row.get("C1","")
-        if c1 in GU and c1 not in seen:
-            try: birth[c1] = float(row["DT"]); seen.add(c1)
+    for row in sorted(kosis.get("울산_구군별_출산율", {}).get("data", []),
+                      key=lambda x: x.get("PRD_DE", ""), reverse=True):
+        code = BIRTH2GU.get(row.get("C1", ""))
+        if code and code not in seen:
+            try: birth[code] = float(row["DT"]); seen.add(code)
             except: pass
 
-    # 고용률 파싱
-    emp_rate = None
-    for row in kosis.get("울산_고용현황",{}).get("data",[]):
-        if row.get("ITM_NM") in ("고용률","고용률(%)"):
-            try: emp_rate = float(row["DT"]); break
-            except: pass
-
-    # 기초수급자수 파싱
-    welfare_total = None
-    for row in kosis.get("울산_기초수급",{}).get("data",[]):
-        try: welfare_total = int(row["DT"]); break
-        except: pass
-
-    # 노령화지수 파싱
-    aging_idx = None
-    for row in kosis.get("울산_노령화지수",{}).get("data",[]):
-        try: aging_idx = float(row["DT"]); break
-        except: pass
-
-    ulsan_pop = sum(pop.values()) or 1
-    welfare_rate = (welfare_total / ulsan_pop * 100) if welfare_total else None
+    # 공통(전국/울산) 변수 위험점수 — A1 은 고정값 그대로 사용
+    common_risk = {var: (vals["A1"] if var == "A1" else norm(var, vals.get(var)))
+                   for var in LAMBDA12_WEIGHTS}
 
     eta = {}
     for code, info in GU.items():
-        p   = pop.get(code, 0)
-        tfr = birth.get(code)
-        score, wsm = 0.0, 0.0
+        risk = dict(common_risk)
+        # S1 만 구군 출산율로 덮어쓰기
+        if birth.get(code) is not None:
+            risk["S1"] = norm("S1", birth[code])
 
-        # 출산율 (낮을수록 위험: 0.6=1.0, 1.5=0.0) 가중 0.30
-        if tfr is not None:
-            score += min(max((1.5 - tfr) / 0.9, 0), 1.0) * 0.30
-            wsm   += 0.30
-
-        # 고용률 (낮을수록 위험: 55%=1.0, 70%=0.0) 가중 0.25
-        if emp_rate is not None:
-            score += min(max((70 - emp_rate) / 15, 0), 1.0) * 0.25
-            wsm   += 0.25
-
-        # 기초수급률 (높을수록 위험: 8%=1.0, 2%=0.0) 가중 0.25
-        if welfare_rate is not None:
-            score += min(max((welfare_rate - 2) / 6, 0), 1.0) * 0.25
-            wsm   += 0.25
-
-        # 노령화지수 (높을수록 위험: 500=1.0, 100=0.0) 가중 0.20
-        if aging_idx is not None:
-            score += min(max((aging_idx - 100) / 400, 0), 1.0) * 0.20
-            wsm   += 0.20
+        score = wsm = 0.0
+        for var, w in LAMBDA12_WEIGHTS.items():
+            if risk[var] is not None:
+                score += risk[var] * w
+                wsm   += w
 
         eta[code] = {
-            "name":         info["name"],
-            "color":        info["color"],
-            "pop":          p,
-            "tfr":          tfr,
-            "emp_rate":     emp_rate,
-            "welfare_rate": round(welfare_rate, 2) if welfare_rate else None,
-            "aging_idx":    aging_idx,
-            "eta":          round(score / wsm, 2) if wsm > 0 else None,
-            "data_quality": f"{int(wsm * 100)}%",
+            "name":   info["name"],
+            "color":  info["color"],
+            "pop":    pop.get(code, 0),
+            "tfr":    birth.get(code),
+            "eta":    round(score / wsm, 3) if wsm > 0 else None,
+            "lambda12": {var: risk[var] for var in LAMBDA12_WEIGHTS},
+            "data_quality": f"{int(round(wsm * 100))}%",
         }
-    return eta
+    return eta, {"raw_values": vals, "common_risk": common_risk, "weights": LAMBDA12_WEIGHTS}
 
 def main():
     from datetime import datetime, timezone, timedelta
@@ -179,12 +226,19 @@ def main():
 
     print("\n[2] SGIS")
     tok = sgis_token()
-    result["sgis"] = {"boundary": sgis_boundary(tok), "adm_cd":"26","year":"2023"} if tok else {"error":"token 실패"}
+    result["sgis"] = {"boundary": sgis_boundary(tok), "adm_cd":"31","year":"2023"} if tok else {"error":"token 실패"}
 
-    print("\n[3] η 계산")
-    result["eta"] = calc_eta(kosis)
-    for code, v in result["eta"].items():
-        print(f"  {v['name']:4s}: η={v['eta']} | tfr={v['tfr']} emp={v['emp_rate']} aging={v['aging_idx']} (품질 {v['data_quality']})")
+    print("\n[3] Λ¹² 12변수 로드")
+    l12 = load_lambda12()
+
+    print("\n[4] Λ¹² η 계산 (12변수 가중합)")
+    eta, l12_meta = calc_eta(kosis, l12)
+    result["eta"] = eta
+    result["lambda12"] = l12_meta
+    rv = l12_meta["raw_values"]
+    print("  공통값: " + " ".join(f"{k}={rv[k]}" for k in LAMBDA12_WEIGHTS if rv.get(k) is not None))
+    for code, v in eta.items():
+        print(f"  {v['name']:4s}: η={v['eta']} | tfr={v['tfr']} pop={v['pop']} (품질 {v['data_quality']})")
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")

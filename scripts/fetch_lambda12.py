@@ -14,13 +14,18 @@ fetch_ulsan.py 통합 메모:
 """
 from __future__ import annotations
 import json, sys, time, os
+import xml.etree.ElementTree as ET
 from pathlib import Path
 import requests
 
 # ── 설정 ──────────────────────────────────────────────────────────
-KOSIS_KEY = os.environ.get("KOSIS_API_KEY", "MzNiMDRhOTQ4ZGYxYjVjY2RhYTE2MGZjZDIwMjgzNWE=")
-OUTPUT    = Path("data/lambda12.json")
-BASE      = "https://kosis.kr/openapi/Param/statisticsParameterData.do"
+KOSIS_KEY    = os.environ.get("KOSIS_API_KEY", "MzNiMDRhOTQ4ZGYxYjVjY2RhYTE2MGZjZDIwMjgzNWE=")
+DATA_GO_KR_KEY = os.environ.get("DATA_GO_KR_API_KEY", "")   # GitHub Secrets / CI 에서 주입
+OUTPUT       = Path("data/lambda12.json")
+BASE         = "https://kosis.kr/openapi/Param/statisticsParameterData.do"
+# A1(엘리트결속): 국회 의안정보 BillInfoService2 — 법안 처리율(가결/전체처리)
+BILL_API     = "http://apis.data.go.kr/9710000/BillInfoService2/getBillInfoList"
+A1_FALLBACK  = 0.5   # 수집 실패 시 중립값
 
 # ⚠️ 울산 행정구역코드: KOSIS 기준 시도=31 (44는 충청남도이므로 사용 금지).
 #    fetch_ulsan.py 도 동일하게 31 계열을 사용한다. 필요 시 여기만 바꾸면 전체 반영됨.
@@ -54,14 +59,14 @@ LAMBDA12_TABLES = [
     {"var": "S1_tfr", "label": "합계출산율(시군구)", "scope": "sigungu",
      "params": {"method": "getList", "apiKey": KOSIS_KEY, "format": "json", "jsonVD": "Y",
                 "orgId": "101", "tblId": "DT_1B81A17", "itmId": "T1",
-                "objL1": ULSAN_GU, "prdSe": "Y", "newEstPrdCnt": RECENT_N},
-     "note": "fetch_ulsan.py 검증 파라미터(itmId=T1) 재사용."},
+                "objL1": "26010 26020 26030 26040 26310", "prdSe": "Y", "newEstPrdCnt": RECENT_N},
+     "note": "⚠️ 이 표에서 울산은 26계열(중26010..울주26310). 31계열은 경기도이므로 사용 금지."},
 
     {"var": "S1_aged", "label": "고령인구비율(시군구)", "scope": "sigungu",
      "params": {"method": "getList", "apiKey": KOSIS_KEY, "format": "json", "jsonVD": "Y",
                 "orgId": "101", "tblId": "DT_1YL20631", "itmId": "ALL",
-                "objL1": ULSAN_GU, "prdSe": "Y", "newEstPrdCnt": RECENT_N},
-     "note": "e-지방지표 고령인구비율(65세+ 비율)."},
+                "objL1": "26010 26020 26030 26040 26310", "prdSe": "Y", "newEstPrdCnt": RECENT_N},
+     "note": "e-지방지표 고령인구비율(65세+). ⚠️ 울산은 26계열(31계열은 경기도)."},
 
     {"var": "A2", "label": "범죄발생(전국)", "scope": "nationwide_count",
      "params": {"method": "getList", "apiKey": KOSIS_KEY, "format": "json", "jsonVD": "Y",
@@ -114,9 +119,9 @@ LAMBDA12_TABLES = [
 ]
 
 # Λ¹² 12변수 중 KOSIS 미매핑(추후 보완) — 기록용
-# A1(엘리트결속)은 KOSIS에 직접 대응 통계 없음 → 국회/정당/공직 데이터는 별도 출처 필요.
-# 12변수 중 11개 라이브 수집(S1을 tfr/aged 2건으로 분해하므로 테이블은 12개).
-LAMBDA12_UNMAPPED = ["A1(엘리트결속) — KOSIS 미대응"]
+# A1(엘리트결속)은 KOSIS 미대응 → 국회 의안정보 BillInfoService2(data.go.kr)로 별도 수집(collect_a1).
+# → Λ¹² 12변수 전부 라이브 수집(KOSIS 11 + 국회API 1).
+LAMBDA12_UNMAPPED = []
 
 
 def collect_kosis(tables):
@@ -143,6 +148,47 @@ def collect_kosis(tables):
             results[label] = {"var": t["var"], "tblId": t["params"]["tblId"], "error": str(e)}
         time.sleep(0.5)
     return results
+
+
+def collect_a1(age="22", max_rows=1000):
+    """A1(엘리트결속) = 국회 법안 처리율 = 가결건수 / 전체처리건수.
+    국회 의안정보 BillInfoService2(getBillInfoList) XML 파싱. 정치 해석 없이 수치만.
+    실패(키없음/네트워크/파싱) 시 A1_FALLBACK(0.5) 반환.
+    - 분모(전체처리): procResultCd 가 채워진 건(=처리 완료된 법안)
+    - 분자(가결):     procResultCd == "2" (또는 결과문구에 '가결' 포함)
+    """
+    out = {"var": "A1", "label": "법안처리율(엘리트결속)", "source": "국회의안정보API",
+           "unit": "법안처리율", "endpoint": BILL_API}
+    if not DATA_GO_KR_KEY:
+        print("  [     A1] DATA_GO_KR_API_KEY 없음 → fallback")
+        out.update({"value": A1_FALLBACK, "fallback": True, "note": "키 미설정(로컬). CI에서 secret 주입 필요."})
+        return out
+    print("  [     A1] 국회 의안정보API", end=" ")
+    try:
+        params = {"serviceKey": DATA_GO_KR_KEY, "numOfRows": str(max_rows), "pageNo": "1", "AGE": age}
+        r = requests.get(BILL_API, params=params, timeout=25)
+        root = ET.fromstring(r.text)
+        # data.go.kr 표준 에러 봉투 점검
+        code = root.findtext(".//resultCode") or root.findtext(".//returnReasonCode")
+        if code not in (None, "00", "0"):
+            raise RuntimeError(f"API resultCode={code} {root.findtext('.//resultMsg') or root.findtext('.//returnAuthMsg')}")
+        proc_total = passed = 0
+        for it in root.iter("item"):
+            res_cd = (it.findtext("procResultCd") or it.findtext("PROC_RESULT_CD") or "").strip()
+            res_tx = (it.findtext("generalResult") or it.findtext("procResult") or "").strip()
+            if res_cd or res_tx:                       # 처리 완료된 법안
+                proc_total += 1
+                if res_cd == "2" or "가결" in res_tx:
+                    passed += 1
+        if proc_total == 0:
+            raise RuntimeError("처리 완료 법안 0건(필드명/AGE 확인 필요)")
+        val = round(passed / proc_total, 4)
+        print(f"OK 가결 {passed}/{proc_total} = {val}")
+        out.update({"value": val, "passed": passed, "proc_total": proc_total, "age": age, "fallback": False})
+    except Exception as e:
+        print(f"ERR {e} → fallback")
+        out.update({"value": A1_FALLBACK, "fallback": True, "note": f"수집실패: {e}"})
+    return out
 
 
 def summarize(kosis):
@@ -187,12 +233,21 @@ def main():
             v = f"{lt['value']} ({lt['prd']}, {lt['item']})" if lt else "값 없음"
             print(f"  {var:>7}: {v}  [{s['rows']}행]")
 
+    print("\n[3] A1 — 국회 법안처리율")
+    a1 = collect_a1()
+    summary["A1"] = {"label": a1["label"], "status": "fallback" if a1.get("fallback") else "ok",
+                     "value": a1["value"], "source": a1["source"]}
+    print(f"  A1 = {a1['value']} ({'fallback' if a1.get('fallback') else '실데이터'}, {a1['unit']})")
+
     result = {
         "_updated": now,
         "_unmapped": LAMBDA12_UNMAPPED,
         "_region": {"ulsan_sido": ULSAN_SIDO, "ulsan_gu": ULSAN_GU.split()},
         "summary": summary,
         "kosis": kosis,
+        "A1": {"value": a1["value"], "source": a1["source"], "unit": a1["unit"],
+               "fallback": a1.get("fallback", False), "detail": {k: a1[k] for k in
+               ("passed", "proc_total", "age", "note") if k in a1}},
     }
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
