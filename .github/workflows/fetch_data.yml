@@ -35,15 +35,22 @@ jobs:
           SGIS_CONSUMER_SECRET: ${{ secrets.SGIS_CONSUMER_SECRET }}
         run: python scripts/fetch_ulsan.py
 
+      # fetch_ulsan.py 이후 실행 — redesign 5종 수집 후 ulsan.json['redesign']에 병합
+      - name: Run fetch_redesign.py
+        env:
+          KOSIS_API_KEY: ${{ secrets.KOSIS_API_KEY }}
+          ECOS_API_KEY:  ${{ secrets.ECOS_API_KEY }}
+        run: python scripts/fetch_redesign.py
+
       - name: Commit & push if changed
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/ulsan.json
+          git add data/ulsan.json data/redesign.json
           if git diff --cached --quiet; then
             echo "no changes — skip commit"
             exit 0
           fi
           NOW=$(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M KST')
-          git commit -m "data: ulsan.json 자동 갱신 (${NOW})"
+          git commit -m "data: ulsan.json + redesign 자동 갱신 (${NOW})"
           git push origin main

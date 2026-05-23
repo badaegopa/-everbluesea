@@ -20,6 +20,7 @@ KOSIS_KEY = os.environ.get("KOSIS_API_KEY", "MzNiMDRhOTQ4ZGYxYjVjY2RhYTE2MGZjZDI
 ECOS_KEY  = os.environ.get("ECOS_API_KEY", "")
 KOSIS_BASE = "https://kosis.kr/openapi/Param/statisticsParameterData.do"
 OUTPUT = Path("data/redesign.json")
+ULSAN_JSON = Path("data/ulsan.json")   # 병합 대상 (fetch_ulsan.py 이후 실행)
 TIMEOUT = 25
 
 # 캐노니컬 키(31계열) → 이름 + 표별 지역코드 (울주군은 표마다 상이!)
@@ -153,6 +154,18 @@ def main():
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     with open(OUTPUT, "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=2)
+
+    # ── ulsan.json 에 top-level 'redesign' 키로 병합 (fetch_ulsan.py 이후 실행 전제) ──
+    if ULSAN_JSON.exists():
+        try:
+            u = json.load(open(ULSAN_JSON, encoding="utf-8"))
+            u["redesign"] = out
+            json.dump(u, open(ULSAN_JSON, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+            print(f"병합: {ULSAN_JSON}['redesign'] 갱신")
+        except Exception as e:
+            print(f"병합 실패({ULSAN_JSON}): {e}")
+    else:
+        print(f"병합 생략: {ULSAN_JSON} 없음 (fetch_ulsan.py 먼저 실행 필요)")
 
     print(f"\n저장: {OUTPUT} ({ok}/5 수집)")
     for k, v in out["districts"].items():
