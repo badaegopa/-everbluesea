@@ -1471,6 +1471,24 @@ function calcEta(){
         el.textContent = 'η ' + avg;
       }
     })();
+    /* μ 처방 우선순위 갱신 */
+    const _sorted=SVARS.map(v=>({
+      id:v.id,name:v.name,unit:v.unit,min:v.min,max:v.max,val:v.val,w:v.w,icon:v.icon,fixed:v.fixed,
+      mu:1-(v.val-v.min)/(v.max-v.min)
+    })).filter(v=>!v.fixed).sort((a,b)=>b.mu-a.mu);
+    let _mu='';
+    _sorted.forEach((v,i)=>{
+      const pct=Math.round(v.mu*100);
+      const bc=pct>=60?'#E24B4A':pct>=35?'#BA7517':'#5DCAA5';
+      const c=pct>=60?'var(--red)':pct>=35?'var(--amber)':'var(--green)';
+      _mu+=`<div class="mu-item">
+        <div class="mu-rank" style="background:${bc}">${i+1}</div>
+        <div class="mu-name">${v.icon} ${v.name}</div>
+        <div class="mu-bar-wrap"><div class="mu-bar" style="width:${pct}%;background:${bc}"></div></div>
+        <div class="mu-pct" style="color:${c}">${pct}%</div>
+      </div>`;
+    });
+    document.getElementById('mu-list').innerHTML=_mu;
     return;
   } else {
     SVARS.forEach(v=>{const r=(v.val-v.min)/(v.max-v.min);eta+=r*v.w;tot+=v.w;});
