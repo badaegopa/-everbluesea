@@ -1319,7 +1319,7 @@ const SCENARIOS={
 };
 
 function sgc(r){
-  return r>=0.65?'var(--green)':r>=0.45?'var(--amber)':'var(--red)';
+  return r>=0.58?'var(--green)':r>=0.43?'var(--amber)':'var(--red)';
 }
 
 function buildSliders(){
@@ -1420,14 +1420,14 @@ function onSl(id,el){
 }
 
 function getEtaGrade(eta){
-  if(eta>=0.80) return {label:'🟢 탁월',  sub:'최상',  css:'background:rgba(46,204,113,0.25);color:#2ECC71;'};
-  if(eta>=0.70) return {label:'🟢 양호',  sub:'상',    css:'background:rgba(39,174,96,0.25);color:#27AE60;'};
-  if(eta>=0.60) return {label:'🔵 안정',  sub:'중상',  css:'background:rgba(41,128,185,0.25);color:#5DADE2;'};
-  if(eta>=0.52) return {label:'🔵 평균상', sub:'중+',  css:'background:rgba(93,173,226,0.25);color:#5DADE2;'};
-  if(eta>=0.45) return {label:'🟡 평균',  sub:'중',    css:'background:rgba(186,117,23,0.35);color:#F5D78E;'};
-  if(eta>=0.38) return {label:'🟠 주목',  sub:'중-',   css:'background:rgba(230,126,34,0.25);color:#E67E22;'};
-  if(eta>=0.30) return {label:'🟠 경계',  sub:'중하',  css:'background:rgba(231,76,60,0.25);color:#E74C3C;'};
-  if(eta>=0.20) return {label:'🔴 위험',  sub:'하',    css:'background:rgba(192,57,43,0.35);color:#C0392B;'};
+  if(eta>=0.68) return {label:'🟢 탁월',  sub:'최상',  css:'background:rgba(46,204,113,0.25);color:#2ECC71;'};
+  if(eta>=0.63) return {label:'🟢 양호',  sub:'상',    css:'background:rgba(39,174,96,0.25);color:#27AE60;'};
+  if(eta>=0.58) return {label:'🔵 안정',  sub:'중상',  css:'background:rgba(41,128,185,0.25);color:#5DADE2;'};
+  if(eta>=0.53) return {label:'🔵 평균상', sub:'중+',  css:'background:rgba(93,173,226,0.25);color:#5DADE2;'};
+  if(eta>=0.48) return {label:'🟡 평균',  sub:'중',    css:'background:rgba(186,117,23,0.35);color:#F5D78E;'};
+  if(eta>=0.43) return {label:'🟠 주목',  sub:'중-',   css:'background:rgba(230,126,34,0.25);color:#E67E22;'};
+  if(eta>=0.37) return {label:'🟠 경계',  sub:'중하',  css:'background:rgba(231,76,60,0.25);color:#E74C3C;'};
+  if(eta>=0.28) return {label:'🔴 위험',  sub:'하',    css:'background:rgba(192,57,43,0.35);color:#C0392B;'};
   return              {label:'🔴🔴 위기', sub:'최하',  css:'background:rgba(146,43,33,0.45);color:#922B21;'};
 }
 
@@ -1798,8 +1798,8 @@ loadDistrict("junggu");
       }
       /* cp-eta DOM 직접 업데이트 — 순서: 중구/남구/동구/북구/울주군 */
       const ETA_ORDER = ['31110','31140','31170','31200','31710'];
-      const CP_COLOR = v => v>=0.65?'#3A6A5E':v>=0.45?'#9A6800':'#C73E1D';
-      const CP_BADGE = v => v>=0.65?'safe':v>=0.45?'warn':'danger';
+      const CP_COLOR = v => v>=0.58?'#3A6A5E':v>=0.43?'#9A6800':'#C73E1D';
+      const CP_BADGE = v => v>=0.58?'safe':v>=0.43?'warn':'danger';
       const cpEls = document.querySelectorAll('.cp-eta');
       ETA_ORDER.forEach((code, i) => {
         const v = etaData[code];
@@ -3217,7 +3217,7 @@ const IDENTITY={
 
 function gc(t){return t==='up'?'#085041':t==='dn'||t==='dr'?'#791F1F':'#633806'}
 function gbc(t){return t==='up'||t==='dg'?'#5DCAA5':t==='dn'||t==='dr'?'#E24B4A':'#EF9F27'}
-function gsc(v){return v>=0.65?'#0F6E56':v>=0.5?'#BA7517':'#A32D2D'}
+function gsc(v){return v>=0.58?'#0F6E56':v>=0.43?'#BA7517':'#A32D2D'}
 function pct(v,t){return `<span style="color:${gc(t)}">${t==='up'?'▲':t==='dn'||t==='dr'?'▼':'→'}</span>`}
 
 function TD(){
