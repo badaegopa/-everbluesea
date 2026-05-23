@@ -78,6 +78,12 @@ def load_pop():
 
 
 # ── ① 순이동률 = 건수/인구 × 100 ──
+# ⚠️ 해석 주의: 순이동은 산업단지 외지 인력 유동을 포함하여 정주시민 이동과 미분리.
+#    산업 계절성 노이즈가 있고, 소수 유동이 지수에 미치는 영향은 제한적.
+MIGRATION_NOTE = ("산단 외지 인력 유동 포함 — 정주시민 이동과 미분리. "
+                  "산업 계절성 노이즈 있음. 소수 유동이 지수에 미치는 영향 제한적.")
+
+
 def collect_migration(out, pop):
     codes = " ".join(g["c31"] for g in GU.values())
     rows = kosis("DT_1B26A01", "T25", codes, prdSe="M", extra={"objL2": "0", "objL3": "000"})
@@ -91,7 +97,8 @@ def collect_migration(out, pop):
         if cnt is not None and p:
             out["eta_inputs"][k]["net_migration_rate"] = round(cnt / p * 100, 3)
         out["meta"]["net_migration_period"] = r.get("PRD_DE")
-        out["meta"]["net_migration_note"] = "1인 이동건수 기반 (건수/인구×100)"
+        out["meta"]["net_migration_method"] = "1인 이동건수 기반 (건수/인구×100)"
+        out["meta"]["migration_note"] = MIGRATION_NOTE
 
 
 # ── ② 재정자립도 = 그대로 (%) ──

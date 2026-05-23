@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-05-23 18:56 KST",
+  "_updated": "2026-05-23 19:01 KST",
   "_design": {
     "eta_inputs": {
       "①순이동률": "건수/인구×100(%)",
@@ -18,7 +18,8 @@
   },
   "meta": {
     "net_migration_period": "202603",
-    "net_migration_note": "1인 이동건수 기반 (건수/인구×100)",
+    "net_migration_method": "1인 이동건수 기반 (건수/인구×100)",
+    "migration_note": "산단 외지 인력 유동 포함 — 정주시민 이동과 미분리. 산업 계절성 노이즈 있음. 소수 유동이 지수에 미치는 영향 제한적.",
     "fiscal_period": "2026",
     "grdp_period": "2022",
     "vacant_period": "2024",
