@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-05-23 19:03 KST",
+  "_updated": "2026-05-24 06:51 KST",
   "kosis": {
     "울산_구군별_인구": {
       "row_count": 45,
@@ -2302,7 +2302,7 @@
       "id": "API_0704",
       "errMsg": "Success",
       "errCd": 0,
-      "trId": "JmgK_API_0704_1779530599799",
+      "trId": "CeM4_API_0704_1779573141171",
       "features": [
         {
           "type": "Feature",
@@ -127694,7 +127694,7 @@
     }
   },
   "redesign": {
-    "_updated": "2026-05-23 19:03 KST",
+    "_updated": "2026-05-24 06:52 KST",
     "_design": {
       "eta_inputs": {
         "①순이동률": "건수/인구×100(%)",
