@@ -1706,12 +1706,17 @@ loadDistrict("junggu");
       /* η 실데이터 연동 */
       const etaData = j.eta || {};
       const ETA_MAP = {'31110':'junggu','31140':'namgu','31170':'donggu','31200':'bukgu','31710':'ulju'};
-      /* DISTRICTS_ETA 업데이트 */
+      /* DISTRICTS_ETA 업데이트 — η + 슬라이더 실측값 주입 */
       if(typeof DISTRICTS_ETA !== 'undefined'){
         Object.entries(etaData).forEach(([code, v]) => {
           const k = ETA_MAP[code];
-          if(k && v.eta !== null && DISTRICTS_ETA[k]){
-            DISTRICTS_ETA[k].eta = v.eta;
+          if(k && DISTRICTS_ETA[k]){
+            if(v.eta !== null) DISTRICTS_ETA[k].eta = v.eta;
+            /* 슬라이더 실측값 주입 */
+            if(v.tfr       !== undefined) DISTRICTS_ETA[k].birth   = v.tfr;
+            if(v.doctors   !== undefined) DISTRICTS_ETA[k].medical  = Math.min(100, Math.round(v.doctors * 20));
+            if(v.fiscal_independence !== undefined) DISTRICTS_ETA[k].taxbase = v.fiscal_independence;
+            /* employ/welfare/edu/safety/env는 KOSIS 실측 없으면 유지 */
           }
         });
       }
