@@ -1368,6 +1368,18 @@ function onSl(id,el){
   calcEta();
 }
 
+function getEtaGrade(eta){
+  if(eta>=0.80) return {label:'🟢 탁월',  sub:'최상',  css:'background:rgba(46,204,113,0.25);color:#2ECC71;'};
+  if(eta>=0.70) return {label:'🟢 양호',  sub:'상',    css:'background:rgba(39,174,96,0.25);color:#27AE60;'};
+  if(eta>=0.60) return {label:'🔵 안정',  sub:'중상',  css:'background:rgba(41,128,185,0.25);color:#5DADE2;'};
+  if(eta>=0.52) return {label:'🔵 평균상', sub:'중+',  css:'background:rgba(93,173,226,0.25);color:#5DADE2;'};
+  if(eta>=0.45) return {label:'🟡 평균',  sub:'중',    css:'background:rgba(186,117,23,0.35);color:#F5D78E;'};
+  if(eta>=0.38) return {label:'🟠 주목',  sub:'중-',   css:'background:rgba(230,126,34,0.25);color:#E67E22;'};
+  if(eta>=0.30) return {label:'🟠 경계',  sub:'중하',  css:'background:rgba(231,76,60,0.25);color:#E74C3C;'};
+  if(eta>=0.20) return {label:'🔴 위험',  sub:'하',    css:'background:rgba(192,57,43,0.35);color:#C0392B;'};
+  return              {label:'🔴🔴 위기', sub:'최하',  css:'background:rgba(146,43,33,0.45);color:#922B21;'};
+}
+
 function calcEta(){
   let eta=0,tot=0;
   SVARS.forEach(v=>{const r=(v.val-v.min)/(v.max-v.min);eta+=r*v.w;tot+=v.w;});
@@ -1378,26 +1390,17 @@ function calcEta(){
   const corpDep  = d ? d.corp_dep   : 0.5;
   const ceiling  = d ? d.eta_ceiling: 0.99;
   /* 대기업 의존도 높을수록 η 수렴 상한선 아래로 눌림 */
-  const corpPenalty = corpDep * 0.15;
+  const corpPenalty = corpDep * 0.08;  /* 패널티 완화 — 낙인 구조 제거 */
   eta = Math.min(ceiling - corpPenalty, eta);
   eta = Math.max(0.01, eta);
 
   document.getElementById('eta-val').textContent=eta.toFixed(2);
   const ej=document.getElementById('eta-judge');
   const evEl=document.getElementById('eta-val');
-  if(eta>=0.65){
-    evEl.style.color='#9FE1CB';
-    ej.textContent='🟢 양호 — 구조 안정적';
-    ej.style.cssText='background:rgba(8,80,65,0.4);color:#9FE1CB;';
-  } else if(eta>=0.50){
-    evEl.style.color='#F5D78E';
-    ej.textContent='🟡 주목 — 개선 여지';
-    ej.style.cssText='background:rgba(186,117,23,0.4);color:#F5D78E;';
-  } else {
-    evEl.style.color='#F09595';
-    ej.textContent='🔴 위험 — 처방 필요';
-    ej.style.cssText='background:rgba(163,45,45,0.4);color:#F09595;';
-  }
+  const grade = getEtaGrade(eta);
+  evEl.style.color = grade.css.match(/color:([^;]+)/)[1];
+  ej.textContent = grade.label + ' — ' + grade.sub;
+  ej.style.cssText = grade.css;
 
   /* ── 대기업 의존도 + η 상한 표시 업데이트 ── */
   let corpEl = document.getElementById('corp-dep-display');
