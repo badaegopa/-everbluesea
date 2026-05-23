@@ -1652,8 +1652,8 @@ loadDistrict("junggu");
       }
       /* cp-eta DOM 직접 업데이트 — 순서: 중구/남구/동구/북구/울주군 */
       const ETA_ORDER = ['31110','31140','31170','31200','31710'];
-      const CP_COLOR = v => v>=0.7?'#C73E1D':v>=0.5?'#9A6800':'#3A6A5E';
-      const CP_BADGE = v => v>=0.7?'warn':v>=0.5?'warn':'safe';
+      const CP_COLOR = v => v>=0.65?'#3A6A5E':v>=0.45?'#9A6800':'#C73E1D';
+      const CP_BADGE = v => v>=0.65?'safe':v>=0.45?'warn':'danger';
       const cpEls = document.querySelectorAll('.cp-eta');
       ETA_ORDER.forEach((code, i) => {
         const v = etaData[code];
