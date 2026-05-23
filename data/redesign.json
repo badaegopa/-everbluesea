@@ -1,51 +1,107 @@
 {
-  "_updated": "2026-05-23 18:20 KST",
-  "_source": "재설계 5종 (①순이동 ②재정자립도 ③GRDP ④빈집 ⑥가계부채). ⑤소방청 제외.",
+  "_updated": "2026-05-23 18:34 KST",
+  "_design": {
+    "eta_inputs": {
+      "①순이동률": "건수/인구×100(%)",
+      "②재정자립도": "그대로(%)",
+      "④빈집률": "호수/총주택×100(%)"
+    },
+    "separate_panel": {
+      "③1인당GRDP": "시도단위(구군 부재)",
+      "⑥가계부채": "전국단위(구군 부재)"
+    },
+    "constraints": [
+      "가중치 소수 분해 금지",
+      "인구비율 분해 금지(시도/전국값 구군 미분해)"
+    ],
+    "labeling": "정부 공식 데이터 없음 (시도/전국 단위만 존재) — '측정 불가' 금지"
+  },
   "meta": {
     "net_migration_period": "202603",
+    "net_migration_note": "1인 이동건수 기반 (건수/인구×100)",
     "fiscal_period": "2026",
     "grdp_period": "2022",
     "vacant_period": "2024",
     "household_credit_period": "2025"
   },
-  "districts": {
+  "eta_inputs": {
     "31110": {
       "name": "중구",
-      "net_migration_1p": -272.0,
+      "net_migration_rate": -0.134,
       "fiscal_independence": 17.79,
-      "vacant_houses": 4744.0
+      "vacancy_rate": 6.42
     },
     "31140": {
       "name": "남구",
-      "net_migration_1p": -105.0,
+      "net_migration_rate": -0.034,
       "fiscal_independence": 30.9,
-      "vacant_houses": 8401.0
+      "vacancy_rate": 7.46
     },
     "31170": {
       "name": "동구",
-      "net_migration_1p": -138.0,
+      "net_migration_rate": -0.093,
       "fiscal_independence": 17.27,
-      "vacant_houses": 3883.0
+      "vacancy_rate": 6.82
     },
     "31200": {
       "name": "북구",
-      "net_migration_1p": -228.0,
+      "net_migration_rate": -0.107,
       "fiscal_independence": 26.3,
-      "vacant_houses": 4765.0
+      "vacancy_rate": 5.91
     },
     "31710": {
       "name": "울주군",
-      "net_migration_1p": -221.0,
+      "net_migration_rate": -0.101,
       "fiscal_independence": 37.39,
-      "vacant_houses": 8901.0
+      "vacancy_rate": 10.18
     }
   },
-  "sido_ulsan": {
-    "grdp_per_capita": 77511.0,
-    "grdp_unit": "천원"
+  "raw": {
+    "31110": {
+      "pop": 203339,
+      "net_migration_1p": -272.0,
+      "vacant_houses": 4744.0,
+      "total_houses": 73841.0
+    },
+    "31140": {
+      "pop": 304457,
+      "net_migration_1p": -105.0,
+      "vacant_houses": 8401.0,
+      "total_houses": 112629.0
+    },
+    "31170": {
+      "pop": 147925,
+      "net_migration_1p": -138.0,
+      "vacant_houses": 3883.0,
+      "total_houses": 56926.0
+    },
+    "31200": {
+      "pop": 214026,
+      "net_migration_1p": -228.0,
+      "vacant_houses": 4765.0,
+      "total_houses": 80646.0
+    },
+    "31710": {
+      "pop": 218294,
+      "net_migration_1p": -221.0,
+      "vacant_houses": 8901.0,
+      "total_houses": 87466.0
+    }
   },
-  "national": {
-    "household_credit": 1979088.4,
-    "household_credit_unit": "십억원"
+  "separate_panel": {
+    "grdp_per_capita": {
+      "scope": "시도(울산광역시)",
+      "value": 77511.0,
+      "unit": "천원",
+      "period": "2022",
+      "district_status": "정부 공식 데이터 없음 (시도/전국 단위만 존재)"
+    },
+    "household_credit": {
+      "scope": "전국",
+      "value": 1979088.4,
+      "unit": "십억원",
+      "period": "2025",
+      "district_status": "정부 공식 데이터 없음 (시도/전국 단위만 존재)"
+    }
   }
 }
