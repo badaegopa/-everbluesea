@@ -23,19 +23,21 @@ LAMBDA12_WEIGHTS = {
     "G1": 0.05, "G2": 0.05, "C1": 0.10, "C2": 0.10,
 }
 # 정규화 앵커 (lo, hi, invert, 설명). risk=clamp((v-lo)/(hi-lo)); invert면 1-risk.
-# invert=True = 값이 낮을수록 위험(역지표). 앵커는 조정 가능한 가정값.
+# invert=True = 값이 낮을수록 위험(역지표). 실제 관측 범위 기반(조정 가능).
 LAMBDA12_NORM = {
-    "P1": (4.0,      8.0,      True,  "삶에 대한 만족도 0-10 (역: 낮을수록 분노↑)"),
-    "P2": (50,       300,      False, "노사분규 건수"),
-    "A2": (300000,   500000,   False, "분기 범죄발생 건수"),
-    "E1": (0.55,     0.70,     False, "순자산 지니계수"),
-    "E2": (4.0,      12.0,     False, "청년실업률 %"),
-    "S1": (0.7,      1.5,      True,  "합계출산율 (역: 저출산=인구압력↑)"),
-    "S2": (85.0,     99.0,     True,  "인터넷이용률 % (역: 낮을수록 정보접근↓)"),
-    "G1": (400000,   700000,   False, "국방예산"),
-    "G2": (4.0e8,    8.0e8,    True,  "수출액 (역: 낮을수록 외부충격↑)"),
-    "C1": (1.5,      3.5,      True,  "천명당 의사수 (역: 적을수록 접근성↓)"),
-    "C2": (5.0,      35.0,     False, "PM2.5 ㎍/㎥"),
+    "P1": (5.5, 7.5,   True,  "삶만족도 10점(역)"),
+    "P2": (0,   500,   False, "노사분규 건수"),
+    "A2": (200000, 600000, False, "분기 범죄건수"),
+    "E1": (0.50, 0.68, False, "지니계수"),
+    "E2": (2.0,  15.0, False, "청년실업률%"),
+    "S1": (0.6,  1.8,  True,  "합계출산율(역)"),
+    "S2": (80.0, 99.0, True,  "인터넷이용률%(역)"),
+    "G1": (300000, 800000, False, "국방예산억원"),
+    "G2": (3e8,  9e8,  True,  "수출액$(역)"),
+    "C1": (1.0,  4.0,  True,  "천명당 의사수(역)"),
+    "C2": (5.0,  40.0, False, "PM2.5㎍/㎥"),
+    # S1 구별 결합용 고령비율 앵커(가중치 키 아님 — S1 risk = mean(TFR역, 고령)).
+    "S1_aged": (10.0, 25.0, False, "고령인구비율%(높을수록 인구압력↑)"),
 }
 A1_FIXED = 0.5   # 엘리트결속: 국회 API 미연결 → fallback 고정
 
@@ -160,9 +162,26 @@ def norm(var, v):
     return round(1.0 - r, 4) if invert else round(r, 4)
 
 
+def l12_per_gu(l12, var, itm):
+    """lambda12.json 의 var 블록에서 itm 항목을 구군별(26코드→31캐노니컬) 최신값으로 추출."""
+    out = {}
+    block = next((b for b in l12.get("kosis", {}).values() if b.get("var") == var), None)
+    if not block:
+        return out
+    seen = set()
+    for row in sorted(block.get("data", []), key=lambda x: x.get("PRD_DE", ""), reverse=True):
+        if row.get("ITM_ID") != itm:
+            continue
+        code = BIRTH2GU.get(row.get("C1", ""))
+        if code and code not in seen:
+            try: out[code] = float(row["DT"]); seen.add(code)
+            except (TypeError, ValueError): pass
+    return out
+
+
 def calc_eta(kosis, l12):
-    """Λ¹² 12변수 가중합 η. 11개 변수는 lambda12.json(울산/전국) 공통값,
-    S1(인구압력)만 구군별 합계출산율로 차등 적용. A1 은 fallback 0.5 고정."""
+    """Λ¹² 12변수 가중합 η. 구군별 차등: S1(출산율+고령) · C1(의사수). 나머지는 울산/전국 공통.
+    S1 risk = mean(norm(S1,출산율역), norm(S1_AGED,고령)). A1 은 fallback 0.5 고정."""
     vals = lambda12_values(l12)
 
     # 구군별 인구 (표시용)
@@ -173,7 +192,7 @@ def calc_eta(kosis, l12):
             try: pop[c1] = int(row["DT"])
             except: pass
 
-    # 구군별 합계출산율 (최신 연도) — S1 차등용. 출산율표는 26코드 → 31캐노니컬로 변환.
+    # 구군별 합계출산율 (최신 연도). 출산율표는 26코드 → 31캐노니컬로 변환.
     birth = {}
     seen = set()
     for row in sorted(kosis.get("울산_구군별_출산율", {}).get("data", []),
@@ -183,6 +202,10 @@ def calc_eta(kosis, l12):
             try: birth[code] = float(row["DT"]); seen.add(code)
             except: pass
 
+    # 구군별 고령비율(T10 = A÷B×100) · 천명당 의사수(T10) — lambda12.json 에서
+    aged    = l12_per_gu(l12, "S1_aged", "T10")
+    doctors = l12_per_gu(l12, "C1", "T10")
+
     # 공통(전국/울산) 변수 위험점수 — A1 은 고정값 그대로 사용
     common_risk = {var: (vals["A1"] if var == "A1" else norm(var, vals.get(var)))
                    for var in LAMBDA12_WEIGHTS}
@@ -190,9 +213,14 @@ def calc_eta(kosis, l12):
     eta = {}
     for code, info in GU.items():
         risk = dict(common_risk)
-        # S1 만 구군 출산율로 덮어쓰기
-        if birth.get(code) is not None:
-            risk["S1"] = norm("S1", birth[code])
+        # S1(인구압력) = 출산율 위험 + 고령 위험 평균 (구군별)
+        s1_parts = [r for r in (norm("S1", birth.get(code)),
+                                norm("S1_aged", aged.get(code))) if r is not None]
+        if s1_parts:
+            risk["S1"] = round(sum(s1_parts) / len(s1_parts), 4)
+        # C1(공공서비스) 구군별 의사수
+        if doctors.get(code) is not None:
+            risk["C1"] = norm("C1", doctors[code])
 
         score = wsm = 0.0
         for var, w in LAMBDA12_WEIGHTS.items():
@@ -205,6 +233,8 @@ def calc_eta(kosis, l12):
             "color":  info["color"],
             "pop":    pop.get(code, 0),
             "tfr":    birth.get(code),
+            "aged":   aged.get(code),
+            "doctors": doctors.get(code),
             "eta":    round(score / wsm, 3) if wsm > 0 else None,
             "lambda12": {var: risk[var] for var in LAMBDA12_WEIGHTS},
             "data_quality": f"{int(round(wsm * 100))}%",
