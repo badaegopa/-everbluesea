@@ -8,8 +8,9 @@ ECOS_KEY      = os.environ.get("ECOS_API_KEY", "")
 DATA_GO_KR_KEY= os.environ.get("DATA_GO_KR_API_KEY", os.environ.get("NKIS_API_KEY", ""))
 
 KOSIS_BASE = "https://kosis.kr/openapi/Param/statisticsParameterData.do"
-ULSAN_SGG  = "31110 31140 31170 31200 31710"   # 중/남/동/북/울주 (31계열)
-ULSAN_SGG26 = "26010 26020 26030 26040 26310"  # e-지방지표 등 26계열 (중/남/동/북/울주)
+ULSAN_SGG  = "31110 31140 31170 31200 31710"   # 중/남/동/북/울주 (31계열: 주민등록·이동)
+ULSAN_SGG26 = "26010 26020 26030 26040 26310"  # e-지방지표 26계열 (울주군=26310)
+ULSAN_SGG26C= "26010 26020 26030 26040 26510"  # 인구주택총조사 26계열 (★울주군=26510, 표마다 상이)
 TIMEOUT = 20
 
 def kosis_probe(tbl, itm="ALL", obj=ULSAN_SGG, org="101", prd="Y", n="1", extra=None):
@@ -65,8 +66,10 @@ PROBES = [
         lambda: kosis_probe("DT_1YL20921", obj=ULSAN_SGG26)),
     # ✅ 가용 (단 시도단위 — 구군 분해 불가)
     ("③ 1인당 GRDP",   "KOSIS 지역소득 DT_1C86", lambda: kosis_probe("DT_1C86", obj="31", prd="Y")),
-    # 후보 코드 모두 부적합(1JU1505/1JU1517=없음, 1IN1502=총인구) → 정확 tblId 필요
-    ("④ 빈집률",        "KOSIS 주택총조사 (코드 미확정)", lambda: kosis_probe("DT_1JU1505")),
+    # 확정: DT_1JU1512 "건축연도·주택종류별 미거주주택(빈집)-시군구". itm=T000(주택계) objL2=00(종류계)
+    # ★ census 26계열 코드(울주군=26510). 빈집 호수(건수), 빈집률(%)은 DT_1JU1501 총주택으로 나눔
+    ("④ 빈집(호)",      "KOSIS DT_1JU1512 itm=T000 objL2=00 census26",
+        lambda: kosis_probe("DT_1JU1512", itm="T000", obj=ULSAN_SGG26C, extra={"objL2":"00"})),
     ("⑤ 응급 골든타임", "data.go.kr 소방청", lambda: datago_probe("소방청 구급")),
     ("⑥ 가계부채",      "ECOS 가계신용 151Y001", lambda: ecos_probe("151Y001")),
 ]
