@@ -26,7 +26,7 @@ LAMBDA12_WEIGHTS = {
 # 정규화 앵커 (lo, hi, invert, 설명). risk=clamp((v-lo)/(hi-lo)); invert면 1-risk.
 # invert=True = 값이 낮을수록 위험(역지표). 실제 관측 범위 기반(조정 가능).
 LAMBDA12_NORM = {
-    "P1": (5.5, 7.5,   True,  "삶만족도 10점(역)"),
+    "P1": (-2.0, 2.0, True, "순이동률%(역) 높을수록 유입=좋음 — 구군별 슬롯 대체(①)"),
     "P2": (0,   500,   False, "노사분규 건수"),
     "A2": (200000, 600000, False, "분기 범죄건수"),
     "E1": (0.50, 0.68, False, "지니계수"),
@@ -63,6 +63,11 @@ TABLES = [
      "params":{"method":"getList","apiKey":KOSIS_KEY,"format":"json","jsonVD":"Y",
                "orgId":"101","tblId":"DT_1YL12501E","itmId":"ALL",
                "objL1":"31","prdSe":"Y","newEstPrdCnt":"3"}},
+    # ① 순이동 → P1 슬롯 (31계열, 1인이동건수 T25, 성0·연령000 계). 순이동률=건수/인구×100
+    {"label":"울산_순이동",
+     "params":{"method":"getList","apiKey":KOSIS_KEY,"format":"json","jsonVD":"Y",
+               "orgId":"101","tblId":"DT_1B26A01","itmId":"T25",
+               "objL1":GU_CODES,"objL2":"0","objL3":"000","prdSe":"M","newEstPrdCnt":"1"}},
     # ② 재정자립도 → G2 슬롯 (26계열, 개편전/후 2항목 → 추출시 개편전 우선)
     {"label":"울산_재정자립도",
      "params":{"method":"getList","apiKey":KOSIS_KEY,"format":"json","jsonVD":"Y",
@@ -155,8 +160,8 @@ def lambda12_values(l12):
     vals = {}
     sm = l12.get("summary", {})
     # S1 은 합계출산율(S1_tfr)을 대표값으로 사용
-    # G2(재정자립도)·C2(빈집률)는 구군별 슬롯으로 대체 → 공통값에서 제외(calc_eta에서 구군별 주입)
-    keymap = {"P1": "P1", "P2": "P2", "A2": "A2", "E1": "E1", "E2": "E2",
+    # P1(순이동률)·G2(재정자립도)·C2(빈집률)는 구군별 슬롯으로 대체 → 공통값 제외(calc_eta에서 구군별 주입)
+    keymap = {"P2": "P2", "A2": "A2", "E1": "E1", "E2": "E2",
               "S1": "S1_tfr", "S2": "S2", "G1": "G1", "C1": "C1"}
     for var, skey in keymap.items():
         node = sm.get(skey, {})
@@ -197,7 +202,7 @@ def l12_per_gu(l12, var, itm):
 
 
 def calc_eta(kosis, l12):
-    """Λ¹² 12변수 가중합 η. 구군별 차등: S1(출산율+고령) · C1(의사수) · G2(②재정자립도) · C2(④빈집률).
+    """Λ¹² 12변수 가중합 η. 구군별 차등: P1(①순이동률) · S1(출산율+고령) · C1(의사수) · G2(②재정자립도) · C2(④빈집률).
     나머지는 울산/전국 공통. S1 risk = mean(norm(S1,출산율역), norm(S1_AGED,고령)). A1 은 fallback 0.5 고정."""
     vals = lambda12_values(l12)
 
@@ -222,6 +227,16 @@ def calc_eta(kosis, l12):
     # 구군별 고령비율(T10 = A÷B×100) · 천명당 의사수(T10) — lambda12.json 에서
     aged    = l12_per_gu(l12, "S1_aged", "T10")
     doctors = l12_per_gu(l12, "C1", "T10")
+
+    # ① 순이동률 → P1 (31계열, 순이동 건수 / 인구 × 100)
+    migr = {}
+    for row in kosis.get("울산_순이동", {}).get("data", []):
+        code = row.get("C1", "")
+        if code in GU:
+            try: migr[code] = float(row["DT"])
+            except (TypeError, ValueError): pass
+    mig_rate = {c: round(migr[c] / pop[c] * 100, 3)
+                for c in migr if pop.get(c)}
 
     # ② 재정자립도 → G2 (26계열, 세입과목개편전 우선)
     fiscal = {}
@@ -263,7 +278,9 @@ def calc_eta(kosis, l12):
         # C1(공공서비스) 구군별 의사수
         if doctors.get(code) is not None:
             risk["C1"] = norm("C1", doctors[code])
-        # G2(②재정자립도) · C2(④빈집률) 구군별 슬롯 대체
+        # P1(①순이동률) · G2(②재정자립도) · C2(④빈집률) 구군별 슬롯 대체
+        if mig_rate.get(code) is not None:
+            risk["P1"] = norm("P1", mig_rate[code])
         if fiscal.get(code) is not None:
             risk["G2"] = norm("G2", fiscal[code])
         if vacancy.get(code) is not None:
@@ -282,6 +299,7 @@ def calc_eta(kosis, l12):
             "tfr":    birth.get(code),
             "aged":   aged.get(code),
             "doctors": doctors.get(code),
+            "net_migration_rate":  mig_rate.get(code),  # ① P1 슬롯
             "fiscal_independence": fiscal.get(code),   # ② G2 슬롯
             "vacancy_rate":        vacancy.get(code),   # ④ C2 슬롯
             "eta":    round(1 - score / wsm, 3) if wsm > 0 else None,  # risk→건강 극성 (η↑=양호)
