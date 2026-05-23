@@ -127130,5 +127130,56 @@
       "C1": 0.1,
       "C2": 0.1
     }
+  },
+  "redesign": {
+    "_updated": "2026-05-23 18:04 KST",
+    "_source": "재설계 5종 (①순이동 ②재정자립도 ③GRDP ④빈집 ⑥가계부채). ⑤소방청 제외.",
+    "meta": {
+      "net_migration_period": "202603",
+      "fiscal_period": "2026",
+      "grdp_period": "2022",
+      "vacant_period": "2024",
+      "household_credit_period": "2025"
+    },
+    "districts": {
+      "31110": {
+        "name": "중구",
+        "net_migration_1p": -272.0,
+        "fiscal_independence": 17.79,
+        "vacant_houses": 4744.0
+      },
+      "31140": {
+        "name": "남구",
+        "net_migration_1p": -105.0,
+        "fiscal_independence": 30.9,
+        "vacant_houses": 8401.0
+      },
+      "31170": {
+        "name": "동구",
+        "net_migration_1p": -138.0,
+        "fiscal_independence": 17.27,
+        "vacant_houses": 3883.0
+      },
+      "31200": {
+        "name": "북구",
+        "net_migration_1p": -228.0,
+        "fiscal_independence": 26.3,
+        "vacant_houses": 4765.0
+      },
+      "31710": {
+        "name": "울주군",
+        "net_migration_1p": -221.0,
+        "fiscal_independence": 37.39,
+        "vacant_houses": 8901.0
+      }
+    },
+    "sido_ulsan": {
+      "grdp_per_capita": 77511.0,
+      "grdp_unit": "천원"
+    },
+    "national": {
+      "household_credit": 1979088.4,
+      "household_credit_unit": "십억원"
+    }
   }
 }
