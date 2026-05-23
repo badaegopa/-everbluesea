@@ -55,8 +55,11 @@ def datago_probe(name):
     return {"ok":None,"note":f"키 보유({name}) — 엔드포인트 URL 확정 후 호출 필요"}
 
 PROBES = [
-    # 통계표는 존재하나 objL 분류구조(objL1+objL2 추정) 미해결 → 메타조회 필요
-    ("① 인구순이동률",  "KOSIS DT_1B26A01", lambda: kosis_probe("DT_1B26A01", prd="M")),
+    # objL 구조 확정: 3축(objL1=행정구역A, objL2=성별SBB, objL3=연령YRE) + itmId=T25(순이동)
+    # 주의: 표 정체 = "시군구/성/연령(5세)별 1인 이동건수" → 1인이동·건수(명), 순이동률(%) 아님
+    ("① 순이동(1인이동건수)", "KOSIS DT_1B26A01 itm=T25 objL1+성0+연령000",
+        lambda: kosis_probe("DT_1B26A01", itm="T25", prd="M",
+                            extra={"objL2":"0","objL3":"000"})),
     # 사용자 제시 DT_1YL20711 → 오류. 정정 코드 DT_1YL20921 + 울산 26계열 필터
     ("② 재정자립도",    "KOSIS DT_1YL20921(정정) 울산5구군",
         lambda: kosis_probe("DT_1YL20921", obj=ULSAN_SGG26)),
