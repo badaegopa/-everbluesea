@@ -1474,7 +1474,7 @@ function calcEta(){
     /* μ 처방 우선순위 갱신 */
     const _sorted=SVARS.map(v=>({
       id:v.id,name:v.name,unit:v.unit,min:v.min,max:v.max,val:v.val,w:v.w,icon:v.icon,fixed:v.fixed,
-      mu:1-((v._init!==undefined?v._init:v.val)-v.min)/(v.max-v.min)
+      mu:1-(v.val-v.min)/(v.max-v.min)
     })).filter(v=>!v.fixed).sort((a,b)=>b.mu-a.mu);
     let _mu='';
     _sorted.forEach((v,i)=>{
@@ -1546,7 +1546,7 @@ function calcEta(){
   /* μ 처방 우선순위 */
   const sorted=SVARS.map(v=>({
       id:v.id,name:v.name,unit:v.unit,min:v.min,max:v.max,val:v.val,w:v.w,icon:v.icon,fixed:v.fixed,
-      mu:1-((v._init!==undefined?v._init:v.val)-v.min)/(v.max-v.min)
+      mu:1-(v.val-v.min)/(v.max-v.min)
     })).filter(v=>!v.fixed).sort((a,b)=>b.mu-a.mu);
 
   let mu='';
