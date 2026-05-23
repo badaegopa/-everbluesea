@@ -1606,8 +1606,8 @@ loadDistrict("junggu");
     .then(r => { if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
     .then(j => {
       /* 갱신 시각 배지 */
-      if(badge && j.updated_at){
-        const d = new Date(j.updated_at);
+      if(badge && (j._updated || j.updated_at)){
+        const d = new Date(j._updated || j.updated_at);
         const pad = n => String(n).padStart(2,'0');
         const ts = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())} KST`;
         const items = [
