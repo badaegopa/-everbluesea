@@ -1611,13 +1611,18 @@ loadDistrict("junggu");
         const pad = n => String(n).padStart(2,'0');
         const ts = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())} KST`;
         const items = [
-          `📡 최종 갱신 ${ts}`,
-          '✅ KOSIS 인구·고용 수집 완료',
-          '✅ ECOS 가계부채 수집 완료',
-          '✅ 재정자립도 e-나라지표 연동',
-          '✅ 순이동률 DT_1B26A01 연동',
-          '✅ 빈집률 DT_1JU1512 연동',
-          '✅ η 5구군 실측 반영 완료',
+          `📡 최종 갱신 ${ts} — KOSIS·ECOS·SGIS 자동수집`,
+          '✅ 인구 DT_1B040A3 — 5구군 월별',
+          '✅ 출산율 DT_1B81A17 — 26계열',
+          '✅ 고령화 DT_1YL20631 — 26계열',
+          '✅ 의사수 DT_1YL20981 — 26계열',
+          '✅ 노사분규 DT_11826_N004 — 울산 05',
+          '✅ 재정자립도 DT_1YL20921 — 26계열',
+          '✅ 순이동률 DT_1B26A01 — 31계열',
+          '✅ 빈집률 DT_1JU1512 — 26계열',
+          '✅ 가계부채 ECOS 151Y001 — 전국',
+          '✅ SGIS 경계 adm_cd=31 — 울산',
+          '✅ η 5구군 실측 반영 완료 — 매일 06:00 KST',
         ];
         const full = items.join('　　|　　') + '　　|　　';
         const t1 = document.getElementById('badge-text');
