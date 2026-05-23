@@ -3844,11 +3844,12 @@ RA();
 
   /* ── 구·군 기준 η값 (시뮬레이터 초기값 기준) ── */
   const ETA_BASE = {
-    junggu: { name:'중구',  eta:0.68, color:'#3D7A6E' },
-    namgu:  { name:'남구',  eta:0.72, color:'#B8850E' },
-    donggu: { name:'동구',  eta:0.52, color:'#4A6E9B' },
-    bukgu:  { name:'북구',  eta:0.65, color:'#9B6040' },
-    ulju:   { name:'울주군',eta:0.49, color:'#7A5A9B' },
+    /* eta = data/ulsan.json 기반 fallback (fetch 성공 시 런타임 덮어씀, 건강 극성 η↑=양호) */
+    junggu: { name:'중구',  eta:0.526, color:'#3D7A6E' },
+    namgu:  { name:'남구',  eta:0.598, color:'#B8850E' },
+    donggu: { name:'동구',  eta:0.597, color:'#4A6E9B' },
+    bukgu:  { name:'북구',  eta:0.545, color:'#9B6040' },
+    ulju:   { name:'울주군',eta:0.516, color:'#7A5A9B' },
   };
   window._ETA_BASE = ETA_BASE; /* 실데이터 연동용 외부 노출 */
 
