@@ -502,7 +502,7 @@ body.en-mode span.en { display:inline; }
 (function(){
   // 임계값 — 조정 가능: η≥GREEN 🟢안정, ≥YELLOW 🟡주의, 그 외 🔴위험 (건강 극성: η↑=양호)
   const ETA_GREEN = 0.65, ETA_YELLOW = 0.45;
-  const CHIP_STYLE = "font-size:11px;background:rgba(255,255,255,0.15);color:#E1F5EE;padding:2px 8px;border-radius:12px";
+  function chipStyle(c){ return "font-size:11px;background:rgba(255,255,255,0.15);color:#E1F5EE;padding:2px 8px 2px 7px;border-radius:12px;border-left:3px solid "+(c||'#888888'); }
   function marker(e){ return e >= ETA_GREEN ? '🟢' : (e >= ETA_YELLOW ? '🟡' : '🔴'); }
   fetch('data/ulsan.json', {cache:'no-store'})
     .then(function(r){ return r.json(); })
@@ -514,7 +514,7 @@ body.en-mode span.en { display:inline; }
         .sort(function(a,b){ return b.eta - a.eta; });   // η 내림차순
       if (!rows.length) return;
       box.innerHTML = rows.map(function(v){
-        return '<span style="'+CHIP_STYLE+'">'+v.name+' η'+v.eta.toFixed(2)+' '+marker(v.eta)+'</span>';
+        return '<span style="'+chipStyle(v.color)+'">'+v.name+' η'+v.eta.toFixed(2)+' '+marker(v.eta)+'</span>';
       }).join('');
     })
     .catch(function(){ /* 실패 시 정적 칩 유지 */ });
