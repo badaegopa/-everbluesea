@@ -1780,8 +1780,8 @@ loadDistrict("junggu");
         }
       });
       /* 활성 구군 재로드 → 슬라이더/η 즉시 반영 */
-      const cur = window._currentDistKey;
-      if(cur && typeof loadDistrict === 'function') loadDistrict(cur);
+      const cur = window._currentDistKey || 'junggu';
+      if(typeof loadDistrict === 'function') loadDistrict(cur);
 
       /* 레이스 차트도 현재 시점 다시 렌더 */
       if(typeof rcRender === 'function' && typeof rcT !== 'undefined'){
