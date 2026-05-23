@@ -561,7 +561,27 @@ body{font-family:'Noto Sans KR',sans-serif;background:#F5F3EE;color:#2C2C2A;padd
     </div>
   </div>
   <style>
-  @keyframes ticker-scroll {
+  @keyframes flag-wave {
+  0%  { transform: skewX(0deg)  scaleX(1.00); }
+  20% { transform: skewX(-6deg) scaleX(1.04); }
+  40% { transform: skewX( 6deg) scaleX(0.97); }
+  60% { transform: skewX(-4deg) scaleX(1.03); }
+  80% { transform: skewX( 3deg) scaleX(0.98); }
+  100%{ transform: skewX(0deg)  scaleX(1.00); }
+}
+.sec-flag{
+  display:inline-flex;
+  align-items:center;
+  margin-left:8px;
+  vertical-align:middle;
+}
+.sec-flag svg{ width:34px;height:20px; }
+.sec-flag.updated{
+  animation:flag-wave 1.6s ease-in-out infinite;
+  transform-origin:left center;
+  filter:drop-shadow(0 1px 4px rgba(240,192,0,0.5));
+}
+@keyframes ticker-scroll {
 @keyframes new-wave {
   0%,100%{ transform:rotate(-8deg) scale(1.0); color:#F0C040; }
   25%    { transform:rotate( 8deg) scale(1.15); color:#FFE57A; }
@@ -1889,7 +1909,10 @@ loadDistrict("junggu");
 <!-- ════════════════════════════ -->
 
 <!-- ① 지역의회 -->
-<div class="sec"><div class="sh" onclick="T('c1')"><div class="sl"><span class="st">지역의회 공헌지수</span><span class="bdg ba" id="bdg-c1"></span></div><span class="ar" id="a-c1">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c1')"><div class="sl"><span class="st">지역의회 공헌지수</span><span class="bdg ba" id="bdg-c1"></span></div><span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span><span class="ar" id="a-c1">▼</span></div>
 <div class="bd" id="c1">
   <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;padding:7px;background:#F5F3EE;border-radius:6px">
     <div style="text-align:center;min-width:52px"><div class="score" id="sc-c1"></div><div style="font-size:9px;color:#888780">공헌점수</div></div>
@@ -1908,7 +1931,10 @@ loadDistrict("junggu");
 
 
 <!-- ② 시정 -->
-<div class="sec"><div class="sh" onclick="T('c2')"><div class="sl"><span class="st">시·도정 이행지수 — 집행부 성과</span><span class="bdg bg" id="bdg-c2"></span></div><span class="ar" id="a-c2">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c2')"><div class="sl"><span class="st">시·도정 이행지수 — 집행부 성과</span><span class="bdg bg" id="bdg-c2"></span></div><span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span><span class="ar" id="a-c2">▼</span></div>
 <div class="bd" id="c2">
   <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;padding:7px;background:#F5F3EE;border-radius:6px">
     <div style="text-align:center;min-width:52px"><div class="score" id="sc-c2"></div><div style="font-size:9px;color:#888780">이행점수</div></div>
@@ -1933,7 +1959,10 @@ loadDistrict("junggu");
       <span class="st">행정 — 공무원 인력 충족도</span>
       <span class="bdg ba">행정서비스 현황</span>
     </div>
-    <span class="ar" id="a-c20">▼</span>
+    <span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span><span class="ar" id="a-c20">▼</span>
   </div>
   <div class="bd" id="c20">
     <div class="nr" style="margin-bottom:8px">
@@ -1959,7 +1988,10 @@ loadDistrict("junggu");
 
 
 <!-- ⑦ 의료시설 -->
-<div class="sec"><div class="sh" onclick="T('c7')"><div class="sl"><span class="st">의료시설 — 이용률·공급·외부유출·시설충족도</span><span class="bdg br">생명·안전 인프라</span></div><span class="ar" id="a-c7">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c7')"><div class="sl"><span class="st">의료시설 — 이용률·공급·외부유출·시설충족도</span><span class="bdg br">생명·안전 인프라</span></div><span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span><span class="ar" id="a-c7">▼</span></div>
 <div class="bd" id="c7">
   <div class="thdr"><span style="width:72px">구·군</span><span style="width:40px">종합병</span><span style="width:36px">보건소</span><span style="width:36px">응급실</span><span style="flex:1">이용률</span><span style="width:60px">현황</span><span style="width:18px">▪</span></div>
   <div id="med-dist"></div>
@@ -2018,7 +2050,10 @@ loadDistrict("junggu");
 
 
 <!-- ⑰ 범죄·EPI -->
-<div class="sec"><div class="sh" onclick="T('c17')"><div class="sl"><span class="st">범죄유형별 + EPI 침투지수 (후순위)</span><span class="bdg br">EPI 현황</span></div><span class="ar" id="a-c17">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c17')"><div class="sl"><span class="st">범죄유형별 + EPI 침투지수 (후순위)</span><span class="bdg br">EPI 현황</span></div><span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span><span class="ar" id="a-c17">▼</span></div>
 <div class="bd" id="c17">
   <div class="thdr"><span style="width:60px">구·군</span><span style="width:60px">생활범죄</span><span style="width:60px">외국인피해</span><span style="flex:1">EPI 침투 바</span><span style="width:72px">EPI값</span><span style="width:18px">▪</span></div>
   <div id="crime-rows"></div>
@@ -2062,7 +2097,10 @@ loadDistrict("junggu");
 
 
 <!-- ③ 살림살이 -->
-<div class="sec"><div class="sh" onclick="T('c3')"><div class="sl"><span class="st">살림살이 — 산업별 생산액·소득·지출</span><span class="bdg bg">GRDP 현황</span></div><span class="ar" id="a-c3">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c3')"><div class="sl"><span class="st">살림살이 — 산업별 생산액·소득·지출</span><span class="bdg bg">GRDP 현황</span></div><span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span><span class="ar" id="a-c3">▼</span></div>
 <div class="bd" id="c3">
   <div class="g3" style="margin-bottom:8px" id="eco-cards"></div>
   <!-- 인플레이션 현황 -->
@@ -2085,7 +2123,11 @@ loadDistrict("junggu");
       <span class="st">구군별 재정자립도 — 실측 데이터</span><span class="new-badge">🚩NEW</span>
       <span class="bdg bg">지방재정365 실측</span>
     </div>
-    <span class="ar" id="a-c3b">▼</span>
+    <span class="sec-flag updated"><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#999" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#F5D800" stroke="#C8A800" stroke-width="0.7"/>
+  <text x="17" y="7.5" text-anchor="middle" font-size="5" font-weight="900" fill="#7A5C00" font-family="Arial,sans-serif">NEW</text>
+</svg></span><span class="ar" id="a-c3b">▼</span>
   </div>
   <div class="bd" id="c3b">
     <div class="nr" style="margin-bottom:8px">
@@ -2100,7 +2142,10 @@ loadDistrict("junggu");
 </div>
 
 <!-- ④ 고용·노동 -->
-<div class="sec"><div class="sh" onclick="T('c4')"><div class="sl"><span class="st">고용·노동 — 취업률·임금·산재</span><span class="bdg ba">고용 현황</span></div><span class="ar" id="a-c4">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c4')"><div class="sl"><span class="st">고용·노동 — 취업률·임금·산재</span><span class="bdg ba">고용 현황</span></div><span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span><span class="ar" id="a-c4">▼</span></div>
 <div class="bd" id="c4">
   <div class="g3" style="margin-bottom:8px" id="emp-cards"></div>
   <div class="ss">업종별 취업자 분포</div>
@@ -2121,7 +2166,10 @@ loadDistrict("junggu");
       <span class="st">산업재해 — 업종별·구군별·연누적</span>
       <span class="bdg br">생명·안전 최우선</span>
     </div>
-    <span class="ar" id="a-c19">▼</span>
+    <span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span><span class="ar" id="a-c19">▼</span>
   </div>
   <div class="bd" id="c19">
 
@@ -2180,7 +2228,10 @@ loadDistrict("junggu");
 
 
 <!-- ⑤ 자영업 -->
-<div class="sec"><div class="sh" onclick="T('c5')"><div class="sl"><span class="st">자영업 — 종목별 비율·폐업률·생존율</span><span class="bdg br">폐업 현황</span></div><span class="ar" id="a-c5">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c5')"><div class="sl"><span class="st">자영업 — 종목별 비율·폐업률·생존율</span><span class="bdg br">폐업 현황</span></div><span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span><span class="ar" id="a-c5">▼</span></div>
 <div class="bd" id="c5">
   <div class="g3" style="margin-bottom:8px" id="self-cards"></div>
   <div class="ss">업종별 자영업 비율</div>
@@ -2195,7 +2246,10 @@ loadDistrict("junggu");
 
 
 <!-- ⑥ 소비 현황 -->
-<div class="sec"><div class="sh" onclick="T('c6')"><div class="sl"><span class="st">소비 현황 — 지역상품권·카드소비·골목상권</span><span class="bdg bg">상품권 현황</span></div><span class="ar" id="a-c6">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c6')"><div class="sl"><span class="st">소비 현황 — 지역상품권·카드소비·골목상권</span><span class="bdg bg">상품권 현황</span></div><span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span><span class="ar" id="a-c6">▼</span></div>
 <div class="bd" id="c6">
   <div class="g3" style="margin-bottom:8px" id="con-cards"></div>
   <div class="ss">구·군별 지역상품권 이용률</div>
@@ -2210,7 +2264,10 @@ loadDistrict("junggu");
 
 
 <!-- ⑬ 주거·환경 -->
-<div class="sec"><div class="sh" onclick="T('c13')"><div class="sl"><span class="st">주거·환경 — 집값·전세·대기오염</span><span class="bdg ba">환경 현황</span></div><span class="ar" id="a-c13">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c13')"><div class="sl"><span class="st">주거·환경 — 집값·전세·대기오염</span><span class="bdg ba">환경 현황</span></div><span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span><span class="ar" id="a-c13">▼</span></div>
 <div class="bd" id="c13">
   <div class="g3" style="margin-bottom:8px" id="hou-cards"></div>
   <div class="ss">구·군별 미세먼지 평균</div>
@@ -2220,7 +2277,10 @@ loadDistrict("junggu");
 
 
 <!-- ⑭ 교통·인프라 -->
-<div class="sec"><div class="sh" onclick="T('c14')"><div class="sl"><span class="st">교통·인프라 — 대중교통·이동성</span><span class="bdg ba">교통 현황</span></div><span class="ar" id="a-c14">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c14')"><div class="sl"><span class="st">교통·인프라 — 대중교통·이동성</span><span class="bdg ba">교통 현황</span></div><span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span><span class="ar" id="a-c14">▼</span></div>
 <div class="bd" id="c14">
   <div class="g3" style="margin-bottom:8px" id="tra-cards"></div>
   <div class="ss">구·군별 대중교통 접근성</div>
@@ -2230,7 +2290,10 @@ loadDistrict("junggu");
 
 
 <!-- ⑧ 복지·돌봄 -->
-<div class="sec"><div class="sh" onclick="T('c8')"><div class="sl"><span class="st">복지·돌봄 — 시민군 전체 (수급·노인·장애·아동)</span><span class="bdg br">동등한 시민권</span></div><span class="ar" id="a-c8">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c8')"><div class="sl"><span class="st">복지·돌봄 — 시민군 전체 (수급·노인·장애·아동)</span><span class="bdg br">동등한 시민권</span></div><span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span><span class="ar" id="a-c8">▼</span></div>
 <div class="bd" id="c8">
   <div class="g3" style="margin-bottom:8px" id="wel-cards"></div>
   <div class="ss">구·군별 복지예산 1인당</div>
@@ -2264,7 +2327,10 @@ loadDistrict("junggu");
 
 
 <!-- ⑨ 교육·청소년 -->
-<div class="sec"><div class="sh" onclick="T('c9')"><div class="sl"><span class="st">교육·청소년 — 학업·진학·위기</span><span class="bdg br">학교밖 현황</span></div><span class="ar" id="a-c9">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c9')"><div class="sl"><span class="st">교육·청소년 — 학업·진학·위기</span><span class="bdg br">학교밖 현황</span></div><span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span><span class="ar" id="a-c9">▼</span></div>
 <div class="bd" id="c9">
   <div class="g3" style="margin-bottom:8px" id="edu-cards"></div>
   <div class="ss">구·군별 학생 1인당 교육예산</div>
@@ -2320,7 +2386,10 @@ loadDistrict("junggu");
       <span class="st">시민 민원 — 접수·처리 현황</span>
       <span class="bdg bb">μ 매칭 연동</span>
     </div>
-    <span class="ar" id="a-c18">▼</span>
+    <span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span><span class="ar" id="a-c18">▼</span>
   </div>
   <div class="bd" id="c18">
 
@@ -2365,7 +2434,10 @@ loadDistrict("junggu");
 
 
 <!-- ⑩ 관광 -->
-<div class="sec"><div class="sh" onclick="T('c10')"><div class="sl"><span class="st">관광 — 방문객·체류·시민 휴식</span><span class="bdg bg">관광 현황</span></div><span class="ar" id="a-c10">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c10')"><div class="sl"><span class="st">관광 — 방문객·체류·시민 휴식</span><span class="bdg bg">관광 현황</span></div><span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span><span class="ar" id="a-c10">▼</span></div>
 <div class="bd" id="c10">
   <div class="g3" style="margin-bottom:8px" id="tour-cards"></div>
   <div class="ss">주요 관광지 방문객 순위</div>
@@ -2391,7 +2463,10 @@ loadDistrict("junggu");
 
 
 <!-- ⑪ 문화예술 -->
-<div class="sec"><div class="sh" onclick="T('c11')"><div class="sl"><span class="st">문화예술 — 접근성·타 시도 비교</span><span class="bdg ba">광역 비교</span></div><span class="ar" id="a-c11">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c11')"><div class="sl"><span class="st">문화예술 — 접근성·타 시도 비교</span><span class="bdg ba">광역 비교</span></div><span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span><span class="ar" id="a-c11">▼</span></div>
 <div class="bd" id="c11">
   <div class="g3" style="margin-bottom:8px" id="cul-cards"></div>
   <div class="ss">타 광역시·도 문화예술 접근성 비교</div>
@@ -2401,7 +2476,10 @@ loadDistrict("junggu");
 
 
 <!-- ⑫ 레저·스포츠 -->
-<div class="sec"><div class="sh" onclick="T('c12')"><div class="sl"><span class="st">레저·스포츠 — 동호회·사회인야구·등산</span><span class="bdg bg">레저 현황</span></div><span class="ar" id="a-c12">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c12')"><div class="sl"><span class="st">레저·스포츠 — 동호회·사회인야구·등산</span><span class="bdg bg">레저 현황</span></div><span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span><span class="ar" id="a-c12">▼</span></div>
 <div class="bd" id="c12">
   <div class="g3" style="margin-bottom:8px" id="lei-cards"></div>
   <div class="ss">종목별 동호회 활동 인구</div>
@@ -2411,7 +2489,10 @@ loadDistrict("junggu");
 
 
 <!-- ⑮ 구·군 η + 생애주기 -->
-<div class="sec"><div class="sh" onclick="T('c15')"><div class="sl"><span class="st">구·군 η + 생애주기 사회군</span><span class="bdg ba">η지표 현황</span></div><span class="ar" id="a-c15">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c15')"><div class="sl"><span class="st">구·군 η + 생애주기 사회군</span><span class="bdg ba">η지표 현황</span></div><span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span><span class="ar" id="a-c15">▼</span></div>
 <div class="bd" id="c15">
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:5px;margin-bottom:8px" id="eta-dist"></div>
   <div class="ss">생애주기 사회군별 η지표</div>
@@ -2422,7 +2503,10 @@ loadDistrict("junggu");
 
 
 <!-- ⑯ 외국인 정주군 -->
-<div class="sec"><div class="sh" onclick="T('c16')"><div class="sl"><span class="st">외국인 정주·기여군 — 안착도 η</span><span class="bdg bb" id="for-total">보호·지원</span></div><span class="ar" id="a-c16">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c16')"><div class="sl"><span class="st">외국인 정주·기여군 — 안착도 η</span><span class="bdg bb" id="for-total">보호·지원</span></div><span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span><span class="ar" id="a-c16">▼</span></div>
 <div class="bd" id="c16">
   <div class="g2" style="margin-bottom:8px" id="for-groups"></div>
   <div class="ss">구·군별 외국인 거주 분포</div>
@@ -2441,7 +2525,10 @@ loadDistrict("junggu");
       <span class="st">ESG — 환경·탄소·에너지 전환</span>
       <span class="bdg bg">ESG 심사항목</span>
     </div>
-    <span class="ar" id="a-c21">▼</span>
+    <span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span><span class="ar" id="a-c21">▼</span>
   </div>
   <div class="bd" id="c21">
     <div class="nr" style="margin-bottom:8px">
@@ -2513,7 +2600,10 @@ loadDistrict("junggu");
       <span class="st">인구위기 — 출산·주거취약·청년유출</span>
       <span class="bdg br">당면과제</span>
     </div>
-    <span class="ar" id="a-c22">▼</span>
+    <span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span><span class="ar" id="a-c22">▼</span>
   </div>
   <div class="bd" id="c22">
     <div class="nr" style="margin-bottom:8px">
@@ -2556,7 +2646,11 @@ loadDistrict("junggu");
       <span class="st">구군별 순이동률·빈집률 — 실측 데이터</span><span class="new-badge">🚩NEW</span>
       <span class="bdg bg">KOSIS 실측</span>
     </div>
-    <span class="ar" id="a-c23">▼</span>
+    <span class="sec-flag updated"><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#999" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#F5D800" stroke="#C8A800" stroke-width="0.7"/>
+  <text x="17" y="7.5" text-anchor="middle" font-size="5" font-weight="900" fill="#7A5C00" font-family="Arial,sans-serif">NEW</text>
+</svg></span><span class="ar" id="a-c23">▼</span>
   </div>
   <div class="bd" id="c23">
     <div class="nr" style="margin-bottom:8px">
@@ -3191,7 +3285,7 @@ function RA(){renderIdentity(CUR);
 }
 
 function rBar(d){
-  document.getElementById('rb').innerHTML=`<span class="rb-name">📍 ${CUR}</span><span class="rb-div"></span><span class="rb-item">인구 <span class="rb-val">${d.pop}</span></span><span class="rb-div"></span><span class="rb-item">면적 <span class="rb-val">${d.area}</span></span><span class="rb-div"></span><span class="rb-item">주력 <span class="rb-val">${d.industry}</span></span><span class="rb-div"></span><span class="rb-item">GRDP <span class="rb-val">${d.summary.grdp}</span></span>`;
+  document.getElementById('rb').innerHTML=`<span class="rb-name">📍 ${CUR}</span><span class="rb-div"></span><span class="rb-item">인구 <span class="rb-val">${d.pop}</span><span class="rb-div"></span><span class="rb-item">면적 <span class="rb-val">${d.area}</span><span class="rb-div"></span><span class="rb-item">주력 <span class="rb-val">${d.industry}</span><span class="rb-div"></span><span class="rb-item">GRDP <span class="rb-val">${d.summary.grdp}</span>`;
 }
 
 function scoreBadge(v){
