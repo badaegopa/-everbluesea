@@ -1559,7 +1559,7 @@ loadDistrict("junggu");
    SVARS의 employ.val 을 실데이터로 자동 교체.
    고용률 데이터가 비어있으면 인구만 교체하고 추계치 유지. */
 (function loadUlsanRealtime(){
-  const C2K = {'31110':'junggu','31120':'namgu','31140':'donggu','31170':'bukgu','31710':'ulju'};
+  const C2K = {'31110':'junggu','31140':'namgu','31170':'donggu','31200':'bukgu','31710':'ulju'};
   const badge = document.getElementById('data-fresh-badge');
 
   fetch('../data/ulsan.json', {cache:'no-store'})
@@ -1621,7 +1621,7 @@ loadDistrict("junggu");
 
       /* η 실데이터 연동 */
       const etaData = j.eta || {};
-      const ETA_MAP = {'31110':'junggu','31120':'namgu','31140':'donggu','31170':'bukgu','31710':'ulju'};
+      const ETA_MAP = {'31110':'junggu','31140':'namgu','31170':'donggu','31200':'bukgu','31710':'ulju'};
       /* DISTRICTS_ETA 업데이트 */
       if(typeof DISTRICTS_ETA !== 'undefined'){
         Object.entries(etaData).forEach(([code, v]) => {
@@ -1648,7 +1648,7 @@ loadDistrict("junggu");
         }, 100);
       }
       /* cp-eta DOM 직접 업데이트 — 순서: 중구/남구/동구/북구/울주군 */
-      const ETA_ORDER = ['31110','31120','31140','31170','31710'];
+      const ETA_ORDER = ['31110','31140','31170','31200','31710'];
       const CP_COLOR = v => v>=0.7?'#C73E1D':v>=0.5?'#9A6800':'#3A6A5E';
       const CP_BADGE = v => v>=0.7?'warn':v>=0.5?'warn':'safe';
       const cpEls = document.querySelectorAll('.cp-eta');
@@ -1665,7 +1665,7 @@ loadDistrict("junggu");
         const txt = chip.textContent;
         const match = txt.match(/(중구|남구|동구|북구|울주군)/);
         if(!match) return;
-        const nameMap = {'중구':'31110','남구':'31120','동구':'31140','북구':'31170','울주군':'31710'};
+        const nameMap = {'중구':'31110','남구':'31140','동구':'31170','북구':'31200','울주군':'31710'};
         const code = nameMap[match[1]];
         const v = etaData[code];
         if(v && v.eta !== null){
