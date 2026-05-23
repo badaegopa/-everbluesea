@@ -25,7 +25,12 @@ BASE      = "https://kosis.kr/openapi/Param/statisticsParameterData.do"
 # ⚠️ 울산 행정구역코드: KOSIS 기준 시도=31 (44는 충청남도이므로 사용 금지).
 #    fetch_ulsan.py 도 동일하게 31 계열을 사용한다. 필요 시 여기만 바꾸면 전체 반영됨.
 ULSAN_SIDO = "31"
-ULSAN_GU   = "31110 31120 31140 31170 31710"   # 중/남/동/북구·울주군
+ULSAN_GU   = "31110 31120 31140 31170 31710"   # 중/남/동/북구·울주군 (인구동향·e지방지표 B코드 계열)
+# ⚠️ 표마다 울산 코드체계가 다름:
+#   - 노사분규(DT_11826_N004): 울산=05 (자체코드)
+#   - 의사수 e-지방지표(DT_1YL20981): 울산시=26, 구군=26010~26310 (e지방 순번코드)
+#   - 인터넷이용률(DT_1YL202101E): 울산=A0907
+ULSAN_SGG  = "26010 26020 26030 26040 26310"   # 중/남/동/북구·울주군 (DT_1YL20981 전용)
 
 # 최근 몇 개 기간을 받을지 (연/월 공통)
 RECENT_N = "3"
@@ -82,25 +87,35 @@ LAMBDA12_TABLES = [
                 "orgId": "118", "tblId": "DT_11826_N004", "itmId": "01",
                 "objL1": "01 05", "objL2": "100", "prdSe": "Y", "newEstPrdCnt": RECENT_N},
      "note": "01=노사분규건수, objL1=01(전국계)+05(울산 — 이 표 자체코드, 31 아님), objL2=100(반기 계)."},
+
+    {"var": "P1", "label": "삶에 대한 만족도(민중분노 역지표)", "scope": "national",
+     "params": {"method": "getList", "apiKey": KOSIS_KEY, "format": "json", "jsonVD": "Y",
+                "orgId": "417", "tblId": "DT_417001_0002", "itmId": "T1",
+                "objL1": "10", "objL2": "A12", "prdSe": "Y", "newEstPrdCnt": RECENT_N},
+     "note": "사회통합실태조사. T1=만족도, objL1=10(전체), objL2=A12(평균/10점). 역방향(만족↓=분노↑)."},
+
+    {"var": "S2", "label": "인터넷이용률(정보접근, 울산)", "scope": "sido",
+     "params": {"method": "getList", "apiKey": KOSIS_KEY, "format": "json", "jsonVD": "Y",
+                "orgId": "101", "tblId": "DT_1YL202101E", "itmId": "13103112704T1",
+                "objL1": "A0907", "objL2": "13102112704B.002", "prdSe": "Y", "newEstPrdCnt": RECENT_N},
+     "note": "인터넷이용실태조사. objL1=A0907(울산), objL2=...B.002(이용). 언론자유는 KOSIS 미수록."},
+
+    {"var": "G1", "label": "국방예산(지정학리스크)", "scope": "national",
+     "params": {"method": "getList", "apiKey": KOSIS_KEY, "format": "json", "jsonVD": "Y",
+                "orgId": "122", "tblId": "DT_122009_001", "itmId": "T001",
+                "objL1": "A0201", "prdSe": "Y", "newEstPrdCnt": RECENT_N},
+     "note": "국방통계. objL1=A0201(국방비 총액). ODA 대안: 170 TX_10202_A000."},
+
+    {"var": "C1", "label": "인구 천명당 의사수(공공서비스, 울산)", "scope": "sigungu",
+     "params": {"method": "getList", "apiKey": KOSIS_KEY, "format": "json", "jsonVD": "Y",
+                "orgId": "101", "tblId": "DT_1YL20981", "itmId": "T10",
+                "objL1": ULSAN_SGG, "prdSe": "Y", "newEstPrdCnt": RECENT_N},
+     "note": "e-지방지표. T10=천명당 의사수(비율 직접 제공), objL1=울산 5구군(26계열)."},
 ]
 
 # Λ¹² 12변수 중 KOSIS 미매핑(추후 보완) — 기록용
-# 나머지 변수 KOSIS 소스 후보 (tblId 확정, itmId/objL은 getMeta(type=ITM)로 추후 검증 후 LAMBDA12_TABLES에 편입)
-LAMBDA12_CANDIDATES = {
-    "P1": {"name": "민중분노지수", "orgId": "417", "tblId": "DT_417001_0002",
-           "src": "사회통합실태조사·삶에 대한 만족도(2013~2025)", "scope": "national",
-           "note": "역방향 지표(만족↓=분노↑). 사회갈등 인식은 DT_417001_0050 대안."},
-    "S2": {"name": "정보통제지수", "orgId": "101", "tblId": "DT_1YL202101E",
-           "src": "인터넷이용실태조사·인터넷이용률(시도, 2001~2025)", "scope": "sido",
-           "note": "정보접근 프록시. 언론자유(RSF)는 KOSIS 미수록 → 국제지표 별도."},
-    "G1": {"name": "지정학리스크", "orgId": "122", "tblId": "DT_122009_001",
-           "src": "국방통계·국방예산추이(2017~2024)", "scope": "national",
-           "note": "ODA 대안: orgId=170 TX_10202_A000(2002~2025)."},
-    "C1": {"name": "공공서비스접근", "orgId": "101", "tblId": "DT_1YL20981",
-           "src": "e-지방지표·인구 천명당 의료기관 종사 의사수(시도/시군구, 2007~2025)", "scope": "sigungu",
-           "note": "울산 구군 분해 가능."},
-}
 # A1(엘리트결속)은 KOSIS에 직접 대응 통계 없음 → 국회/정당/공직 데이터는 별도 출처 필요.
+# 12변수 중 11개 라이브 수집(S1을 tfr/aged 2건으로 분해하므로 테이블은 12개).
 LAMBDA12_UNMAPPED = ["A1(엘리트결속) — KOSIS 미대응"]
 
 
@@ -174,7 +189,6 @@ def main():
 
     result = {
         "_updated": now,
-        "_candidates": LAMBDA12_CANDIDATES,
         "_unmapped": LAMBDA12_UNMAPPED,
         "_region": {"ulsan_sido": ULSAN_SIDO, "ulsan_gu": ULSAN_GU.split()},
         "summary": summary,
