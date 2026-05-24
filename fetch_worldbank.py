@@ -38,7 +38,7 @@ WB_INDICATORS = {
     "trade_openness":    "NE.TRD.GNFS.ZS",     # 무역개방도 (%)
 
     # C₁ 기후취약 / C₂ 환경
-    "co2_per_capita":    "EN.ATM.CO2E.PC",     # CO₂/인 (톤)
+    "co2_per_capita":    "EN.GHG.CO2.PC.CE.AR5",     # CO₂/인 (톤)
     "forest_area":       "AG.LND.FRST.ZS",     # 산림면적비율 (%)
     "renewable_energy":  "EG.FEC.RNEW.ZS",     # 재생에너지비율 (%)
     "pm25":              "EN.ATM.PM25.MC.M3",   # PM2.5 (μg/m³)
