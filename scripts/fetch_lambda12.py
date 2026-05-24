@@ -75,11 +75,12 @@ LAMBDA12_TABLES = [
      "note": "DT_132004_A002는 전 칸 '-'(빈 표)라 폐기. DT_13204_A0400(전국)=실데이터, 분기전용. "
              "T001=발생건수, objL1=01(죄종 총계). 연간 범죄발생률=4개분기 합산÷인구×10만. 울산청은 DT_13204_A0407."},
 
-    {"var": "G2", "label": "수출액(국가별)", "scope": "national",
+    {"var": "G2", "label": "수출액(전국 계)", "scope": "national",
      "params": {"method": "getList", "apiKey": KOSIS_KEY, "format": "json", "jsonVD": "Y",
-                "orgId": "360", "tblId": "DT_1R11006_FRM101", "itmId": "ALL",
-                "objL1": "ALL", "prdSe": "Y", "newEstPrdCnt": RECENT_N},
-     "note": "무역통계 국가별 수출·수입액. 수출증가율은 전년대비 계산 필요."},
+                "orgId": "360", "tblId": "DT_1R11006_FRM101", "itmId": "13103103829T1",
+                "objL1": "13102103829E.00", "prdSe": "Y", "newEstPrdCnt": RECENT_N},
+     "note": "⚠️ objL1=ALL은 248개국 전부 → 전국 계는 '13102103829E.00'(검증 2026-05-24, 2025 $683B). "
+             "itmId=13103103829T1(수출액)로 고정해 수입액(T2) 혼입 차단. 수출증가율은 전년대비 계산 필요."},
 
     {"var": "C2", "label": "초미세먼지 PM2.5(도시별)", "scope": "sido",
      "params": {"method": "getList", "apiKey": KOSIS_KEY, "format": "json", "jsonVD": "Y",
