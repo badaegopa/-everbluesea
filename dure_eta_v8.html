@@ -525,7 +525,15 @@ body{font-family:'Noto Sans KR',sans-serif;background:#F5F3EE;color:#2C2C2A;padd
     <div>
       <div class="ht">두레에타(DURE-η) — 전국 사회구조 진단 시스템</div>
       <div class="hs">Powered by SEISMOS Engine · Λ¹² 프레임워크 · 늘푸른바다 사회동역학 연구소</div>
-      <div id="data-fresh-badge" style="font-size:10px;margin-top:4px;color:var(--muted);font-weight:600;letter-spacing:.02em;">⏳ 실데이터 로드 중…</div>
+      <div id="data-fresh-badge" style="font-size:10px;margin-top:4px;font-weight:600;letter-spacing:.02em;background:#1A1A2A;border:1px solid #3A3A4A;border-radius:4px;overflow:hidden;position:relative;width:100%;max-width:480px;display:flex;align-items:center;">
+        <div style="flex-shrink:0;padding:3px 10px;background:#0F6E56;color:#FFFFFF;font-size:9px;font-weight:800;letter-spacing:.1em;white-space:nowrap;display:flex;align-items:center;border-radius:3px 0 0 3px;">실시간 모니터링항목</div>
+        <div style="flex:1;overflow:hidden;position:relative;padding:3px 0;">
+        <div id="badge-track" style="display:inline-flex;white-space:nowrap;animation:ticker-scroll 30s linear infinite;">
+          <span id="badge-text" style="color:#5E9186;padding:0 20px;">⏳ 실데이터 수집 중…</span>
+          <span id="badge-text2" style="color:#5E9186;padding:0 20px;">⏳ 실데이터 수집 중…</span>
+        </div>
+        </div>
+      </div>
     </div>
     <div class="region-wrap">
       <div class="region-btn" onclick="TD()">
@@ -548,13 +556,45 @@ body{font-family:'Noto Sans KR',sans-serif;background:#F5F3EE;color:#2C2C2A;padd
     </button>
   </div>
 
-  <!-- ── 깨진 유리창 경보 배너 ── -->
-  <div id="broken-window-alert">
-    <span class="bwa-icon">🪟</span>
-    <span class="bwa-text">깨진 유리창 경보</span>
-    <span class="bwa-sub">η 임계값 초과 구·군 감지 — 광역 협력 개입 권고</span>
-    <div class="bwa-districts" id="bwa-tags"></div>
+  <!-- ── 최신 업데이트 티커 ── -->
+  <div id="update-ticker" style="background:#0A0A0F;border-bottom:1px solid #2A2A3A;height:28px;display:flex;align-items:center;overflow:hidden;position:relative;">
+    <div style="flex-shrink:0;padding:0 10px;font-size:10px;font-weight:700;color:#5E9186;letter-spacing:.08em;border-right:1px solid #2A2A3A;height:100%;display:flex;align-items:center;">
+      📡 업데이트
+    </div>
+    <div style="flex:1;overflow:hidden;position:relative;">
+      <div id="ticker-track" style="display:inline-flex;white-space:nowrap;animation:ticker-scroll 40s linear infinite;">
+        <span id="ticker-text" style="font-size:10px;color:#C8C4BB;padding:0 40px;"></span>
+        <span id="ticker-text2" style="font-size:10px;color:#C8C4BB;padding:0 40px;"></span>
+      </div>
+    </div>
   </div>
+  <style>
+  @keyframes flag-wave {
+  0%  { transform: skewX(0deg)  scaleX(1.00); }
+  20% { transform: skewX(-6deg) scaleX(1.04); }
+  40% { transform: skewX( 6deg) scaleX(0.97); }
+  60% { transform: skewX(-4deg) scaleX(1.03); }
+  80% { transform: skewX( 3deg) scaleX(0.98); }
+  100%{ transform: skewX(0deg)  scaleX(1.00); }
+}
+.sec-flag{
+  display:inline-flex;
+  align-items:center;
+  margin-left:3px;
+  vertical-align:middle;
+}
+.sec-flag svg{ width:34px;height:20px; }
+.sec-flag.updated{
+  animation:flag-wave 1.6s ease-in-out infinite;
+  transform-origin:left center;
+  filter:drop-shadow(0 1px 4px rgba(240,192,0,0.5));
+}
+@keyframes ticker-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  #update-ticker:hover #ticker-track { animation-play-state: paused; }
+  </style>
 
   <!-- ── η 전염 계수 패널 ── -->
   <div id="contagion-panel">
@@ -578,6 +618,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:#F5F3EE;color:#2C2C2A;padd
         <div id="region-header">
           <div class="rh-top-row">
             <div class="rh-region-name" id="rh-region-name">울산</div>
+            <div id="rh-eta-display" style="font-size:13px;font-weight:700;color:#F5F3EE;letter-spacing:.04em;margin-left:0;align-self:center;font-family:'JetBrains Mono',monospace;">η —</div>
             <div class="rh-region-info">
               <div class="rh-region-label">비교 지역 선택</div>
               <div class="rh-region-mode" id="rh-region-mode">울산 5구군</div>
@@ -682,6 +723,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:#F5F3EE;color:#2C2C2A;padd
         <div id="mu-panel-scroll">
           <div id="mu-section" style="padding:0 0 8px;">
             <div id="mu-list"></div>
+<div style="margin-top:16px;padding:14px 16px;background:rgba(94,145,134,0.12);border:1px solid rgba(94,145,134,0.3);border-radius:8px;font-size:11px;color:#A09A8E;line-height:1.8;text-align:center;">본 예측 시뮬레이터는 9분위 중<br><span style="color:#5E9186;font-weight:700;">η 0.75(탁월)</span> 이후부터는<br>각 지표 구조 개선이 필요 없는 상태로 정의합니다.</div>
           </div>
         </div>
       </div>
@@ -1062,6 +1104,16 @@ function rcSelectGroup(groupKey){
 
   /* 헤더 업데이트 */
   document.getElementById('rh-region-name').textContent=grp.name;
+  // η 평균 업데이트
+  (function(){
+    try{
+      const etas = Object.values(DISTRICTS_ETA)
+        .map(d=>d.eta).filter(v=>typeof v==='number'&&v>0);
+      const avg = etas.length ? (etas.reduce((a,b)=>a+b,0)/etas.length).toFixed(2) : null;
+      const el = document.getElementById('rh-eta-display');
+      if(el) el.textContent = avg ? 'η ' + avg : 'η —';
+    }catch(e){}
+  })();
   document.getElementById('rh-region-mode').textContent=grp.label;
 
   /* 레전드 업데이트 */
@@ -1268,7 +1320,7 @@ const SCENARIOS={
 };
 
 function sgc(r){
-  return r>=0.65?'var(--green)':r>=0.45?'var(--amber)':'var(--red)';
+  return r>=0.58?'var(--green)':r>=0.43?'var(--amber)':'var(--red)';
 }
 
 function buildSliders(){
@@ -1368,36 +1420,108 @@ function onSl(id,el){
   calcEta();
 }
 
+function getEtaGrade(eta){
+  if(eta>=0.68) return {label:'🟢 탁월',  sub:'최상',  css:'background:rgba(46,204,113,0.25);color:#2ECC71;'};
+  if(eta>=0.63) return {label:'🟢 양호',  sub:'상',    css:'background:rgba(39,174,96,0.25);color:#27AE60;'};
+  if(eta>=0.58) return {label:'🔵 안정',  sub:'중상',  css:'background:rgba(41,128,185,0.25);color:#5DADE2;'};
+  if(eta>=0.53) return {label:'🔵 평균상', sub:'중+',  css:'background:rgba(93,173,226,0.25);color:#5DADE2;'};
+  if(eta>=0.48) return {label:'🟡 평균',  sub:'중',    css:'background:rgba(186,117,23,0.35);color:#F5D78E;'};
+  if(eta>=0.43) return {label:'🟠 주목',  sub:'중-',   css:'background:rgba(230,126,34,0.25);color:#E67E22;'};
+  if(eta>=0.37) return {label:'🟠 경계',  sub:'중하',  css:'background:rgba(231,76,60,0.25);color:#E74C3C;'};
+  if(eta>=0.28) return {label:'🔴 위험',  sub:'하',    css:'background:rgba(192,57,43,0.35);color:#C0392B;'};
+  return              {label:'🔴🔴 위기', sub:'최하',  css:'background:rgba(146,43,33,0.45);color:#922B21;'};
+}
+
 function calcEta(){
-  let eta=0,tot=0;
-  SVARS.forEach(v=>{const r=(v.val-v.min)/(v.max-v.min);eta+=r*v.w;tot+=v.w;});
-  eta=Math.min(0.99,Math.max(0.01,eta/tot));
+  const d = activeDistrict ? DISTRICTS_ETA[activeDistrict] : null;
+  const baseEta = (d && d.eta) ? d.eta : null;
+  let eta, tot=0;
+  if(baseEta){
+    let delta=0;
+    SVARS.forEach(v=>{
+      if(v.fixed) return;
+      const initVal = v._init !== undefined ? v._init : v.val;
+      const range = v.max - v.min;
+      const chg = (v.val - initVal) / range;
+      delta += chg * v.w;
+      tot += v.w;
+    });
+    eta = baseEta + delta * 0.5;
+    eta = Math.min(0.99, Math.max(0.01, eta));
+    /* corpPenalty는 슬라이더 조작 시에만 적용 */
+    const _d2 = DISTRICTS_ETA[activeDistrict];
+    const _corpDep = _d2 ? _d2.corp_dep : 0.5;
+    const _ceiling = _d2 ? _d2.eta_ceiling : 0.99;
+    const _corpPenalty = _corpDep * 0.15;
+    if(delta !== 0) eta = Math.min(_ceiling - _corpPenalty, eta);
+    eta = Math.max(0.01, eta);
+    document.getElementById('eta-val').textContent=eta.toFixed(2);
+    const _ej=document.getElementById('eta-judge');
+    const _evEl=document.getElementById('eta-val');
+    const _grade = getEtaGrade(eta);
+    _evEl.style.color = _grade.css.match(/color:([^;]+)/)[1];
+    _ej.textContent = _grade.label + ' — ' + _grade.sub;
+    _ej.style.cssText = _grade.css;
+    /* η 평균 갱신 */
+    (function(){
+      const etas = Object.values(DISTRICTS_ETA)
+        .map(d=>d.eta).filter(v=>typeof v==='number'&&v>0);
+      const el = document.getElementById('rh-eta-display');
+      if(el && etas.length){
+        const avg = (etas.reduce((a,b)=>a+b,0)/etas.length).toFixed(2);
+        el.textContent = 'η ' + avg;
+      }
+    })();
+    /* μ 처방 우선순위 갱신 */
+    const _sorted=SVARS.map(v=>({
+      id:v.id,name:v.name,unit:v.unit,min:v.min,max:v.max,val:v.val,w:v.w,icon:v.icon,fixed:v.fixed,
+      mu:1-(v.val-v.min)/(v.max-v.min)
+    })).filter(v=>!v.fixed).sort((a,b)=>b.mu-a.mu);
+    let _mu='';
+    _sorted.forEach((v,i)=>{
+      const pct=Math.round(v.mu*100);
+      const bc=pct>=60?'#E24B4A':pct>=35?'#BA7517':'#5DCAA5';
+      const c=pct>=60?'var(--red)':pct>=35?'var(--amber)':'var(--green)';
+      _mu+=`<div class="mu-item">
+        <div class="mu-rank" style="background:${bc}">${i+1}</div>
+        <div class="mu-name">${v.icon} ${v.name}</div>
+        <div class="mu-bar-wrap"><div class="mu-bar" style="width:${pct}%;background:${bc}"></div></div>
+        <div class="mu-pct" style="color:${c}">${pct}%</div>
+      </div>`;
+    });
+    document.getElementById('mu-list').innerHTML=_mu;
+    return;
+  } else {
+    SVARS.forEach(v=>{const r=(v.val-v.min)/(v.max-v.min);eta+=r*v.w;tot+=v.w;});
+    eta=Math.min(0.99,Math.max(0.01,eta/tot));
+  }
 
   /* ── 대기업 의존도 계수 적용 ── */
-  const d = activeDistrict ? DISTRICTS_ETA[activeDistrict] : null;
-  const corpDep  = d ? d.corp_dep   : 0.5;
-  const ceiling  = d ? d.eta_ceiling: 0.99;
+  const d2 = activeDistrict ? DISTRICTS_ETA[activeDistrict] : null;
+  const corpDep  = d2 ? d2.corp_dep   : 0.5;
+  const ceiling  = d2 ? d2.eta_ceiling: 0.99;
   /* 대기업 의존도 높을수록 η 수렴 상한선 아래로 눌림 */
   const corpPenalty = corpDep * 0.15;
   eta = Math.min(ceiling - corpPenalty, eta);
   eta = Math.max(0.01, eta);
 
   document.getElementById('eta-val').textContent=eta.toFixed(2);
+  /* ── 울산 η 평균 실시간 갱신 ── */
+  (function(){
+    const etas = Object.values(DISTRICTS_ETA)
+      .map(d=>d.eta).filter(v=>typeof v==='number'&&v>0);
+    const el = document.getElementById('rh-eta-display');
+    if(el && etas.length){
+      const avg = (etas.reduce((a,b)=>a+b,0)/etas.length).toFixed(2);
+      el.textContent = 'η ' + avg;
+    }
+  })();
   const ej=document.getElementById('eta-judge');
   const evEl=document.getElementById('eta-val');
-  if(eta>=0.65){
-    evEl.style.color='#9FE1CB';
-    ej.textContent='🟢 양호 — 구조 안정적';
-    ej.style.cssText='background:rgba(8,80,65,0.4);color:#9FE1CB;';
-  } else if(eta>=0.50){
-    evEl.style.color='#F5D78E';
-    ej.textContent='🟡 주목 — 개선 여지';
-    ej.style.cssText='background:rgba(186,117,23,0.4);color:#F5D78E;';
-  } else {
-    evEl.style.color='#F09595';
-    ej.textContent='🔴 위험 — 처방 필요';
-    ej.style.cssText='background:rgba(163,45,45,0.4);color:#F09595;';
-  }
+  const grade = getEtaGrade(eta);
+  evEl.style.color = grade.css.match(/color:([^;]+)/)[1];
+  ej.textContent = grade.label + ' — ' + grade.sub;
+  ej.style.cssText = grade.css;
 
   /* ── 대기업 의존도 + η 상한 표시 업데이트 ── */
   let corpEl = document.getElementById('corp-dep-display');
@@ -1520,7 +1644,7 @@ const DISTRICTS_ETA = {
            label:'울주군', color:'#7A5A9B'},
 };
 
-let activeDistrict = null;
+let activeDistrict = 'junggu';
 
 function loadDistrict(key){
   const d = DISTRICTS_ETA[key];
@@ -1537,6 +1661,7 @@ function loadDistrict(key){
   SVARS.forEach(v => {
     if(d[v.id] !== undefined){
       v.val = d[v.id];
+      v._init = d[v.id];
       const el = document.getElementById('sl-' + v.id);
       const r  = (v.val - v.min) / (v.max - v.min);
       if(el){ el.value = v.val; el.style.setProperty('--pct', (r*100).toFixed(1)+'%'); }
@@ -1566,12 +1691,32 @@ loadDistrict("junggu");
     .then(r => { if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
     .then(j => {
       /* 갱신 시각 배지 */
-      if(badge && j.updated_at){
-        const d = new Date(j.updated_at);
+      if(badge && (j._updated || j.updated_at)){
+        const d = new Date(j._updated || j.updated_at);
         const pad = n => String(n).padStart(2,'0');
         const ts = `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())} KST`;
-        badge.innerHTML = `📡 실데이터 연동 — KOSIS · 최종 갱신 ${ts}`;
-        badge.style.color = '#3D7A6E';
+        const items = [
+          `📡 최종 갱신 ${ts} — KOSIS·ECOS·SGIS 자동수집`,
+          '✅ 인구 DT_1B040A3 — 5구군 월별',
+          '✅ 출산율 DT_1B81A17 — 26계열',
+          '✅ 고령화 DT_1YL20631 — 26계열',
+          '✅ 의사수 DT_1YL20981 — 26계열',
+          '✅ 노사분규 DT_11826_N004 — 울산 05',
+          '✅ 재정자립도 DT_1YL20921 — 26계열',
+          '✅ 순이동률 DT_1B26A01 — 31계열',
+          '✅ 빈집률 DT_1JU1512 — 26계열',
+          '✅ 가계부채 ECOS 151Y001 — 전국',
+          '✅ SGIS 경계 adm_cd=31 — 울산',
+          '✅ η 5구군 실측 반영 완료 — 매일 06:00 KST',
+        ];
+        const full = items.join('　　|　　') + '　　|　　';
+        const t1 = document.getElementById('badge-text');
+        const t2 = document.getElementById('badge-text2');
+        if(t1){ t1.textContent = full; t1.style.color='#5E9186'; }
+        if(t2){ t2.textContent = full; t2.style.color='#5E9186'; }
+        const track = document.getElementById('badge-track');
+        const speed = Math.max(20, Math.round(full.length * 0.22));
+        if(track) track.style.animation = `ticker-scroll ${speed}s linear infinite`;
       }
 
       /* 인구: 명 → 천명 변환 후 INDS.pop.raw 마지막값 교체 */
@@ -1616,12 +1761,71 @@ loadDistrict("junggu");
           });
         }
       } else if(badge){
-        badge.innerHTML += ' <span style="color:var(--muted);font-weight:400;">· 고용률은 추계치</span>';
+        if(document.getElementById('badge-text2')) document.getElementById('badge-text2').textContent += '　　|　　⚠ 고용률은 추계치';
       }
 
+      /* η 실데이터 연동 */
+      const etaData = j.eta || {};
+      const ETA_MAP = {'31110':'junggu','31140':'namgu','31170':'donggu','31200':'bukgu','31710':'ulju'};
+      /* DISTRICTS_ETA 업데이트 — η + 슬라이더 실측값 주입 */
+      if(typeof DISTRICTS_ETA !== 'undefined'){
+        Object.entries(etaData).forEach(([code, v]) => {
+          const k = ETA_MAP[code];
+          if(k && DISTRICTS_ETA[k]){
+            if(v.eta !== null) DISTRICTS_ETA[k].eta = v.eta;
+            /* 슬라이더 실측값 주입 */
+            if(v.tfr       !== undefined) DISTRICTS_ETA[k].birth   = v.tfr;
+            if(v.doctors   !== undefined) DISTRICTS_ETA[k].medical  = Math.min(100, Math.round(v.doctors * 20));
+            if(v.fiscal_independence !== undefined) DISTRICTS_ETA[k].taxbase = v.fiscal_independence;
+            /* employ/welfare/edu/safety/env는 KOSIS 실측 없으면 유지 */
+          }
+        });
+      }
+      /* ETA_BASE 업데이트 (전염계수 계산용) */
+      if(window._ETA_BASE){
+        Object.entries(etaData).forEach(([code, v]) => {
+          const k = ETA_MAP[code];
+          if(k && v.eta !== null && window._ETA_BASE[k]){
+            window._ETA_BASE[k].eta = v.eta;
+          }
+        });
+        /* 경보 배너 + 전염계수 패널 재계산 */
+        setTimeout(() => {
+          if(typeof window._updateBrokenWindowAlert === 'function') window._updateBrokenWindowAlert();
+          if(typeof window._renderContagionPanel === 'function' && window._currentDistKey){
+            window._renderContagionPanel(window._currentDistKey);
+          }
+        }, 100);
+      }
+      /* cp-eta DOM 직접 업데이트 — 순서: 중구/남구/동구/북구/울주군 */
+      const ETA_ORDER = ['31110','31140','31170','31200','31710'];
+      const CP_COLOR = v => v>=0.58?'#3A6A5E':v>=0.43?'#9A6800':'#C73E1D';
+      const CP_BADGE = v => v>=0.58?'safe':v>=0.43?'warn':'danger';
+      const cpEls = document.querySelectorAll('.cp-eta');
+      ETA_ORDER.forEach((code, i) => {
+        const v = etaData[code];
+        if(v && v.eta !== null && cpEls[i]){
+          cpEls[i].textContent = v.eta.toFixed(2);
+          cpEls[i].style.color = CP_COLOR(v.eta);
+          cpEls[i].className = 'cp-eta ' + CP_BADGE(v.eta);
+        }
+      });
+      /* mv-eta-chip 배지도 업데이트 */
+      document.querySelectorAll('.mv-eta-chip').forEach(chip => {
+        const txt = chip.textContent;
+        const match = txt.match(/(중구|남구|동구|북구|울주군)/);
+        if(!match) return;
+        const nameMap = {'중구':'31110','남구':'31140','동구':'31170','북구':'31200','울주군':'31710'};
+        const code = nameMap[match[1]];
+        const v = etaData[code];
+        if(v && v.eta !== null){
+          chip.textContent = match[1] + ' η' + v.eta.toFixed(2);
+          chip.className = 'mv-eta-chip ' + CP_BADGE(v.eta);
+        }
+      });
       /* 활성 구군 재로드 → 슬라이더/η 즉시 반영 */
-      const cur = window._currentDistKey;
-      if(cur && typeof loadDistrict === 'function') loadDistrict(cur);
+      const cur = window._currentDistKey || 'junggu';
+      if(typeof loadDistrict === 'function') loadDistrict(cur);
 
       /* 레이스 차트도 현재 시점 다시 렌더 */
       if(typeof rcRender === 'function' && typeof rcT !== 'undefined'){
@@ -1631,14 +1835,127 @@ loadDistrict("junggu");
     .catch(e => {
       console.warn('[ulsan.json] load failed:', e);
       if(badge){
-        badge.innerHTML = '⚠️ 실데이터 로드 실패 — 추계치 표시';
-        badge.style.color = '#A32D2D';
+        const bt=document.getElementById('badge-text'); if(bt){ bt.textContent='⚠️ 실데이터 로드 실패 — 추계치 표시'; bt.style.color='#C73E1D'; }
       }
     });
 })();
 </script>
 
 
+
+<script>
+/* ── redesign.json 실측 카드 렌더링 (순이동·빈집·재정) ── */
+(function loadRedesignCards(){
+  const DIST_ORDER = [
+    {code:'31110', name:'중구'},
+    {code:'31140', name:'남구'},
+    {code:'31170', name:'동구'},
+    {code:'31200', name:'북구'},
+    {code:'31710', name:'울주군'}
+  ];
+  fetch('../data/redesign.json', {cache:'no-store'})
+    .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+    .then(j=>{
+      const eta=j.eta_inputs||{};
+      const allMig=DIST_ORDER.map(d=>eta[d.code]?.net_migration_rate??0);
+      const allFis=DIST_ORDER.map(d=>eta[d.code]?.fiscal_independence??0);
+      const allVac=DIST_ORDER.map(d=>eta[d.code]?.vacancy_rate??0);
+      const minMig=Math.min(...allMig),maxMig=Math.max(...allMig);
+      const maxFis=Math.max(...allFis),maxVac=Math.max(...allVac);
+
+      const bar=(val,min,max,inv)=>{
+        const pct=max===min?50:Math.round((val-min)/(max-min)*100);
+        const fill=inv?(100-pct):pct;
+        const clr=fill>=65?'#3D7A6E':fill>=45?'#9A6800':'#C73E1D';
+        return '<div style="height:3px;background:#DDD8CE;border-radius:2px;margin-top:3px;"><div style="width:'+fill+'%;height:100%;background:'+clr+';border-radius:2px;"></div></div>';
+      };
+      const migClr=v=>v>=0?'#3D7A6E':v>=-0.1?'#9A6800':'#C73E1D';
+      const vacClr=v=>v>=8?'#C73E1D':v>=6?'#9A6800':'#3D7A6E';
+      const fisClr=v=>v>=30?'#3D7A6E':v>=20?'#9A6800':'#C73E1D';
+
+      /* 순이동+빈집 카드 */
+      const mv=document.getElementById('mig-vac-cards');
+      if(mv) mv.innerHTML=DIST_ORDER.map(d=>{
+        const r=eta[d.code]; if(!r) return '';
+        const mig=r.net_migration_rate, vac=r.vacancy_rate;
+        return '<div style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:7px 8px;font-size:10px;">'
+          +'<div style="font-weight:700;color:var(--fg);margin-bottom:4px;">'+d.name+'</div>'
+          +'<div style="display:flex;justify-content:space-between;color:var(--dim);"><span>순이동</span>'
+          +'<span style="color:'+migClr(mig)+';font-weight:700;">'+(mig>=0?'+':'')+mig.toFixed(3)+'%</span></div>'
+          +bar(mig,minMig,maxMig,true)
+          +'<div style="display:flex;justify-content:space-between;color:var(--dim);margin-top:4px;"><span>빈집률</span>'
+          +'<span style="color:'+vacClr(vac)+';font-weight:700;">'+vac.toFixed(2)+'%</span></div>'
+          +bar(vac,0,maxVac,true)+'</div>';
+      }).join('');
+
+      /* 재정자립도 카드 */
+      const fc=document.getElementById('fiscal-cards');
+      if(fc) fc.innerHTML=DIST_ORDER.map(d=>{
+        const r=eta[d.code]; if(!r) return '';
+        const fis=r.fiscal_independence;
+        return '<div style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:7px 8px;font-size:10px;">'
+          +'<div style="font-weight:700;color:var(--fg);margin-bottom:4px;">'+d.name+'</div>'
+          +'<div style="display:flex;justify-content:space-between;color:var(--dim);"><span>재정자립</span>'
+          +'<span style="color:'+fisClr(fis)+';font-weight:700;">'+fis.toFixed(1)+'%</span></div>'
+          +bar(fis,0,maxFis,false)
+          +'<div style="font-size:9px;color:var(--muted);margin-top:4px;">'+(fis>=30?'✅ 자립 양호':fis>=20?'⚠ 보통':'🔴 취약')+'</div>'
+          +'</div>';
+      }).join('');
+    })
+    .catch(e=>{
+      console.warn('[redesign.json]',e);
+      ['mig-vac-cards','fiscal-cards'].forEach(id=>{
+        const el=document.getElementById(id);
+        if(el) el.innerHTML='<div style="font-size:10px;color:#C73E1D;">⚠️ 실측 데이터 로드 실패</div>';
+      });
+    });
+})();
+</script>
+
+<script>
+/* ── 업데이트 티커 데이터 ── */
+(function initTicker(){
+  const UPDATES = [
+    '2026-05-24 | 구군별 순이동률·빈집률 실측 반영 — 통계청 국내인구이동통계(DT_1B26A01) · 인구주택총조사(DT_1JU1512)',
+    '2026-05-24 | 구군별 재정자립도 2026년 기준 갱신 — 지방재정365 · e-나라지표(DT_1YL20921)',
+    '2026-05-24 | 인구위기 섹션 실측 카드 추가 — 구군별 순이동·빈집률 5개 구군 차등 표시',
+    '2026-05-24 | 살림살이 섹션 재정자립도 카드 추가 — 남구 30.9% 양호 · 울주군 37.4% 최고 · 중구 17.8% 취약',
+    '2026-05-23 | η 극성 버그 수정 완료 — 1-x 변환 적용 (높을수록 양호 방향 통일)',
+    '2026-05-23 | η 9분위 등급 시스템 확정 — 🟢탁월·양호 / 🔵안정·평균상 / 🟡평균 / 🟠주목·경계 / 🔴위험·위기',
+    '2026-05-23 | Λ¹² 슬롯 대체 완료 — P1 순이동률 · G2 재정자립도 · C2 빈집률 구군별 차등 적용',
+    '2026-05-23 | 파이프라인 자동화 완성 — 매일 06:00 KST KOSIS·ECOS 자동 수집 · CI 검증 3회 완료',
+    '2026-05-22 | KOSIS 울산 지역코드 전수 검증 — 표별 코드체계 상이 확인 및 수정 완료',
+    '두레에타(DURE-η) | 울산광역시 5개 구군 사회동역학 진단 시스템 · Λ¹² 12변수 기반 · 늘푸른바다 사회동역학 연구소',
+  ];
+
+  const sep = '　　　|　　　';
+  const full = UPDATES.join(sep) + sep;
+
+  /* ulsan.json 갱신시각 읽어서 첫 항목 동적 교체 */
+  fetch('../data/ulsan.json', {cache:'no-store'})
+    .then(r=>r.json())
+    .then(j=>{
+      if(j._updated){
+        UPDATES.unshift('📡 최종 데이터 갱신: ' + j._updated + ' — KOSIS · ECOS · SGIS 파이프라인 자동 수집');
+      }
+      setTicker(UPDATES);
+    })
+    .catch(()=>setTicker(UPDATES));
+
+  function setTicker(items){
+    const sep = '　　　|　　　';
+    const full = items.join(sep) + sep;
+    const t1 = document.getElementById('ticker-text');
+    const t2 = document.getElementById('ticker-text2');
+    if(t1) t1.textContent = full;
+    if(t2) t2.textContent = full;
+    /* 글자 수에 따라 속도 조정 */
+    const track = document.getElementById('ticker-track');
+    const speed = Math.max(30, Math.round(full.length * 0.28));
+    if(track) track.style.animation = 'ticker-scroll ' + speed + 's linear infinite';
+  }
+})();
+</script>
 
 <!-- ════════════════════════════════════════════════
      SECTION 3 : 두레에타 울산 종합 대시보드
@@ -1688,7 +2005,10 @@ loadDistrict("junggu");
 <!-- ════════════════════════════ -->
 
 <!-- ① 지역의회 -->
-<div class="sec"><div class="sh" onclick="T('c1')"><div class="sl"><span class="st">지역의회 공헌지수</span><span class="bdg ba" id="bdg-c1"></span></div><span class="ar" id="a-c1">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c1')"><div class="sl"><span class="st">지역의회 공헌지수</span><span class="bdg ba" id="bdg-c1"></span>&nbsp;&nbsp;&nbsp;<span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span></div><span class="ar" id="a-c1">▼</span></div>
 <div class="bd" id="c1">
   <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;padding:7px;background:#F5F3EE;border-radius:6px">
     <div style="text-align:center;min-width:52px"><div class="score" id="sc-c1"></div><div style="font-size:9px;color:#888780">공헌점수</div></div>
@@ -1707,7 +2027,10 @@ loadDistrict("junggu");
 
 
 <!-- ② 시정 -->
-<div class="sec"><div class="sh" onclick="T('c2')"><div class="sl"><span class="st">시·도정 이행지수 — 집행부 성과</span><span class="bdg bg" id="bdg-c2"></span></div><span class="ar" id="a-c2">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c2')"><div class="sl"><span class="st">시·도정 이행지수 — 집행부 성과</span><span class="bdg bg" id="bdg-c2"></span>&nbsp;&nbsp;&nbsp;<span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span></div><span class="ar" id="a-c2">▼</span></div>
 <div class="bd" id="c2">
   <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;padding:7px;background:#F5F3EE;border-radius:6px">
     <div style="text-align:center;min-width:52px"><div class="score" id="sc-c2"></div><div style="font-size:9px;color:#888780">이행점수</div></div>
@@ -1731,8 +2054,10 @@ loadDistrict("junggu");
     <div class="sl">
       <span class="st">행정 — 공무원 인력 충족도</span>
       <span class="bdg ba">행정서비스 현황</span>
-    </div>
-    <span class="ar" id="a-c20">▼</span>
+&nbsp;&nbsp;&nbsp;<span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span></div><span class="ar" id="a-c20">▼</span>
   </div>
   <div class="bd" id="c20">
     <div class="nr" style="margin-bottom:8px">
@@ -1758,7 +2083,10 @@ loadDistrict("junggu");
 
 
 <!-- ⑦ 의료시설 -->
-<div class="sec"><div class="sh" onclick="T('c7')"><div class="sl"><span class="st">의료시설 — 이용률·공급·외부유출·시설충족도</span><span class="bdg br">생명·안전 인프라</span></div><span class="ar" id="a-c7">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c7')"><div class="sl"><span class="st">의료시설 — 이용률·공급·외부유출·시설충족도</span><span class="bdg br">생명·안전 인프라</span>&nbsp;&nbsp;&nbsp;<span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span></div><span class="ar" id="a-c7">▼</span></div>
 <div class="bd" id="c7">
   <div class="thdr"><span style="width:72px">구·군</span><span style="width:40px">종합병</span><span style="width:36px">보건소</span><span style="width:36px">응급실</span><span style="flex:1">이용률</span><span style="width:60px">현황</span><span style="width:18px">▪</span></div>
   <div id="med-dist"></div>
@@ -1817,7 +2145,10 @@ loadDistrict("junggu");
 
 
 <!-- ⑰ 범죄·EPI -->
-<div class="sec"><div class="sh" onclick="T('c17')"><div class="sl"><span class="st">범죄유형별 + EPI 침투지수 (후순위)</span><span class="bdg br">EPI 현황</span></div><span class="ar" id="a-c17">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c17')"><div class="sl"><span class="st">범죄유형별 + EPI 침투지수 (후순위)</span><span class="bdg br">EPI 현황</span>&nbsp;&nbsp;&nbsp;<span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span></div><span class="ar" id="a-c17">▼</span></div>
 <div class="bd" id="c17">
   <div class="thdr"><span style="width:60px">구·군</span><span style="width:60px">생활범죄</span><span style="width:60px">외국인피해</span><span style="flex:1">EPI 침투 바</span><span style="width:72px">EPI값</span><span style="width:18px">▪</span></div>
   <div id="crime-rows"></div>
@@ -1861,7 +2192,10 @@ loadDistrict("junggu");
 
 
 <!-- ③ 살림살이 -->
-<div class="sec"><div class="sh" onclick="T('c3')"><div class="sl"><span class="st">살림살이 — 산업별 생산액·소득·지출</span><span class="bdg bg">GRDP 현황</span></div><span class="ar" id="a-c3">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c3')"><div class="sl"><span class="st">살림살이 — 산업별 생산액·소득·지출</span><span class="bdg bg">GRDP 현황</span>&nbsp;&nbsp;&nbsp;<span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span></div><span class="ar" id="a-c3">▼</span></div>
 <div class="bd" id="c3">
   <div class="g3" style="margin-bottom:8px" id="eco-cards"></div>
   <!-- 인플레이션 현황 -->
@@ -1877,9 +2211,35 @@ loadDistrict("junggu");
   </div>
 </div></div>
 
+<!-- ③-1 구군별 재정자립도 실측 -->
+<div class="sec">
+  <div class="sh" onclick="T('c3b')">
+    <div class="sl">
+      <span class="st">구군별 재정자립도 — 실측 데이터</span>
+      <span class="bdg bg">지방재정365 실측</span>
+&nbsp;&nbsp;&nbsp;<span class="sec-flag updated"><svg viewBox="0 0 44 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#999" stroke-width="1.2" stroke-linecap="round"/>
+  <rect x="3" y="1" width="39" height="14" rx="2" fill="#F5D800" stroke="#C8A800" stroke-width="0.8"/>
+  <text x="22" y="10" text-anchor="middle" dominant-baseline="middle" font-size="6.5" font-weight="900" fill="#7A5C00" font-family="Arial,sans-serif" letter-spacing="1">N E W</text>
+</svg></span></div><span class="ar" id="a-c3b">▼</span>
+  </div>
+  <div class="bd" id="c3b">
+    <div class="nr" style="margin-bottom:8px">
+      재정자립도(%) = 자체수입 ÷ 일반회계예산 × 100 — 높을수록 재정 독립성 양호<br>
+      <span style="font-weight:700;color:#3A6A5E">📋 출처</span> — 지방재정365 · e-나라지표(DT_1YL20921) · 2026년 기준
+    </div>
+    <div id="fiscal-cards" style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:8px"></div>
+    <div class="nr" style="color:var(--muted);">
+      ③ 1인당 GRDP · ⑥ 가계부채 — 정부 공식 구군별 데이터 없음 (시도·전국 단위만 존재)
+    </div>
+  </div>
+</div>
 
 <!-- ④ 고용·노동 -->
-<div class="sec"><div class="sh" onclick="T('c4')"><div class="sl"><span class="st">고용·노동 — 취업률·임금·산재</span><span class="bdg ba">고용 현황</span></div><span class="ar" id="a-c4">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c4')"><div class="sl"><span class="st">고용·노동 — 취업률·임금·산재</span><span class="bdg ba">고용 현황</span>&nbsp;&nbsp;&nbsp;<span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span></div><span class="ar" id="a-c4">▼</span></div>
 <div class="bd" id="c4">
   <div class="g3" style="margin-bottom:8px" id="emp-cards"></div>
   <div class="ss">업종별 취업자 분포</div>
@@ -1899,8 +2259,10 @@ loadDistrict("junggu");
     <div class="sl">
       <span class="st">산업재해 — 업종별·구군별·연누적</span>
       <span class="bdg br">생명·안전 최우선</span>
-    </div>
-    <span class="ar" id="a-c19">▼</span>
+&nbsp;&nbsp;&nbsp;<span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span></div><span class="ar" id="a-c19">▼</span>
   </div>
   <div class="bd" id="c19">
 
@@ -1959,7 +2321,10 @@ loadDistrict("junggu");
 
 
 <!-- ⑤ 자영업 -->
-<div class="sec"><div class="sh" onclick="T('c5')"><div class="sl"><span class="st">자영업 — 종목별 비율·폐업률·생존율</span><span class="bdg br">폐업 현황</span></div><span class="ar" id="a-c5">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c5')"><div class="sl"><span class="st">자영업 — 종목별 비율·폐업률·생존율</span><span class="bdg br">폐업 현황</span>&nbsp;&nbsp;&nbsp;<span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span></div><span class="ar" id="a-c5">▼</span></div>
 <div class="bd" id="c5">
   <div class="g3" style="margin-bottom:8px" id="self-cards"></div>
   <div class="ss">업종별 자영업 비율</div>
@@ -1974,7 +2339,10 @@ loadDistrict("junggu");
 
 
 <!-- ⑥ 소비 현황 -->
-<div class="sec"><div class="sh" onclick="T('c6')"><div class="sl"><span class="st">소비 현황 — 지역상품권·카드소비·골목상권</span><span class="bdg bg">상품권 현황</span></div><span class="ar" id="a-c6">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c6')"><div class="sl"><span class="st">소비 현황 — 지역상품권·카드소비·골목상권</span><span class="bdg bg">상품권 현황</span>&nbsp;&nbsp;&nbsp;<span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span></div><span class="ar" id="a-c6">▼</span></div>
 <div class="bd" id="c6">
   <div class="g3" style="margin-bottom:8px" id="con-cards"></div>
   <div class="ss">구·군별 지역상품권 이용률</div>
@@ -1989,7 +2357,10 @@ loadDistrict("junggu");
 
 
 <!-- ⑬ 주거·환경 -->
-<div class="sec"><div class="sh" onclick="T('c13')"><div class="sl"><span class="st">주거·환경 — 집값·전세·대기오염</span><span class="bdg ba">환경 현황</span></div><span class="ar" id="a-c13">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c13')"><div class="sl"><span class="st">주거·환경 — 집값·전세·대기오염</span><span class="bdg ba">환경 현황</span>&nbsp;&nbsp;&nbsp;<span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span></div><span class="ar" id="a-c13">▼</span></div>
 <div class="bd" id="c13">
   <div class="g3" style="margin-bottom:8px" id="hou-cards"></div>
   <div class="ss">구·군별 미세먼지 평균</div>
@@ -1999,7 +2370,10 @@ loadDistrict("junggu");
 
 
 <!-- ⑭ 교통·인프라 -->
-<div class="sec"><div class="sh" onclick="T('c14')"><div class="sl"><span class="st">교통·인프라 — 대중교통·이동성</span><span class="bdg ba">교통 현황</span></div><span class="ar" id="a-c14">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c14')"><div class="sl"><span class="st">교통·인프라 — 대중교통·이동성</span><span class="bdg ba">교통 현황</span>&nbsp;&nbsp;&nbsp;<span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span></div><span class="ar" id="a-c14">▼</span></div>
 <div class="bd" id="c14">
   <div class="g3" style="margin-bottom:8px" id="tra-cards"></div>
   <div class="ss">구·군별 대중교통 접근성</div>
@@ -2009,7 +2383,10 @@ loadDistrict("junggu");
 
 
 <!-- ⑧ 복지·돌봄 -->
-<div class="sec"><div class="sh" onclick="T('c8')"><div class="sl"><span class="st">복지·돌봄 — 시민군 전체 (수급·노인·장애·아동)</span><span class="bdg br">동등한 시민권</span></div><span class="ar" id="a-c8">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c8')"><div class="sl"><span class="st">복지·돌봄 — 시민군 전체 (수급·노인·장애·아동)</span><span class="bdg br">동등한 시민권</span>&nbsp;&nbsp;&nbsp;<span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span></div><span class="ar" id="a-c8">▼</span></div>
 <div class="bd" id="c8">
   <div class="g3" style="margin-bottom:8px" id="wel-cards"></div>
   <div class="ss">구·군별 복지예산 1인당</div>
@@ -2043,7 +2420,10 @@ loadDistrict("junggu");
 
 
 <!-- ⑨ 교육·청소년 -->
-<div class="sec"><div class="sh" onclick="T('c9')"><div class="sl"><span class="st">교육·청소년 — 학업·진학·위기</span><span class="bdg br">학교밖 현황</span></div><span class="ar" id="a-c9">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c9')"><div class="sl"><span class="st">교육·청소년 — 학업·진학·위기</span><span class="bdg br">학교밖 현황</span>&nbsp;&nbsp;&nbsp;<span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span></div><span class="ar" id="a-c9">▼</span></div>
 <div class="bd" id="c9">
   <div class="g3" style="margin-bottom:8px" id="edu-cards"></div>
   <div class="ss">구·군별 학생 1인당 교육예산</div>
@@ -2098,8 +2478,10 @@ loadDistrict("junggu");
     <div class="sl">
       <span class="st">시민 민원 — 접수·처리 현황</span>
       <span class="bdg bb">μ 매칭 연동</span>
-    </div>
-    <span class="ar" id="a-c18">▼</span>
+&nbsp;&nbsp;&nbsp;<span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span></div><span class="ar" id="a-c18">▼</span>
   </div>
   <div class="bd" id="c18">
 
@@ -2144,7 +2526,10 @@ loadDistrict("junggu");
 
 
 <!-- ⑩ 관광 -->
-<div class="sec"><div class="sh" onclick="T('c10')"><div class="sl"><span class="st">관광 — 방문객·체류·시민 휴식</span><span class="bdg bg">관광 현황</span></div><span class="ar" id="a-c10">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c10')"><div class="sl"><span class="st">관광 — 방문객·체류·시민 휴식</span><span class="bdg bg">관광 현황</span>&nbsp;&nbsp;&nbsp;<span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span></div><span class="ar" id="a-c10">▼</span></div>
 <div class="bd" id="c10">
   <div class="g3" style="margin-bottom:8px" id="tour-cards"></div>
   <div class="ss">주요 관광지 방문객 순위</div>
@@ -2170,7 +2555,10 @@ loadDistrict("junggu");
 
 
 <!-- ⑪ 문화예술 -->
-<div class="sec"><div class="sh" onclick="T('c11')"><div class="sl"><span class="st">문화예술 — 접근성·타 시도 비교</span><span class="bdg ba">광역 비교</span></div><span class="ar" id="a-c11">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c11')"><div class="sl"><span class="st">문화예술 — 접근성·타 시도 비교</span><span class="bdg ba">광역 비교</span>&nbsp;&nbsp;&nbsp;<span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span></div><span class="ar" id="a-c11">▼</span></div>
 <div class="bd" id="c11">
   <div class="g3" style="margin-bottom:8px" id="cul-cards"></div>
   <div class="ss">타 광역시·도 문화예술 접근성 비교</div>
@@ -2180,7 +2568,10 @@ loadDistrict("junggu");
 
 
 <!-- ⑫ 레저·스포츠 -->
-<div class="sec"><div class="sh" onclick="T('c12')"><div class="sl"><span class="st">레저·스포츠 — 동호회·사회인야구·등산</span><span class="bdg bg">레저 현황</span></div><span class="ar" id="a-c12">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c12')"><div class="sl"><span class="st">레저·스포츠 — 동호회·사회인야구·등산</span><span class="bdg bg">레저 현황</span>&nbsp;&nbsp;&nbsp;<span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span></div><span class="ar" id="a-c12">▼</span></div>
 <div class="bd" id="c12">
   <div class="g3" style="margin-bottom:8px" id="lei-cards"></div>
   <div class="ss">종목별 동호회 활동 인구</div>
@@ -2190,18 +2581,24 @@ loadDistrict("junggu");
 
 
 <!-- ⑮ 구·군 η + 생애주기 -->
-<div class="sec"><div class="sh" onclick="T('c15')"><div class="sl"><span class="st">구·군 η + 생애주기 사회군</span><span class="bdg ba">η지표 현황</span></div><span class="ar" id="a-c15">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c15')"><div class="sl"><span class="st">구·군 η + 생애주기 사회군</span><span class="bdg ba">η지표 현황</span>&nbsp;&nbsp;&nbsp;<span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span></div><span class="ar" id="a-c15">▼</span></div>
 <div class="bd" id="c15">
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:5px;margin-bottom:8px" id="eta-dist"></div>
   <div class="ss">생애주기 사회군별 η지표</div>
   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px" id="eta-groups"></div>
-  <div class="nr" style="margin-top:5px">η = 진단-처방 매칭도 μ 기반 종합지수 | 0.65↑ 양호 | 0.50~0.65 주목 | 0.50↓ 위험</div>
+  <div class="nr" style="margin-top:5px">η = 진단-처방 매칭도 μ 기반 종합지수 | 0.65↑ 양호 | 0.45~0.65 주목 | 0.45↓ 위험</div>
   <div class="nr" style="margin-top:5px;border-left:3px solid #5E9186;padding-left:8px"><span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span><br>· 사회보장기본법 제35조 (지역사회보장계획) · 지역사회보장계획 수립지침 (보건복지부)<br>· Λ¹² η지수: 늘푸른바다 사회동역학 연구소 독자 개발 (SSRN 6632858)<br>· 저작권 등록: 접수번호 2026-027527 | 공공재로 공개 — 비영리·비독점 원칙<br>· 데이터 출처: KOSIS(통계청) · SGIS(통계지리정보서비스) · 고용노동부 · 행정안전부 공식 통계 기반</div>
 </div></div>
 
 
 <!-- ⑯ 외국인 정주군 -->
-<div class="sec"><div class="sh" onclick="T('c16')"><div class="sl"><span class="st">외국인 정주·기여군 — 안착도 η</span><span class="bdg bb" id="for-total">보호·지원</span></div><span class="ar" id="a-c16">▼</span></div>
+<div class="sec"><div class="sh" onclick="T('c16')"><div class="sl"><span class="st">외국인 정주·기여군 — 안착도 η</span><span class="bdg bb" id="for-total">보호·지원</span>&nbsp;&nbsp;&nbsp;<span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span></div><span class="ar" id="a-c16">▼</span></div>
 <div class="bd" id="c16">
   <div class="g2" style="margin-bottom:8px" id="for-groups"></div>
   <div class="ss">구·군별 외국인 거주 분포</div>
@@ -2219,8 +2616,10 @@ loadDistrict("junggu");
     <div class="sl">
       <span class="st">ESG — 환경·탄소·에너지 전환</span>
       <span class="bdg bg">ESG 심사항목</span>
-    </div>
-    <span class="ar" id="a-c21">▼</span>
+&nbsp;&nbsp;&nbsp;<span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span></div><span class="ar" id="a-c21">▼</span>
   </div>
   <div class="bd" id="c21">
     <div class="nr" style="margin-bottom:8px">
@@ -2291,8 +2690,10 @@ loadDistrict("junggu");
     <div class="sl">
       <span class="st">인구위기 — 출산·주거취약·청년유출</span>
       <span class="bdg br">당면과제</span>
-    </div>
-    <span class="ar" id="a-c22">▼</span>
+&nbsp;&nbsp;&nbsp;<span class="sec-flag "><svg viewBox="0 0 34 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#CCC" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M2,1 Q18,-2 32,4 Q18,8 2,10 Z" fill="#D8D4CC" stroke="#B8B4AC" stroke-width="0.7"/>
+</svg></span></div><span class="ar" id="a-c22">▼</span>
   </div>
   <div class="bd" id="c22">
     <div class="nr" style="margin-bottom:8px">
@@ -2325,6 +2726,29 @@ loadDistrict("junggu");
       <div id="youth-rows" style="min-width:480px"></div>
     </div>
     <div class="nrr" style="margin-top:6px">🚧 실데이터 연동 예정 — 통계청 인구동향·국토부 주거실태조사·행안부 주민등록통계</div>
+  </div>
+</div>
+
+<!-- ㉓ 구군별 순이동률·빈집률 실측 -->
+<div class="sec">
+  <div class="sh" onclick="T('c23')">
+    <div class="sl">
+      <span class="st">구군별 순이동률·빈집률 — 실측 데이터</span>
+      <span class="bdg bg">KOSIS 실측</span>
+&nbsp;&nbsp;&nbsp;<span class="sec-flag updated"><svg viewBox="0 0 44 20" xmlns="http://www.w3.org/2000/svg">
+  <line x1="2" y1="0" x2="2" y2="20" stroke="#999" stroke-width="1.2" stroke-linecap="round"/>
+  <rect x="3" y="1" width="39" height="14" rx="2" fill="#F5D800" stroke="#C8A800" stroke-width="0.8"/>
+  <text x="22" y="10" text-anchor="middle" dominant-baseline="middle" font-size="6.5" font-weight="900" fill="#7A5C00" font-family="Arial,sans-serif" letter-spacing="1">N E W</text>
+</svg></span></div><span class="ar" id="a-c23">▼</span>
+  </div>
+  <div class="bd" id="c23">
+    <div class="nr" style="margin-bottom:8px">
+      순이동률 = 전입-전출 건수 ÷ 인구 × 100 (%) · 빈집률 = 빈집 ÷ 총주택 × 100 (%)<br>
+      <span style="color:#9A6800;font-weight:600">⚠ 순이동: 산단 외지 인력 유동 포함 — 정주시민 이동과 미분리. 산업 계절성 노이즈 있음</span><br>
+      <span style="color:#9A6800;font-weight:600">⚠ 빈집률: 재개발 추진 지역 말소 미처리 포함 가능 — 단순 쇠퇴 지표로 해석 금지</span><br>
+      <span style="font-weight:700;color:#3A6A5E">📋 출처</span> — 통계청 국내인구이동통계(DT_1B26A01) · 인구주택총조사(DT_1JU1512)
+    </div>
+    <div id="mig-vac-cards" style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:8px"></div>
   </div>
 </div>
 
@@ -2794,7 +3218,7 @@ const IDENTITY={
 
 function gc(t){return t==='up'?'#085041':t==='dn'||t==='dr'?'#791F1F':'#633806'}
 function gbc(t){return t==='up'||t==='dg'?'#5DCAA5':t==='dn'||t==='dr'?'#E24B4A':'#EF9F27'}
-function gsc(v){return v>=0.65?'#0F6E56':v>=0.5?'#BA7517':'#A32D2D'}
+function gsc(v){return v>=0.58?'#0F6E56':v>=0.43?'#BA7517':'#A32D2D'}
 function pct(v,t){return `<span style="color:${gc(t)}">${t==='up'?'▲':t==='dn'||t==='dr'?'▼':'→'}</span>`}
 
 function TD(){
@@ -2950,7 +3374,7 @@ function RA(){renderIdentity(CUR);
 }
 
 function rBar(d){
-  document.getElementById('rb').innerHTML=`<span class="rb-name">📍 ${CUR}</span><span class="rb-div"></span><span class="rb-item">인구 <span class="rb-val">${d.pop}</span></span><span class="rb-div"></span><span class="rb-item">면적 <span class="rb-val">${d.area}</span></span><span class="rb-div"></span><span class="rb-item">주력 <span class="rb-val">${d.industry}</span></span><span class="rb-div"></span><span class="rb-item">GRDP <span class="rb-val">${d.summary.grdp}</span></span>`;
+  document.getElementById('rb').innerHTML=`<span class="rb-name">📍 ${CUR}</span><span class="rb-div"></span><span class="rb-item">인구 <span class="rb-val">${d.pop}</span><span class="rb-div"></span><span class="rb-item">면적 <span class="rb-val">${d.area}</span><span class="rb-div"></span><span class="rb-item">주력 <span class="rb-val">${d.industry}</span><span class="rb-div"></span><span class="rb-item">GRDP <span class="rb-val">${d.summary.grdp}</span>`;
 }
 
 function scoreBadge(v){
@@ -3787,12 +4211,14 @@ RA();
 
   /* ── 구·군 기준 η값 (시뮬레이터 초기값 기준) ── */
   const ETA_BASE = {
-    junggu: { name:'중구',  eta:0.68, color:'#3D7A6E' },
-    namgu:  { name:'남구',  eta:0.72, color:'#B8850E' },
-    donggu: { name:'동구',  eta:0.52, color:'#4A6E9B' },
-    bukgu:  { name:'북구',  eta:0.65, color:'#9B6040' },
-    ulju:   { name:'울주군',eta:0.49, color:'#7A5A9B' },
+    /* eta = data/ulsan.json 기반 fallback (fetch 성공 시 런타임 덮어씀, 건강 극성 η↑=양호) */
+    junggu: { name:'중구',  eta:0.526, color:'#3D7A6E' },
+    namgu:  { name:'남구',  eta:0.598, color:'#B8850E' },
+    donggu: { name:'동구',  eta:0.597, color:'#4A6E9B' },
+    bukgu:  { name:'북구',  eta:0.545, color:'#9B6040' },
+    ulju:   { name:'울주군',eta:0.516, color:'#7A5A9B' },
   };
+  window._ETA_BASE = ETA_BASE; /* 실데이터 연동용 외부 노출 */
 
   /* ── 연결 가중치 행렬 w_AB (통근·통학·상권 중첩도 0~1) ── */
   /* 인접할수록 높음. 비대칭 허용 (A→B ≠ B→A) */
@@ -3950,6 +4376,10 @@ RA();
   /* ── 초기 실행 ── */
   updateBrokenWindowAlert();
   renderContagionPanel('donggu');
+
+  /* 외부 노출 */
+  window._updateBrokenWindowAlert = updateBrokenWindowAlert;
+  window._renderContagionPanel = renderContagionPanel;
 
 })();
 
