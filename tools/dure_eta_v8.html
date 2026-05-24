@@ -1435,7 +1435,7 @@ function getEtaGrade(eta){
 function calcEta(){
   const d = activeDistrict ? DISTRICTS_ETA[activeDistrict] : null;
   const baseEta = (d && d.eta) ? d.eta : null;
-  let eta, tot=0;
+  let eta=0, tot=0;
   if(baseEta){
     let delta=0;
     SVARS.forEach(v=>{
