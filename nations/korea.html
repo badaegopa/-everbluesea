@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>두레에타 DURE-η — 대한민국 전국 사회동역학 대시보드</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F5F3EE; --green:#0F6E56; --green-lt:#5E9186; --txt-green:#3A6A5E;
+    --gold:#B8850E; --card:#FFFFFF; --border:#DDD8CE; --dim:#8A857B;
+    --safe:#3D7A6E; --warn:#BA7517; --danger:#A32D2D; --ink:#2C2C2A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--ink);
+       max-width:860px;margin:0 auto;padding:0 0 40px;font-size:13px;line-height:1.5;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+
+  /* ── 헤더 ── */
+  .hdr{background:var(--green);color:#fff;padding:14px 22px;display:flex;
+       justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid #0a5a46;}
+  .hdr-l{display:flex;flex-direction:column;gap:2px;}
+  .hdr-title{font-size:16px;font-weight:900;letter-spacing:.01em;}
+  .hdr-sub{font-size:10px;color:#9FD6C6;letter-spacing:.05em;}
+  .hdr-badge{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;
+       background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);
+       border-radius:6px;padding:5px 10px;color:#F0D080;white-space:nowrap;}
+
+  .wrap{padding:14px 16px;}
+
+  /* ── η 히어로 ── */
+  .eta-hero{background:#0F6E56;background:linear-gradient(135deg,#0F6E56,#13503f);
+       border-radius:12px;padding:20px 22px;color:#fff;margin-bottom:14px;
+       display:flex;align-items:center;gap:22px;flex-wrap:wrap;}
+  .eta-big{font-family:'JetBrains Mono',monospace;font-size:58px;font-weight:700;line-height:1;}
+  .eta-meta{display:flex;flex-direction:column;gap:6px;flex:1;min-width:200px;}
+  .eta-kicker{font-size:10px;color:#9FD6C6;letter-spacing:.1em;text-transform:uppercase;}
+  .eta-judge{font-size:20px;font-weight:900;}
+  .eta-gauge{height:9px;background:rgba(255,255,255,.16);border-radius:5px;overflow:hidden;position:relative;}
+  .eta-gauge i{position:absolute;top:0;left:0;height:100%;border-radius:5px;}
+  .eta-scale{display:flex;justify-content:space-between;font-size:9px;color:#7ABFB0;}
+  .eta-note{font-size:10.5px;color:#BFE3D8;}
+
+  /* ── 최대 위험 콜아웃 ── */
+  .callout{background:#FCEBEB;border:1px solid #efc9c9;border-left:4px solid var(--danger);
+       border-radius:8px;padding:11px 14px;margin-bottom:14px;font-size:12px;color:#791F1F;}
+  .callout b{font-weight:900;}
+
+  /* ── 섹션 제목 ── */
+  .sec-h{font-size:12px;font-weight:900;color:var(--txt-green);margin:18px 2px 8px;
+       letter-spacing:.02em;display:flex;align-items:center;gap:7px;}
+  .sec-h::before{content:'';width:4px;height:13px;background:var(--gold);border-radius:2px;}
+
+  /* ── 변수 카드 그리드 ── */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:9px;}
+  .vc{background:var(--card);border:1px solid var(--border);border-radius:9px;
+      padding:11px 13px;display:flex;flex-direction:column;gap:7px;}
+  .vc-top{display:flex;align-items:center;gap:8px;}
+  .vc-ico{font-size:17px;}
+  .vc-name{font-weight:700;font-size:12.5px;}
+  .vc-code{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--dim);
+       background:var(--bg);border-radius:4px;padding:1px 5px;margin-left:auto;}
+  .vc-val{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;color:var(--ink);}
+  .vc-val small{font-size:10px;color:var(--dim);font-weight:500;}
+  .vc-bar{height:7px;background:var(--bg);border-radius:4px;overflow:hidden;}
+  .vc-bar i{display:block;height:100%;border-radius:4px;}
+  .vc-foot{display:flex;justify-content:space-between;font-size:9.5px;color:var(--dim);}
+  .vc-risk{font-family:'JetBrains Mono',monospace;font-weight:700;}
+  .r-safe{color:var(--safe);} .r-warn{color:var(--warn);} .r-danger{color:var(--danger);}
+  .b-safe{background:var(--safe);} .b-warn{background:var(--warn);} .b-danger{background:var(--danger);}
+
+  /* ── 푸터 ── */
+  .ft{margin-top:22px;padding:14px 16px;background:#fff;border:1px solid var(--border);
+      border-radius:9px;font-size:10.5px;color:var(--dim);line-height:1.7;}
+  .ft b{color:var(--txt-green);}
+  .ft .eng{font-family:'JetBrains Mono',monospace;color:var(--gold);}
+  .src{font-size:9.5px;}
+  #status{font-size:9.5px;color:var(--dim);margin-top:4px;}
+  a{color:var(--txt-green);}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-l">
+    <div class="hdr-title">두레에타 DURE-η · 대한민국 전국</div>
+    <div class="hdr-sub">Λ¹² 12변수 사회동역학 진단 · 늘푸른바다 사회동역학 연구소</div>
+  </div>
+  <div class="hdr-badge">KOSIS 실측 연동</div>
+</div>
+
+<div class="wrap">
+
+  <!-- η 히어로 -->
+  <div class="eta-hero">
+    <div class="eta-big mono" id="eta-big">0.547</div>
+    <div class="eta-meta">
+      <div class="eta-kicker">전국 사회건강 지수 η &nbsp;(η↑ = 양호)</div>
+      <div class="eta-judge" id="eta-judge">🟡 주목</div>
+      <div class="eta-gauge"><i id="eta-gauge-fill"></i></div>
+      <div class="eta-scale"><span>0.50 위험</span><span>0.55 안정</span><span>1.0</span></div>
+      <div class="eta-note" id="eta-note">데이터 품질 100% · 12/12 변수 실측</div>
+    </div>
+  </div>
+
+  <!-- 최대 위험 콜아웃 -->
+  <div class="callout" id="callout">
+    <b>🔴 최대 위험: S1 인구구조압력</b> — 합계출산율 0.748 + 고령인구비율 21.2%.
+    저출생·고령화가 전국 η를 끌어내리는 단연 1순위 동인입니다.
+  </div>
+
+  <div class="sec-h">Λ¹² 12변수 위험 분해 <span style="font-weight:400;color:var(--dim);font-size:10px;">(위험도 높은 순)</span></div>
+  <div class="grid" id="grid"></div>
+
+  <!-- 푸터 -->
+  <div class="ft">
+    <div>Engine: <span class="eng">Λ¹² v9.14</span> · §33 BBD + §34 GEI + §35 NCI 기반 (SSRN 6632858) ·
+      η = 1 − Σ(riskᵥ × wᵥ) / Σwᵥ, 건강 극성</div>
+    <div class="src" style="margin-top:6px"><b>데이터:</b> KOSIS 통계청 OpenAPI (전국 objL1 코드 전수 메타 검증)
+      · 국회 의안정보 BillInfoService2(A1) · 출처 표·코드는 <span class="mono">scripts/fetch_national.py</span> NATIONAL_TABLES 참조</div>
+    <div class="src" style="margin-top:4px"><b>정규화 앵커:</b> NATIONAL_NORM — 전국 의미 기준
+      (P1=삶의 만족도, G2=수출증가율, C2=PM2.5 농도). 1차 추정치로 역사적 분포 재보정 여지 있음.</div>
+    <div id="status">갱신: — · 검증: —</div>
+  </div>
+
+</div>
+
+<script>
+/* ── Λ¹² 12변수 메타: 표시명·아이콘·축·단위포맷 ──────────────────
+   raw_values(JSON)에서 값을 읽어 표시. S1은 출산율+고령 복합, A1은 risk만.   */
+const VARS = [
+  {key:'P1', name:'민중분노지수',   ico:'😠', code:'사회통합', fmt:(r)=>fnum(r.P1,1)+' <small>/10 만족</small>'},
+  {key:'P2', name:'집단행동지수',   ico:'✊', code:'노사분규', fmt:(r)=>fnum(r.P2,0)+' <small>건</small>'},
+  {key:'A1', name:'엘리트결속지수', ico:'🏛️', code:'법안처리', fmt:(r,a1)=>fnum(a1,2)+' <small>처리율</small>'},
+  {key:'A2', name:'제도신뢰지수',   ico:'⚖️', code:'범죄발생', fmt:(r)=>fnum(r.A2,0)+' <small>건/분기</small>'},
+  {key:'E1', name:'경제불평등지수', ico:'💰', code:'순자산지니',fmt:(r)=>fnum(r.E1,3)+' <small>지니</small>'},
+  {key:'E2', name:'청년실업지수',   ico:'👔', code:'15-29세', fmt:(r)=>fnum(r.E2,1)+' <small>%</small>'},
+  {key:'S1', name:'인구구조압력',   ico:'👥', code:'출산·고령',fmt:(r)=>fnum(r.S1_tfr,3)+' <small>TFR · 고령 '+fnum(r.S1_aged,1)+'%</small>'},
+  {key:'S2', name:'정보통제지수',   ico:'📡', code:'인터넷',  fmt:(r)=>fnum(r.S2,1)+' <small>% 이용</small>'},
+  {key:'G1', name:'지정학리스크',   ico:'🛡️', code:'국방예산', fmt:(r)=>fnum(r.G1/10000,1)+' <small>조원</small>'},
+  {key:'G2', name:'외부충격지수',   ico:'🌐', code:'수출증가율',fmt:(r)=>(r.G2>=0?'+':'')+fnum(r.G2,2)+' <small>% YoY</small>'},
+  {key:'C1', name:'공공서비스접근', ico:'🏥', code:'의사수',  fmt:(r)=>fnum(r.C1,1)+' <small>명/천명</small>'},
+  {key:'C2', name:'환경사회압력',   ico:'🌫️', code:'PM2.5',  fmt:(r)=>fnum(r.C2,1)+' <small>㎍/㎥</small>'},
+];
+
+/* fetch 실패(file:// 등) 대비 fallback — data/national.json 2026-05-24 스냅샷 */
+const FALLBACK = {
+  _updated:'2026-05-24 (스냅샷)', _verified:'전국 objL1 코드 전수 메타 검증 2026-05-24',
+  eta:{ eta:0.547, data_quality:'100%',
+    raw_values:{P1:6.6,P2:123,A2:373083,E1:0.625,E2:6.1,S1_tfr:0.748,S1_aged:21.2,
+                S2:95,G1:594244,C1:3.3,G2:3.76,C2:15.92},
+    risk:{P1:0.35,P2:0.41,A1:0.5,A2:0.4327,E1:0.6944,E2:0.3154,S2:0.2105,
+          G1:0.5885,G2:0.5413,C1:0.2333,C2:0.364,S1:0.8117}}
+};
+
+function fnum(v,d){ if(v===null||v===undefined||isNaN(v)) return '—';
+  return Number(v).toLocaleString('ko-KR',{minimumFractionDigits:d,maximumFractionDigits:d}); }
+function riskClass(r){ return r>=0.6?'danger':(r>=0.4?'warn':'safe'); }
+
+function render(d){
+  const E = d.eta || {};
+  const eta = E.eta, raw = E.raw_values||{}, risk = E.risk||{}, a1 = risk.A1;
+
+  /* η 히어로 */
+  document.getElementById('eta-big').textContent = (eta!=null?eta.toFixed(3):'—');
+  const judge = document.getElementById('eta-judge');
+  const fill  = document.getElementById('eta-gauge-fill');
+  let col, lab;
+  if(eta>=0.55){col='#7ED9C0';lab='🟢 안정';}
+  else if(eta>=0.50){col='#F0D080';lab='🟡 주목';}
+  else {col='#E89A9A';lab='🔴 위험';}
+  judge.textContent = lab;
+  fill.style.width = Math.round((eta||0)*100)+'%';
+  fill.style.background = col;
+  document.getElementById('eta-note').textContent =
+    '데이터 품질 '+(E.data_quality||'—')+' · 12/12 변수 실측 · η↑=양호';
+
+  /* 카드 — 위험도 내림차순 */
+  const rows = VARS.map(v=>({v, r: (v.key==='A1'?a1:risk[v.key])}))
+    .sort((a,b)=> (b.r??-1)-(a.r??-1));
+  document.getElementById('grid').innerHTML = rows.map(({v,r})=>{
+    const rc = r==null?'safe':riskClass(r);
+    const pct = r==null?0:Math.round(r*100);
+    const valHTML = v.fmt(raw, a1);
+    return `<div class="vc">
+      <div class="vc-top"><span class="vc-ico">${v.ico}</span>
+        <span class="vc-name">${v.key} ${v.name}</span>
+        <span class="vc-code">${v.code}</span></div>
+      <div class="vc-val">${valHTML}</div>
+      <div class="vc-bar"><i class="b-${rc}" style="width:${pct}%"></i></div>
+      <div class="vc-foot"><span>위험도</span>
+        <span class="vc-risk r-${rc}">${r==null?'—':r.toFixed(3)}</span></div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('status').textContent =
+    '갱신: '+(d._updated||'—')+' · '+(d._verified||'');
+}
+
+fetch('../data/national.json',{cache:'no-store'})
+  .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+  .then(d=>render(d))
+  .catch(e=>{ console.warn('[national.json] load failed → fallback:',e); render(FALLBACK); });
+</script>
+</body>
+</html>
