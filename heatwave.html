@@ -11,6 +11,9 @@
   body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:24px 16px 40px;}
   header{width:100%;max-width:480px;display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;}
   .logo{font-size:13px;color:var(--muted);}
+  .company-bar{width:100%;max-width:480px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 18px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;}
+  .company-name{font-size:15px;font-weight:700;color:var(--text);}
+  .manager-name{font-size:12px;color:var(--muted);}
   .updated{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);background:var(--card);border:1px solid var(--border);padding:4px 10px;border-radius:20px;}
   .main-card{width:100%;max-width:480px;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px 28px 28px;margin-bottom:16px;position:relative;overflow:hidden;transition:border-color 0.4s;}
   .main-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--level-color,var(--safe));border-radius:20px 20px 0 0;transition:background 0.4s;}
@@ -49,6 +52,11 @@
   <span class="logo">혹서기 안전관리 시스템</span>
   <span class="updated" id="updated-time">--:-- 갱신</span>
 </header>
+
+<div class="company-bar">
+  <span class="company-name">🏢 성진SJMASTER</span>
+  <span class="manager-name">담당자 : 김기섭</span>
+</div>
 
 <div id="loading" class="loading">데이터 불러오는 중...</div>
 
