@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-05-27 07:18 KST",
+  "_updated": "2026-05-28 07:28 KST",
   "_design": {
     "eta_inputs": {
       "①순이동률": "건수/인구×100(%)",
@@ -17,7 +17,7 @@
     "labeling": "정부 공식 데이터 없음 (시도/전국 단위만 존재) — '측정 불가' 금지"
   },
   "meta": {
-    "net_migration_period": "202603",
+    "net_migration_period": "202604",
     "net_migration_method": "1인 이동건수 기반 (건수/인구×100)",
     "migration_note": "산단 외지 인력 유동 포함 — 정주시민 이동과 미분리. 산업 계절성 노이즈 있음. 소수 유동이 지수에 미치는 영향 제한적.",
     "fiscal_period": "2026",
@@ -29,31 +29,31 @@
   "eta_inputs": {
     "31110": {
       "name": "중구",
-      "net_migration_rate": -0.134,
+      "net_migration_rate": -0.036,
       "fiscal_independence": 17.79,
       "vacancy_rate": 6.42
     },
     "31140": {
       "name": "남구",
-      "net_migration_rate": -0.034,
+      "net_migration_rate": -0.021,
       "fiscal_independence": 30.9,
       "vacancy_rate": 7.46
     },
     "31170": {
       "name": "동구",
-      "net_migration_rate": -0.093,
+      "net_migration_rate": -0.053,
       "fiscal_independence": 17.27,
       "vacancy_rate": 6.82
     },
     "31200": {
       "name": "북구",
-      "net_migration_rate": -0.107,
+      "net_migration_rate": -0.057,
       "fiscal_independence": 26.3,
       "vacancy_rate": 5.91
     },
     "31710": {
       "name": "울주군",
-      "net_migration_rate": -0.101,
+      "net_migration_rate": -0.005,
       "fiscal_independence": 37.39,
       "vacancy_rate": 10.18
     }
@@ -61,31 +61,31 @@
   "raw": {
     "31110": {
       "pop": 203339,
-      "net_migration_1p": -272.0,
+      "net_migration_1p": -73.0,
       "vacant_houses": 4744.0,
       "total_houses": 73841.0
     },
     "31140": {
       "pop": 304457,
-      "net_migration_1p": -105.0,
+      "net_migration_1p": -65.0,
       "vacant_houses": 8401.0,
       "total_houses": 112629.0
     },
     "31170": {
       "pop": 147925,
-      "net_migration_1p": -138.0,
+      "net_migration_1p": -79.0,
       "vacant_houses": 3883.0,
       "total_houses": 56926.0
     },
     "31200": {
       "pop": 214026,
-      "net_migration_1p": -228.0,
+      "net_migration_1p": -122.0,
       "vacant_houses": 4765.0,
       "total_houses": 80646.0
     },
     "31710": {
       "pop": 218294,
-      "net_migration_1p": -221.0,
+      "net_migration_1p": -10.0,
       "vacant_houses": 8901.0,
       "total_houses": 87466.0
     }
