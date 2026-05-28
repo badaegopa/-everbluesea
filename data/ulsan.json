@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-05-28 07:28 KST",
+  "_updated": "2026-05-29 07:39 KST",
   "kosis": {
     "울산_구군별_인구": {
       "row_count": 45,
@@ -2196,104 +2196,7 @@
       ]
     },
     "울산_총주택": {
-      "row_count": 5,
-      "data": [
-        {
-          "C1_OBJ_NM": "행정구역별(읍면동)",
-          "DT": "73841",
-          "C1": "26010",
-          "PRD_SE": "A",
-          "UNIT_NM_ENG": "Households",
-          "ITM_ID": "T10",
-          "TBL_ID": "DT_1JU1501",
-          "ITM_NM": "주택",
-          "TBL_NM": "주택의 종류별 주택 - 읍면동(연도 끝자리 0 5) 시군구(그 외 연도)",
-          "PRD_DE": "2024",
-          "LST_CHN_DE": "2025-07-24",
-          "C1_NM_ENG": "Jung-gu",
-          "C1_NM": "중구",
-          "UNIT_NM": "호",
-          "ITM_NM_ENG": "Total Type of housing units",
-          "ORG_ID": "101",
-          "C1_OBJ_NM_ENG": "By administrative district"
-        },
-        {
-          "C1_OBJ_NM": "행정구역별(읍면동)",
-          "DT": "112629",
-          "C1": "26020",
-          "PRD_SE": "A",
-          "UNIT_NM_ENG": "Households",
-          "ITM_ID": "T10",
-          "TBL_ID": "DT_1JU1501",
-          "ITM_NM": "주택",
-          "TBL_NM": "주택의 종류별 주택 - 읍면동(연도 끝자리 0 5) 시군구(그 외 연도)",
-          "PRD_DE": "2024",
-          "LST_CHN_DE": "2025-07-24",
-          "C1_NM_ENG": "Nam-gu",
-          "C1_NM": "남구",
-          "UNIT_NM": "호",
-          "ITM_NM_ENG": "Total Type of housing units",
-          "ORG_ID": "101",
-          "C1_OBJ_NM_ENG": "By administrative district"
-        },
-        {
-          "C1_OBJ_NM": "행정구역별(읍면동)",
-          "DT": "56926",
-          "C1": "26030",
-          "PRD_SE": "A",
-          "UNIT_NM_ENG": "Households",
-          "ITM_ID": "T10",
-          "TBL_ID": "DT_1JU1501",
-          "ITM_NM": "주택",
-          "TBL_NM": "주택의 종류별 주택 - 읍면동(연도 끝자리 0 5) 시군구(그 외 연도)",
-          "PRD_DE": "2024",
-          "LST_CHN_DE": "2025-07-24",
-          "C1_NM_ENG": "Dong-gu",
-          "C1_NM": "동구",
-          "UNIT_NM": "호",
-          "ITM_NM_ENG": "Total Type of housing units",
-          "ORG_ID": "101",
-          "C1_OBJ_NM_ENG": "By administrative district"
-        },
-        {
-          "C1_OBJ_NM": "행정구역별(읍면동)",
-          "DT": "80646",
-          "C1": "26040",
-          "PRD_SE": "A",
-          "UNIT_NM_ENG": "Households",
-          "ITM_ID": "T10",
-          "TBL_ID": "DT_1JU1501",
-          "ITM_NM": "주택",
-          "TBL_NM": "주택의 종류별 주택 - 읍면동(연도 끝자리 0 5) 시군구(그 외 연도)",
-          "PRD_DE": "2024",
-          "LST_CHN_DE": "2025-07-24",
-          "C1_NM_ENG": "Buk-gu",
-          "C1_NM": "북구",
-          "UNIT_NM": "호",
-          "ITM_NM_ENG": "Total Type of housing units",
-          "ORG_ID": "101",
-          "C1_OBJ_NM_ENG": "By administrative district"
-        },
-        {
-          "C1_OBJ_NM": "행정구역별(읍면동)",
-          "DT": "87466",
-          "C1": "26510",
-          "PRD_SE": "A",
-          "UNIT_NM_ENG": "Households",
-          "ITM_ID": "T10",
-          "TBL_ID": "DT_1JU1501",
-          "ITM_NM": "주택",
-          "TBL_NM": "주택의 종류별 주택 - 읍면동(연도 끝자리 0 5) 시군구(그 외 연도)",
-          "PRD_DE": "2024",
-          "LST_CHN_DE": "2025-07-24",
-          "C1_NM_ENG": "Ulju-gun",
-          "C1_NM": "울주군",
-          "UNIT_NM": "호",
-          "ITM_NM_ENG": "Total Type of housing units",
-          "ORG_ID": "101",
-          "C1_OBJ_NM_ENG": "By administrative district"
-        }
-      ]
+      "error": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxYjVjY2RhYTE2MGZjZDIwMjgzNWE%3D&format=json&jsonVD=Y&orgId=101&tblId=DT_1JU1501&itmId=T10&objL1=26010+26020+26030+26040+26510&prdSe=Y&newEstPrdCnt=1 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kosis.kr', port=443) at 0x7f4e23cc78f0>, 'Connection to kosis.kr timed out. (connect timeout=15)'))"
     }
   },
   "sgis": {
@@ -2302,7 +2205,7 @@
       "id": "API_0704",
       "errMsg": "Success",
       "errCd": 0,
-      "trId": "1eeJ_API_0704_1779920933086",
+      "trId": "5rnt_API_0704_1780008033904",
       "features": [
         {
           "type": "Feature",
@@ -127525,8 +127428,8 @@
       "doctors": 2.1,
       "net_migration_rate": -0.036,
       "fiscal_independence": 17.79,
-      "vacancy_rate": 6.42,
-      "eta": 0.499,
+      "vacancy_rate": null,
+      "eta": 0.475,
       "lambda12": {
         "P1": 0.509,
         "P2": 0.246,
@@ -127539,9 +127442,9 @@
         "G1": 0.5885,
         "G2": 0.8053,
         "C1": 0.6333,
-        "C2": 0.285
+        "C2": null
       },
-      "data_quality": "100%"
+      "data_quality": "90%"
     },
     "31140": {
       "name": "남구",
@@ -127552,8 +127455,8 @@
       "doctors": 3.9,
       "net_migration_rate": -0.021,
       "fiscal_independence": 30.9,
-      "vacancy_rate": 7.46,
-      "eta": 0.579,
+      "vacancy_rate": null,
+      "eta": 0.573,
       "lambda12": {
         "P1": 0.5052,
         "P2": 0.246,
@@ -127566,9 +127469,9 @@
         "G1": 0.5885,
         "G2": 0.4775,
         "C1": 0.0333,
-        "C2": 0.3717
+        "C2": null
       },
-      "data_quality": "100%"
+      "data_quality": "90%"
     },
     "31170": {
       "name": "동구",
@@ -127579,8 +127482,8 @@
       "doctors": 3.9,
       "net_migration_rate": -0.053,
       "fiscal_independence": 17.27,
-      "vacancy_rate": 6.82,
-      "eta": 0.566,
+      "vacancy_rate": null,
+      "eta": 0.553,
       "lambda12": {
         "P1": 0.5132,
         "P2": 0.246,
@@ -127593,9 +127496,9 @@
         "G1": 0.5885,
         "G2": 0.8183,
         "C1": 0.0333,
-        "C2": 0.3183
+        "C2": null
       },
-      "data_quality": "100%"
+      "data_quality": "90%"
     },
     "31200": {
       "name": "북구",
@@ -127606,8 +127509,8 @@
       "doctors": 1.5,
       "net_migration_rate": -0.057,
       "fiscal_independence": 26.3,
-      "vacancy_rate": 5.91,
-      "eta": 0.532,
+      "vacancy_rate": null,
+      "eta": 0.507,
       "lambda12": {
         "P1": 0.5142,
         "P2": 0.246,
@@ -127620,9 +127523,9 @@
         "G1": 0.5885,
         "G2": 0.5925,
         "C1": 0.8333,
-        "C2": 0.2425
+        "C2": null
       },
-      "data_quality": "100%"
+      "data_quality": "90%"
     },
     "31710": {
       "name": "울주군",
@@ -127633,8 +127536,8 @@
       "doctors": 1.4,
       "net_migration_rate": -0.005,
       "fiscal_independence": 37.39,
-      "vacancy_rate": 10.18,
-      "eta": 0.483,
+      "vacancy_rate": null,
+      "eta": 0.492,
       "lambda12": {
         "P1": 0.5012,
         "P2": 0.246,
@@ -127647,9 +127550,9 @@
         "G1": 0.5885,
         "G2": 0.3153,
         "C1": 0.8667,
-        "C2": 0.5983
+        "C2": null
       },
-      "data_quality": "100%"
+      "data_quality": "90%"
     }
   },
   "lambda12": {
@@ -127694,7 +127597,7 @@
     }
   },
   "redesign": {
-    "_updated": "2026-05-28 07:28 KST",
+    "_updated": "2026-05-29 07:40 KST",
     "_design": {
       "eta_inputs": {
         "①순이동률": "건수/인구×100(%)",
