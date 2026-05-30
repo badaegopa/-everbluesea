@@ -634,7 +634,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:#F5F3EE;color:#2C2C2A;padd
         </div>
         <div id="chart-area">
           <svg id="race-svg"></svg>
-          <div id="year-text">2000</div>
+          <div id="year-text">2024</div>
           <div id="ind-desc-text"></div>
           <div id="race-legend">
             <div class="rl-item"><div class="rl-sw" style="background:#3D7A6E"></div>중구</div>
@@ -647,15 +647,15 @@ body{font-family:'Noto Sans KR',sans-serif;background:#F5F3EE;color:#2C2C2A;padd
         </div>
         <div id="race-ctrl">
           <button class="rc-btn" id="play-btn" onclick="rcTogglePlay()">▶ 재생</button>
-          <button class="rc-btn" onclick="rcReset()">↺ 처음</button>
+          <button class="rc-btn" onclick="rcReset()">↺ 최신</button>
           <select class="rc-speed" id="rc-speed" onchange="rcSpeedChange()">
-            <option value="2000">느리게</option>
-            <option value="1000" selected>보통</option>
-            <option value="500">빠르게</option>
+            <option value="1000">느리게</option>
+            <option value="500" selected>보통</option>
+            <option value="250">빠르게</option>
           </select>
           <div class="rc-sl-wrap">
             <span class="rc-sl-lbl">2000</span>
-            <input type="range" id="race-slider" min="0" max="24" value="0" step="0.1"
+            <input type="range" id="race-slider" min="0" max="24" value="24" step="0.1"
                    oninput="rcOnSlider(this.value)">
             <span class="rc-sl-lbl">2024</span>
           </div>
@@ -834,7 +834,8 @@ const INDS=[
 ];
 
 /* ── 레이스 차트 상태 ── */
-let curInd=INDS[0], rcT=0, rcPlaying=false, rcRaf=null, rcLastTs=null, rcMspy=1000;
+const LAST=YEARS.length-1;   /* v8.2: 종점 인덱스(현재 24=2024). 데이터 늘면 자동 추종 */
+let curInd=INDS[0], rcT=LAST, rcPlaying=false, rcRaf=null, rcLastTs=null, rcMspy=500;  /* v8.2: 기본 속도 2배(500ms/년) */
 const rcSvg=d3.select('#race-svg');
 let rW,rH,rML,rMR,rMT,rMB,rCW,rCH,rG;
 
@@ -848,10 +849,13 @@ function rcInitSVG(){
   rcSvg.attr('width',rW).attr('height',rH);
   rcSvg.selectAll('*').remove();
   rG=rcSvg.append('g').attr('transform',`translate(${rML},${rMT})`);
+  /* v8.2: 슬라이더 범위를 데이터 종점에 자동 연동 */
+  const _sl=document.getElementById('race-slider');
+  if(_sl) _sl.max=LAST;
 }
 
 function rcInterp(raw,t){
-  const lo=Math.floor(t),hi=Math.min(lo+1,24),f=t-lo;
+  const lo=Math.floor(t),hi=Math.min(lo+1,LAST),f=t-lo;
   return raw[lo]+(raw[hi]-raw[lo])*f;
 }
 function rcGetState(ind,t){
@@ -1122,11 +1126,11 @@ function rcSelectGroup(groupKey){
     '<div class="rl-item"><div class="rl-sw" style="background:'+r.color+'"></div>'+r.name+'</div>'
   ).join('') + '<div class="rl-avg"><div class="rl-avg-ln"></div>평균</div>';
 
-  /* 차트 리셋 후 렌더 */
+  /* 차트 리셋 후 렌더 — v8.2: 최종연도 선노출 */
   rcStopPlay();
-  rcT=0;
+  rcT=LAST;
   rcInitSVG();
-  rcRender(0);
+  rcRender(LAST);
 }
 
 /* 현재 그룹의 데이터 가져오기 */
@@ -1253,13 +1257,15 @@ function rcRafLoop(ts){
   if(!rcPlaying){rcLastTs=null;return;}
   if(!rcLastTs) rcLastTs=ts;
   rcT+=( ts-rcLastTs)/rcMspy; rcLastTs=ts;
-  if(rcT>=24){rcT=24;rcRender(rcT);rcStopPlay();return;}
+  if(rcT>=LAST){rcT=LAST;rcRender(rcT);rcStopPlay();return;}
   rcRender(rcT);
   rcRaf=requestAnimationFrame(rcRafLoop);
 }
 function rcTogglePlay(){rcPlaying?rcStopPlay():rcStartPlay();}
 function rcStartPlay(){
-  if(rcT>=24) rcT=0; rcPlaying=true; rcLastTs=null;
+  /* v8.2: 종점(최종연도)에서 재생 누르면 2000년으로 되감아 레이스 시작 */
+  if(rcT>=LAST){ rcT=0; rcRender(0); }
+  rcPlaying=true; rcLastTs=null;
   document.getElementById('play-btn').textContent='⏸ 일시정지';
   document.getElementById('play-btn').classList.add('playing');
   rcRaf=requestAnimationFrame(rcRafLoop);
@@ -1269,7 +1275,7 @@ function rcStopPlay(){
   document.getElementById('play-btn').textContent='▶ 재생';
   document.getElementById('play-btn').classList.remove('playing');
 }
-function rcReset(){rcStopPlay();rcT=0;rcRender(0);}
+function rcReset(){rcStopPlay();rcT=LAST;rcRender(LAST);}  /* v8.2: 최종연도 스냅샷으로 복귀 */
 function rcOnSlider(v){rcStopPlay();rcT=parseFloat(v);rcRender(rcT);}
 function rcSpeedChange(){rcMspy=parseInt(document.getElementById('rc-speed').value)||1000;}
 
@@ -1281,10 +1287,10 @@ INDS.forEach(ind=>{
   b.onclick=()=>rcSelInd(ind.id); tabsEl.appendChild(b);
 });
 function rcSelInd(id){
-  rcStopPlay(); curInd=INDS.find(i=>i.id===id); rcT=0;
+  rcStopPlay(); curInd=INDS.find(i=>i.id===id); rcT=LAST;
   document.querySelectorAll('.ind-tab').forEach(b=>b.classList.remove('on'));
   document.getElementById('itab_'+id).classList.add('on');
-  rcInitSVG(); rcRender(0);
+  rcInitSVG(); rcRender(LAST);
 }
 
 window.addEventListener('resize',()=>{rcStopPlay();rcInitSVG();rcRender(rcT);});

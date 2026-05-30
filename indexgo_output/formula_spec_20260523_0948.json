@@ -1,0 +1,228 @@
+{
+  "title": "두레에타(DURE-η) Λ¹² 변수 산식 명세서",
+  "version": "1.0",
+  "generated": "2026-05-23T09:48:12.481731",
+  "institute": "늘푸른바다 사회동역학 연구소",
+  "basis": "디지털 정부 1위(UN e-Government Survey) 대한민국 공식 데이터 산출방식 기반",
+  "variables": {
+    "P1": {
+      "variable": "P1",
+      "name": "민중분노지수",
+      "axis": "P",
+      "formulaType": "survey",
+      "note": "연간 설문값 → 월별 선형보간 보정 필요",
+      "ulsan_decomposable": false,
+      "sources": [
+        {
+          "idxCd": "005-001",
+          "name": "사회갈등 인식률",
+          "system": "한국의 사회지표"
+        },
+        {
+          "idxCd": "003-001",
+          "name": "삶의 만족도",
+          "system": "국민 삶의 질"
+        }
+      ],
+      "adoptedFormula": null,
+      "validationStatus": "설문채택 — 응답비율 활용 + 갱신주기 보정",
+      "correctionMethod": "연간값 월별 선형보간 (LOCF 방식)"
+    },
+    "P2": {
+      "variable": "P2",
+      "name": "집단행동지수",
+      "axis": "P",
+      "formulaType": "count",
+      "note": "건수/인구 단위 표준화",
+      "ulsan_decomposable": true,
+      "sources": [],
+      "adoptedFormula": null,
+      "validationStatus": null
+    },
+    "A1": {
+      "variable": "A1",
+      "name": "엘리트결속지수",
+      "axis": "A",
+      "formulaType": "ratio",
+      "note": "대리변수 필요 — 지방의회 교체율로 보완",
+      "ulsan_decomposable": false,
+      "sources": [],
+      "adoptedFormula": null,
+      "validationStatus": null
+    },
+    "A2": {
+      "variable": "A2",
+      "name": "제도신뢰지수",
+      "axis": "A",
+      "formulaType": "survey",
+      "note": "복수 지표 가중평균 — 범죄사법정의 지표 병합",
+      "ulsan_decomposable": false,
+      "sources": [
+        {
+          "idxCd": "003-002",
+          "name": "정부신뢰도",
+          "system": "국민 삶의 질"
+        }
+      ],
+      "adoptedFormula": null,
+      "validationStatus": "설문채택 — 응답비율 활용 + 갱신주기 보정",
+      "correctionMethod": "연간값 월별 선형보간 (LOCF 방식)"
+    },
+    "E1": {
+      "variable": "E1",
+      "name": "경제불평등지수",
+      "axis": "E",
+      "formulaType": "formula",
+      "note": "지니계수 공식 그대로 채택 — KOSIS 지역 데이터로 보완",
+      "ulsan_decomposable": false,
+      "sources": [
+        {
+          "idxCd": "002-001",
+          "name": "지니계수",
+          "system": "국가발전지표",
+          "formula": "로렌츠곡선과 완전평등선 사이 면적의 2배. 0(완전평등)~1(완전불평등)"
+        },
+        {
+          "idxCd": "002-003",
+          "name": "피용자보수비율",
+          "system": "국가발전지표",
+          "formula": "(피용자보수/GNI)×100"
+        }
+      ],
+      "adoptedFormula": "로렌츠곡선과 완전평등선 사이 면적의 2배. 0(완전평등)~1(완전불평등)",
+      "validationStatus": "공식채택 — 지표누리 공식산식 그대로 적용"
+    },
+    "E2": {
+      "variable": "E2",
+      "name": "청년실업지수",
+      "axis": "E",
+      "formulaType": "formula",
+      "note": "ILO 국제표준 산식 채택 — 울산 구군 분해 가능",
+      "ulsan_decomposable": true,
+      "sources": [
+        {
+          "idxCd": "001-001",
+          "name": "청년실업률",
+          "system": "e-나라지표",
+          "formula": "(청년실업자수/청년경제활동인구)×100"
+        }
+      ],
+      "adoptedFormula": "(청년실업자수/청년경제활동인구)×100",
+      "validationStatus": "공식채택 — 지표누리 공식산식 그대로 적용"
+    },
+    "S1": {
+      "variable": "S1",
+      "name": "인구구조압력",
+      "axis": "S",
+      "formulaType": "formula",
+      "note": "합계출산율 공식 그대로 채택",
+      "ulsan_decomposable": true,
+      "sources": [
+        {
+          "idxCd": "001-002",
+          "name": "고용률",
+          "system": "e-나라지표",
+          "formula": "(취업자수/15세이상인구)×100"
+        },
+        {
+          "idxCd": "002-002",
+          "name": "합계출산율",
+          "system": "국가발전지표",
+          "formula": "연령별 출산율(ASFR)의 합계 (‰→명 환산: ÷1000)"
+        },
+        {
+          "idxCd": "005-002",
+          "name": "범죄 발생률",
+          "system": "한국의 사회지표",
+          "formula": "(범죄발생건수/인구)×100,000"
+        },
+        {
+          "idxCd": "004-001",
+          "name": "합계출산율",
+          "system": "저출생 통계지표",
+          "formula": "Σ(연령별출산율) / 1000"
+        },
+        {
+          "idxCd": "004-002",
+          "name": "고령화율",
+          "system": "저출생 통계지표",
+          "formula": "(65세이상인구/총인구)×100"
+        }
+      ],
+      "adoptedFormula": "(취업자수/15세이상인구)×100",
+      "validationStatus": "공식채택 — 지표누리 공식산식 그대로 적용"
+    },
+    "S2": {
+      "variable": "S2",
+      "name": "정보통제지수",
+      "axis": "S",
+      "formulaType": "external",
+      "note": "지표누리 갭 — Freedom House + GDELT 신규 설계 (Λ¹² §32)",
+      "ulsan_decomposable": false,
+      "sources": [],
+      "adoptedFormula": null,
+      "validationStatus": "신규설계 — 지표누리 갭 영역 두레에타 독자 산식",
+      "newFormulaRef": "Λ¹² 논문 SSRN #6632858 참조"
+    },
+    "G1": {
+      "variable": "G1",
+      "name": "지정학리스크",
+      "axis": "G",
+      "formulaType": "external",
+      "note": "지표누리 갭 — GDELT CAMEO 이벤트 코드 신규 설계 (Λ¹² §33 BBD)",
+      "ulsan_decomposable": false,
+      "sources": [],
+      "adoptedFormula": null,
+      "validationStatus": "신규설계 — 지표누리 갭 영역 두레에타 독자 산식",
+      "newFormulaRef": "Λ¹² 논문 SSRN #6632858 참조"
+    },
+    "G2": {
+      "variable": "G2",
+      "name": "외부충격지수",
+      "axis": "G",
+      "formulaType": "composite",
+      "note": "ECOS 환율변동성 + WTO 무역증감률 합성",
+      "ulsan_decomposable": false,
+      "sources": [
+        {
+          "idxCd": "002-004",
+          "name": "수출증가율",
+          "system": "국가발전지표"
+        }
+      ],
+      "adoptedFormula": null,
+      "validationStatus": "복합산식 — 복수 지표 가중합",
+      "weightMethod": "등가중치 (추후 전문가 델파이 보정 예정)"
+    },
+    "C1": {
+      "variable": "C1",
+      "name": "공공서비스접근",
+      "axis": "C",
+      "formulaType": "composite",
+      "note": "의료·교육·주거 3개 하위지표 가중합",
+      "ulsan_decomposable": true,
+      "sources": [],
+      "adoptedFormula": null,
+      "validationStatus": "복합산식 — 복수 지표 가중합",
+      "weightMethod": "등가중치 (추후 전문가 델파이 보정 예정)"
+    },
+    "C2": {
+      "variable": "C2",
+      "name": "환경사회압력",
+      "axis": "C",
+      "formulaType": "formula",
+      "note": "에어코리아 AQI + SDG 13 연계 — 울산 산업지대 특화",
+      "ulsan_decomposable": true,
+      "sources": [
+        {
+          "idxCd": "006-001",
+          "name": "온실가스 배출량(GDP대비)",
+          "system": "SDG",
+          "formula": "(온실가스총배출량/GDP)×1,000,000"
+        }
+      ],
+      "adoptedFormula": "(온실가스총배출량/GDP)×1,000,000",
+      "validationStatus": "공식채택 — 지표누리 공식산식 그대로 적용"
+    }
+  }
+}

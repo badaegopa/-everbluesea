@@ -1,0 +1,256 @@
+[
+  {
+    "idxCd": "001-001",
+    "name": "청년실업률",
+    "system": "e-나라지표",
+    "systemKey": "eNara",
+    "cdNo": "120",
+    "definition": "15~29세 청년층 실업률",
+    "calcMethod": "산출방법: (청년실업자수/청년경제활동인구)×100",
+    "updateCycle": "월",
+    "unit": "",
+    "hasFormula": true,
+    "extractedFormula": "(청년실업자수/청년경제활동인구)×100",
+    "lambda12Match": [
+      "E2"
+    ]
+  },
+  {
+    "idxCd": "001-002",
+    "name": "고용률",
+    "system": "e-나라지표",
+    "systemKey": "eNara",
+    "cdNo": "120",
+    "definition": "15세 이상 인구 중 취업자 비율",
+    "calcMethod": "산출방법: (취업자수/15세이상인구)×100",
+    "updateCycle": "월",
+    "unit": "",
+    "hasFormula": true,
+    "extractedFormula": "(취업자수/15세이상인구)×100",
+    "lambda12Match": [
+      "S1"
+    ]
+  },
+  {
+    "idxCd": "001-003",
+    "name": "노사분규 건수",
+    "system": "e-나라지표",
+    "systemKey": "eNara",
+    "cdNo": "120",
+    "definition": "연간 파업·쟁의 발생 건수",
+    "calcMethod": "",
+    "updateCycle": "년",
+    "unit": "",
+    "hasFormula": false,
+    "extractedFormula": null,
+    "lambda12Match": [
+      "P2"
+    ]
+  },
+  {
+    "idxCd": "002-001",
+    "name": "지니계수",
+    "system": "국가발전지표",
+    "systemKey": "progress",
+    "cdNo": "110",
+    "definition": "소득분배 불평등 정도",
+    "calcMethod": "산출방법: 로렌츠곡선과 완전평등선 사이 면적의 2배. 0(완전평등)~1(완전불평등)",
+    "updateCycle": "년",
+    "unit": "",
+    "hasFormula": true,
+    "extractedFormula": "로렌츠곡선과 완전평등선 사이 면적의 2배. 0(완전평등)~1(완전불평등)",
+    "lambda12Match": [
+      "E1"
+    ]
+  },
+  {
+    "idxCd": "002-002",
+    "name": "합계출산율",
+    "system": "국가발전지표",
+    "systemKey": "progress",
+    "cdNo": "110",
+    "definition": "여성 1명이 가임기간(15~49세) 동안 낳을 것으로 예상되는 평균 출생아 수",
+    "calcMethod": "산출방법: 연령별 출산율(ASFR)의 합계 (‰→명 환산: ÷1000)",
+    "updateCycle": "년",
+    "unit": "",
+    "hasFormula": true,
+    "extractedFormula": "연령별 출산율(ASFR)의 합계 (‰→명 환산: ÷1000)",
+    "lambda12Match": [
+      "S1"
+    ]
+  },
+  {
+    "idxCd": "002-003",
+    "name": "피용자보수비율",
+    "system": "국가발전지표",
+    "systemKey": "progress",
+    "cdNo": "110",
+    "definition": "국민총소득(GNI) 중 피용자보수가 차지하는 비율",
+    "calcMethod": "산출방법: (피용자보수/GNI)×100",
+    "updateCycle": "년",
+    "unit": "",
+    "hasFormula": true,
+    "extractedFormula": "(피용자보수/GNI)×100",
+    "lambda12Match": [
+      "E1"
+    ]
+  },
+  {
+    "idxCd": "002-004",
+    "name": "수출증가율",
+    "system": "국가발전지표",
+    "systemKey": "progress",
+    "cdNo": "110",
+    "definition": "전년 대비 수출액 증감률",
+    "calcMethod": "산출방법: ((당해연도수출-전년도수출)/전년도수출)×100",
+    "updateCycle": "월",
+    "unit": "",
+    "hasFormula": true,
+    "extractedFormula": "((당해연도수출-전년도수출)/전년도수출)×100",
+    "lambda12Match": [
+      "G2"
+    ]
+  },
+  {
+    "idxCd": "005-001",
+    "name": "사회갈등 인식률",
+    "system": "한국의 사회지표",
+    "systemKey": "social",
+    "cdNo": "130",
+    "definition": "우리 사회 집단 간 갈등이 심각하다는 응답 비율",
+    "calcMethod": "",
+    "updateCycle": "년",
+    "unit": "",
+    "hasFormula": false,
+    "extractedFormula": null,
+    "lambda12Match": [
+      "P1"
+    ]
+  },
+  {
+    "idxCd": "005-002",
+    "name": "범죄 발생률",
+    "system": "한국의 사회지표",
+    "systemKey": "social",
+    "cdNo": "130",
+    "definition": "인구 10만 명당 형사범죄 발생 건수",
+    "calcMethod": "산출방법: (범죄발생건수/인구)×100,000",
+    "updateCycle": "년",
+    "unit": "",
+    "hasFormula": true,
+    "extractedFormula": "(범죄발생건수/인구)×100,000",
+    "lambda12Match": [
+      "S1"
+    ]
+  },
+  {
+    "idxCd": "003-001",
+    "name": "삶의 만족도",
+    "system": "국민 삶의 질",
+    "systemKey": "wellbeing",
+    "cdNo": "140",
+    "definition": "현재 삶에 대한 주관적 만족 정도 (0~10점 척도)",
+    "calcMethod": "",
+    "updateCycle": "년",
+    "unit": "",
+    "hasFormula": false,
+    "extractedFormula": null,
+    "lambda12Match": [
+      "P1"
+    ]
+  },
+  {
+    "idxCd": "003-002",
+    "name": "정부신뢰도",
+    "system": "국민 삶의 질",
+    "systemKey": "wellbeing",
+    "cdNo": "140",
+    "definition": "정부를 신뢰한다는 응답 비율",
+    "calcMethod": "",
+    "updateCycle": "년",
+    "unit": "",
+    "hasFormula": false,
+    "extractedFormula": null,
+    "lambda12Match": [
+      "A2"
+    ]
+  },
+  {
+    "idxCd": "003-003",
+    "name": "사회적 고립감",
+    "system": "국민 삶의 질",
+    "systemKey": "wellbeing",
+    "cdNo": "140",
+    "definition": "어려울 때 도움받을 사람이 없다는 응답 비율",
+    "calcMethod": "",
+    "updateCycle": "년",
+    "unit": "",
+    "hasFormula": false,
+    "extractedFormula": null,
+    "lambda12Match": []
+  },
+  {
+    "idxCd": "004-001",
+    "name": "합계출산율",
+    "system": "저출생 통계지표",
+    "systemKey": "lowbirth",
+    "cdNo": "150",
+    "definition": "여성 1명이 가임기간 동안 낳을 것으로 예상되는 평균 출생아 수",
+    "calcMethod": "산출방법: Σ(연령별출산율) / 1000",
+    "updateCycle": "년",
+    "unit": "",
+    "hasFormula": true,
+    "extractedFormula": "Σ(연령별출산율) / 1000",
+    "lambda12Match": [
+      "S1"
+    ]
+  },
+  {
+    "idxCd": "004-002",
+    "name": "고령화율",
+    "system": "저출생 통계지표",
+    "systemKey": "lowbirth",
+    "cdNo": "150",
+    "definition": "65세 이상 인구 비율",
+    "calcMethod": "산출방법: (65세이상인구/총인구)×100",
+    "updateCycle": "년",
+    "unit": "",
+    "hasFormula": true,
+    "extractedFormula": "(65세이상인구/총인구)×100",
+    "lambda12Match": [
+      "S1"
+    ]
+  },
+  {
+    "idxCd": "006-001",
+    "name": "온실가스 배출량(GDP대비)",
+    "system": "SDG",
+    "systemKey": "sdg",
+    "cdNo": "160",
+    "definition": "GDP 1백만 달러당 온실가스 배출량",
+    "calcMethod": "산출방법: (온실가스총배출량/GDP)×1,000,000",
+    "updateCycle": "년",
+    "unit": "",
+    "hasFormula": true,
+    "extractedFormula": "(온실가스총배출량/GDP)×1,000,000",
+    "lambda12Match": [
+      "C2"
+    ]
+  },
+  {
+    "idxCd": "006-002",
+    "name": "초미세먼지(PM2.5) 농도",
+    "system": "SDG",
+    "systemKey": "sdg",
+    "cdNo": "160",
+    "definition": "연평균 PM2.5 농도(㎍/㎥)",
+    "calcMethod": "",
+    "updateCycle": "년",
+    "unit": "",
+    "hasFormula": false,
+    "extractedFormula": null,
+    "lambda12Match": [
+      "C2"
+    ]
+  }
+]
