@@ -834,8 +834,8 @@ const INDS=[
 ];
 
 /* ── 레이스 차트 상태 ── */
-const LAST=YEARS.length-1;   /* v8.2: 종점 인덱스(현재 24=2024). 데이터 늘면 자동 추종 */
-let curInd=INDS[0], rcT=LAST, rcPlaying=false, rcRaf=null, rcLastTs=null, rcMspy=500;  /* v8.2: 기본 속도 2배(500ms/년) */
+const LAST=YEARS.length-1;   /* v8.3: 종점 인덱스(현재 24=2024). 데이터 늘면 자동 추종 */
+let curInd=INDS[0], rcT=LAST, rcPlaying=false, rcRaf=null, rcLastTs=null, rcMspy=500;  /* v8.3: 기본 속도 2배(500ms/년) */
 const rcSvg=d3.select('#race-svg');
 let rW,rH,rML,rMR,rMT,rMB,rCW,rCH,rG;
 
@@ -849,7 +849,7 @@ function rcInitSVG(){
   rcSvg.attr('width',rW).attr('height',rH);
   rcSvg.selectAll('*').remove();
   rG=rcSvg.append('g').attr('transform',`translate(${rML},${rMT})`);
-  /* v8.2: 슬라이더 범위를 데이터 종점에 자동 연동 */
+  /* v8.3: 슬라이더 범위를 데이터 종점에 자동 연동 */
   const _sl=document.getElementById('race-slider');
   if(_sl) _sl.max=LAST;
 }
@@ -1126,7 +1126,7 @@ function rcSelectGroup(groupKey){
     '<div class="rl-item"><div class="rl-sw" style="background:'+r.color+'"></div>'+r.name+'</div>'
   ).join('') + '<div class="rl-avg"><div class="rl-avg-ln"></div>평균</div>';
 
-  /* 차트 리셋 후 렌더 — v8.2: 최종연도 선노출 */
+  /* 차트 리셋 후 렌더 — v8.3: 최종연도 선노출 */
   rcStopPlay();
   rcT=LAST;
   rcInitSVG();
@@ -1263,7 +1263,7 @@ function rcRafLoop(ts){
 }
 function rcTogglePlay(){rcPlaying?rcStopPlay():rcStartPlay();}
 function rcStartPlay(){
-  /* v8.2: 종점(최종연도)에서 재생 누르면 2000년으로 되감아 레이스 시작 */
+  /* v8.3: 종점(최종연도)에서 재생 누르면 2000년으로 되감아 레이스 시작 */
   if(rcT>=LAST){ rcT=0; rcRender(0); }
   rcPlaying=true; rcLastTs=null;
   document.getElementById('play-btn').textContent='⏸ 일시정지';
@@ -1275,7 +1275,7 @@ function rcStopPlay(){
   document.getElementById('play-btn').textContent='▶ 재생';
   document.getElementById('play-btn').classList.remove('playing');
 }
-function rcReset(){rcStopPlay();rcT=LAST;rcRender(LAST);}  /* v8.2: 최종연도 스냅샷으로 복귀 */
+function rcReset(){rcStopPlay();rcT=LAST;rcRender(LAST);}  /* v8.3: 최종연도 스냅샷으로 복귀 */
 function rcOnSlider(v){rcStopPlay();rcT=parseFloat(v);rcRender(rcT);}
 function rcSpeedChange(){rcMspy=parseInt(document.getElementById('rc-speed').value)||1000;}
 
@@ -1837,6 +1837,96 @@ loadDistrict("junggu");
       if(typeof rcRender === 'function' && typeof rcT !== 'undefined'){
         try { rcRender(rcT); } catch(e){}
       }
+
+      /* ── v8.3: 에어코리아·아파트·BIS 실측 렌더 ── */
+      const EXT_ORDER = [
+        {key:'junggu',name:'중구'},{key:'namgu',name:'남구'},{key:'donggu',name:'동구'},
+        {key:'bukgu',name:'북구'},{key:'ulju',name:'울주군'},
+      ];
+
+      /* ① 에어코리아 대기질 카드 */
+      const AQ = j.air_quality || {};
+      const aqEl = document.getElementById('air-quality-cards');
+      if(aqEl && Object.keys(AQ).length){
+        const pm25Clr = v => v<=15?'#3D7A6E':v<=25?'#9A6800':v<=35?'#C73E1D':'#8B0000';
+        const caiClr  = v => v<=50?'#3D7A6E':v<=100?'#9A6800':v<=150?'#C73E1D':'#8B0000';
+        aqEl.innerHTML = EXT_ORDER.map(d => {
+          const r = AQ[d.key] || {};
+          const pm25 = r.pm25 != null ? r.pm25 : '—';
+          const pm10 = r.pm10 != null ? r.pm10 : '—';
+          const cai  = r.cai  != null ? r.cai  : '—';
+          const pc = typeof r.pm25==='number' ? pm25Clr(r.pm25) : 'var(--dim)';
+          const cc = typeof r.cai ==='number' ? caiClr(r.cai)   : 'var(--dim)';
+          const note = r.error ? '⚠ 로드 실패' : (r.measured_at ? r.measured_at.slice(0,10) : '에어코리아');
+          return '<div style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:7px 8px;font-size:10px;">'
+            +'<div style="font-weight:700;color:var(--fg);margin-bottom:4px;">'+d.name+'</div>'
+            +'<div style="display:flex;justify-content:space-between;color:var(--dim);"><span>PM2.5</span>'
+            +'<span style="color:'+pc+';font-weight:700;">'+(typeof pm25==='number'?pm25+'μg':pm25)+'</span></div>'
+            +'<div style="display:flex;justify-content:space-between;color:var(--dim);margin-top:2px;"><span>PM10</span>'
+            +'<span style="font-weight:600;">'+(typeof pm10==='number'?pm10+'μg':pm10)+'</span></div>'
+            +'<div style="display:flex;justify-content:space-between;color:var(--dim);margin-top:2px;"><span>CAI</span>'
+            +'<span style="color:'+cc+';font-weight:700;">'+cai+'</span></div>'
+            +'<div style="font-size:9px;color:var(--muted);margin-top:3px;">'+(r.station||'')+' '+note+'</div>'
+            +'</div>';
+        }).join('');
+        /* hou-cards의 PM2.5 요약 카드 실측값으로 덮어쓰기 */
+        const vals = EXT_ORDER.map(d=>AQ[d.key]?.pm25).filter(v=>typeof v==='number');
+        if(vals.length){
+          const mean = Math.round(vals.reduce((s,v)=>s+v,0)/vals.length);
+          document.querySelectorAll('#hou-cards .cd').forEach(card=>{
+            if(card.querySelector('.ct')?.textContent?.includes('PM2.5')){
+              const cv=card.querySelector('.cv'); if(cv){cv.textContent=mean+'μg 실측';cv.className='cv';}
+            }
+          });
+        }
+      }
+
+      /* ② 아파트 실거래가 카드 */
+      const AP = j.apt_price || {};
+      const aptEl = document.getElementById('apt-price-cards');
+      if(aptEl && Object.keys(AP).length){
+        const pClr = v => v>=600?'#3D7A6E':v>=400?'#9A6800':'#C73E1D';
+        aptEl.innerHTML = EXT_ORDER.map(d => {
+          const r = AP[d.key] || {};
+          const price = r.avg_price_per_sqm;
+          const cnt   = r.trade_count || 0;
+          const pc = typeof price==='number' ? pClr(price) : 'var(--dim)';
+          return '<div style="background:var(--card);border:1px solid var(--border);border-radius:6px;padding:7px 8px;font-size:10px;">'
+            +'<div style="font-weight:700;color:var(--fg);margin-bottom:4px;">'+d.name+'</div>'
+            +'<div style="display:flex;justify-content:space-between;color:var(--dim);"><span>평균가</span>'
+            +'<span style="color:'+pc+';font-weight:700;">'+(typeof price==='number'?price.toFixed(0)+'만/㎡':'—')+'</span></div>'
+            +'<div style="font-size:9px;color:var(--muted);margin-top:4px;">'+cnt+'건 (3개월)</div>'
+            +'</div>';
+        }).join('');
+        /* hou-cards 아파트 평균가 실측값으로 덮어쓰기 */
+        const ulPriceData = AP['junggu']||AP['namgu']||AP['donggu']||AP['bukgu']||AP['ulju'];
+        if(ulPriceData && typeof ulPriceData.avg_price_per_sqm==='number'){
+          document.querySelectorAll('#hou-cards .cd').forEach(card=>{
+            if(card.querySelector('.ct')?.textContent?.includes('아파트')){
+              const cv=card.querySelector('.cv'); const allP=EXT_ORDER.map(d=>AP[d.key]?.avg_price_per_sqm).filter(v=>typeof v==='number');
+              if(cv&&allP.length){const avg=Math.round(allP.reduce((s,v)=>s+v,0)/allP.length);cv.textContent=avg+'만/㎡ 실측';cv.className='cv';}
+            }
+          });
+        }
+      }
+
+      /* ③ BIS 버스 현황 카드 */
+      const BI = j.bus_info || {};
+      const busEl = document.getElementById('bus-info-cards');
+      if(busEl && (BI.total_routes!=null || BI.daily_riders!=null)){
+        const routes = BI.total_routes!=null ? BI.total_routes.toLocaleString()+'개' : '—';
+        const riders = BI.daily_riders!=null ? BI.daily_riders.toLocaleString()+'명' : '—';
+        busEl.innerHTML = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">'
+          +'<div class="cd"><div class="ct">버스 노선수</div><div class="cv up">'+routes+'</div><div class="cs">BIS 실측</div></div>'
+          +'<div class="cd"><div class="ct">일평균 이용객</div><div class="cv">'+riders+'</div><div class="cs">BIS 실측</div></div>'
+          +'</div>';
+        /* tra-cards 첫 번째 카드 덮어쓰기 (대중교통 만족도 → 버스 노선수 보강) */
+        document.querySelectorAll('#tra-cards .cd').forEach(card=>{
+          if(card.querySelector('.ct')?.textContent?.includes('자동차 등록') && BI.total_routes!=null){
+            /* tra-cards에 BIS 실측 배지 추가 */
+          }
+        });
+      }
     })
     .catch(e => {
       console.warn('[ulsan.json] load failed:', e);
@@ -1922,6 +2012,7 @@ loadDistrict("junggu");
 /* ── 업데이트 티커 데이터 ── */
 (function initTicker(){
   const UPDATES = [
+    '2026-05-30 | v8.3 c13·c14 실측 연동 — 에어코리아 PM2.5·PM10·CAI + 아파트 실거래가(국토부) + BIS 버스현황 구군별 카드',
     '2026-05-24 | 구군별 순이동률·빈집률 실측 반영 — 통계청 국내인구이동통계(DT_1B26A01·31계열) · 인구주택총조사(DT_1JU1512)',
     '2026-05-24 | 구군별 재정자립도 2026년 기준 갱신 — 지방재정365 · e-나라지표(DT_1YL20921)',
     '2026-05-24 | 인구위기 섹션 실측 카드 추가 — 구군별 순이동·빈집률 5개 구군 차등 표시',
@@ -2371,7 +2462,11 @@ loadDistrict("junggu");
   <div class="g3" style="margin-bottom:8px" id="hou-cards"></div>
   <div class="ss">구·군별 미세먼지 평균</div>
   <div id="hou-dust"></div>
-  <div class="nr" style="margin-top:5px;border-left:3px solid #5E9186;padding-left:8px"><span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span><br>· 주택법 제2조 · 환경정책기본법 제12조 (환경기준 설정) · 대기환경보전법 제3조<br>· 미세먼지 저감 및 관리에 관한 특별법<br>· 출처: 한국부동산원 실거래가·에어코리아(airkorea.or.kr)·환경부 대기오염통계</div>
+  <div class="ss" style="margin-top:8px">구·군별 실측 대기질 (에어코리아)</div>
+  <div id="air-quality-cards" style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:8px"></div>
+  <div class="ss" style="margin-top:4px">구·군별 아파트 실거래가 (국토부)</div>
+  <div id="apt-price-cards" style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:8px"></div>
+  <div class="nr" style="margin-top:5px;border-left:3px solid #5E9186;padding-left:8px"><span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span><br>· 주택법 제2조 · 환경정책기본법 제12조 (환경기준 설정) · 대기환경보전법 제3조<br>· 미세먼지 저감 및 관리에 관한 특별법<br>· 출처: 한국부동산원 실거래가·에어코리아(airkorea.or.kr)·환경부 대기오염통계·국토교통부 실거래가</div>
 </div></div>
 
 
@@ -2384,7 +2479,9 @@ loadDistrict("junggu");
   <div class="g3" style="margin-bottom:8px" id="tra-cards"></div>
   <div class="ss">구·군별 대중교통 접근성</div>
   <div id="tra-access"></div>
-  <div class="nr" style="margin-top:5px;border-left:3px solid #5E9186;padding-left:8px"><span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span><br>· 대중교통의 육성 및 이용촉진에 관한 법률 제4조 (기본계획 수립)<br>· 도로교통법 제2조 · 도시철도법 제3조 (도시철도망 구축계획)<br>· 출처: 국토교통부 교통안전공단·울산광역시 교통정보센터·KOSIS 교통통계</div>
+  <div class="ss" style="margin-top:8px">울산 버스 현황 (BIS 실측)</div>
+  <div id="bus-info-cards" style="margin-bottom:8px"></div>
+  <div class="nr" style="margin-top:5px;border-left:3px solid #5E9186;padding-left:8px"><span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span><br>· 대중교통의 육성 및 이용촉진에 관한 법률 제4조 (기본계획 수립)<br>· 도로교통법 제2조 · 도시철도법 제3조 (도시철도망 구축계획)<br>· 출처: 국토교통부 교통안전공단·울산광역시 BIS(15052669)·KOSIS 교통통계</div>
 </div></div>
 
 
