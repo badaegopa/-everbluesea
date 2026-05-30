@@ -42,6 +42,12 @@ jobs:
           ECOS_API_KEY:  ${{ secrets.ECOS_API_KEY }}
         run: python scripts/fetch_redesign.py
 
+      # fetch_redesign.py 이후 실행 — 에어코리아·아파트·BIS 수집 후 ulsan.json 병합
+      - name: Run fetch_external.py
+        env:
+          DATA_GO_KR: ${{ secrets.DATA_GO_KR }}
+        run: python scripts/fetch_external.py
+
       - name: Commit & push if changed
         run: |
           git config user.name  "github-actions[bot]"
