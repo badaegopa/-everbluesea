@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-05-31 11:58 KST",
+  "_updated": "2026-05-31 12:08 KST",
   "kosis": {
     "울산_구군별_인구": {
       "row_count": 45,
@@ -2302,7 +2302,7 @@
       "id": "API_0704",
       "errMsg": "Success",
       "errCd": 0,
-      "trId": "4EGj_API_0704_1780196348590",
+      "trId": "qt0h_API_0704_1780196943788",
       "features": [
         {
           "type": "Feature",
@@ -127694,7 +127694,7 @@
     }
   },
   "redesign": {
-    "_updated": "2026-05-31 11:59 KST",
+    "_updated": "2026-05-31 12:09 KST",
     "_design": {
       "eta_inputs": {
         "①순이동률": "건수/인구×100(%)",
@@ -127804,39 +127804,39 @@
   },
   "air_quality": {
     "junggu": {
-      "pm25": 12.0,
-      "pm10": 22.0,
-      "cai": 90,
+      "pm25": 15.0,
+      "pm10": 17.0,
+      "cai": 96,
       "station": "성남동",
-      "measured_at": "2026-05-31 11:00"
+      "measured_at": "2026-05-31 12:00"
     },
     "namgu": {
-      "pm25": 13.0,
-      "pm10": 20.0,
-      "cai": 92,
+      "pm25": 12.0,
+      "pm10": 24.0,
+      "cai": 99,
       "station": "삼산동",
-      "measured_at": "2026-05-31 11:00"
+      "measured_at": "2026-05-31 12:00"
     },
     "donggu": {
       "pm25": 19.0,
-      "pm10": 27.0,
-      "cai": 96,
+      "pm10": 28.0,
+      "cai": 147,
       "station": "전하동",
-      "measured_at": "2026-05-31 11:00"
+      "measured_at": "2026-05-31 12:00"
     },
     "bukgu": {
       "pm25": 12.0,
-      "pm10": 26.0,
-      "cai": 90,
+      "pm10": 27.0,
+      "cai": 91,
       "station": "농소동",
-      "measured_at": "2026-05-31 11:00"
+      "measured_at": "2026-05-31 12:00"
     },
     "ulju": {
-      "pm25": 13.0,
-      "pm10": 20.0,
+      "pm25": 8.0,
+      "pm10": 17.0,
       "cai": 85,
       "station": "삼남읍",
-      "measured_at": "2026-05-31 11:00"
+      "measured_at": "2026-05-31 12:00"
     }
   },
   "apt_price": {
@@ -127892,9 +127892,9 @@
     }
   },
   "bus_info": {
-    "total_routes": null,
-    "daily_riders": null,
-    "error_routes": "Expecting value: line 1 column 1 (char 0)",
-    "error_riders": "Expecting value: line 1 column 1 (char 0)"
+    "total_routes": 506,
+    "total_stations": 3565,
+    "city_code": "26",
+    "measured_at": "2026-05-31"
   }
 }
