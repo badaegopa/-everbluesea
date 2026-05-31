@@ -120,36 +120,28 @@ def collect_apt(key):
 # ══════════════════════════════════════════════════════
 # ③ 울산 BIS 버스정보 (data.go.kr 15052669)
 # ══════════════════════════════════════════════════════
-BIS_ROUTE_URL = "http://apis.data.go.kr/6310000/busRouteService/getBusRouteList"
-BIS_STATS_URL = "http://apis.data.go.kr/6310000/busStatsService/getBusStatsList"
-
+# ★TAGO 도시코드: 울산=26 (인구표 31계열·SGIS adm_cd 31과 또 다름 — API별 코드 상이)
+BIS_ROUTE_URL   = "http://apis.data.go.kr/1613000/BusRouteInfoInqireService/getRouteNoList"
+BIS_STN_URL     = "http://apis.data.go.kr/1613000/BusSttnInfoInqireService/getSttnNoList"
+ULSAN_CITY_CODE = "26"
 def collect_bus(key):
-    result = {"total_routes":None,"daily_riders":None}
+    result = {"total_routes":None,"total_stations":None,"city_code":ULSAN_CITY_CODE}
+    def _total(url):
+        params = {"serviceKey":key,"cityCode":ULSAN_CITY_CODE,"numOfRows":"1","pageNo":"1"}
+        r = requests.get(url, params=params, timeout=TIMEOUT)
+        root = ET.fromstring(r.content)
+        rc = root.findtext(".//resultCode")
+        if rc not in ("00","000",None):
+            raise RuntimeError(f"{rc} {root.findtext('.//resultMsg')}")
+        return _int(root.findtext(".//totalCount"))
     try:
-        params = {"serviceKey":key,"pageNo":"1","numOfRows":"1","returnType":"json"}
-        d = requests.get(BIS_ROUTE_URL, params=params, timeout=TIMEOUT).json()
-        total = d.get("response",{}).get("body",{}).get("totalCount")
-        if total is not None:
-            result["total_routes"] = int(total)
-            print(f"  BIS 노선수: {total}개")
-        else:
-            print(f"  BIS 노선수 파싱 실패: {str(d)[:80]}")
+        result["total_routes"]   = _total(BIS_ROUTE_URL)
+        time.sleep(0.3)
+        result["total_stations"] = _total(BIS_STN_URL)
+        result["measured_at"]    = datetime.datetime.now(KST).strftime("%Y-%m-%d")
+        print(f"  버스 노선 {result['total_routes']} / 정류소 {result['total_stations']} (울산 전체, cityCode=26)")
     except Exception as e:
-        print(f"  BIS 노선수 ERR: {e}"); result["error_routes"] = str(e)[:80]
-    time.sleep(0.3)
-    try:
-        params = {"serviceKey":key,"pageNo":"1","numOfRows":"1","returnType":"json"}
-        d = requests.get(BIS_STATS_URL, params=params, timeout=TIMEOUT).json()
-        items = d.get("response",{}).get("body",{}).get("items",{}).get("item") or []
-        if isinstance(items, dict): items = [items]
-        if items:
-            riders = _int(items[0].get("dailyRiders") or items[0].get("dayAvgPsgrCnt"))
-            result["daily_riders"] = riders
-            print(f"  BIS 일평균 이용객: {riders}")
-        else:
-            print("  BIS 이용객 데이터 없음")
-    except Exception as e:
-        print(f"  BIS 이용객 ERR: {e}"); result["error_riders"] = str(e)[:80]
+        print(f"  버스 ERR: {e}"); result["error"] = str(e)[:80]
     return result
 
 # ══════════════════════════════════════════════════════

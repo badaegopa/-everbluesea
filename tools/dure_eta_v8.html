@@ -1913,12 +1913,12 @@ loadDistrict("junggu");
       /* ③ BIS 버스 현황 카드 */
       const BI = j.bus_info || {};
       const busEl = document.getElementById('bus-info-cards');
-      if(busEl && (BI.total_routes!=null || BI.daily_riders!=null)){
+      if(busEl && (BI.total_routes!=null || BI.total_stations!=null)){
         const routes = BI.total_routes!=null ? BI.total_routes.toLocaleString()+'개' : '—';
-        const riders = BI.daily_riders!=null ? BI.daily_riders.toLocaleString()+'명' : '—';
+        const stations = BI.total_stations!=null ? BI.total_stations.toLocaleString()+'개' : '—';
         busEl.innerHTML = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">'
-          +'<div class="cd"><div class="ct">버스 노선수</div><div class="cv up">'+routes+'</div><div class="cs">BIS 실측</div></div>'
-          +'<div class="cd"><div class="ct">일평균 이용객</div><div class="cv">'+riders+'</div><div class="cs">BIS 실측</div></div>'
+          +'<div class="cd"><div class="ct">버스 노선수</div><div class="cv up">'+routes+'</div><div class="cs">TAGO 실측</div></div>'
+          +'<div class="cd"><div class="ct">정류소 수</div><div class="cv">'+stations+'</div><div class="cs">TAGO 실측</div></div>'
           +'</div>';
         /* tra-cards 첫 번째 카드 덮어쓰기 (대중교통 만족도 → 버스 노선수 보강) */
         document.querySelectorAll('#tra-cards .cd').forEach(card=>{
