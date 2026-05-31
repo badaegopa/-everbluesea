@@ -7,6 +7,7 @@ data.go.kr 3종 API 수집 후 data/ulsan.json 에 병합.
   DATA_GO_KR — data.go.kr 서비스키 (GitHub Secrets)
 """
 import os, json, time, datetime
+import xml.etree.ElementTree as ET
 from pathlib import Path
 import requests
 
@@ -20,7 +21,7 @@ GU_NAMES = {"junggu":"중구","namgu":"남구","donggu":"동구","bukgu":"북구
 
 # ① 에어코리아 측정소 (구군별 대표)
 AIR_STATIONS = {
-    "junggu":"교동","namgu":"달동","donggu":"화정동","bukgu":"농소동","ulju":"언양",
+    "junggu":"성남동","namgu":"삼산동","donggu":"전하동","bukgu":"농소동","ulju":"삼남읍",
 }
 
 # ② 아파트 법정동 코드 (LAWD_CD 앞 5자리, 31계열)
@@ -39,38 +40,36 @@ def _int(v):
 # ══════════════════════════════════════════════════════
 # ① 에어코리아 대기질
 # ══════════════════════════════════════════════════════
-AIR_URL = "http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMsrstnAcctoRltmMesureDnsty"
-
+AIR_URL = "http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty"
 def collect_air(key):
-    result = {}
-    for gu, station in AIR_STATIONS.items():
-        params = {"serviceKey":key,"stationName":station,"dataTerm":"DAILY",
-                  "pageNo":"1","numOfRows":"1","returnType":"json","ver":"1.3"}
-        try:
-            r = requests.get(AIR_URL, params=params, timeout=TIMEOUT)
-            items = r.json().get("response",{}).get("body",{}).get("items") or []
-            if not items:
-                print(f"  에어코리아 [{gu}/{station}] 데이터 없음")
-                result[gu] = {"pm25":None,"pm10":None,"cai":None,"station":station}
+    """울산 시도 전체를 1회 호출 → 구별 대표 측정소 값만 추출."""
+    result = {gu: {"pm25":None,"pm10":None,"cai":None,"station":st}
+              for gu, st in AIR_STATIONS.items()}
+    params = {"serviceKey":key,"sidoName":"울산","returnType":"json",
+              "numOfRows":"100","pageNo":"1","ver":"1.3"}
+    try:
+        r = requests.get(AIR_URL, params=params, timeout=TIMEOUT)
+        items = r.json().get("response",{}).get("body",{}).get("items") or []
+        by_name = {it.get("stationName"): it for it in items}
+        for gu, st in AIR_STATIONS.items():
+            row = by_name.get(st)
+            if not row:
+                print(f"  에어코리아 [{gu}/{st}] 측정소 응답없음(점검중?)")
                 continue
-            row = items[0]
-            pm25 = _float(row.get("pm25Value"))
-            pm10 = _float(row.get("pm10Value"))
+            pm25 = _float(row.get("pm25Value")); pm10 = _float(row.get("pm10Value"))
             cai  = _int(row.get("khaiValue"))
             result[gu] = {"pm25":pm25,"pm10":pm10,"cai":cai,
-                          "station":station,"measured_at":row.get("dataTime")}
-            print(f"  에어코리아 [{gu}/{station}] PM2.5={pm25} PM10={pm10} CAI={cai}")
-        except Exception as e:
-            print(f"  에어코리아 [{gu}] ERR: {e}")
-            result[gu] = {"pm25":None,"pm10":None,"cai":None,
-                          "station":station,"error":str(e)[:80]}
-        time.sleep(0.3)
+                          "station":st,"measured_at":row.get("dataTime")}
+            print(f"  에어코리아 [{gu}/{st}] PM2.5={pm25} PM10={pm10} CAI={cai}")
+    except Exception as e:
+        print(f"  에어코리아 시도조회 ERR: {e}")
+        for gu in result: result[gu]["error"]=str(e)[:80]
     return result
 
 # ══════════════════════════════════════════════════════
 # ② 아파트 실거래가 (최근 3개월 평균 만원/㎡)
 # ══════════════════════════════════════════════════════
-APT_URL = "http://apis.data.go.kr/1613000/RTMSDataSvcAptTradeDev/getRTMSDataSvcAptTradeDev"
+APT_URL = "http://apis.data.go.kr/1613000/RTMSDataSvcAptTrade/getRTMSDataSvcAptTrade"
 
 def _recent_months(n=3):
     today = datetime.datetime.now(KST)
@@ -85,17 +84,23 @@ def collect_apt(key):
     result = {}
     months = _recent_months(3)
     for gu, lawd in APT_LAWD.items():
-        trades = []
+        trades = []          # (price, area) 표본 — 평균 ㎡단가 계산용
+        total_deals = 0      # totalCount 합 — 실제 거래량
         for ym in months:
             params = {"serviceKey":key,"LAWD_CD":lawd,"DEAL_YMD":ym,
-                      "pageNo":"1","numOfRows":"100"}
+                      "pageNo":"1","numOfRows":"1000"}
             try:
                 r = requests.get(APT_URL, params=params, timeout=TIMEOUT)
-                items = r.json().get("response",{}).get("body",{}).get("items",{}).get("item") or []
-                if isinstance(items, dict): items = [items]
-                for row in items:
-                    price = _float(str(row.get("거래금액","")).replace(",",""))
-                    area  = _float(row.get("전용면적"))
+                root = ET.fromstring(r.content)
+                rc = root.findtext(".//resultCode")
+                if rc not in (None, "000", "00"):
+                    print(f"  아파트 [{gu}/{ym}] API코드 {rc}: {root.findtext('.//resultMsg')}")
+                    time.sleep(0.2); continue
+                tc = _int(root.findtext(".//totalCount"))
+                if tc: total_deals += tc
+                for it in root.findall(".//item"):
+                    price = _float((it.findtext("dealAmount") or "").replace(",",""))
+                    area  = _float(it.findtext("excluUseAr"))
                     if price and area and area > 0:
                         trades.append((price, area))
             except Exception as e:
@@ -103,10 +108,12 @@ def collect_apt(key):
             time.sleep(0.2)
         if trades:
             avg = round(sum(p/a for p,a in trades) / len(trades), 1)
-            result[gu] = {"avg_price_per_sqm":avg,"trade_count":len(trades),"period_months":months}
-            print(f"  아파트 [{gu}] 평균 {avg:,.1f}만원/㎡ ({len(trades)}건)")
+            result[gu] = {"avg_price_per_sqm":avg,"trade_count":total_deals,
+                          "sampled":len(trades),"period_months":months}
+            print(f"  아파트 [{gu}] 평균 {avg:,.1f}만원/㎡ (실거래 {total_deals}건/표본 {len(trades)})")
         else:
-            result[gu] = {"avg_price_per_sqm":None,"trade_count":0,"period_months":months}
+            result[gu] = {"avg_price_per_sqm":None,"trade_count":0,
+                          "sampled":0,"period_months":months}
             print(f"  아파트 [{gu}] 거래 없음 ({months})")
     return result
 
