@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-05-31 12:08 KST",
+  "_updated": "2026-06-01 06:57 KST",
   "kosis": {
     "울산_구군별_인구": {
       "row_count": 45,
@@ -2302,7 +2302,7 @@
       "id": "API_0704",
       "errMsg": "Success",
       "errCd": 0,
-      "trId": "qt0h_API_0704_1780196943788",
+      "trId": "A2=8_API_0704_1780264665285",
       "features": [
         {
           "type": "Feature",
@@ -127694,7 +127694,7 @@
     }
   },
   "redesign": {
-    "_updated": "2026-05-31 12:09 KST",
+    "_updated": "2026-06-01 06:57 KST",
     "_design": {
       "eta_inputs": {
         "①순이동률": "건수/인구×100(%)",
@@ -127804,90 +127804,90 @@
   },
   "air_quality": {
     "junggu": {
-      "pm25": 15.0,
-      "pm10": 17.0,
-      "cai": 96,
+      "pm25": 22.0,
+      "pm10": 25.0,
+      "cai": 74,
       "station": "성남동",
-      "measured_at": "2026-05-31 12:00"
+      "measured_at": "2026-06-01 06:00"
     },
     "namgu": {
-      "pm25": 12.0,
-      "pm10": 24.0,
-      "cai": 99,
+      "pm25": 28.0,
+      "pm10": 31.0,
+      "cai": 79,
       "station": "삼산동",
-      "measured_at": "2026-05-31 12:00"
+      "measured_at": "2026-06-01 06:00"
     },
     "donggu": {
-      "pm25": 19.0,
-      "pm10": 28.0,
-      "cai": 147,
+      "pm25": 35.0,
+      "pm10": 42.0,
+      "cai": 87,
       "station": "전하동",
-      "measured_at": "2026-05-31 12:00"
+      "measured_at": "2026-06-01 06:00"
     },
     "bukgu": {
-      "pm25": 12.0,
-      "pm10": 27.0,
-      "cai": 91,
+      "pm25": 34.0,
+      "pm10": 45.0,
+      "cai": 77,
       "station": "농소동",
-      "measured_at": "2026-05-31 12:00"
+      "measured_at": "2026-06-01 06:00"
     },
     "ulju": {
-      "pm25": 8.0,
-      "pm10": 17.0,
-      "cai": 85,
+      "pm25": 16.0,
+      "pm10": 19.0,
+      "cai": 55,
       "station": "삼남읍",
-      "measured_at": "2026-05-31 12:00"
+      "measured_at": "2026-06-01 06:00"
     }
   },
   "apt_price": {
     "junggu": {
-      "avg_price_per_sqm": 470.7,
-      "trade_count": 525,
-      "sampled": 525,
+      "avg_price_per_sqm": 476.8,
+      "trade_count": 335,
+      "sampled": 335,
       "period_months": [
+        "202606",
         "202605",
-        "202604",
-        "202603"
+        "202604"
       ]
     },
     "namgu": {
-      "avg_price_per_sqm": 564.8,
-      "trade_count": 1148,
-      "sampled": 1148,
+      "avg_price_per_sqm": 576.5,
+      "trade_count": 673,
+      "sampled": 673,
       "period_months": [
+        "202606",
         "202605",
-        "202604",
-        "202603"
+        "202604"
       ]
     },
     "donggu": {
-      "avg_price_per_sqm": 309.8,
-      "trade_count": 517,
-      "sampled": 517,
+      "avg_price_per_sqm": 312.2,
+      "trade_count": 319,
+      "sampled": 319,
       "period_months": [
+        "202606",
         "202605",
-        "202604",
-        "202603"
+        "202604"
       ]
     },
     "bukgu": {
-      "avg_price_per_sqm": 377.3,
-      "trade_count": 778,
-      "sampled": 778,
+      "avg_price_per_sqm": 367.4,
+      "trade_count": 477,
+      "sampled": 477,
       "period_months": [
+        "202606",
         "202605",
-        "202604",
-        "202603"
+        "202604"
       ]
     },
     "ulju": {
-      "avg_price_per_sqm": 337.4,
-      "trade_count": 647,
-      "sampled": 647,
+      "avg_price_per_sqm": 336.8,
+      "trade_count": 393,
+      "sampled": 393,
       "period_months": [
+        "202606",
         "202605",
-        "202604",
-        "202603"
+        "202604"
       ]
     }
   },
@@ -127895,6 +127895,6 @@
     "total_routes": 506,
     "total_stations": 3565,
     "city_code": "26",
-    "measured_at": "2026-05-31"
+    "measured_at": "2026-06-01"
   }
 }
