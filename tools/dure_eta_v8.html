@@ -834,8 +834,8 @@ const INDS=[
 ];
 
 /* ── 레이스 차트 상태 ── */
-const LAST=YEARS.length-1;   /* v8.3: 종점 인덱스(현재 24=2024). 데이터 늘면 자동 추종 */
-let curInd=INDS[0], rcT=LAST, rcPlaying=false, rcRaf=null, rcLastTs=null, rcMspy=500;  /* v8.3: 기본 속도 2배(500ms/년) */
+const LAST=YEARS.length-1;   /* v8.4: 종점 인덱스(현재 24=2024). 데이터 늘면 자동 추종 */
+let curInd=INDS[0], rcT=LAST, rcPlaying=false, rcRaf=null, rcLastTs=null, rcMspy=500;  /* v8.4: 기본 속도 2배(500ms/년) */
 const rcSvg=d3.select('#race-svg');
 let rW,rH,rML,rMR,rMT,rMB,rCW,rCH,rG;
 
@@ -849,7 +849,7 @@ function rcInitSVG(){
   rcSvg.attr('width',rW).attr('height',rH);
   rcSvg.selectAll('*').remove();
   rG=rcSvg.append('g').attr('transform',`translate(${rML},${rMT})`);
-  /* v8.3: 슬라이더 범위를 데이터 종점에 자동 연동 */
+  /* v8.4: 슬라이더 범위를 데이터 종점에 자동 연동 */
   const _sl=document.getElementById('race-slider');
   if(_sl) _sl.max=LAST;
 }
@@ -1126,7 +1126,7 @@ function rcSelectGroup(groupKey){
     '<div class="rl-item"><div class="rl-sw" style="background:'+r.color+'"></div>'+r.name+'</div>'
   ).join('') + '<div class="rl-avg"><div class="rl-avg-ln"></div>평균</div>';
 
-  /* 차트 리셋 후 렌더 — v8.3: 최종연도 선노출 */
+  /* 차트 리셋 후 렌더 — v8.4: 최종연도 선노출 */
   rcStopPlay();
   rcT=LAST;
   rcInitSVG();
@@ -1263,7 +1263,7 @@ function rcRafLoop(ts){
 }
 function rcTogglePlay(){rcPlaying?rcStopPlay():rcStartPlay();}
 function rcStartPlay(){
-  /* v8.3: 종점(최종연도)에서 재생 누르면 2000년으로 되감아 레이스 시작 */
+  /* v8.4: 종점(최종연도)에서 재생 누르면 2000년으로 되감아 레이스 시작 */
   if(rcT>=LAST){ rcT=0; rcRender(0); }
   rcPlaying=true; rcLastTs=null;
   document.getElementById('play-btn').textContent='⏸ 일시정지';
@@ -1275,7 +1275,7 @@ function rcStopPlay(){
   document.getElementById('play-btn').textContent='▶ 재생';
   document.getElementById('play-btn').classList.remove('playing');
 }
-function rcReset(){rcStopPlay();rcT=LAST;rcRender(LAST);}  /* v8.3: 최종연도 스냅샷으로 복귀 */
+function rcReset(){rcStopPlay();rcT=LAST;rcRender(LAST);}  /* v8.4: 최종연도 스냅샷으로 복귀 */
 function rcOnSlider(v){rcStopPlay();rcT=parseFloat(v);rcRender(rcT);}
 function rcSpeedChange(){rcMspy=parseInt(document.getElementById('rc-speed').value)||1000;}
 
@@ -1838,7 +1838,7 @@ loadDistrict("junggu");
         try { rcRender(rcT); } catch(e){}
       }
 
-      /* ── v8.3: 에어코리아·아파트·BIS 실측 렌더 ── */
+      /* ── v8.4: 에어코리아·아파트·BIS 실측 렌더 ── */
       const EXT_ORDER = [
         {key:'junggu',name:'중구'},{key:'namgu',name:'남구'},{key:'donggu',name:'동구'},
         {key:'bukgu',name:'북구'},{key:'ulju',name:'울주군'},
@@ -2012,6 +2012,7 @@ loadDistrict("junggu");
 /* ── 업데이트 티커 데이터 ── */
 (function initTicker(){
   const UPDATES = [
+    '2026-05-31 | v8.4 — 버스 TAGO 연동(노선506·정류소3565, cityCode=26) + 에어코리아 시도조회 전환 + 아파트 RTMS URL/XML 수정 + 정류소수 카드',
     '2026-05-30 | v8.3 c13·c14 실측 연동 — 에어코리아 PM2.5·PM10·CAI + 아파트 실거래가(국토부) + BIS 버스현황 구군별 카드',
     '2026-05-24 | 구군별 순이동률·빈집률 실측 반영 — 통계청 국내인구이동통계(DT_1B26A01·31계열) · 인구주택총조사(DT_1JU1512)',
     '2026-05-24 | 구군별 재정자립도 2026년 기준 갱신 — 지방재정365 · e-나라지표(DT_1YL20921)',
