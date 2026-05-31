@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-05-31 06:58 KST",
+  "_updated": "2026-05-31 11:20 KST",
   "kosis": {
     "울산_구군별_인구": {
       "row_count": 45,
@@ -2302,7 +2302,7 @@
       "id": "API_0704",
       "errMsg": "Success",
       "errCd": 0,
-      "trId": "GWRn_API_0704_1780178363172",
+      "trId": "lcGO_API_0704_1780194031746",
       "features": [
         {
           "type": "Feature",
@@ -127694,7 +127694,7 @@
     }
   },
   "redesign": {
-    "_updated": "2026-05-31 06:59 KST",
+    "_updated": "2026-05-31 11:20 KST",
     "_design": {
       "eta_inputs": {
         "①순이동률": "건수/인구×100(%)",
@@ -127808,67 +127808,88 @@
       "pm10": null,
       "cai": null,
       "station": "교동",
-      "error": "DATA_GO_KR 미설정"
+      "error": "Expecting value: line 1 column 1 (char 0)"
     },
     "namgu": {
       "pm25": null,
       "pm10": null,
       "cai": null,
       "station": "달동",
-      "error": "DATA_GO_KR 미설정"
+      "error": "Expecting value: line 1 column 1 (char 0)"
     },
     "donggu": {
       "pm25": null,
       "pm10": null,
       "cai": null,
       "station": "화정동",
-      "error": "DATA_GO_KR 미설정"
+      "error": "Expecting value: line 1 column 1 (char 0)"
     },
     "bukgu": {
       "pm25": null,
       "pm10": null,
       "cai": null,
       "station": "농소동",
-      "error": "DATA_GO_KR 미설정"
+      "error": "Expecting value: line 1 column 1 (char 0)"
     },
     "ulju": {
       "pm25": null,
       "pm10": null,
       "cai": null,
       "station": "언양",
-      "error": "DATA_GO_KR 미설정"
+      "error": "Expecting value: line 1 column 1 (char 0)"
     }
   },
   "apt_price": {
     "junggu": {
       "avg_price_per_sqm": null,
       "trade_count": 0,
-      "error": "DATA_GO_KR 미설정"
+      "period_months": [
+        "202605",
+        "202604",
+        "202603"
+      ]
     },
     "namgu": {
       "avg_price_per_sqm": null,
       "trade_count": 0,
-      "error": "DATA_GO_KR 미설정"
+      "period_months": [
+        "202605",
+        "202604",
+        "202603"
+      ]
     },
     "donggu": {
       "avg_price_per_sqm": null,
       "trade_count": 0,
-      "error": "DATA_GO_KR 미설정"
+      "period_months": [
+        "202605",
+        "202604",
+        "202603"
+      ]
     },
     "bukgu": {
       "avg_price_per_sqm": null,
       "trade_count": 0,
-      "error": "DATA_GO_KR 미설정"
+      "period_months": [
+        "202605",
+        "202604",
+        "202603"
+      ]
     },
     "ulju": {
       "avg_price_per_sqm": null,
       "trade_count": 0,
-      "error": "DATA_GO_KR 미설정"
+      "period_months": [
+        "202605",
+        "202604",
+        "202603"
+      ]
     }
   },
   "bus_info": {
     "total_routes": null,
     "daily_riders": null,
-    "error": "DATA_GO_KR 미설정"
+    "error_routes": "Expecting value: line 1 column 1 (char 0)",
+    "error_riders": "Expecting value: line 1 column 1 (char 0)"
   }
 }
