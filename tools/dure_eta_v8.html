@@ -1678,6 +1678,7 @@ function loadDistrict(key){
 }
 
 buildSliders();
+autoDetectView(); /* 모바일 감지 먼저 — 전염계수 패널 PC크기 노출 방지 */
 loadDistrict("junggu");
 
 /* ── ulsan.json 실데이터 자동 연동 ────────────────────────────
@@ -4739,7 +4740,6 @@ function autoDetectView(){
     if(isMobileMode){ isMobileMode=false; document.body.classList.remove("mobile-mode"); document.body.classList.add("pc-forced"); }
   }
 }
-autoDetectView();
 window.addEventListener("resize", autoDetectView);
 const mv = document.getElementById('mobile-view');
 
