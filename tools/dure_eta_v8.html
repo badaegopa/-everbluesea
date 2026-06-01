@@ -550,9 +550,9 @@ body{font-family:'Noto Sans KR',sans-serif;background:#F5F3EE;color:#2C2C2A;padd
     <span class="tb-badge">DURE-η</span>
     <span class="tb-sub">Λ¹² 기반 진단-처방 매칭 시스템</span>
     <span class="tb-right">KOSIS 국가통계포털 &nbsp;|&nbsp; 늘푸른바다 사회동역학 연구소 © 2026 &nbsp;|&nbsp; 저작권 2026-027756 · 2026-028880</span>
-    <button id="view-toggle-btn" onclick="toggleViewMode()" title="PC/모바일 뷰 전환">
+    <button id="view-toggle-btn" onclick="toggleViewMode()" title="PC/모바일 버전 전환">
       <span id="view-toggle-icon">📱</span>
-      <span id="view-toggle-label">모바일 뷰</span>
+      <span id="view-toggle-label">모바일 버전</span>
     </button>
   </div>
 
@@ -4491,7 +4491,7 @@ RA();
 </script>
 
 <!-- ══════════════════════════════════════════
-     모바일 뷰 — 현장용 AI 대화 중심 레이아웃
+     모바일 버전 — 현장용 AI 대화 중심 레이아웃
 ══════════════════════════════════════════ -->
 <style>
 /* ── 뷰 전환 버튼 ── */
@@ -4513,7 +4513,7 @@ RA();
   border-color: #3D7A6E; color: #F5F3EE;
 }
 
-/* ── 모바일 뷰 래퍼 ── */
+/* ── 모바일 버전 래퍼 ── */
 #mobile-view {
   display: none !important;
   flex-direction: column;
@@ -4525,11 +4525,11 @@ RA();
   overflow: hidden;
 }
 
-/* 모바일 뷰 활성화 시만 표시 */
+/* 모바일 버전 활성화 시만 표시 */
 body.mobile-mode #mobile-view { display: flex !important; }
-/* 모바일 뷰 활성 시 플로팅 채팅 버튼 숨김 — 탭으로 대체 */
+/* 모바일 버전 활성 시 플로팅 채팅 버튼 숨김 — 탭으로 대체 */
 body.mobile-mode #chat-float-btn { display: none !important; }
-/* 채팅 패널/오버레이도 모바일 뷰 위로 */
+/* 채팅 패널/오버레이도 모바일 버전 위로 */
 body.mobile-mode #chat-panel { z-index: 1500; }
 body.mobile-mode #chat-overlay { z-index: 1400; }
 
@@ -4639,7 +4639,7 @@ body.mobile-mode #chat-overlay { z-index: 1400; }
 .mv-policy-bar-wrap { height: 4px; background: #E0DDD5; border-radius: 2px; margin-top: 5px; }
 .mv-policy-bar  { height: 4px; border-radius: 2px; transition: width .5s; }
 
-/* ── 자동 감지 (600px 이하 → 모바일 뷰 기본) ── */
+/* ── 자동 감지 (600px 이하 → 모바일 버전 기본) ── */
 @media (max-width: 600px) {
   body:not(.pc-forced) #mobile-view { display: flex !important; }
   #view-toggle-label { display: none; }
@@ -4650,7 +4650,7 @@ body.mobile-mode #chat-overlay { z-index: 1400; }
 }
 </style>
 
-<!-- 모바일 뷰 래퍼 -->
+<!-- 모바일 버전 래퍼 -->
 <div id="mobile-view">
 
   <!-- η 현황바 -->
@@ -4782,7 +4782,7 @@ function showMobileView(){
   const label = document.getElementById('view-toggle-label');
   if(btn)   btn.classList.add('mobile-active');
   if(icon)  icon.textContent  = '🖥';
-  if(label) label.textContent = 'PC 뷰';
+  if(label) label.textContent = 'PC 버전';
   // 지역명 동기화
   const rbn = document.getElementById('rbn');
   const mvr = document.getElementById('mv-region-name');
@@ -4802,7 +4802,7 @@ function showPcView(){
   const label = document.getElementById('view-toggle-label');
   if(btn)   btn.classList.remove('mobile-active');
   if(icon)  icon.textContent  = '📱';
-  if(label) label.textContent = '모바일 뷰';
+  if(label) label.textContent = '모바일 버전';
   // 챗봇 플로팅 버튼 복원
   const cfb = document.getElementById('chat-float-btn');
   if(cfb) cfb.style.display = '';
@@ -4923,7 +4923,7 @@ document.getElementById('mv-chat-input').addEventListener('keydown', function(e)
   if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); mvSendMessage(); }
 });
 
-// 지역 변경 시 모바일 뷰 지역명도 동기화
+// 지역 변경 시 모바일 버전 지역명도 동기화
 const _origSR = window.SR;
 window.SR = function(name){
   if(_origSR) _origSR(name);
