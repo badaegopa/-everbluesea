@@ -139,9 +139,9 @@ const SHEET_ID="1039VJe3GWFmUHCccCZMap471dT_i94C4YWi1B8I0YUw";
 const KMA_KEY="ae6660f3eef09e7224e6f9a37fd085b31c9b837e231bf048337a9664c1f2c52b";
 let currentNX=99,currentNY=75;
 function initSelects(){const sido=document.getElementById("sel-sido");Object.keys(GRID).forEach(s=>{const o=document.createElement("option");o.value=s;o.textContent=s;sido.appendChild(o);});sido.value="울산광역시";onSidoChange();document.getElementById("sel-sigungu").value="남구";onSigunguChange();}
-function onSidoChange(){const sido=document.getElementById("sel-sido").value;const sg=document.getElementById("sel-sigungu");const emd=document.getElementById("sel-emd");sg.innerHTML="<option value=>시군구 선택</option>";emd.innerHTML="<option value=>읍면동</option>";if(!sido)return;Object.keys(GRID[sido]).forEach(s=>{const o=document.createElement("option");o.value=s;o.textContent=s;sg.appendChild(o);});}
-function onSigunguChange(){const sido=document.getElementById("sel-sido").value;const sg=document.getElementById("sel-sigungu").value;const emd=document.getElementById("sel-emd");emd.innerHTML="<option value=>읍면동</option>";if(!sido||!sg)return;const d=GRID[sido][sg];currentNX=d.nx;currentNY=d.ny;const o=document.createElement("option");o.value=sg;o.textContent=sg+"(전체)";emd.appendChild(o);emd.value=sg;document.getElementById("kma-title").textContent="📡 기상청 공식 — "+sido+" "+sg;loadKMA();}
-function onEmdChange(){onSigunguChange();}
+function onSidoChange(){const sido=document.getElementById("sel-sido").value;const sg=document.getElementById("sel-sigungu");sg.innerHTML="<option value=>시군구 선택</option>";if(!sido)return;Object.keys(GRID[sido]).forEach(s=>{const o=document.createElement("option");o.value=s;o.textContent=s;sg.appendChild(o);});}
+function onSigunguChange(){const sido=document.getElementById("sel-sido").value;const sg=document.getElementById("sel-sigungu").value;if(!sido||!sg)return;const d=GRID[sido][sg];currentNX=d.nx;currentNY=d.ny;document.getElementById("kma-title").textContent="📡 기상청 공식 — "+sido+" "+sg;loadKMA();}
+
 const SHEET_URL="https://docs.google.com/spreadsheets/d/"+SHEET_ID+"/gviz/tq?tqx=out:csv&sheet=Sheet1";
 
 const ACTIONS={
