@@ -4501,8 +4501,11 @@ RA();
   top: 0;
   z-index: 500;
   background: var(--bg);
-  overflow: hidden;
+  overflow: hidden; /* 가로스크롤 방지 */
 }
+/* 모바일뷰 콘텐츠 세로 스크롤 허용 */
+body.mobile-mode #mv-content { overflow-y: auto !important; }
+body.mobile-mode .mv-pane.on { overflow-y: auto !important; }
 
 /* 모바일 뷰 활성화 시만 표시 */
 body.mobile-mode #mobile-view { display: flex !important; }
