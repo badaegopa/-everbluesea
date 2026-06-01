@@ -214,8 +214,8 @@ async function load(){
     render({feelsLike:parseFloat(map["feelsLike"])||0,realTemp:parseFloat(map["realTemp"])||0,humidity:map["humidity"]||"--",zone:map["zone"]||"--",time:map["time"]||"--"});
   }catch(e){document.getElementById("loading").textContent="데이터를 불러올 수 없습니다. 잠시 후 다시 시도하세요.";}
 }
-initSelects();loadKMA();load();
-setInterval(load,60000);setInterval(loadKMA,600000);
+initSelects();loadKMA();load();loadWarn();
+setInterval(load,60000);setInterval(loadKMA,600000);setInterval(loadWarn,1800000);
 </script>
 </body>
 </html>
