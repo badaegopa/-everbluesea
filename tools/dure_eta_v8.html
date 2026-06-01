@@ -4530,8 +4530,11 @@ body.mobile-mode #mobile-view { display: flex !important; }
 /* PC뷰: mobile-view 높이 제한 — 전체화면 차지 방지 */
 @media (min-width: 601px) {
   body.mobile-mode #mobile-view {
-    position: fixed; inset: auto; bottom: 0; left: 0; right: 0;
-    top: auto; max-height: 480px; border-radius: 12px 12px 0 0;
+    position: fixed !important;
+    inset: auto !important;
+    bottom: 0 !important; left: 0 !important; right: 0 !important;
+    top: auto !important; max-height: 480px !important;
+    border-radius: 12px 12px 0 0;
     box-shadow: 0 -4px 24px rgba(0,0,0,0.3);
   }
 }
