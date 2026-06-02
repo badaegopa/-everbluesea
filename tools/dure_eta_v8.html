@@ -550,10 +550,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:#F5F3EE;color:#2C2C2A;padd
     <span class="tb-badge">DURE-η</span>
     <span class="tb-sub">Λ¹² 기반 진단-처방 매칭 시스템</span>
     <span class="tb-right">KOSIS 국가통계포털 &nbsp;|&nbsp; 늘푸른바다 사회동역학 연구소 © 2026 &nbsp;|&nbsp; 저작권 2026-027756 · 2026-028880</span>
-    <button id="view-toggle-btn" onclick="toggleViewMode()" title="PC/모바일 버전 전환">
-      <span id="view-toggle-icon">📱</span>
-      <span id="view-toggle-label">모바일 버전</span>
-    </button>
+
   </div>
 
   <!-- ── 최신 업데이트 티커 ── -->
@@ -4491,29 +4488,12 @@ RA();
 </script>
 
 <!-- ══════════════════════════════════════════
-     모바일 버전 — 현장용 AI 대화 중심 레이아웃
+     모바일 뷰 — 현장용 AI 대화 중심 레이아웃
 ══════════════════════════════════════════ -->
 <style>
-/* ── 뷰 전환 버튼 ── */
-#view-toggle-btn {
-  margin-left: 8px;
-  display: flex; align-items: center; gap: 4px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: #DDD8CE;
-  font-size: 10px; font-weight: 700;
-  padding: 3px 10px; border-radius: 3px;
-  cursor: pointer; letter-spacing: .04em;
-  font-family: 'Noto Sans KR', sans-serif;
-  transition: all .2s; white-space: nowrap; flex-shrink: 0;
-}
-#view-toggle-btn:hover { background: rgba(255,255,255,0.15); }
-#view-toggle-btn.mobile-active {
-  background: linear-gradient(135deg, #3D7A6E, #2a5a50);
-  border-color: #3D7A6E; color: #F5F3EE;
-}
 
-/* ── 모바일 버전 래퍼 ── */
+
+/* ── 모바일 뷰 래퍼 ── */
 #mobile-view {
   display: none !important;
   flex-direction: column;
@@ -4525,11 +4505,11 @@ RA();
   overflow: hidden;
 }
 
-/* 모바일 버전 활성화 시만 표시 */
+/* 모바일 뷰 활성화 시만 표시 */
 body.mobile-mode #mobile-view { display: flex !important; }
-/* 모바일 버전 활성 시 플로팅 채팅 버튼 숨김 — 탭으로 대체 */
+/* 모바일 뷰 활성 시 플로팅 채팅 버튼 숨김 — 탭으로 대체 */
 body.mobile-mode #chat-float-btn { display: none !important; }
-/* 채팅 패널/오버레이도 모바일 버전 위로 */
+/* 채팅 패널/오버레이도 모바일 뷰 위로 */
 body.mobile-mode #chat-panel { z-index: 1500; }
 body.mobile-mode #chat-overlay { z-index: 1400; }
 
@@ -4639,10 +4619,9 @@ body.mobile-mode #chat-overlay { z-index: 1400; }
 .mv-policy-bar-wrap { height: 4px; background: #E0DDD5; border-radius: 2px; margin-top: 5px; }
 .mv-policy-bar  { height: 4px; border-radius: 2px; transition: width .5s; }
 
-/* ── 자동 감지 (600px 이하 → 모바일 버전 기본) ── */
+/* ── 자동 감지 (600px 이하 → 모바일 뷰 기본) ── */
 @media (max-width: 600px) {
   body:not(.pc-forced) #mobile-view { display: flex !important; }
-  #view-toggle-label { display: none; }
 }
 /* PC에서는 mobile-mode여도 레이아웃 정상 유지 보조 */
 @media (min-width: 601px) {
@@ -4650,7 +4629,7 @@ body.mobile-mode #chat-overlay { z-index: 1400; }
 }
 </style>
 
-<!-- 모바일 버전 래퍼 -->
+<!-- 모바일 뷰 래퍼 -->
 <div id="mobile-view">
 
   <!-- η 현황바 -->
@@ -4750,68 +4729,40 @@ body.mobile-mode #chat-overlay { z-index: 1400; }
 </div>
 
 <script>
-/* ── 뷰 전환 ── */
-let isMobileMode = false;
+/* ── 뷰 자동 감지 (600px 기준) ── */
 const mv = document.getElementById('mobile-view');
 
-function showMobileView(){
-  isMobileMode = true;
-  if(mv){
-    mv.style.display = 'flex';
-    // sticky-header 높이 보정
-    const header = document.getElementById('sticky-header');
-    if(header){
-      const h = header.getBoundingClientRect().height || 46;
+function autoDetectView(){
+  const isMobile = window.innerWidth <= 600;
+  const header = document.getElementById('sticky-header');
+  if(isMobile){
+    if(mv){
+      mv.style.display = 'flex';
+      const h = header ? (header.getBoundingClientRect().height || 46) : 46;
       mv.style.top = h + 'px';
-    } else {
-      mv.style.top = '46px';
+      mv.style.left = '0'; mv.style.right = '0'; mv.style.bottom = '0';
+      mv.style.position = 'fixed'; mv.style.zIndex = '500';
+      mv.style.flexDirection = 'column';
+      mv.style.overflow = 'hidden';
+      mv.style.background = 'var(--bg)';
     }
-    mv.style.left   = '0';
-    mv.style.right  = '0';
-    mv.style.bottom = '0';
-    mv.style.position = 'fixed';
-    mv.style.zIndex = '500';
-    mv.style.flexDirection = 'column';
-    mv.style.overflow = 'hidden';
-    mv.style.background = 'var(--bg)';
+    document.body.classList.add('mobile-mode');
+    document.body.classList.remove('pc-forced');
+    // 지역명 동기화
+    const rbn = document.getElementById('rbn');
+    const mvr = document.getElementById('mv-region-name');
+    if(rbn && mvr) mvr.textContent = rbn.textContent;
+    // 챗봇 플로팅 버튼 숨김
+    const cfb = document.getElementById('chat-float-btn');
+    if(cfb) cfb.style.display = 'none';
+  } else {
+    if(mv) mv.style.display = 'none';
+    document.body.classList.remove('mobile-mode');
+    document.body.classList.add('pc-forced');
+    const cfb = document.getElementById('chat-float-btn');
+    if(cfb) cfb.style.display = '';
   }
-  document.body.classList.add('mobile-mode');
-  document.body.classList.remove('pc-forced');
-  const btn   = document.getElementById('view-toggle-btn');
-  const icon  = document.getElementById('view-toggle-icon');
-  const label = document.getElementById('view-toggle-label');
-  if(btn)   btn.classList.add('mobile-active');
-  if(icon)  icon.textContent  = '🖥';
-  if(label) label.textContent = 'PC 버전';
-  // 지역명 동기화
-  const rbn = document.getElementById('rbn');
-  const mvr = document.getElementById('mv-region-name');
-  if(rbn && mvr) mvr.textContent = rbn.textContent;
-  // 챗봇 플로팅 버튼 숨김
-  const cfb = document.getElementById('chat-float-btn');
-  if(cfb) cfb.style.display = 'none';
 }
-
-function showPcView(){
-  isMobileMode = false;
-  if(mv) mv.style.display = 'none';
-  document.body.classList.remove('mobile-mode');
-  document.body.classList.add('pc-forced');
-  const btn   = document.getElementById('view-toggle-btn');
-  const icon  = document.getElementById('view-toggle-icon');
-  const label = document.getElementById('view-toggle-label');
-  if(btn)   btn.classList.remove('mobile-active');
-  if(icon)  icon.textContent  = '📱';
-  if(label) label.textContent = '모바일 버전';
-  // 챗봇 플로팅 버튼 복원
-  const cfb = document.getElementById('chat-float-btn');
-  if(cfb) cfb.style.display = '';
-}
-
-window.toggleViewMode = function(){
-  if(isMobileMode) showPcView();
-  else showMobileView();
-};
 
 /* ── 탭 전환 ── */
 window.mvTab = function(tab){
@@ -4923,7 +4874,7 @@ document.getElementById('mv-chat-input').addEventListener('keydown', function(e)
   if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); mvSendMessage(); }
 });
 
-// 지역 변경 시 모바일 버전 지역명도 동기화
+// 지역 변경 시 모바일 뷰 지역명도 동기화
 const _origSR = window.SR;
 window.SR = function(name){
   if(_origSR) _origSR(name);
@@ -4931,19 +4882,9 @@ window.SR = function(name){
   if(el) el.textContent = name;
 };
 
-// 화면 너비 변화 감지
-window.addEventListener('resize', function(){
-  if(window.innerWidth <= 600 && !document.body.classList.contains('pc-forced')){
-    showMobileView();
-  }
-});
-
-// 초기 자동 전환 — 완전 로드 후 실행
-window.addEventListener('load', function(){
-  if(window.innerWidth <= 600 && !document.body.classList.contains('pc-forced')){
-    showMobileView();
-  }
-});
+// 화면 너비 변화 감지 + 초기 자동 전환
+window.addEventListener('resize', autoDetectView);
+window.addEventListener('load', autoDetectView);
 </script>
 <style>
 /* ── 동의 모달 ── */
