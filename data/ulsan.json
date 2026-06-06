@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-06-06 07:13 KST",
+  "_updated": "2026-06-07 07:01 KST",
   "kosis": {
     "울산_구군별_인구": {
       "row_count": 45,
@@ -2302,7 +2302,7 @@
       "id": "API_0704",
       "errMsg": "Success",
       "errCd": 0,
-      "trId": "PIDY_API_0704_1780697612142",
+      "trId": "=ScR_API_0704_1780783321407",
       "features": [
         {
           "type": "Feature",
@@ -127694,7 +127694,7 @@
     }
   },
   "redesign": {
-    "_updated": "2026-06-06 07:13 KST",
+    "_updated": "2026-06-07 07:02 KST",
     "_design": {
       "eta_inputs": {
         "①순이동률": "건수/인구×100(%)",
@@ -127804,39 +127804,39 @@
   },
   "air_quality": {
     "junggu": {
-      "pm25": 12.0,
-      "pm10": 24.0,
-      "cai": 53,
+      "pm25": 7.0,
+      "pm10": 12.0,
+      "cai": 65,
       "station": "성남동",
-      "measured_at": "2026-06-06 07:00"
+      "measured_at": "2026-06-07 06:00"
     },
     "namgu": {
-      "pm25": 14.0,
-      "pm10": 17.0,
-      "cai": 61,
+      "pm25": 8.0,
+      "pm10": 18.0,
+      "cai": 70,
       "station": "삼산동",
-      "measured_at": "2026-06-06 07:00"
+      "measured_at": "2026-06-07 06:00"
     },
     "donggu": {
-      "pm25": 9.0,
-      "pm10": 13.0,
-      "cai": 67,
+      "pm25": 10.0,
+      "pm10": 15.0,
+      "cai": 70,
       "station": "전하동",
-      "measured_at": "2026-06-06 07:00"
+      "measured_at": "2026-06-07 06:00"
     },
     "bukgu": {
-      "pm25": 12.0,
-      "pm10": 17.0,
-      "cai": 59,
+      "pm25": 9.0,
+      "pm10": 13.0,
+      "cai": 70,
       "station": "농소동",
-      "measured_at": "2026-06-06 07:00"
+      "measured_at": "2026-06-07 06:00"
     },
     "ulju": {
       "pm25": 14.0,
-      "pm10": 20.0,
-      "cai": 44,
+      "pm10": 15.0,
+      "cai": 59,
       "station": "삼남읍",
-      "measured_at": "2026-06-06 07:00"
+      "measured_at": "2026-06-07 06:00"
     }
   },
   "apt_price": {
@@ -127861,9 +127861,9 @@
       ]
     },
     "donggu": {
-      "avg_price_per_sqm": 307.8,
-      "trade_count": 362,
-      "sampled": 362,
+      "avg_price_per_sqm": 308.2,
+      "trade_count": 361,
+      "sampled": 361,
       "period_months": [
         "202606",
         "202605",
@@ -127895,6 +127895,6 @@
     "total_routes": 506,
     "total_stations": 3565,
     "city_code": "26",
-    "measured_at": "2026-06-06"
+    "measured_at": "2026-06-07"
   }
 }
