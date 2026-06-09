@@ -1,0 +1,1983 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEISMOS — 각 시도별 사회구조 현황</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans KR',sans-serif;background:#F5F3EE;color:#2C2C2A;padding:12px;max-width:820px;margin:0 auto;font-size:12px}
+.hdr{background:#0F6E56;border-radius:10px;padding:11px 16px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.ht{font-size:14px;font-weight:700;color:#E1F5EE}
+.hs{font-size:10px;color:#9FE1CB;margin-top:2px}
+.region-wrap{position:relative;flex-shrink:0}
+.region-btn{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.15);border:0.5px solid rgba(255,255,255,0.3);border-radius:6px;padding:6px 10px;cursor:pointer;color:#E1F5EE;font-size:12px;font-weight:600;white-space:nowrap;user-select:none;transition:background .15s}
+.region-btn:hover{background:rgba(255,255,255,0.25)}
+.rarrow{font-size:10px;transition:transform .2s}
+.rarrow.o{transform:rotate(180deg)}
+.rdrop{position:absolute;top:calc(100% + 6px);right:0;background:#fff;border:0.5px solid #DDD8CE;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,0.12);z-index:100;min-width:190px;overflow:hidden;display:none}
+.rdrop.o{display:block}
+.rgroup{padding:4px 0;border-bottom:0.5px solid #F1EFE8}
+.rgroup:last-child{border-bottom:none}
+.rgroup-label{font-size:9px;color:#888780;font-weight:600;padding:5px 12px 2px;letter-spacing:0.5px}
+.ritem{padding:6px 12px;cursor:pointer;font-size:11px;color:#2C2C2A;transition:background .1s;display:flex;align-items:center;justify-content:space-between}
+.ritem:hover{background:#EBF4F0;color:#0F6E56}
+.ritem.active{background:#E1F5EE;color:#0F6E56;font-weight:600}
+.rb{background:#fff;border:0.5px solid #DDD8CE;border-radius:8px;padding:7px 13px;margin-bottom:8px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.rb-name{font-size:13px;font-weight:700;color:#0F6E56}
+.rb-item{font-size:10px;color:#5F5E5A}
+.rb-val{font-weight:600;color:#2C2C2A}
+.rb-div{width:0.5px;height:13px;background:#DDD8CE;flex-shrink:0}
+.sec{border:0.5px solid #DDD8CE;border-radius:8px;margin-bottom:6px;overflow:hidden;background:#fff}
+.sh{display:flex;align-items:center;justify-content:space-between;padding:8px 13px;cursor:pointer;background:#F5F3EE;user-select:none;transition:background .15s}
+.sh:hover{background:#EBF4F0}
+.sl{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.sn{font-size:10px;color:#888780;min-width:14px}
+.st{font-size:12px;font-weight:600;color:#2C2C2A}
+.bdg{font-size:10px;padding:2px 7px;border-radius:10px;font-weight:500}
+.bg{background:#E1F5EE;color:#085041}.ba{background:#FAEEDA;color:#633806}.br{background:#FCEBEB;color:#791F1F}.bb{background:#E6F1FB;color:#0C447C}
+.ar{font-size:10px;color:#888780;transition:transform .18s;flex-shrink:0}
+.ar.o{transform:rotate(180deg)}
+.bd{display:none;padding:9px 13px;border-top:0.5px solid #EBF4F0}
+.bd.o{display:block}
+.row{display:flex;align-items:center;gap:5px;padding:3px 0;border-bottom:0.5px solid #F1EFE8}
+.row:last-child{border-bottom:none}
+.lb{width:108px;flex-shrink:0;color:#5F5E5A;font-size:11px}
+.vl{width:62px;flex-shrink:0;font-weight:600;font-size:11px}
+.bw{flex:1;background:#F1EFE8;border-radius:2px;height:7px}
+.b{height:7px;border-radius:2px}
+.cg{width:110px;flex-shrink:0;font-size:10px}
+.dot{width:11px;height:11px;border-radius:50%;flex-shrink:0}
+.dg{background:#0F6E56}.da{background:#BA7517}.dr{background:#A32D2D}.db{background:#185FA5}
+.up{color:#085041}.dn{color:#791F1F}.nt{color:#633806}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.cd{border:0.5px solid #DDD8CE;border-radius:6px;padding:6px 8px;background:#fff}
+.ct{font-size:10px;color:#888780;margin-bottom:2px}
+.cv{font-size:13px;font-weight:600;color:#2C2C2A}
+.cs{font-size:10px;margin-top:1px}
+.ss{font-size:11px;font-weight:600;color:#888780;margin:7px 0 3px;padding-bottom:2px;border-bottom:0.5px solid #EBF4F0}
+.nr{font-size:10px;color:#5F5E5A;background:#F5F3EE;border-radius:4px;padding:4px 7px;margin-top:5px}
+.nrr{font-size:10px;color:#791F1F;background:#FCEBEB;border-radius:4px;padding:4px 7px;margin-top:5px;border:0.5px solid #F09595}
+.score{font-size:20px;font-weight:700}
+.pw{background:#F1EFE8;border-radius:4px;height:9px;flex:1}
+.pg{height:9px;border-radius:4px}
+.thdr{display:flex;gap:5px;padding:3px 0;border-bottom:1px solid #DDD8CE;font-size:10px;color:#888780;font-weight:600}
+.footer{font-size:10px;color:#888780;text-align:center;padding:8px 0;margin-top:4px;line-height:1.6}
+.no-data{text-align:center;padding:24px;color:#888780;font-size:11px}
+@media(max-width:480px){.g3{grid-template-columns:1fr 1fr}.g5{grid-template-columns:repeat(3,1fr)}.lb{width:80px}}
+</style>
+</head>
+<body>
+
+<script>
+const DB = {
+  울산광역시:{
+    type:'광역시',pop:'113만명',area:'1,062km²',industry:'석유화학·조선·자동차',
+    summary:{grdp:'74.2조',income:'512만원',expense:'381만원',unemploy:'2.8%',cpi:'+3.1%',debt:'168%'},inflation:{national:'+3.1%',local:'+3.8%',food:'+5.2%',energy:'+8.4%',housing:'+2.8%',transport:'+4.1%',base:'2024년 통계청 지역별 소비자물가지수 기준'},
+    council:{total:64.2,note:'공약이행 48.2% 위험',
+      items:[{n:'남구의회',v:72.4,t:'up'},{n:'중구의회',v:68.1,t:'up'},{n:'북구의회',v:64.8,t:'nt'},{n:'울주군의회',v:61.2,t:'dn'},{n:'동구의회',v:54.8,t:'dn'}]},
+    city:{total:71.8,note:'의회(64.2) vs 시정(71.8) — 격차 7.6점',
+      items:[{n:'경제·일자리',v:78.4,t:'up'},{n:'복지·돌봄',v:74.1,t:'up'},{n:'교육·청소년',v:68.2,t:'nt'},{n:'환경·도시',v:64.8,t:'dn'},{n:'문화·관광',v:58.4,t:'dn'}]},
+    industries:[{n:'석유화학',v:'29.3조',w:100,c:'#7F77DD'},{n:'조선',v:'22.1조',w:75,c:'#378ADD',chg:'▼ -1.4% 주목'},{n:'자동차',v:'18.4조',w:63,c:'#378ADD',chg:'▲ +3.2%'},{n:'농축산(배·양파·한우)',v:'0.38조',w:13,c:'#639922',chg:'▲ +12.4% 출하'},{n:'수산물',v:'0.21조',w:7,c:'#5DCAA5',chg:'▼ -2.1%'}],
+    employ:{rate:'62.4%',mfg:'487만원',svc:'284만원',youth:'54.1%',disaster:'0.64%',wage:'142건',
+      sectors:[{n:'제조업',v:'39.2%',w:100,c:'#7F77DD',t:'dn'},{n:'서비스·유통',v:'28.4%',w:72,c:'#5DCAA5',t:'up'},{n:'공공·교육',v:'14.8%',w:38,c:'#378ADD',t:'up'},{n:'건설',v:'9.1%',w:23,c:'#BA7517',t:'dn'},{n:'무직·구직중',v:'4.3%',w:11,c:'#E24B4A',t:'dn'}]},
+    selfemploy:{total:'8.42만명',close:'284건',survive:'38.4%',cost:'4,820만원',loan:'2.84조',support:'142건',
+      sectors:[{n:'음식·숙박',v:'28.4%',w:100,c:'#E24B4A',note:'폐업률 1위'},{n:'도소매',v:'22.1%',w:78,c:'#378ADD'},{n:'서비스·미용',v:'18.4%',w:65,c:'#5DCAA5'},{n:'운수·물류',v:'12.8%',w:45,c:'#7F77DD'},{n:'교육·학원',v:'9.2%',w:32,c:'#5DCAA5'}]},
+    consume:{voucher:'1,840억',use:'78.4%',leak:'24.8%',card:'2.84조',alley:'84.2',online:'38.4%',
+      districts:[{n:'중구',v:'84.2%',w:84,t:'up'},{n:'남구',v:'81.4%',w:81,t:'up'},{n:'북구',v:'76.8%',w:77,t:'up'},{n:'동구',v:'72.4%',w:72,t:'nt'},{n:'울주군',v:'64.8%',w:65,t:'dn'}]},
+    medical:{
+      districts:[{n:'중구',hosp:3,health:1,er:2,rate:74,t:'up'},{n:'남구',hosp:5,health:1,er:3,rate:82,t:'up'},{n:'동구',hosp:1,health:1,er:1,rate:52,t:'dn'},{n:'북구',hosp:2,health:1,er:1,rate:60,t:'dn'},{n:'울주군',hosp:1,health:3,er:1,rate:45,t:'dr'}],
+      out:[{n:'서울·수도권',v:'4,820명',w:100},{n:'부산·경남',v:'3,140명',w:65},{n:'대구·경북',v:'1,290명',w:27}],
+      total:'월 총 유출 9,250명',mental:{suicide:'28.4명',center:'5개소',depress:'6.8%'}},
+    welfare:{recip:'2.84만명',near:'4.12만명',alone:'4.24만명',disabled:'5.68만명',care:'1,840명',child:'284건',disabledDetail:{types:[{n:'지체장애',v:'38.4%',w:100,c:'#378ADD'},{n:'청각·언어',v:'18.2%',w:47,c:'#5DCAA5'},{n:'시각',v:'9.8%',w:26,c:'#7F77DD'},{n:'발달·지적',v:'14.2%',w:37,c:'#BA7517'},{n:'정신',v:'8.4%',w:22,c:'#E24B4A'},{n:'기타',v:'11.0%',w:29,c:'#888780'}],employ:'34.2%',obligeRate:'68.4%',activity:'1,284명',mobility:'대기 48분',facility:'62.4%',pension:'42.1%',districts:[{n:'중구',v:'η 0.52',t:'da'},{n:'남구',v:'η 0.58',t:'da'},{n:'북구',v:'η 0.54',t:'da'},{n:'동구',v:'η 0.44',t:'dr'},{n:'울주군',v:'η 0.41',t:'dr'}]},
+      budget:[{n:'중구',v:'184만원',w:100,t:'up'},{n:'남구',v:'176만원',w:96,t:'up'},{n:'북구',v:'168만원',w:91,t:'nt'},{n:'울주군',v:'142만원',w:77,t:'dn'},{n:'동구',v:'128만원',w:70,t:'dr'}]},
+    edu:{students:'12.8만명',college:'67.2%',outschool:'2,840명',private:'38.2만원',violence:'318건',teacher:'14.8명',
+      budget:[{n:'남구',v:'142만원',w:100,t:'up'},{n:'중구',v:'128만원',w:90,t:'up'},{n:'북구',v:'118만원',w:83,t:'nt'},{n:'울주군',v:'112만원',w:79,t:'dn'},{n:'동구',v:'104만원',w:73,t:'dr'}]},
+    tourism:{visitors:'84.2만명',stay:'4.8시간',revenue:'1,240억',weekend:'64.8%',park:'42만명/월',hotel:'58.4%',
+      spots:[{n:'태화강 국가정원',v:'18.4만',w:100,t:'up'},{n:'울산대공원',v:'14.2만',w:77,t:'up'},{n:'간절곶',v:'8.4만',w:46,t:'nt'},{n:'반구대 암각화',v:'4.8만',w:26,t:'up'},{n:'장생포 고래마을',v:'3.2만',w:17,t:'dn'}]},
+    culture:{facilities:'42개소',monthly:'8.4만원',participate:'28.4%',perform:'284건',library:'42.4%',support:'1,840명',rank:'6위',score:48.4},
+    leisure:{facilities:'284개소',use:'58.4%',clubs:'1,840개',leisure:'4.2시간/일',satisfy:'72.4점',spectators:'8.4만명/월',
+      sports:[{n:'등산·트레킹',v:'12.4만명',w:100,t:'up'},{n:'축구·풋살',v:'8.4만명',w:68,t:'up'},{n:'사회인야구',v:'4.8만명',w:39,t:'up'},{n:'수영·수상',v:'3.8만명',w:31,t:'up'},{n:'배드민턴·테니스',v:'3.2만명',w:26,t:'nt'},{n:'자전거',v:'2.8만명',w:23,t:'up'}]},
+    housing:{price:'3.82억',jeonse:'72.4%',single:'31.2%',pm25:'24μg',carbon:'4,820만톤',river:'2등급',
+      dust:[{n:'동구(석화단지)',v:'34μg',w:100,t:'dr'},{n:'북구',v:'28μg',w:82,t:'dn'},{n:'울주군',v:'24μg',w:71,t:'nt'},{n:'남구',v:'18μg',w:53,t:'up'},{n:'중구',v:'16μg',w:47,t:'up'}]},
+    transport:{satisfy:'52점',commute:'38분',accident:'1,840건',cars:'58.4만대',bike:'284km',congestion:'2,840억',
+      access:[{n:'중구',v:'84%',w:84,t:'up'},{n:'남구',v:'78%',w:78,t:'up'},{n:'동구',v:'64%',w:64,t:'nt'},{n:'북구',v:'58%',w:58,t:'nt'},{n:'울주군',v:'32%',w:32,t:'dr'}]},
+    eta:{districts:[{n:'중구',v:0.71,t:'dg',chg:'▲+0.03'},{n:'남구',v:0.68,t:'dg',chg:'▲+0.01'},{n:'북구',v:0.63,t:'dg',chg:'▲+0.02'},{n:'울주군',v:0.57,t:'da',chg:'▼ 주목'},{n:'동구',v:0.54,t:'da',chg:'▼ 주목'}],
+      groups:[{n:'학교밖 청소년',v:'η 0.31',t:'dr',note:'▼ 위험'},{n:'독거·취약노인',v:'η 0.33',t:'dr',note:'▼ 위험'},{n:'자영업자',v:'η 0.41',t:'dr',note:'▼ 위험'},{n:'대학생·취준',v:'η 0.48',t:'da',note:'▼ 주목'},{n:'은퇴·연금',v:'η 0.49',t:'da',note:'▼ 주목'},{n:'학생·청소년',v:'η 0.52',t:'da',note:'▼ -0.02'},{n:'직장인',v:'η 0.65',t:'dg',note:'▲+0.01'},{n:'전문직·의료',v:'η 0.70',t:'dg',note:'▲+0.02'}]},
+    foreign:{total:'3.2만명',
+      groups:[{n:'제조·조선 — 북구·동구',v:'1.41만명',eta:'0.44 주목',note:'임금체불↑'},{n:'돌봄·서비스 — 전 구·군',v:'0.64만명',eta:'0.58 양호',note:''},{n:'결혼이민자 — 남구·울주',v:'0.80만명',eta:'0.61 양호',note:''},{n:'유학생·기타 — 남구',v:'0.35만명',eta:'0.66 양호',note:''}],
+      districts:[{n:'동구',v:'0.90만',w:100,note:'28% | 조선업 밀집'},{n:'북구',v:'0.83만',w:92,note:'26% | 제조업 밀집'},{n:'울주군',v:'0.61만',w:68,note:'19%'},{n:'중구',v:'0.48만',w:53,note:'15%'},{n:'남구',v:'0.38만',w:42,note:'12%'}],
+      nations:[{n:'베트남',v:'28.4%',w:100},{n:'중국·조선족',v:'24.1%',w:85},{n:'인도네시아',v:'18.2%',w:64},{n:'우즈베키스탄',v:'12.4%',w:44},{n:'기타',v:'16.9%',w:60}]},
+    crime:{
+      districts:[{n:'중구',life:320,foreign:28,epi:0.22,t:'da'},{n:'남구',life:260,foreign:18,epi:0.15,t:'dg'},{n:'동구',life:290,foreign:42,epi:0.37,t:'dr'},{n:'북구',life:240,foreign:38,epi:0.31,t:'da'},{n:'울주군',life:200,foreign:20,epi:0.18,t:'dg'}]}
+  },
+
+  서울특별시:{
+    type:'특별시',pop:'964만명',area:'605km²',industry:'IT·금융·서비스·문화',
+    summary:{grdp:'457조',income:'542만원',expense:'418만원',unemploy:'3.2%',cpi:'+3.8%',debt:'184%'},
+    council:{total:61.4,note:'광역의회 견제 기능 강화 필요',
+      items:[{n:'강남권의회',v:72.8,t:'up'},{n:'서북권의회',v:66.4,t:'up'},{n:'동북권의회',v:62.1,t:'nt'},{n:'서남권의회',v:56.4,t:'dn'},{n:'동남권의회',v:49.4,t:'dn'}]},
+    city:{total:74.2,note:'의회(61.4) vs 시정(74.2) — 격차 12.8점 주목',
+      items:[{n:'경제·일자리',v:81.4,t:'up'},{n:'복지·돌봄',v:76.2,t:'up'},{n:'교육·청소년',v:72.4,t:'up'},{n:'환경·도시',v:68.1,t:'nt'},{n:'문화·관광',v:78.2,t:'up'}]},
+    industries:[{n:'금융·보험',v:'84.2조',w:100,c:'#7F77DD',chg:'▲ +4.2%'},{n:'IT·정보통신',v:'72.1조',w:86,c:'#378ADD',chg:'▲ +8.4%'},{n:'도소매·서비스',v:'61.4조',w:73,c:'#5DCAA5',chg:'▲ +2.1%'},{n:'제조업',v:'28.4조',w:34,c:'#EF9F27',chg:'▼ -1.2%'},{n:'건설',v:'18.2조',w:22,c:'#888780',chg:'▼ -2.4%'}],
+    employ:{rate:'60.2%',mfg:'524만원',svc:'312만원',youth:'58.4%',disaster:'0.28%',wage:'284건',
+      sectors:[{n:'서비스·유통',v:'42.4%',w:100,c:'#5DCAA5',t:'up'},{n:'IT·금융',v:'28.1%',w:66,c:'#7F77DD',t:'up'},{n:'공공·교육',v:'18.4%',w:43,c:'#378ADD',t:'nt'},{n:'제조업',v:'6.2%',w:15,c:'#EF9F27',t:'dn'},{n:'무직·구직중',v:'4.9%',w:12,c:'#E24B4A',t:'nt'}]},
+    selfemploy:{total:'64.2만명',close:'1,284건',survive:'42.1%',cost:'8,420만원',loan:'18.4조',support:'842건',
+      sectors:[{n:'음식·숙박',v:'24.2%',w:100,c:'#E24B4A',note:'임대료 부담 1위'},{n:'도소매',v:'21.4%',w:88,c:'#378ADD'},{n:'서비스·미용',v:'22.1%',w:91,c:'#5DCAA5'},{n:'운수·물류',v:'8.4%',w:35,c:'#7F77DD'},{n:'교육·학원',v:'14.2%',w:59,c:'#5DCAA5'}]},
+    consume:{voucher:'8,420억',use:'64.2%',leak:'8.4%',card:'28.4조',alley:'72.4',online:'52.4%',
+      districts:[{n:'종로·중구',v:'71.4%',w:71,t:'up'},{n:'강남·서초',v:'58.4%',w:58,t:'nt'},{n:'마포·서대문',v:'68.4%',w:68,t:'up'},{n:'노원·도봉',v:'74.2%',w:74,t:'up'},{n:'강서·구로',v:'72.1%',w:72,t:'up'}]},
+    medical:{
+      districts:[{n:'강남구',hosp:12,health:1,er:8,rate:94,t:'up'},{n:'서초구',hosp:8,health:1,er:6,rate:91,t:'up'},{n:'마포구',hosp:5,health:1,er:3,rate:84,t:'up'},{n:'노원구',hosp:4,health:1,er:2,rate:76,t:'up'},{n:'금천구',hosp:2,health:1,er:1,rate:62,t:'nt'}],
+      out:[{n:'서울 내 상위병원',v:'자체 해소율 92%',w:92},{n:'타 시도 유출',v:'월 8,240명',w:8}],
+      total:'자체 의료 충족률 전국 1위',mental:{suicide:'22.4명',center:'25개소',depress:'5.8%'}},
+    welfare:{recip:'28.4만명',near:'42.1만명',alone:'42.4만명',disabled:'38.4만명',care:'18,400명',child:'2,840건',
+      budget:[{n:'노원구',v:'214만원',w:100,t:'up'},{n:'관악구',v:'198만원',w:93,t:'up'},{n:'중랑구',v:'184만원',w:86,t:'up'},{n:'강남구',v:'142만원',w:66,t:'nt'},{n:'서초구',v:'128만원',w:60,t:'dn'}]},
+    edu:{students:'92.4만명',college:'78.4%',outschool:'14,200명',private:'72.4만원',violence:'2,840건',teacher:'12.4명',
+      budget:[{n:'강남구',v:'284만원',w:100,t:'up'},{n:'서초구',v:'262만원',w:92,t:'up'},{n:'송파구',v:'218만원',w:77,t:'up'},{n:'노원구',v:'184만원',w:65,t:'nt'},{n:'금천구',v:'142만원',w:50,t:'dn'}]},
+    tourism:{visitors:'1,284만명',stay:'6.2시간',revenue:'8,420억',weekend:'72.4%',park:'284만명/월',hotel:'78.4%',
+      spots:[{n:'경복궁·북촌',v:'124만',w:100,t:'up'},{n:'남산·N타워',v:'98.4만',w:79,t:'up'},{n:'한강공원',v:'284만',w:100,t:'up'},{n:'홍대·이태원',v:'184만',w:100,t:'up'},{n:'롯데월드타워',v:'84.2만',w:68,t:'up'}]},
+    culture:{facilities:'842개소',monthly:'18.4만원',participate:'58.4%',perform:'8,420건',library:'68.4%',support:'28,400명',rank:'1위',score:92.4},
+    leisure:{facilities:'2,840개소',use:'72.4%',clubs:'18,400개',leisure:'4.8시간/일',satisfy:'84.2점',spectators:'184만명/월',
+      sports:[{n:'등산·트레킹',v:'142만명',w:100,t:'up'},{n:'축구·풋살',v:'84.2만명',w:59,t:'up'},{n:'사이클·자전거',v:'72.4만명',w:51,t:'up'},{n:'수영·수상',v:'62.1만명',w:44,t:'up'},{n:'야구·사회인',v:'48.4만명',w:34,t:'up'},{n:'테니스·배드민턴',v:'42.1만명',w:30,t:'up'}]},
+    housing:{price:'10.84억',jeonse:'58.4%',single:'34.2%',pm25:'18μg',carbon:'2,840만톤',river:'한강 1등급',
+      dust:[{n:'강서구',v:'22μg',w:100,t:'nt'},{n:'구로구',v:'20μg',w:91,t:'nt'},{n:'종로구',v:'18μg',w:82,t:'up'},{n:'강남구',v:'16μg',w:73,t:'up'},{n:'서초구',v:'14μg',w:64,t:'up'}]},
+    transport:{satisfy:'72.4점',commute:'42분',accident:'8,420건',cars:'312만대',bike:'1,284km',congestion:'18,400억',
+      access:[{n:'도심권',v:'96%',w:96,t:'up'},{n:'동북권',v:'88%',w:88,t:'up'},{n:'서남권',v:'84%',w:84,t:'up'},{n:'서북권',v:'82%',w:82,t:'up'},{n:'동남권',v:'78%',w:78,t:'up'}]},
+    eta:{districts:[{n:'서초구',v:0.84,t:'dg',chg:'▲+0.02'},{n:'강남구',v:0.81,t:'dg',chg:'▲+0.01'},{n:'마포구',v:0.74,t:'dg',chg:'▲+0.03'},{n:'노원구',v:0.62,t:'dg',chg:'▲+0.01'},{n:'금천구',v:0.54,t:'da',chg:'▼ 주목'},{n:'강북구',v:0.51,t:'da',chg:'▼ 주목'}],
+      groups:[{n:'노숙·홈리스',v:'η 0.18',t:'dr',note:'▼ 위험'},{n:'학교밖 청소년',v:'η 0.34',t:'dr',note:'▼ 위험'},{n:'독거노인',v:'η 0.41',t:'da',note:'▼ 주목'},{n:'자영업자',v:'η 0.52',t:'da',note:'▼ 주목'},{n:'대학생·취준',v:'η 0.56',t:'da',note:'▼ 주목'},{n:'직장인',v:'η 0.72',t:'dg',note:'▲+0.01'},{n:'전문직',v:'η 0.84',t:'dg',note:'▲+0.02'},{n:'IT·스타트업',v:'η 0.82',t:'dg',note:'▲+0.04'}]},
+    foreign:{total:'45.2만명',
+      groups:[{n:'서비스·요식 — 이태원·종로',v:'18.4만명',eta:'0.52 주목',note:'장시간노동'},{n:'IT·전문직 — 강남',v:'8.4만명',eta:'0.78 양호',note:''},{n:'결혼이민자',v:'12.4만명',eta:'0.64 양호',note:''},{n:'유학생 — 관악·서대문',v:'6.0만명',eta:'0.68 양호',note:''}],
+      districts:[{n:'영등포구',v:'8.4만',w:100,note:'18.6% | 다문화 1위'},{n:'구로구',v:'6.2만',w:74,note:'13.7% | 중국동포'},{n:'종로구',v:'4.8만',w:57,note:'10.6%'},{n:'마포구',v:'3.8만',w:45,note:'8.4%'},{n:'강남구',v:'3.2만',w:38,note:'7.1% | 전문직'}],
+      nations:[{n:'중국·조선족',v:'38.4%',w:100},{n:'베트남',v:'18.2%',w:47},{n:'미국·유럽',v:'12.4%',w:32},{n:'일본',v:'8.4%',w:22},{n:'기타',v:'22.6%',w:59}]},
+    crime:{
+      districts:[{n:'영등포구',life:842,foreign:184,epi:0.31,t:'da'},{n:'중구',life:724,foreign:142,epi:0.24,t:'da'},{n:'강남구',life:384,foreign:28,epi:0.12,t:'dg'},{n:'노원구',life:284,foreign:42,epi:0.18,t:'dg'},{n:'금천구',life:612,foreign:124,epi:0.28,t:'da'}]}
+  },
+
+  부산광역시:{
+    type:'광역시',pop:'334만명',area:'770km²',industry:'해운·물류·조선·관광',
+    summary:{grdp:'89.2조',income:'468만원',expense:'352만원',unemploy:'3.4%',cpi:'+3.2%',debt:'172%'},
+    council:{total:58.4,note:'원도심 재생 관련 조례 이행 미흡',
+      items:[{n:'해운대구의회',v:71.2,t:'up'},{n:'부산진구의회',v:64.8,t:'up'},{n:'동래구의회',v:61.4,t:'nt'},{n:'사하구의회',v:54.2,t:'dn'},{n:'강서·기장의회',v:42.4,t:'dn'}]},
+    city:{total:66.4,note:'의회(58.4) vs 시정(66.4) — 격차 8.0점',
+      items:[{n:'경제·일자리',v:71.2,t:'up'},{n:'복지·돌봄',v:68.4,t:'up'},{n:'교육·청소년',v:62.1,t:'nt'},{n:'환경·도시',v:58.4,t:'dn'},{n:'문화·관광',v:72.1,t:'up'}]},
+    industries:[{n:'해운·물류',v:'24.1조',w:100,c:'#378ADD',chg:'▲ +3.8%'},{n:'제조·조선',v:'21.4조',w:89,c:'#7F77DD',chg:'▼ -2.1%'},{n:'관광·서비스',v:'18.2조',w:76,c:'#5DCAA5',chg:'▲ +5.2%'},{n:'수산·식품',v:'8.4조',w:35,c:'#5DCAA5',chg:'▲ +1.4%'},{n:'IT·영상',v:'6.2조',w:26,c:'#EF9F27',chg:'▲ +8.4%'}],
+    employ:{rate:'58.4%',mfg:'462만원',svc:'268만원',youth:'51.2%',disaster:'0.72%',wage:'184건',
+      sectors:[{n:'서비스·유통',v:'34.2%',w:100,c:'#5DCAA5',t:'up'},{n:'제조·조선',v:'28.4%',w:83,c:'#7F77DD',t:'dn'},{n:'공공·교육',v:'16.4%',w:48,c:'#378ADD',t:'nt'},{n:'건설',v:'12.1%',w:35,c:'#BA7517',t:'dn'},{n:'무직·구직중',v:'5.8%',w:17,c:'#E24B4A',t:'dn'}]},
+    selfemploy:{total:'28.4만명',close:'584건',survive:'36.2%',cost:'5,840만원',loan:'8.4조',support:'284건',
+      sectors:[{n:'음식·숙박',v:'32.4%',w:100,c:'#E24B4A',note:'관광지 의존 높음'},{n:'도소매',v:'24.1%',w:74,c:'#378ADD'},{n:'서비스·미용',v:'18.4%',w:57,c:'#5DCAA5'},{n:'운수·물류',v:'14.2%',w:44,c:'#7F77DD'},{n:'교육·학원',v:'8.4%',w:26,c:'#5DCAA5'}]},
+    consume:{voucher:'2,840억',use:'72.4%',leak:'18.4%',card:'8.4조',alley:'78.4',online:'42.1%',
+      districts:[{n:'해운대구',v:'82.4%',w:82,t:'up'},{n:'부산진구',v:'76.1%',w:76,t:'up'},{n:'동래구',v:'71.4%',w:71,t:'up'},{n:'사하구',v:'64.8%',w:65,t:'nt'},{n:'강서구',v:'54.2%',w:54,t:'dn'}]},
+    medical:{
+      districts:[{n:'해운대구',hosp:6,health:1,er:4,rate:84,t:'up'},{n:'부산진구',hosp:8,health:1,er:5,rate:88,t:'up'},{n:'동래구',hosp:4,health:1,er:2,rate:76,t:'up'},{n:'사하구',hosp:2,health:1,er:1,rate:58,t:'nt'},{n:'강서구',hosp:1,health:1,er:1,rate:42,t:'dr'}],
+      out:[{n:'서울·수도권',v:'8,240명',w:100},{n:'울산·경남',v:'4,600명',w:56}],
+      total:'월 총 유출 12,840명',mental:{suicide:'26.4명',center:'8개소',depress:'6.2%'}},
+    welfare:{recip:'12.4만명',near:'18.4만명',alone:'18.2만명',disabled:'18.4만명',care:'8,400명',child:'842건',
+      budget:[{n:'중구',v:'194만원',w:100,t:'up'},{n:'동구',v:'178만원',w:92,t:'up'},{n:'사하구',v:'162만원',w:84,t:'nt'},{n:'북구',v:'148만원',w:76,t:'nt'},{n:'강서구',v:'124만원',w:64,t:'dn'}]},
+    edu:{students:'42.4만명',college:'68.4%',outschool:'8,420명',private:'42.1만원',violence:'842건',teacher:'14.2명',
+      budget:[{n:'해운대구',v:'162만원',w:100,t:'up'},{n:'연제구',v:'148만원',w:91,t:'up'},{n:'동래구',v:'138만원',w:85,t:'nt'},{n:'사하구',v:'112만원',w:69,t:'dn'},{n:'강서구',v:'98만원',w:60,t:'dr'}]},
+    tourism:{visitors:'284만명',stay:'5.4시간',revenue:'4,200억',weekend:'68.4%',park:'84만명/월',hotel:'72.4%',
+      spots:[{n:'해운대·광안리',v:'84.2만',w:100,t:'up'},{n:'자갈치시장',v:'42.4만',w:50,t:'up'},{n:'감천문화마을',v:'38.4만',w:46,t:'up'},{n:'태종대',v:'24.1만',w:29,t:'nt'},{n:'국제시장',v:'18.4만',w:22,t:'dn'}]},
+    culture:{facilities:'184개소',monthly:'11.4만원',participate:'38.4%',perform:'1,840건',library:'52.4%',support:'8,400명',rank:'2위',score:74.8},
+    leisure:{facilities:'842개소',use:'62.4%',clubs:'8,400개',leisure:'4.4시간/일',satisfy:'68.4점',spectators:'42만명/월',
+      sports:[{n:'등산·트레킹',v:'42.4만명',w:100,t:'up'},{n:'수영·수상스포츠',v:'28.4만명',w:67,t:'up'},{n:'축구·풋살',v:'24.1만명',w:57,t:'up'},{n:'사회인야구',v:'12.4만명',w:29,t:'up'},{n:'배드민턴·테니스',v:'8.4만명',w:20,t:'nt'},{n:'자전거',v:'6.2만명',w:15,t:'up'}]},
+    housing:{price:'4.82억',jeonse:'68.4%',single:'32.4%',pm25:'22μg',carbon:'1,840만톤',river:'낙동강 2등급',
+      dust:[{n:'사하구(공단)',v:'32μg',w:100,t:'dr'},{n:'강서구',v:'26μg',w:81,t:'dn'},{n:'북구',v:'22μg',w:69,t:'nt'},{n:'해운대구',v:'16μg',w:50,t:'up'},{n:'수영구',v:'14μg',w:44,t:'up'}]},
+    transport:{satisfy:'61.4점',commute:'41분',accident:'4,840건',cars:'148만대',bike:'584km',congestion:'8,400억',
+      access:[{n:'해운대구',v:'82%',w:82,t:'up'},{n:'부산진구',v:'78%',w:78,t:'up'},{n:'동래구',v:'72%',w:72,t:'up'},{n:'사하구',v:'58%',w:58,t:'nt'},{n:'강서구',v:'34%',w:34,t:'dr'}]},
+    eta:{districts:[{n:'해운대구',v:0.72,t:'dg',chg:'▲+0.02'},{n:'수영구',v:0.68,t:'dg',chg:'▲+0.01'},{n:'동래구',v:0.64,t:'dg',chg:'▲+0.02'},{n:'북구',v:0.56,t:'da',chg:'▼ 주목'},{n:'영도구',v:0.48,t:'da',chg:'▼ 주목'},{n:'강서구',v:0.42,t:'dr',chg:'▼ 위험'}],
+      groups:[{n:'원도심 노인',v:'η 0.28',t:'dr',note:'▼ 위험'},{n:'학교밖 청소년',v:'η 0.36',t:'dr',note:'▼ 위험'},{n:'자영업자',v:'η 0.44',t:'da',note:'▼ 주목'},{n:'대학생·취준',v:'η 0.51',t:'da',note:'▼ 주목'},{n:'은퇴·연금',v:'η 0.52',t:'da',note:'▼ 주목'},{n:'직장인',v:'η 0.63',t:'dg',note:'▲+0.01'},{n:'관광·서비스',v:'η 0.58',t:'da',note:'▼ 주목'},{n:'전문직',v:'η 0.72',t:'dg',note:'▲+0.02'}]},
+    foreign:{total:'4.2만명',
+      groups:[{n:'제조·조선 — 강서·사상',v:'1.84만명',eta:'0.42 주목',note:'임금체불↑'},{n:'서비스·관광 — 해운대',v:'0.84만명',eta:'0.61 양호',note:''},{n:'결혼이민자',v:'1.02만명',eta:'0.58 양호',note:''},{n:'유학생·기타',v:'0.50만명',eta:'0.64 양호',note:''}],
+      districts:[{n:'강서구',v:'1.24만',w:100,note:'29.5% | 제조업'},{n:'사상구',v:'0.84만',w:68,note:'20%'},{n:'해운대구',v:'0.62만',w:50,note:'14.8%'},{n:'동구',v:'0.48만',w:39,note:'11.4%'},{n:'부산진구',v:'0.38만',w:31,note:'9.1%'}],
+      nations:[{n:'베트남',v:'32.4%',w:100},{n:'중국·조선족',v:'22.1%',w:68},{n:'인도네시아',v:'18.4%',w:57},{n:'필리핀',v:'12.4%',w:38},{n:'기타',v:'14.7%',w:45}]},
+    crime:{
+      districts:[{n:'중구',life:584,foreign:84,epi:0.24,t:'da'},{n:'부산진구',life:442,foreign:62,epi:0.18,t:'da'},{n:'해운대구',life:284,foreign:28,epi:0.12,t:'dg'},{n:'강서구',life:312,foreign:124,epi:0.42,t:'dr'},{n:'영도구',life:184,foreign:18,epi:0.14,t:'dg'}]}
+  },
+
+  경기도:{
+    type:'도',pop:'1,363만명',area:'10,183km²',industry:'반도체·IT·제조·서비스',
+    summary:{grdp:'524조',income:'498만원',expense:'384만원',unemploy:'2.9%',cpi:'+3.4%',debt:'176%'},
+    council:{total:66.8,note:'남북 격차 해소 조례 이행 미흡',
+      items:[{n:'수원·화성의회',v:72.4,t:'up'},{n:'성남·용인의회',v:69.1,t:'up'},{n:'고양·파주의회',v:64.8,t:'nt'},{n:'안산·시흥의회',v:58.4,t:'dn'},{n:'포천·연천의회',v:48.2,t:'dn'}]},
+    city:{total:70.4,note:'의회(66.8) vs 도정(70.4) — 격차 3.6점',
+      items:[{n:'경제·일자리',v:76.4,t:'up'},{n:'복지·돌봄',v:71.2,t:'up'},{n:'교육·청소년',v:68.4,t:'nt'},{n:'환경·도시',v:62.1,t:'dn'},{n:'문화·관광',v:54.8,t:'dn'}]},
+    industries:[{n:'반도체·전자',v:'142조',w:100,c:'#378ADD',chg:'▲ +12.4%'},{n:'IT·소프트웨어',v:'84.2조',w:59,c:'#7F77DD',chg:'▲ +8.4%'},{n:'제조·기계',v:'72.4조',w:51,c:'#EF9F27',chg:'▲ +2.1%'},{n:'서비스·유통',v:'68.1조',w:48,c:'#5DCAA5',chg:'▲ +3.2%'},{n:'농업·식품',v:'12.4조',w:9,c:'#639922',chg:'▲ +4.8%'}],
+    employ:{rate:'63.4%',mfg:'512만원',svc:'294만원',youth:'58.4%',disaster:'0.54%',wage:'284건',
+      sectors:[{n:'제조·반도체',v:'34.2%',w:100,c:'#7F77DD',t:'up'},{n:'서비스·유통',v:'28.4%',w:83,c:'#5DCAA5',t:'up'},{n:'IT·소프트웨어',v:'18.4%',w:54,c:'#378ADD',t:'up'},{n:'공공·교육',v:'12.1%',w:35,c:'#EF9F27',t:'nt'},{n:'무직·구직중',v:'4.8%',w:14,c:'#E24B4A',t:'dn'}]},
+    selfemploy:{total:'84.2만명',close:'1,840건',survive:'39.4%',cost:'6,420만원',loan:'24.2조',support:'842건',
+      sectors:[{n:'음식·숙박',v:'26.4%',w:100,c:'#E24B4A',note:'경기 둔화 민감'},{n:'도소매',v:'24.1%',w:91,c:'#378ADD'},{n:'서비스·미용',v:'18.4%',w:70,c:'#5DCAA5'},{n:'교육·학원',v:'14.2%',w:54,c:'#5DCAA5'},{n:'운수·물류',v:'12.4%',w:47,c:'#7F77DD'}]},
+    consume:{voucher:'4,820억',use:'74.2%',leak:'14.2%',card:'18.4조',alley:'76.4',online:'48.4%',
+      districts:[{n:'성남·분당',v:'78.4%',w:78,t:'up'},{n:'수원',v:'74.2%',w:74,t:'up'},{n:'고양',v:'72.1%',w:72,t:'up'},{n:'안산',v:'64.8%',w:65,t:'nt'},{n:'포천·연천',v:'52.4%',w:52,t:'dn'}]},
+    medical:{
+      districts:[{n:'성남시',hosp:8,health:3,er:5,rate:88,t:'up'},{n:'수원시',hosp:7,health:4,er:4,rate:84,t:'up'},{n:'고양시',hosp:5,health:3,er:3,rate:78,t:'up'},{n:'안산시',hosp:3,health:2,er:2,rate:64,t:'nt'},{n:'연천군',hosp:1,health:1,er:1,rate:38,t:'dr'}],
+      out:[{n:'서울 대형병원',v:'28,400명',w:100},{n:'인천·경기 내 이동',v:'12,840명',w:45}],
+      total:'월 총 유출 28,400명 — 서울 의존도 주목',mental:{suicide:'24.2명',center:'28개소',depress:'6.1%'}},
+    welfare:{recip:'28.4만명',near:'42.1만명',alone:'28.4만명',disabled:'42.4만명',care:'18,400명',child:'2,840건',
+      budget:[{n:'수원시',v:'168만원',w:100,t:'up'},{n:'성남시',v:'184만원',w:100,t:'up'},{n:'고양시',v:'162만원',w:96,t:'nt'},{n:'안산시',v:'142만원',w:84,t:'nt'},{n:'연천군',v:'98만원',w:58,t:'dn'}]},
+    edu:{students:'142만명',college:'72.4%',outschool:'18,400명',private:'52.4만원',violence:'2,840건',teacher:'14.8명',
+      budget:[{n:'성남·분당',v:'184만원',w:100,t:'up'},{n:'수원',v:'162만원',w:88,t:'up'},{n:'고양',v:'148만원',w:80,t:'nt'},{n:'안산',v:'124만원',w:67,t:'dn'},{n:'포천·가평',v:'98만원',w:53,t:'dn'}]},
+    tourism:{visitors:'284만명',stay:'3.8시간',revenue:'2,840억',weekend:'62.4%',park:'184만명/월',hotel:'58.4%',
+      spots:[{n:'수원화성',v:'42.4만',w:100,t:'up'},{n:'에버랜드',v:'124만',w:100,t:'up'},{n:'파주 헤이리',v:'28.4만',w:67,t:'up'},{n:'가평 레일바이크',v:'18.4만',w:43,t:'nt'},{n:'양평 두물머리',v:'14.2만',w:33,t:'nt'}]},
+    culture:{facilities:'584개소',monthly:'9.4만원',participate:'34.2%',perform:'4,200건',library:'58.4%',support:'18,400명',rank:'5위',score:54.2},
+    leisure:{facilities:'2,840개소',use:'64.2%',clubs:'18,400개',leisure:'4.4시간/일',satisfy:'68.4점',spectators:'84만명/월',
+      sports:[{n:'등산·트레킹',v:'184만명',w:100,t:'up'},{n:'축구·풋살',v:'124만명',w:67,t:'up'},{n:'사회인야구',v:'84.2만명',w:46,t:'up'},{n:'배드민턴·테니스',v:'62.4만명',w:34,t:'up'},{n:'수영·수상',v:'48.4만명',w:26,t:'up'},{n:'자전거',v:'84.2만명',w:46,t:'up'}]},
+    housing:{price:'5.84억',jeonse:'71.2%',single:'28.4%',pm25:'28μg',carbon:'3,840만톤',river:'한강·경안천 2등급',
+      dust:[{n:'안산·시흥(공단)',v:'38μg',w:100,t:'dr'},{n:'수원',v:'28μg',w:74,t:'dn'},{n:'고양',v:'24μg',w:63,t:'nt'},{n:'성남·분당',v:'18μg',w:47,t:'up'},{n:'가평·양평',v:'12μg',w:32,t:'up'}]},
+    transport:{satisfy:'58.4점',commute:'52분',accident:'14,200건',cars:'584만대',bike:'1,840km',congestion:'28,400억',
+      access:[{n:'수원·성남',v:'84%',w:84,t:'up'},{n:'고양·부천',v:'78%',w:78,t:'up'},{n:'안산·시흥',v:'68%',w:68,t:'nt'},{n:'파주·양주',v:'52%',w:52,t:'nt'},{n:'연천·가평',v:'28%',w:28,t:'dr'}]},
+    eta:{districts:[{n:'성남시',v:0.76,t:'dg',chg:'▲+0.02'},{n:'수원시',v:0.72,t:'dg',chg:'▲+0.01'},{n:'고양시',v:0.68,t:'dg',chg:'▲+0.01'},{n:'안산시',v:0.58,t:'da',chg:'▼ 주목'},{n:'포천시',v:0.48,t:'da',chg:'▼ 주목'},{n:'연천군',v:0.38,t:'dr',chg:'▼ 위험'}],
+      groups:[{n:'외국인 노동자',v:'η 0.38',t:'dr',note:'▼ 위험'},{n:'학교밖 청소년',v:'η 0.42',t:'dr',note:'▼ 위험'},{n:'북부 농촌 노인',v:'η 0.44',t:'da',note:'▼ 주목'},{n:'자영업자',v:'η 0.52',t:'da',note:'▼ 주목'},{n:'대학생·취준',v:'η 0.58',t:'da',note:'▼ 주목'},{n:'제조업 직장인',v:'η 0.68',t:'dg',note:'▲+0.01'},{n:'IT·전문직',v:'η 0.81',t:'dg',note:'▲+0.03'},{n:'반도체 종사자',v:'η 0.84',t:'dg',note:'▲+0.04'}]},
+    foreign:{total:'42.4만명',
+      groups:[{n:'제조·반도체 — 화성·평택',v:'18.4만명',eta:'0.44 주목',note:'임금체불↑'},{n:'농업·축산 — 이천·여주',v:'8.4만명',eta:'0.38 위험',note:'고립위험'},{n:'결혼이민자',v:'10.2만명',eta:'0.62 양호',note:''},{n:'IT·유학생',v:'5.4만명',eta:'0.72 양호',note:''}],
+      districts:[{n:'화성시',v:'8.4만',w:100,note:'19.8% | 반도체 벨트'},{n:'안산시',v:'6.2만',w:74,note:'14.6% | 다문화특구'},{n:'평택시',v:'5.8만',w:69,note:'13.7% | 삼성·LG'},{n:'수원시',v:'4.2만',w:50,note:'9.9%'},{n:'시흥시',v:'3.8만',w:45,note:'9.0%'}],
+      nations:[{n:'베트남',v:'28.4%',w:100},{n:'중국·조선족',v:'24.1%',w:85},{n:'인도네시아',v:'18.4%',w:65},{n:'캄보디아',v:'8.4%',w:30},{n:'기타',v:'20.7%',w:73}]},
+    crime:{
+      districts:[{n:'안산시',life:842,foreign:284,epi:0.38,t:'dr'},{n:'수원시',life:624,foreign:84,epi:0.22,t:'da'},{n:'부천시',life:584,foreign:124,epi:0.28,t:'da'},{n:'성남시',life:284,foreign:28,epi:0.12,t:'dg'},{n:'연천군',life:84,foreign:18,epi:0.14,t:'dg'}]}
+  },
+
+  제주특별자치도:{
+    type:'특별자치도',pop:'67만명',area:'1,850km²',industry:'관광·농업·청정에너지',
+    summary:{grdp:'21.4조',income:'398만원',expense:'312만원',unemploy:'2.1%',cpi:'+4.2%',debt:'142%'},
+    council:{total:71.2,note:'관광 수익 지역 환원 조례 강화',
+      items:[{n:'제주시의회',v:74.8,t:'up'},{n:'서귀포시의회',v:67.6,t:'nt'}]},
+    city:{total:74.8,note:'의회(71.2) vs 도정(74.8) — 격차 3.6점',
+      items:[{n:'경제·일자리',v:72.4,t:'nt'},{n:'복지·돌봄',v:76.1,t:'up'},{n:'교육·청소년',v:68.4,t:'nt'},{n:'환경·도시',v:78.2,t:'up'},{n:'문화·관광',v:84.2,t:'up'}]},
+    industries:[{n:'관광·숙박·F&B',v:'8.4조',w:100,c:'#5DCAA5',chg:'▲ +6.4%'},{n:'농축산(감귤·한라봉)',v:'4.2조',w:50,c:'#639922',chg:'▲ +8.4%'},{n:'서비스·유통',v:'3.8조',w:45,c:'#378ADD',chg:'▲ +2.1%'},{n:'청정에너지',v:'2.4조',w:29,c:'#EF9F27',chg:'▲ +14.2%'},{n:'IT·디지털노마드',v:'1.8조',w:21,c:'#7F77DD',chg:'▲ +22.4%'}],
+    employ:{rate:'64.2%',mfg:'384만원',svc:'312만원',youth:'62.4%',disaster:'0.32%',wage:'42건',
+      sectors:[{n:'관광·숙박',v:'42.4%',w:100,c:'#5DCAA5',t:'up'},{n:'서비스·유통',v:'24.1%',w:57,c:'#378ADD',t:'up'},{n:'농업·수산',v:'14.2%',w:34,c:'#639922',t:'nt'},{n:'공공·교육',v:'12.4%',w:29,c:'#7F77DD',t:'nt'},{n:'무직·구직중',v:'3.8%',w:9,c:'#E24B4A',t:'up'}]},
+    selfemploy:{total:'8.4만명',close:'124건',survive:'44.2%',cost:'4,200만원',loan:'1.84조',support:'84건',
+      sectors:[{n:'음식·숙박',v:'38.4%',w:100,c:'#5DCAA5',note:'관광 성수기 의존'},{n:'도소매',v:'22.1%',w:58,c:'#378ADD'},{n:'서비스',v:'18.4%',w:48,c:'#5DCAA5'},{n:'농업·원예',v:'14.2%',w:37,c:'#639922'},{n:'운수',v:'7.4%',w:19,c:'#7F77DD'}]},
+    consume:{voucher:'842억',use:'82.4%',leak:'28.4%',card:'1.84조',alley:'84.2',online:'32.4%',
+      districts:[{n:'제주시',v:'84.2%',w:84,t:'up'},{n:'서귀포시',v:'78.4%',w:78,t:'up'}]},
+    medical:{
+      districts:[{n:'제주시',hosp:3,health:4,er:2,rate:62,t:'nt'},{n:'서귀포시',hosp:1,health:3,er:1,rate:44,t:'dr'}],
+      out:[{n:'서울·수도권',v:'9,840명',w:100},{n:'부산·경남',v:'4,360명',w:44}],
+      total:'월 총 유출 14,200명 — 도서 지역 의료 자립도 최저',mental:{suicide:'24.8명',center:'2개소',depress:'5.8%'}},
+    welfare:{recip:'2.4만명',near:'3.8만명',alone:'3.2만명',disabled:'4.2만명',care:'1,200명',child:'124건',
+      budget:[{n:'제주시',v:'172만원',w:100,t:'up'},{n:'서귀포시',v:'148만원',w:86,t:'nt'}]},
+    edu:{students:'9.4만명',college:'64.2%',outschool:'1,840명',private:'28.4만원',violence:'142건',teacher:'14.2명',
+      budget:[{n:'제주시',v:'128만원',w:100,t:'up'},{n:'서귀포시',v:'112만원',w:88,t:'nt'}]},
+    tourism:{visitors:'142만명',stay:'4.2시간',revenue:'8,420억',weekend:'78.4%',park:'28만명/월',hotel:'82.4%',
+      spots:[{n:'성산일출봉',v:'28.4만',w:100,t:'up'},{n:'한라산',v:'24.1만',w:85,t:'up'},{n:'만장굴',v:'18.4만',w:65,t:'up'},{n:'협재해수욕장',v:'14.2만',w:50,t:'up'},{n:'테디베어뮤지엄',v:'8.4만',w:30,t:'nt'}]},
+    culture:{facilities:'84개소',monthly:'7.4만원',participate:'32.4%',perform:'842건',library:'48.4%',support:'2,400명',rank:'4위',score:62.4},
+    leisure:{facilities:'184개소',use:'68.4%',clubs:'2,400개',leisure:'5.2시간/일',satisfy:'78.4점',spectators:'12만명/월',
+      sports:[{n:'등산·트레킹',v:'12.4만명',w:100,t:'up'},{n:'서핑·수상스포츠',v:'8.4만명',w:68,t:'up'},{n:'사이클·자전거',v:'6.2만명',w:50,t:'up'},{n:'골프',v:'4.8만명',w:39,t:'up'},{n:'낚시·수산',v:'3.2만명',w:26,t:'nt'},{n:'캠핑·아웃도어',v:'4.2만명',w:34,t:'up'}]},
+    housing:{price:'4.24억',jeonse:'62.4%',single:'28.4%',pm25:'12μg',carbon:'284만톤',river:'청정 1등급',
+      dust:[{n:'제주시(시내)',v:'14μg',w:100,t:'up'},{n:'서귀포시',v:'10μg',w:71,t:'up'}]},
+    transport:{satisfy:'52.4점',commute:'28분',accident:'1,240건',cars:'42만대',bike:'284km',congestion:'420억',
+      access:[{n:'제주시',v:'62%',w:62,t:'nt'},{n:'서귀포시',v:'42%',w:42,t:'dr'}]},
+    eta:{districts:[{n:'제주시',v:0.68,t:'dg',chg:'▲+0.02'},{n:'서귀포시',v:0.62,t:'dg',chg:'▲+0.01'}],
+      groups:[{n:'외국인 노동자',v:'η 0.34',t:'dr',note:'▼ 위험'},{n:'독거노인',v:'η 0.42',t:'da',note:'▼ 주목'},{n:'이주민',v:'η 0.48',t:'da',note:'▼ 주목'},{n:'자영업자',v:'η 0.56',t:'da',note:'▼ 주목'},{n:'대학생·취준',v:'η 0.58',t:'da',note:'▼ 주목'},{n:'직장인',v:'η 0.64',t:'dg',note:'▲+0.01'},{n:'관광업 종사',v:'η 0.62',t:'dg',note:'▲+0.02'},{n:'전문직·IT',v:'η 0.72',t:'dg',note:'▲+0.03'}]},
+    foreign:{total:'2.4만명',
+      groups:[{n:'농업·축산 — 서귀포',v:'0.84만명',eta:'0.38 위험',note:'고립 위험'},{n:'관광·서비스 — 제주시',v:'0.72만명',eta:'0.58 양호',note:''},{n:'결혼이민자',v:'0.56만명',eta:'0.62 양호',note:''},{n:'디지털노마드·IT',v:'0.28만명',eta:'0.74 양호',note:''}],
+      districts:[{n:'제주시',v:'1.42만',w:100,note:'59.2%'},{n:'서귀포시',v:'0.98만',w:69,note:'40.8%'}],
+      nations:[{n:'베트남',v:'32.4%',w:100},{n:'중국',v:'18.4%',w:57},{n:'필리핀',v:'14.2%',w:44},{n:'미국·유럽',v:'12.4%',w:38},{n:'기타',v:'22.6%',w:70}]},
+    crime:{
+      districts:[{n:'제주시',life:284,foreign:42,epi:0.18,t:'dg'},{n:'서귀포시',life:124,foreign:28,epi:0.24,t:'da'}]}
+  }
+};
+
+const REGION_MENU=[
+  {g:'특별·광역시',items:['서울특별시','부산광역시','대구광역시','인천광역시','광주광역시','대전광역시','울산광역시','세종특별자치시']},
+  {g:'도',items:['경기도','강원도','충청북도','충청남도','전라북도','전라남도','경상북도','경상남도','제주특별자치도']}
+];
+const HAS_DATA=['서울특별시','부산광역시','울산광역시','경기도','제주특별자치도'];
+let CUR='울산광역시', DROP=false;
+
+const IDENTITY={
+  '울산광역시':{
+    slogan:'산업수도 · 생태도시',founded:'1997년 광역시 승격',pop:'113만명',
+    color1:'#0F6E56',color2:'#1A5276',
+    symbols:[
+      {icon:'🏭',label:'공업탑',desc:'산업수도의 상징'},
+      {icon:'🐋',label:'고래',desc:'장생포 고래문화특구'},
+      {icon:'🌊',label:'태화강',desc:'국가정원 · 생태하천'},
+      {icon:'🌸',label:'배롱나무꽃',desc:'시화(市花)'},
+    ],
+    keywords:['석유화학','조선','자동차','반구대암각화','십리대숲'],
+    flag:'🚧 시기(市旗) · 시장(市章) 이미지 업로드 대기',
+  },
+  '서울특별시':{
+    slogan:'서울, 더 특별한',founded:'600년 수도',pop:'940만명',
+    color1:'#1B4F72',color2:'#154360',
+    symbols:[
+      {icon:'🦁',label:'해치',desc:'서울 수호 상상의 동물'},
+      {icon:'🌊',label:'한강',desc:'서울의 젖줄 · 시민 쉼터'},
+      {icon:'🏯',label:'경복궁',desc:'조선왕조 법궁'},
+      {icon:'🌼',label:'개나리',desc:'시화(市花)'},
+    ],
+    keywords:['K-문화','금융중심','청계천','북한산','남산타워'],
+    flag:'🚧 시기(市旗) · 시장(市章) 이미지 업로드 대기',
+  },
+  '부산광역시':{
+    slogan:'동북아 해양수도',founded:'1963년 직할시',pop:'333만명',
+    color1:'#1A5276',color2:'#0E6655',
+    symbols:[
+      {icon:'🌺',label:'동백꽃',desc:'시화(市花) · 겨울 붉음'},
+      {icon:'🌊',label:'해운대',desc:'세계적 해수욕장'},
+      {icon:'🐟',label:'자갈치',desc:'부산 대표 어시장'},
+      {icon:'🌉',label:'광안대교',desc:'야경 명소'},
+    ],
+    keywords:['국제영화제','항구도시','낙동강','금정산','사직야구장'],
+    flag:'🚧 시기(市旗) · 시장(市章) 이미지 업로드 대기',
+  },
+  '경기도':{
+    slogan:'새로운 경기 공정한 세상',founded:'고려시대 이래',pop:'1,380만명',
+    color1:'#4A235A',color2:'#6C3483',
+    symbols:[
+      {icon:'🌸',label:'개나리',desc:'도화(道花)'},
+      {icon:'🏰',label:'수원화성',desc:'유네스코 세계유산'},
+      {icon:'💻',label:'반도체',desc:'세계 반도체 집적지'},
+      {icon:'🌿',label:'소나무',desc:'도목(道木) · 🚧확인필요'},
+    ],
+    keywords:['판교테크노밸리','DMZ','화성행궁','수원왕갈비','광교호수'],
+    flag:'🚧 도기(道旗) · 도장(道章) 이미지 업로드 대기',
+  },
+  '제주특별자치도':{
+    slogan:'세계의 섬 제주',founded:'2006년 특별자치도',pop:'67만명',
+    color1:'#1E8449',color2:'#117A65',
+    symbols:[
+      {icon:'🗿',label:'돌하르방',desc:'제주 수호신 · 현무암'},
+      {icon:'🌋',label:'한라산',desc:'남한 최고봉 1,950m'},
+      {icon:'🍊',label:'감귤',desc:'제주 대표 특산물'},
+      {icon:'🤿',label:'해녀',desc:'유네스코 인류무형유산'},
+    ],
+    keywords:['유네스코3관왕','올레길','성산일출봉','마라도','흑돼지'],
+    flag:'🚧 도기(道旗) · 도장(道章) 이미지 업로드 대기',
+  },
+};
+
+function gc(t){return t==='up'?'#085041':t==='dn'||t==='dr'?'#791F1F':'#633806'}
+function gbc(t){return t==='up'||t==='dg'?'#5DCAA5':t==='dn'||t==='dr'?'#E24B4A':'#EF9F27'}
+function gsc(v){return v>=0.65?'#0F6E56':v>=0.5?'#BA7517':'#A32D2D'}
+function pct(v,t){return `<span style="color:${gc(t)}">${t==='up'?'▲':t==='dn'||t==='dr'?'▼':'→'}</span>`}
+
+function TD(){
+  DROP=!DROP;
+  document.getElementById('rd').classList.toggle('o',DROP);
+  document.getElementById('ra').classList.toggle('o',DROP);
+}
+function SR(name){
+  CUR=name; DROP=false;
+  document.getElementById('rd').classList.remove('o');
+  document.getElementById('ra').classList.remove('o');
+  document.getElementById('rbn').textContent=name;
+  RA();
+  document.querySelectorAll('.ritem').forEach(el=>el.classList.toggle('active',el.dataset.n===name));
+}
+function T(id){
+  const b=document.getElementById(id),a=document.getElementById('a-'+id);
+  if(!b||!a)return;
+  b.classList.toggle('o',!b.classList.contains('o'));
+  a.classList.toggle('o',!a.classList.contains('o'));
+}
+
+function RA(){renderIdentity(CUR);
+  const d=DB[CUR];
+  if(!d){renderND();return;}
+  rBar(d);rCouncil(d);rCity(d);rEco(d);rEmploy(d);rSelf(d);rConsume(d);rMedical(d);rWelfare(d);rEdu(d);rTourism(d);rCulture(d);rLeisure(d);rHousing(d);rTransport(d);rEta(d);rForeign(d);rCrime(d);
+}
+
+function rBar(d){
+  document.getElementById('rb').innerHTML=`<span class="rb-name">📍 ${CUR}</span><span class="rb-div"></span><span class="rb-item">인구 <span class="rb-val">${d.pop}</span></span><span class="rb-div"></span><span class="rb-item">면적 <span class="rb-val">${d.area}</span></span><span class="rb-div"></span><span class="rb-item">주력 <span class="rb-val">${d.industry}</span></span><span class="rb-div"></span><span class="rb-item">GRDP <span class="rb-val">${d.summary.grdp}</span></span>`;
+}
+
+function scoreBadge(v){
+  const cls=v>=70?'bg':v>=60?'ba':'br';
+  const col=v>=70?'#085041':v>=60?'#633806':'#791F1F';
+  return{cls,col,bg:v>=70?'#0F6E56':v>=60?'#BA7517':'#A32D2D'};
+}
+
+function rCouncil(d){
+  const c=d.council, s=scoreBadge(c.total);
+  document.getElementById('bdg-c1').className=`bdg ${s.cls}`;
+  document.getElementById('bdg-c1').textContent=`종합 ${c.total}점 / 100`;
+  document.getElementById('sc-c1').textContent=c.total;
+  document.getElementById('sc-c1').style.color=s.col;
+  document.getElementById('pg-c1').style.cssText=`width:${c.total}%;background:${s.bg};opacity:.85`;
+  let r='';
+  c.items.forEach(i=>{const dot=i.v>=70?'dg':i.v>=60?'da':'dr';r+=`<div class="row"><span class="lb">${i.n}</span><span class="vl">${i.v}점</span><div class="bw"><div class="b" style="width:${i.v}%;background:${gbc(dot)};opacity:.8"></div></div><span class="cg" style="color:${gc(i.t)}">${i.t==='up'?'▲ 양호':i.t==='dn'?'▼ 주목':'→ 유지'}</span><div class="dot ${dot}"></div></div>`;});
+  document.getElementById('rows-c1').innerHTML=r;
+  document.getElementById('note-c1').textContent=c.note;
+}
+
+function rCity(d){
+  const c=d.city, s=scoreBadge(c.total);
+  document.getElementById('bdg-c2').className=`bdg ${s.cls}`;
+  document.getElementById('bdg-c2').textContent=`종합 ${c.total}점 / 100`;
+  document.getElementById('sc-c2').textContent=c.total;
+  document.getElementById('sc-c2').style.color=s.col;
+  document.getElementById('pg-c2').style.cssText=`width:${c.total}%;background:${s.bg};opacity:.85`;
+  let r='';
+  d.city.items.forEach(i=>{const dot=i.v>=72?'dg':i.v>=62?'da':'dr';r+=`<div class="row"><span class="lb">${i.n}</span><span class="vl">${i.v}%</span><div class="bw"><div class="b" style="width:${i.v}%;background:${gbc(dot)};opacity:.8"></div></div><span class="cg" style="color:${gc(i.t)}">${i.t==='up'?'▲':i.t==='dn'?'▼':'-'}</span><div class="dot ${dot}"></div></div>`;});
+  document.getElementById('rows-c2').innerHTML=r;
+  document.getElementById('note-c2').textContent=c.note;
+}
+
+function rEco(d){
+  const s=d.summary;
+  // 인플레이션 렌더링
+  const inf=d.inflation;
+  const ib=document.getElementById('inflation-block');
+  if(ib&&inf){
+    const items=[
+      {n:'전국 CPI',   v:inf.national, c:'#888780'},
+      {n:'지역 체감',  v:inf.local,    c:'#A32D2D'},
+      {n:'식품·음료',  v:inf.food,     c:'#E24B4A'},
+      {n:'에너지',     v:inf.energy,   c:'#BA7517'},
+      {n:'주거',       v:inf.housing,  c:'#378ADD'},
+      {n:'교통',       v:inf.transport,c:'#7F77DD'},
+    ];
+    let h='<div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:4px">';
+    items.forEach(i=>{
+      h+=`<div class="cd" style="border-color:${i.c};min-width:72px;text-align:center"><div class="ct">${i.n}</div><div class="cv" style="color:${i.c};font-size:14px">${i.v}</div></div>`;
+    });
+    h+='</div><div class="nr" style="font-size:9px">📋 출처: '+inf.base+' | 통계법 제18조 · 통계청 승인통계 제10178호</div>';
+    ib.innerHTML=h;
+  }
+  document.getElementById('eco-cards').innerHTML=`<div class="cd"><div class="ct">지역 총생산 GRDP</div><div class="cv">${s.grdp}</div></div><div class="cd"><div class="ct">가계 평균 소득</div><div class="cv">${s.income}</div></div><div class="cd"><div class="ct">가계 평균 지출</div><div class="cv">${s.expense}</div></div><div class="cd"><div class="ct">실업률</div><div class="cv">${s.unemploy}</div></div><div class="cd"><div class="ct">물가상승률 CPI</div><div class="cv">${s.cpi}</div></div><div class="cd"><div class="ct">가계부채 비율</div><div class="cv">${s.debt}</div></div>`;
+  let r='';
+  d.industries.forEach(i=>{r+=`<div class="row"><span class="lb">${i.n}</span><span class="vl">${i.v}</span><div class="bw"><div class="b" style="width:${i.w}%;background:${i.c};opacity:.75"></div></div><span class="cg" style="color:${i.chg&&i.chg.includes('▲')?'#085041':i.chg&&i.chg.includes('▼')?'#791F1F':'#633806'}">${i.chg||''}</span></div>`;});
+  document.getElementById('eco-ind').innerHTML=r;
+}
+
+function rEmploy(d){
+  const e=d.employ;
+  document.getElementById('emp-cards').innerHTML=`<div class="cd"><div class="ct">고용률</div><div class="cv">${e.rate}</div></div><div class="cd"><div class="ct">제조업 평균임금</div><div class="cv">${e.mfg}</div></div><div class="cd"><div class="ct">서비스업 평균임금</div><div class="cv">${e.svc}</div></div><div class="cd"><div class="ct">청년 취업률</div><div class="cv">${e.youth}</div></div><div class="cd"><div class="ct">산업재해율</div><div class="cv">${e.disaster}</div></div><div class="cd"><div class="ct">임금체불 신고건</div><div class="cv">${e.wage}</div></div>`;
+  let r='';
+  e.sectors.forEach(i=>{r+=`<div class="row"><span class="lb">${i.n}</span><span class="vl">${i.v}</span><div class="bw"><div class="b" style="width:${i.w};background:${i.c};opacity:.75"></div></div><span class="cg" style="color:${gc(i.t)}">${i.t==='up'?'▲':i.t==='dn'?'▼':'→'}</span><div class="dot ${i.t==='up'?'dg':i.t==='dn'?'dr':'da'}"></div></div>`;});
+  document.getElementById('emp-sectors').innerHTML=r;
+}
+
+function rSelf(d){
+  const e=d.selfemploy;
+  document.getElementById('self-cards').innerHTML=`<div class="cd"><div class="ct">자영업자 총수</div><div class="cv">${e.total}</div></div><div class="cd"><div class="ct">월평균 폐업건수</div><div class="cv dn" style="color:#A32D2D">${e.close}</div></div><div class="cd"><div class="ct">3년 생존율</div><div class="cv">${e.survive}</div></div><div class="cd"><div class="ct">평균 창업비용</div><div class="cv">${e.cost}</div></div><div class="cd"><div class="ct">소상공인 대출잔액</div><div class="cv">${e.loan}</div></div><div class="cd"><div class="ct">폐업지원 신청</div><div class="cv">${e.support}</div></div>`;
+  let r='';
+  e.sectors.forEach(i=>{r+=`<div class="row"><span class="lb">${i.n}</span><div class="bw"><div class="b" style="width:${i.w}%;background:${i.c};opacity:.75"></div></div><span class="cg">${i.note||''}</span></div>`;});
+  document.getElementById('self-sectors').innerHTML=r;
+}
+
+function rConsume(d){
+  const c=d.consume;
+  document.getElementById('con-cards').innerHTML=`<div class="cd"><div class="ct">지역상품권 발행액</div><div class="cv up">${c.voucher}</div></div><div class="cd"><div class="ct">지역상품권 이용률</div><div class="cv up">${c.use}</div></div><div class="cd"><div class="ct">역외 소비 유출률</div><div class="cv nt">${c.leak}</div></div><div class="cd"><div class="ct">카드소비 총액</div><div class="cv">${c.card}</div></div><div class="cd"><div class="ct">골목상권 매출지수</div><div class="cv">${c.alley}</div></div><div class="cd"><div class="ct">온라인 소비 비율</div><div class="cv">${c.online}</div></div>`;
+  let r='';
+  c.districts.forEach(i=>{const dot=i.t==='up'?'dg':i.t==='dn'?'dr':'da';r+=`<div class="row"><span class="lb">${i.n}</span><span class="vl">${i.v}</span><div class="bw"><div class="b" style="width:${i.w}%;background:${gbc(dot)};opacity:.8"></div></div><span class="cg" style="color:${gc(i.t)}">${i.t==='up'?'▲':i.t==='dn'?'▼':'→'}</span><div class="dot ${dot}"></div></div>`;});
+  document.getElementById('con-dist').innerHTML=r;
+}
+
+function rMedical(d){
+  const m=d.medical;
+  let dr='';
+  m.districts.forEach(i=>{const dot=i.t==='up'?'dg':i.t==='dr'?'dr':'da';dr+=`<div class="row"><span class="lb" style="width:72px">${i.n}</span><span style="width:40px;font-size:10px;flex-shrink:0">${i.hosp}개</span><span style="width:36px;font-size:10px;flex-shrink:0">${i.health}개</span><span style="width:36px;font-size:10px;flex-shrink:0">${i.er}개</span><div class="bw"><div class="b" style="width:${i.rate}%;background:${gbc(dot)};opacity:.8"></div></div><span class="cg" style="color:${gc(i.t==='up'?'up':i.t==='dr'?'dn':'nt')}">${i.rate}%</span><div class="dot ${dot}"></div></div>`;});
+  document.getElementById('med-dist').innerHTML=dr;
+  let or='';
+  m.out.forEach(i=>{or+=`<div class="row"><span class="lb">${i.n}</span><span class="vl dn">${i.v}</span><div class="bw"><div class="b" style="width:${i.w}%;background:#E24B4A;opacity:.6"></div></div></div>`;});
+  document.getElementById('med-out').innerHTML=or;
+  document.getElementById('med-total').textContent=m.total;
+  document.getElementById('med-mental').innerHTML=`<div class="cd"><div class="ct">자살률 (10만당)</div><div class="cv dn" style="color:#A32D2D">${m.mental.suicide}</div></div><div class="cd"><div class="ct">정신건강센터</div><div class="cv">${m.mental.center}</div></div><div class="cd"><div class="ct">우울증 진단율</div><div class="cv">${m.mental.depress}</div></div>`;
+}
+
+function rWelfare(d){
+  const w=d.welfare;
+  document.getElementById('wel-cards').innerHTML=`<div class="cd"><div class="ct">기초생활수급자</div><div class="cv">${w.recip}</div></div><div class="cd"><div class="ct">차상위계층</div><div class="cv">${w.near}</div></div><div class="cd"><div class="ct">독거노인</div><div class="cv dn" style="color:#A32D2D">${w.alone}</div></div><div class="cd"><div class="ct">장애인 등록</div><div class="cv">${w.disabled}</div></div><div class="cd"><div class="ct">노인장기요양 대기</div><div class="cv">${w.care}</div></div><div class="cd"><div class="ct">아동학대 신고</div><div class="cv">${w.child}</div></div>`;
+  let r='';
+  w.budget.forEach(i=>{const dot=i.t==='up'?'dg':i.t==='dr'?'dr':'da';r+=`<div class="row"><span class="lb">${i.n}</span><span class="vl">${i.v}</span><div class="bw"><div class="b" style="width:${i.w}%;background:${gbc(dot)};opacity:.75"></div></div><span class="cg" style="color:${gc(i.t)}">${i.t==='up'?'▲':i.t==='dn'||i.t==='dr'?'▼':'→'}</span><div class="dot ${dot}"></div></div>`;});
+  document.getElementById('wel-budget').innerHTML=r;
+
+  // ── 장애인 시민군 세부 ──
+  const dd = w.disabledDetail;
+  if(dd){
+    // 장애 유형별 바
+    let tb='<div class="ss" style="margin-top:10px">장애 유형별 분포 — 동등한 시민군</div>';
+    dd.types.forEach(t=>{
+      tb+=`<div class="row"><div class="lb" style="width:90px">${t.n}</div><div class="vl">${t.v}</div><div class="bw"><div class="b" style="width:${t.w}%;background:${t.c}"></div></div></div>`;
+    });
+    // 핵심 지표 카드
+    tb+=`<div class="ss" style="margin-top:8px">장애인 권리 지표</div>
+    <div class="g3" style="margin-bottom:6px">
+      <div class="cd" style="border-color:#378ADD"><div class="ct">장애인 고용률</div><div class="cv" style="color:#185FA5">${dd.employ}</div><div class="cs nt">의무고용 이행 ${dd.obligeRate}</div></div>
+      <div class="cd" style="border-color:#BA7517"><div class="ct">활동지원 수급</div><div class="cv" style="color:#633806">${dd.activity}</div><div class="cs nt">서비스 대기 존재</div></div>
+      <div class="cd" style="border-color:#E24B4A"><div class="ct">특별교통수단</div><div class="cv" style="color:#A32D2D">${dd.mobility}</div><div class="cs dn">이동권 ▼</div></div>
+      <div class="cd" style="border-color:#5DCAA5"><div class="ct">편의시설 설치율</div><div class="cv" style="color:#085041">${dd.facility}</div><div class="cs nt">전국 평균 71%</div></div>
+      <div class="cd" style="border-color:#7F77DD"><div class="ct">장애인연금 수급</div><div class="cv" style="color:#4A3F8A">${dd.pension}</div><div class="cs nt">중증 대상</div></div>
+    </div>`;
+    // 구·군별 η
+    tb+=`<div class="ss">구·군별 장애인 η지표</div>`;
+    dd.districts.forEach(g=>{
+      const dot=g.t==='up'?'dg':g.t==='dr'?'dr':'da';
+      tb+=`<div class="row"><span class="lb">${g.n}</span><span class="vl" style="color:${g.t==='dr'?'#A32D2D':g.t==='da'?'#633806':'#085041'}">${g.v}</span><div class="dot ${dot}" style="margin-left:8px"></div></div>`;
+    });
+    tb+=`<div class="nr" style="margin-top:5px">장애인복지법 제32조 (등록) · 장애인고용촉진법 제28조 (의무고용) · 장애인활동지원법 제5조 · 교통약자 이동편의증진법 제16조 (특별교통수단) | 출처: 보건복지부·한국장애인고용공단·국토부</div>`;
+    document.getElementById('wel-budget').insertAdjacentHTML('afterend', tb);
+  }
+}
+
+function rEdu(d){
+  const e=d.edu;
+  document.getElementById('edu-cards').innerHTML=`<div class="cd"><div class="ct">학생수</div><div class="cv">${e.students}</div></div><div class="cd"><div class="ct">대학진학률</div><div class="cv">${e.college}</div></div><div class="cd"><div class="ct">학교밖 청소년</div><div class="cv dn" style="color:#A32D2D">${e.outschool}</div></div><div class="cd"><div class="ct">월평균 사교육비</div><div class="cv">${e.private}</div></div><div class="cd"><div class="ct">학교폭력 신고</div><div class="cv">${e.violence}</div></div><div class="cd"><div class="ct">교원 1인당 학생</div><div class="cv">${e.teacher}</div></div>`;
+  let r='';
+  e.budget.forEach(i=>{const dot=i.t==='up'?'dg':i.t==='dr'?'dr':'da';r+=`<div class="row"><span class="lb">${i.n}</span><span class="vl">${i.v}</span><div class="bw"><div class="b" style="width:${i.w}%;background:${gbc(dot)};opacity:.75"></div></div><span class="cg" style="color:${gc(i.t)}">${i.t==='up'?'▲':i.t==='dn'||i.t==='dr'?'▼':'→'}</span><div class="dot ${dot}"></div></div>`;});
+  document.getElementById('edu-budget').innerHTML=r;
+}
+
+function rTourism(d){
+  const t=d.tourism;
+  document.getElementById('tour-cards').innerHTML=`<div class="cd"><div class="ct">월 방문 관광객</div><div class="cv up">${t.visitors}</div></div><div class="cd"><div class="ct">평균 체류시간</div><div class="cv">${t.stay}</div></div><div class="cd"><div class="ct">관광 소비액</div><div class="cv up">${t.revenue}</div></div><div class="cd"><div class="ct">시민 주말 외출률</div><div class="cv">${t.weekend}</div></div><div class="cd"><div class="ct">공원 이용인원</div><div class="cv">${t.park}</div></div><div class="cd"><div class="ct">숙박업 가동률</div><div class="cv">${t.hotel}</div></div>`;
+  let r='';
+  t.spots.forEach(i=>{const dot=i.t==='up'?'dg':i.t==='dn'?'dr':'da';r+=`<div class="row"><span class="lb">${i.n}</span><span class="vl">${i.v}</span><div class="bw"><div class="b" style="width:${i.w}%;background:${gbc(dot)};opacity:.8"></div></div><span class="cg" style="color:${gc(i.t)}">${i.t==='up'?'▲':i.t==='dn'?'▼':'→'}</span><div class="dot ${dot}"></div></div>`;});
+  document.getElementById('tour-spots').innerHTML=r;
+}
+
+function rCulture(d){
+  const c=d.culture;
+  const col=c.score>=70?'#0F6E56':c.score>=60?'#BA7517':'#A32D2D';
+  document.getElementById('cul-cards').innerHTML=`<div class="cd"><div class="ct">문화시설 수</div><div class="cv">${c.facilities}</div></div><div class="cd"><div class="ct">월평균 문화지출</div><div class="cv">${c.monthly}</div></div><div class="cd"><div class="ct">문화예술 참여율</div><div class="cv">${c.participate}</div></div><div class="cd"><div class="ct">공연·전시 건수</div><div class="cv">${c.perform}</div></div><div class="cd"><div class="ct">도서관 이용률</div><div class="cv">${c.library}</div></div><div class="cd" style="border-color:${col}"><div class="ct">전국 순위</div><div class="cv" style="color:${col}">${c.rank}</div><div class="cs" style="color:${col}">${c.score}점</div></div>`;
+  const refs=[{n:'서울',v:92.4,w:100},{n:'부산',v:74.8,w:81},{n:'대구',v:68.2,w:74},{n:'제주',v:62.4,w:68},{n:'경기',v:54.2,w:59},{n:'울산',v:48.4,w:52}];
+  let r='';
+  refs.forEach(i=>{const isCur=CUR.includes(i.n)||i.n==='울산'&&CUR==='울산광역시'||i.n==='서울'&&CUR==='서울특별시'||i.n==='부산'&&CUR==='부산광역시'||i.n==='경기'&&CUR==='경기도'||i.n==='제주'&&CUR==='제주특별자치도';const dot=i.v>=70?'dg':i.v>=60?'da':'dr';r+=`<div class="row${isCur?' ':" "}"><span class="lb">${i.n}${isCur?' ◀':''}</span><span class="vl" style="${isCur?'color:#0F6E56;':''}">${i.v}점</span><div class="bw"><div class="b" style="width:${i.w}%;background:${gbc(dot)};opacity:${isCur?.9:.7}"></div></div><div class="dot ${dot}"></div></div>`;});
+  document.getElementById('cul-rank').innerHTML=r;
+}
+
+function rLeisure(d){
+  const l=d.leisure;
+  document.getElementById('lei-cards').innerHTML=`<div class="cd"><div class="ct">체육시설 수</div><div class="cv">${l.facilities}</div></div><div class="cd"><div class="ct">체육시설 이용률</div><div class="cv">${l.use}</div></div><div class="cd"><div class="ct">등록 동호회 수</div><div class="cv up">${l.clubs}</div></div><div class="cd"><div class="ct">1인당 여가시간</div><div class="cv">${l.leisure}</div></div><div class="cd"><div class="ct">시설 만족도</div><div class="cv">${l.satisfy}</div></div><div class="cd"><div class="ct">스포츠 관람인구</div><div class="cv">${l.spectators}</div></div>`;
+  let r='';
+  l.sports.forEach(i=>{const dot=i.t==='up'?'dg':i.t==='dn'?'dr':'da';r+=`<div class="row"><span class="lb">${i.n}</span><span class="vl">${i.v}</span><div class="bw"><div class="b" style="width:${i.w}%;background:${gbc(dot)};opacity:.75"></div></div><span class="cg" style="color:${gc(i.t)}">${i.t==='up'?'▲':i.t==='dn'?'▼':'→'}</span><div class="dot ${dot}"></div></div>`;});
+  document.getElementById('lei-sports').innerHTML=r;
+}
+
+function rHousing(d){
+  const h=d.housing;
+  document.getElementById('hou-cards').innerHTML=`<div class="cd"><div class="ct">아파트 평균 매매가</div><div class="cv">${h.price}</div></div><div class="cd"><div class="ct">전세가율</div><div class="cv nt">${h.jeonse}</div></div><div class="cd"><div class="ct">1인가구 비율</div><div class="cv">${h.single}</div></div><div class="cd"><div class="ct">미세먼지 PM2.5 평균</div><div class="cv nt">${h.pm25}</div></div><div class="cd"><div class="ct">탄소배출량</div><div class="cv dn" style="color:#A32D2D">${h.carbon}</div></div><div class="cd"><div class="ct">주요 수계 수질</div><div class="cv up">${h.river}</div></div>`;
+  let r='';
+  h.dust.forEach(i=>{const dot=i.t==='up'?'dg':i.t==='dr'?'dr':'da';r+=`<div class="row"><span class="lb">${i.n}</span><span class="vl">${i.v}</span><div class="bw"><div class="b" style="width:${i.w}%;background:${gbc(dot)};opacity:.8"></div></div><span class="cg" style="color:${gc(i.t==='up'?'up':i.t==='dr'?'dn':'nt')}">${i.t==='up'?'▼ 양호':i.t==='dr'?'▲ 위험':'▲ 주목'}</span><div class="dot ${dot}"></div></div>`;});
+  document.getElementById('hou-dust').innerHTML=r;
+}
+
+function rTransport(d){
+  const t=d.transport;
+  document.getElementById('tra-cards').innerHTML=`<div class="cd"><div class="ct">대중교통 만족도</div><div class="cv nt">${t.satisfy}</div></div><div class="cd"><div class="ct">평균 통근시간</div><div class="cv">${t.commute}</div></div><div class="cd"><div class="ct">교통사고 건수</div><div class="cv">${t.accident}</div></div><div class="cd"><div class="ct">자동차 등록대수</div><div class="cv">${t.cars}</div></div><div class="cd"><div class="ct">자전거도로 km</div><div class="cv">${t.bike}</div></div><div class="cd"><div class="ct">도로 혼잡비용</div><div class="cv">${t.congestion}</div></div>`;
+  let r='';
+  t.access.forEach(i=>{const dot=i.t==='up'?'dg':i.t==='dr'?'dr':'da';r+=`<div class="row"><span class="lb">${i.n}</span><span class="vl">${i.v}</span><div class="bw"><div class="b" style="width:${i.w}%;background:${gbc(dot)};opacity:.8"></div></div><span class="cg" style="color:${gc(i.t==='up'?'up':i.t==='dr'?'dn':'nt')}">${i.t==='up'?'양호':i.t==='dr'?'위험':'주목'}</span><div class="dot ${dot}"></div></div>`;});
+  document.getElementById('tra-access').innerHTML=r;
+}
+
+function rEta(d){
+  let dc='';
+  d.eta.districts.forEach(i=>{dc+=`<div class="cd" style="border-color:${gsc(i.v)};text-align:center"><div class="ct">${i.n}</div><div class="cv" style="color:${gsc(i.v)}">${i.v}</div><div class="cs" style="color:${gsc(i.v)}">${i.chg}</div></div>`;});
+  document.getElementById('eta-dist').innerHTML=dc;
+  let gr='';
+  d.eta.groups.forEach(i=>{gr+=`<div class="cd" style="border-color:${i.t==='dr'?'#A32D2D':i.t==='da'?'#BA7517':'#0F6E56'}"><div class="ct" style="color:${i.t==='dr'?'#A32D2D':i.t==='da'?'#BA7517':'#0F6E56'}">${i.n}</div><div class="cv" style="color:${i.t==='dr'?'#A32D2D':i.t==='da'?'#BA7517':'#0F6E56'}">${i.v}</div><div class="cs" style="color:${i.t==='dr'?'#791F1F':i.t==='da'?'#633806':'#085041'}">${i.note}</div></div>`;});
+  document.getElementById('eta-groups').innerHTML=gr;
+}
+
+function rForeign(d){
+  const f=d.foreign;
+  document.getElementById('for-total').textContent=`전체 ${f.total}`;
+  let gr='';
+  f.groups.forEach(i=>{gr+=`<div class="cd" style="border-color:#378ADD"><div class="ct" style="color:#185FA5">${i.n}</div><div class="cv">${i.v}</div><div class="cs nt">η ${i.eta}${i.note?' | '+i.note:''}</div></div>`;});
+  document.getElementById('for-groups').innerHTML=gr;
+  let dr='';
+  f.districts.forEach(i=>{dr+=`<div class="row"><span class="lb">${i.n}</span><span class="vl">${i.v}</span><div class="bw"><div class="b" style="width:${i.w}%;background:#EF9F27;opacity:.75"></div></div><span class="cg">${i.note}</span></div>`;});
+  document.getElementById('for-dist').innerHTML=dr;
+  let nr='';
+  f.nations.forEach(i=>{nr+=`<div class="row"><span class="lb">${i.n}</span><span class="vl">${i.v}</span><div class="bw"><div class="b" style="width:${i.w}%;background:#5DCAA5;opacity:.7"></div></div></div>`;});
+  document.getElementById('for-nations').innerHTML=nr;
+}
+
+function rCrime(d){
+  let r='';
+  d.crime.districts.forEach(i=>{const epiCol=i.epi>=0.3?'#A32D2D':i.epi>=0.2?'#BA7517':'#0F6E56';const epiW=Math.round(i.epi/0.4*100);r+=`<div class="row"><span class="lb" style="width:60px">${i.n}</span><span style="width:52px;font-size:10px">${i.life.toLocaleString()}건</span><span style="width:52px;font-size:10px;color:${i.foreign>60?'#791F1F':i.foreign>30?'#633806':'#2C2C2A'}">${i.foreign}건</span><div class="bw"><div class="b" style="width:${epiW}%;background:#E24B4A;opacity:.75"></div></div><span style="font-size:10px;width:80px;color:${epiCol}">EPI ${i.epi}</span><div class="dot ${i.t}"></div></div>`;});
+  document.getElementById('crime-rows').innerHTML=r;
+}
+
+function renderND(){
+  const ids=['rows-c1','rows-c2','eco-cards','eco-ind','emp-cards','emp-sectors','self-cards','self-sectors','con-cards','con-dist','med-dist','med-out','med-mental','wel-cards','wel-budget','edu-cards','edu-budget','tour-cards','tour-spots','cul-cards','cul-rank','lei-cards','lei-sports','hou-cards','hou-dust','tra-cards','tra-access','eta-dist','eta-groups','for-groups','for-dist','for-nations','crime-rows'];
+  const nd=`<div class="no-data">🚧 데이터 준비중 — KOSIS 연동 예정</div>`;
+  ids.forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML=nd;});
+  document.getElementById('rb').innerHTML=`<span class="rb-name">📍 ${CUR}</span><span style="font-size:11px;color:#888780;margin-left:8px">— 데이터 준비중</span>`;
+}
+
+document.addEventListener('click',function(e){if(!e.target.closest('.region-wrap')){DROP=false;document.getElementById('rd').classList.remove('o');document.getElementById('ra').classList.remove('o');}});
+function renderIdentity(name){
+  const id=IDENTITY[name];
+  if(!id){
+    document.getElementById('identity-card').style.background='linear-gradient(135deg,#2C3E50,#34495E)';
+    document.getElementById('id-name').textContent=name;
+    document.getElementById('id-slogan').textContent='지역 정보 준비 중';
+    document.getElementById('id-pop').textContent='';
+    document.getElementById('id-founded').textContent='';
+    document.getElementById('id-symbols').innerHTML='<span style="font-size:10px;color:rgba(255,255,255,0.5)">🚧 이미지 업로드 대기</span>';
+    document.getElementById('id-keywords').innerHTML='';
+    document.getElementById('id-flag').textContent='';
+    return;
+  }
+  document.getElementById('identity-card').style.background=`linear-gradient(135deg,${id.color1},${id.color2})`;
+  document.getElementById('id-name').textContent=name;
+  document.getElementById('id-slogan').textContent=id.slogan;
+  document.getElementById('id-pop').textContent='인구 '+id.pop;
+  document.getElementById('id-founded').textContent=id.founded;
+  let sym='';
+  id.symbols.forEach(s=>{
+    sym+=`<div style="background:rgba(255,255,255,0.12);border-radius:6px;padding:4px 7px;text-align:center;min-width:48px">
+      <div style="font-size:16px">${s.icon}</div>
+      <div style="font-size:9px;font-weight:700;color:#E1F5EE;margin-top:1px">${s.label}</div>
+      <div style="font-size:8px;color:rgba(255,255,255,0.6);line-height:1.2">${s.desc}</div>
+    </div>`;
+  });
+  document.getElementById('id-symbols').innerHTML=sym;
+  let kw='';
+  id.keywords.forEach(k=>{
+    kw+=`<span style="font-size:9px;background:rgba(255,255,255,0.15);color:#E1F5EE;padding:2px 7px;border-radius:10px">#${k}</span>`;
+  });
+  document.getElementById('id-keywords').innerHTML=kw;
+  document.getElementById('id-flag').textContent=id.flag;
+}
+function scrollToSec(id){var el=document.getElementById(id);if(el){el.classList.add('o');var arrow=document.getElementById('a-'+id);if(arrow)arrow.classList.add('o');el.scrollIntoView({behavior:'smooth',block:'start'});}};
+</script>
+
+<!-- ════ HTML ════ -->
+
+<div class="hdr">
+  <div>
+    <div class="ht">SEISMOS — 각 시도별 사회구조 현황</div>
+    <div class="hs">Λ¹² 프레임워크 | 늘푸른바다 사회동역학 연구소 제작</div>
+  </div>
+  <div class="region-wrap">
+    <div class="region-btn" onclick="TD()">
+      <span id="rbn">울산광역시</span>
+      <span class="rarrow" id="ra">▼</span>
+    </div>
+    <div class="rdrop" id="rd"></div>
+  </div>
+</div>
+
+<div class="rb" id="rb"></div>
+
+<!-- ════ 대시보드 진입 블록 ════ -->
+<div style="margin-bottom:6px">
+
+  <!-- 지역 자긍심 카드 — 풀폭 -->
+  <div id="identity-card" style="border-radius:8px;padding:14px 16px;min-height:110px;display:flex;flex-direction:column;gap:6px;background:linear-gradient(135deg,#0F6E56,#1A5276)">
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <div>
+        <div id="id-name" style="font-size:13px;font-weight:700;color:#E1F5EE;letter-spacing:0.3px"></div>
+        <div id="id-slogan" style="font-size:10px;color:#9FE1CB;margin-top:1px"></div>
+      </div>
+      <div style="text-align:right">
+        <div id="id-pop" style="font-size:11px;color:#E1F5EE;font-weight:600"></div>
+        <div id="id-founded" style="font-size:9px;color:#9FE1CB"></div>
+      </div>
+    </div>
+    <div id="id-symbols" style="display:flex;gap:6px;flex-wrap:wrap"></div>
+    <div id="id-keywords" style="display:flex;gap:4px;flex-wrap:wrap"></div>
+    <div id="id-flag" style="font-size:9px;color:rgba(255,255,255,0.5);margin-top:2px"></div>
+  </div>
+</div>
+
+<!-- 하단: 시민 제안서 -->
+<div onclick="scrollToSec('c18')" style="background:#fff;border:1.5px solid #3A6A5E;border-radius:8px;padding:12px 18px;margin-bottom:6px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:background .15s" onmouseover="this.style.background='#EBF4F0'" onmouseout="this.style.background='#fff'">
+  <div style="display:flex;align-items:center;gap:10px">
+    <div style="font-size:20px">📝</div>
+    <div>
+      <div style="font-size:12px;font-weight:700;color:#0F6E56">시민 제안 및 민원</div>
+      <div style="font-size:10px;color:#888780;margin-top:2px">구·군별 민원 접수·처리 현황 | 주차·인도·교통·쓰레기·가로등 | μ 매칭 연동</div>
+    </div>
+  </div>
+  <div style="font-size:11px;color:#5E9186;font-weight:600">결과 확인 ▶</div>
+</div>
+<!-- ════════════════════════════ -->
+
+<!-- ① 지역의회 -->
+<div class="sec"><div class="sh" onclick="T('c1')"><div class="sl"><span class="st">지역의회 공헌지수</span><span class="bdg ba" id="bdg-c1"></span></div><span class="ar" id="a-c1">▼</span></div>
+<div class="bd" id="c1">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;padding:7px;background:#F5F3EE;border-radius:6px">
+    <div style="text-align:center;min-width:52px"><div class="score" id="sc-c1"></div><div style="font-size:9px;color:#888780">공헌점수</div></div>
+    <div style="flex:1"><div class="pw" style="margin-bottom:3px"><div class="pg" id="pg-c1"></div></div><div style="font-size:10px;color:#888780">100점 만점 | 조례발의·예산심의·민원처리·출석·공약이행</div></div>
+  </div>
+  <div class="ss">구·군의회별 공헌점수</div>
+  <div id="rows-c1"></div>
+  <div class="nr" id="note-c1"></div>
+  <div class="nr" style="margin-top:5px;border-left:3px solid #5E9186;padding-left:8px">
+    <span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span><br>
+    · 지방자치법 제47조 (지방의회 의결사항) · 제49조 (행정사무 감사·조사권)<br>
+    · 공공기관의 정보공개에 관한 법률 제3조 (정보공개 의무)<br>
+    · 지방재정법 제60조 (재정운용 공개) | 출처: 의안정보시스템·지방재정365
+  </div>
+</div></div>
+
+
+<!-- ② 시정 -->
+<div class="sec"><div class="sh" onclick="T('c2')"><div class="sl"><span class="st">시·도정 이행지수 — 집행부 성과</span><span class="bdg bg" id="bdg-c2"></span></div><span class="ar" id="a-c2">▼</span></div>
+<div class="bd" id="c2">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;padding:7px;background:#F5F3EE;border-radius:6px">
+    <div style="text-align:center;min-width:52px"><div class="score" id="sc-c2"></div><div style="font-size:9px;color:#888780">이행점수</div></div>
+    <div style="flex:1"><div class="pw" style="margin-bottom:3px"><div class="pg" id="pg-c2"></div></div><div style="font-size:10px;color:#888780">100점 만점 | 예산집행·공약이행·민원처리·시민만족</div></div>
+  </div>
+  <div class="ss">분야별 이행률</div>
+  <div id="rows-c2"></div>
+  <div class="nr" id="note-c2"></div>
+  <div class="nr" style="margin-top:5px;border-left:3px solid #5E9186;padding-left:8px">
+    <span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span><br>
+    · 지방자치법 제108조 (사무의 위임·위탁) · 지방공기업법 제2조<br>
+    · 공약이행 평가: 지방자치단체 공약이행 평가에 관한 규정 (행안부 고시)<br>
+    · 출처: 지방재정365·KOSIS 지역통계·각 시도 행정사무감사 보고서
+  </div>
+</div></div>
+
+
+<!-- ⑳ 행정 — 공무원 충족도 -->
+<div class="sec">
+  <div class="sh" onclick="T('c20')">
+    <div class="sl">
+      <span class="st">행정 — 공무원 인력 충족도</span>
+      <span class="bdg ba">행정서비스 현황</span>
+    </div>
+    <span class="ar" id="a-c20">▼</span>
+  </div>
+  <div class="bd" id="c20">
+    <div class="nr" style="margin-bottom:8px">
+      전국 권장기준: 공무원 1인당 담당 시민 100명 (OECD 평균 기준) | 울산 평균 대비 구·군별 과부하 지수<br>
+      <span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span> — 지방공무원법 제3조 · 지방자치단체의 행정기구와 정원기준 등에 관한 규정 (대통령령) · 출처: 행안부 지방자치단체 공무원 인사통계
+    </div>
+    <div style="overflow-x:auto">
+      <div class="thdr" style="min-width:500px">
+        <span style="width:72px">구·군</span>
+        <span style="width:72px">공무원수</span>
+        <span style="width:84px">1인당담당</span>
+        <span style="width:80px">민원처리수</span>
+        <span style="width:72px">과부하지수</span>
+        <span style="flex:1">판정</span>
+      </div>
+      <div id="admin-rows"></div>
+    </div>
+    <div class="ss" style="margin-top:8px">직급별 구성 현황</div>
+    <div id="admin-grade"></div>
+    <div class="nrr" style="margin-top:5px">🚧 실데이터 연동 예정 — 행안부 지방자치단체 공무원 인사통계·지방재정365</div>
+  </div>
+</div>
+
+
+<!-- ⑦ 의료시설 -->
+<div class="sec"><div class="sh" onclick="T('c7')"><div class="sl"><span class="st">의료시설 — 이용률·공급·외부유출·시설충족도</span><span class="bdg br">생명·안전 인프라</span></div><span class="ar" id="a-c7">▼</span></div>
+<div class="bd" id="c7">
+  <div class="thdr"><span style="width:72px">구·군</span><span style="width:40px">종합병</span><span style="width:36px">보건소</span><span style="width:36px">응급실</span><span style="flex:1">이용률</span><span style="width:60px">현황</span><span style="width:18px">▪</span></div>
+  <div id="med-dist"></div>
+  <div class="ss">외부 유출 환자</div>
+  <div id="med-out"></div>
+  <div class="nrr" id="med-total" style="margin-top:5px"></div>
+  <div class="ss">정신건강 지표</div>
+  <div class="g3" id="med-mental"></div>
+
+  <!-- 시설 충족도 — 신규 추가 -->
+  <div class="ss" style="margin-top:10px">생명·안전 시설 충족도 — 구·군별</div>
+  <div class="nr" style="margin-bottom:6px">충족도 기준: 인구 1만명당 시설 수 → 전국 평균 대비 | 🟢 충족 🟡 주목 🔴 부족</div>
+  <div style="overflow-x:auto">
+    <div class="thdr" style="min-width:480px">
+      <span style="width:72px">구·군</span>
+      <span style="width:72px">🏥 요양원</span>
+      <span style="width:72px">⚰️ 장례식장</span>
+      <span style="width:72px">🍼 산부인과</span>
+      <span style="width:72px">🚑 응급실</span>
+      <span style="flex:1">충족도 종합</span>
+    </div>
+    <div id="med-facility"></div>
+  </div>
+  <div class="nrr" style="margin-top:5px">🚧 실데이터 연동 예정 — 건강보험심사평가원·행안부 지역사회서비스 투자사업 통계</div>
+  <div class="nr" style="margin-top:5px;border-left:3px solid #5E9186;padding-left:8px">
+    <span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span><br>
+    · 의료법 제3조 (의료기관 종류) · 응급의료에 관한 법률 제17조 (응급의료기관 지정)<br>
+    · 노인복지법 제34조 (노인의료복지시설) · 모자보건법 제15조 (산부인과 설치)<br>
+    · 장사 등에 관한 법률 제14조 (장례식장 설치·신고)<br>
+    · 출처: 건강보험심사평가원·국립중앙의료원·보건복지부 의료자원통계
+  </div>
+
+  <!-- 의료인력 충족도 -->
+  <div class="ss" style="margin-top:10px">🩺 의료인력 충족도 — 구·군별</div>
+  <div class="nr" style="margin-bottom:6px">전국 권장기준: 의사 1인당 담당 시민 400명 | 간호사 1인당 담당 150명 | 출처: 보건복지부 보건의료실태조사</div>
+  <div style="overflow-x:auto">
+    <div class="thdr" style="min-width:500px">
+      <span style="width:72px">구·군</span>
+      <span style="width:72px">의사(명)</span>
+      <span style="width:84px">1인당담당</span>
+      <span style="width:72px">간호사(명)</span>
+      <span style="width:84px">1인당담당</span>
+      <span style="flex:1">판정</span>
+    </div>
+    <div id="med-staff"></div>
+  </div>
+  <div class="nrr" style="margin-top:5px">🚧 실데이터 연동 예정 — 건강보험심사평가원 요양기관현황·보건복지부 보건의료인력실태조사</div>
+  <div class="nr" style="margin-top:5px;border-left:3px solid #5E9186;padding-left:8px">
+    <span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span><br>
+    · 의료법 제59조 (의료인 배치기준) · 보건의료기본법 제44조 (보건의료인력 확보)<br>
+    · 농어촌 등 보건의료를 위한 특별조치법 제5조 | 출처: 보건복지부·건강보험심사평가원
+  </div>
+</div></div>
+
+<script>
+(function(){
+  // 시설 충족도 시험값 (인구 1만명당, 전국평균=1.0 기준)
+  const FAC = [
+    {n:'중구',  nrs:1.2, fun:0.8, ob:1.4, er:1.1, total:'🟢 양호'},
+    {n:'남구',  nrs:1.4, fun:1.1, ob:1.8, er:1.3, total:'🟢 양호'},
+    {n:'북구',  nrs:0.9, fun:0.7, ob:0.8, er:0.8, total:'🟡 주목'},
+    {n:'동구',  nrs:0.6, fun:0.5, ob:0.4, er:0.7, total:'🔴 부족'},
+    {n:'울주군',nrs:0.5, fun:0.6, ob:0.3, er:0.6, total:'🔴 부족'},
+  ];
+  const fc=v=>v>=1.2?'#085041':v>=0.9?'#633806':'#A32D2D';
+  let fh='';
+  FAC.forEach(f=>{
+    fh+=`<div class="row" style="min-width:480px">
+      <div style="width:72px;font-weight:600;font-size:11px">${f.n}</div>
+      <div style="width:72px;font-size:11px;font-weight:600;color:${fc(f.nrs)}">${f.nrs}배</div>
+      <div style="width:72px;font-size:11px;font-weight:600;color:${fc(f.fun)}">${f.fun}배</div>
+      <div style="width:72px;font-size:11px;font-weight:600;color:${fc(f.ob)}">${f.ob}배</div>
+      <div style="width:72px;font-size:11px;font-weight:600;color:${fc(f.er)}">${f.er}배</div>
+      <div style="flex:1;font-size:11px;font-weight:700">${f.total}</div>
+    </div>`;
+  });
+  document.getElementById('med-facility').innerHTML=fh;
+})();
+</script>
+
+
+<!-- ⑰ 범죄·EPI -->
+<div class="sec"><div class="sh" onclick="T('c17')"><div class="sl"><span class="st">범죄유형별 + EPI 침투지수 (후순위)</span><span class="bdg br">EPI 현황</span></div><span class="ar" id="a-c17">▼</span></div>
+<div class="bd" id="c17">
+  <div class="thdr"><span style="width:60px">구·군</span><span style="width:60px">생활범죄</span><span style="width:60px">외국인피해</span><span style="flex:1">EPI 침투 바</span><span style="width:72px">EPI값</span><span style="width:18px">▪</span></div>
+  <div id="crime-rows"></div>
+  <div class="nrr" style="margin-top:5px">EPI 해석: 외국인 피해건 = 보호 대상 신호. EPI↑ = 조직·파이프라인 문제. 외국인 ≠ 범죄자.</div>
+  <div class="nr" style="margin-top:5px;border-left:3px solid #5E9186;padding-left:8px"><span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span><br>· 형사사법절차 전자화 촉진법 제3조 · 범죄통계 작성: 경찰청 승인통계(제43101호)<br>· EPI(폭발근접지수): Λ¹² 독자 변수 (SSRN 6509200) — 석유화학 LEL/UEL 물리 기반<br>· 출처: 경찰청 범죄통계·검찰청 범죄분석·대검찰청 통계연보</div>
+
+  <!-- 경찰 충족도 -->
+  <div class="ss" style="margin-top:10px">👮 경찰관서 인력 충족도</div>
+  <div class="nr" style="margin-bottom:6px">전국 권장기준: 경찰관 1인당 담당 시민 400명 | 치안센터 인구 2만명당 1개소 | 출처: 경찰청 치안통계</div>
+  <div style="overflow-x:auto">
+    <div class="thdr" style="min-width:480px">
+      <span style="width:72px">구·군</span>
+      <span style="width:72px">경찰관수</span>
+      <span style="width:80px">1인당담당</span>
+      <span style="width:72px">치안센터</span>
+      <span style="width:64px">충족률</span>
+      <span style="flex:1">판정</span>
+    </div>
+    <div id="police-rows" style="min-width:480px"></div>
+  </div>
+  <div class="ss" style="margin-top:8px">🚒 소방인력·장비 충족도</div>
+  <div class="nr" style="margin-bottom:6px">전국 권장기준: 소방관 1인당 담당 시민 600명 | 골든타임 5분 도달 가능 면적 확보 | 출처: 소방청 소방력기준</div>
+  <div style="overflow-x:auto">
+    <div class="thdr" style="min-width:480px">
+      <span style="width:72px">구·군</span>
+      <span style="width:72px">소방관수</span>
+      <span style="width:80px">1인당담당</span>
+      <span style="width:72px">소방차(대)</span>
+      <span style="width:64px">골든타임</span>
+      <span style="flex:1">판정</span>
+    </div>
+    <div id="fire-rows" style="min-width:480px"></div>
+  </div>
+  <div class="nrr" style="margin-top:5px">🚧 실데이터 연동 예정 — 경찰청 치안통계·소방청 소방력현황·행안부 안전관리기본계획</div>
+  <div class="nr" style="margin-top:5px;border-left:3px solid #5E9186;padding-left:8px">
+    <span style="font-weight:700;color:#3A6A5E">📋 공공재 근거 (소방)</span><br>
+    · 소방기본법 제3조 (소방관서) · 소방력 기준에 관한 규칙 (행안부령)<br>
+    · 119구조·구급에 관한 법률 제4조 · 출처: 소방청 소방력현황·KOSIS
+  </div>
+</div></div>
+
+
+<!-- ③ 살림살이 -->
+<div class="sec"><div class="sh" onclick="T('c3')"><div class="sl"><span class="st">살림살이 — 산업별 생산액·소득·지출</span><span class="bdg bg">GRDP 현황</span></div><span class="ar" id="a-c3">▼</span></div>
+<div class="bd" id="c3">
+  <div class="g3" style="margin-bottom:8px" id="eco-cards"></div>
+  <!-- 인플레이션 현황 -->
+  <div class="ss">📈 물가 현황 — 전국 vs 지역 체감</div>
+  <div id="inflation-block" style="margin-bottom:8px"></div>
+  <div class="ss">산업별 생산액 증시판</div>
+  <div id="eco-ind"></div>
+  <div class="nr" style="margin-top:5px;border-left:3px solid #5E9186;padding-left:8px">
+    <span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span><br>
+    · 통계법 제18조 (국가통계 작성·공표 의무)<br>
+    · 국민계정 작성기준 (한국은행) · 지역내총생산(GRDP) = 통계청 KOSIS 공식 지표<br>
+    · 출처: 통계청 KOSIS·한국은행 경제통계시스템(ECOS)·울산광역시 통계연보
+  </div>
+</div></div>
+
+
+<!-- ④ 고용·노동 -->
+<div class="sec"><div class="sh" onclick="T('c4')"><div class="sl"><span class="st">고용·노동 — 취업률·임금·산재</span><span class="bdg ba">고용 현황</span></div><span class="ar" id="a-c4">▼</span></div>
+<div class="bd" id="c4">
+  <div class="g3" style="margin-bottom:8px" id="emp-cards"></div>
+  <div class="ss">업종별 취업자 분포</div>
+  <div id="emp-sectors"></div>
+  <div class="nr" style="margin-top:5px;border-left:3px solid #5E9186;padding-left:8px">
+    <span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span><br>
+    · 고용정책 기본법 제17조 (고용동향 조사·공표) · 근로기준법 제43조 (임금 지급)<br>
+    · 최저임금법 제10조 · 고용보험법 제15조 (피보험자 신고)<br>
+    · 출처: 통계청 경제활동인구조사(KOSIS)·고용노동부 고용행정통계·근로복지공단
+  </div>
+</div></div>
+
+
+<!-- ⑲ 산업재해 — 울산 공업도시 특화 -->
+<div class="sec">
+  <div class="sh" onclick="T('c19')">
+    <div class="sl">
+      <span class="st">산업재해 — 업종별·구군별·연누적</span>
+      <span class="bdg br">생명·안전 최우선</span>
+    </div>
+    <span class="ar" id="a-c19">▼</span>
+  </div>
+  <div class="bd" id="c19">
+
+    <div class="nr" style="margin-bottom:8px">
+      울산 = 석유화학·조선·자동차 집적 공업도시 | 산재는 예방 가능한 사망·부상 |
+      연누적 + 일별 업데이트 예정 (고용노동부 산재통계 API 연동)<br>
+      <span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span> — 산업안전보건법 제4조 · 산업재해보상보험법 제1조<br>
+      재해율: (재해자수/산재보험적용근로자수)×100 — 고용노동부예규 제190호 (2022.1.11)<br>
+      사망만인율: (사망자수/산재보험적용근로자수)×10,000 | 출처: 고용노동부·안전보건공단·근로복지공단
+    </div>
+
+    <!-- 오늘 현황 요약 -->
+    <div class="ss">📅 연누적 현황 (2025년 기준 시험값)</div>
+    <div class="g4" id="accident-summary" style="margin-bottom:10px"></div>
+
+    <!-- 업종별 산재 현황 -->
+    <div class="ss">업종별 산재 발생 현황</div>
+    <div id="accident-industry" style="display:flex;flex-direction:column;gap:4px;margin-bottom:10px"></div>
+
+    <!-- 구·군별 산재 현황 -->
+    <div class="ss">구·군별 산재 발생 현황</div>
+    <div style="overflow-x:auto">
+      <div class="thdr" style="min-width:460px">
+        <span style="width:72px">구·군</span>
+        <span style="width:60px">사망(명)</span>
+        <span style="width:60px">중상(명)</span>
+        <span style="width:60px">경상(명)</span>
+        <span style="width:64px">재해율</span>
+        <span style="flex:1">주요 업종</span>
+      </div>
+      <div id="accident-dist" style="min-width:460px"></div>
+    </div>
+
+    <!-- 일별 업데이트 예정 박스 -->
+    <div style="background:#FFF3F3;border:1.5px solid #F09595;border-radius:6px;padding:10px 14px;margin-top:8px;display:flex;align-items:center;gap:10px">
+      <div style="font-size:24px">📡</div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:#791F1F">일별 실시간 업데이트 예정</div>
+        <div style="font-size:10px;color:#5F5E5A;margin-top:2px">
+          고용노동부 산재보험 정보 API · 안전보건공단 OSHMS 연동<br>
+          오늘 발생 → 당일 반영 | 업종·사업장 단위 추적 가능
+        </div>
+      </div>
+    </div>
+
+    <!-- EPI 연결 안내 -->
+    <div class="nr" style="margin-top:6px">
+      ⑰ EPI(폭발근접지수)와 교차 분석 — 공단 밀집도 높을수록 산재 위험 구조적 상승 | Λ¹² η지표 취약군 연동
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // 연누적 요약 카드
+  const SUM = [
+    {t:'사망',   v:'18명', s:'전년比 -2명', c:'#A32D2D'},
+    {t:'중상',   v:'284명',s:'전년比 +12명',c:'#BA7517'},
+    {t:'경상',   v:'1,842명',s:'누적',      c:'#378ADD'},
+    {t:'재해율', v:'0.84%', s:'전국 0.51%', c:'#791F1F'},
+  ];
+  let sc='';
+  SUM.forEach(s=>{
+    sc+=`<div class="cd" style="border-color:${s.c}">
+      <div class="ct">${s.t}</div>
+      <div class="cv" style="color:${s.c}">${s.v}</div>
+      <div class="cs" style="color:#888780">${s.s}</div>
+    </div>`;
+  });
+  document.getElementById('accident-summary').innerHTML=sc;
+
+  // 업종별
+  const IND = [
+    {n:'석유화학·정제',  v:32.4, dead:8,  c:'#E24B4A', note:'동구·울주 공단 집중'},
+    {n:'조선·중공업',    v:28.1, dead:5,  c:'#BA7517', note:'동구 현대중공업 권역'},
+    {n:'자동차·부품',    v:18.4, dead:3,  c:'#378ADD', note:'북구 현대차 권역'},
+    {n:'건설·플랜트',    v:14.2, dead:2,  c:'#7F77DD', note:'신규 공사현장'},
+    {n:'기타 제조',      v:6.9,  dead:0,  c:'#5DCAA5', note:'중·남구 소규모'},
+  ];
+  let ih='';
+  IND.forEach(i=>{
+    ih+=`<div class="row">
+      <div class="lb" style="width:120px">${i.n}</div>
+      <div class="vl">${i.v}%</div>
+      <div class="bw"><div class="b" style="width:${i.v/35*100}%;background:${i.c}"></div></div>
+      <div style="width:60px;font-size:10px;font-weight:700;color:#A32D2D">사망 ${i.dead}명</div>
+      <div class="cg" style="width:130px;font-size:10px;color:#5F5E5A">${i.note}</div>
+    </div>`;
+  });
+  document.getElementById('accident-industry').innerHTML=ih;
+
+  // 구·군별
+  const DIST = [
+    {n:'동구',   dead:9,  heavy:142, light:824, rate:1.84, ind:'석유화학·조선'},
+    {n:'울주군', dead:5,  heavy:84,  light:612, rate:1.24, ind:'석유화학·건설'},
+    {n:'북구',   dead:2,  heavy:38,  light:284, rate:0.64, ind:'자동차·부품'},
+    {n:'남구',   dead:1,  heavy:14,  light:84,  rate:0.28, ind:'서비스·소규모'},
+    {n:'중구',   dead:1,  heavy:6,   light:38,  rate:0.18, ind:'소규모 제조'},
+  ];
+  let dh='';
+  DIST.forEach(d=>{
+    const rc=d.rate>=1.5?'#A32D2D':d.rate>=0.8?'#BA7517':'#085041';
+    dh+=`<div class="row" style="min-width:460px">
+      <div style="width:72px;font-weight:600;font-size:11px">${d.n}</div>
+      <div style="width:60px;font-size:11px;font-weight:700;color:#A32D2D">${d.dead}명</div>
+      <div style="width:60px;font-size:11px;color:#BA7517">${d.heavy}명</div>
+      <div style="width:60px;font-size:11px;color:#378ADD">${d.light}명</div>
+      <div style="width:64px;font-size:11px;font-weight:700;color:${rc}">${d.rate}%</div>
+      <div style="flex:1;font-size:10px;color:#5F5E5A">${d.ind}</div>
+    </div>`;
+  });
+  document.getElementById('accident-dist').innerHTML=dh;
+})();
+</script>
+
+<script>
+(function(){
+  // ── ⑨ 학교 소멸위험 시험값 ──
+  const SCHOOL=[
+    {n:'중구',  kd:12,el:18,mid:8, hi:6, danger:0, judge:'🟢 안정'},
+    {n:'남구',  kd:18,el:24,mid:12,hi:9, danger:1, judge:'🟡 주목'},
+    {n:'북구',  kd:14,el:18,mid:8, hi:6, danger:2, judge:'🟡 주목'},
+    {n:'동구',  kd:6, el:8, mid:4, hi:3, danger:3, judge:'🔴 위험'},
+    {n:'울주군',kd:8, el:14,mid:7, hi:5, danger:8, judge:'🔴 소멸위험'},
+  ];
+  const ss=document.getElementById('school-status');
+  if(ss){
+    let h='';
+    SCHOOL.forEach(s=>{
+      const dc=s.danger>=6?'#A32D2D':s.danger>=2?'#BA7517':'#085041';
+      const jc=s.judge.includes('🟢')?'#085041':s.judge.includes('🟡')?'#633806':'#A32D2D';
+      h+=`<div class="row" style="min-width:540px">
+        <div style="width:72px;font-weight:600;font-size:11px">${s.n}</div>
+        <div style="width:60px;font-size:11px">${s.kd}개</div>
+        <div style="width:60px;font-size:11px">${s.el}개</div>
+        <div style="width:60px;font-size:11px">${s.mid}개</div>
+        <div style="width:60px;font-size:11px">${s.hi}개</div>
+        <div style="width:72px;font-size:11px;font-weight:700;color:${dc}">${s.danger}개교</div>
+        <div style="flex:1;font-size:11px;font-weight:600;color:${jc}">${s.judge}</div>
+      </div>`;
+    });
+    ss.innerHTML=h;
+  }
+
+  // 소멸위험 학교 상세
+  const DANGER=[
+    {n:'삼평초등학교',  loc:'울주군 삼남면',  students:24, grade:6,  trend:'▼ -4명/년', risk:'🔴 소멸위험'},
+    {n:'온산초등학교',  loc:'울주군 온산읍',  students:38, grade:6,  trend:'▼ -3명/년', risk:'🔴 소멸위험'},
+    {n:'두동초등학교',  loc:'울주군 두동면',  students:18, grade:6,  trend:'▼ -2명/년', risk:'🔴 소멸위험'},
+    {n:'상북초등학교',  loc:'울주군 상북면',  students:42, grade:6,  trend:'▼ -5명/년', risk:'🟠 통폐합검토'},
+    {n:'청량초등학교',  loc:'울주군 청량읍',  students:54, grade:6,  trend:'▼ -4명/년', risk:'🟠 통폐합검토'},
+    {n:'동구 일부 유치원',loc:'동구',         students:28, grade:0,  trend:'▼ -6명/년', risk:'🔴 폐원위험'},
+  ];
+  const sd=document.getElementById('school-danger');
+  if(sd){
+    let h='<div style="overflow-x:auto"><div class="thdr" style="min-width:480px"><span style="width:130px">학교명</span><span style="width:100px">위치</span><span style="width:64px">전교생</span><span style="width:72px">추이</span><span style="flex:1">판정</span></div>';
+    DANGER.forEach(d=>{
+      const rc=d.risk.includes('🔴')?'#A32D2D':'#BA7517';
+      h+=`<div class="row" style="min-width:480px">
+        <div style="width:130px;font-size:10px;font-weight:600">${d.n}</div>
+        <div style="width:100px;font-size:10px;color:#5F5E5A">${d.loc}</div>
+        <div style="width:64px;font-size:11px;font-weight:700;color:${rc}">${d.students}명</div>
+        <div style="width:72px;font-size:10px;color:#A32D2D">${d.trend}</div>
+        <div style="flex:1;font-size:10px;font-weight:600;color:${rc}">${d.risk}</div>
+      </div>`;
+    });
+    h+='</div>';
+    sd.innerHTML=h;
+  }
+
+  // 교육 인프라 충족도
+  const INFRA=[
+    {n:'학급당 학생수(초등)',val:'22.4명',std:'20명',ok:false,note:'권장 초과'},
+    {n:'학급당 학생수(중등)',val:'26.8명',std:'25명',ok:false,note:'권장 초과'},
+    {n:'초등 통학거리(면단위)',val:'평균 4.2km',std:'2km',ok:false,note:'🔴 2배 초과'},
+    {n:'중등 통학거리(면단위)',val:'평균 8.4km',std:'4km',ok:false,note:'🔴 2배 초과'},
+    {n:'도서관(학교당)',val:'0.84개',std:'1개',ok:false,note:'부족'},
+    {n:'급식시설 충족률',val:'98.4%',std:'100%',ok:true, note:'양호'},
+  ];
+  const ei=document.getElementById('edu-infra');
+  if(ei){
+    let h='';
+    INFRA.forEach(i=>{
+      const c=i.ok?'#085041':'#A32D2D';
+      const mark=i.ok?'✅':'⚠️';
+      h+=`<div class="row">
+        <div class="lb" style="width:160px">${i.n}</div>
+        <div class="vl" style="width:80px;color:${c};font-weight:700">${i.val}</div>
+        <div style="width:60px;font-size:10px;color:#888780">기준:${i.std}</div>
+        <div style="flex:1;font-size:10px;color:${c}">${mark} ${i.note}</div>
+      </div>`;
+    });
+    ei.innerHTML=h;
+  }
+
+  // 폐교 누적
+  const CLOSED=document.getElementById('school-closed');
+  if(CLOSED){
+    CLOSED.innerHTML=`<div class="g4">
+      <div class="cd" style="border-color:#A32D2D"><div class="ct">폐교 누적(울산)</div><div class="cv" style="color:#A32D2D">28개교</div><div class="cs dn">1982년~현재</div></div>
+      <div class="cd" style="border-color:#BA7517"><div class="ct">울주군 집중</div><div class="cv" style="color:#BA7517">19개교</div><div class="cs nt">전체 68%</div></div>
+      <div class="cd" style="border-color:#E24B4A"><div class="ct">최근 5년</div><div class="cv" style="color:#E24B4A">6개교</div><div class="cs dn">가속 중</div></div>
+      <div class="cd" style="border-color:#378ADD"><div class="ct">폐교 활용률</div><div class="cv" style="color:#185FA5">42.8%</div><div class="cs nt">나머지 방치</div></div>
+    </div>
+    <div class="nr" style="margin-top:5px">학교 소멸 경로: 유치원 폐원 → 초등 통폐합 → 중학교 소멸 → 청년 이탈 → 고령화 가속 → 지역 소멸 | η DCI(인구분화지수) 직결</div>`;
+  }
+
+  // ── ㉑ ESG 시험값 ──
+  // 자원순환
+  const WASTE=[
+    {n:'중구',  sep:84.2,land:12.4,burn:18.4,rec:68.4,judge:'🟢 양호'},
+    {n:'남구',  sep:82.1,land:14.2,burn:22.1,rec:64.2,judge:'🟢 양호'},
+    {n:'북구',  sep:76.4,land:18.4,burn:28.4,rec:58.4,judge:'🟡 주목'},
+    {n:'동구',  sep:68.2,land:28.4,burn:32.4,rec:48.2,judge:'🔴 부족'},
+    {n:'울주군',sep:62.4,land:38.4,burn:28.4,rec:42.4,judge:'🔴 부족'},
+  ];
+  const wr=document.getElementById('waste-rows');
+  if(wr){
+    let h='';
+    WASTE.forEach(w=>{
+      const rc=w.sep>=80?'#085041':w.sep>=70?'#633806':'#A32D2D';
+      const jc=w.judge.includes('🟢')?'#085041':w.judge.includes('🟡')?'#633806':'#A32D2D';
+      h+=`<div class="row" style="min-width:540px">
+        <div style="width:72px;font-weight:600;font-size:11px">${w.n}</div>
+        <div style="width:72px;font-size:11px;font-weight:700;color:${rc}">${w.sep}%</div>
+        <div style="width:72px;font-size:11px">${w.land}톤</div>
+        <div style="width:72px;font-size:11px">${w.burn}톤</div>
+        <div style="width:72px;font-size:11px;color:#085041">${w.rec}%</div>
+        <div style="flex:1;font-size:11px;font-weight:600;color:${jc}">${w.judge}</div>
+      </div>`;
+    });
+    wr.innerHTML=h;
+  }
+
+  // 탄소배출
+  const CARBON=document.getElementById('carbon-rows');
+  if(CARBON){
+    const data=[
+      {n:'석유화학단지(동구·울주)',v:2840,w:100,c:'#E24B4A',note:'전체 68% — 최다'},
+      {n:'조선·중공업(동구)',      v:842, w:30, c:'#BA7517',note:''},
+      {n:'자동차(북구)',           v:484, w:17, c:'#378ADD',note:''},
+      {n:'기타 제조',              v:284, w:10, c:'#7F77DD',note:''},
+      {n:'생활·수송',              v:212, w:7,  c:'#5DCAA5',note:''},
+    ];
+    let h='';
+    data.forEach(d=>{
+      h+=`<div class="row"><div class="lb" style="width:160px">${d.n}</div><div class="vl">${d.v}만톤</div><div class="bw"><div class="b" style="width:${d.w}%;background:${d.c}"></div></div><div class="cg" style="color:${d.c}">${d.note}</div></div>`;
+    });
+    CARBON.innerHTML=h+'<div class="nrr" style="margin-top:4px">울산 총 탄소배출: 약 4,662만톤/년 — 전국 광역시 중 최다 | 🚧 실데이터 연동 예정</div>';
+  }
+
+  // 신재생에너지
+  const ENERGY=document.getElementById('energy-rows');
+  if(ENERGY){
+    const data=[
+      {n:'태양광',    v:8.4, target:15,c:'#BA7517'},
+      {n:'풍력',      v:2.1, target:8, c:'#378ADD'},
+      {n:'LNG복합',   v:18.4,target:20,c:'#7F77DD'},
+      {n:'바이오매스',v:3.2, target:5, c:'#5DCAA5'},
+      {n:'수소(예정)',v:0.4, target:10,c:'#0F6E56'},
+    ];
+    let h='<div class="nr" style="margin-bottom:4px">현재 신재생 비율: 14.1% (2030 목표 30% 대비 달성률 47%)</div>';
+    data.forEach(d=>{
+      const pct=Math.round(d.v/d.target*100);
+      const c=pct>=80?'#085041':pct>=50?'#633806':'#A32D2D';
+      h+=`<div class="row"><div class="lb" style="width:100px">${d.n}</div><div class="vl">${d.v}%</div><div class="bw"><div class="b" style="width:${d.v/20*100}%;background:${d.c}"></div></div><div style="width:80px;font-size:10px;color:${c}">목표대비 ${pct}%</div></div>`;
+    });
+    ENERGY.innerHTML=h;
+  }
+
+  // ── ㉒ 인구위기 시험값 ──
+  // 출산율
+  const BIRTH=document.getElementById('birth-rows');
+  if(BIRTH){
+    const data=[
+      {n:'중구',  v:0.68,c:'#A32D2D',judge:'🔴 소멸위험'},
+      {n:'남구',  v:0.74,c:'#BA7517',judge:'🔴 소멸위험'},
+      {n:'북구',  v:0.71,c:'#A32D2D',judge:'🔴 소멸위험'},
+      {n:'동구',  v:0.62,c:'#A32D2D',judge:'🔴 소멸위험'},
+      {n:'울주군',v:0.84,c:'#BA7517',judge:'🟡 주목'},
+    ];
+    let h='<div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:6px">';
+    data.forEach(d=>{
+      h+=`<div class="cd" style="border-color:${d.c};text-align:center;min-width:80px">
+        <div class="ct">${d.n}</div>
+        <div class="cv" style="color:${d.c};font-size:18px">${d.v}명</div>
+        <div class="cs" style="color:${d.c}">${d.judge}</div>
+      </div>`;
+    });
+    h+='</div><div class="nrr">울산 평균 합계출산율 0.72명 — 전국 평균(0.72)과 동일 · 인구유지 필요 수준(2.1명)의 34% 수준</div>';
+    BIRTH.innerHTML=h;
+  }
+
+  // 주거취약
+  const HP=document.getElementById('housing-poor');
+  if(HP){
+    HP.innerHTML=`<div class="g4" style="margin-bottom:6px">
+      <div class="cd" style="border-color:#A32D2D"><div class="ct">최저주거기준 미달</div><div class="cv" style="color:#A32D2D">2.84만가구</div><div class="cs dn">울산 전체</div></div>
+      <div class="cd" style="border-color:#BA7517"><div class="ct">고시원·쪽방</div><div class="cv" style="color:#BA7517">1,284가구</div><div class="cs nt">동구 집중</div></div>
+      <div class="cd" style="border-color:#E24B4A"><div class="ct">반지하</div><div class="cv" style="color:#E24B4A">842가구</div><div class="cs dn">침수위험↑</div></div>
+      <div class="cd" style="border-color:#7F77DD"><div class="ct">비닐하우스</div><div class="cv" style="color:#7F77DD">184가구</div><div class="cs dn">울주군</div></div>
+    </div><div class="nr">주거기본법 제2조 기준 | 출처: 국토부 주거실태조사 🚧 실데이터 연동 예정</div>`;
+  }
+
+  // 청년 유출입
+  const YOUTH=[
+    {n:'중구',  pop:'4.2만',in:1284,out:1842,net:-558, judge:'🔴 유출'},
+    {n:'남구',  pop:'8.4만',in:2840,out:3124,net:-284, judge:'🔴 유출'},
+    {n:'북구',  pop:'7.2만',in:2124,out:2284,net:-160, judge:'🟡 주목'},
+    {n:'동구',  pop:'2.8만',in:684, out:1124,net:-440, judge:'🔴 유출'},
+    {n:'울주군',pop:'5.4만',in:1842,out:1684,net:+158, judge:'🟢 유입'},
+  ];
+  const yr=document.getElementById('youth-rows');
+  if(yr){
+    let h='';
+    YOUTH.forEach(y=>{
+      const nc=y.net>0?'#085041':'#A32D2D';
+      const jc=y.judge.includes('🟢')?'#085041':y.judge.includes('🟡')?'#633806':'#A32D2D';
+      h+=`<div class="row" style="min-width:480px">
+        <div style="width:72px;font-weight:600;font-size:11px">${y.n}</div>
+        <div style="width:80px;font-size:11px">${y.pop}</div>
+        <div style="width:80px;font-size:11px;color:#085041">+${y.in.toLocaleString()}</div>
+        <div style="width:80px;font-size:11px;color:#A32D2D">-${y.out.toLocaleString()}</div>
+        <div style="width:80px;font-size:11px;font-weight:700;color:${nc}">${y.net>0?'+':''}${y.net.toLocaleString()}</div>
+        <div style="flex:1;font-size:11px;font-weight:600;color:${jc}">${y.judge}</div>
+      </div>`;
+    });
+    yr.innerHTML=h;
+  }
+
+  // ── ⑦ 의료인력 충족도 시험값 ──
+  const MEDSTAFF=[
+    {n:'중구',  doc:284, dper:282, nur:842, nper:142, judge:'🟢 충족'},
+    {n:'남구',  doc:512, dper:254, nur:1284,nper:101, judge:'🟢 충족'},
+    {n:'북구',  doc:184, dper:468, nur:512, nper:168, judge:'🟡 주목'},
+    {n:'동구',  doc:84,  dper:924, nur:212, nper:368, judge:'🔴 부족'},
+    {n:'울주군',doc:64,  dper:1706,nur:184, nper:594, judge:'🔴 위험'},
+  ];
+  const ms=document.getElementById('med-staff');
+  if(ms){
+    let h='';
+    MEDSTAFF.forEach(m=>{
+      const dc=m.dper<=400?'#085041':m.dper<=800?'#633806':'#A32D2D';
+      const nc=m.nper<=150?'#085041':m.nper<=300?'#633806':'#A32D2D';
+      const jc=m.judge.includes('🟢')?'#085041':m.judge.includes('🟡')?'#633806':'#A32D2D';
+      h+=`<div class="row" style="min-width:500px">
+        <div style="width:72px;font-weight:600;font-size:11px">${m.n}</div>
+        <div style="width:72px;font-size:11px">${m.doc}명</div>
+        <div style="width:84px;font-size:11px;font-weight:700;color:${dc}">${m.dper}명/인</div>
+        <div style="width:72px;font-size:11px">${m.nur}명</div>
+        <div style="width:84px;font-size:11px;font-weight:700;color:${nc}">${m.nper}명/인</div>
+        <div style="flex:1;font-size:11px;font-weight:600;color:${jc}">${m.judge}</div>
+      </div>`;
+    });
+    ms.innerHTML=h;
+  }
+
+  // ── ⑧ 장애인 돌봄시설 충족도 시험값 ──
+  const DISFAC=[
+    {n:'중구',  fac:4,  wait:12, teacher:28, per:3.8, judge:'🟢 충족'},
+    {n:'남구',  fac:6,  wait:8,  teacher:42, per:3.2, judge:'🟢 충족'},
+    {n:'북구',  fac:3,  wait:24, teacher:22, per:4.8, judge:'🟡 주목'},
+    {n:'동구',  fac:2,  wait:38, teacher:12, per:6.2, judge:'🔴 부족'},
+    {n:'울주군',fac:2,  wait:54, teacher:8,  per:7.4, judge:'🔴 위험'},
+  ];
+  const df=document.getElementById('disabled-facility');
+  if(df){
+    let h='';
+    DISFAC.forEach(d=>{
+      const wc=d.wait<=15?'#085041':d.wait<=30?'#633806':'#A32D2D';
+      const pc=d.per<=4?'#085041':d.per<=6?'#633806':'#A32D2D';
+      h+=`<div class="row" style="min-width:520px">
+        <div style="width:72px;font-weight:600;font-size:11px">${d.n}</div>
+        <div style="width:80px;font-size:11px">${d.fac}개소</div>
+        <div style="width:72px;font-size:11px;font-weight:700;color:${wc}">${d.wait}명</div>
+        <div style="width:80px;font-size:11px">${d.teacher}명</div>
+        <div style="width:80px;font-size:11px;font-weight:700;color:${pc}">${d.per}명/인</div>
+        <div style="flex:1;font-size:11px;font-weight:600">${d.judge}</div>
+      </div>`;
+    });
+    df.innerHTML=h;
+  }
+  const se=document.getElementById('special-edu');
+  if(se){
+    se.innerHTML=`<div class="nr">특수학교: 울산 4개교 | 특수학급: 284학급 | 특수교사 총 312명 | 1인당 평균 4.8명 <span style="color:#BA7517;font-weight:700">(권장 4명 초과)</span> | 🚧 구군별 실데이터 연동 예정</div>`;
+  }
+
+  // ── ⑳ 행정 공무원 충족도 시험값 ──
+  const ADMIN=[
+    {n:'중구',  cnt:484, per:164, complaint:2840, load:1.64, judge:'🟡 주목'},
+    {n:'남구',  cnt:712, per:182, complaint:4120, load:1.82, judge:'🟡 주목'},
+    {n:'북구',  cnt:512, per:212, complaint:3240, load:2.12, judge:'🔴 과부하'},
+    {n:'동구',  cnt:284, per:274, complaint:1840, load:2.74, judge:'🔴 과부하'},
+    {n:'울주군',cnt:384, per:286, complaint:2480, load:2.86, judge:'🔴 과부하'},
+  ];
+  const ar=document.getElementById('admin-rows');
+  if(ar){
+    let h='';
+    ADMIN.forEach(a=>{
+      const pc=a.per<=150?'#085041':a.per<=200?'#633806':'#A32D2D';
+      const lc=a.load<=1.5?'#085041':a.load<=2?'#633806':'#A32D2D';
+      h+=`<div class="row" style="min-width:500px">
+        <div style="width:72px;font-weight:600;font-size:11px">${a.n}</div>
+        <div style="width:72px;font-size:11px">${a.cnt}명</div>
+        <div style="width:84px;font-size:11px;font-weight:700;color:${pc}">${a.per}명/인</div>
+        <div style="width:80px;font-size:11px">${a.complaint.toLocaleString()}건</div>
+        <div style="width:72px;font-size:11px;font-weight:700;color:${lc}">${a.load}x</div>
+        <div style="flex:1;font-size:11px;font-weight:600">${a.judge}</div>
+      </div>`;
+    });
+    ar.innerHTML=h;
+  }
+  const ag=document.getElementById('admin-grade');
+  if(ag){
+    ag.innerHTML=`<div class="nr">울산 전체 공무원 2,376명 | 5급이상 관리직 12.4% | 6~7급 실무 58.2% | 8~9급 29.4% | 여성비율 42.8% | 장애인고용 3.2% (의무 3.4% <span style="color:#BA7517;font-weight:700">미달</span>) | 🚧 구군별 실데이터 연동 예정</div>`;
+  }
+
+  // ── ⑩ 관광행사 ROI 시험값 ──
+  const EVENTS=[
+    {n:'태화강 국제설치미술제',budget:'18억',visitors:'42만명',satisfy:'88%',roi:2.84,note:'브랜드 효과 高'},
+    {n:'울산 고래축제',        budget:'12억',visitors:'28만명',satisfy:'82%',roi:1.94,note:'장생포 특구 연계'},
+    {n:'옹기축제',             budget:'8억', visitors:'14만명',satisfy:'76%',roi:1.24,note:'울주군 외고산'},
+    {n:'쇠부리축제',           budget:'6억', visitors:'8만명', satisfy:'71%',roi:0.84,note:'⚠️ ROI 손실'},
+    {n:'울산마두희',           budget:'4억', visitors:'5만명', satisfy:'68%',roi:0.72,note:'⚠️ ROI 손실'},
+  ];
+  const el=document.getElementById('tour-roi');
+  if(el){
+    let h='';
+    EVENTS.forEach(e=>{
+      const rc=e.roi>=2?'#085041':e.roi>=1?'#633806':'#A32D2D';
+      const mark=e.roi>=1?'▲':'▼';
+      h+=`<div class="row" style="min-width:500px">
+        <div style="width:100px;font-size:10px;font-weight:600">${e.n}</div>
+        <div style="width:70px;font-size:10px">${e.budget}</div>
+        <div style="width:70px;font-size:10px">${e.visitors}</div>
+        <div style="width:60px;font-size:10px">${e.satisfy}</div>
+        <div style="width:54px;font-size:11px;font-weight:700;color:${rc}">${mark}${e.roi}</div>
+        <div style="flex:1;font-size:10px;color:#5F5E5A">${e.note}</div>
+      </div>`;
+    });
+    el.innerHTML=h;
+  }
+
+  // ── ⑰ 경찰 충족도 시험값 ──
+  const POLICE=[
+    {n:'중구',  cnt:284, per:281, center:8,  rate:142, judge:'🟢 충족'},
+    {n:'남구',  cnt:412, per:312, center:12, rate:118, judge:'🟢 충족'},
+    {n:'북구',  cnt:284, per:384, center:8,  rate:96,  judge:'🟡 주목'},
+    {n:'동구',  cnt:184, per:424, center:5,  rate:94,  judge:'🟡 주목'},
+    {n:'울주군',cnt:212, per:512, center:7,  rate:78,  judge:'🔴 부족'},
+  ];
+  const pe=document.getElementById('police-rows');
+  if(pe){
+    let h='';
+    POLICE.forEach(p=>{
+      const rc=p.per<=400?'#085041':p.per<=480?'#633806':'#A32D2D';
+      h+=`<div class="row" style="min-width:480px">
+        <div style="width:72px;font-weight:600;font-size:11px">${p.n}</div>
+        <div style="width:72px;font-size:11px">${p.cnt}명</div>
+        <div style="width:80px;font-size:11px;font-weight:700;color:${rc}">${p.per}명/인</div>
+        <div style="width:72px;font-size:11px">${p.center}개소</div>
+        <div style="width:64px;font-size:11px;color:${rc}">${p.rate}%</div>
+        <div style="flex:1;font-size:11px;font-weight:600">${p.judge}</div>
+      </div>`;
+    });
+    pe.innerHTML=h;
+  }
+
+  // ── ⑰ 소방 충족도 시험값 ──
+  const FIRE=[
+    {n:'중구',  cnt:184, per:432, truck:18, golden:'4.2분', judge:'🟢 충족'},
+    {n:'남구',  cnt:284, per:452, truck:24, golden:'4.8분', judge:'🟢 충족'},
+    {n:'북구',  cnt:212, per:512, truck:18, golden:'5.4분', judge:'🟡 주목'},
+    {n:'동구',  cnt:142, per:548, truck:12, golden:'5.8분', judge:'🔴 부족'},
+    {n:'울주군',cnt:184, per:594, truck:16, golden:'7.2분', judge:'🔴 위험'},
+  ];
+  const fe=document.getElementById('fire-rows');
+  if(fe){
+    let h='';
+    FIRE.forEach(f=>{
+      const rc=f.per<=600?'#085041':f.per<=700?'#633806':'#A32D2D';
+      const gc=parseFloat(f.golden)<=5?'#085041':parseFloat(f.golden)<=6?'#633806':'#A32D2D';
+      h+=`<div class="row" style="min-width:480px">
+        <div style="width:72px;font-weight:600;font-size:11px">${f.n}</div>
+        <div style="width:72px;font-size:11px">${f.cnt}명</div>
+        <div style="width:80px;font-size:11px;font-weight:700;color:${rc}">${f.per}명/인</div>
+        <div style="width:72px;font-size:11px">${f.truck}대</div>
+        <div style="width:64px;font-size:11px;font-weight:700;color:${gc}">${f.golden}</div>
+        <div style="flex:1;font-size:11px;font-weight:600">${f.judge}</div>
+      </div>`;
+    });
+    fe.innerHTML=h;
+  }
+})();
+</script>
+
+
+<!-- ⑤ 자영업 -->
+<div class="sec"><div class="sh" onclick="T('c5')"><div class="sl"><span class="st">자영업 — 종목별 비율·폐업률·생존율</span><span class="bdg br">폐업 현황</span></div><span class="ar" id="a-c5">▼</span></div>
+<div class="bd" id="c5">
+  <div class="g3" style="margin-bottom:8px" id="self-cards"></div>
+  <div class="ss">업종별 자영업 비율</div>
+  <div id="self-sectors"></div>
+  <div class="nr" style="margin-top:5px;border-left:3px solid #5E9186;padding-left:8px">
+    <span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span><br>
+    · 소상공인 보호 및 지원에 관한 법률 제2조 (소상공인 정의·지원)<br>
+    · 부가가치세법 제8조 (사업자 등록·폐업 신고) · 중소기업기본법 제2조<br>
+    · 출처: 국세청 사업자등록 통계·중소벤처기업부 소상공인 실태조사·행안부 지방행정인허가
+  </div>
+</div></div>
+
+
+<!-- ⑥ 소비 현황 -->
+<div class="sec"><div class="sh" onclick="T('c6')"><div class="sl"><span class="st">소비 현황 — 지역상품권·카드소비·골목상권</span><span class="bdg bg">상품권 현황</span></div><span class="ar" id="a-c6">▼</span></div>
+<div class="bd" id="c6">
+  <div class="g3" style="margin-bottom:8px" id="con-cards"></div>
+  <div class="ss">구·군별 지역상품권 이용률</div>
+  <div id="con-dist"></div>
+  <div class="nr" style="margin-top:5px;border-left:3px solid #5E9186;padding-left:8px">
+    <span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span><br>
+    · 지역사랑상품권 이용 활성화에 관한 법률 제5조 (발행·운영)<br>
+    · 여신전문금융업법 제2조 (신용카드 정의) · 유통산업발전법 제13조<br>
+    · 출처: 행안부 지역사랑상품권 통계·BC카드·신한카드 지역별 소비데이터·SGIS
+  </div>
+</div></div>
+
+
+<!-- ⑬ 주거·환경 -->
+<div class="sec"><div class="sh" onclick="T('c13')"><div class="sl"><span class="st">주거·환경 — 집값·전세·대기오염</span><span class="bdg ba">환경 현황</span></div><span class="ar" id="a-c13">▼</span></div>
+<div class="bd" id="c13">
+  <div class="g3" style="margin-bottom:8px" id="hou-cards"></div>
+  <div class="ss">구·군별 미세먼지 평균</div>
+  <div id="hou-dust"></div>
+  <div class="nr" style="margin-top:5px;border-left:3px solid #5E9186;padding-left:8px"><span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span><br>· 주택법 제2조 · 환경정책기본법 제12조 (환경기준 설정) · 대기환경보전법 제3조<br>· 미세먼지 저감 및 관리에 관한 특별법<br>· 출처: 한국부동산원 실거래가·에어코리아(airkorea.or.kr)·환경부 대기오염통계</div>
+</div></div>
+
+
+<!-- ⑭ 교통·인프라 -->
+<div class="sec"><div class="sh" onclick="T('c14')"><div class="sl"><span class="st">교통·인프라 — 대중교통·이동성</span><span class="bdg ba">교통 현황</span></div><span class="ar" id="a-c14">▼</span></div>
+<div class="bd" id="c14">
+  <div class="g3" style="margin-bottom:8px" id="tra-cards"></div>
+  <div class="ss">구·군별 대중교통 접근성</div>
+  <div id="tra-access"></div>
+  <div class="nr" style="margin-top:5px;border-left:3px solid #5E9186;padding-left:8px"><span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span><br>· 대중교통의 육성 및 이용촉진에 관한 법률 제4조 (기본계획 수립)<br>· 도로교통법 제2조 · 도시철도법 제3조 (도시철도망 구축계획)<br>· 출처: 국토교통부 교통안전공단·울산광역시 교통정보센터·KOSIS 교통통계</div>
+</div></div>
+
+
+<!-- ⑧ 복지·돌봄 -->
+<div class="sec"><div class="sh" onclick="T('c8')"><div class="sl"><span class="st">복지·돌봄 — 시민군 전체 (수급·노인·장애·아동)</span><span class="bdg br">동등한 시민권</span></div><span class="ar" id="a-c8">▼</span></div>
+<div class="bd" id="c8">
+  <div class="g3" style="margin-bottom:8px" id="wel-cards"></div>
+  <div class="ss">구·군별 복지예산 1인당</div>
+  <div id="wel-budget"></div>
+  <div class="nr" style="margin-top:5px;border-left:3px solid #5E9186;padding-left:8px"><span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span><br>· 사회보장기본법 제26조 (사회보장급여 신청) · 국민기초생활 보장법 제7조<br>· 노인복지법 제27조 (홀로 사는 노인 지원) · 장애인복지법 제32조 (장애인 등록)<br>· 출처: 보건복지부 사회보장통계·KOSIS 복지통계·지방재정365 복지예산</div>
+
+  <!-- 장애인 돌봄 충족도 -->
+  <div class="ss" style="margin-top:10px">♿ 장애인 돌봄시설·인력 충족도</div>
+  <div class="nr" style="margin-bottom:6px">권장기준: 장애인 거주시설 정원 대비 입소 대기 | 특수교사 1인당 담당 학생 4명 (특수교육법 시행령) | 활동지원사 수급 대비 공급률</div>
+  <div style="overflow-x:auto">
+    <div class="thdr" style="min-width:520px">
+      <span style="width:72px">구·군</span>
+      <span style="width:80px">거주시설(개)</span>
+      <span style="width:72px">대기인원</span>
+      <span style="width:80px">특수교사</span>
+      <span style="width:80px">1인당학생</span>
+      <span style="flex:1">판정</span>
+    </div>
+    <div id="disabled-facility"></div>
+  </div>
+  <div class="ss" style="margin-top:8px">🧑‍🏫 특수교육 충족도</div>
+  <div id="special-edu"></div>
+  <div class="nrr" style="margin-top:5px">🚧 실데이터 연동 예정 — 교육부 특수교육통계·보건복지부 장애인복지시설현황</div>
+  <div class="nr" style="margin-top:5px;border-left:3px solid #5E9186;padding-left:8px">
+    <span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span><br>
+    · 장애인 등에 대한 특수교육법 제27조 (특수교육교원 배치기준)<br>
+    · 장애인복지법 제58조 (장애인복지시설) · 장애인활동지원법 제5조<br>
+    · 출처: 교육부 특수교육연차보고서·보건복지부 장애인복지시설현황
+  </div>
+</div></div>
+
+
+<!-- ⑨ 교육·청소년 -->
+<div class="sec"><div class="sh" onclick="T('c9')"><div class="sl"><span class="st">교육·청소년 — 학업·진학·위기</span><span class="bdg br">학교밖 현황</span></div><span class="ar" id="a-c9">▼</span></div>
+<div class="bd" id="c9">
+  <div class="g3" style="margin-bottom:8px" id="edu-cards"></div>
+  <div class="ss">구·군별 학생 1인당 교육예산</div>
+  <div id="edu-budget"></div>
+  <div class="nr" style="margin-top:5px;border-left:3px solid #5E9186;padding-left:8px"><span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span><br>· 교육기본법 제3조 (학습권) · 초·중등교육법 제28조 · 학교 밖 청소년 지원에 관한 법률 제3조<br>· 출처: 교육부 교육기본통계·통계청 사교육비조사·울산시교육청 교육통계연보</div>
+
+  <!-- 학교 소멸위험 지수 -->
+  <div class="ss" style="margin-top:10px">🏫 학교 소멸위험 현황 — 구·군별</div>
+  <div class="nr" style="margin-bottom:6px">
+    소멸위험 기준: 전교생 60명 미만 → 통폐합 검토 | 30명 미만 → 소멸위험 | 학교 소멸 = 지역 소멸 선행지표<br>
+    🔴 삼평초등학교(울주군) 등 면단위 학교 연명 중 — 실데이터 연동 시 개별 학교 표시
+  </div>
+  <div style="overflow-x:auto">
+    <div class="thdr" style="min-width:540px">
+      <span style="width:72px">구·군</span>
+      <span style="width:60px">유치원</span>
+      <span style="width:60px">초등</span>
+      <span style="width:60px">중학교</span>
+      <span style="width:60px">고등</span>
+      <span style="width:72px">소멸위험교</span>
+      <span style="flex:1">판정</span>
+    </div>
+    <div id="school-status"></div>
+  </div>
+
+  <!-- 소멸위험 학교 상세 -->
+  <div class="ss" style="margin-top:8px">⚠️ 소멸위험 학교 상세 (전교생 60명 미만)</div>
+  <div id="school-danger"></div>
+
+  <!-- 교육 인프라 충족도 -->
+  <div class="ss" style="margin-top:8px">📐 교육 인프라 충족도</div>
+  <div class="nr" style="margin-bottom:6px">권장기준: 초등 학급당 학생 20명 | 중등 25명 | 특수학급 6명 | 통학거리 초등 2km·중등 4km 이내</div>
+  <div id="edu-infra"></div>
+
+  <!-- 폐교 누적 현황 -->
+  <div class="ss" style="margin-top:8px">📉 폐교 누적 현황 (울산)</div>
+  <div id="school-closed"></div>
+
+  <div class="nrr" style="margin-top:5px">🚧 실데이터 연동 예정 — 교육부 교육기본통계·울산시교육청·학교알리미(schoolinfo.go.kr)</div>
+  <div class="nr" style="margin-top:5px;border-left:3px solid #5E9186;padding-left:8px">
+    <span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span><br>
+    · 초·중등교육법 제30조 (학교통폐합 기준) · 농어촌학교 교육 여건 개선 특별법 제5조<br>
+    · 지방교육재정교부금법 제11조 · 소규모학교 통폐합 권고기준 (교육부 고시)<br>
+    · 출처: 교육부 교육기본통계·학교알리미·울산시교육청 교육통계연보
+  </div>
+</div></div>
+
+
+<!-- ⑱ 시민 민원 접수·처리 현황 -->
+<div class="sec">
+  <div class="sh" onclick="T('c18')">
+    <div class="sl">
+      <span class="st">시민 민원 — 접수·처리 현황</span>
+      <span class="bdg bb">μ 매칭 연동</span>
+    </div>
+    <span class="ar" id="a-c18">▼</span>
+  </div>
+  <div class="bd" id="c18">
+
+    <!-- 안내 -->
+    <div class="nr" style="margin-bottom:8px">
+      민원 = 시민이 직접 보내는 η 신호 &nbsp;|&nbsp; 유형별 접수 밀도 → 진단-처방 매칭도 μ 연동 &nbsp;|&nbsp;
+      데이터 출처: 국민신문고·울산시 민원시스템 (A안 실데이터 연동 예정)<br>
+      <span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span> — 민원처리에 관한 법률 제4조 (민원처리 원칙) · 국민권익위원회법 제12조 · 공공기관의 정보공개에 관한 법률 제3조
+    </div>
+
+    <!-- 민원 유형 요약 바 -->
+    <div class="ss">민원 유형별 접수 밀도 (울산 전체)</div>
+    <div id="complaint-types" style="display:flex;flex-direction:column;gap:4px;margin-bottom:10px"></div>
+
+    <!-- 구·군별 민원 현황 테이블 -->
+    <div class="ss">구·군별 민원 접수 · 처리 · 처리율</div>
+    <div style="overflow-x:auto">
+      <div class="thdr" style="min-width:420px">
+        <span style="width:72px">구·군</span>
+        <span style="width:56px">접수(건)</span>
+        <span style="width:56px">처리(건)</span>
+        <span style="width:52px">처리율</span>
+        <span style="flex:1">다발 민원 유형</span>
+        <span style="width:54px">η 연결</span>
+      </div>
+      <div id="complaint-rows" style="min-width:420px"></div>
+    </div>
+
+    <!-- 주요 민원 유형 카드 -->
+    <div class="ss" style="margin-top:8px">5대 민원 유형 — η 취약군 연결</div>
+    <div class="g5" id="complaint-cards"></div>
+
+    <!-- 데이터 예정 안내 -->
+    <div class="nrr" style="margin-top:8px">
+      🚧 실데이터 연동 예정 (A안) — 국민권익위 민원빅데이터 API · 울산시 민원시스템 · 국민신문고<br>
+      현재 수치는 울산 통계연보 2023 기반 구조 시험값 | 연동 완료 시 자동 갱신
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // ── 민원 유형별 접수 밀도 (구조 시험값) ──
+  const TYPES = [
+    {n:'주차·불법주정차', v:28.4, c:'#E24B4A', eta:'⑭교통', note:'밀집지 → 중구·남구 집중'},
+    {n:'도로·인도 파손',  v:22.1, c:'#BA7517', eta:'⑭교통', note:'노후구간 → 동구·울주군'},
+    {n:'교통 흐름·신호', v:18.4, c:'#378ADD', eta:'⑭교통', note:'출퇴근 정체 → 북구'},
+    {n:'쓰레기·환경',    v:21.2, c:'#5DCAA5', eta:'⑬환경', note:'공단 인접 → 동구·북구'},
+    {n:'가로등·야간안전', v:9.9, c:'#7F77DD', eta:'⑧복지', note:'고령자 야간 → 울주군'},
+  ];
+
+  // 유형 바
+  let tb='';
+  TYPES.forEach(t=>{
+    tb+=`<div class="row">
+      <div class="lb" style="width:120px">${t.n}</div>
+      <div class="vl">${t.v}%</div>
+      <div class="bw"><div class="b" style="width:${t.v/30*100}%;background:${t.c}"></div></div>
+      <div class="cg" style="width:140px;font-size:10px;color:#5F5E5A">${t.note}</div>
+    </div>`;
+  });
+  document.getElementById('complaint-types').innerHTML=tb;
+
+  // ── 구·군별 민원 현황 (구조 시험값) ──
+  const DIST = [
+    {n:'중구',  recv:1284, done:1198, top:'주차·교통흐름', eta:'η 0.68'},
+    {n:'남구',  recv:1842, done:1764, top:'주차·쓰레기',   eta:'η 0.72'},
+    {n:'북구',  recv:1124, done:1018, top:'교통흐름·인도', eta:'η 0.65'},
+    {n:'동구',  recv:684,  done:598,  top:'쓰레기·인도',   eta:'η 0.52 ▼'},
+    {n:'울주군',recv:924,  done:812,  top:'가로등·인도',   eta:'η 0.49 ▼'},
+  ];
+
+  let dr='';
+  DIST.forEach(d=>{
+    const rate=Math.round(d.done/d.recv*100);
+    const rc=rate>=90?'#085041':rate>=80?'#633806':'#791F1F';
+    dr+=`<div class="row">
+      <div style="width:72px;font-weight:600;font-size:11px">${d.n}</div>
+      <div style="width:56px;font-size:11px">${d.recv.toLocaleString()}</div>
+      <div style="width:56px;font-size:11px">${d.done.toLocaleString()}</div>
+      <div style="width:52px;font-weight:700;font-size:11px;color:${rc}">${rate}%</div>
+      <div style="flex:1;font-size:10px;color:#5F5E5A">${d.top}</div>
+      <div style="width:54px;font-size:10px;font-weight:600;color:#185FA5">${d.eta}</div>
+    </div>`;
+  });
+  document.getElementById('complaint-rows').innerHTML=dr;
+
+  // ── 5대 민원 카드 ──
+  const CARDS = [
+    {icon:'🚗', title:'주차', sub:'불법주정차', color:'#E24B4A', eta:'⑭'},
+    {icon:'🚶', title:'인도파손', sub:'보행안전', color:'#BA7517', eta:'⑭'},
+    {icon:'🚦', title:'교통흐름', sub:'신호·정체', color:'#378ADD', eta:'⑭'},
+    {icon:'🗑️', title:'쓰레기', sub:'생활환경', color:'#5DCAA5', eta:'⑬'},
+    {icon:'💡', title:'가로등', sub:'야간안전', color:'#7F77DD', eta:'⑧'},
+  ];
+
+  let cc='';
+  CARDS.forEach(c=>{
+    cc+=`<div class="cd" style="border-color:${c.color};text-align:center;cursor:default">
+      <div style="font-size:20px;margin-bottom:3px">${c.icon}</div>
+      <div style="font-size:11px;font-weight:700;color:${c.color}">${c.title}</div>
+      <div style="font-size:9px;color:#888780;margin-top:1px">${c.sub}</div>
+      <div style="font-size:9px;margin-top:4px;background:#F1EFE8;border-radius:3px;padding:1px 4px">η→${c.eta}</div>
+    </div>`;
+  });
+  document.getElementById('complaint-cards').innerHTML=cc;
+})();
+</script>
+
+
+<!-- ⑩ 관광 -->
+<div class="sec"><div class="sh" onclick="T('c10')"><div class="sl"><span class="st">관광 — 방문객·체류·시민 휴식</span><span class="bdg bg">관광 현황</span></div><span class="ar" id="a-c10">▼</span></div>
+<div class="bd" id="c10">
+  <div class="g3" style="margin-bottom:8px" id="tour-cards"></div>
+  <div class="ss">주요 관광지 방문객 순위</div>
+  <div id="tour-spots"></div>
+  <div class="nr" style="margin-top:5px;border-left:3px solid #5E9186;padding-left:8px"><span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span><br>· 관광기본법 제3조 (관광진흥 시책) · 관광진흥법 제48조 (관광통계 작성)<br>· 출처: 한국관광공사 관광지식정보시스템(TourGo)·문화체육관광부 관광통계·KOSIS</div>
+
+  <!-- 지역행사 ROI -->
+  <div class="ss" style="margin-top:10px">🎪 지역행사 재정투입 대비 효과 (ROI)</div>
+  <div class="nr" style="margin-bottom:6px">ROI = 관광수입 ÷ 재정투입 | 1.0 이상 = 수익 | 1.0 미만 = 손실 | 출처: 문화체육관광부 지역축제 실태조사</div>
+  <div style="overflow-x:auto">
+    <div class="thdr" style="min-width:500px">
+      <span style="width:100px">행사명</span>
+      <span style="width:70px">재정투입</span>
+      <span style="width:70px">관광객수</span>
+      <span style="width:60px">만족도</span>
+      <span style="width:54px">ROI</span>
+      <span style="flex:1">특징</span>
+    </div>
+    <div id="tour-roi" style="min-width:500px"></div>
+  </div>
+  <div class="nrr" style="margin-top:5px">🚧 실데이터 연동 예정 — 문화체육관광부 지역축제 실태조사·각 구군 행사결과보고서</div>
+</div></div>
+
+
+<!-- ⑪ 문화예술 -->
+<div class="sec"><div class="sh" onclick="T('c11')"><div class="sl"><span class="st">문화예술 — 접근성·타 시도 비교</span><span class="bdg ba">광역 비교</span></div><span class="ar" id="a-c11">▼</span></div>
+<div class="bd" id="c11">
+  <div class="g3" style="margin-bottom:8px" id="cul-cards"></div>
+  <div class="ss">타 광역시·도 문화예술 접근성 비교</div>
+  <div id="cul-rank"></div>
+  <div class="nr" style="margin-top:5px;border-left:3px solid #5E9186;padding-left:8px"><span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span><br>· 문화기본법 제4조 (문화권 보장) · 지역문화진흥법 제6조 (지역문화 실태조사)<br>· 출처: 문화체육관광부 문화기반시설 총람·지역문화진흥원 문화격차 지표</div>
+</div></div>
+
+
+<!-- ⑫ 레저·스포츠 -->
+<div class="sec"><div class="sh" onclick="T('c12')"><div class="sl"><span class="st">레저·스포츠 — 동호회·사회인야구·등산</span><span class="bdg bg">레저 현황</span></div><span class="ar" id="a-c12">▼</span></div>
+<div class="bd" id="c12">
+  <div class="g3" style="margin-bottom:8px" id="lei-cards"></div>
+  <div class="ss">종목별 동호회 활동 인구</div>
+  <div id="lei-sports"></div>
+  <div class="nr" style="margin-top:5px;border-left:3px solid #5E9186;padding-left:8px"><span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span><br>· 국민체육진흥법 제4조 (체육진흥 시책) · 스포츠클럽법 제3조 (스포츠클럽 등록)<br>· 출처: 문화체육관광부 국민생활체육조사·대한체육회 스포츠클럽 등록 현황</div>
+</div></div>
+
+
+<!-- ⑮ 구·군 η + 생애주기 -->
+<div class="sec"><div class="sh" onclick="T('c15')"><div class="sl"><span class="st">구·군 η + 생애주기 사회군</span><span class="bdg ba">η지표 현황</span></div><span class="ar" id="a-c15">▼</span></div>
+<div class="bd" id="c15">
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:5px;margin-bottom:8px" id="eta-dist"></div>
+  <div class="ss">생애주기 사회군별 η지표</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px" id="eta-groups"></div>
+  <div class="nr" style="margin-top:5px">η = 진단-처방 매칭도 μ 기반 종합지수 | 0.65↑ 양호 | 0.50~0.65 주목 | 0.50↓ 위험</div>
+  <div class="nr" style="margin-top:5px;border-left:3px solid #5E9186;padding-left:8px"><span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span><br>· 사회보장기본법 제35조 (지역사회보장계획) · 지역사회보장계획 수립지침 (보건복지부)<br>· Λ¹² η지수: 늘푸른바다 사회동역학 연구소 독자 개발 (SSRN Abstract ID 6509200)<br>· 저작권 등록: 2026-04-21 | 공공재로 공개</div>
+</div></div>
+
+
+<!-- ⑯ 외국인 정주군 -->
+<div class="sec"><div class="sh" onclick="T('c16')"><div class="sl"><span class="st">외국인 정주·기여군 — 안착도 η</span><span class="bdg bb" id="for-total">보호·지원</span></div><span class="ar" id="a-c16">▼</span></div>
+<div class="bd" id="c16">
+  <div class="g2" style="margin-bottom:8px" id="for-groups"></div>
+  <div class="ss">구·군별 외국인 거주 분포</div>
+  <div id="for-dist"></div>
+  <div class="ss">국적별 분포</div>
+  <div id="for-nations"></div>
+  <div class="nr">외국인 정주군 = 보호·지원 대상 | EPI 침투(조직·마약)와 완전 분리</div>
+  <div class="nr" style="margin-top:5px;border-left:3px solid #5E9186;padding-left:8px"><span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span><br>· 재한외국인 처우 기본법 제10조 · 출입국관리법 제88조의2 · 다문화가족지원법 제3조의2<br>· 출처: 법무부 출입국·외국인정책 통계월보·행안부 외국인주민현황</div>
+</div></div>
+
+
+<!-- ㉑ ESG 환경 -->
+<div class="sec">
+  <div class="sh" onclick="T('c21')">
+    <div class="sl">
+      <span class="st">ESG — 환경·탄소·에너지 전환</span>
+      <span class="bdg bg">ESG 심사항목</span>
+    </div>
+    <span class="ar" id="a-c21">▼</span>
+  </div>
+  <div class="bd" id="c21">
+    <div class="nr" style="margin-bottom:8px">
+      심사항목 ESG 환경(E) 직접 연동 | 울산 공업도시 탄소 전환 실증 경로 포함<br>
+      <span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span> — 탄소중립·녹색성장 기본법 제3조 · 자원순환기본법 제5조 · 신에너지 및 재생에너지 개발·이용·보급 촉진법 제2조
+    </div>
+
+    <!-- 쓰레기·자원순환 -->
+    <div class="ss">🗑️ 자원순환 현황 — 구·군별</div>
+    <div class="nr" style="margin-bottom:6px">분리수거율·매립량·소각·열병합발전·재활용률 | 출처: 환경부 전국폐기물통계·울산시 생활폐기물현황</div>
+    <div style="overflow-x:auto">
+      <div class="thdr" style="min-width:540px">
+        <span style="width:72px">구·군</span>
+        <span style="width:72px">분리수거율</span>
+        <span style="width:72px">매립(톤/일)</span>
+        <span style="width:72px">소각(톤/일)</span>
+        <span style="width:72px">재활용율</span>
+        <span style="flex:1">판정</span>
+      </div>
+      <div id="waste-rows"></div>
+    </div>
+    <div class="nr" style="margin-top:5px">열병합발전: 소각열 → 스팀·전기 생산 | 자체처리율 높을수록 매립 의존도 감소</div>
+
+    <!-- 탄소배출 -->
+    <div class="ss" style="margin-top:10px">🏭 공업지역별 탄소배출 현황</div>
+    <div class="nr" style="margin-bottom:6px">온실가스 배출량 (tCO₂eq/년) | 출처: 환경부 온실가스종합정보센터(GIR)·국가온실가스인벤토리</div>
+    <div id="carbon-rows"></div>
+
+    <!-- 에너지 전환 -->
+    <div class="ss" style="margin-top:10px">⚡ 신재생에너지 전환 현황</div>
+    <div class="nr" style="margin-bottom:6px">전국 신재생 목표 2030년 30% | 울산 현황 및 공단별 전환 경로</div>
+    <div id="energy-rows"></div>
+
+    <!-- 울산 공단 에너지 전환 실증 경로 -->
+    <div class="ss" style="margin-top:10px">🔄 울산 공단 에너지 전환 실증 경로</div>
+    <div style="background:#F5F3EE;border-radius:8px;padding:10px 14px;border-left:3px solid #B8850E">
+      <div style="font-size:10px;font-weight:700;color:#633806;margin-bottom:6px">석유화학단지 자체발전 전환 사례 (현장 실증)</div>
+      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:10px">
+        <div style="background:#E24B4A;color:#fff;border-radius:4px;padding:4px 8px;text-align:center">
+          <div style="font-weight:700">Coal Boiler</div>
+          <div style="font-size:9px">고탄소·고위험</div>
+        </div>
+        <div style="font-size:16px;color:#888780">→</div>
+        <div style="background:#5DCAA5;color:#fff;border-radius:4px;padding:4px 8px;text-align:center">
+          <div style="font-weight:700">Wood Chip Boiler</div>
+          <div style="font-size:9px">바이오매스·과도기</div>
+        </div>
+        <div style="font-size:16px;color:#888780">→</div>
+        <div style="background:#378ADD;color:#fff;border-radius:4px;padding:4px 8px;text-align:center">
+          <div style="font-weight:700">LNG 복합발전</div>
+          <div style="font-size:9px">SK MU 분사법인</div>
+        </div>
+        <div style="font-size:16px;color:#888780">→</div>
+        <div style="background:#7F77DD;color:#fff;border-radius:4px;padding:4px 8px;text-align:center">
+          <div style="font-weight:700">수소·재생</div>
+          <div style="font-size:9px">미래 전환 방향</div>
+        </div>
+      </div>
+      <div style="font-size:9px;color:#888780;margin-top:6px">* 30년 현장 실증 데이터 기반 | EPI(폭발근접지수) 연동 — 연료 전환 시 LEL/UEL 위험도 감소</div>
+    </div>
+    <div class="nrr" style="margin-top:6px">🚧 실데이터 연동 예정 — 환경부 온실가스종합정보센터·한국에너지공단·울산시 탄소중립계획</div>
+  </div>
+</div>
+
+<!-- ㉒ 인구위기 3종 -->
+<div class="sec">
+  <div class="sh" onclick="T('c22')">
+    <div class="sl">
+      <span class="st">인구위기 — 출산·주거취약·청년유출</span>
+      <span class="bdg br">당면과제</span>
+    </div>
+    <span class="ar" id="a-c22">▼</span>
+  </div>
+  <div class="bd" id="c22">
+    <div class="nr" style="margin-bottom:8px">
+      지역 소멸의 3대 선행지표 | 학교소멸(⑨)·복지(⑧)·고용(④)과 직결<br>
+      <span style="font-weight:700;color:#3A6A5E">📋 공공재 근거</span> — 인구감소지역 지원 특별법 제2조 · 청년기본법 제3조 · 주거기본법 제2조 · 저출산·고령사회기본법 제3조
+    </div>
+
+    <!-- 출산율 -->
+    <div class="ss">👶 출산율 — 구·군별 합계출산율</div>
+    <div class="nr" style="margin-bottom:6px">전국 평균 0.72명 (2023) | 0.8 미만 = 인구소멸 위험 | 출처: 통계청 인구동향조사</div>
+    <div id="birth-rows"></div>
+
+    <!-- 주거취약 -->
+    <div class="ss" style="margin-top:8px">🏠 주거취약계층 현황</div>
+    <div class="nr" style="margin-bottom:6px">최저주거기준 미달 가구 | 쪽방·고시원·반지하·비닐하우스 거주 | 출처: 국토부 주거실태조사</div>
+    <div id="housing-poor"></div>
+
+    <!-- 청년 유출입 -->
+    <div class="ss" style="margin-top:8px">🧑 청년 인구 유출입 현황 (20~39세)</div>
+    <div class="nr" style="margin-bottom:6px">순이동률 마이너스 = 청년 유출 | 출처: 통계청 국내인구이동통계</div>
+    <div style="overflow-x:auto">
+      <div class="thdr" style="min-width:480px">
+        <span style="width:72px">구·군</span>
+        <span style="width:80px">청년인구</span>
+        <span style="width:80px">전입(명)</span>
+        <span style="width:80px">전출(명)</span>
+        <span style="width:80px">순이동</span>
+        <span style="flex:1">판정</span>
+      </div>
+      <div id="youth-rows" style="min-width:480px"></div>
+    </div>
+    <div class="nrr" style="margin-top:6px">🚧 실데이터 연동 예정 — 통계청 인구동향·국토부 주거실태조사·행안부 주민등록통계</div>
+  </div>
+</div>
+
+<!-- SEISMOS 홍보 + 정의 섹션 -->
+<div style="background:#fff;border:1.5px solid #5E9186;border-radius:10px;padding:18px 20px;margin-bottom:8px">
+
+  <!-- 타이틀 -->
+  <div style="text-align:center;margin-bottom:14px">
+    <div style="font-size:22px;font-weight:900;color:#0F6E56;letter-spacing:2px">SEISMOS</div>
+    <div style="font-size:11px;color:#3A6A5E;margin-top:3px;font-weight:600">
+      Social Ecosystem Intelligence System for Monitoring and Optimal Stewardship
+    </div>
+    <div style="font-size:11px;color:#888780;margin-top:2px">
+      사회 생태계 지능형 모니터링 및 최적 관리 시스템
+    </div>
+  </div>
+
+  <!-- 각 글자 정의 -->
+  <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:14px">
+    <div style="text-align:center;background:#EBF4F0;border-radius:6px;padding:8px 4px">
+      <div style="font-size:20px;font-weight:900;color:#0F6E56">S</div>
+      <div style="font-size:9px;font-weight:700;color:#3A6A5E;margin-top:2px">Social</div>
+      <div style="font-size:8px;color:#888780">사회</div>
+    </div>
+    <div style="text-align:center;background:#EBF4F0;border-radius:6px;padding:8px 4px">
+      <div style="font-size:20px;font-weight:900;color:#0F6E56">E</div>
+      <div style="font-size:9px;font-weight:700;color:#3A6A5E;margin-top:2px">Ecosystem</div>
+      <div style="font-size:8px;color:#888780">생태계</div>
+    </div>
+    <div style="text-align:center;background:#EBF4F0;border-radius:6px;padding:8px 4px">
+      <div style="font-size:20px;font-weight:900;color:#0F6E56">I</div>
+      <div style="font-size:9px;font-weight:700;color:#3A6A5E;margin-top:2px">Intelligence</div>
+      <div style="font-size:8px;color:#888780">지능형</div>
+    </div>
+    <div style="text-align:center;background:#EBF4F0;border-radius:6px;padding:8px 4px">
+      <div style="font-size:20px;font-weight:900;color:#0F6E56">S</div>
+      <div style="font-size:9px;font-weight:700;color:#3A6A5E;margin-top:2px">System</div>
+      <div style="font-size:8px;color:#888780">시스템</div>
+    </div>
+    <div style="text-align:center;background:#EBF4F0;border-radius:6px;padding:8px 4px">
+      <div style="font-size:20px;font-weight:900;color:#0F6E56">M</div>
+      <div style="font-size:9px;font-weight:700;color:#3A6A5E;margin-top:2px">Monitoring</div>
+      <div style="font-size:8px;color:#888780">모니터링</div>
+    </div>
+    <div style="text-align:center;background:#EBF4F0;border-radius:6px;padding:8px 4px">
+      <div style="font-size:20px;font-weight:900;color:#0F6E56">O</div>
+      <div style="font-size:9px;font-weight:700;color:#3A6A5E;margin-top:2px">Optimal</div>
+      <div style="font-size:8px;color:#888780">최적</div>
+    </div>
+    <div style="text-align:center;background:#EBF4F0;border-radius:6px;padding:8px 4px">
+      <div style="font-size:20px;font-weight:900;color:#0F6E56">S</div>
+      <div style="font-size:9px;font-weight:700;color:#3A6A5E;margin-top:2px">Stewardship</div>
+      <div style="font-size:8px;color:#888780">관리</div>
+    </div>
+  </div>
+
+  <!-- 핵심 정의 -->
+  <div style="background:#F5F3EE;border-radius:6px;padding:10px 14px;margin-bottom:10px;border-left:3px solid #B8850E">
+    <div style="font-size:10px;font-weight:700;color:#633806;margin-bottom:4px">💡 SEISMOS란?</div>
+    <div style="font-size:10px;color:#2C2C2A;line-height:1.6">
+      Λ¹² 사회동역학 프레임워크를 기반으로 한 <strong>지역 사회 실시간 진단 시스템</strong>입니다.<br>
+      시민이 궁금한 모든 것을 수치로 — 생명·안전·행정·경제·복지·문화까지 20개 지표를 하나의 화면에서.<br>
+      <strong>목적지를 강요하지 않습니다. 지금 우리 도시의 좌표만 보여줍니다.</strong>
+    </div>
+  </div>
+
+  <!-- 홍보 -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px">
+    <div style="background:#EBF4F0;border-radius:6px;padding:8px 10px">
+      <div style="font-size:10px;font-weight:700;color:#0F6E56;margin-bottom:3px">🔬 학술 기반</div>
+      <div style="font-size:9px;color:#5F5E5A;line-height:1.5">
+        SSRN Abstract ID 6509200<br>
+        Λ¹² 12변수 복잡계 사회과학 모델<br>
+        비선형 동역학 · 카오스이론 · 프랙탈 기반<br>
+        저작권 등록 2026-04-21
+      </div>
+    </div>
+    <div style="background:#EBF4F0;border-radius:6px;padding:8px 10px">
+      <div style="font-size:10px;font-weight:700;color:#0F6E56;margin-bottom:3px">🌏 공공재 선언</div>
+      <div style="font-size:9px;color:#5F5E5A;line-height:1.5">
+        시민 공개<br>
+        모든 데이터 = 정부 공식 통계<br>
+        모든 지표 = 법적 근거 명시<br>
+        담론육층사유법(擔論六層思惟法) 기반
+      </div>
+    </div>
+  </div>
+
+  <!-- 출처 링크 -->
+  <div style="text-align:center;font-size:9px;color:#888780;line-height:1.8">
+    늘푸른바다 사회동역학 연구소 (Everblue Sea Institute for Social Dynamics)<br>
+    소장 청해(淸海) · Claude 연구원 공동 설계<br>
+    <span style="color:#B8850E;font-weight:600">badaegopa.tistory.com</span> · everbluesea.org · SSRN 6509200
+  </div>
+</div>
+
+<div class="footer">
+  데이터 출처: KOSIS · SGIS · 지방재정365 · 건강보험심사평가원 · 경찰청 · 고용노동부 · 한국은행<br>
+  늘푸른바다 사회동역학 연구소 | Λ¹² 프레임워크 | badaegopa.tistory.com | SSRN 6509200
+</div>
+
+<script>
+// 드롭다운 메뉴 생성
+(function(){
+  const drop=document.getElementById('rd');
+  let html='';
+  REGION_MENU.forEach(g=>{
+    html+=`<div class="rgroup"><div class="rgroup-label">${g.g}</div>`;
+    g.items.forEach(name=>{
+      const has=HAS_DATA.includes(name)||DB[name];
+      html+=`<div class="ritem${name===CUR?' active':''}" data-n="${name}" onclick="SR('${name}')"><span>${name}${!has?' 🚧':''}</span>${name===CUR?'<span style="color:#0F6E56;font-size:10px">✓</span>':''}</div>`;
+    });
+    html+='</div>';
+  });
+  drop.innerHTML=html;
+})();
+// 초기 렌더링
+RA();
+</script>
+</body>
+</html>
