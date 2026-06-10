@@ -128,7 +128,7 @@ def sgis_token():
     return None
 
 def sgis_boundary(token):
-    url = f"https://sgisapi.kostat.go.kr/OpenAPI3/boundary/hadmarea.geojson?accessToken={token}&year=2023&adm_cd=31&low_search=1"
+    url = f"https://sgisapi.kostat.go.kr/OpenAPI3/boundary/hadmarea.geojson?accessToken={token}&year=2023&adm_cd=26&low_search=1"
     r = requests.get(url, timeout=15)
     d = r.json()
     if d.get("errCd") == 0:
@@ -323,7 +323,7 @@ def main():
 
     print("\n[2] SGIS")
     tok = sgis_token()
-    result["sgis"] = {"boundary": sgis_boundary(tok), "adm_cd":"31","year":"2023"} if tok else {"error":"token 실패"}
+    result["sgis"] = {"boundary": sgis_boundary(tok), "adm_cd":"26","year":"2023"} if tok else {"error":"token 실패"}
 
     print("\n[3] Λ¹² 12변수 로드")
     l12 = load_lambda12()
