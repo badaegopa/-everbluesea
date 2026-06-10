@@ -6,6 +6,7 @@ data.go.kr 3종 API 수집 후 data/ulsan.json 에 병합.
 환경변수:
   DATA_GO_KR — data.go.kr 서비스키 (GitHub Secrets)
   KOSIS      — KOSIS OpenAPI 키 (Base64 그대로 사용, 디코딩 금지)
+  ECOS       — 한국은행 ECOS OpenAPI 키
 """
 import os, json, time, datetime
 import xml.etree.ElementTree as ET
@@ -14,6 +15,7 @@ import requests
 
 DATA_GO_KR = os.environ.get("DATA_GO_KR", "")
 KOSIS      = os.environ.get("KOSIS", "")
+ECOS       = os.environ.get("ECOS", "")
 ULSAN_JSON = Path("data/ulsan.json")
 TIMEOUT = 20
 KST = datetime.timezone(datetime.timedelta(hours=9))
@@ -224,13 +226,53 @@ def collect_population(key):
     return result
 
 # ══════════════════════════════════════════════════════
+# ⑥ ECOS 거시경제지표 (한국은행)
+# ══════════════════════════════════════════════════════
+ECOS_BASE = "https://ecos.bok.or.kr/api/StatisticSearch"
+
+ECOS_ITEMS = [
+    ("base_rate",  "722Y001", "0101000"),     # 기준금리
+    ("usd_krw",    "731Y001", "0000001"),     # 달러환율
+    ("cny_krw",    "731Y001", "0000053"),     # 위안환율
+    ("bond_3yr",   "817Y002", "010200000"),   # 국고채 3년
+    ("bond_10yr",  "817Y002", "010210000"),   # 국고채 10년
+]
+
+def collect_ecos(key):
+    """최근 10일 구간 조회 → 항목별 최신 1건(DATA_VALUE) 추출."""
+    today = datetime.datetime.now(KST)
+    begin = (today - datetime.timedelta(days=10)).strftime("%Y%m%d")
+    end   = today.strftime("%Y%m%d")
+    result = {field: None for field, _, _ in ECOS_ITEMS}
+    result["measured_at"] = None
+
+    for field, stat_code, item_code in ECOS_ITEMS:
+        url = f"{ECOS_BASE}/{key}/json/kr/1/1/{stat_code}/D/{begin}/{end}/{item_code}"
+        try:
+            r = requests.get(url, timeout=TIMEOUT)
+            rows = r.json().get("StatisticSearch", {}).get("row") or []
+            if not rows:
+                print(f"  ECOS [{field}/{stat_code}/{item_code}] 응답없음 ({begin}~{end})")
+                continue
+            latest = max(rows, key=lambda x: x.get("TIME", ""))
+            val = _float(latest.get("DATA_VALUE"))
+            result[field] = val
+            result["measured_at"] = latest.get("TIME")
+            print(f"  ECOS [{field}] {latest.get('TIME')} = {val}")
+        except Exception as e:
+            print(f"  ECOS [{field}] ERR: {e}")
+            result[f"{field}_error"] = str(e)[:80]
+
+    return result
+
+# ══════════════════════════════════════════════════════
 # main
 # ══════════════════════════════════════════════════════
 def main():
     import sys
     now = datetime.datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")
     print("=" * 52)
-    print(f"외부 데이터 파이프라인 (data.go.kr 4종 + KOSIS): {now}")
+    print(f"외부 데이터 파이프라인 (data.go.kr 4종 + KOSIS + ECOS): {now}")
     print("=" * 52)
     if not DATA_GO_KR:
         print("⚠️  DATA_GO_KR 환경변수 없음 — GitHub Secrets 확인 필요")
@@ -242,6 +284,10 @@ def main():
         print("⚠️  KOSIS 환경변수 없음 — 인구추계 건너뜀")
     else:
         print(f"  KOSIS키: {KOSIS[:8]}...")
+    if not ECOS:
+        print("⚠️  ECOS 환경변수 없음 — 거시경제지표 건너뜀")
+    else:
+        print(f"  ECOS키: {ECOS[:8]}...")
 
     ext = {"_updated": now}
 
@@ -272,6 +318,12 @@ def main():
         "data":[],"error":"KOSIS 미설정"
     }
 
+    print("\n[⑥ ECOS 거시경제지표]")
+    ext["ecos_macro"] = collect_ecos(ECOS) if ECOS else {
+        "base_rate":None,"usd_krw":None,"cny_krw":None,
+        "bond_3yr":None,"bond_10yr":None,"error":"ECOS 미설정"
+    }
+
     if ULSAN_JSON.exists():
         try:
             u = json.loads(ULSAN_JSON.read_text(encoding="utf-8"))
@@ -280,6 +332,7 @@ def main():
             u["bus_info"]    = ext["bus_info"]
             u["gold_price"]  = ext["gold_price"]
             u["population_forecast"] = ext["population_forecast"]
+            u["ecos_macro"]          = ext["ecos_macro"]
             ULSAN_JSON.write_text(json.dumps(u, ensure_ascii=False, indent=2), encoding="utf-8")
             print(f"\n✅ 병합 완료 → {ULSAN_JSON}")
         except Exception as e:
@@ -298,12 +351,16 @@ def main():
     gp = ext["gold_price"]
     print(f"  금시세: {gp.get('basDt')} 종가={gp.get('clpr')}원 등락률={gp.get('fltRt')}%")
     pf = ext["population_forecast"]
-    pd = pf.get("data") or []
-    if pd:
-        print(f"  인구추계: {pd[0].get('year')}~{pd[-1].get('year')} "
-              f"({len(pd)}개 연도) 최신 {pd[-1].get('population')}명")
+    pd_list = pf.get("data") or []
+    if pd_list:
+        print(f"  인구추계: {pd_list[0].get('year')}~{pd_list[-1].get('year')} "
+              f"({len(pd_list)}개 연도) 최신 {pd_list[-1].get('population')}명")
     else:
         print(f"  인구추계: 데이터 없음 ({pf.get('error','')})")
+    em = ext["ecos_macro"]
+    print(f"  ECOS({em.get('measured_at')}): 기준금리={em.get('base_rate')}% "
+          f"달러={em.get('usd_krw')} 위안={em.get('cny_krw')} "
+          f"국고채3년={em.get('bond_3yr')}% 국고채10년={em.get('bond_10yr')}%")
 
 if __name__ == "__main__":
     main()
