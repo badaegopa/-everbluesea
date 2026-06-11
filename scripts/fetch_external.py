@@ -8,14 +8,17 @@ data.go.kr 3종 API 수집 후 data/ulsan.json 에 병합.
   KOSIS      — KOSIS OpenAPI 키 (Base64 그대로 사용, 디코딩 금지)
   ECOS       — 한국은행 ECOS OpenAPI 키
 """
-import os, json, time, datetime
+import os, json, re, time, datetime
 import xml.etree.ElementTree as ET
 from pathlib import Path
 import requests
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-DATA_GO_KR = os.environ.get("DATA_GO_KR", "")
-KOSIS      = os.environ.get("KOSIS", "")
-ECOS       = os.environ.get("ECOS", "")
+DATA_GO_KR   = os.environ.get("DATA_GO_KR", "")
+KOSIS        = os.environ.get("KOSIS", "")
+ECOS         = os.environ.get("ECOS", "")
+NKIS_API_KEY = os.environ.get("NKIS_API_KEY", "")
 ULSAN_JSON = Path("data/ulsan.json")
 TIMEOUT = 20
 KST = datetime.timezone(datetime.timedelta(hours=9))
@@ -266,13 +269,88 @@ def collect_ecos(key):
     return result
 
 # ══════════════════════════════════════════════════════
+# ⑦ NKIS 정책연구 (nkis.re.kr)
+# ══════════════════════════════════════════════════════
+NKIS_URL      = "https://nkis.re.kr/nkisApi/search/TongList.do"
+NKIS_KEYWORDS = ["저출산", "고령화", "인구감소", "지역소멸", "사회동역학"]
+
+def _parse_nkis_response(text):
+    """JavaScript console.log 형태 또는 순수 JSON 응답 파싱."""
+    for pat in [
+        r'console\.log\s*\(({.+})\s*\)\s*;?',
+        r'console\.log\s*\((.+)\)\s*;?',
+    ]:
+        m = re.search(pat, text, re.DOTALL)
+        if m:
+            try:
+                return json.loads(m.group(1))
+            except json.JSONDecodeError:
+                pass
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError:
+        return None
+
+def _extract_nkis_items(data):
+    """다양한 응답 구조에서 items 리스트 추출."""
+    if not data:
+        return []
+    candidates = [
+        data.get("response", {}).get("body", {}).get("items"),
+        data.get("body", {}).get("items"),
+        data.get("items"),
+        data.get("list"),
+        data.get("data"),
+        data.get("result"),
+    ]
+    for c in candidates:
+        if not c:
+            continue
+        if isinstance(c, list):
+            return c
+        if isinstance(c, dict):
+            inner = c.get("item") or c.get("list") or []
+            if inner:
+                return inner if isinstance(inner, list) else [inner]
+    return []
+
+def collect_nkis(key):
+    """NKIS 정책연구 키워드별 최신 3건 수집."""
+    result = {}
+    for keyword in NKIS_KEYWORDS:
+        params = {"serviceKey": key, "keyword": keyword,
+                  "numOfRows": "3", "pageNo": "1"}
+        try:
+            r = requests.get(NKIS_URL, params=params, timeout=TIMEOUT, verify=False)
+            data  = _parse_nkis_response(r.text)
+            items = _extract_nkis_items(data)
+            top3  = []
+            for it in items[:3]:
+                top3.append({
+                    "title":     (it.get("title") or it.get("rptNm") or
+                                  it.get("resTtl") or it.get("titleNm") or "").strip(),
+                    "publisher": (it.get("publisher") or it.get("publishOrgan") or
+                                  it.get("orgNm") or it.get("insttNm") or "").strip(),
+                    "year":      str(it.get("publishYear") or it.get("year") or
+                                     it.get("pubYear") or it.get("pblYear") or "").strip(),
+                    "url":       (it.get("url") or it.get("fileUrl") or
+                                  it.get("linkUrl") or it.get("oriUrl") or "").strip(),
+                })
+            result[keyword] = top3
+            print(f"  NKIS [{keyword}] {len(top3)}건")
+        except Exception as e:
+            print(f"  NKIS [{keyword}] ERR: {e}")
+            result[keyword] = []
+    return result
+
+# ══════════════════════════════════════════════════════
 # main
 # ══════════════════════════════════════════════════════
 def main():
     import sys
     now = datetime.datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")
     print("=" * 52)
-    print(f"외부 데이터 파이프라인 (data.go.kr 4종 + KOSIS + ECOS): {now}")
+    print(f"외부 데이터 파이프라인 (data.go.kr 4종 + KOSIS + ECOS + NKIS): {now}")
     print("=" * 52)
     if not DATA_GO_KR:
         print("⚠️  DATA_GO_KR 환경변수 없음 — GitHub Secrets 확인 필요")
@@ -288,6 +366,10 @@ def main():
         print("⚠️  ECOS 환경변수 없음 — 거시경제지표 건너뜀")
     else:
         print(f"  ECOS키: {ECOS[:8]}...")
+    if not NKIS_API_KEY:
+        print("⚠️  NKIS_API_KEY 환경변수 없음 — 정책연구 건너뜀")
+    else:
+        print(f"  NKIS키: {NKIS_API_KEY[:8]}...")
 
     ext = {"_updated": now}
 
@@ -324,6 +406,11 @@ def main():
         "bond_3yr":None,"bond_10yr":None,"error":"ECOS 미설정"
     }
 
+    print("\n[⑦ NKIS 정책연구]")
+    ext["nkis_policy"] = collect_nkis(NKIS_API_KEY) if NKIS_API_KEY else {
+        kw: [] for kw in NKIS_KEYWORDS
+    }
+
     if ULSAN_JSON.exists():
         try:
             u = json.loads(ULSAN_JSON.read_text(encoding="utf-8"))
@@ -333,6 +420,7 @@ def main():
             u["gold_price"]  = ext["gold_price"]
             u["population_forecast"] = ext["population_forecast"]
             u["ecos_macro"]          = ext["ecos_macro"]
+            u["nkis_policy"]         = ext["nkis_policy"]
             ULSAN_JSON.write_text(json.dumps(u, ensure_ascii=False, indent=2), encoding="utf-8")
             print(f"\n✅ 병합 완료 → {ULSAN_JSON}")
         except Exception as e:
@@ -361,6 +449,12 @@ def main():
     print(f"  ECOS({em.get('measured_at')}): 기준금리={em.get('base_rate')}% "
           f"달러={em.get('usd_krw')} 위안={em.get('cny_krw')} "
           f"국고채3년={em.get('bond_3yr')}% 국고채10년={em.get('bond_10yr')}%")
+    np = ext["nkis_policy"]
+    total_nkis = sum(len(v) for v in np.values() if isinstance(v, list))
+    print(f"  NKIS 정책연구: 키워드 {len(NKIS_KEYWORDS)}개 / 수집 {total_nkis}건")
+    for kw, docs in np.items():
+        if docs:
+            print(f"    [{kw}] {docs[0].get('title','(제목없음)')} ({docs[0].get('year','')})")
 
 if __name__ == "__main__":
     main()
