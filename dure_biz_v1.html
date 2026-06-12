@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>두레비즈 DURE-Biz — 기업 탄소경영 지원 플랫폼</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<style>
+:root {
+  --bg:      #E8E4DC;
+  --surface: #DDD8CE;
+  --surface2:#D4CFC4;
+  --border:  #C4BEB2;
+  --text:    #2C2A26;
+  --muted:   #7A7569;
+  --dim:     #A09A8E;
+  --teal:    #3D7A6E;
+  --teal-lt: #9FE1CB;
+  --gold:    #8C6B1A;
+  --gold-lt: #B8850E;
+  --card:    #EEE9E0;
+  --green:   #0F6E56;
+  --red:     #A32D2D;
+  --amber:   #BA7517;
+  --blue:    #185FA5;
+  --ok:      #DFF0E8;
+  --warn:    #F5EDD8;
+  --danger:  #F5E8E8;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);
+  font-family:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  font-size:13px;line-height:1.6;min-height:100vh;}
+
+/* ── TOPBAR ── */
+#topbar{height:46px;background:#1A1A1F;border-bottom:1px solid var(--teal);
+  display:flex;align-items:center;padding:0 22px;gap:12px;position:sticky;top:0;z-index:100;}
+.tb-badge{font-size:10px;font-weight:700;letter-spacing:.18em;color:var(--teal-lt);
+  border:1px solid var(--teal);padding:2px 8px;border-radius:2px;}
+.tb-biz{font-size:11px;font-weight:900;letter-spacing:.15em;color:#F0C040;
+  border:1px solid #C9922A;padding:2px 9px;border-radius:2px;
+  font-family:'JetBrains Mono','Courier New',monospace;background:rgba(201,146,42,.12);}
+.tb-title{font-size:13px;font-weight:700;color:#F5F3EE;}
+.tb-div{width:1px;height:16px;background:var(--teal);}
+.tb-sub{font-size:10px;color:var(--teal-lt);}
+.tb-right{margin-left:auto;display:flex;align-items:center;gap:10px;font-size:10px;color:#A09A8E;}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--teal-lt);
+  animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(63,122,110,.5)}50%{box-shadow:0 0 0 5px rgba(63,122,110,0)}}
+
+/* ── 탭 ── */
+#nav-tabs{background:var(--surface);border-bottom:2px solid var(--border);
+  display:flex;padding:0 16px;overflow-x:auto;position:sticky;top:46px;z-index:99;}
+.nav-tab{padding:10px 16px;font-size:11px;letter-spacing:.04em;color:var(--muted);
+  background:none;border:none;border-bottom:3px solid transparent;
+  cursor:pointer;white-space:nowrap;font-family:inherit;
+  transition:all .15s;border-radius:4px 4px 0 0;}
+.nav-tab:hover{color:var(--text);background:rgba(44,42,38,.06);}
+.nav-tab.on{color:var(--gold);border-bottom-color:var(--gold-lt);
+  background:rgba(184,133,14,.1);font-weight:700;}
+
+/* ── 실시간 티커 ── */
+#ticker{background:var(--surface2);border-bottom:1px solid var(--border);
+  padding:6px 18px;display:flex;gap:20px;flex-wrap:wrap;align-items:center;}
+.tick{display:flex;align-items:center;gap:5px;}
+.tick-lbl{font-size:10px;color:var(--muted);}
+.tick-val{font-size:13px;font-weight:700;
+  font-family:'JetBrains Mono','Courier New',monospace;}
+.tick-unit{font-size:10px;color:var(--dim);}
+.tick-sep{width:1px;height:18px;background:var(--border);}
+.up{color:var(--green);} .dn{color:var(--red);} .neu{color:var(--text);}
+.gap-warn{color:var(--red);font-weight:700;} .gap-ok{color:var(--green);}
+#last-upd{margin-left:auto;font-size:10px;color:var(--dim);}
+.refresh-btn{background:rgba(61,122,110,.15);border:1px solid var(--teal);
+  color:var(--teal-lt);padding:3px 10px;border-radius:3px;cursor:pointer;
+  font-size:10px;font-family:inherit;}
+.refresh-btn:hover{background:rgba(61,122,110,.28);}
+#spin{display:inline-block;}
+.spinning{animation:spin .6s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── 메인 레이아웃 ── */
+#main{padding:16px 18px;display:flex;flex-direction:column;gap:14px;}
+
+/* ── 섹션 헤더 ── */
+.sec-hdr{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.sec-badge{font-size:9px;font-weight:700;letter-spacing:.1em;
+  padding:2px 7px;border-radius:2px;border:1px solid;}
+.sec-badge.cbam{color:var(--red);border-color:rgba(163,45,45,.3);background:var(--danger);}
+.sec-badge.biz{color:var(--blue);border-color:rgba(24,95,165,.3);background:rgba(24,95,165,.08);}
+.sec-badge.forest{color:var(--green);border-color:rgba(15,110,86,.3);background:var(--ok);}
+.sec-title{font-size:13px;font-weight:700;color:var(--text);}
+.sec-sub{font-size:10px;color:var(--muted);margin-left:auto;}
+
+/* ── 카드 그리드 ── */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;}
+.kpi-card{background:var(--card);border:1px solid var(--border);border-radius:5px;
+  padding:10px 12px;position:relative;overflow:hidden;}
+.kpi-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;}
+.kpi-card.red::before{background:var(--red);}
+.kpi-card.teal::before{background:var(--teal);}
+.kpi-card.gold::before{background:var(--gold-lt);}
+.kpi-card.green::before{background:var(--green);}
+.kpi-card.blue::before{background:var(--blue);}
+.kpi-lbl{font-size:10px;color:var(--muted);margin-bottom:3px;}
+.kpi-val{font-size:19px;font-weight:900;line-height:1.1;
+  font-family:'JetBrains Mono','Courier New',monospace;}
+.kpi-card.red .kpi-val{color:var(--red);}
+.kpi-card.teal .kpi-val{color:var(--teal);}
+.kpi-card.gold .kpi-val{color:var(--gold-lt);}
+.kpi-card.green .kpi-val{color:var(--green);}
+.kpi-card.blue .kpi-val{color:var(--blue);}
+.kpi-sub{font-size:10px;color:var(--dim);margin-top:3px;}
+
+/* ── 2단 패널 ── */
+.panel-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:700px){.panel-row{grid-template-columns:1fr;}}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:5px;padding:14px;}
+
+/* ── 차트 영역 ── */
+.chart-wrap{width:100%;overflow:hidden;}
+svg text{font-family:'Noto Sans KR',sans-serif;}
+
+/* ── 지역 바 테이블 ── */
+.region-table{width:100%;border-collapse:collapse;font-size:11px;margin-top:8px;}
+.region-table th{padding:5px 8px;text-align:right;color:var(--muted);font-weight:700;
+  font-size:10px;border-bottom:2px solid var(--border);background:var(--surface);}
+.region-table th:first-child{text-align:left;}
+.region-table td{padding:5px 8px;text-align:right;border-bottom:1px solid var(--surface2);
+  font-variant-numeric:tabular-nums;}
+.region-table td:first-child{text-align:left;font-weight:600;}
+.region-table tr:hover td{background:var(--surface);}
+.region-table tr.top td:first-child{color:var(--red);}
+.bar-mini{display:inline-block;height:6px;border-radius:2px;vertical-align:middle;margin-left:4px;}
+
+/* ── 업종 파이 범례 ── */
+.legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+.leg-item{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--muted);}
+.leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+
+/* ── 갭 시각화 ── */
+.gap-row{display:flex;align-items:center;gap:8px;padding:5px 0;
+  border-bottom:1px solid var(--surface2);font-size:11px;}
+.gap-label{width:80px;font-weight:600;flex-shrink:0;}
+.gap-bar-wrap{flex:1;background:var(--surface2);border-radius:2px;height:8px;overflow:hidden;position:relative;}
+.gap-demand{height:8px;background:var(--red);border-radius:2px;opacity:.8;}
+.gap-supply{height:8px;background:var(--green);border-radius:2px;position:absolute;top:0;left:0;opacity:.8;}
+.gap-num{width:70px;text-align:right;font-size:10px;
+  font-family:'JetBrains Mono',monospace;}
+
+/* ── 수식 박스 ── */
+.formula{background:var(--surface);border:1px solid var(--border);
+  border-left:3px solid var(--gold);border-radius:3px;
+  padding:7px 12px;font-size:10px;color:var(--muted);line-height:2;margin-bottom:12px;}
+.formula code{color:var(--teal);font-family:'JetBrains Mono',monospace;font-size:10px;}
+.formula .wt{color:var(--amber);font-weight:700;}
+
+
+/* ── 지역 선택기 ── */
+#region-selector{
+  background:var(--surface2);border-bottom:2px solid var(--border);
+  padding:7px 18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  position:sticky;top:80px;z-index:98;
+}
+.reg-label{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:.06em;
+  white-space:nowrap;}
+.reg-select{background:var(--card);border:1px solid var(--border);color:var(--text);
+  border-radius:4px;padding:4px 10px;font-size:12px;font-family:inherit;
+  cursor:pointer;min-width:110px;transition:border-color .15s;}
+.reg-select:focus{outline:none;border-color:var(--teal);}
+.reg-select:hover{border-color:var(--teal);}
+.reg-div{font-size:14px;color:var(--border);margin:0 2px;}
+.reg-badge{display:inline-flex;align-items:center;gap:5px;
+  background:rgba(61,122,110,.12);border:1px solid var(--teal);
+  border-radius:4px;padding:3px 10px;font-size:11px;color:var(--teal);
+  font-weight:700;white-space:nowrap;}
+.reg-badge .reg-x{cursor:pointer;font-size:13px;color:var(--teal-lt);margin-left:2px;}
+.reg-reset{background:none;border:1px solid var(--border);color:var(--muted);
+  border-radius:3px;padding:3px 8px;font-size:10px;cursor:pointer;font-family:inherit;}
+.reg-reset:hover{border-color:var(--teal);color:var(--teal);}
+#nav-tabs{top:117px;}
+
+/* ── 탭 컨텐츠 ── */
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div id="topbar">
+  <span class="tb-badge">DURE-Biz</span>
+  <span class="tb-biz">기업탄소경영</span>
+  <div class="tb-div"></div>
+  <span class="tb-title">두레비즈 — 지자체 기업 탄소경영 지원 플랫폼</span>
+  <div class="tb-div"></div>
+  <span class="tb-sub">늘푸른바다 사회동역학연구소 | everbluesea.org</span>
+  <div class="tb-right">
+    <div class="live-dot"></div><span>LIVE</span>
+    <button class="refresh-btn" onclick="fetchLive()">
+      <span id="spin">↻</span> 시세갱신
+    </button>
+  </div>
+</div>
+
+
+<!-- 지역 선택기 -->
+<div id="region-selector">
+  <span class="reg-label">지역선택</span>
+
+  <select class="reg-select" id="sel-metro" onchange="onSelectMetro()">
+    <option value="">광역시·도 선택</option>
+  </select>
+
+  <span class="reg-div">›</span>
+
+  <select class="reg-select" id="sel-city" onchange="onSelectCity()" disabled>
+    <option value="">시·군·구 선택</option>
+  </select>
+
+  <span class="reg-div">›</span>
+
+  <select class="reg-select" id="sel-gu" onchange="onSelectGu()" disabled>
+    <option value="">구·읍·면 선택</option>
+  </select>
+
+  <div id="reg-selected" style="display:none" class="reg-badge">
+    <span id="reg-selected-text"></span>
+    <span class="reg-x" onclick="resetRegion()">✕</span>
+  </div>
+
+  <button class="reg-reset" onclick="resetRegion()">전국 보기</button>
+
+  <span style="margin-left:auto;font-size:10px;color:var(--dim)" id="reg-info"></span>
+</div>
+
+<!-- 탭 네비게이션 -->
+<div id="nav-tabs">
+  <button class="nav-tab on" onclick="showTab('cbam',this)">CBAM 탄소국경조정</button>
+  <button class="nav-tab" onclick="showTab('biz',this)">기업분포</button>
+  <button class="nav-tab" onclick="showTab('gap',this)">수요·공급 갭</button>
+  <button class="nav-tab" onclick="showTab('scenario',this)">감축 시나리오</button>
+  <button class="nav-tab" onclick="showTab('policy',this)">지자체 정책</button>
+</div>
+
+<!-- 실시간 티커 -->
+<div id="ticker">
+  <div class="tick">
+    <span class="tick-lbl">EU ETS</span>
+    <span class="tick-val neu" id="t-ets">71.84</span>
+    <span class="tick-unit">€/tCO₂</span>
+    <span style="font-size:9px;color:var(--dim)" id="t-ets-src"></span>
+  </div>
+  <div class="tick-sep"></div>
+  <div class="tick">
+    <span class="tick-lbl">EUR/KRW</span>
+    <span class="tick-val neu" id="t-eur">1,485</span>
+    <span class="tick-unit">원</span>
+  </div>
+  <div class="tick-sep"></div>
+  <div class="tick">
+    <span class="tick-lbl">K-ETS</span>
+    <span class="tick-val neu">~8,500</span>
+    <span class="tick-unit">원/tCO₂</span>
+  </div>
+  <div class="tick-sep"></div>
+  <div class="tick">
+    <span class="tick-lbl">EU↔K 갭</span>
+    <span class="tick-val gap-warn" id="t-gap">—</span>
+    <span class="tick-unit">원/tCO₂</span>
+  </div>
+  <div class="tick-sep"></div>
+  <div class="tick">
+    <span class="tick-lbl">전국 제조업</span>
+    <span class="tick-val neu">509,467</span>
+    <span class="tick-unit">개사</span>
+  </div>
+  <div class="tick-sep"></div>
+  <div class="tick">
+    <span class="tick-lbl">CBAM 대상업종</span>
+    <span class="tick-val dn">~67,000</span>
+    <span class="tick-unit">개사 추정</span>
+  </div>
+  <span id="last-upd">—</span>
+</div>
+
+<!-- 메인 -->
+<div id="main">
+
+  <!-- ═══ TAB 1: CBAM ═══ -->
+  <div id="tab-cbam" class="tab-content active">
+
+    <div class="sec-hdr">
+      <span class="sec-badge cbam">CBAM</span>
+      <span class="sec-title">탄소국경조정제도 — 시도별 노출 현황</span>
+      <span class="sec-sub">단위: 억원 | EU ETS 연동 실시간</span>
+    </div>
+
+    <div class="formula">
+      <code>CBAM 노출액</code> = 지역별 직접배출(Gg) × 1,000(t/Gg) × EU ETS(<code id="f-ets">71.84</code>€/tCO₂) × EUR/KRW(<code id="f-eur">1,485</code>원) ÷ 1억
+      &nbsp;<span class="wt">⚠ 이론적 추정값 — 실제 CBAM 신고는 제품단위 배출량 기준</span>
+    </div>
+
+    <!-- KPI 카드 -->
+    <div class="card-grid" id="cbam-kpis"></div>
+
+    <!-- 시도별 노출액 바차트 -->
+    <div class="panel" style="margin-top:12px;">
+      <div class="sec-hdr">
+        <span class="sec-title" style="font-size:12px">시도별 CBAM 이론 노출액 (억원)</span>
+        <span class="sec-sub">2021년 GIR 지역배출량 기준</span>
+      </div>
+      <div class="chart-wrap" id="cbam-bar-chart"></div>
+    </div>
+
+    <!-- 2단: 분야별 파이 + 트렌드 -->
+    <div class="panel-row" style="margin-top:12px;">
+      <div class="panel">
+        <div class="sec-hdr">
+          <span class="sec-title" style="font-size:12px">국가 온실가스 분야별 (2023)</span>
+        </div>
+        <div class="chart-wrap" id="ghg-pie"></div>
+      </div>
+      <div class="panel">
+        <div class="sec-hdr">
+          <span class="sec-title" style="font-size:12px">총배출량 추이 (백만t CO₂eq.)</span>
+        </div>
+        <div class="chart-wrap" id="ghg-trend"></div>
+      </div>
+    </div>
+
+  </div><!-- /tab-cbam -->
+
+  <!-- ═══ TAB 2: 기업분포 ═══ -->
+  <div id="tab-biz" class="tab-content">
+
+    <div class="sec-hdr">
+      <span class="sec-badge biz">기업분포</span>
+      <span class="sec-title">시도별 산업별 기업 현황 (전국사업체조사 2023)</span>
+    </div>
+
+    <div class="card-grid" id="biz-kpis"></div>
+
+    <div class="panel-row" style="margin-top:12px;">
+      <div class="panel">
+        <div class="sec-hdr">
+          <span class="sec-title" style="font-size:12px">산업별 사업체 구성 (전국)</span>
+        </div>
+        <div class="chart-wrap" id="ind-pie"></div>
+        <div class="legend" id="ind-legend"></div>
+      </div>
+      <div class="panel">
+        <div class="sec-hdr">
+          <span class="sec-title" style="font-size:12px">CBAM 대상 업종 시도별 분포</span>
+          <span class="sec-sub">제조업(C)+전기가스(D)+폐기물(E)</span>
+        </div>
+        <div class="chart-wrap" id="cbam-biz-chart"></div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:12px;">
+      <div class="sec-hdr">
+        <span class="sec-title" style="font-size:12px">시도별 제조업 매출 vs 탄소노출액</span>
+      </div>
+      <div class="chart-wrap" id="scatter-chart"></div>
+    </div>
+
+  </div><!-- /tab-biz -->
+
+  <!-- ═══ TAB 3: 갭 ═══ -->
+  <div id="tab-gap" class="tab-content">
+
+    <div class="sec-hdr">
+      <span class="sec-badge cbam">갭 분석</span>
+      <span class="sec-title">탄소크레딧 수요(CBAM) vs 공급(산림) 갭</span>
+    </div>
+
+    <div class="card-grid" id="gap-kpis"></div>
+
+    <div class="panel" style="margin-top:12px;">
+      <div class="sec-hdr">
+        <span class="sec-title" style="font-size:12px">시도별 수요·공급 갭 (만 tCO₂/년)</span>
+        <span class="sec-sub">적색=부족(크레딧 매입 필요) / 녹색=잉여(크레딧 판매 가능)</span>
+      </div>
+      <div id="gap-bars"></div>
+    </div>
+
+  </div><!-- /tab-gap -->
+
+  <!-- ═══ TAB 4: 시나리오 ═══ -->
+  <div id="tab-scenario" class="tab-content">
+
+    <div class="sec-hdr">
+      <span class="sec-badge cbam">시나리오</span>
+      <span class="sec-title">EU ETS 가격 변동 시 기업 비용 시뮬레이션</span>
+    </div>
+
+    <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;
+      background:var(--surface);border:1px solid var(--border);border-radius:5px;
+      padding:10px 14px;margin-bottom:12px;">
+      <div style="display:flex;align-items:center;gap:6px;">
+        <span style="font-size:11px;color:var(--muted)">EU ETS (€/tCO₂)</span>
+        <input type="range" id="ets-slider" min="30" max="150" value="72" step="1"
+          oninput="updateScenario()" style="width:140px;">
+        <span style="font-size:13px;font-weight:700;color:var(--red);
+          font-family:monospace;min-width:40px;" id="ets-disp">€72</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <span style="font-size:11px;color:var(--muted)">EUR/KRW</span>
+        <input type="range" id="eur-slider" min="1200" max="1800" value="1485" step="5"
+          oninput="updateScenario()" style="width:120px;">
+        <span style="font-size:13px;font-weight:700;color:var(--amber);
+          font-family:monospace;min-width:56px;" id="eur-disp">₩1,485</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <span style="font-size:11px;color:var(--muted)">감축률(%)</span>
+        <input type="range" id="reduce-slider" min="0" max="50" value="0" step="5"
+          oninput="updateScenario()" style="width:100px;">
+        <span style="font-size:13px;font-weight:700;color:var(--green);
+          font-family:monospace;min-width:36px;" id="reduce-disp">0%</span>
+      </div>
+    </div>
+
+    <div class="card-grid" id="scenario-kpis"></div>
+    <div class="panel" style="margin-top:12px;">
+      <div class="chart-wrap" id="scenario-chart"></div>
+    </div>
+
+  </div><!-- /tab-scenario -->
+
+  <!-- ═══ TAB 5: 정책 ═══ -->
+  <div id="tab-policy" class="tab-content">
+
+    <div class="sec-hdr">
+      <span class="sec-badge forest">정책</span>
+      <span class="sec-title">지자체 기업 탄소경영 지원 정책 설계</span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:12px;">
+      <div class="panel">
+        <div style="font-size:11px;font-weight:700;color:var(--red);margin-bottom:8px;">
+          ① 탄소현황 진단
+        </div>
+        <div style="font-size:11px;color:var(--muted);line-height:1.8;">
+          • 기업 업종코드 입력<br>
+          • 시도별 배출 위치 자동 파악<br>
+          • CBAM 대상 여부 판별<br>
+          • 전국 동종업계 비교<br>
+          <span style="color:var(--teal);font-size:10px;">데이터: GHG 6종 + 사업체조사</span>
+        </div>
+      </div>
+      <div class="panel">
+        <div style="font-size:11px;font-weight:700;color:var(--amber);margin-bottom:8px;">
+          ② CBAM 비용 산출
+        </div>
+        <div style="font-size:11px;color:var(--muted);line-height:1.8;">
+          • 직접배출 CO₂ 자동 추정<br>
+          • EU ETS 실시간 연동<br>
+          • 인증서 필요수량 계산<br>
+          • 연간·월간 비용 예측<br>
+          <span style="color:var(--teal);font-size:10px;">데이터: EU ETS + EUR/KRW 실시간</span>
+        </div>
+      </div>
+      <div class="panel">
+        <div style="font-size:11px;font-weight:700;color:var(--green);margin-bottom:8px;">
+          ③ 크레딧 매칭
+        </div>
+        <div style="font-size:11px;color:var(--muted);line-height:1.8;">
+          • 지역 산림크레딧 잠재량<br>
+          • 산주↔기업 직접 매칭<br>
+          • 가격 협상 지원<br>
+          • 산림조합 연계<br>
+          <span style="color:var(--teal);font-size:10px;">데이터: 산림청 산림기본통계</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="sec-hdr">
+        <span class="sec-title" style="font-size:12px">지자체 정책 개입 포인트 (갭 기준)</span>
+      </div>
+      <table class="region-table">
+        <thead><tr>
+          <th style="text-align:left">시도</th>
+          <th>CBAM 수요(만t)</th>
+          <th>산림공급(만t)</th>
+          <th>갭(만t)</th>
+          <th>정책방향</th>
+        </tr></thead>
+        <tbody id="policy-table"></tbody>
+      </table>
+    </div>
+
+  </div><!-- /tab-policy -->
+
+</div><!-- /main -->
+
+<script>
+/* ═══ 데이터 ═══ */
+const GHG_TREND = [
+  {y:"2019",v:701.4},{y:"2020",v:656.2},{y:"2021",v:679.6},{y:"2022",v:724.3},{y:"2023",v:707.2}
+];
+const GHG_SECTOR = [
+  {s:"에너지",    v:555.0, c:"#3D7A6E"},
+  {s:"산업공정",  v:121.5, c:"#8C6B1A"},
+  {s:"농업",      v:22.5,  c:"#0F6E56"},
+  {s:"폐기물",    v:17.2,  c:"#BA7517"},
+  {s:"LULUCF",   v:-39.4, c:"#A09A8E"},
+];
+const REGIONS = [
+  {r:"충청남도",  ghg:89.8, forest:330, cbam_biz:18400, rev:520000, ratio:.1268},
+  {r:"경상북도",  ghg:62.0, forest:1330,cbam_biz:32100, rev:480000, ratio:.0876},
+  {r:"전라남도",  ghg:62.6, forest:630, cbam_biz:14200, rev:310000, ratio:.0884},
+  {r:"울산광역시",ghg:63.2, forest:67,  cbam_biz:8900,  rev:890000, ratio:.0893},
+  {r:"경기도",    ghg:98.3, forest:550, cbam_biz:98000, rev:1200000,ratio:.1387},
+  {r:"경상남도",  ghg:44.1, forest:760, cbam_biz:28700, rev:390000, ratio:.0622},
+  {r:"인천광역시",ghg:51.1, forest:17,  cbam_biz:21000, rev:420000, ratio:.0722},
+  {r:"전라북도",  ghg:22.5, forest:490, cbam_biz:10200, rev:180000, ratio:.0318},
+  {r:"충청북도",  ghg:29.2, forest:440, cbam_biz:15800, rev:290000, ratio:.0413},
+  {r:"강원도",    ghg:21.0, forest:1350,cbam_biz:7200,  rev:140000, ratio:.0296},
+  {r:"부산광역시",ghg:34.5, forest:31,  cbam_biz:14600, rev:280000, ratio:.0488},
+  {r:"서울특별시",ghg:49.2, forest:7,   cbam_biz:22000, rev:680000, ratio:.0695},
+  {r:"대구광역시",ghg:18.8, forest:30,  cbam_biz:10800, rev:190000, ratio:.0266},
+  {r:"대전광역시",ghg:9.6,  forest:19,  cbam_biz:4200,  rev:95000,  ratio:.0136},
+  {r:"광주광역시",ghg:10.8, forest:9,   cbam_biz:5600,  rev:110000, ratio:.0153},
+  {r:"제주도",    ghg:8.0,  forest:88,  cbam_biz:1800,  rev:45000,  ratio:.0113},
+  {r:"세종특별자치시",ghg:3.0,forest:11,cbam_biz:1200,  rev:32000,  ratio:.0042},
+];
+
+const IND_DATA = [
+  {c:"C",n:"제조업",      biz:509467, color:"#3D7A6E"},
+  {c:"G",n:"도소매",      biz:984231, color:"#8C6B1A"},
+  {c:"I",n:"숙박음식",    biz:812455, color:"#BA7517"},
+  {c:"Q",n:"보건복지",    biz:387612, color:"#0F6E56"},
+  {c:"F",n:"건설업",      biz:504267, color:"#185FA5"},
+  {c:"K",n:"금융보험",    biz:96743,  color:"#A32D2D"},
+  {c:"P",n:"교육",        biz:178934, color:"#7A7569"},
+  {c:"기타",n:"기타",     biz:1773770,color:"#C4BEB2"},
+];
+
+const FOREST_SUPPLY = REGIONS.map(r => ({
+  r: r.r,
+  supply_만t: +(r.forest * 1000 * 10.4 * 0.66 * 0.35 / 10000).toFixed(1)
+}));
+
+let liveEts = 71.84, liveEur = 1485;
+
+/* ═══ 유틸 ═══ */
+function cbam억원(ghg_gg, ets, eur){ return +(ghg_gg*1000*ets*eur/1e8).toFixed(0); }
+
+/* ═══ 탭 전환 ═══ */
+function showTab(id, btn){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('on');
+  renderTab(id);
+}
+
+/* ═══ 실시간 fetch ═══ */
+async function fetchLive(){
+  const spin=document.getElementById('spin');
+  spin.classList.add('spinning');
+  try{
+    const r=await fetch('https://open.er-api.com/v6/latest/EUR');
+    const d=await r.json();
+    if(d.result==='success'&&d.rates?.KRW){
+      liveEur=Math.round(d.rates.KRW);
+      document.getElementById('t-eur').textContent=liveEur.toLocaleString();
+    }
+  }catch(e){}
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:100,
+        messages:[{role:'user',content:'EU ETS EUA price EUR/tCO2 today. JSON only: {"price":NUMBER}'}]})
+    });
+    const d=await r.json();
+    const m=(d.content?.[0]?.text||'').match(/\{"price"\s*:\s*([\d.]+)/);
+    if(m&&+m[1]>10){
+      liveEts=+m[1];
+      document.getElementById('t-ets').textContent=liveEts.toFixed(2);
+    }
+  }catch(e){}
+  const gap=+(liveEts*liveEur-8500).toFixed(0);
+  const gEl=document.getElementById('t-gap');
+  gEl.textContent=gap.toLocaleString();
+  gEl.className='tick-val '+(gap>0?'gap-warn':'gap-ok');
+  document.getElementById('f-ets').textContent=liveEts.toFixed(2);
+  document.getElementById('f-eur').textContent=liveEur.toLocaleString();
+  document.getElementById('last-upd').textContent=
+    '갱신: '+new Date().toLocaleTimeString('ko-KR',{timeZone:'Asia/Seoul'});
+  spin.classList.remove('spinning');
+  renderTab(document.querySelector('.nav-tab.on')?.onclick?.toString().match(/'(\w+)'/)?.[1]||'cbam');
+  renderAll();
+}
+
+/* ═══ 차트 렌더러 ═══ */
+function barChart(selector, data, keyX, keyY, color, maxW){
+  const el=document.querySelector(selector); if(!el)return;
+  el.innerHTML='';
+  const sorted=[...data].sort((a,b)=>b[keyY]-a[keyY]);
+  const max=sorted[0][keyY];
+  const W=el.clientWidth||400, barH=16, gap=4;
+  const H=sorted.length*(barH+gap)+10;
+  const labelW=90, numW=65;
+  const svg=d3.select(el).append('svg').attr('width','100%').attr('viewBox',`0 0 ${W} ${H}`);
+  const scale=d3.scaleLinear().domain([0,max]).range([0,(W-labelW-numW-8)]);
+  sorted.forEach((d,i)=>{
+    const y=i*(barH+gap);
+    svg.append('text').attr('x',labelW-4).attr('y',y+barH/2+1)
+      .attr('text-anchor','end').attr('dominant-baseline','central')
+      .style('font-size','10px').style('fill','var(--muted)').text(d[keyX]);
+    svg.append('rect').attr('x',labelW).attr('y',y)
+      .attr('width',scale(d[keyY])).attr('height',barH).attr('rx',2)
+      .attr('fill',typeof color==='function'?color(d):color);
+    svg.append('text').attr('x',labelW+scale(d[keyY])+4).attr('y',y+barH/2+1)
+      .attr('dominant-baseline','central')
+      .style('font-size','10px').style('fill','var(--text)')
+      .text(d[keyY].toLocaleString());
+  });
+}
+
+function pieChart(selector, data, keyV, keyL, keyC){
+  const el=document.querySelector(selector); if(!el)return;
+  el.innerHTML='';
+  const W=Math.min(el.clientWidth||280,280), H=160, R=Math.min(W,H)/2-10;
+  const svg=d3.select(el).append('svg').attr('width','100%').attr('viewBox',`0 0 ${W} ${H}`);
+  const g=svg.append('g').attr('transform',`translate(${R+10},${H/2})`);
+  const pie=d3.pie().value(d=>Math.abs(d[keyV])).sort(null);
+  const arc=d3.arc().innerRadius(R*0.45).outerRadius(R);
+  pie(data.filter(d=>d[keyV]>0)).forEach(d=>{
+    g.append('path').attr('d',arc(d)).attr('fill',d.data[keyC])
+      .attr('stroke','var(--card)').attr('stroke-width',1.5);
+  });
+  // 범례
+  const legG=svg.append('g').attr('transform',`translate(${R*2+24},10)`);
+  data.filter(d=>d[keyV]>0).forEach((d,i)=>{
+    legG.append('rect').attr('x',0).attr('y',i*14).attr('width',8).attr('height',8)
+      .attr('rx',4).attr('fill',d[keyC]);
+    legG.append('text').attr('x',11).attr('y',i*14+8)
+      .style('font-size','9px').style('fill','var(--muted)').text(d[keyL]);
+  });
+}
+
+function lineChart(selector, data, keyX, keyY, color){
+  const el=document.querySelector(selector); if(!el)return;
+  el.innerHTML='';
+  const W=el.clientWidth||360, H=120, pad={t:10,r:10,b:24,l:42};
+  const svg=d3.select(el).append('svg').attr('width','100%').attr('viewBox',`0 0 ${W} ${H}`);
+  const iW=W-pad.l-pad.r, iH=H-pad.t-pad.b;
+  const xS=d3.scalePoint().domain(data.map(d=>d[keyX])).range([0,iW]);
+  const yS=d3.scaleLinear().domain([d3.min(data,d=>d[keyY])*0.95,d3.max(data,d=>d[keyY])*1.02]).range([iH,0]);
+  const g=svg.append('g').attr('transform',`translate(${pad.l},${pad.t})`);
+  // 격자
+  yS.ticks(4).forEach(v=>{
+    g.append('line').attr('x1',0).attr('x2',iW).attr('y1',yS(v)).attr('y2',yS(v))
+      .attr('stroke','var(--border)').attr('stroke-width',0.5);
+    g.append('text').attr('x',-4).attr('y',yS(v)+4)
+      .attr('text-anchor','end').style('font-size','9px').style('fill','var(--muted)')
+      .text(v.toFixed(0));
+  });
+  // 축
+  data.forEach(d=>{
+    g.append('text').attr('x',xS(d[keyX])).attr('y',iH+14)
+      .attr('text-anchor','middle').style('font-size','9px').style('fill','var(--muted)')
+      .text(d[keyX]);
+  });
+  // 선
+  const line=d3.line().x(d=>xS(d[keyX])).y(d=>yS(d[keyY])).curve(d3.curveMonotoneX);
+  g.append('path').datum(data).attr('fill','none').attr('stroke',color)
+    .attr('stroke-width',2).attr('d',line);
+  // 점
+  data.forEach(d=>{
+    g.append('circle').attr('cx',xS(d[keyX])).attr('cy',yS(d[keyY])).attr('r',3.5)
+      .attr('fill',color).attr('stroke','var(--card)').attr('stroke-width',1.5);
+    g.append('text').attr('x',xS(d[keyX])).attr('y',yS(d[keyY])-8)
+      .attr('text-anchor','middle').style('font-size','9px').style('fill','var(--text)')
+      .text(d[keyY].toFixed(1));
+  });
+}
+
+/* ═══ 각 탭 렌더 ═══ */
+function renderCbam(){
+  const totalExposure=REGIONS.reduce((s,r)=>s+cbam억원(r.ghg,liveEts,liveEur),0);
+  const topR=REGIONS.reduce((a,b)=>cbam억원(a.ghg,liveEts,liveEur)>cbam억원(b.ghg,liveEts,liveEur)?a:b);
+  document.getElementById('cbam-kpis').innerHTML=`
+    <div class="kpi-card red"><div class="kpi-lbl">전국 이론 CBAM 노출액</div>
+      <div class="kpi-val">${(totalExposure/10000).toFixed(1)}<span style="font-size:13px;font-weight:400">조원</span></div>
+      <div class="kpi-sub">EU ETS ${liveEts.toFixed(1)}€ × ${liveEur.toLocaleString()}원/€</div></div>
+    <div class="kpi-card gold"><div class="kpi-lbl">국가 총배출량 (2023)</div>
+      <div class="kpi-val">707.2<span style="font-size:13px;font-weight:400">백만t</span></div>
+      <div class="kpi-sub">전년 대비 -2.3%</div></div>
+    <div class="kpi-card red"><div class="kpi-lbl">최다 노출 시도</div>
+      <div class="kpi-val">${topR.r}</div>
+      <div class="kpi-sub">${cbam억원(topR.ghg,liveEts,liveEur).toLocaleString()}억원 추정</div></div>
+    <div class="kpi-card teal"><div class="kpi-lbl">EU↔K ETS 가격갭</div>
+      <div class="kpi-val">${(liveEts*liveEur-8500).toLocaleString().slice(0,6)}<span style="font-size:13px;font-weight:400">원/t</span></div>
+      <div class="kpi-sub">기업 추가부담 지표</div></div>`;
+
+  const cbamData=REGIONS.map(r=>({r:r.r,v:cbam억원(r.ghg,liveEts,liveEur)}))
+    .sort((a,b)=>b.v-a.v);
+  barChart('#cbam-bar-chart', cbamData, 'r', 'v',
+    d=>d.r.includes('울산')||d.r.includes('경북')||d.r.includes('충남')||d.r.includes('전남')?'#A32D2D':'#3D7A6E');
+  pieChart('#ghg-pie', GHG_SECTOR, 'v', 's', 'c');
+  lineChart('#ghg-trend', GHG_TREND, 'y', 'v', '#3D7A6E');
+}
+
+function renderBiz(){
+  document.getElementById('biz-kpis').innerHTML=`
+    <div class="kpi-card blue"><div class="kpi-lbl">전국 사업체수 (2023)</div>
+      <div class="kpi-val">624.6<span style="font-size:13px;font-weight:400">만개</span></div>
+      <div class="kpi-sub">전국사업체조사 기준</div></div>
+    <div class="kpi-card blue"><div class="kpi-lbl">제조업 사업체수</div>
+      <div class="kpi-val">50.9<span style="font-size:13px;font-weight:400">만개</span></div>
+      <div class="kpi-sub">CBAM 대상 업종 포함</div></div>
+    <div class="kpi-card red"><div class="kpi-lbl">CBAM 대상업종 추정</div>
+      <div class="kpi-val">~6.7<span style="font-size:13px;font-weight:400">만개</span></div>
+      <div class="kpi-sub">제조+전기가스+폐기물</div></div>
+    <div class="kpi-card gold"><div class="kpi-lbl">종사자수 (전체)</div>
+      <div class="kpi-val">2,544<span style="font-size:13px;font-weight:400">만명</span></div>
+      <div class="kpi-sub">2023년 기준</div></div>`;
+
+  pieChart('#ind-pie', IND_DATA, 'biz', 'n', 'color');
+
+  const cbamBizData=REGIONS.map(r=>({r:r.r,v:r.cbam_biz})).sort((a,b)=>b.v-a.v);
+  barChart('#cbam-biz-chart',cbamBizData,'r','v','#185FA5');
+
+  // 스캐터 (매출 vs 탄소)
+  const scEl=document.querySelector('#scatter-chart'); if(!scEl)return;
+  scEl.innerHTML='';
+  const W=scEl.clientWidth||400,H=200,pad={t:10,r:20,b:30,l:60};
+  const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
+  const svg=d3.select(scEl).append('svg').attr('width','100%').attr('viewBox',`0 0 ${W} ${H}`);
+  const g=svg.append('g').attr('transform',`translate(${pad.l},${pad.t})`);
+  const xS=d3.scaleLinear().domain([0,d3.max(REGIONS,d=>d.rev)]).range([0,iW]);
+  const yS=d3.scaleLinear().domain([0,d3.max(REGIONS,d=>cbam억원(d.ghg,liveEts,liveEur))]).range([iH,0]);
+  [xS.ticks(4),yS.ticks(4)].forEach((ts,ax)=>{
+    ts.forEach(v=>{
+      if(ax===0){
+        g.append('line').attr('x1',xS(v)).attr('x2',xS(v)).attr('y1',0).attr('y2',iH)
+          .attr('stroke','var(--border)').attr('stroke-width',.5);
+        g.append('text').attr('x',xS(v)).attr('y',iH+14).attr('text-anchor','middle')
+          .style('font-size','9px').style('fill','var(--muted)').text((v/10000)+'조');
+      } else {
+        g.append('line').attr('x1',0).attr('x2',iW).attr('y1',yS(v)).attr('y2',yS(v))
+          .attr('stroke','var(--border)').attr('stroke-width',.5);
+        g.append('text').attr('x',-4).attr('y',yS(v)+3).attr('text-anchor','end')
+          .style('font-size','9px').style('fill','var(--muted)').text(v.toLocaleString());
+      }
+    });
+  });
+  REGIONS.forEach(r=>{
+    const cx=xS(r.rev), cy=yS(cbam억원(r.ghg,liveEts,liveEur));
+    const isCbam=r.r.includes('울산')||r.r.includes('경북')||r.r.includes('충남');
+    g.append('circle').attr('cx',cx).attr('cy',cy).attr('r',isCbam?7:5)
+      .attr('fill',isCbam?'#A32D2D':'#3D7A6E').attr('opacity',.8);
+    if(isCbam||r.cbam_biz>30000)
+      g.append('text').attr('x',cx+8).attr('y',cy+3)
+        .style('font-size','9px').style('fill','var(--text)').text(r.r);
+  });
+  g.append('text').attr('x',iW/2).attr('y',iH+28).attr('text-anchor','middle')
+    .style('font-size','9px').style('fill','var(--muted)').text('제조업 매출액(조원) →');
+  g.append('text').attr('transform','rotate(-90)').attr('x',-iH/2).attr('y',-46)
+    .attr('text-anchor','middle').style('font-size','9px').style('fill','var(--muted)')
+    .text('← CBAM 노출액(억원)');
+}
+
+function renderGap(){
+  const rows=REGIONS.map(r=>{
+    const demand=+(r.ghg*1000/10000).toFixed(1);
+    const supply=FOREST_SUPPLY.find(f=>f.r===r.r)?.supply_만t||0;
+    return {r:r.r, demand, supply, gap:+(demand-supply).toFixed(1)};
+  }).sort((a,b)=>b.gap-a.gap);
+
+  const surplus=rows.filter(r=>r.gap<0).length;
+  const deficit=rows.filter(r=>r.gap>0).length;
+  document.getElementById('gap-kpis').innerHTML=`
+    <div class="kpi-card red"><div class="kpi-lbl">크레딧 부족 지역</div>
+      <div class="kpi-val">${deficit}<span style="font-size:13px;font-weight:400">개 시도</span></div>
+      <div class="kpi-sub">매입 정책 필요</div></div>
+    <div class="kpi-card green"><div class="kpi-lbl">크레딧 잉여 지역</div>
+      <div class="kpi-val">${surplus}<span style="font-size:13px;font-weight:400">개 시도</span></div>
+      <div class="kpi-sub">판매 플랫폼 구축</div></div>
+    <div class="kpi-card gold"><div class="kpi-lbl">전국 총 수요</div>
+      <div class="kpi-val">${rows.reduce((s,r)=>s+r.demand,0).toFixed(0)}<span style="font-size:13px;font-weight:400">만t</span></div>
+      <div class="kpi-sub">GHG 직접배출 기준</div></div>
+    <div class="kpi-card green"><div class="kpi-lbl">전국 산림 공급</div>
+      <div class="kpi-val">${rows.reduce((s,r)=>s+r.supply,0).toFixed(0)}<span style="font-size:13px;font-weight:400">만t</span></div>
+      <div class="kpi-sub">흡수계수 10.4t/ha 기준</div></div>`;
+
+  const maxV=Math.max(...rows.map(r=>Math.max(r.demand,r.supply)));
+  document.getElementById('gap-bars').innerHTML=rows.map(r=>{
+    const dPct=(r.demand/maxV*100).toFixed(1);
+    const sPct=(r.supply/maxV*100).toFixed(1);
+    const isPos=r.gap>0;
+    return `<div class="gap-row">
+      <span class="gap-label" style="color:${isPos?'var(--red)':'var(--green)'}">${r.r}</span>
+      <div class="gap-bar-wrap">
+        <div class="gap-demand" style="width:${dPct}%"></div>
+        <div class="gap-supply" style="width:${sPct}%;opacity:.6"></div>
+      </div>
+      <span class="gap-num" style="color:${isPos?'var(--red)':'var(--green)'}">
+        ${isPos?'+':''}${r.gap}만t
+      </span>
+    </div>`;
+  }).join('');
+}
+
+function renderScenario(){
+  updateScenario();
+}
+
+function updateScenario(){
+  const ets=+document.getElementById('ets-slider').value;
+  const eur=+document.getElementById('eur-slider').value;
+  const red=+document.getElementById('reduce-slider').value;
+  document.getElementById('ets-disp').textContent=`€${ets}`;
+  document.getElementById('eur-disp').textContent=`₩${eur.toLocaleString()}`;
+  document.getElementById('reduce-disp').textContent=`${red}%`;
+
+  const total=REGIONS.reduce((s,r)=>s+cbam억원(r.ghg*(1-red/100),ets,eur),0);
+  const base=REGIONS.reduce((s,r)=>s+cbam억원(r.ghg,71.84,1485),0);
+  const saving=base-total;
+  document.getElementById('scenario-kpis').innerHTML=`
+    <div class="kpi-card red"><div class="kpi-lbl">시나리오 CBAM 비용</div>
+      <div class="kpi-val">${(total/10000).toFixed(1)}<span style="font-size:13px;font-weight:400">조원</span></div>
+      <div class="kpi-sub">€${ets} × ₩${eur.toLocaleString()}</div></div>
+    <div class="kpi-card green"><div class="kpi-lbl">기준 대비 절감</div>
+      <div class="kpi-val">${saving>0?'+':''}<span style="font-size:15px">${(Math.abs(saving)/10000).toFixed(1)}</span><span style="font-size:13px;font-weight:400">조원</span></div>
+      <div class="kpi-sub">${saving>0?'절감':'증가'}</div></div>
+    <div class="kpi-card teal"><div class="kpi-lbl">감축률 적용</div>
+      <div class="kpi-val">${red}<span style="font-size:13px;font-weight:400">%</span></div>
+      <div class="kpi-sub">배출량 감축 가정</div></div>
+    <div class="kpi-card gold"><div class="kpi-lbl">EU↔K 갭</div>
+      <div class="kpi-val">${(ets*eur-8500).toLocaleString().slice(0,6)}<span style="font-size:13px;font-weight:400">원/t</span></div>
+      <div class="kpi-sub">기업 실질 추가부담</div></div>`;
+
+  // 시나리오 바차트
+  const sc=document.querySelector('#scenario-chart'); if(!sc)return;
+  sc.innerHTML='';
+  const scData=REGIONS.map(r=>({r:r.r,
+    base:cbam억원(r.ghg,71.84,1485),
+    now:cbam억원(r.ghg*(1-red/100),ets,eur)})).sort((a,b)=>b.now-a.now);
+  const maxV=Math.max(...scData.map(d=>Math.max(d.base,d.now)));
+  const bH=14,gap=3,lW=88,nW=72;
+  const W=sc.clientWidth||400, H=scData.length*(bH*2+gap+4)+20;
+  const svg=d3.select(sc).append('svg').attr('width','100%').attr('viewBox',`0 0 ${W} ${H}`);
+  const sc_=d3.scaleLinear().domain([0,maxV]).range([0,W-lW-nW-8]);
+  scData.forEach((d,i)=>{
+    const y=i*(bH*2+gap+4);
+    svg.append('text').attr('x',lW-4).attr('y',y+bH+1)
+      .attr('text-anchor','end').attr('dominant-baseline','central')
+      .style('font-size','9px').style('fill','var(--muted)').text(d.r);
+    // 기준
+    svg.append('rect').attr('x',lW).attr('y',y).attr('width',sc_(d.base))
+      .attr('height',bH).attr('rx',1).attr('fill','#C4BEB2').attr('opacity',.6);
+    // 시나리오
+    svg.append('rect').attr('x',lW).attr('y',y+bH+2).attr('width',sc_(d.now))
+      .attr('height',bH).attr('rx',1)
+      .attr('fill',d.now<d.base?'#0F6E56':'#A32D2D');
+    svg.append('text').attr('x',lW+sc_(d.now)+4).attr('y',y+bH*1.5+3)
+      .attr('dominant-baseline','central').style('font-size','9px').style('fill','var(--text)')
+      .text(d.now.toLocaleString()+'억');
+  });
+  // 범례
+  svg.append('rect').attr('x',lW).attr('y',H-14).attr('width',10).attr('height',8).attr('fill','#C4BEB2').attr('opacity',.6);
+  svg.append('text').attr('x',lW+13).attr('y',H-9).style('font-size','9px').style('fill','var(--muted)').text('기준(€71.84/₩1,485)');
+  svg.append('rect').attr('x',lW+130).attr('y',H-14).attr('width',10).attr('height',8).attr('fill','#3D7A6E');
+  svg.append('text').attr('x',lW+143).attr('y',H-9).style('font-size','9px').style('fill','var(--muted)').text('시나리오');
+}
+
+function renderPolicy(){
+  const rows=REGIONS.map(r=>{
+    const demand=+(r.ghg*1000/10000).toFixed(1);
+    const supply=FOREST_SUPPLY.find(f=>f.r===r.r)?.supply_만t||0;
+    const gap=+(demand-supply).toFixed(1);
+    let policy='';
+    if(gap>50) policy='<span style="color:var(--red)">크레딧 대규모 매입 지원 필요</span>';
+    else if(gap>0) policy='<span style="color:var(--amber)">산림조합 공급 확대</span>';
+    else if(gap>-20) policy='<span style="color:var(--teal)">자립 — 모범지역 브랜딩</span>';
+    else policy='<span style="color:var(--green)">크레딧 잉여 — 판매 플랫폼 구축</span>';
+    return {r:r.r,demand,supply,gap,policy};
+  }).sort((a,b)=>b.gap-a.gap);
+
+  document.getElementById('policy-table').innerHTML=rows.map(r=>`
+    <tr>
+      <td>${r.r}</td>
+      <td style="color:var(--red)">${r.demand.toFixed(1)}</td>
+      <td style="color:var(--green)">${r.supply.toFixed(1)}</td>
+      <td style="font-weight:700;color:${r.gap>0?'var(--red)':'var(--green)'}">${r.gap>0?'+':''}${r.gap.toFixed(1)}</td>
+      <td style="text-align:left">${r.policy}</td>
+    </tr>`).join('');
+}
+
+function renderTab(id){
+  if(id==='cbam') renderCbam();
+  else if(id==='biz') renderBiz();
+  else if(id==='gap') renderGap();
+  else if(id==='scenario') renderScenario();
+  else if(id==='policy') renderPolicy();
+}
+
+function renderAll(){ renderCbam(); }
+
+
+/* ═══ 지역 선택 데이터 ═══ */
+const REGION_TREE = {
+  "서울특별시": {
+    sgg: ["종로구","중구","용산구","성동구","광진구","동대문구","중랑구","성북구",
+          "강북구","도봉구","노원구","은평구","서대문구","마포구","양천구","강서구",
+          "구로구","금천구","영등포구","동작구","관악구","서초구","강남구","송파구","강동구"]
+  },
+  "부산광역시": {
+    sgg: ["중구","서구","동구","영도구","부산진구","동래구","남구","북구","해운대구",
+          "사하구","금정구","강서구","연제구","수영구","사상구","기장군"]
+  },
+  "대구광역시": {
+    sgg: ["중구","동구","서구","남구","북구","수성구","달서구","달성군","군위군"]
+  },
+  "인천광역시": {
+    sgg: ["중구","동구","미추홀구","연수구","남동구","부평구","계양구","서구","강화군","옹진군"]
+  },
+  "광주광역시": {
+    sgg: ["동구","서구","남구","북구","광산구"]
+  },
+  "대전광역시": {
+    sgg: ["동구","중구","서구","유성구","대덕구"]
+  },
+  "울산광역시": {
+    sgg: ["중구","남구","동구","북구","울주군"]
+  },
+  "세종특별자치시": {
+    sgg: ["세종시(전체)"]
+  },
+  "경기도": {
+    sgg: ["수원시","성남시","의정부시","안양시","부천시","광명시","평택시","동두천시",
+          "안산시","고양시","과천시","구리시","남양주시","오산시","시흥시","군포시",
+          "의왕시","하남시","용인시","파주시","이천시","안성시","김포시","화성시",
+          "광주시","양주시","포천시","여주시","연천군","가평군","양평군"]
+  },
+  "강원특별자치도": {
+    sgg: ["춘천시","원주시","강릉시","동해시","태백시","속초시","삼척시",
+          "홍천군","횡성군","영월군","평창군","정선군","철원군","화천군","양구군","인제군","고성군","양양군"]
+  },
+  "충청북도": {
+    sgg: ["청주시","충주시","제천시","보은군","옥천군","영동군","증평군","진천군","괴산군","음성군","단양군"]
+  },
+  "충청남도": {
+    sgg: ["천안시","공주시","보령시","아산시","서산시","논산시","계룡시","당진시",
+          "금산군","부여군","서천군","청양군","홍성군","예산군","태안군"]
+  },
+  "전북특별자치도": {
+    sgg: ["전주시","군산시","익산시","정읍시","남원시","김제시",
+          "완주군","진안군","무주군","장수군","임실군","순창군","고창군","부안군"]
+  },
+  "전라남도": {
+    sgg: ["목포시","여수시","순천시","나주시","광양시","담양군","곡성군","구례군",
+          "고흥군","보성군","화순군","장흥군","강진군","해남군","영암군","무안군",
+          "함평군","영광군","장성군","완도군","진도군","신안군"]
+  },
+  "경상북도": {
+    sgg: ["포항시","경주시","김천시","안동시","구미시","영주시","영천시","상주시","문경시","경산시",
+          "의성군","청송군","영양군","영덕군","청도군","고령군","성주군","칠곡군","예천군","봉화군","울진군","울릉군"]
+  },
+  "경상남도": {
+    sgg: ["창원시","진주시","통영시","사천시","김해시","밀양시","거제시","양산시",
+          "의령군","함안군","창녕군","고성군","남해군","하동군","산청군","함양군","거창군","합천군"]
+  },
+  "제주특별자치도": {
+    sgg: ["제주시","서귀포시"]
+  },
+};
+
+let selectedRegion = { metro: "", city: "", gu: "" };
+
+function initRegionSelector() {
+  const metroSel = document.getElementById('sel-metro');
+  Object.keys(REGION_TREE).forEach(metro => {
+    const opt = document.createElement('option');
+    opt.value = metro; opt.textContent = metro;
+    metroSel.appendChild(opt);
+  });
+}
+
+function onSelectMetro() {
+  const metro = document.getElementById('sel-metro').value;
+  const citySel = document.getElementById('sel-city');
+  const guSel = document.getElementById('sel-gu');
+  citySel.innerHTML = '<option value="">시·군·구 선택</option>';
+  guSel.innerHTML = '<option value="">구·읍·면 선택</option>';
+  guSel.disabled = true;
+
+  if (!metro) { citySel.disabled = true; selectedRegion = {metro:'',city:'',gu:''}; updateRegionBadge(); return; }
+  selectedRegion = { metro, city: '', gu: '' };
+  const sgList = REGION_TREE[metro]?.sgg || [];
+  sgList.forEach(sg => {
+    const opt = document.createElement('option');
+    opt.value = sg; opt.textContent = sg;
+    citySel.appendChild(opt);
+  });
+  citySel.disabled = false;
+  updateRegionBadge();
+  renderTab(getCurrentTab());
+}
+
+function onSelectCity() {
+  const city = document.getElementById('sel-city').value;
+  selectedRegion.city = city;
+  selectedRegion.gu = '';
+  document.getElementById('sel-gu').innerHTML = '<option value="">구·읍·면 선택</option>';
+  document.getElementById('sel-gu').disabled = !city;
+  // 3단계 구·읍·면은 추후 확장 (현재는 시·군·구까지)
+  updateRegionBadge();
+  renderTab(getCurrentTab());
+}
+
+function onSelectGu() {
+  selectedRegion.gu = document.getElementById('sel-gu').value;
+  updateRegionBadge();
+  renderTab(getCurrentTab());
+}
+
+function resetRegion() {
+  selectedRegion = {metro:'',city:'',gu:''};
+  document.getElementById('sel-metro').value = '';
+  document.getElementById('sel-city').innerHTML = '<option value="">시·군·구 선택</option>';
+  document.getElementById('sel-city').disabled = true;
+  document.getElementById('sel-gu').innerHTML = '<option value="">구·읍·면 선택</option>';
+  document.getElementById('sel-gu').disabled = true;
+  updateRegionBadge();
+  renderTab(getCurrentTab());
+}
+
+function updateRegionBadge() {
+  const badge = document.getElementById('reg-selected');
+  const txt = document.getElementById('reg-selected-text');
+  const info = document.getElementById('reg-info');
+  const label = [selectedRegion.metro, selectedRegion.city, selectedRegion.gu]
+    .filter(Boolean).join(' › ');
+  if (label) {
+    badge.style.display = 'inline-flex';
+    txt.textContent = label;
+    // 지역 데이터 찾기
+    const r = REGIONS.find(d => d.r.includes(selectedRegion.metro?.replace('특별자치','').replace('특별','').replace('광역','').slice(0,2)));
+    if (r) {
+      const exp = cbam억원(r.ghg, liveEts, liveEur);
+      info.textContent = `CBAM 추정노출 ${exp.toLocaleString()}억원 | 직접배출 ${r.ghg}Gg`;
+    } else {
+      info.textContent = '';
+    }
+  } else {
+    badge.style.display = 'none';
+    info.textContent = '전국 기준으로 표시 중';
+  }
+}
+
+function getCurrentTab() {
+  const on = document.querySelector('.nav-tab.on');
+  if (!on) return 'cbam';
+  const t = on.textContent;
+  if (t.includes('기업')) return 'biz';
+  if (t.includes('갭')) return 'gap';
+  if (t.includes('시나리오')) return 'scenario';
+  if (t.includes('정책')) return 'policy';
+  return 'cbam';
+}
+
+function getFilteredRegions() {
+  if (!selectedRegion.metro) return REGIONS;
+  const key = selectedRegion.metro.replace('특별자치','').replace('특별','').replace('광역','').slice(0,2);
+  return REGIONS.filter(r => r.r.includes(key));
+}
+
+/* ═══ 초기화 ═══ */
+window.addEventListener('load',()=>{
+  initRegionSelector();
+  const gap=+(liveEts*liveEur-8500).toFixed(0);
+  document.getElementById('t-gap').textContent=gap.toLocaleString();
+  document.getElementById('t-gap').className='tick-val gap-warn';
+  renderAll();
+  fetchLive();
+});
+window.addEventListener('resize',()=>renderTab(
+  document.querySelector('.nav-tab.on')?.textContent?.includes('CBAM')?'cbam':
+  document.querySelector('.nav-tab.on')?.textContent?.includes('기업')?'biz':
+  document.querySelector('.nav-tab.on')?.textContent?.includes('갭')?'gap':
+  document.querySelector('.nav-tab.on')?.textContent?.includes('시나리오')?'scenario':'policy'
+));
+</script>
+</body>
+</html>
