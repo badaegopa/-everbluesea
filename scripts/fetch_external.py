@@ -530,163 +530,143 @@ def collect_kicox(key):
 
 
 # ══════════════════════════════════════════════════════
-# ⑩ KOSIS 국가 온실가스 분야별 배출량 (DT_106N_99_2800020)
+# 두레비즈 DURE-Biz — CBAM 카테고리
+# 국가온실가스통계 6종 수집 함수 (orgId=106)
+# 출처: 기후에너지환경부 온실가스종합정보센터
+# 단위: 백만t CO₂eq. (지역별은 Gg CO₂eq.)
 # ══════════════════════════════════════════════════════
-# 출처: 기후에너지환경부 온실가스종합정보센터 「국가온실가스통계」
-# orgId=106, tblId=DT_106N_99_2800020
-# itmId=13103130539T.1100001+ (총배출량/분야별)
-# 단위: 백만t CO₂eq.
-# 수록기간: 1990~2023 / 자갱신일: 2026-03-31
 
-KOSIS_GHG_URL = "https://kosis.kr/openapi/Param/statisticsParameterData.do"
+KOSIS_URL = "https://kosis.kr/openapi/Param/statisticsParameterData.do"
 
-# 분야 코드 매핑 (KOSIS C1 코드 → 분야명)
-GHG_SECTOR_MAP = {
-    "1":  "총배출량",
-    "2":  "순배출량",
-    "3":  "1.에너지",
-    "4":  "2.산업공정및제품사용",
-    "5":  "3.농업",
-    "6":  "4.LULUCF",
-    "7":  "5.폐기물",
+GHG_TABLES = {
+    "ghg_by_sector":   ("DT_106N_99_2800020", "13103130539T.1100001+",        "분야별 배출량 추이",     "Y", "5", "백만t"),
+    "ghg_indicators":  ("DT_106N_99_2800019", "13103130540T.1100001+13103130540T.1100002+13103130540T.1100003+13103130540T.1100004+", "배출량 주요 지표", "Y", "5", "백만t"),
+    "ghg_by_gas":      ("DT_106N_99_2800021", "13103130538T.1100001+",        "종류별 배출량 추이",     "Y", "5", "백만t"),
+    "ghg_gas_sector":  ("DT_106N_99_2800025", "13103130541T.1100001+",        "종류별×분야별 배출량",   "Y", "5", "백만t"),
+    "ghg_regional_direct": ("DT_106N_99_2800026", "13103844246T.10001+",      "지역별 배출량(직접)",    "Y", "3", "Gg"),
+    "ghg_regional_indirect": ("DT_106N_99_2800027", "13103844245T.10001+",    "지역별 배출량(간접)",    "Y", "3", "Gg"),
 }
 
-def collect_ghg_national(key):
-    """국가 온실가스 분야별 배출량 최근 3개년 수집 (단위: 백만t CO₂eq.)"""
-    result = {"data": [], "latest_year": None, "total_emission": None,
-              "sectors": {}, "trend": []}
+def _fetch_kosis_ghg(key, tbl_id, itm_id, prd_se, cnt, label, unit):
+    """KOSIS 온실가스 통계 공통 수집 함수"""
+    result = {"label": label, "unit": unit, "data": [], "latest_year": None}
     params = {
-        "method":       "getList",
-        "apiKey":       key,
-        "orgId":        "106",
-        "tblId":        "DT_106N_99_2800020",
-        "itmId":        "13103130539T.1100001+",
-        "objL1":        "ALL",
-        "objL2":        "",
-        "prdSe":        "Y",
-        "newEstPrdCnt": "5",        # 최근 5개년
-        "format":       "json",
-        "jsonVD":       "Y",
+        "method": "getList", "apiKey": key,
+        "orgId": "106", "tblId": tbl_id,
+        "itmId": itm_id,
+        "objL1": "ALL", "objL2": "ALL",
+        "objL3": "", "objL4": "", "objL5": "",
+        "prdSe": prd_se, "newEstPrdCnt": cnt,
+        "format": "json", "jsonVD": "Y",
     }
     try:
-        r = requests.get(KOSIS_GHG_URL, params=params, timeout=TIMEOUT)
+        r = requests.get(KOSIS_URL, params=params, timeout=TIMEOUT)
         rows = r.json()
         if isinstance(rows, dict):
             raise RuntimeError(rows.get("errMsg") or rows.get("err") or str(rows))
-
-        # 연도별 분야별 정리
-        data = []
         years = sorted({row.get("PRD_DE","") for row in rows if row.get("PRD_DE")}, reverse=True)
-        latest = years[0] if years else None
-        result["latest_year"] = latest
-
-        # 연도별 총배출량 추세
-        total_by_year = {}
-        for row in rows:
-            yr  = row.get("PRD_DE","")
-            c1  = row.get("C1","")
-            val = _float(row.get("DT"))
-            if not yr or not val:
-                continue
-            nm = row.get("C1_NM","") or GHG_SECTOR_MAP.get(c1, c1)
-            data.append({"year": yr, "sector_code": c1, "sector": nm, "value_mt": val})
-            if c1 == "1":   # 총배출량
-                total_by_year[yr] = val
-
-        result["data"] = sorted(data, key=lambda x: (x["year"], x["sector_code"]), reverse=True)
-
-        # 최신연도 분야별
-        if latest:
-            result["total_emission"] = total_by_year.get(latest)
-            result["sectors"] = {
-                row["sector"]: row["value_mt"]
-                for row in data
-                if row["year"] == latest
-            }
-
-        # 추세 (연도별 총배출량, 최근 5년)
-        result["trend"] = [
-            {"year": yr, "total_mt": total_by_year.get(yr)}
-            for yr in sorted(total_by_year.keys(), reverse=True)[:5]
-        ]
-
-        print(f"  GHG 국가배출량 [{latest}] 총배출량={result['total_emission']}백만t")
-        for s, v in result["sectors"].items():
-            if s not in ("순배출량",):
-                print(f"    └ {s}: {v}백만t")
-
+        result["latest_year"] = years[0] if years else None
+        result["data"] = rows
+        print(f"  GHG [{label}] {result['latest_year']}: {len(rows)}건")
     except Exception as e:
-        print(f"  GHG 국가배출량 ERR: {e}")
+        print(f"  GHG [{label}] ERR: {e}")
         result["error"] = str(e)[:80]
     return result
 
 
-# ══════════════════════════════════════════════════════
-# ⑪ KOSIS 시도별 온실가스 배출량 안분 추정
-# ══════════════════════════════════════════════════════
-# ※ GIR 지역별 배출량은 2년 시차 공표, API 미제공
-#   → 에너지사용량(KESIS) + 산업생산(KICOX) 기반 안분 계수 적용
-#   → 실제 GIR 발표치와 ±15% 오차 범위 (보수적 활용 권장)
+def collect_ghg_all(key):
+    """온실가스 6종 전체 수집 — CBAM 카테고리 데이터 레이어"""
+    result = {}
+    for field, (tbl_id, itm_id, label, prd_se, cnt, unit) in GHG_TABLES.items():
+        result[field] = _fetch_kosis_ghg(key, tbl_id, itm_id, prd_se, cnt, label, unit)
+        time.sleep(0.3)
+    return result
 
-# 2021년 GIR 공표 시도별 배출량 비율 (온실가스종합정보센터 시범산정 기준)
-# 출처: 한국에너지기술연구원 K-온실가스 배출 지도 (2021년 기준)
-GHG_REGION_RATIO_2021 = {
-    "서울":  0.0695,
-    "부산":  0.0488,
-    "대구":  0.0266,
-    "인천":  0.0722,
-    "광주":  0.0153,
-    "대전":  0.0136,
-    "울산":  0.0893,   # 석유화학·철강 집중으로 높음
-    "세종":  0.0042,
-    "경기":  0.1387,
-    "강원":  0.0296,
-    "충북":  0.0413,
-    "충남":  0.1268,   # 화력발전 집중
-    "전북":  0.0318,
-    "전남":  0.0884,   # 여수 석유화학
-    "경북":  0.0876,   # POSCO 포항
-    "경남":  0.0622,
-    "제주":  0.0113,
-    # 비율 합계 ≈ 1.0
-}
 
-def collect_ghg_regional(key):
-    """시도별 온실가스 배출량 추정 — 국가 총량 × 2021 GIR 비율 안분"""
-    result = {"data": [], "method": "GIR_2021_RATIO", "base_year": "2021",
-              "warning": "GIR 공식 발표치가 아닌 안분 추정값. ±15% 오차 범위."}
-    try:
-        # 최신 국가 총배출량 가져오기
-        ghg_national = collect_ghg_national(key)
-        latest_yr  = ghg_national.get("latest_year", "2023")
-        total_mt   = ghg_national.get("total_emission")
+# ── 교차 연산 엔진 ──────────────────────────────────────
+# 없던 데이터 창조: 시도 × 분야 × 가스 배출 매트릭스
 
-        if not total_mt:
-            raise RuntimeError("국가 총배출량 수집 실패")
+def compute_cbam_exposure(ghg_all, ets_price_eur, eur_krw):
+    """
+    CBAM 노출액 교차 계산
+    입력: 온실가스 6종 수집 결과 + EU ETS 가격 + 환율
+    출력: 시도별 CBAM 노출액(억원) + 인증서 필요수량(tCO₂)
 
-        data = []
-        for region, ratio in GHG_REGION_RATIO_2021.items():
-            est_mt = round(total_mt * ratio, 3)
-            data.append({
-                "region":      region,
-                "ratio_2021":  ratio,
-                "estimated_mt": est_mt,
-                "estimated_year": latest_yr,
-                "tCO2_per_capita": None,   # 인구 데이터 연동 시 채울 수 있음
-            })
+    계산 방식:
+      ① 지역별 직접배출[시도][분야] (Gg CO₂eq.)
+      ② 종류별×분야별[CO₂][분야] 비율 (전국 기준)
+      ③ 시도 CO₂ 추정 = ①×②
+      ④ CBAM 노출액 = ③(tCO₂) × ETS가격(€) × EUR/KRW
+    """
+    result = {"regions": {}, "national_total_gg": 0,
+              "ets_price_eur": ets_price_eur, "eur_krw": eur_krw}
 
-        data.sort(key=lambda x: x["estimated_mt"], reverse=True)
-        result["data"]           = data
-        result["national_total"] = total_mt
-        result["estimated_year"] = latest_yr
+    direct = ghg_all.get("ghg_regional_direct", {})
+    gas_sector = ghg_all.get("ghg_gas_sector", {})
 
-        top = data[0]
-        print(f"  GHG 지역추정 [{latest_yr}기준] 전국={total_mt}백만t")
-        print(f"  → 최다: {top['region']} {top['estimated_mt']}백만t ({top['ratio_2021']*100:.1f}%)")
+    direct_rows   = direct.get("data", [])
+    gs_rows       = gas_sector.get("data", [])
+    latest_direct = direct.get("latest_year")
+    latest_gs     = gas_sector.get("latest_year")
 
-    except Exception as e:
-        print(f"  GHG 지역추정 ERR: {e}")
-        result["error"] = str(e)[:80]
+    if not direct_rows or not gs_rows:
+        result["error"] = "데이터 미수집"
+        return result
+
+    # ── CO₂ 분야별 비율 산출 (전국 기준) ──
+    co2_sector_total = {}   # {분야코드: CO₂량}
+    co2_all_total    = 0
+    for row in gs_rows:
+        if row.get("PRD_DE") != latest_gs: continue
+        if "CO₂" not in (row.get("C1_NM","") or "") and "CO2" not in (row.get("C1_NM","") or ""):
+            continue
+        sector = row.get("C2_NM","") or row.get("C2","")
+        val    = _float(row.get("DT"))
+        if val and sector:
+            co2_sector_total[sector] = co2_sector_total.get(sector, 0) + val
+            co2_all_total += val
+
+    co2_ratio = {s: v/co2_all_total for s,v in co2_sector_total.items()} if co2_all_total else {}
+
+    # ── 시도별 직접배출 × CO₂ 비율 → CBAM 노출액 ──
+    region_totals = {}
+    for row in direct_rows:
+        if row.get("PRD_DE") != latest_direct: continue
+        region = row.get("C1_NM","") or row.get("C1","")
+        sector = row.get("C2_NM","") or row.get("C2","")
+        val_gg = _float(row.get("DT"))
+        if not region or not val_gg: continue
+        if region not in region_totals:
+            region_totals[region] = {"total_gg": 0, "by_sector": {}, "co2_gg": 0}
+        region_totals[region]["total_gg"] += val_gg
+        region_totals[region]["by_sector"][sector] = val_gg
+        # CO₂ 추정
+        r = co2_ratio.get(sector, 0.85)   # 기본 85% (에너지 기준)
+        region_totals[region]["co2_gg"] += val_gg * r
+
+    # ── CBAM 노출액 계산 ──
+    for region, vals in region_totals.items():
+        co2_t     = vals["co2_gg"] * 1000   # Gg → kt → ×1000 = t
+        exposure  = co2_t * ets_price_eur * eur_krw / 1e8  # 억원
+        result["regions"][region] = {
+            "total_gg":         round(vals["total_gg"], 2),
+            "co2_estimated_gg": round(vals["co2_gg"], 2),
+            "co2_tonne":        round(co2_t, 0),
+            "cbam_exposure_억원": round(exposure, 1),
+            "cert_needed_tCO2":   round(co2_t, 0),
+            "by_sector":        vals["by_sector"],
+            "year":             latest_direct,
+        }
+
+    result["national_total_gg"] = sum(v["total_gg"] for v in region_totals.values())
+    result["computed_at"] = datetime.datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")
+
+    top = sorted(result["regions"].items(), key=lambda x: x[1]["cbam_exposure_억원"], reverse=True)
+    print(f"  CBAM 노출액 계산 완료: {len(top)}개 시도")
+    if top:
+        print(f"  → 1위: {top[0][0]} {top[0][1]['cbam_exposure_억원']:,.1f}억원")
+        print(f"  → 2위: {top[1][0]} {top[1][1]['cbam_exposure_억원']:,.1f}억원" if len(top)>1 else "")
+
     return result
 
 
@@ -760,11 +740,17 @@ def main():
         kw: [] for kw in NKIS_KEYWORDS
     }
 
-    print("\n[⑩ 국가 온실가스 분야별 배출량]")
-    ext["ghg_national"] = collect_ghg_national(KOSIS) if KOSIS else {"data":[],"error":"KOSIS 미설정"}
-
-    print("\n[⑪ 시도별 온실가스 배출량 추정]")
-    ext["ghg_regional"] = collect_ghg_regional(KOSIS) if KOSIS else {"data":[],"error":"KOSIS 미설정"}
+    print("\n[⑩⑪ 두레비즈 CBAM — 온실가스 6종 + 교차계산]")
+    if KOSIS:
+        ext["ghg_all"] = collect_ghg_all(KOSIS)
+        ext["cbam_exposure"] = compute_cbam_exposure(
+            ext["ghg_all"],
+            ets_price_eur=float(os.environ.get("EU_ETS_EUR","71.84")),
+            eur_krw=float(os.environ.get("EUR_KRW","1485"))
+        )
+    else:
+        ext["ghg_all"] = {k:{"label":v[2],"error":"KOSIS 미설정"} for k,v in GHG_TABLES.items()}
+        ext["cbam_exposure"] = {"error":"KOSIS 미설정"}
 
     print("\n[⑧ KOSIS 행정구역별 인구수]")
     ext["kosis_regional_pop"] = collect_kosis_regional_pop(KOSIS) if KOSIS else {
@@ -789,8 +775,8 @@ def main():
             u["nkis_policy"]         = ext["nkis_policy"]
             u["kosis_regional_pop"]  = ext["kosis_regional_pop"]
             u["kicox_industry"]      = ext["kicox_industry"]
-            u["ghg_national"]         = ext["ghg_national"]
-            u["ghg_regional"]         = ext["ghg_regional"]
+            u["ghg_all"]              = ext["ghg_all"]
+            u["cbam_exposure"]        = ext["cbam_exposure"]
             ULSAN_JSON.write_text(json.dumps(u, ensure_ascii=False, indent=2), encoding="utf-8")
             print(f"\n✅ 병합 완료 → {ULSAN_JSON}")
         except Exception as e:
