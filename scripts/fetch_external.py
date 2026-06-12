@@ -19,6 +19,7 @@ DATA_GO_KR   = os.environ.get("DATA_GO_KR", "")
 KOSIS        = os.environ.get("KOSIS", "")
 ECOS         = os.environ.get("ECOS", "")
 NKIS_API_KEY = os.environ.get("NKIS_API_KEY", "")
+KICOX_KEY    = os.environ.get("DATA_GO_KR", "")   # 산업단지공단도 DATA_GO_KR Encoding 키 사용
 ULSAN_JSON = Path("data/ulsan.json")
 TIMEOUT = 20
 KST = datetime.timezone(datetime.timedelta(hours=9))
@@ -343,6 +344,191 @@ def collect_nkis(key):
             result[keyword] = []
     return result
 
+
+# ══════════════════════════════════════════════════════
+# ⑧ KOSIS 행정구역별 인구수 (DT_1B040A3)
+# ══════════════════════════════════════════════════════
+# 출처: 행정안전부 주민등록인구현황 (월별)
+# itmId: T20=총인구 T21=남자 T22=여자
+# objL1: 시도 코드 (울산=26)
+KOSIS_POP_URL = "https://kosis.kr/openapi/Param/statisticsParameterData.do"
+
+KOSIS_REGION_CODES = {
+    "00": "전국",  "11": "서울", "26": "부산", "27": "대구",
+    "28": "인천",  "29": "광주", "30": "대전", "31": "울산",
+    "36": "세종",  "41": "경기", "51": "강원", "43": "충북",
+    "44": "충남",  "52": "전북", "46": "전남", "47": "경북",
+    "48": "경남",  "50": "제주",
+}
+
+def collect_kosis_regional_pop(key):
+    """행정구역(시도)별 주민등록 인구수 최근 3개월 — DT_1B040A3."""
+    result = {"data": [], "ulsan_total": None, "ulsan_male": None,
+              "ulsan_female": None, "latest_period": None}
+    params = {
+        "method":       "getList",
+        "apiKey":       key,
+        "orgId":        "101",
+        "tblId":        "DT_1B040A3",
+        "itmId":        "T20+T21+T22+",
+        "objL1":        "00+11+26+27+28+29+30+31+36+41+51+43+44+52+46+47+48+50+",
+        "objL2":        "",
+        "prdSe":        "M",
+        "newEstPrdCnt": "3",
+        "format":       "json",
+        "jsonVD":       "Y",
+    }
+    try:
+        r = requests.get(KOSIS_POP_URL, params=params, timeout=TIMEOUT)
+        rows = r.json()
+        if isinstance(rows, dict):
+            raise RuntimeError(rows.get("errMsg") or rows.get("err") or str(rows))
+
+        # 최신 기간 확인
+        periods = sorted({row.get("PRD_DE", "") for row in rows if row.get("PRD_DE")}, reverse=True)
+        latest = periods[0] if periods else None
+        result["latest_period"] = latest
+
+        # 최신 기간 기준 시도별 총인구 집계
+        data = []
+        for c1_code, region_name in KOSIS_REGION_CODES.items():
+            total = next(
+                (_int(row["DT"]) for row in rows
+                 if row.get("C1") == c1_code
+                 and row.get("ITM_ID") == "T20"
+                 and row.get("PRD_DE") == latest),
+                None
+            )
+            male = next(
+                (_int(row["DT"]) for row in rows
+                 if row.get("C1") == c1_code
+                 and row.get("ITM_ID") == "T21"
+                 and row.get("PRD_DE") == latest),
+                None
+            )
+            female = next(
+                (_int(row["DT"]) for row in rows
+                 if row.get("C1") == c1_code
+                 and row.get("ITM_ID") == "T22"
+                 and row.get("PRD_DE") == latest),
+                None
+            )
+            data.append({
+                "region_code": c1_code,
+                "region_name": region_name,
+                "total": total,
+                "male": male,
+                "female": female,
+                "period": latest,
+            })
+
+        result["data"] = data
+
+        # 울산(C1=31) 별도 추출
+        ulsan = next((d for d in data if d["region_code"] == "31"), None)
+        if ulsan:
+            result["ulsan_total"]  = ulsan["total"]
+            result["ulsan_male"]   = ulsan["male"]
+            result["ulsan_female"] = ulsan["female"]
+
+        nat = next((d for d in data if d["region_code"] == "00"), None)
+        print(f"  KOSIS 지역인구 [{latest}] 전국={nat['total']:,}" if nat and nat['total'] else
+              f"  KOSIS 지역인구 [{latest}] 집계완료")
+        if ulsan and ulsan["total"]:
+            print(f"  → 울산 {ulsan['total']:,}명 (남:{ulsan['male']:,} 여:{ulsan['female']:,})")
+
+    except Exception as e:
+        print(f"  KOSIS 지역인구 ERR: {e}")
+        result["error"] = str(e)[:80]
+    return result
+
+
+# ══════════════════════════════════════════════════════
+# ⑨ 한국산업단지공단 산업동향 (KICOX) — 업종별 5종
+# ══════════════════════════════════════════════════════
+# Base URL: https://apis.data.go.kr/B550624/indparkstats
+# serviceKey: Encoding 키 그대로 사용
+# 날짜: srtStdrYm / endStdrYm (YYYYMM) 필수
+# 응답: XML (type 파라미터 불필요)
+# 개발계정 일일 500회 제한
+
+KICOX_BASE = "https://apis.data.go.kr/B550624/indparkstats"
+KICOX_SERVICES = [
+    ("op_rate_detail",  "kicoxDetailOpRateStatsService",      "가동률 세부내역"),
+    ("op_by_industry",  "kicoxOpRateByIndustryStatsService",  "업종별 가동률"),
+    ("prod_by_industry","kicoxPrdRecByIndustryStatsService",  "업종별 생산실적"),
+    ("export_by_industry","kicoxExportRecByIndustryStatsService","업종별 수출실적"),
+    ("company_by_industry","kicoxOpCmpnyByIndustryStatsService","업종별 가동업체"),
+]
+
+def _kicox_recent_ym(offset_months=1):
+    """기준년월: 현재 달에서 offset_months 전 (공단 데이터 1~2달 지연)."""
+    today = datetime.datetime.now(KST)
+    m, y = today.month - offset_months, today.year
+    while m <= 0:
+        m += 12; y -= 1
+    return f"{y}{m:02d}"
+
+def collect_kicox(key):
+    """산업단지공단 업종별 동향 5종 수집 (XML 응답)."""
+    result = {}
+    srt = _kicox_recent_ym(3)   # 3개월 전부터
+    end = _kicox_recent_ym(1)   # 1개월 전까지 (최신 확정치)
+
+    for field, service, label in KICOX_SERVICES:
+        url = f"{KICOX_BASE}/{service}"
+        params = {
+            "serviceKey":  key,
+            "srtStdrYm":   srt,
+            "endStdrYm":   end,
+            "numOfRows":   "100",
+            "pageNo":      "1",
+        }
+        try:
+            r = requests.get(url, params=params, timeout=TIMEOUT)
+            root = ET.fromstring(r.content)
+
+            # 결과코드 확인
+            rc = root.findtext(".//resultCode") or root.findtext(".//returnReasonCode")
+            if rc and rc not in ("00", "000", "0000"):
+                msg = root.findtext(".//resultMsg") or root.findtext(".//returnReasonMsg") or ""
+                raise RuntimeError(f"code={rc} {msg}")
+
+            items = root.findall(".//item")
+            parsed = []
+            for it in items:
+                row = {child.tag: (child.text or "").strip() for child in it}
+                parsed.append(row)
+
+            result[field] = {
+                "label":   label,
+                "period":  f"{srt}~{end}",
+                "count":   len(parsed),
+                "data":    parsed,
+            }
+            print(f"  KICOX [{label}] {srt}~{end}: {len(parsed)}건")
+
+            # 울산 단지 요약 (가동률 세부내역일 경우)
+            if field == "op_rate_detail":
+                ulsan_rows = [
+                    r for r in parsed
+                    if "울산" in (r.get("irsttNm") or r.get("irsttTyNm") or "")
+                ]
+                if ulsan_rows:
+                    for ur in ulsan_rows[:3]:
+                        rate = ur.get("opRateTotal") or ur.get("opRateBig") or "-"
+                        nm   = ur.get("irsttNm") or ur.get("irsttTyNm") or ""
+                        print(f"    └ {nm}: 가동률 {rate}%")
+
+        except Exception as e:
+            print(f"  KICOX [{label}] ERR: {e}")
+            result[field] = {"label": label, "error": str(e)[:80], "data": []}
+
+        time.sleep(0.3)   # API 부하 방지
+
+    return result
+
+
 # ══════════════════════════════════════════════════════
 # main
 # ══════════════════════════════════════════════════════
@@ -370,6 +556,8 @@ def main():
         print("⚠️  NKIS_API_KEY 환경변수 없음 — 정책연구 건너뜀")
     else:
         print(f"  NKIS키: {NKIS_API_KEY[:8]}...")
+    if not KICOX_KEY:
+        print("⚠️  DATA_GO_KR 없음 — 산업단지공단 건너뜀")
 
     ext = {"_updated": now}
 
@@ -411,6 +599,17 @@ def main():
         kw: [] for kw in NKIS_KEYWORDS
     }
 
+    print("\n[⑧ KOSIS 행정구역별 인구수]")
+    ext["kosis_regional_pop"] = collect_kosis_regional_pop(KOSIS) if KOSIS else {
+        "data": [], "ulsan_total": None, "error": "KOSIS 미설정"
+    }
+
+    print("\n[⑨ 산업단지공단 산업동향]")
+    ext["kicox_industry"] = collect_kicox(KICOX_KEY) if KICOX_KEY else {
+        svc: {"label": lbl, "error": "DATA_GO_KR 미설정", "data": []}
+        for svc, _, lbl in KICOX_SERVICES
+    }
+
     if ULSAN_JSON.exists():
         try:
             u = json.loads(ULSAN_JSON.read_text(encoding="utf-8"))
@@ -421,6 +620,8 @@ def main():
             u["population_forecast"] = ext["population_forecast"]
             u["ecos_macro"]          = ext["ecos_macro"]
             u["nkis_policy"]         = ext["nkis_policy"]
+            u["kosis_regional_pop"]  = ext["kosis_regional_pop"]
+            u["kicox_industry"]      = ext["kicox_industry"]
             ULSAN_JSON.write_text(json.dumps(u, ensure_ascii=False, indent=2), encoding="utf-8")
             print(f"\n✅ 병합 완료 → {ULSAN_JSON}")
         except Exception as e:
@@ -455,6 +656,12 @@ def main():
     for kw, docs in np.items():
         if docs:
             print(f"    [{kw}] {docs[0].get('title','(제목없음)')} ({docs[0].get('year','')})")
+    rp = ext["kosis_regional_pop"]
+    print(f"  KOSIS 지역인구({rp.get('latest_period','?')}): 울산 {rp.get('ulsan_total'):,}명" if rp.get('ulsan_total') else
+          f"  KOSIS 지역인구: {rp.get('error','데이터없음')}")
+    ki = ext["kicox_industry"]
+    kicox_ok = [v["label"] for v in ki.values() if isinstance(v, dict) and v.get("data")]
+    print(f"  KICOX 산업동향: {len(kicox_ok)}종 수집 ({', '.join(kicox_ok) if kicox_ok else '없음'})")
 
 if __name__ == "__main__":
     main()
