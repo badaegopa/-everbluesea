@@ -671,6 +671,212 @@ def compute_cbam_exposure(ghg_all, ets_price_eur, eur_krw):
 
 
 # ══════════════════════════════════════════════════════
+# 두레비즈 DURE-Biz — 기업분포 카테고리
+# 전국사업체조사 8종 (orgId=101, 11차개정 2020~)
+# 출처: 국가데이터처 「전국사업체조사」
+# 수록: 2020~2024 (년)
+# ══════════════════════════════════════════════════════
+
+# 산업 대분류 코드 (KSIC 11차 개정)
+INDUSTRY_MAP = {
+    "0": "전체산업",
+    "A": "농업·임업·어업",
+    "B": "광업",
+    "C": "제조업",           # CBAM 핵심 — 철강/화학/시멘트
+    "D": "전기·가스·증기",
+    "E": "수도·하수·폐기물",
+    "F": "건설업",
+    "G": "도매·소매업",
+    "H": "운수·창고업",
+    "I": "숙박·음식점업",
+    "J": "정보통신업",
+    "K": "금융·보험업",
+    "L": "부동산업",
+    "M": "전문·과학·기술",
+    "N": "사업시설·임대",
+    "O": "공공행정·국방",
+    "P": "교육서비스업",
+    "Q": "보건·사회복지",
+    "R": "예술·스포츠·여가",
+    "S": "협회·수리·기타",
+}
+
+# CBAM 직접 관련 업종 코드
+CBAM_INDUSTRIES = {"C", "D", "E"}   # 제조업, 전기가스, 수도폐기물
+
+BIZ_TABLES = {
+    # field명: (tblId, itmId, objL3, label)
+    "biz_basic":     ("DT_1K52F08", "T1+T2+T3+", "",    "시도·산업별 사업체수·종사자수·매출액"),
+    "biz_by_type":   ("DT_1K52F01", "T1+T2+",    "ALL", "시도·산업·사업체구분별"),
+    "biz_by_org":    ("DT_1K52F02", "T1+T2+",    "ALL", "시도·산업·조직형태별"),
+    "biz_by_size":   ("DT_1K52F03", "T1+T2+",    "ALL", "시도·산업·종사자규모별"),
+    "biz_by_status": ("DT_1K52F04", "T2+",        "ALL", "시도·산업·종사상지위별"),
+    "biz_by_ceo_sex":("DT_1K52F05", "T1+",        "ALL", "시도·산업·대표자성별"),
+    "biz_by_emp_sex":("DT_1K52F06", "T1+",        "ALL", "시도·산업·종사자성별"),
+    "biz_by_ceo_age":("DT_1K52F07", "T1+",        "ALL", "시도·산업·대표자연령대별"),
+}
+
+KOSIS_BIZ_URL = "https://kosis.kr/openapi/Param/statisticsParameterData.do"
+BIZ_INDUSTRIES = "0+A+B+C+D+E+F+G+H+I+J+K+L+M+N+O+P+Q+R+S+"
+
+
+def _fetch_biz_table(key, tbl_id, itm_id, obj_l3, label):
+    """전국사업체조사 단일 테이블 수집"""
+    result = {"label": label, "data": [], "latest_year": None}
+    params = {
+        "method": "getList", "apiKey": key,
+        "orgId":  "101",     "tblId":  tbl_id,
+        "itmId":  itm_id,
+        "objL1":  "ALL",
+        "objL2":  BIZ_INDUSTRIES,
+        "objL3":  obj_l3,
+        "objL4": "", "objL5": "", "objL6": "", "objL7": "", "objL8": "",
+        "prdSe":        "Y",
+        "newEstPrdCnt": "3",
+        "format": "json", "jsonVD": "Y",
+    }
+    try:
+        r = requests.get(KOSIS_BIZ_URL, params=params, timeout=TIMEOUT)
+        rows = r.json()
+        if isinstance(rows, dict):
+            raise RuntimeError(rows.get("errMsg") or rows.get("err") or str(rows))
+        years = sorted({row.get("PRD_DE","") for row in rows if row.get("PRD_DE")}, reverse=True)
+        result["latest_year"] = years[0] if years else None
+        result["data"] = rows
+        print(f"  BIZ [{label}] {result['latest_year']}: {len(rows)}건")
+    except Exception as e:
+        print(f"  BIZ [{label}] ERR: {e}")
+        result["error"] = str(e)[:80]
+    return result
+
+
+def collect_biz_distribution(key):
+    """
+    전국사업체조사 8종 수집
+    두레비즈 기업분포 카테고리 데이터 레이어
+    """
+    result = {}
+    for field, (tbl_id, itm_id, obj_l3, label) in BIZ_TABLES.items():
+        result[field] = _fetch_biz_table(key, tbl_id, itm_id, obj_l3, label)
+        time.sleep(0.3)
+    return result
+
+
+def compute_cbam_industry_exposure(biz_all, ghg_regional, ets_price_eur, eur_krw):
+    """
+    기업분포 × 온실가스 교차 계산
+    = 시도별 CBAM 대상 업종(제조업·전기가스) 기업 규모 + 배출 노출액
+
+    입력:
+      biz_all       — 전국사업체조사 수집 결과
+      ghg_regional  — 지역별 온실가스 (ghg_all["ghg_regional_direct"])
+      ets_price_eur — EU ETS 가격
+      eur_krw       — EUR/KRW 환율
+
+    출력: 시도별 {
+      cbam_biz_count:   CBAM 대상 업종 사업체수
+      cbam_emp_count:   종사자수
+      cbam_revenue_억원: 매출액 (억원)
+      cbam_exposure_억원: 탄소 노출액 (GHG × ETS)
+      industry_breakdown: {업종코드: {사업체수, 종사자수, 매출액}}
+    }
+    """
+    result = {"regions": {}, "computed_at": datetime.datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")}
+
+    basic = biz_all.get("biz_basic", {})
+    rows  = basic.get("data", [])
+    latest = basic.get("latest_year")
+
+    if not rows:
+        result["error"] = "사업체조사 데이터 미수집"
+        return result
+
+    # ── 시도별 × 업종별 집계 ──
+    region_data = {}
+    for row in rows:
+        if row.get("PRD_DE") != latest:
+            continue
+        region = row.get("C1_NM","") or row.get("C1","")
+        ind    = row.get("C2","")     # 산업 코드
+        ind_nm = row.get("C2_NM","") or INDUSTRY_MAP.get(ind, ind)
+        itm    = row.get("ITM_ID","")
+        val    = _float(row.get("DT"))
+
+        if not region or not ind or not val:
+            continue
+        if region not in region_data:
+            region_data[region] = {}
+        if ind not in region_data[region]:
+            region_data[region][ind] = {"name": ind_nm, "biz_count": 0, "emp_count": 0, "revenue_억원": 0}
+
+        if itm == "T1":
+            region_data[region][ind]["biz_count"]   += val
+        elif itm == "T2":
+            region_data[region][ind]["emp_count"]    += val
+        elif itm == "T3":
+            # T3 단위: 백만원 → 억원
+            region_data[region][ind]["revenue_억원"] += val / 100
+
+    # ── CBAM 대상 업종 필터링 + GHG 노출액 합산 ──
+    ghg_rows   = ghg_regional.get("data", []) if isinstance(ghg_regional, dict) else []
+    ghg_latest = ghg_regional.get("latest_year") if isinstance(ghg_regional, dict) else None
+
+    # 시도별 직접 총배출량 (Gg → tCO₂)
+    ghg_by_region = {}
+    for row in ghg_rows:
+        if row.get("PRD_DE") != ghg_latest:
+            continue
+        region = row.get("C1_NM","") or row.get("C1","")
+        val    = _float(row.get("DT"))
+        if region and val:
+            ghg_by_region[region] = ghg_by_region.get(region, 0) + val
+
+    for region, industries in region_data.items():
+        cbam_biz = cbam_emp = cbam_rev = 0
+        breakdown = {}
+        for ind, vals in industries.items():
+            if ind in CBAM_INDUSTRIES:
+                cbam_biz += vals["biz_count"]
+                cbam_emp += vals["emp_count"]
+                cbam_rev += vals["revenue_억원"]
+                breakdown[ind] = {
+                    "name":       vals["name"],
+                    "biz_count":  int(vals["biz_count"]),
+                    "emp_count":  int(vals["emp_count"]),
+                    "revenue_억원": round(vals["revenue_억원"], 1),
+                }
+
+        # GHG 노출액 (Gg × 1000 = t × ETS가격 × 환율)
+        ghg_gg  = ghg_by_region.get(region, 0)
+        exposure = ghg_gg * 1000 * ets_price_eur * eur_krw / 1e8
+
+        result["regions"][region] = {
+            "year":              latest,
+            "cbam_biz_count":    int(cbam_biz),
+            "cbam_emp_count":    int(cbam_emp),
+            "cbam_revenue_억원": round(cbam_rev, 1),
+            "cbam_exposure_억원": round(exposure, 1),
+            "ghg_direct_gg":     ghg_gg,
+            "industry_breakdown": breakdown,
+            "all_industries":    {k: {"name":v["name"],
+                                      "biz":int(v["biz_count"]),
+                                      "emp":int(v["emp_count"])}
+                                  for k,v in industries.items()},
+        }
+
+    top = sorted(result["regions"].items(),
+                 key=lambda x: x[1]["cbam_biz_count"], reverse=True)
+    print(f"  BIZ×GHG 교차계산: {len(top)}개 시도")
+    if top:
+        t = top[0]
+        print(f"  → CBAM 업종 최다: {t[0]} "
+              f"사업체 {t[1]['cbam_biz_count']:,}개 "
+              f"매출 {t[1]['cbam_revenue_억원']:,.0f}억원 "
+              f"탄소노출 {t[1]['cbam_exposure_억원']:,.0f}억원")
+    return result
+
+
+# ══════════════════════════════════════════════════════
 # main
 # ══════════════════════════════════════════════════════
 def main():
@@ -752,6 +958,19 @@ def main():
         ext["ghg_all"] = {k:{"label":v[2],"error":"KOSIS 미설정"} for k,v in GHG_TABLES.items()}
         ext["cbam_exposure"] = {"error":"KOSIS 미설정"}
 
+    print("\n[⑫ 두레비즈 기업분포 — 전국사업체조사 8종]")
+    if KOSIS:
+        ext["biz_distribution"] = collect_biz_distribution(KOSIS)
+        ext["cbam_industry"] = compute_cbam_industry_exposure(
+            ext["biz_distribution"],
+            ext["ghg_all"].get("ghg_regional_direct", {}),
+            ets_price_eur=float(os.environ.get("EU_ETS_EUR","71.84")),
+            eur_krw=float(os.environ.get("EUR_KRW","1485"))
+        )
+    else:
+        ext["biz_distribution"] = {k:{"label":v[3],"error":"KOSIS 미설정"} for k,v in BIZ_TABLES.items()}
+        ext["cbam_industry"]    = {"error":"KOSIS 미설정"}
+
     print("\n[⑧ KOSIS 행정구역별 인구수]")
     ext["kosis_regional_pop"] = collect_kosis_regional_pop(KOSIS) if KOSIS else {
         "data": [], "ulsan_total": None, "error": "KOSIS 미설정"
@@ -777,6 +996,8 @@ def main():
             u["kicox_industry"]      = ext["kicox_industry"]
             u["ghg_all"]              = ext["ghg_all"]
             u["cbam_exposure"]        = ext["cbam_exposure"]
+            u["biz_distribution"]     = ext["biz_distribution"]
+            u["cbam_industry"]        = ext["cbam_industry"]
             ULSAN_JSON.write_text(json.dumps(u, ensure_ascii=False, indent=2), encoding="utf-8")
             print(f"\n✅ 병합 완료 → {ULSAN_JSON}")
         except Exception as e:
