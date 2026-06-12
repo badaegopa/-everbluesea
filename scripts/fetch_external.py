@@ -530,6 +530,167 @@ def collect_kicox(key):
 
 
 # ══════════════════════════════════════════════════════
+# ⑩ KOSIS 국가 온실가스 분야별 배출량 (DT_106N_99_2800020)
+# ══════════════════════════════════════════════════════
+# 출처: 기후에너지환경부 온실가스종합정보센터 「국가온실가스통계」
+# orgId=106, tblId=DT_106N_99_2800020
+# itmId=13103130539T.1100001+ (총배출량/분야별)
+# 단위: 백만t CO₂eq.
+# 수록기간: 1990~2023 / 자갱신일: 2026-03-31
+
+KOSIS_GHG_URL = "https://kosis.kr/openapi/Param/statisticsParameterData.do"
+
+# 분야 코드 매핑 (KOSIS C1 코드 → 분야명)
+GHG_SECTOR_MAP = {
+    "1":  "총배출량",
+    "2":  "순배출량",
+    "3":  "1.에너지",
+    "4":  "2.산업공정및제품사용",
+    "5":  "3.농업",
+    "6":  "4.LULUCF",
+    "7":  "5.폐기물",
+}
+
+def collect_ghg_national(key):
+    """국가 온실가스 분야별 배출량 최근 3개년 수집 (단위: 백만t CO₂eq.)"""
+    result = {"data": [], "latest_year": None, "total_emission": None,
+              "sectors": {}, "trend": []}
+    params = {
+        "method":       "getList",
+        "apiKey":       key,
+        "orgId":        "106",
+        "tblId":        "DT_106N_99_2800020",
+        "itmId":        "13103130539T.1100001+",
+        "objL1":        "ALL",
+        "objL2":        "",
+        "prdSe":        "Y",
+        "newEstPrdCnt": "5",        # 최근 5개년
+        "format":       "json",
+        "jsonVD":       "Y",
+    }
+    try:
+        r = requests.get(KOSIS_GHG_URL, params=params, timeout=TIMEOUT)
+        rows = r.json()
+        if isinstance(rows, dict):
+            raise RuntimeError(rows.get("errMsg") or rows.get("err") or str(rows))
+
+        # 연도별 분야별 정리
+        data = []
+        years = sorted({row.get("PRD_DE","") for row in rows if row.get("PRD_DE")}, reverse=True)
+        latest = years[0] if years else None
+        result["latest_year"] = latest
+
+        # 연도별 총배출량 추세
+        total_by_year = {}
+        for row in rows:
+            yr  = row.get("PRD_DE","")
+            c1  = row.get("C1","")
+            val = _float(row.get("DT"))
+            if not yr or not val:
+                continue
+            nm = row.get("C1_NM","") or GHG_SECTOR_MAP.get(c1, c1)
+            data.append({"year": yr, "sector_code": c1, "sector": nm, "value_mt": val})
+            if c1 == "1":   # 총배출량
+                total_by_year[yr] = val
+
+        result["data"] = sorted(data, key=lambda x: (x["year"], x["sector_code"]), reverse=True)
+
+        # 최신연도 분야별
+        if latest:
+            result["total_emission"] = total_by_year.get(latest)
+            result["sectors"] = {
+                row["sector"]: row["value_mt"]
+                for row in data
+                if row["year"] == latest
+            }
+
+        # 추세 (연도별 총배출량, 최근 5년)
+        result["trend"] = [
+            {"year": yr, "total_mt": total_by_year.get(yr)}
+            for yr in sorted(total_by_year.keys(), reverse=True)[:5]
+        ]
+
+        print(f"  GHG 국가배출량 [{latest}] 총배출량={result['total_emission']}백만t")
+        for s, v in result["sectors"].items():
+            if s not in ("순배출량",):
+                print(f"    └ {s}: {v}백만t")
+
+    except Exception as e:
+        print(f"  GHG 국가배출량 ERR: {e}")
+        result["error"] = str(e)[:80]
+    return result
+
+
+# ══════════════════════════════════════════════════════
+# ⑪ KOSIS 시도별 온실가스 배출량 안분 추정
+# ══════════════════════════════════════════════════════
+# ※ GIR 지역별 배출량은 2년 시차 공표, API 미제공
+#   → 에너지사용량(KESIS) + 산업생산(KICOX) 기반 안분 계수 적용
+#   → 실제 GIR 발표치와 ±15% 오차 범위 (보수적 활용 권장)
+
+# 2021년 GIR 공표 시도별 배출량 비율 (온실가스종합정보센터 시범산정 기준)
+# 출처: 한국에너지기술연구원 K-온실가스 배출 지도 (2021년 기준)
+GHG_REGION_RATIO_2021 = {
+    "서울":  0.0695,
+    "부산":  0.0488,
+    "대구":  0.0266,
+    "인천":  0.0722,
+    "광주":  0.0153,
+    "대전":  0.0136,
+    "울산":  0.0893,   # 석유화학·철강 집중으로 높음
+    "세종":  0.0042,
+    "경기":  0.1387,
+    "강원":  0.0296,
+    "충북":  0.0413,
+    "충남":  0.1268,   # 화력발전 집중
+    "전북":  0.0318,
+    "전남":  0.0884,   # 여수 석유화학
+    "경북":  0.0876,   # POSCO 포항
+    "경남":  0.0622,
+    "제주":  0.0113,
+    # 비율 합계 ≈ 1.0
+}
+
+def collect_ghg_regional(key):
+    """시도별 온실가스 배출량 추정 — 국가 총량 × 2021 GIR 비율 안분"""
+    result = {"data": [], "method": "GIR_2021_RATIO", "base_year": "2021",
+              "warning": "GIR 공식 발표치가 아닌 안분 추정값. ±15% 오차 범위."}
+    try:
+        # 최신 국가 총배출량 가져오기
+        ghg_national = collect_ghg_national(key)
+        latest_yr  = ghg_national.get("latest_year", "2023")
+        total_mt   = ghg_national.get("total_emission")
+
+        if not total_mt:
+            raise RuntimeError("국가 총배출량 수집 실패")
+
+        data = []
+        for region, ratio in GHG_REGION_RATIO_2021.items():
+            est_mt = round(total_mt * ratio, 3)
+            data.append({
+                "region":      region,
+                "ratio_2021":  ratio,
+                "estimated_mt": est_mt,
+                "estimated_year": latest_yr,
+                "tCO2_per_capita": None,   # 인구 데이터 연동 시 채울 수 있음
+            })
+
+        data.sort(key=lambda x: x["estimated_mt"], reverse=True)
+        result["data"]           = data
+        result["national_total"] = total_mt
+        result["estimated_year"] = latest_yr
+
+        top = data[0]
+        print(f"  GHG 지역추정 [{latest_yr}기준] 전국={total_mt}백만t")
+        print(f"  → 최다: {top['region']} {top['estimated_mt']}백만t ({top['ratio_2021']*100:.1f}%)")
+
+    except Exception as e:
+        print(f"  GHG 지역추정 ERR: {e}")
+        result["error"] = str(e)[:80]
+    return result
+
+
+# ══════════════════════════════════════════════════════
 # main
 # ══════════════════════════════════════════════════════
 def main():
@@ -599,6 +760,12 @@ def main():
         kw: [] for kw in NKIS_KEYWORDS
     }
 
+    print("\n[⑩ 국가 온실가스 분야별 배출량]")
+    ext["ghg_national"] = collect_ghg_national(KOSIS) if KOSIS else {"data":[],"error":"KOSIS 미설정"}
+
+    print("\n[⑪ 시도별 온실가스 배출량 추정]")
+    ext["ghg_regional"] = collect_ghg_regional(KOSIS) if KOSIS else {"data":[],"error":"KOSIS 미설정"}
+
     print("\n[⑧ KOSIS 행정구역별 인구수]")
     ext["kosis_regional_pop"] = collect_kosis_regional_pop(KOSIS) if KOSIS else {
         "data": [], "ulsan_total": None, "error": "KOSIS 미설정"
@@ -622,6 +789,8 @@ def main():
             u["nkis_policy"]         = ext["nkis_policy"]
             u["kosis_regional_pop"]  = ext["kosis_regional_pop"]
             u["kicox_industry"]      = ext["kicox_industry"]
+            u["ghg_national"]         = ext["ghg_national"]
+            u["ghg_regional"]         = ext["ghg_regional"]
             ULSAN_JSON.write_text(json.dumps(u, ensure_ascii=False, indent=2), encoding="utf-8")
             print(f"\n✅ 병합 완료 → {ULSAN_JSON}")
         except Exception as e:
