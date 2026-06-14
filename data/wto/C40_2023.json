@@ -1,0 +1,31 @@
+{
+  "country": "40",
+  "iso_code": "40",
+  "year": 2023,
+  "updated": "2026-06-14",
+  "indicators": {
+    "trade": {
+      "ITS_MTV_AX": null,
+      "ITS_MTV_AM": null,
+      "ITS_MTP_AXVG": null,
+      "ITS_MTP_AMVG": null
+    },
+    "tariff": {
+      "TP_A_0010": null,
+      "TP_A_0160": null,
+      "TP_A_0430": null,
+      "TP_B_0020": null,
+      "TP_B_0090": null
+    },
+    "services": {
+      "ITS_CS_QAX": null,
+      "ITS_CS_QAM": null,
+      "BAT_BV_X": null,
+      "BAT_BV_M": null
+    },
+    "price": {
+      "ITS_MTP_AUVX": null,
+      "ITS_MTP_AUVM": null
+    }
+  }
+}

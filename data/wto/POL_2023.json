@@ -1,0 +1,71 @@
+{
+  "country": "616",
+  "iso_code": "POL",
+  "year": 2023,
+  "updated": "2026-06-14",
+  "indicators": {
+    "trade": {
+      "ITS_MTV_AX": {
+        "value": 7300.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTV_AM": {
+        "value": 38597.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AXVG": {
+        "value": -1.5,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AMVG": {
+        "value": -5.4,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "tariff": {
+      "TP_A_0010": null,
+      "TP_A_0160": null,
+      "TP_A_0430": null,
+      "TP_B_0020": null,
+      "TP_B_0090": null
+    },
+    "services": {
+      "ITS_CS_QAX": {
+        "value": 29960.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_CS_QAM": {
+        "value": 66167.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_X": {
+        "value": 1129.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_M": {
+        "value": 68994.0,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "price": {
+      "ITS_MTP_AUVX": {
+        "value": 107.4,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AUVM": {
+        "value": 102.6,
+        "year": 2023,
+        "unit": ""
+      }
+    }
+  }
+}

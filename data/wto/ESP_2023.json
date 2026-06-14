@@ -1,0 +1,71 @@
+{
+  "country": "724",
+  "iso_code": "ESP",
+  "year": 2023,
+  "updated": "2026-06-14",
+  "indicators": {
+    "trade": {
+      "ITS_MTV_AX": {
+        "value": 79442.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTV_AM": {
+        "value": 63343.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AXVG": {
+        "value": -3.5,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AMVG": {
+        "value": -8.6,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "tariff": {
+      "TP_A_0010": null,
+      "TP_A_0160": null,
+      "TP_A_0430": null,
+      "TP_B_0020": null,
+      "TP_B_0090": null
+    },
+    "services": {
+      "ITS_CS_QAX": {
+        "value": 194725.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_CS_QAM": {
+        "value": 94571.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_X": {
+        "value": 5356.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_M": {
+        "value": 6478.0,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "price": {
+      "ITS_MTP_AUVX": {
+        "value": 105.4,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AUVM": {
+        "value": 104.0,
+        "year": 2023,
+        "unit": ""
+      }
+    }
+  }
+}

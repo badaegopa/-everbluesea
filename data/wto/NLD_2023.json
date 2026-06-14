@@ -1,0 +1,71 @@
+{
+  "country": "528",
+  "iso_code": "NLD",
+  "year": 2023,
+  "updated": "2026-06-14",
+  "indicators": {
+    "trade": {
+      "ITS_MTV_AX": {
+        "value": 140062.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTV_AM": {
+        "value": 843567.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AXVG": {
+        "value": -5.6,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AMVG": {
+        "value": -6.2,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "tariff": {
+      "TP_A_0010": null,
+      "TP_A_0160": null,
+      "TP_A_0430": null,
+      "TP_B_0020": null,
+      "TP_B_0090": null
+    },
+    "services": {
+      "ITS_CS_QAX": {
+        "value": 322575.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_CS_QAM": {
+        "value": 292886.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_X": {
+        "value": 16977.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_M": {
+        "value": 191997.0,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "price": {
+      "ITS_MTP_AUVX": {
+        "value": 102.8,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AUVM": {
+        "value": 100.3,
+        "year": 2023,
+        "unit": ""
+      }
+    }
+  }
+}
