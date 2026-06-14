@@ -1,0 +1,91 @@
+{
+  "country": "764",
+  "iso_code": "THA",
+  "year": 2023,
+  "updated": "2026-06-14",
+  "indicators": {
+    "trade": {
+      "ITS_MTV_AX": {
+        "value": 53267.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTV_AM": {
+        "value": 23868.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AXVG": {
+        "value": -2.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AMVG": {
+        "value": -4.5,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "tariff": {
+      "TP_A_0010": {
+        "value": 9.8,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_A_0160": {
+        "value": 27.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_A_0430": {
+        "value": 7.1,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_B_0020": {
+        "value": 76.9,
+        "year": null,
+        "unit": ""
+      },
+      "TP_B_0090": {
+        "value": 26.6,
+        "year": null,
+        "unit": ""
+      }
+    },
+    "services": {
+      "ITS_CS_QAX": {
+        "value": 57779.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_CS_QAM": {
+        "value": 65635.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_X": {
+        "value": 790.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_M": {
+        "value": 330.0,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "price": {
+      "ITS_MTP_AUVX": {
+        "value": 101.2,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AUVM": {
+        "value": 100.4,
+        "year": 2023,
+        "unit": ""
+      }
+    }
+  }
+}

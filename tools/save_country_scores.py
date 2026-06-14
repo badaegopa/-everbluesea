@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 """
-유럽 22개국 개별 Lambda-12 점수 파일 생성
-정규화 기준: 22개국 전체 (권역 내부가 아닌 유럽 전체 대비)
+국가별 Lambda-12 점수 파일 생성 (유럽 / 아시아)
+정규화 기준: 같은 대륙 전체
 저장: ~/everbluesea/data/wto/scores/{ISO}_lambda12_2023.json
-Usage: python3 tools/save_country_scores.py
+Usage:
+  python3 tools/save_country_scores.py              # 유럽 (기본)
+  python3 tools/save_country_scores.py --continent asia
+  python3 tools/save_country_scores.py --continent europe
 """
 
+import argparse
 import json
 import os
 from datetime import date
@@ -14,7 +18,7 @@ WTO_DIR  = os.path.expanduser("~/everbluesea/data/wto")
 OUT_DIR  = os.path.expanduser("~/everbluesea/data/wto/scores")
 YEAR     = 2023
 
-COUNTRY_REGION = {
+EUROPE_REGION = {
     "FRA": "서유럽", "GBR": "서유럽", "CHE": "서유럽",
     "NLD": "서유럽", "BEL": "서유럽", "AUT": "서유럽", "DEU": "서유럽",
     "SWE": "북유럽", "NOR": "북유럽", "DNK": "북유럽", "FIN": "북유럽",
@@ -23,6 +27,20 @@ COUNTRY_REGION = {
     "RUS": "러시아_유라시아", "TUR": "러시아_유라시아", "UKR": "러시아_유라시아",
 }
 
+ASIA_REGION = {
+    "CHN": "동아시아", "JPN": "동아시아", "KOR": "동아시아",
+    "TWN": "동아시아", "HKG": "동아시아",
+    "SGP": "동남아시아", "THA": "동남아시아", "VNM": "동남아시아",
+    "IDN": "동남아시아", "MYS": "동남아시아", "PHL": "동남아시아",
+    "IND": "남아시아",  "BGD": "남아시아",  "PAK": "남아시아",  "LKA": "남아시아",
+    "SAU": "중동",      "ARE": "중동",      "ISR": "중동",      "IRN": "중동",
+}
+
+_parser = argparse.ArgumentParser()
+_parser.add_argument("--continent", choices=["europe", "asia"], default="europe")
+_args = _parser.parse_args()
+
+COUNTRY_REGION = ASIA_REGION if _args.continent == "asia" else EUROPE_REGION
 COUNTRIES = sorted(COUNTRY_REGION.keys())
 
 # 원시 지표 그룹 / 코드 목록
