@@ -1,0 +1,157 @@
+{
+  "title": "WTO 동유럽 비교",
+  "region": "동유럽",
+  "year": 2023,
+  "updated": "2026-06-14",
+  "countries": [
+    "POL",
+    "CZE",
+    "HUN",
+    "ROU"
+  ],
+  "data": {
+    "trade": {
+      "ITS_MTV_AX": {
+        "label": "상품수출 (백만$)",
+        "values": {
+          "POL": 7300.0,
+          "CZE": 4387.0,
+          "HUN": 5956.0,
+          "ROU": 13958.0
+        }
+      },
+      "ITS_MTV_AM": {
+        "label": "상품수입 (백만$)",
+        "values": {
+          "POL": 38597.0,
+          "CZE": 30198.0,
+          "HUN": 4256.0,
+          "ROU": 2804.0
+        }
+      },
+      "ITS_MTP_AXVG": {
+        "label": "수출물량증가율 (%)",
+        "values": {
+          "POL": -1.5,
+          "CZE": -2.7,
+          "HUN": 0.0,
+          "ROU": 0.7
+        }
+      },
+      "ITS_MTP_AMVG": {
+        "label": "수입물량증가율 (%)",
+        "values": {
+          "POL": -5.4,
+          "CZE": -5.3,
+          "HUN": -4.1,
+          "ROU": -3.3
+        }
+      }
+    },
+    "tariff": {
+      "TP_A_0010": {
+        "label": "MFN 단순평균관세 (%)",
+        "values": {
+          "POL": null,
+          "CZE": null,
+          "HUN": null,
+          "ROU": null
+        }
+      },
+      "TP_A_0160": {
+        "label": "MFN 가중평균관세 (%)",
+        "values": {
+          "POL": null,
+          "CZE": null,
+          "HUN": null,
+          "ROU": null
+        }
+      },
+      "TP_A_0430": {
+        "label": "무관세 품목 비율 (%)",
+        "values": {
+          "POL": null,
+          "CZE": null,
+          "HUN": null,
+          "ROU": null
+        }
+      },
+      "TP_B_0020": {
+        "label": "양허관세 커버리지 (%)",
+        "values": {
+          "POL": null,
+          "CZE": null,
+          "HUN": null,
+          "ROU": 100.0
+        }
+      },
+      "TP_B_0090": {
+        "label": "바운드 단순평균 (%)",
+        "values": {
+          "POL": null,
+          "CZE": null,
+          "HUN": null,
+          "ROU": 39.9
+        }
+      }
+    },
+    "services": {
+      "ITS_CS_QAX": {
+        "label": "서비스수출 (백만$)",
+        "values": {
+          "POL": 29960.0,
+          "CZE": 39560.0,
+          "HUN": 37339.0,
+          "ROU": 42921.0
+        }
+      },
+      "ITS_CS_QAM": {
+        "label": "서비스수입 (백만$)",
+        "values": {
+          "POL": 66167.0,
+          "CZE": 35602.0,
+          "HUN": 27226.0,
+          "ROU": 28532.0
+        }
+      },
+      "BAT_BV_X": {
+        "label": "서비스수지 크레딧 (백만$)",
+        "values": {
+          "POL": 1129.0,
+          "CZE": 614.0,
+          "HUN": 204.0,
+          "ROU": 299.0
+        }
+      },
+      "BAT_BV_M": {
+        "label": "서비스수지 데빗 (백만$)",
+        "values": {
+          "POL": 68994.0,
+          "CZE": 985.0,
+          "HUN": 29903.0,
+          "ROU": 27901.0
+        }
+      }
+    },
+    "price": {
+      "ITS_MTP_AUVX": {
+        "label": "수출단가지수 (2015=100)",
+        "values": {
+          "POL": 107.4,
+          "CZE": 108.5,
+          "HUN": 107.0,
+          "ROU": 103.3
+        }
+      },
+      "ITS_MTP_AUVM": {
+        "label": "수입단가지수 (2015=100)",
+        "values": {
+          "POL": 102.6,
+          "CZE": 103.5,
+          "HUN": 99.0,
+          "ROU": 103.0
+        }
+      }
+    }
+  }
+}

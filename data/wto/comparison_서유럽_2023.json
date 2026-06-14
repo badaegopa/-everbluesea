@@ -1,0 +1,189 @@
+{
+  "title": "WTO 서유럽 비교",
+  "region": "서유럽",
+  "year": 2023,
+  "updated": "2026-06-14",
+  "countries": [
+    "FRA",
+    "GBR",
+    "CHE",
+    "NLD",
+    "BEL",
+    "AUT"
+  ],
+  "data": {
+    "trade": {
+      "ITS_MTV_AX": {
+        "label": "상품수출 (백만$)",
+        "values": {
+          "FRA": 39067.0,
+          "GBR": 33326.0,
+          "CHE": 6527.0,
+          "NLD": 140062.0,
+          "BEL": 11987.0,
+          "AUT": 182569.0
+        }
+      },
+      "ITS_MTV_AM": {
+        "label": "상품수입 (백만$)",
+        "values": {
+          "FRA": 788177.0,
+          "GBR": 86080.0,
+          "CHE": 17227.0,
+          "NLD": 843567.0,
+          "BEL": 388254.0,
+          "AUT": 22080.0
+        }
+      },
+      "ITS_MTP_AXVG": {
+        "label": "수출물량증가율 (%)",
+        "values": {
+          "FRA": -1.0,
+          "GBR": -7.0,
+          "CHE": -2.8,
+          "NLD": -5.6,
+          "BEL": -6.2,
+          "AUT": -1.3
+        }
+      },
+      "ITS_MTP_AMVG": {
+        "label": "수입물량증가율 (%)",
+        "values": {
+          "FRA": -8.5,
+          "GBR": -5.6,
+          "CHE": -1.8,
+          "NLD": -6.2,
+          "BEL": -4.1,
+          "AUT": -8.2
+        }
+      }
+    },
+    "tariff": {
+      "TP_A_0010": {
+        "label": "MFN 단순평균관세 (%)",
+        "values": {
+          "FRA": null,
+          "GBR": 3.8,
+          "CHE": 5.2,
+          "NLD": null,
+          "BEL": null,
+          "AUT": null
+        }
+      },
+      "TP_A_0160": {
+        "label": "MFN 가중평균관세 (%)",
+        "values": {
+          "FRA": null,
+          "GBR": 9.2,
+          "CHE": 28.5,
+          "NLD": null,
+          "BEL": null,
+          "AUT": null
+        }
+      },
+      "TP_A_0430": {
+        "label": "무관세 품목 비율 (%)",
+        "values": {
+          "FRA": null,
+          "GBR": 2.9,
+          "CHE": 1.3,
+          "NLD": null,
+          "BEL": null,
+          "AUT": null
+        }
+      },
+      "TP_B_0020": {
+        "label": "양허관세 커버리지 (%)",
+        "values": {
+          "FRA": null,
+          "GBR": 100.0,
+          "CHE": 99.7,
+          "NLD": null,
+          "BEL": null,
+          "AUT": null
+        }
+      },
+      "TP_B_0090": {
+        "label": "바운드 단순평균 (%)",
+        "values": {
+          "FRA": null,
+          "GBR": 5.0,
+          "CHE": 6.9,
+          "NLD": null,
+          "BEL": null,
+          "AUT": null
+        }
+      }
+    },
+    "services": {
+      "ITS_CS_QAX": {
+        "label": "서비스수출 (백만$)",
+        "values": {
+          "FRA": 374614.0,
+          "GBR": 573145.0,
+          "CHE": 170409.0,
+          "NLD": 322575.0,
+          "BEL": 97447.0,
+          "AUT": 90075.0
+        }
+      },
+      "ITS_CS_QAM": {
+        "label": "서비스수입 (백만$)",
+        "values": {
+          "FRA": 331845.0,
+          "GBR": 374628.0,
+          "CHE": 188247.0,
+          "NLD": 292886.0,
+          "BEL": 29369.0,
+          "AUT": 84413.0
+        }
+      },
+      "BAT_BV_X": {
+        "label": "서비스수지 크레딧 (백만$)",
+        "values": {
+          "FRA": 24009.0,
+          "GBR": 5211.0,
+          "CHE": 1548.0,
+          "NLD": 16977.0,
+          "BEL": 1008.0,
+          "AUT": 1448.0
+        }
+      },
+      "BAT_BV_M": {
+        "label": "서비스수지 데빗 (백만$)",
+        "values": {
+          "FRA": 11609.0,
+          "GBR": 4738.0,
+          "CHE": 14629.0,
+          "NLD": 191997.0,
+          "BEL": 2317.0,
+          "AUT": 12452.0
+        }
+      }
+    },
+    "price": {
+      "ITS_MTP_AUVX": {
+        "label": "수출단가지수 (2015=100)",
+        "values": {
+          "FRA": 106.0,
+          "GBR": 103.4,
+          "CHE": 106.8,
+          "NLD": 102.8,
+          "BEL": 96.7,
+          "AUT": 107.1
+        }
+      },
+      "ITS_MTP_AUVM": {
+        "label": "수입단가지수 (2015=100)",
+        "values": {
+          "FRA": 104.6,
+          "GBR": 101.8,
+          "CHE": 104.2,
+          "NLD": 100.3,
+          "BEL": 94.2,
+          "AUT": 105.5
+        }
+      }
+    }
+  }
+}

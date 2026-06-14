@@ -1,0 +1,155 @@
+{
+  "region": "서유럽",
+  "year": 2023,
+  "updated": "2026-06-14",
+  "countries": [
+    "FRA",
+    "GBR",
+    "CHE",
+    "NLD",
+    "BEL",
+    "AUT"
+  ],
+  "dimensions": {
+    "A1": {
+      "name": "인프라",
+      "scores": {
+        "FRA": 0.5924,
+        "GBR": 0.0761,
+        "CHE": 0.35,
+        "NLD": 0.4959,
+        "BEL": 0.0822,
+        "AUT": 0.975
+      }
+    },
+    "A2": {
+      "name": "제도신뢰",
+      "scores": {
+        "FRA": null,
+        "GBR": 1.0,
+        "CHE": 0.0,
+        "NLD": null,
+        "BEL": null,
+        "AUT": null
+      }
+    },
+    "A3": {
+      "name": "사회결속",
+      "scores": {
+        "FRA": 0.7326,
+        "GBR": 1.0,
+        "CHE": 0.3133,
+        "NLD": 0.6222,
+        "BEL": 0.0076,
+        "AUT": 0.0797
+      }
+    },
+    "A4": {
+      "name": "경제역량",
+      "scores": {
+        "FRA": 0.5294,
+        "GBR": 0.1671,
+        "CHE": 0.425,
+        "NLD": 0.5838,
+        "BEL": 0.3175,
+        "AUT": 0.5002
+      }
+    },
+    "A5": {
+      "name": "지식혁신",
+      "scores": {
+        "FRA": 0.9073,
+        "GBR": 0.6584,
+        "CHE": 0.9281,
+        "NLD": 0.5632,
+        "BEL": 0.0,
+        "AUT": 1.0
+      }
+    },
+    "A6": {
+      "name": "환경지속",
+      "scores": {
+        "FRA": null,
+        "GBR": 1.0,
+        "CHE": 0.0,
+        "NLD": null,
+        "BEL": null,
+        "AUT": null
+      }
+    },
+    "A7": {
+      "name": "인구동태",
+      "scores": {
+        "FRA": null,
+        "GBR": null,
+        "CHE": null,
+        "NLD": null,
+        "BEL": null,
+        "AUT": null
+      }
+    },
+    "A8": {
+      "name": "거버넌스",
+      "scores": {
+        "FRA": null,
+        "GBR": 0.5,
+        "CHE": 0.5,
+        "NLD": null,
+        "BEL": null,
+        "AUT": null
+      }
+    },
+    "A9": {
+      "name": "지정학",
+      "scores": {
+        "FRA": 0.5,
+        "GBR": 0.7836,
+        "CHE": 0.15,
+        "NLD": 0.7117,
+        "BEL": 0.605,
+        "AUT": 0.5026
+      }
+    },
+    "A10": {
+      "name": "문화정체",
+      "scores": {
+        "FRA": 0.589,
+        "GBR": 1.0,
+        "CHE": 0.1663,
+        "NLD": 0.4813,
+        "BEL": 0.0153,
+        "AUT": 0.0
+      }
+    },
+    "A11": {
+      "name": "에너지",
+      "scores": {
+        "FRA": 0.4665,
+        "GBR": 0.2581,
+        "CHE": 0.5,
+        "NLD": 0.6716,
+        "BEL": 0.5528,
+        "AUT": 0.0254
+      }
+    },
+    "A12": {
+      "name": "이동성",
+      "scores": {
+        "FRA": 0.6285,
+        "GBR": 0.5489,
+        "CHE": 0.1787,
+        "NLD": 0.7347,
+        "BEL": 0.0038,
+        "AUT": 0.058
+      }
+    }
+  },
+  "eta": {
+    "FRA": 0.6182,
+    "GBR": 0.6357,
+    "CHE": 0.3192,
+    "NLD": 0.608,
+    "BEL": 0.198,
+    "AUT": 0.3926
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "title": "WTO 러시아_유라시아 비교",
+  "region": "러시아_유라시아",
+  "year": 2023,
+  "updated": "2026-06-14",
+  "countries": [
+    "RUS",
+    "TUR",
+    "UKR"
+  ],
+  "data": {
+    "trade": {
+      "ITS_MTV_AX": {
+        "label": "상품수출 (백만$)",
+        "values": {
+          "RUS": 12887.0,
+          "TUR": 2575.0,
+          "UKR": 279.0
+        }
+      },
+      "ITS_MTV_AM": {
+        "label": "상품수입 (백만$)",
+        "values": {
+          "RUS": 3068.0,
+          "TUR": 34325.0,
+          "UKR": 901.0
+        }
+      },
+      "ITS_MTP_AXVG": {
+        "label": "수출물량증가율 (%)",
+        "values": {
+          "RUS": -13.1,
+          "TUR": 0.0,
+          "UKR": -1.1
+        }
+      },
+      "ITS_MTP_AMVG": {
+        "label": "수입물량증가율 (%)",
+        "values": {
+          "RUS": 12.4,
+          "TUR": 12.8,
+          "UKR": 7.0
+        }
+      }
+    },
+    "tariff": {
+      "TP_A_0010": {
+        "label": "MFN 단순평균관세 (%)",
+        "values": {
+          "RUS": 6.6,
+          "TUR": 16.2,
+          "UKR": 4.3
+        }
+      },
+      "TP_A_0160": {
+        "label": "MFN 가중평균관세 (%)",
+        "values": {
+          "RUS": 9.7,
+          "TUR": 39.8,
+          "UKR": 9.1
+        }
+      },
+      "TP_A_0430": {
+        "label": "무관세 품목 비율 (%)",
+        "values": {
+          "RUS": 6.1,
+          "TUR": 12.5,
+          "UKR": 3.6
+        }
+      },
+      "TP_B_0020": {
+        "label": "양허관세 커버리지 (%)",
+        "values": {
+          "RUS": 100.0,
+          "TUR": 50.5,
+          "UKR": 100.0
+        }
+      },
+      "TP_B_0090": {
+        "label": "바운드 단순평균 (%)",
+        "values": {
+          "RUS": 7.6,
+          "TUR": 28.9,
+          "UKR": 5.8
+        }
+      }
+    },
+    "services": {
+      "ITS_CS_QAX": {
+        "label": "서비스수출 (백만$)",
+        "values": {
+          "RUS": 40472.0,
+          "TUR": 105534.0,
+          "UKR": 11014.0
+        }
+      },
+      "ITS_CS_QAM": {
+        "label": "서비스수입 (백만$)",
+        "values": {
+          "RUS": 76611.0,
+          "TUR": 49860.0,
+          "UKR": 23870.0
+        }
+      },
+      "BAT_BV_X": {
+        "label": "서비스수지 크레딧 (백만$)",
+        "values": {
+          "RUS": 37044.0,
+          "TUR": 1617.0,
+          "UKR": 1852.0
+        }
+      },
+      "BAT_BV_M": {
+        "label": "서비스수지 데빗 (백만$)",
+        "values": {
+          "RUS": 4631.0,
+          "TUR": 2116.0,
+          "UKR": 265.0
+        }
+      }
+    },
+    "price": {
+      "ITS_MTP_AUVX": {
+        "label": "수출단가지수 (2015=100)",
+        "values": {
+          "RUS": 82.6,
+          "TUR": 100.5,
+          "UKR": 86.1
+        }
+      },
+      "ITS_MTP_AUVM": {
+        "label": "수입단가지수 (2015=100)",
+        "values": {
+          "RUS": 97.6,
+          "TUR": 88.2,
+          "UKR": 107.7
+        }
+      }
+    }
+  }
+}

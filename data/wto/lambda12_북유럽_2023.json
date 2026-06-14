@@ -1,0 +1,127 @@
+{
+  "region": "북유럽",
+  "year": 2023,
+  "updated": "2026-06-14",
+  "countries": [
+    "SWE",
+    "NOR",
+    "DNK",
+    "FIN"
+  ],
+  "dimensions": {
+    "A1": {
+      "name": "인프라",
+      "scores": {
+        "SWE": 0.4594,
+        "NOR": 0.7873,
+        "DNK": 0.6329,
+        "FIN": 0.0
+      }
+    },
+    "A2": {
+      "name": "제도신뢰",
+      "scores": {
+        "SWE": null,
+        "NOR": 0.5,
+        "DNK": null,
+        "FIN": null
+      }
+    },
+    "A3": {
+      "name": "사회결속",
+      "scores": {
+        "SWE": 0.9058,
+        "NOR": 0.191,
+        "DNK": 1.0,
+        "FIN": 0.0
+      }
+    },
+    "A4": {
+      "name": "경제역량",
+      "scores": {
+        "SWE": 0.6631,
+        "NOR": 0.6926,
+        "DNK": 0.6404,
+        "FIN": 0.0
+      }
+    },
+    "A5": {
+      "name": "지식혁신",
+      "scores": {
+        "SWE": 0.949,
+        "NOR": 0.0,
+        "DNK": 0.964,
+        "FIN": 0.8331
+      }
+    },
+    "A6": {
+      "name": "환경지속",
+      "scores": {
+        "SWE": null,
+        "NOR": 0.5,
+        "DNK": null,
+        "FIN": null
+      }
+    },
+    "A7": {
+      "name": "인구동태",
+      "scores": {
+        "SWE": null,
+        "NOR": null,
+        "DNK": null,
+        "FIN": null
+      }
+    },
+    "A8": {
+      "name": "거버넌스",
+      "scores": {
+        "SWE": null,
+        "NOR": 0.5,
+        "DNK": null,
+        "FIN": null
+      }
+    },
+    "A9": {
+      "name": "지정학",
+      "scores": {
+        "SWE": 0.1667,
+        "NOR": 0.5,
+        "DNK": 0.2375,
+        "FIN": 0.6714
+      }
+    },
+    "A10": {
+      "name": "문화정체",
+      "scores": {
+        "SWE": 0.8249,
+        "NOR": 0.1945,
+        "DNK": 1.0,
+        "FIN": 0.0
+      }
+    },
+    "A11": {
+      "name": "에너지",
+      "scores": {
+        "SWE": 0.8666,
+        "NOR": 0.5978,
+        "DNK": 0.6481,
+        "FIN": 0.0
+      }
+    },
+    "A12": {
+      "name": "이동성",
+      "scores": {
+        "SWE": 0.6951,
+        "NOR": 0.5955,
+        "DNK": 0.7595,
+        "FIN": 0.0
+      }
+    }
+  },
+  "eta": {
+    "SWE": 0.6913,
+    "NOR": 0.4599,
+    "DNK": 0.7353,
+    "FIN": 0.1881
+  }
+}

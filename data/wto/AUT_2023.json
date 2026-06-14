@@ -1,27 +1,27 @@
 {
-  "country": "56",
-  "iso_code": "BEL",
+  "country": "40",
+  "iso_code": "40",
   "year": 2023,
   "updated": "2026-06-14",
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 11987.0,
+        "value": 182569.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 388254.0,
+        "value": 22080.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTP_AXVG": {
-        "value": -6.2,
+        "value": -1.3,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTP_AMVG": {
-        "value": -4.1,
+        "value": -8.2,
         "year": 2023,
         "unit": ""
       }
@@ -35,34 +35,34 @@
     },
     "services": {
       "ITS_CS_QAX": {
-        "value": 97447.0,
+        "value": 90075.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_CS_QAM": {
-        "value": 29369.0,
+        "value": 84413.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 1008.0,
+        "value": 1448.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 2317.0,
+        "value": 12452.0,
         "year": 2023,
         "unit": ""
       }
     },
     "price": {
       "ITS_MTP_AUVX": {
-        "value": 96.7,
+        "value": 107.1,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTP_AUVM": {
-        "value": 94.2,
+        "value": 105.5,
         "year": 2023,
         "unit": ""
       }

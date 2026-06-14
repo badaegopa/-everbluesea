@@ -1,0 +1,157 @@
+{
+  "title": "WTO 남유럽 비교",
+  "region": "남유럽",
+  "year": 2023,
+  "updated": "2026-06-14",
+  "countries": [
+    "ITA",
+    "ESP",
+    "PRT",
+    "GRC"
+  ],
+  "data": {
+    "trade": {
+      "ITS_MTV_AX": {
+        "label": "상품수출 (백만$)",
+        "values": {
+          "ITA": 71294.0,
+          "ESP": 79442.0,
+          "PRT": 13048.0,
+          "GRC": 12002.0
+        }
+      },
+      "ITS_MTV_AM": {
+        "label": "상품수입 (백만$)",
+        "values": {
+          "ITA": 76105.0,
+          "ESP": 63343.0,
+          "PRT": 113683.0,
+          "GRC": 89840.0
+        }
+      },
+      "ITS_MTP_AXVG": {
+        "label": "수출물량증가율 (%)",
+        "values": {
+          "ITA": -3.9,
+          "ESP": -3.5,
+          "PRT": -1.5,
+          "GRC": 1.2
+        }
+      },
+      "ITS_MTP_AMVG": {
+        "label": "수입물량증가율 (%)",
+        "values": {
+          "ITA": -3.3,
+          "ESP": -8.6,
+          "PRT": -1.2,
+          "GRC": -0.7
+        }
+      }
+    },
+    "tariff": {
+      "TP_A_0010": {
+        "label": "MFN 단순평균관세 (%)",
+        "values": {
+          "ITA": null,
+          "ESP": null,
+          "PRT": null,
+          "GRC": null
+        }
+      },
+      "TP_A_0160": {
+        "label": "MFN 가중평균관세 (%)",
+        "values": {
+          "ITA": null,
+          "ESP": null,
+          "PRT": null,
+          "GRC": null
+        }
+      },
+      "TP_A_0430": {
+        "label": "무관세 품목 비율 (%)",
+        "values": {
+          "ITA": null,
+          "ESP": null,
+          "PRT": null,
+          "GRC": null
+        }
+      },
+      "TP_B_0020": {
+        "label": "양허관세 커버리지 (%)",
+        "values": {
+          "ITA": null,
+          "ESP": null,
+          "PRT": null,
+          "GRC": null
+        }
+      },
+      "TP_B_0090": {
+        "label": "바운드 단순평균 (%)",
+        "values": {
+          "ITA": null,
+          "ESP": null,
+          "PRT": null,
+          "GRC": null
+        }
+      }
+    },
+    "services": {
+      "ITS_CS_QAX": {
+        "label": "서비스수출 (백만$)",
+        "values": {
+          "ITA": 148535.0,
+          "ESP": 194725.0,
+          "PRT": 57804.0,
+          "GRC": 53131.0
+        }
+      },
+      "ITS_CS_QAM": {
+        "label": "서비스수입 (백만$)",
+        "values": {
+          "ITA": 150325.0,
+          "ESP": 94571.0,
+          "PRT": 26030.0,
+          "GRC": 29446.0
+        }
+      },
+      "BAT_BV_X": {
+        "label": "서비스수지 크레딧 (백만$)",
+        "values": {
+          "ITA": 157595.0,
+          "ESP": 5356.0,
+          "PRT": 1821.0,
+          "GRC": 19145.0
+        }
+      },
+      "BAT_BV_M": {
+        "label": "서비스수지 데빗 (백만$)",
+        "values": {
+          "ITA": 8573.0,
+          "ESP": 6478.0,
+          "PRT": 2427.0,
+          "GRC": 9388.0
+        }
+      }
+    },
+    "price": {
+      "ITS_MTP_AUVX": {
+        "label": "수출단가지수 (2015=100)",
+        "values": {
+          "ITA": 107.0,
+          "ESP": 105.4,
+          "PRT": 103.0,
+          "GRC": 93.2
+        }
+      },
+      "ITS_MTP_AUVM": {
+        "label": "수입단가지수 (2015=100)",
+        "values": {
+          "ITA": 95.3,
+          "ESP": 104.0,
+          "PRT": 99.9,
+          "GRC": 91.1
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "region": "동유럽",
+  "year": 2023,
+  "updated": "2026-06-14",
+  "countries": [
+    "POL",
+    "CZE",
+    "HUN",
+    "ROU"
+  ],
+  "dimensions": {
+    "A1": {
+      "name": "인프라",
+      "scores": {
+        "POL": 0.3286,
+        "CZE": 0.0,
+        "HUN": 0.479,
+        "ROU": 1.0
+      }
+    },
+    "A2": {
+      "name": "제도신뢰",
+      "scores": {
+        "POL": null,
+        "CZE": null,
+        "HUN": null,
+        "ROU": 0.5
+      }
+    },
+    "A3": {
+      "name": "사회결속",
+      "scores": {
+        "POL": 0.5,
+        "CZE": 0.4779,
+        "HUN": 0.2847,
+        "ROU": 0.5168
+      }
+    },
+    "A4": {
+      "name": "경제역량",
+      "scores": {
+        "POL": 0.4143,
+        "CZE": 0.2032,
+        "HUN": 0.4044,
+        "ROU": 0.75
+      }
+    },
+    "A5": {
+      "name": "지식혁신",
+      "scores": {
+        "POL": 0.7943,
+        "CZE": 1.0,
+        "HUN": 0.3558,
+        "ROU": 0.4445
+      }
+    },
+    "A6": {
+      "name": "환경지속",
+      "scores": {
+        "POL": null,
+        "CZE": null,
+        "HUN": null,
+        "ROU": null
+      }
+    },
+    "A7": {
+      "name": "인구동태",
+      "scores": {
+        "POL": null,
+        "CZE": null,
+        "HUN": null,
+        "ROU": null
+      }
+    },
+    "A8": {
+      "name": "거버넌스",
+      "scores": {
+        "POL": null,
+        "CZE": null,
+        "HUN": null,
+        "ROU": 0.5
+      }
+    },
+    "A9": {
+      "name": "지정학",
+      "scores": {
+        "POL": 0.7778,
+        "CZE": 0.9762,
+        "HUN": 0.1905,
+        "ROU": 0.1296
+      }
+    },
+    "A10": {
+      "name": "문화정체",
+      "scores": {
+        "POL": 0.0,
+        "CZE": 0.7407,
+        "HUN": 0.5693,
+        "ROU": 1.0
+      }
+    },
+    "A11": {
+      "name": "에너지",
+      "scores": {
+        "POL": 0.5,
+        "CZE": 0.4064,
+        "HUN": 0.3298,
+        "ROU": 0.5
+      }
+    },
+    "A12": {
+      "name": "이동성",
+      "scores": {
+        "POL": 0.75,
+        "CZE": 0.3498,
+        "HUN": 0.2486,
+        "ROU": 0.383
+      }
+    }
+  },
+  "eta": {
+    "POL": 0.5081,
+    "CZE": 0.5193,
+    "HUN": 0.3578,
+    "ROU": 0.5724
+  }
+}
