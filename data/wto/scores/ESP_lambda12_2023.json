@@ -70,5 +70,13 @@
       "score": 0.0851
     }
   },
-  "eta": 0.2482
+  "eta": 0.2482,
+  "flags": {
+    "outlier_flag": false,
+    "a9_score": 0.1804,
+    "missing_dims": 3,
+    "missing_reason": "EU공동관세",
+    "special_flag": false,
+    "reliability": "중"
+  }
 }

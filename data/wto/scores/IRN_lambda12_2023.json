@@ -70,5 +70,13 @@
       "score": 0.0097
     }
   },
-  "eta": 0.2375
+  "eta": 0.2375,
+  "flags": {
+    "outlier_flag": false,
+    "a9_score": 0.3743,
+    "missing_dims": 3,
+    "missing_reason": "미신고",
+    "special_flag": false,
+    "reliability": "하"
+  }
 }

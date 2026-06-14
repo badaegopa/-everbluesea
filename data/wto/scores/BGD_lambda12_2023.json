@@ -70,5 +70,13 @@
       "score": 0.005
     }
   },
-  "eta": 0.2487
+  "eta": 0.2487,
+  "flags": {
+    "outlier_flag": false,
+    "a9_score": 0.3858,
+    "missing_dims": 0,
+    "missing_reason": "",
+    "special_flag": true,
+    "reliability": "중"
+  }
 }
