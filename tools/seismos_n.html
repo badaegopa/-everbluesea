@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SEISMOS-N — 전국 사회구조 진단 도구</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;600&family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:       #F5F3EE;
+      --bg-card:  #FDFCF9;
+      --ink:      #1E2922;
+      --ink-soft: #5A6358;
+      --header:   #2A3D35;
+      --teal:     #5E9186;
+      --teal-deep:#3D6B63;
+      --gold:     #B8850E;
+      --border:   #DDD8CE;
+      --radius:   8px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Noto Sans KR', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--header);
+      padding: 0 40px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+
+    .header-logo-kr {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 12px;
+      color: #9FD0C4;
+      letter-spacing: 0.06em;
+    }
+
+    .header-logo-en {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      color: #E1F5EE;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+
+    .header-back {
+      font-size: 11px;
+      color: #9FD0C4;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+
+    .header-back:hover { color: #E1F5EE; }
+
+    /* ── Hero ── */
+    .hero {
+      background: var(--header);
+      padding: 48px 40px 40px;
+      border-bottom: 3px solid var(--teal);
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 10px;
+      color: var(--teal);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid var(--teal);
+      border-radius: 2px;
+      padding: 2px 8px;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 500;
+      color: #E1F5EE;
+      letter-spacing: 0.02em;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 13px;
+      color: #9FD0C4;
+      letter-spacing: 0.03em;
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    /* ── Grid ── */
+    .grid-section {
+      max-width: 1020px;
+      margin: 48px auto;
+      padding: 0 40px;
+    }
+
+    .section-label {
+      font-size: 10px;
+      color: var(--ink-soft);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+    }
+
+    .card.inactive {
+      opacity: 0.55;
+      pointer-events: none;
+    }
+
+    .card-topline {
+      height: 4px;
+    }
+
+    .card-body {
+      padding: 22px 22px 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-icon {
+      font-size: 22px;
+      margin-bottom: 12px;
+      line-height: 1;
+    }
+
+    .card-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 6px;
+      letter-spacing: 0.01em;
+    }
+
+    .card-sub {
+      font-size: 10px;
+      color: var(--teal);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .card-desc {
+      font-size: 12px;
+      color: var(--ink-soft);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .card-footer {
+      padding: 0 22px 18px;
+    }
+
+    .btn-view {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: #fff;
+      background: var(--teal);
+      padding: 7px 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .btn-view:hover { background: var(--teal-deep); }
+
+    .badge-soon {
+      display: inline-block;
+      font-size: 10px;
+      color: var(--ink-soft);
+      background: var(--border);
+      padding: 5px 14px;
+      border-radius: 4px;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 32px 40px;
+      font-size: 11px;
+      color: var(--ink-soft);
+      border-top: 1px solid var(--border);
+      letter-spacing: 0.04em;
+    }
+
+    footer a {
+      color: var(--teal);
+      text-decoration: none;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      header { padding: 0 20px; }
+      .hero  { padding: 32px 20px 28px; }
+      .hero h1 { font-size: 26px; }
+      .grid-section { padding: 0 20px; margin: 32px auto; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header>
+  <div class="header-left">
+    <span class="header-logo-kr">에버블루씨 연구소</span>
+    <span class="header-logo-en">Λ¹² Sociodynamics</span>
+  </div>
+  <a href="/" class="header-back">← 메인으로</a>
+</header>
+
+<!-- ── Hero ── -->
+<div class="hero">
+  <div class="hero-tag">SEISMOS-N · 전국 진단 엔진</div>
+  <h1>SEISMOS-N</h1>
+  <p>전국 단위 사회구조 진단 도구 모음. 산업·ESG·언론 데이터를 통합하여 구조적 취약성과 전환 신호를 탐지합니다.</p>
+</div>
+
+<!-- ── Grid ── -->
+<div class="grid-section">
+  <div class="section-label">진단 도구 — 6개 모듈</div>
+  <div class="grid">
+
+    <!-- 카드 1: 전국 산업진단 -->
+    <div class="card">
+      <div class="card-topline" style="background: var(--teal);"></div>
+      <div class="card-body">
+        <div class="card-icon">🏭</div>
+        <div class="card-sub">SEISMOS-N · BIZ</div>
+        <div class="card-title">전국 산업진단</div>
+        <div class="card-desc">전국 산업·고용 구조의 취약성 지수(η)를 시각화합니다. 지역별 산업 편중도와 고용 탄력성을 분석합니다.</div>
+      </div>
+      <div class="card-footer">
+        <a href="/tools/dure_biz_v2.html" class="btn-view">VIEW →</a>
+      </div>
+    </div>
+
+    <!-- 카드 2: ESG 탄소자원 진단 -->
+    <div class="card">
+      <div class="card-topline" style="background: var(--gold);"></div>
+      <div class="card-body">
+        <div class="card-icon">🌿</div>
+        <div class="card-sub">SEISMOS-N · ESG</div>
+        <div class="card-title">ESG 탄소자원 진단</div>
+        <div class="card-desc">지역 탄소 배출 구조와 ESG 전환 역량을 진단합니다. 자원 의존도·탈탄소 전환 속도를 지수화합니다.</div>
+      </div>
+      <div class="card-footer">
+        <span class="badge-soon">예정</span>
+      </div>
+    </div>
+
+    <!-- 카드 3: 언론 브리핑 분석 -->
+    <div class="card">
+      <div class="card-topline" style="background: #8B6FAE;"></div>
+      <div class="card-body">
+        <div class="card-icon">📰</div>
+        <div class="card-sub">SEISMOS-N · MEDIA</div>
+        <div class="card-title">언론 브리핑 분석</div>
+        <div class="card-desc">주요 언론 브리핑을 수집·분류하여 담론 편향성과 의제 구조를 분석합니다. 6층 담론 분석법 적용.</div>
+      </div>
+      <div class="card-footer">
+        <a href="/tools/briefing_desk.html" class="btn-view">VIEW →</a>
+      </div>
+    </div>
+
+    <!-- 카드 4~6: 준비중 -->
+    <div class="card inactive">
+      <div class="card-topline" style="background: var(--border);"></div>
+      <div class="card-body">
+        <div class="card-icon">📊</div>
+        <div class="card-sub">SEISMOS-N · DEMO</div>
+        <div class="card-title">인구구조 진단</div>
+        <div class="card-desc">지역별 인구 감소 속도와 연령 구조 변화를 추적합니다. 소멸위험지수와 η 상관관계를 분석합니다.</div>
+      </div>
+      <div class="card-footer">
+        <span class="badge-soon">준비중</span>
+      </div>
+    </div>
+
+    <div class="card inactive">
+      <div class="card-topline" style="background: var(--border);"></div>
+      <div class="card-body">
+        <div class="card-icon">🏦</div>
+        <div class="card-sub">SEISMOS-N · FIN</div>
+        <div class="card-title">지역 재정 진단</div>
+        <div class="card-desc">지방자치단체 재정 건전성과 의존도를 진단합니다. 재정자립도·복지 지출 구조를 지수화합니다.</div>
+      </div>
+      <div class="card-footer">
+        <span class="badge-soon">준비중</span>
+      </div>
+    </div>
+
+    <div class="card inactive">
+      <div class="card-topline" style="background: var(--border);"></div>
+      <div class="card-body">
+        <div class="card-icon">🔗</div>
+        <div class="card-sub">SEISMOS-N · NET</div>
+        <div class="card-title">지역 네트워크 분석</div>
+        <div class="card-desc">지역 간 경제·인구 이동 네트워크를 시각화합니다. 허브 의존도와 고립 지역 위험도를 탐지합니다.</div>
+      </div>
+      <div class="card-footer">
+        <span class="badge-soon">준비중</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── Footer ── -->
+<footer>
+  <a href="/">Everblue Sea Institute</a> · Λ¹² Sociodynamics · SEISMOS-N 전국 진단 엔진
+</footer>
+
+</body>
+</html>
