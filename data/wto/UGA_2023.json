@@ -1,0 +1,91 @@
+{
+  "country": "800",
+  "iso_code": "UGA",
+  "year": 2023,
+  "updated": "2026-06-14",
+  "indicators": {
+    "trade": {
+      "ITS_MTV_AX": {
+        "value": 2597.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTV_AM": {
+        "value": 1421.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AXVG": {
+        "value": 82.9,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AMVG": {
+        "value": 25.9,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "tariff": {
+      "TP_A_0010": {
+        "value": 15.6,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_A_0160": {
+        "value": 28.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_A_0430": {
+        "value": 13.6,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_B_0020": {
+        "value": 16.6,
+        "year": null,
+        "unit": ""
+      },
+      "TP_B_0090": {
+        "value": 72.9,
+        "year": null,
+        "unit": ""
+      }
+    },
+    "services": {
+      "ITS_CS_QAX": {
+        "value": 2084.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_CS_QAM": {
+        "value": 3611.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_X": {
+        "value": 112.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_M": {
+        "value": 0.0,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "price": {
+      "ITS_MTP_AUVX": {
+        "value": 96.4,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AUVM": {
+        "value": 96.0,
+        "year": 2023,
+        "unit": ""
+      }
+    }
+  }
+}

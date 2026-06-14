@@ -42,17 +42,29 @@ AMERICAS_OCEANIA_REGION = {
     "AUS": "오세아니아", "NZL": "오세아니아",
 }
 
-GLOBAL_REGION = {**EUROPE_REGION, **ASIA_REGION, **AMERICAS_OCEANIA_REGION}
+AFRICA_REGION = {
+    "EGY": "북아프리카", "MAR": "북아프리카", "TUN": "북아프리카",
+    "NGA": "서아프리카", "GHA": "서아프리카", "SEN": "서아프리카", "CIV": "서아프리카",
+    "ETH": "동아프리카", "KEN": "동아프리카", "TZA": "동아프리카", "UGA": "동아프리카",
+    "ZAF": "남아프리카", "MOZ": "남아프리카", "ZMB": "남아프리카", "AGO": "남아프리카",
+    "CMR": "중앙아프리카", "COD": "중앙아프리카",
+}
+
+GLOBAL_REGION = {
+    **EUROPE_REGION, **ASIA_REGION,
+    **AMERICAS_OCEANIA_REGION, **AFRICA_REGION,
+}
 
 _parser = argparse.ArgumentParser()
 _parser.add_argument("--continent",
-                     choices=["europe", "asia", "americas", "global"],
+                     choices=["europe", "asia", "americas", "africa", "global"],
                      default="europe")
 _args = _parser.parse_args()
 
 COUNTRY_REGION = {
     "asia":     ASIA_REGION,
     "americas": AMERICAS_OCEANIA_REGION,
+    "africa":   AFRICA_REGION,
     "global":   GLOBAL_REGION,
 }.get(_args.continent, EUROPE_REGION)
 COUNTRIES = sorted(COUNTRY_REGION.keys())
