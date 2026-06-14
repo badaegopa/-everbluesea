@@ -42,15 +42,19 @@ AMERICAS_OCEANIA_REGION = {
     "AUS": "오세아니아", "NZL": "오세아니아",
 }
 
+GLOBAL_REGION = {**EUROPE_REGION, **ASIA_REGION, **AMERICAS_OCEANIA_REGION}
+
 _parser = argparse.ArgumentParser()
-_parser.add_argument("--continent", choices=["europe", "asia", "americas"], default="europe")
+_parser.add_argument("--continent",
+                     choices=["europe", "asia", "americas", "global"],
+                     default="europe")
 _args = _parser.parse_args()
 
-COUNTRY_REGION = (
-    ASIA_REGION             if _args.continent == "asia"
-    else AMERICAS_OCEANIA_REGION if _args.continent == "americas"
-    else EUROPE_REGION
-)
+COUNTRY_REGION = {
+    "asia":     ASIA_REGION,
+    "americas": AMERICAS_OCEANIA_REGION,
+    "global":   GLOBAL_REGION,
+}.get(_args.continent, EUROPE_REGION)
 COUNTRIES = sorted(COUNTRY_REGION.keys())
 
 # 원시 지표 그룹 / 코드 목록
