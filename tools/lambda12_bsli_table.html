@@ -1,0 +1,2016 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Λ¹² × BSLI 통합 테이블 | 늘푸른바다 사회동역학 연구소</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+  background: #F5F3EE;
+  color: #2A3D35;
+  min-height: 100vh;
+  padding: 24px 16px 48px;
+}
+.page-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.page-header h1 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #2A3D35;
+  letter-spacing: -0.02em;
+}
+.page-header .subtitle {
+  font-size: 0.82rem;
+  color: #5E9186;
+  margin-top: 6px;
+}
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 14px;
+  max-width: 1500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.search-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+  max-width: 280px;
+}
+.search-wrap input {
+  width: 100%;
+  padding: 7px 12px 7px 32px;
+  border: 1.5px solid #DDD8CE;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 0.85rem;
+  color: #2A3D35;
+  outline: none;
+}
+.search-wrap input:focus { border-color: #5E9186; }
+.search-icon {
+  position: absolute;
+  left: 9px; top: 50%;
+  transform: translateY(-50%);
+  color: #5E9186;
+  pointer-events: none;
+}
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.fbtn {
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  border: 1.5px solid #DDD8CE;
+  border-radius: 20px;
+  background: #fff;
+  color: #2A3D35;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.fbtn.active { background: #2A3D35; color: #fff; border-color: #2A3D35; }
+.table-wrap {
+  max-width: 1500px;
+  margin: 0 auto;
+  overflow-x: auto;
+  border-radius: 10px;
+  border: 1px solid #DDD8CE;
+  background: #fff;
+}
+table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+thead tr { background: #2A3D35; color: #fff; }
+thead th {
+  padding: 9px 8px;
+  text-align: center;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  border-right: 1px solid #3A5040;
+  font-size: 0.78rem;
+}
+thead th:hover { background: #3A5040; }
+thead th.sort-asc::after  { content: ' ▲'; font-size: 0.65rem; }
+thead th.sort-desc::after { content: ' ▼'; font-size: 0.65rem; }
+.th-group {
+  background: #1A2D25;
+  font-size: 0.7rem;
+  letter-spacing: 0.03em;
+  color: #B0D4CE;
+}
+/* 컬럼 그룹 구분선 */
+.col-sep { border-left: 2px solid #B8850E !important; }
+
+tbody tr { border-bottom: 1px solid #EDE9E0; transition: background 0.1s; }
+tbody tr:hover { background: #F0EDE6; }
+tbody td {
+  padding: 7px 8px;
+  text-align: center;
+  border-right: 1px solid #EDE9E0;
+  white-space: nowrap;
+}
+td.left { text-align: left; }
+
+/* η 색상 */
+.eta-hi  { background: #1A5C4A; color: #fff; font-weight: 700; border-radius: 4px; padding: 2px 6px; }
+.eta-mid { background: #5E9186; color: #fff; border-radius: 4px; padding: 2px 6px; }
+.eta-lo  { background: #B0D4CE; color: #2A3D35; border-radius: 4px; padding: 2px 6px; }
+
+/* BSLI 색상 */
+.bsli-hi  { color: #1A5C4A; font-weight: 700; }
+.bsli-mid { color: #5E9186; }
+.bsli-lo  { color: #B8850E; }
+.bsli-neg { color: #C0392B; }
+.bsli-na  { color: #BBB; font-size: 0.72rem; }
+
+/* A점수 히트맵 */
+.a-gold { background: #FFF3CC; }
+.a-gray { background: #F0EFED; color: #AAA; }
+
+/* 신뢰도 배지 */
+.rel { display: inline-block; padding: 2px 7px; border-radius: 10px; font-size: 0.7rem; font-weight: 600; }
+.rel-상 { background: #D4EDE8; color: #1A5C4A; }
+.rel-중 { background: #FEF3DC; color: #7A5A00; }
+.rel-하 { background: #FDDEDE; color: #8B0000; }
+
+/* 플래그 */
+.flag { display: inline-block; padding: 1px 5px; border-radius: 4px; font-size: 0.65rem; margin-left: 2px; }
+.flag-out { background: #FDDEDE; color: #B00020; }
+.flag-spc { background: #EEE3FF; color: #5A00B0; }
+
+.stats-bar {
+  max-width: 1500px;
+  margin: 0 auto 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.stat-chip {
+  background: #fff;
+  border: 1px solid #DDD8CE;
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 0.78rem;
+  color: #3A6A5E;
+  font-weight: 600;
+}
+.stat-chip span { color: #B8850E; }
+.no-results { text-align: center; padding: 40px; color: #888; }
+.footer { text-align: center; margin-top: 20px; font-size: 0.7rem; color: #999; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Λ¹² × BSLI 통합 스코어 테이블</h1>
+  <div class="subtitle">늘푸른바다 사회동역학 연구소 | Λ¹²v9.12 + BSLI v3.2 | WTO 2023 · PIP 2013~2021 | 68개국</div>
+</div>
+
+<div class="controls" style="max-width:1500px;margin:0 auto 10px;">
+  <div class="search-wrap">
+    <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input type="text" id="searchInput" placeholder="국가명 또는 코드..." oninput="applyFilters()">
+  </div>
+  <div class="filter-row" id="regionFilter"></div>
+  <div class="filter-row" id="quadFilter"></div>
+</div>
+
+<div class="stats-bar" id="statsBar"></div>
+
+<div class="table-wrap">
+<table id="mainTable">
+<thead>
+<tr class="th-group">
+  <th colspan="4"></th>
+  <th colspan="2" class="col-sep" style="text-align:center;">── 핵심 지수 ──</th>
+  <th colspan="11" class="col-sep" style="text-align:center;">── Λ¹² 12차원 ──</th>
+  <th colspan="2" class="col-sep" style="text-align:center;">── 메타 ──</th>
+</tr>
+<tr>
+  <th onclick="sortBy('_rank')" id="th-_rank">#</th>
+  <th onclick="sortBy('name')" id="th-name" class="left">국가</th>
+  <th onclick="sortBy('code')" id="th-code">코드</th>
+  <th onclick="sortBy('region')" id="th-region">권역</th>
+  <th onclick="sortBy('eta')" id="th-eta" class="col-sep">η</th>
+  <th onclick="sortBy('bsli')" id="th-bsli">BSLI</th>
+  <th onclick="sortBy('A1')" id="th-A1" class="col-sep">A1<br><small>인프라</small></th>
+  <th onclick="sortBy('A2')" id="th-A2">A2<br><small>제도신뢰</small></th>
+  <th onclick="sortBy('A3')" id="th-A3">A3<br><small>사회결속</small></th>
+  <th onclick="sortBy('A4')" id="th-A4">A4<br><small>경제역량</small></th>
+  <th onclick="sortBy('A5')" id="th-A5">A5<br><small>지식혁신</small></th>
+  <th onclick="sortBy('A6')" id="th-A6">A6<br><small>환경지속</small></th>
+  <th onclick="sortBy('A8')" id="th-A8">A8<br><small>거버넌스</small></th>
+  <th onclick="sortBy('A9')" id="th-A9">A9<br><small>지정학</small></th>
+  <th onclick="sortBy('A10')" id="th-A10">A10<br><small>문화정체</small></th>
+  <th onclick="sortBy('A11')" id="th-A11">A11<br><small>에너지</small></th>
+  <th onclick="sortBy('A12')" id="th-A12">A12<br><small>이동성</small></th>
+  <th onclick="sortBy('reliability')" id="th-reliability" class="col-sep">신뢰도</th>
+  <th onclick="sortBy('missing')" id="th-missing">결측</th>
+</tr>
+</thead>
+<tbody id="tableBody"></tbody>
+</table>
+</div>
+
+<div class="footer">
+  늘푸른바다 사회동역학 연구소 · Λ¹²v9.12 · BSLI v3.2 · WTO 공개데이터 2023 · PIP fallback_10yr · 2026-06-15
+</div>
+
+<script>
+const RAW_DATA = [
+  {
+    "code": "USA",
+    "name": "미국",
+    "region": "북미",
+    "eta": 0.5657,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.1075,
+    "A2": 0.9154,
+    "A3": 1.0,
+    "A4": 0.2728,
+    "A5": 0.6902,
+    "A6": 0.5432,
+    "A7": null,
+    "A8": 0.4263,
+    "A9": 0.0689,
+    "A10": 1.0,
+    "A11": 0.4381,
+    "A12": 0.7598,
+    "bsli": 0.6998,
+    "bsli_year": 2019
+  },
+  {
+    "code": "GBR",
+    "name": "영국",
+    "region": "서유럽",
+    "eta": 0.4196,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.0695,
+    "A2": 0.9026,
+    "A3": 0.5199,
+    "A4": 0.1529,
+    "A5": 0.8585,
+    "A6": 0.5008,
+    "A7": null,
+    "A8": 0.4187,
+    "A9": 0.1412,
+    "A10": 0.5484,
+    "A11": 0.2362,
+    "A12": 0.267,
+    "bsli": 0.5249,
+    "bsli_year": 2017
+  },
+  {
+    "code": "COD",
+    "name": "콩고민주공화국",
+    "region": "중앙아프리카",
+    "eta": 0.4143,
+    "reliability": "하",
+    "outlier": true,
+    "special": true,
+    "missing": 1,
+    "A1": 0.5002,
+    "A2": 1.0,
+    "A3": 0.0033,
+    "A4": 0.3337,
+    "A5": 0.6848,
+    "A6": null,
+    "A7": null,
+    "A8": 0.619,
+    "A9": 1.0,
+    "A10": 0.0,
+    "A11": 0.0007,
+    "A12": 0.0017,
+    "bsli": null,
+    "bsli_year": null
+  },
+  {
+    "code": "CHN",
+    "name": "중국",
+    "region": "동아시아",
+    "eta": 0.4066,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.1599,
+    "A2": 0.8077,
+    "A3": 0.5445,
+    "A4": 0.2995,
+    "A5": 0.5941,
+    "A6": 0.557,
+    "A7": null,
+    "A8": 0.3399,
+    "A9": 0.0659,
+    "A10": 0.3647,
+    "A11": 0.4391,
+    "A12": 0.2999,
+    "bsli": -0.0464,
+    "bsli_year": 2019
+  },
+  {
+    "code": "FRA",
+    "name": "프랑스",
+    "region": "서유럽",
+    "eta": 0.3955,
+    "reliability": "중",
+    "outlier": false,
+    "special": false,
+    "missing": 3,
+    "A1": 0.1018,
+    "A2": null,
+    "A3": 0.3968,
+    "A4": 0.3628,
+    "A5": 0.9277,
+    "A6": null,
+    "A7": null,
+    "A8": null,
+    "A9": 0.1644,
+    "A10": 0.3584,
+    "A11": 0.6238,
+    "A12": 0.2282,
+    "bsli": 0.6361,
+    "bsli_year": 2018
+  },
+  {
+    "code": "ARE",
+    "name": "아랍에미리트",
+    "region": "중동",
+    "eta": 0.3947,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.1999,
+    "A2": 0.8795,
+    "A3": 0.1533,
+    "A4": 0.2889,
+    "A5": 0.6801,
+    "A6": 0.5818,
+    "A7": null,
+    "A8": 0.4262,
+    "A9": 0.3582,
+    "A10": 0.1608,
+    "A11": 0.3779,
+    "A12": 0.2348,
+    "bsli": 0.8472,
+    "bsli_year": 2013
+  },
+  {
+    "code": "NLD",
+    "name": "네덜란드",
+    "region": "서유럽",
+    "eta": 0.3896,
+    "reliability": "중",
+    "outlier": false,
+    "special": false,
+    "missing": 3,
+    "A1": 0.1505,
+    "A2": null,
+    "A3": 0.3463,
+    "A4": 0.4151,
+    "A5": 0.8304,
+    "A6": null,
+    "A7": null,
+    "A8": null,
+    "A9": 0.1452,
+    "A10": 0.3086,
+    "A11": 0.6796,
+    "A12": 0.2409,
+    "bsli": 0.7441,
+    "bsli_year": 2019
+  },
+  {
+    "code": "JPN",
+    "name": "일본",
+    "region": "동아시아",
+    "eta": 0.3856,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.5732,
+    "A2": 0.9034,
+    "A3": 0.2524,
+    "A4": 0.4047,
+    "A5": 0.6107,
+    "A6": 0.4604,
+    "A7": null,
+    "A8": 0.4177,
+    "A9": 0.0387,
+    "A10": 0.1995,
+    "A11": 0.2363,
+    "A12": 0.1444,
+    "bsli": 0.502,
+    "bsli_year": 2013
+  },
+  {
+    "code": "UGA",
+    "name": "우간다",
+    "region": "동아프리카",
+    "eta": 0.3832,
+    "reliability": "하",
+    "outlier": true,
+    "special": true,
+    "missing": 0,
+    "A1": 0.4725,
+    "A2": 0.1157,
+    "A3": 0.003,
+    "A4": 0.4865,
+    "A5": 0.6968,
+    "A6": 0.6364,
+    "A7": null,
+    "A8": 0.335,
+    "A9": 0.9652,
+    "A10": 0.0019,
+    "A11": 0.5004,
+    "A12": 0.0016,
+    "bsli": -1.0022,
+    "bsli_year": 2019
+  },
+  {
+    "code": "DEU",
+    "name": "독일",
+    "region": "서유럽",
+    "eta": 0.3756,
+    "reliability": "중",
+    "outlier": false,
+    "special": false,
+    "missing": 3,
+    "A1": 0.1444,
+    "A2": null,
+    "A3": 0.5587,
+    "A4": 0.2012,
+    "A5": 0.8376,
+    "A6": null,
+    "A7": null,
+    "A8": null,
+    "A9": 0.139,
+    "A10": 0.4332,
+    "A11": 0.258,
+    "A12": 0.4327,
+    "bsli": 0.7202,
+    "bsli_year": 2018
+  },
+  {
+    "code": "SGP",
+    "name": "싱가포르",
+    "region": "동남아시아",
+    "eta": 0.3694,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.0669,
+    "A2": 0.8374,
+    "A3": 0.3791,
+    "A4": 0.1109,
+    "A5": 0.7481,
+    "A6": 0.4991,
+    "A7": null,
+    "A8": 0.5287,
+    "A9": 0.2113,
+    "A10": 0.3358,
+    "A11": 0.155,
+    "A12": 0.1911,
+    "bsli": null,
+    "bsli_year": null
+  },
+  {
+    "code": "IND",
+    "name": "인도",
+    "region": "남아시아",
+    "eta": 0.3309,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.1267,
+    "A2": 0.4149,
+    "A3": 0.323,
+    "A4": 0.2375,
+    "A5": 0.521,
+    "A6": 0.5371,
+    "A7": null,
+    "A8": 0.2279,
+    "A9": 0.1689,
+    "A10": 0.3229,
+    "A11": 0.3483,
+    "A12": 0.4116,
+    "bsli": -0.5832,
+    "bsli_year": 2019
+  },
+  {
+    "code": "SAU",
+    "name": "사우디아라비아",
+    "region": "중동",
+    "eta": 0.3302,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.0353,
+    "A2": 0.841,
+    "A3": 0.1014,
+    "A4": 0.2256,
+    "A5": 0.5611,
+    "A6": 0.5759,
+    "A7": null,
+    "A8": 0.3765,
+    "A9": 0.3592,
+    "A10": 0.0522,
+    "A11": 0.4159,
+    "A12": 0.088,
+    "bsli": null,
+    "bsli_year": null
+  },
+  {
+    "code": "SEN",
+    "name": "세네갈",
+    "region": "서아프리카",
+    "eta": 0.3269,
+    "reliability": "중",
+    "outlier": false,
+    "special": true,
+    "missing": 2,
+    "A1": 0.0718,
+    "A2": 0.6923,
+    "A3": null,
+    "A4": 0.1791,
+    "A5": 0.6545,
+    "A6": 0.6808,
+    "A7": null,
+    "A8": 0.289,
+    "A9": 0.0885,
+    "A10": null,
+    "A11": 0.2863,
+    "A12": 0.0,
+    "bsli": -0.5209,
+    "bsli_year": 2018
+  },
+  {
+    "code": "CIV",
+    "name": "코트디부아르",
+    "region": "서아프리카",
+    "eta": 0.3252,
+    "reliability": "중",
+    "outlier": false,
+    "special": false,
+    "missing": 2,
+    "A1": 0.0982,
+    "A2": 0.3024,
+    "A3": null,
+    "A4": 0.2255,
+    "A5": 0.8062,
+    "A6": 0.6844,
+    "A7": null,
+    "A8": 0.2258,
+    "A9": 0.2303,
+    "A10": null,
+    "A11": 0.3528,
+    "A12": 0.0009,
+    "bsli": -0.5322,
+    "bsli_year": 2018
+  },
+  {
+    "code": "MEX",
+    "name": "멕시코",
+    "region": "북미",
+    "eta": 0.3194,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.1283,
+    "A2": 0.8256,
+    "A3": 0.0762,
+    "A4": 0.2127,
+    "A5": 0.755,
+    "A6": 0.5642,
+    "A7": null,
+    "A8": 0.4423,
+    "A9": 0.0647,
+    "A10": 0.0537,
+    "A11": 0.2971,
+    "A12": 0.0936,
+    "bsli": -0.2665,
+    "bsli_year": 2020
+  },
+  {
+    "code": "CAN",
+    "name": "캐나다",
+    "region": "북미",
+    "eta": 0.3141,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.1111,
+    "A2": 0.9008,
+    "A3": 0.1816,
+    "A4": 0.1842,
+    "A5": 0.6623,
+    "A6": 0.4264,
+    "A7": null,
+    "A8": 0.4238,
+    "A9": 0.0494,
+    "A10": 0.1551,
+    "A11": 0.2573,
+    "A12": 0.1026,
+    "bsli": 0.7012,
+    "bsli_year": 2017
+  },
+  {
+    "code": "CHE",
+    "name": "스위스",
+    "region": "서유럽",
+    "eta": 0.3133,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.0707,
+    "A2": 0.8649,
+    "A3": 0.2048,
+    "A4": 0.152,
+    "A5": 0.9311,
+    "A6": 0.2865,
+    "A7": null,
+    "A8": 0.3889,
+    "A9": 0.0432,
+    "A10": 0.163,
+    "A11": 0.2333,
+    "A12": 0.1078,
+    "bsli": 0.8422,
+    "bsli_year": 2018
+  },
+  {
+    "code": "RUS",
+    "name": "러시아",
+    "region": "러시아_유라시아",
+    "eta": 0.3108,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.0265,
+    "A2": 0.8308,
+    "A3": 0.0693,
+    "A4": 0.1965,
+    "A5": 0.5626,
+    "A6": 0.5863,
+    "A7": null,
+    "A8": 0.3553,
+    "A9": 0.3088,
+    "A10": 0.0387,
+    "A11": 0.3666,
+    "A12": 0.0773,
+    "bsli": 0.1113,
+    "bsli_year": 2020
+  },
+  {
+    "code": "BRA",
+    "name": "브라질",
+    "region": "남미",
+    "eta": 0.3075,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.2304,
+    "A2": 0.7128,
+    "A3": 0.0799,
+    "A4": 0.2144,
+    "A5": 0.5973,
+    "A6": 0.7576,
+    "A7": null,
+    "A8": 0.314,
+    "A9": 0.1435,
+    "A10": 0.0434,
+    "A11": 0.1984,
+    "A12": 0.0907,
+    "bsli": -0.2409,
+    "bsli_year": 2020
+  },
+  {
+    "code": "HKG",
+    "name": "홍콩",
+    "region": "동아시아",
+    "eta": 0.307,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.0385,
+    "A2": 0.7079,
+    "A3": 0.0981,
+    "A4": 0.117,
+    "A5": 0.9061,
+    "A6": 0.5,
+    "A7": null,
+    "A8": 0.5,
+    "A9": 0.1659,
+    "A10": 0.0931,
+    "A11": 0.1954,
+    "A12": 0.0555,
+    "bsli": null,
+    "bsli_year": null
+  },
+  {
+    "code": "AUS",
+    "name": "호주",
+    "region": "오세아니아",
+    "eta": 0.3053,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.1096,
+    "A2": 0.9222,
+    "A3": 0.1028,
+    "A4": 0.168,
+    "A5": 0.6246,
+    "A6": 0.5625,
+    "A7": null,
+    "A8": 0.4688,
+    "A9": 0.0482,
+    "A10": 0.0733,
+    "A11": 0.2265,
+    "A12": 0.0516,
+    "bsli": 0.6538,
+    "bsli_year": 2018
+  },
+  {
+    "code": "UKR",
+    "name": "우크라이나",
+    "region": "러시아_유라시아",
+    "eta": 0.302,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.0743,
+    "A2": 0.8897,
+    "A3": 0.0205,
+    "A4": 0.1929,
+    "A5": 0.7455,
+    "A6": 0.5213,
+    "A7": null,
+    "A8": 0.4084,
+    "A9": 0.1356,
+    "A10": 0.0105,
+    "A11": 0.3114,
+    "A12": 0.0124,
+    "bsli": 0.1453,
+    "bsli_year": 2020
+  },
+  {
+    "code": "PER",
+    "name": "페루",
+    "region": "남미",
+    "eta": 0.2996,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.1032,
+    "A2": 0.941,
+    "A3": 0.0115,
+    "A4": 0.1378,
+    "A5": 0.6887,
+    "A6": 0.54,
+    "A7": null,
+    "A8": 0.5364,
+    "A9": 0.1527,
+    "A10": 0.0056,
+    "A11": 0.1724,
+    "A12": 0.0062,
+    "bsli": -0.3434,
+    "bsli_year": 2020
+  },
+  {
+    "code": "ISR",
+    "name": "이스라엘",
+    "region": "중동",
+    "eta": 0.2926,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.0326,
+    "A2": 0.825,
+    "A3": 0.0699,
+    "A4": 0.0819,
+    "A5": 0.7127,
+    "A6": 0.4346,
+    "A7": null,
+    "A8": 0.5395,
+    "A9": 0.2774,
+    "A10": 0.0781,
+    "A11": 0.1311,
+    "A12": 0.0353,
+    "bsli": 0.2964,
+    "bsli_year": 2018
+  },
+  {
+    "code": "NZL",
+    "name": "뉴질랜드",
+    "region": "오세아니아",
+    "eta": 0.2925,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.1106,
+    "A2": 0.9513,
+    "A3": 0.02,
+    "A4": 0.1592,
+    "A5": 0.6187,
+    "A6": 0.5439,
+    "A7": null,
+    "A8": 0.4819,
+    "A9": 0.0765,
+    "A10": 0.0162,
+    "A11": 0.2077,
+    "A12": 0.0314,
+    "bsli": null,
+    "bsli_year": null
+  },
+  {
+    "code": "IDN",
+    "name": "인도네시아",
+    "region": "동남아시아",
+    "eta": 0.288,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.0935,
+    "A2": 0.7734,
+    "A3": 0.0242,
+    "A4": 0.1909,
+    "A5": 0.5981,
+    "A6": 0.6465,
+    "A7": null,
+    "A8": 0.4145,
+    "A9": 0.0821,
+    "A10": 0.0321,
+    "A11": 0.2883,
+    "A12": 0.0241,
+    "bsli": -0.3315,
+    "bsli_year": 2021
+  },
+  {
+    "code": "CHL",
+    "name": "칠레",
+    "region": "남미",
+    "eta": 0.2855,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.0915,
+    "A2": 0.8462,
+    "A3": 0.0182,
+    "A4": 0.1076,
+    "A5": 0.6441,
+    "A6": 0.6159,
+    "A7": null,
+    "A8": 0.4271,
+    "A9": 0.242,
+    "A10": 0.0098,
+    "A11": 0.1237,
+    "A12": 0.0148,
+    "bsli": -0.051,
+    "bsli_year": 2020
+  },
+  {
+    "code": "MYS",
+    "name": "말레이시아",
+    "region": "동남아시아",
+    "eta": 0.2839,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.0701,
+    "A2": 0.7623,
+    "A3": 0.0543,
+    "A4": 0.1363,
+    "A5": 0.6809,
+    "A6": 0.584,
+    "A7": null,
+    "A8": 0.4235,
+    "A9": 0.1368,
+    "A10": 0.0408,
+    "A11": 0.2025,
+    "A12": 0.0311,
+    "bsli": 0.0948,
+    "bsli_year": 2015
+  },
+  {
+    "code": "ZMB",
+    "name": "잠비아",
+    "region": "남아프리카",
+    "eta": 0.2774,
+    "reliability": "중",
+    "outlier": false,
+    "special": true,
+    "missing": 0,
+    "A1": 0.0428,
+    "A2": 0.1448,
+    "A3": 0.0012,
+    "A4": 0.218,
+    "A5": 0.7297,
+    "A6": 0.7148,
+    "A7": null,
+    "A8": 0.4696,
+    "A9": 0.3345,
+    "A10": 0.0008,
+    "A11": 0.3932,
+    "A12": 0.0019,
+    "bsli": -1.5316,
+    "bsli_year": 2015
+  },
+  {
+    "code": "ZAF",
+    "name": "남아프리카공화국",
+    "region": "남아프리카",
+    "eta": 0.2765,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.1017,
+    "A2": 0.7691,
+    "A3": 0.0189,
+    "A4": 0.1971,
+    "A5": 0.5404,
+    "A6": 0.6333,
+    "A7": null,
+    "A8": 0.3664,
+    "A9": 0.0983,
+    "A10": 0.0138,
+    "A11": 0.2925,
+    "A12": 0.0096,
+    "bsli": -1.3981,
+    "bsli_year": 2014
+  },
+  {
+    "code": "ROU",
+    "name": "루마니아",
+    "region": "동유럽",
+    "eta": 0.2752,
+    "reliability": "중",
+    "outlier": false,
+    "special": false,
+    "missing": 1,
+    "A1": 0.0924,
+    "A2": 1.0,
+    "A3": 0.0389,
+    "A4": 0.1511,
+    "A5": 0.8743,
+    "A6": null,
+    "A7": null,
+    "A8": 0.2573,
+    "A9": 0.0608,
+    "A10": 0.041,
+    "A11": 0.2098,
+    "A12": 0.0269,
+    "bsli": 0.1014,
+    "bsli_year": 2019
+  },
+  {
+    "code": "COL",
+    "name": "콜롬비아",
+    "region": "남미",
+    "eta": 0.275,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.093,
+    "A2": 0.8282,
+    "A3": 0.0184,
+    "A4": 0.0975,
+    "A5": 0.5596,
+    "A6": 0.5364,
+    "A7": null,
+    "A8": 0.4633,
+    "A9": 0.2843,
+    "A10": 0.0153,
+    "A11": 0.102,
+    "A12": 0.0272,
+    "bsli": -0.6808,
+    "bsli_year": 2020
+  },
+  {
+    "code": "TWN",
+    "name": "대만",
+    "region": "동아시아",
+    "eta": 0.2713,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.0674,
+    "A2": 0.8333,
+    "A3": 0.0674,
+    "A4": 0.1042,
+    "A5": 0.6134,
+    "A6": 0.4892,
+    "A7": null,
+    "A8": 0.3549,
+    "A9": 0.2216,
+    "A10": 0.0515,
+    "A11": 0.1409,
+    "A12": 0.0401,
+    "bsli": 0.4757,
+    "bsli_year": 2016
+  },
+  {
+    "code": "THA",
+    "name": "태국",
+    "region": "동남아시아",
+    "eta": 0.2686,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.107,
+    "A2": 0.6146,
+    "A3": 0.0703,
+    "A4": 0.1587,
+    "A5": 0.8136,
+    "A6": 0.4626,
+    "A7": null,
+    "A8": 0.3345,
+    "A9": 0.0916,
+    "A10": 0.0552,
+    "A11": 0.2103,
+    "A12": 0.0361,
+    "bsli": 0.055,
+    "bsli_year": 2020
+  },
+  {
+    "code": "VNM",
+    "name": "베트남",
+    "region": "동남아시아",
+    "eta": 0.2675,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.0934,
+    "A2": 0.759,
+    "A3": 0.0215,
+    "A4": 0.1542,
+    "A5": 0.7062,
+    "A6": 0.5775,
+    "A7": null,
+    "A8": 0.2967,
+    "A9": 0.1025,
+    "A10": 0.0055,
+    "A11": 0.215,
+    "A12": 0.0113,
+    "bsli": -0.0346,
+    "bsli_year": 2018
+  },
+  {
+    "code": "PHL",
+    "name": "필리핀",
+    "region": "동남아시아",
+    "eta": 0.265,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.0639,
+    "A2": 0.658,
+    "A3": 0.0425,
+    "A4": 0.1602,
+    "A5": 0.6416,
+    "A6": 0.5703,
+    "A7": null,
+    "A8": 0.4264,
+    "A9": 0.0241,
+    "A10": 0.0462,
+    "A11": 0.2565,
+    "A12": 0.0258,
+    "bsli": -0.3407,
+    "bsli_year": 2018
+  },
+  {
+    "code": "ARG",
+    "name": "아르헨티나",
+    "region": "남미",
+    "eta": 0.2628,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.0249,
+    "A2": 0.6564,
+    "A3": 0.0223,
+    "A4": 0.114,
+    "A5": 0.6079,
+    "A6": 0.8001,
+    "A7": null,
+    "A8": 0.2589,
+    "A9": 0.1707,
+    "A10": 0.0158,
+    "A11": 0.2032,
+    "A12": 0.0171,
+    "bsli": null,
+    "bsli_year": null
+  },
+  {
+    "code": "MOZ",
+    "name": "모잠비크",
+    "region": "남아프리카",
+    "eta": 0.2613,
+    "reliability": "중",
+    "outlier": false,
+    "special": true,
+    "missing": 0,
+    "A1": 0.2693,
+    "A2": 0.2382,
+    "A3": 0.0014,
+    "A4": 0.135,
+    "A5": 0.3368,
+    "A6": 0.6488,
+    "A7": null,
+    "A8": 0.5509,
+    "A9": 0.6917,
+    "A10": 0.001,
+    "A11": 0.0006,
+    "A12": 0.0007,
+    "bsli": -1.4078,
+    "bsli_year": 2014
+  },
+  {
+    "code": "MAR",
+    "name": "모로코",
+    "region": "북아프리카",
+    "eta": 0.2571,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.0836,
+    "A2": 0.641,
+    "A3": 0.0202,
+    "A4": 0.1484,
+    "A5": 0.7867,
+    "A6": 0.5643,
+    "A7": null,
+    "A8": 0.2742,
+    "A9": 0.0605,
+    "A10": 0.0245,
+    "A11": 0.2133,
+    "A12": 0.0118,
+    "bsli": -0.1859,
+    "bsli_year": 2013
+  },
+  {
+    "code": "TUR",
+    "name": "튀르키예",
+    "region": "러시아_유라시아",
+    "eta": 0.2533,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.0811,
+    "A2": 0.2972,
+    "A3": 0.0828,
+    "A4": 0.2351,
+    "A5": 0.6329,
+    "A6": 0.502,
+    "A7": null,
+    "A8": 0.1778,
+    "A9": 0.2431,
+    "A10": 0.1009,
+    "A11": 0.3891,
+    "A12": 0.0438,
+    "bsli": -0.015,
+    "bsli_year": 2019
+  },
+  {
+    "code": "ITA",
+    "name": "이탈리아",
+    "region": "남유럽",
+    "eta": 0.2508,
+    "reliability": "중",
+    "outlier": false,
+    "special": false,
+    "missing": 3,
+    "A1": 0.1106,
+    "A2": null,
+    "A3": 0.1694,
+    "A4": 0.1819,
+    "A5": 0.8073,
+    "A6": null,
+    "A7": null,
+    "A8": null,
+    "A9": 0.0787,
+    "A10": 0.1421,
+    "A11": 0.2533,
+    "A12": 0.2633,
+    "bsli": 0.4452,
+    "bsli_year": 2018
+  },
+  {
+    "code": "NOR",
+    "name": "노르웨이",
+    "region": "북유럽",
+    "eta": 0.2493,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.1421,
+    "A2": 0.8821,
+    "A3": 0.0636,
+    "A4": 0.182,
+    "A5": 0.3428,
+    "A6": 0.2384,
+    "A7": null,
+    "A8": 0.4536,
+    "A9": 0.1026,
+    "A10": 0.0509,
+    "A11": 0.2219,
+    "A12": 0.0619,
+    "bsli": 0.9254,
+    "bsli_year": 2019
+  },
+  {
+    "code": "BGD",
+    "name": "방글라데시",
+    "region": "남아시아",
+    "eta": 0.2487,
+    "reliability": "중",
+    "outlier": false,
+    "special": true,
+    "missing": 0,
+    "A1": 0.0179,
+    "A2": 0.1599,
+    "A3": 0.0088,
+    "A4": 0.0518,
+    "A5": 0.6521,
+    "A6": 0.724,
+    "A7": null,
+    "A8": 0.6385,
+    "A9": 0.3858,
+    "A10": 0.006,
+    "A11": 0.0857,
+    "A12": 0.005,
+    "bsli": -0.6223,
+    "bsli_year": 2016
+  },
+  {
+    "code": "ESP",
+    "name": "스페인",
+    "region": "남유럽",
+    "eta": 0.2482,
+    "reliability": "중",
+    "outlier": false,
+    "special": false,
+    "missing": 3,
+    "A1": 0.1182,
+    "A2": null,
+    "A3": 0.1549,
+    "A4": 0.1555,
+    "A5": 0.9124,
+    "A6": null,
+    "A7": null,
+    "A8": null,
+    "A9": 0.1804,
+    "A10": 0.1863,
+    "A11": 0.1928,
+    "A12": 0.0851,
+    "bsli": 0.4612,
+    "bsli_year": 2019
+  },
+  {
+    "code": "KOR",
+    "name": "한국",
+    "region": "동아시아",
+    "eta": 0.2478,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.1758,
+    "A2": 0.6268,
+    "A3": 0.164,
+    "A4": 0.1975,
+    "A5": 0.5569,
+    "A6": 0.1826,
+    "A7": null,
+    "A8": 0.2112,
+    "A9": 0.0661,
+    "A10": 0.1215,
+    "A11": 0.2193,
+    "A12": 0.2042,
+    "bsli": 0.4627,
+    "bsli_year": 2016
+  },
+  {
+    "code": "AGO",
+    "name": "앙골라",
+    "region": "남아프리카",
+    "eta": 0.2475,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.0964,
+    "A2": 0.7179,
+    "A3": 0.0053,
+    "A4": 0.1265,
+    "A5": 0.4524,
+    "A6": 0.5726,
+    "A7": null,
+    "A8": 0.4085,
+    "A9": 0.181,
+    "A10": 0.0,
+    "A11": 0.1566,
+    "A12": 0.0055,
+    "bsli": -0.9895,
+    "bsli_year": 2018
+  },
+  {
+    "code": "PAK",
+    "name": "파키스탄",
+    "region": "남아시아",
+    "eta": 0.2419,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.102,
+    "A2": 0.7278,
+    "A3": 0.0064,
+    "A4": 0.1642,
+    "A5": 0.2761,
+    "A6": 0.6641,
+    "A7": null,
+    "A8": 0.4319,
+    "A9": 0.0547,
+    "A10": 0.0008,
+    "A11": 0.2263,
+    "A12": 0.0061,
+    "bsli": -0.4598,
+    "bsli_year": 2018
+  },
+  {
+    "code": "TZA",
+    "name": "탄자니아",
+    "region": "동아프리카",
+    "eta": 0.2419,
+    "reliability": "중",
+    "outlier": false,
+    "special": true,
+    "missing": 0,
+    "A1": 0.1052,
+    "A2": 0.1385,
+    "A3": 0.003,
+    "A4": 0.185,
+    "A5": 0.7309,
+    "A6": 0.6316,
+    "A7": null,
+    "A8": 0.5253,
+    "A9": 0.0659,
+    "A10": 0.0059,
+    "A11": 0.2649,
+    "A12": 0.0046,
+    "bsli": -0.9945,
+    "bsli_year": 2018
+  },
+  {
+    "code": "GHA",
+    "name": "가나",
+    "region": "서아프리카",
+    "eta": 0.2402,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.0513,
+    "A2": 0.1993,
+    "A3": 0.0111,
+    "A4": 0.1448,
+    "A5": 0.778,
+    "A6": 0.6808,
+    "A7": null,
+    "A8": 0.4889,
+    "A9": 0.0359,
+    "A10": 0.0083,
+    "A11": 0.2383,
+    "A12": 0.006,
+    "bsli": -0.7475,
+    "bsli_year": 2016
+  },
+  {
+    "code": "AUT",
+    "name": "오스트리아",
+    "region": "서유럽",
+    "eta": 0.2388,
+    "reliability": "중",
+    "outlier": false,
+    "special": false,
+    "missing": 3,
+    "A1": 0.2005,
+    "A2": null,
+    "A3": 0.0981,
+    "A4": 0.1864,
+    "A5": 0.9529,
+    "A6": null,
+    "A7": null,
+    "A8": null,
+    "A9": 0.1602,
+    "A10": 0.0861,
+    "A11": 0.1723,
+    "A12": 0.0538,
+    "bsli": 0.7738,
+    "bsli_year": 2019
+  },
+  {
+    "code": "NGA",
+    "name": "나이지리아",
+    "region": "서아프리카",
+    "eta": 0.2386,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.1249,
+    "A2": 0.226,
+    "A3": 0.0133,
+    "A4": 0.1285,
+    "A5": 0.4606,
+    "A6": 0.6808,
+    "A7": null,
+    "A8": 0.5808,
+    "A9": 0.2659,
+    "A10": 0.0042,
+    "A11": 0.1321,
+    "A12": 0.0075,
+    "bsli": -0.789,
+    "bsli_year": 2018
+  },
+  {
+    "code": "IRN",
+    "name": "이란",
+    "region": "중동",
+    "eta": 0.2375,
+    "reliability": "하",
+    "outlier": false,
+    "special": false,
+    "missing": 3,
+    "A1": 0.1695,
+    "A2": null,
+    "A3": 0.0177,
+    "A4": 0.2907,
+    "A5": 0.6164,
+    "A6": null,
+    "A7": null,
+    "A8": null,
+    "A9": 0.3743,
+    "A10": 0.01,
+    "A11": 0.4119,
+    "A12": 0.0097,
+    "bsli": -0.1301,
+    "bsli_year": 2019
+  },
+  {
+    "code": "EGY",
+    "name": "이집트",
+    "region": "북아프리카",
+    "eta": 0.2359,
+    "reliability": "중",
+    "outlier": false,
+    "special": false,
+    "missing": 1,
+    "A1": 0.0657,
+    "A2": 0.993,
+    "A3": 0.0301,
+    "A4": 0.1278,
+    "A5": 0.5287,
+    "A6": null,
+    "A7": null,
+    "A8": 0.2373,
+    "A9": 0.1393,
+    "A10": 0.0322,
+    "A11": 0.1899,
+    "A12": 0.0153,
+    "bsli": -0.2649,
+    "bsli_year": 2017
+  },
+  {
+    "code": "CMR",
+    "name": "카메룬",
+    "region": "중앙아프리카",
+    "eta": 0.2331,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.1057,
+    "A2": 0.0365,
+    "A3": 0.0022,
+    "A4": 0.2253,
+    "A5": 0.5366,
+    "A6": 0.7923,
+    "A7": null,
+    "A8": 0.2935,
+    "A9": 0.2239,
+    "A10": 0.0019,
+    "A11": 0.345,
+    "A12": 0.0012,
+    "bsli": -0.7954,
+    "bsli_year": 2014
+  },
+  {
+    "code": "TUN",
+    "name": "튀니지",
+    "region": "북아프리카",
+    "eta": 0.2329,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.101,
+    "A2": 0.2561,
+    "A3": 0.0072,
+    "A4": 0.1572,
+    "A5": 0.812,
+    "A6": 0.7342,
+    "A7": null,
+    "A8": 0.1867,
+    "A9": 0.0745,
+    "A10": 0.0102,
+    "A11": 0.2134,
+    "A12": 0.009,
+    "bsli": 0.0407,
+    "bsli_year": 2015
+  },
+  {
+    "code": "KEN",
+    "name": "케냐",
+    "region": "동아프리카",
+    "eta": 0.2203,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.0751,
+    "A2": 0.1601,
+    "A3": 0.0054,
+    "A4": 0.1323,
+    "A5": 0.6767,
+    "A6": 0.6204,
+    "A7": null,
+    "A8": 0.4485,
+    "A9": 0.1065,
+    "A10": 0.0052,
+    "A11": 0.1894,
+    "A12": 0.0034,
+    "bsli": -0.822,
+    "bsli_year": 2015
+  },
+  {
+    "code": "LKA",
+    "name": "스리랑카",
+    "region": "남아시아",
+    "eta": 0.2193,
+    "reliability": "상",
+    "outlier": false,
+    "special": false,
+    "missing": 0,
+    "A1": 0.0939,
+    "A2": 0.4391,
+    "A3": 0.0048,
+    "A4": 0.1703,
+    "A5": 0.5447,
+    "A6": 0.501,
+    "A7": null,
+    "A8": 0.3887,
+    "A9": 0.0146,
+    "A10": 0.0051,
+    "A11": 0.2467,
+    "A12": 0.0035,
+    "bsli": -0.2457,
+    "bsli_year": 2016
+  },
+  {
+    "code": "BEL",
+    "name": "벨기에",
+    "region": "서유럽",
+    "eta": 0.2136,
+    "reliability": "중",
+    "outlier": false,
+    "special": false,
+    "missing": 3,
+    "A1": 0.0584,
+    "A2": null,
+    "A3": 0.0655,
+    "A4": 0.2444,
+    "A5": 0.6747,
+    "A6": null,
+    "A7": null,
+    "A8": null,
+    "A9": 0.1073,
+    "A10": 0.0932,
+    "A11": 0.4305,
+    "A12": 0.0345,
+    "bsli": 0.7387,
+    "bsli_year": 2019
+  },
+  {
+    "code": "DNK",
+    "name": "덴마크",
+    "region": "북유럽",
+    "eta": 0.2104,
+    "reliability": "중",
+    "outlier": false,
+    "special": false,
+    "missing": 3,
+    "A1": 0.0979,
+    "A2": null,
+    "A3": 0.1328,
+    "A4": 0.1341,
+    "A5": 0.7929,
+    "A6": null,
+    "A7": null,
+    "A8": null,
+    "A9": 0.1555,
+    "A10": 0.1155,
+    "A11": 0.1703,
+    "A12": 0.0842,
+    "bsli": 0.7538,
+    "bsli_year": 2019
+  },
+  {
+    "code": "SWE",
+    "name": "스웨덴",
+    "region": "북유럽",
+    "eta": 0.2077,
+    "reliability": "중",
+    "outlier": false,
+    "special": false,
+    "missing": 3,
+    "A1": 0.0901,
+    "A2": null,
+    "A3": 0.1252,
+    "A4": 0.1437,
+    "A5": 0.8153,
+    "A6": null,
+    "A7": null,
+    "A8": null,
+    "A9": 0.1104,
+    "A10": 0.1014,
+    "A11": 0.1974,
+    "A12": 0.0782,
+    "bsli": 0.6877,
+    "bsli_year": 2019
+  },
+  {
+    "code": "POL",
+    "name": "폴란드",
+    "region": "동유럽",
+    "eta": 0.1983,
+    "reliability": "중",
+    "outlier": false,
+    "special": false,
+    "missing": 3,
+    "A1": 0.0773,
+    "A2": null,
+    "A3": 0.0574,
+    "A4": 0.1437,
+    "A5": 0.9153,
+    "A6": null,
+    "A7": null,
+    "A8": null,
+    "A9": 0.1065,
+    "A10": 0.0286,
+    "A11": 0.21,
+    "A12": 0.0475,
+    "bsli": 0.1755,
+    "bsli_year": 2019
+  },
+  {
+    "code": "CZE",
+    "name": "체코",
+    "region": "동유럽",
+    "eta": 0.1958,
+    "reliability": "중",
+    "outlier": false,
+    "special": false,
+    "missing": 3,
+    "A1": 0.0696,
+    "A2": null,
+    "A3": 0.0419,
+    "A4": 0.1378,
+    "A5": 0.9405,
+    "A6": null,
+    "A7": null,
+    "A8": null,
+    "A9": 0.1112,
+    "A10": 0.0378,
+    "A11": 0.2061,
+    "A12": 0.0219,
+    "bsli": 0.4856,
+    "bsli_year": 2019
+  },
+  {
+    "code": "PRT",
+    "name": "포르투갈",
+    "region": "남유럽",
+    "eta": 0.1928,
+    "reliability": "중",
+    "outlier": false,
+    "special": false,
+    "missing": 3,
+    "A1": 0.0813,
+    "A2": null,
+    "A3": 0.0443,
+    "A4": 0.1889,
+    "A5": 0.827,
+    "A6": null,
+    "A7": null,
+    "A8": null,
+    "A9": 0.0241,
+    "A10": 0.0553,
+    "A11": 0.2965,
+    "A12": 0.0248,
+    "bsli": 0.3308,
+    "bsli_year": 2019
+  },
+  {
+    "code": "HUN",
+    "name": "헝가리",
+    "region": "동유럽",
+    "eta": 0.1822,
+    "reliability": "중",
+    "outlier": false,
+    "special": false,
+    "missing": 3,
+    "A1": 0.0835,
+    "A2": null,
+    "A3": 0.0353,
+    "A4": 0.1431,
+    "A5": 0.8597,
+    "A6": null,
+    "A7": null,
+    "A8": null,
+    "A9": 0.0725,
+    "A10": 0.0357,
+    "A11": 0.2026,
+    "A12": 0.0255,
+    "bsli": 0.2845,
+    "bsli_year": 2019
+  },
+  {
+    "code": "FIN",
+    "name": "핀란드",
+    "region": "북유럽",
+    "eta": 0.1813,
+    "reliability": "중",
+    "outlier": false,
+    "special": false,
+    "missing": 3,
+    "A1": 0.0674,
+    "A2": null,
+    "A3": 0.0472,
+    "A4": 0.0838,
+    "A5": 0.7898,
+    "A6": null,
+    "A7": null,
+    "A8": null,
+    "A9": 0.2992,
+    "A10": 0.0353,
+    "A11": 0.1003,
+    "A12": 0.0271,
+    "bsli": 0.7117,
+    "bsli_year": 2019
+  },
+  {
+    "code": "GRC",
+    "name": "그리스",
+    "region": "남유럽",
+    "eta": 0.1645,
+    "reliability": "중",
+    "outlier": false,
+    "special": false,
+    "missing": 3,
+    "A1": 0.0934,
+    "A2": null,
+    "A3": 0.0444,
+    "A4": 0.1904,
+    "A5": 0.591,
+    "A6": null,
+    "A7": null,
+    "A8": null,
+    "A9": 0.0126,
+    "A10": 0.0508,
+    "A11": 0.2874,
+    "A12": 0.046,
+    "bsli": 0.2425,
+    "bsli_year": 2019
+  },
+  {
+    "code": "ETH",
+    "name": "에티오피아",
+    "region": "동아프리카",
+    "eta": 0.148,
+    "reliability": "하",
+    "outlier": false,
+    "special": true,
+    "missing": 3,
+    "A1": 0.0349,
+    "A2": null,
+    "A3": 0.0081,
+    "A4": 0.1231,
+    "A5": 0.6883,
+    "A6": null,
+    "A7": null,
+    "A8": null,
+    "A9": 0.1057,
+    "A10": 0.007,
+    "A11": 0.2113,
+    "A12": 0.0055,
+    "bsli": -0.8096,
+    "bsli_year": 2015
+  }
+];
+
+const REGIONS = [...new Set(RAW_DATA.map(d => d.region))].sort();
+const QUADS = ['전체','고η·고BSLI','고η·저BSLI','저η·고BSLI','저η·저BSLI','BSLI없음'];
+
+// 통계 계산 (η·BSLI 중앙값)
+const etaVals  = RAW_DATA.map(d=>d.eta).sort((a,b)=>a-b);
+const bsliVals = RAW_DATA.filter(d=>d.bsli!==null).map(d=>d.bsli).sort((a,b)=>a-b);
+const ETA_MED  = etaVals[Math.floor(etaVals.length/2)];
+const BSLI_MED = bsliVals[Math.floor(bsliVals.length/2)];
+
+function quadrant(d) {
+  if (d.bsli === null) return 'BSLI없음';
+  if (d.eta >= ETA_MED && d.bsli >= BSLI_MED) return '고η·고BSLI';
+  if (d.eta >= ETA_MED && d.bsli <  BSLI_MED) return '고η·저BSLI';
+  if (d.eta <  ETA_MED && d.bsli >= BSLI_MED) return '저η·고BSLI';
+  return '저η·저BSLI';
+}
+
+let currentSort = {key:'eta', dir:-1};
+let activeRegion = '전체';
+let activeQuad   = '전체';
+let searchVal    = '';
+
+function etaClass(v) {
+  if (v >= 0.5) return 'eta-hi';
+  if (v >= 0.3) return 'eta-mid';
+  return 'eta-lo';
+}
+function bsliClass(v) {
+  if (v === null) return 'bsli-na';
+  if (v >= 0.5)  return 'bsli-hi';
+  if (v >= 0.1)  return 'bsli-mid';
+  if (v >= -0.1) return 'bsli-lo';
+  return 'bsli-neg';
+}
+function aClass(v) {
+  if (v === null) return 'a-gray';
+  if (v >= 0.7)  return 'a-gold';
+  return '';
+}
+function fmt(v, dec=4) {
+  return v === null ? '<span style="color:#CCC">—</span>' : v.toFixed(dec);
+}
+
+function buildRegionFilter() {
+  const div = document.getElementById('regionFilter');
+  ['전체', ...REGIONS].forEach(r => {
+    const b = document.createElement('button');
+    b.className = 'fbtn' + (r==='전체'?' active':'');
+    b.textContent = r;
+    b.onclick = () => { activeRegion = r; document.querySelectorAll('#regionFilter .fbtn').forEach(x=>x.classList.remove('active')); b.classList.add('active'); applyFilters(); };
+    div.appendChild(b);
+  });
+}
+
+function buildQuadFilter() {
+  const div = document.getElementById('quadFilter');
+  QUADS.forEach(q => {
+    const b = document.createElement('button');
+    b.className = 'fbtn' + (q==='전체'?' active':'');
+    b.textContent = q;
+    b.onclick = () => { activeQuad = q; document.querySelectorAll('#quadFilter .fbtn').forEach(x=>x.classList.remove('active')); b.classList.add('active'); applyFilters(); };
+    div.appendChild(b);
+  });
+}
+
+function applyFilters() {
+  searchVal = document.getElementById('searchInput').value.toLowerCase();
+  render();
+}
+
+function sortBy(key) {
+  if (currentSort.key === key) currentSort.dir *= -1;
+  else { currentSort.key = key; currentSort.dir = -1; }
+  document.querySelectorAll('thead th').forEach(th => { th.classList.remove('sort-asc','sort-desc'); });
+  const th = document.getElementById('th-' + key);
+  if (th) th.classList.add(currentSort.dir === 1 ? 'sort-asc' : 'sort-desc');
+  render();
+}
+
+function render() {
+  let data = RAW_DATA.map((d,i) => ({...d, _rank: i+1, _quad: quadrant(d)}));
+
+  // 필터
+  if (activeRegion !== '전체') data = data.filter(d => d.region === activeRegion);
+  if (activeQuad   !== '전체') data = data.filter(d => d._quad === activeQuad);
+  if (searchVal) data = data.filter(d =>
+    d.name.toLowerCase().includes(searchVal) ||
+    d.code.toLowerCase().includes(searchVal)
+  );
+
+  // 정렬
+  data.sort((a,b) => {
+    let va = a[currentSort.key], vb = b[currentSort.key];
+    if (va === null || va === undefined) va = currentSort.dir === 1 ? Infinity : -Infinity;
+    if (vb === null || vb === undefined) vb = currentSort.dir === 1 ? Infinity : -Infinity;
+    if (typeof va === 'string') return currentSort.dir * va.localeCompare(vb);
+    return currentSort.dir * (vb - va);
+  });
+
+  // 통계 바
+  const sb = document.getElementById('statsBar');
+  sb.innerHTML = `
+    <div class="stat-chip">표시 <span>${data.length}</span>개국</div>
+    <div class="stat-chip">η 중앙값 <span>${ETA_MED.toFixed(4)}</span></div>
+    <div class="stat-chip">BSLI 중앙값 <span>${BSLI_MED.toFixed(4)}</span></div>
+    <div class="stat-chip">고η·고BSLI <span>${data.filter(d=>d._quad==='고η·고BSLI').length}</span>개</div>
+    <div class="stat-chip">저η·고BSLI <span>${data.filter(d=>d._quad==='저η·고BSLI').length}</span>개</div>
+    <div class="stat-chip">고η·저BSLI <span>${data.filter(d=>d._quad==='고η·저BSLI').length}</span>개</div>
+    <div class="stat-chip">저η·저BSLI <span>${data.filter(d=>d._quad==='저η·저BSLI').length}</span>개</div>
+  `;
+
+  const tbody = document.getElementById('tableBody');
+  if (!data.length) { tbody.innerHTML = '<tr><td colspan="19" class="no-results">결과 없음</td></tr>'; return; }
+
+  tbody.innerHTML = data.map((d, i) => {
+    const flags = (d.outlier ? '<span class="flag flag-out">이상치</span>' : '') +
+                  (d.special ? '<span class="flag flag-spc">특수</span>' : '');
+    const bsliVal = d.bsli !== null
+      ? `<span class="${bsliClass(d.bsli)}">${d.bsli.toFixed(4)}</span>${d.bsli_year ? `<br><small style="color:#AAA;font-size:0.65rem">${d.bsli_year}</small>` : ''}`
+      : '<span class="bsli-na">—</span>';
+
+    return `<tr>
+      <td style="color:#888;font-size:0.75rem">${i+1}</td>
+      <td class="left">${d.name}${flags}</td>
+      <td style="font-family:monospace;font-weight:600">${d.code}</td>
+      <td style="font-size:0.75rem;color:#5E9186">${d.region}</td>
+      <td class="col-sep"><span class="${etaClass(d.eta)}">${d.eta.toFixed(4)}</span></td>
+      <td>${bsliVal}</td>
+      <td class="${aClass(d.A1)} col-sep">${fmt(d.A1,4)}</td>
+      <td class="${aClass(d.A2)}">${fmt(d.A2,4)}</td>
+      <td class="${aClass(d.A3)}">${fmt(d.A3,4)}</td>
+      <td class="${aClass(d.A4)}">${fmt(d.A4,4)}</td>
+      <td class="${aClass(d.A5)}">${fmt(d.A5,4)}</td>
+      <td class="${aClass(d.A6)}">${fmt(d.A6,4)}</td>
+      <td class="${aClass(d.A8)}">${fmt(d.A8,4)}</td>
+      <td class="${aClass(d.A9)}">${fmt(d.A9,4)}</td>
+      <td class="${aClass(d.A10)}">${fmt(d.A10,4)}</td>
+      <td class="${aClass(d.A11)}">${fmt(d.A11,4)}</td>
+      <td class="${aClass(d.A12)}">${fmt(d.A12,4)}</td>
+      <td class="col-sep"><span class="rel rel-${d.reliability}">${d.reliability}</span></td>
+      <td style="color:${d.missing>=3?'#C0392B':d.missing>=1?'#B8850E':'#5E9186'}">${d.missing}</td>
+    </tr>`;
+  }).join('');
+}
+
+buildRegionFilter();
+buildQuadFilter();
+sortBy('eta');
+</script>
+</body>
+</html>
