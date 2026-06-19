@@ -78,5 +78,10 @@
     "missing_reason": "미신고",
     "special_flag": false,
     "reliability": "하"
+  },
+  "bsli": {
+    "score": -0.1157,
+    "year_used": 2019,
+    "reliability": "fallback_10yr"
   }
 }

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>η × BSLI 역상관 산점도 — Λ¹² 62개국 (bsli_all 142국 정규화)</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  background: #F5F3EE;
+  padding: 28px 20px 40px;
+  min-height: 100vh;
+}
+.card {
+  background: #FFFFFF;
+  border: 1px solid #DDD8CE;
+  border-radius: 14px;
+  padding: 30px 32px 28px;
+  max-width: 1060px;
+  margin: 0 auto;
+}
+h1 {
+  color: #3A6A5E;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  margin-bottom: 5px;
+}
+.subtitle {
+  color: #888;
+  font-size: 0.82rem;
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+.stat-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.stat-chip {
+  background: #F5F3EE;
+  border: 1px solid #DDD8CE;
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 12.5px;
+  color: #3A6A5E;
+  font-weight: 600;
+}
+.stat-chip span { color: #B8850E; }
+#chart-wrap { position: relative; }
+svg { width: 100%; height: auto; display: block; overflow: visible; }
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 14px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid #EDE9E0;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11.5px;
+  color: #666;
+  cursor: default;
+}
+.legend-dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+#tooltip {
+  position: fixed;
+  background: rgba(15,15,15,0.94);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 9px;
+  font-size: 12.5px;
+  line-height: 1.65;
+  pointer-events: none;
+  display: none;
+  z-index: 200;
+  max-width: 210px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+}
+.tt-name { font-weight: 700; font-size: 13.5px; margin-bottom: 2px; }
+.tt-region { color: #aaa; font-size: 11px; margin-bottom: 4px; }
+.tt-val { color: #88ddff; font-weight: 600; }
+.tt-small { color: #bbb; font-size: 11px; }
+.note {
+  margin-top: 14px;
+  font-size: 11px;
+  color: #aaa;
+  line-height: 1.6;
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>η × BSLI 역상관 산점도</h1>
+  <div class="subtitle">
+    Λ¹² 사회동역학 긴장지수(η) vs 생활수준지수(BSLI) — 62개국 (η·BSLI 교집합) · 기준연도 2023<br>
+    BSLI 정규화 기준: bsli_all_2023 142개국 풀 · WTO η 미산출 80개국은 산점도 제외 · fallback_10yr 전체 적용
+  </div>
+  <div class="stat-row" id="stats"></div>
+  <div id="chart-wrap">
+    <svg id="scatter" viewBox="0 0 920 560" xmlns="http://www.w3.org/2000/svg" id="scatter"></svg>
+  </div>
+  <div class="legend" id="legend"></div>
+  <div class="note" id="note"></div>
+</div>
+<div id="tooltip"></div>
+
+<script>
+// BSLI: bsli_all_2023.csv 기준 (142개국 풀 정규화 적용)
+const RAW = [
+  {iso:"ETH",name:"Ethiopia",            region:"동아프리카",      eta:0.1480, bsli:-0.8096, year:2015},
+  {iso:"GRC",name:"Greece",              region:"남유럽",          eta:0.1645, bsli: 0.2425, year:2019},
+  {iso:"FIN",name:"Finland",             region:"북유럽",          eta:0.1813, bsli: 0.7117, year:2019},
+  {iso:"HUN",name:"Hungary",             region:"동유럽",          eta:0.1822, bsli: 0.2845, year:2019},
+  {iso:"PRT",name:"Portugal",            region:"남유럽",          eta:0.1928, bsli: 0.3308, year:2019},
+  {iso:"CZE",name:"Czechia",             region:"동유럽",          eta:0.1958, bsli: 0.4856, year:2019},
+  {iso:"POL",name:"Poland",              region:"동유럽",          eta:0.1983, bsli: 0.1755, year:2019},
+  {iso:"SWE",name:"Sweden",              region:"북유럽",          eta:0.2077, bsli: 0.6877, year:2019},
+  {iso:"DNK",name:"Denmark",             region:"북유럽",          eta:0.2104, bsli: 0.7538, year:2019},
+  {iso:"BEL",name:"Belgium",             region:"서유럽",          eta:0.2136, bsli: 0.7387, year:2019},
+  {iso:"LKA",name:"Sri Lanka",           region:"남아시아",        eta:0.2193, bsli:-0.2457, year:2016},
+  {iso:"KEN",name:"Kenya",               region:"동아프리카",      eta:0.2203, bsli:-0.8220, year:2015},
+  {iso:"TUN",name:"Tunisia",             region:"북아프리카",      eta:0.2329, bsli: 0.0407, year:2015},
+  {iso:"CMR",name:"Cameroon",            region:"중앙아프리카",    eta:0.2331, bsli:-0.7954, year:2014},
+  {iso:"EGY",name:"Egypt",               region:"북아프리카",      eta:0.2359, bsli:-0.2649, year:2017},
+  {iso:"IRN",name:"Iran",                region:"중동",            eta:0.2375, bsli:-0.1301, year:2019},
+  {iso:"NGA",name:"Nigeria",             region:"서아프리카",      eta:0.2386, bsli:-0.7890, year:2018},
+  {iso:"AUT",name:"Austria",             region:"서유럽",          eta:0.2388, bsli: 0.7738, year:2019},
+  {iso:"GHA",name:"Ghana",               region:"서아프리카",      eta:0.2402, bsli:-0.7475, year:2016},
+  {iso:"PAK",name:"Pakistan",            region:"남아시아",        eta:0.2419, bsli:-0.4598, year:2018},
+  {iso:"TZA",name:"Tanzania",            region:"동아프리카",      eta:0.2419, bsli:-0.9945, year:2018},
+  {iso:"AGO",name:"Angola",              region:"남아프리카",      eta:0.2475, bsli:-0.9895, year:2018},
+  {iso:"KOR",name:"South Korea",         region:"동아시아",        eta:0.2478, bsli: 0.4627, year:2016},
+  {iso:"ESP",name:"Spain",               region:"남유럽",          eta:0.2482, bsli: 0.4612, year:2019},
+  {iso:"BGD",name:"Bangladesh",          region:"남아시아",        eta:0.2487, bsli:-0.6223, year:2016},
+  {iso:"NOR",name:"Norway",              region:"북유럽",          eta:0.2493, bsli: 0.9254, year:2019},
+  {iso:"ITA",name:"Italy",               region:"남유럽",          eta:0.2508, bsli: 0.4452, year:2018},
+  {iso:"TUR",name:"Turkey",              region:"러시아_유라시아", eta:0.2533, bsli:-0.0150, year:2019},
+  {iso:"MAR",name:"Morocco",             region:"북아프리카",      eta:0.2571, bsli:-0.1859, year:2013},
+  {iso:"MOZ",name:"Mozambique",          region:"남아프리카",      eta:0.2613, bsli:-1.4078, year:2014},
+  {iso:"PHL",name:"Philippines",         region:"동남아시아",      eta:0.2650, bsli:-0.3407, year:2018},
+  {iso:"VNM",name:"Vietnam",             region:"동남아시아",      eta:0.2675, bsli:-0.0346, year:2018},
+  {iso:"THA",name:"Thailand",            region:"동남아시아",      eta:0.2686, bsli: 0.0550, year:2020},
+  {iso:"TWN",name:"Taiwan",              region:"동아시아",        eta:0.2713, bsli: 0.4757, year:2016},
+  {iso:"COL",name:"Colombia",            region:"남미",            eta:0.2750, bsli:-0.6808, year:2020},
+  {iso:"ROU",name:"Romania",             region:"동유럽",          eta:0.2752, bsli: 0.1014, year:2019},
+  {iso:"ZAF",name:"South Africa",        region:"남아프리카",      eta:0.2765, bsli:-1.3981, year:2014},
+  {iso:"ZMB",name:"Zambia",              region:"남아프리카",      eta:0.2774, bsli:-1.5316, year:2015},
+  {iso:"MYS",name:"Malaysia",            region:"동남아시아",      eta:0.2839, bsli: 0.0948, year:2015},
+  {iso:"CHL",name:"Chile",               region:"남미",            eta:0.2855, bsli:-0.0510, year:2020},
+  {iso:"IDN",name:"Indonesia",           region:"동남아시아",      eta:0.2880, bsli:-0.3315, year:2021},
+  {iso:"ISR",name:"Israel",              region:"중동",            eta:0.2926, bsli: 0.2964, year:2018},
+  {iso:"PER",name:"Peru",                region:"남미",            eta:0.2996, bsli:-0.3434, year:2020},
+  {iso:"UKR",name:"Ukraine",             region:"러시아_유라시아", eta:0.3020, bsli: 0.1453, year:2020},
+  {iso:"AUS",name:"Australia",           region:"오세아니아",      eta:0.3053, bsli: 0.6538, year:2018},
+  {iso:"BRA",name:"Brazil",              region:"남미",            eta:0.3075, bsli:-0.2409, year:2020},
+  {iso:"RUS",name:"Russia",              region:"러시아_유라시아", eta:0.3108, bsli: 0.1113, year:2020},
+  {iso:"CHE",name:"Switzerland",         region:"서유럽",          eta:0.3133, bsli: 0.8422, year:2018},
+  {iso:"CAN",name:"Canada",              region:"북미",            eta:0.3141, bsli: 0.7012, year:2017},
+  {iso:"MEX",name:"Mexico",              region:"북미",            eta:0.3194, bsli:-0.2665, year:2020},
+  {iso:"CIV",name:"Cote d'Ivoire",       region:"서아프리카",      eta:0.3252, bsli:-0.5322, year:2018},
+  {iso:"SEN",name:"Senegal",             region:"서아프리카",      eta:0.3269, bsli:-0.5209, year:2018},
+  {iso:"IND",name:"India",               region:"남아시아",        eta:0.3309, bsli:-0.5832, year:2019},
+  {iso:"DEU",name:"Germany",             region:"서유럽",          eta:0.3756, bsli: 0.7202, year:2018},
+  {iso:"UGA",name:"Uganda",              region:"동아프리카",      eta:0.3832, bsli:-1.0022, year:2019},
+  {iso:"JPN",name:"Japan",               region:"동아시아",        eta:0.3856, bsli: 0.5020, year:2013},
+  {iso:"NLD",name:"Netherlands",         region:"서유럽",          eta:0.3896, bsli: 0.7441, year:2019},
+  {iso:"ARE",name:"United Arab Emirates",region:"중동",            eta:0.3947, bsli: 0.8472, year:2013},
+  {iso:"FRA",name:"France",              region:"서유럽",          eta:0.3955, bsli: 0.6361, year:2018},
+  {iso:"CHN",name:"China",               region:"동아시아",        eta:0.4066, bsli:-0.0464, year:2019},
+  {iso:"GBR",name:"United Kingdom",      region:"서유럽",          eta:0.4196, bsli: 0.5249, year:2017},
+  {iso:"USA",name:"United States",       region:"북미",            eta:0.5657, bsli: 0.6998, year:2019},
+];
+
+const REGION_COLORS = {
+  '북유럽':       '#1A8FA0',
+  '서유럽':       '#3A78C9',
+  '남유럽':       '#7B5EA7',
+  '동유럽':       '#9B6FC0',
+  '러시아_유라시아':'#607D8B',
+  '북미':         '#D4820A',
+  '남미':         '#B85820',
+  '동아시아':     '#1E8A4A',
+  '동남아시아':   '#3DAA60',
+  '남아시아':     '#7AAA25',
+  '중동':         '#C87A00',
+  '북아프리카':   '#B06010',
+  '동아프리카':   '#B83030',
+  '서아프리카':   '#D05040',
+  '중앙아프리카': '#882020',
+  '남아프리카':   '#6B8090',
+  '오세아니아':   '#00887A',
+};
+
+// ── 통계 계산 ──────────────────────────────────────────────
+function stats(data) {
+  const n = data.length;
+  let sx=0, sy=0, sxy=0, sx2=0, sy2=0;
+  data.forEach(d => {
+    sx += d.eta; sy += d.bsli;
+    sxy += d.eta * d.bsli;
+    sx2 += d.eta * d.eta;
+    sy2 += d.bsli * d.bsli;
+  });
+  const mx = sx/n, my = sy/n;
+  let cov=0, vx=0, vy=0;
+  data.forEach(d => {
+    cov += (d.eta - mx) * (d.bsli - my);
+    vx  += (d.eta - mx) ** 2;
+    vy  += (d.bsli - my) ** 2;
+  });
+  const r = cov / Math.sqrt(vx * vy);
+  const slope = cov / vx;
+  const intercept = my - slope * mx;
+  return { r, slope, intercept, n, mx, my };
+}
+
+// ── SVG 그리기 ─────────────────────────────────────────────
+const W = 920, H = 560;
+const M = { top: 46, right: 32, bottom: 58, left: 70 };
+const PW = W - M.left - M.right;
+const PH = H - M.top - M.bottom;
+
+const X_MIN = 0.10, X_MAX = 0.62;
+const Y_MIN = -1.85, Y_MAX = 1.25;
+
+function scaleX(eta)  { return M.left + (eta  - X_MIN) / (X_MAX - X_MIN) * PW; }
+function scaleY(bsli) { return M.top  + (1 - (bsli - Y_MIN) / (Y_MAX - Y_MIN)) * PH; }
+
+function svgEl(tag, attrs, text) {
+  const ns = 'http://www.w3.org/2000/svg';
+  const el = document.createElementNS(ns, tag);
+  for (const [k, v] of Object.entries(attrs || {})) el.setAttribute(k, v);
+  if (text !== undefined) el.textContent = text;
+  return el;
+}
+
+function draw() {
+  const svg = document.getElementById('scatter');
+
+  const st = stats(RAW);
+
+  // ── 그리드 + 축 ──
+  // 수평 grid
+  const yTicks = [-1.6, -1.2, -0.8, -0.4, 0, 0.4, 0.8, 1.2];
+  yTicks.forEach(v => {
+    svg.appendChild(svgEl('line', {
+      x1: M.left, y1: scaleY(v), x2: M.left + PW, y2: scaleY(v),
+      stroke: v === 0 ? '#B8B0A0' : '#E5E1D8', 'stroke-width': v === 0 ? 1.5 : 1,
+      'stroke-dasharray': v === 0 ? 'none' : '3,4'
+    }));
+    svg.appendChild(svgEl('text', {
+      x: M.left - 8, y: scaleY(v) + 4,
+      'text-anchor': 'end', 'font-size': '11', fill: '#888',
+      'font-family': 'monospace'
+    }, v.toFixed(1)));
+  });
+
+  // 수직 grid
+  const xTicks = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6];
+  xTicks.forEach(v => {
+    svg.appendChild(svgEl('line', {
+      x1: scaleX(v), y1: M.top, x2: scaleX(v), y2: M.top + PH,
+      stroke: '#E5E1D8', 'stroke-width': 1, 'stroke-dasharray': '3,4'
+    }));
+    svg.appendChild(svgEl('text', {
+      x: scaleX(v), y: M.top + PH + 18,
+      'text-anchor': 'middle', 'font-size': '11', fill: '#888',
+      'font-family': 'monospace'
+    }, v.toFixed(1)));
+  });
+
+  // 축 테두리
+  svg.appendChild(svgEl('rect', {
+    x: M.left, y: M.top, width: PW, height: PH,
+    fill: 'none', stroke: '#CCC8BF', 'stroke-width': 1
+  }));
+
+  // 축 레이블
+  svg.appendChild(svgEl('text', {
+    x: M.left + PW/2, y: H - 8,
+    'text-anchor': 'middle', 'font-size': '13', fill: '#3A6A5E', 'font-weight': '600',
+    'font-family': 'inherit'
+  }, 'η  (사회동역학 긴장지수)'));
+
+  const yLabel = svgEl('text', {
+    x: 0, y: 0,
+    transform: `translate(16, ${M.top + PH/2}) rotate(-90)`,
+    'text-anchor': 'middle', 'font-size': '13', fill: '#3A6A5E', 'font-weight': '600',
+    'font-family': 'inherit'
+  }, 'BSLI  (생활수준지수)');
+  svg.appendChild(yLabel);
+
+  // 제목
+  svg.appendChild(svgEl('text', {
+    x: M.left + PW/2, y: 22,
+    'text-anchor': 'middle', 'font-size': '14', fill: '#3A6A5E', 'font-weight': '700',
+    'font-family': 'inherit'
+  }, `η × BSLI 역상관 분석  (n=${st.n}, r = ${st.r.toFixed(4)})`));
+
+  // ── 회귀선 ──
+  const rx1 = X_MIN, rx2 = X_MAX;
+  const ry1 = st.slope * rx1 + st.intercept;
+  const ry2 = st.slope * rx2 + st.intercept;
+  svg.appendChild(svgEl('line', {
+    x1: scaleX(rx1), y1: scaleY(ry1), x2: scaleX(rx2), y2: scaleY(ry2),
+    stroke: '#B8850E', 'stroke-width': 1.6, 'stroke-dasharray': '6,4', opacity: 0.75
+  }));
+
+  // r² 주석
+  svg.appendChild(svgEl('text', {
+    x: scaleX(0.54), y: scaleY(st.slope * 0.54 + st.intercept) - 10,
+    'font-size': '11', fill: '#B8850E', 'font-weight': '600', 'font-style': 'italic',
+    'font-family': 'inherit'
+  }, `r² = ${(st.r ** 2).toFixed(3)}`));
+
+  // ── 데이터 포인트 ──
+  RAW.forEach(d => {
+    const cx = scaleX(d.eta);
+    const cy = scaleY(d.bsli);
+    const color = REGION_COLORS[d.region] || '#888';
+
+    const g = svgEl('g', { class: 'pt-group', style: 'cursor:pointer' });
+
+    const circle = svgEl('circle', {
+      cx, cy, r: 5.5,
+      fill: color, opacity: 0.82,
+      stroke: '#fff', 'stroke-width': 1.2
+    });
+    g.appendChild(circle);
+
+    // ISO 라벨 — 혼잡 회피를 위한 offset 로직
+    const dx = (d.eta > 0.38 || d.iso === 'USA') ? -6 : 6;
+    const dy = (d.bsli > 0.7) ? -8 : (d.bsli < -1.2) ? 9 : -7;
+    const anchor = dx < 0 ? 'end' : 'start';
+    const label = svgEl('text', {
+      x: cx + dx, y: cy + dy,
+      'text-anchor': anchor,
+      'font-size': '8.5', fill: '#333', 'font-family': 'monospace',
+      'pointer-events': 'none'
+    }, d.iso);
+    g.appendChild(label);
+
+    // hover
+    g.addEventListener('mouseenter', (e) => {
+      circle.setAttribute('r', 7.5);
+      circle.setAttribute('opacity', 1);
+      showTip(e, d, color);
+    });
+    g.addEventListener('mousemove', moveTip);
+    g.addEventListener('mouseleave', () => {
+      circle.setAttribute('r', 5.5);
+      circle.setAttribute('opacity', 0.82);
+      hideTip();
+    });
+
+    svg.appendChild(g);
+  });
+
+  // ── 범례 ──
+  const regions = [...new Set(RAW.map(d => d.region))].sort();
+  const legendEl = document.getElementById('legend');
+  regions.forEach(r => {
+    const item = document.createElement('div');
+    item.className = 'legend-item';
+    item.innerHTML = `
+      <div class="legend-dot" style="background:${REGION_COLORS[r]||'#888'}"></div>
+      <span>${r}</span>
+    `;
+    legendEl.appendChild(item);
+  });
+
+  // ── 통계 칩 ──
+  const statsEl = document.getElementById('stats');
+  const chips = [
+    { label: '표본수', val: `${st.n}개국` },
+    { label: 'Pearson r', val: st.r.toFixed(4) },
+    { label: 'r²', val: (st.r**2).toFixed(4) },
+    { label: '회귀기울기', val: st.slope.toFixed(3) },
+    { label: 'BSLI 평균', val: st.my.toFixed(3) },
+    { label: 'η 평균', val: st.mx.toFixed(4) },
+  ];
+  chips.forEach(c => {
+    const chip = document.createElement('div');
+    chip.className = 'stat-chip';
+    chip.innerHTML = `${c.label}: <span>${c.val}</span>`;
+    statsEl.appendChild(chip);
+  });
+
+  // ── 해석 노트 ──
+  const rSign = st.r < 0 ? '음(-)' : '양(+)';
+  const rStrength = Math.abs(st.r) > 0.5 ? '중간 이상' : Math.abs(st.r) > 0.3 ? '약한' : '매우 약한';
+  document.getElementById('note').innerHTML =
+    `해석: η와 BSLI 간 Pearson r = ${st.r.toFixed(4)} (${rSign}방향, ${rStrength} 상관). `
+    + `회귀기울기 ${st.slope.toFixed(3)} — η가 0.1 증가할 때 BSLI ${(st.slope*0.1).toFixed(3)} 변화. `
+    + `r² = ${(st.r**2).toFixed(4)} (BSLI 분산의 ${((st.r**2)*100).toFixed(1)}%를 η가 설명). `
+    + `BSLI: bsli_all_2023.csv (pip_owid 142개국 풀 기준 정규화, fallback_10yr 전체 적용). `
+    + `η 미산출 80개국(ALB·ARM·IRL 등)은 WTO score 없어 산점도 제외. η: WTO-Λ¹² 엔진 v9.12~9.14 산출.`;
+}
+
+// ── 툴팁 ──
+const tip = document.getElementById('tooltip');
+function showTip(e, d, color) {
+  tip.innerHTML = `
+    <div class="tt-name" style="color:${color}">${d.iso} — ${d.name}</div>
+    <div class="tt-region">${d.region}</div>
+    <div>η: <span class="tt-val">${d.eta.toFixed(4)}</span></div>
+    <div>BSLI: <span class="tt-val">${d.bsli.toFixed(4)}</span></div>
+    <div class="tt-small">데이터연도: ${d.year} · fallback_10yr</div>
+  `;
+  tip.style.display = 'block';
+  moveTip(e);
+}
+function moveTip(e) {
+  const x = e.clientX, y = e.clientY;
+  const tw = 210, th = 110;
+  tip.style.left = (x + 14 + tw > window.innerWidth ? x - tw - 8 : x + 14) + 'px';
+  tip.style.top  = (y + 14 + th > window.innerHeight ? y - th - 8 : y + 14) + 'px';
+}
+function hideTip() { tip.style.display = 'none'; }
+
+draw();
+</script>
+</body>
+</html>
