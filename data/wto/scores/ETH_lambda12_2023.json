@@ -2,7 +2,7 @@
   "country": "ETH",
   "year": 2023,
   "region": "동아프리카",
-  "updated": "2026-06-14",
+  "updated": "2026-06-15",
   "wto_raw": {
     "ITS_MTV_AX": 0.0,
     "ITS_MTV_AM": 1999.0,
@@ -70,18 +70,5 @@
       "score": 0.0055
     }
   },
-  "eta": 0.148,
-  "flags": {
-    "outlier_flag": false,
-    "a9_score": 0.1057,
-    "missing_dims": 3,
-    "missing_reason": "미신고",
-    "special_flag": true,
-    "reliability": "하"
-  },
-  "bsli": {
-    "score": -0.8533,
-    "year_used": 2015,
-    "reliability": "fallback_10yr"
-  }
+  "eta": 0.148
 }

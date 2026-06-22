@@ -2,7 +2,7 @@
   "country": "KOR",
   "year": 2023,
   "region": "동아시아",
-  "updated": "2026-06-14",
+  "updated": "2026-06-15",
   "wto_raw": {
     "ITS_MTV_AX": 124794.0,
     "ITS_MTV_AM": 17121.0,
@@ -70,18 +70,5 @@
       "score": 0.2042
     }
   },
-  "eta": 0.2478,
-  "flags": {
-    "outlier_flag": false,
-    "a9_score": 0.0661,
-    "missing_dims": 0,
-    "missing_reason": "",
-    "special_flag": false,
-    "reliability": "상"
-  },
-  "bsli": {
-    "score": 0.5009,
-    "year_used": 2016,
-    "reliability": "fallback_10yr"
-  }
+  "eta": 0.2478
 }

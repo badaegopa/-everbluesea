@@ -2,7 +2,7 @@
   "country": "MOZ",
   "year": 2023,
   "region": "남아프리카",
-  "updated": "2026-06-14",
+  "updated": "2026-06-15",
   "wto_raw": {
     "ITS_MTV_AX": 947.0,
     "ITS_MTV_AM": 1854.0,
@@ -70,18 +70,5 @@
       "score": 0.0007
     }
   },
-  "eta": 0.2613,
-  "flags": {
-    "outlier_flag": false,
-    "a9_score": 0.6917,
-    "missing_dims": 0,
-    "missing_reason": "",
-    "special_flag": true,
-    "reliability": "중"
-  },
-  "bsli": {
-    "score": -1.4765,
-    "year_used": 2014,
-    "reliability": "fallback_10yr"
-  }
+  "eta": 0.2613
 }

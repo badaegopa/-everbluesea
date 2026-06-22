@@ -2,7 +2,7 @@
   "country": "COL",
   "year": 2023,
   "region": "남미",
-  "updated": "2026-06-14",
+  "updated": "2026-06-15",
   "wto_raw": {
     "ITS_MTV_AX": 10071.0,
     "ITS_MTV_AM": 9578.0,
@@ -70,18 +70,5 @@
       "score": 0.0272
     }
   },
-  "eta": 0.275,
-  "flags": {
-    "outlier_flag": false,
-    "a9_score": 0.2843,
-    "missing_dims": 0,
-    "missing_reason": "",
-    "special_flag": false,
-    "reliability": "상"
-  },
-  "bsli": {
-    "score": -0.6885,
-    "year_used": 2020,
-    "reliability": "fallback_10yr"
-  }
+  "eta": 0.275
 }

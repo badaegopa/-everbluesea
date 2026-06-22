@@ -2,7 +2,7 @@
   "country": "AUS",
   "year": 2023,
   "region": "오세아니아",
-  "updated": "2026-06-14",
+  "updated": "2026-06-15",
   "wto_raw": {
     "ITS_MTV_AX": 49554.0,
     "ITS_MTV_AM": 19184.0,
@@ -70,18 +70,5 @@
       "score": 0.0516
     }
   },
-  "eta": 0.3053,
-  "flags": {
-    "outlier_flag": false,
-    "a9_score": 0.0482,
-    "missing_dims": 0,
-    "missing_reason": "",
-    "special_flag": false,
-    "reliability": "상"
-  },
-  "bsli": {
-    "score": 0.7002,
-    "year_used": 2018,
-    "reliability": "fallback_10yr"
-  }
+  "eta": 0.3053
 }

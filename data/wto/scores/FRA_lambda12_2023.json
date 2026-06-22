@@ -2,7 +2,7 @@
   "country": "FRA",
   "year": 2023,
   "region": "서유럽",
-  "updated": "2026-06-14",
+  "updated": "2026-06-15",
   "wto_raw": {
     "ITS_MTV_AX": 39067.0,
     "ITS_MTV_AM": 788177.0,
@@ -70,18 +70,5 @@
       "score": 0.2282
     }
   },
-  "eta": 0.3955,
-  "flags": {
-    "outlier_flag": false,
-    "a9_score": 0.1644,
-    "missing_dims": 3,
-    "missing_reason": "EU공동관세",
-    "special_flag": false,
-    "reliability": "중"
-  },
-  "bsli": {
-    "score": 0.6814,
-    "year_used": 2018,
-    "reliability": "fallback_10yr"
-  }
+  "eta": 0.3955
 }

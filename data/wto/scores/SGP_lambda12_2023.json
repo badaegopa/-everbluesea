@@ -2,7 +2,7 @@
   "country": "SGP",
   "year": 2023,
   "region": "동남아시아",
-  "updated": "2026-06-14",
+  "updated": "2026-06-15",
   "wto_raw": {
     "ITS_MTV_AX": 19372.0,
     "ITS_MTV_AM": 16480.0,
@@ -70,14 +70,5 @@
       "score": 0.1911
     }
   },
-  "eta": 0.3694,
-  "flags": {
-    "outlier_flag": false,
-    "a9_score": 0.2113,
-    "missing_dims": 0,
-    "missing_reason": "",
-    "special_flag": false,
-    "reliability": "상"
-  },
-  "bsli": null
+  "eta": 0.3694
 }

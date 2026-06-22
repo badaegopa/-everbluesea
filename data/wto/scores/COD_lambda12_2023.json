@@ -2,7 +2,7 @@
   "country": "COD",
   "year": 2023,
   "region": "중앙아프리카",
-  "updated": "2026-06-14",
+  "updated": "2026-06-15",
   "wto_raw": {
     "ITS_MTV_AX": 244.0,
     "ITS_MTV_AM": 1368.0,
@@ -70,14 +70,5 @@
       "score": 0.0017
     }
   },
-  "eta": 0.4143,
-  "flags": {
-    "outlier_flag": true,
-    "a9_score": 1.0,
-    "missing_dims": 1,
-    "missing_reason": "미신고",
-    "special_flag": true,
-    "reliability": "하"
-  },
-  "bsli": null
+  "eta": 0.4143
 }

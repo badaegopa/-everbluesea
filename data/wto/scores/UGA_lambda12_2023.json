@@ -2,7 +2,7 @@
   "country": "UGA",
   "year": 2023,
   "region": "동아프리카",
-  "updated": "2026-06-14",
+  "updated": "2026-06-15",
   "wto_raw": {
     "ITS_MTV_AX": 2597.0,
     "ITS_MTV_AM": 1421.0,
@@ -70,18 +70,5 @@
       "score": 0.0016
     }
   },
-  "eta": 0.3832,
-  "flags": {
-    "outlier_flag": true,
-    "a9_score": 0.9652,
-    "missing_dims": 0,
-    "missing_reason": "",
-    "special_flag": true,
-    "reliability": "하"
-  },
-  "bsli": {
-    "score": -1.0547,
-    "year_used": 2019,
-    "reliability": "fallback_10yr"
-  }
+  "eta": 0.3832
 }

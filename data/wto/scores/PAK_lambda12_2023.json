@@ -2,7 +2,7 @@
   "country": "PAK",
   "year": 2023,
   "region": "남아시아",
-  "updated": "2026-06-14",
+  "updated": "2026-06-15",
   "wto_raw": {
     "ITS_MTV_AX": 6820.0,
     "ITS_MTV_AM": 10544.0,
@@ -70,18 +70,5 @@
       "score": 0.0061
     }
   },
-  "eta": 0.2419,
-  "flags": {
-    "outlier_flag": false,
-    "a9_score": 0.0547,
-    "missing_dims": 0,
-    "missing_reason": "",
-    "special_flag": false,
-    "reliability": "상"
-  },
-  "bsli": {
-    "score": -0.478,
-    "year_used": 2018,
-    "reliability": "fallback_10yr"
-  }
+  "eta": 0.2419
 }

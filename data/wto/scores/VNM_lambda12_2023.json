@@ -2,7 +2,7 @@
   "country": "VNM",
   "year": 2023,
   "region": "동남아시아",
-  "updated": "2026-06-14",
+  "updated": "2026-06-15",
   "wto_raw": {
     "ITS_MTV_AX": 39768.0,
     "ITS_MTV_AM": 36823.0,
@@ -70,18 +70,5 @@
       "score": 0.0113
     }
   },
-  "eta": 0.2675,
-  "flags": {
-    "outlier_flag": false,
-    "a9_score": 0.1025,
-    "missing_dims": 0,
-    "missing_reason": "",
-    "special_flag": false,
-    "reliability": "상"
-  },
-  "bsli": {
-    "score": -0.0176,
-    "year_used": 2018,
-    "reliability": "fallback_10yr"
-  }
+  "eta": 0.2675
 }

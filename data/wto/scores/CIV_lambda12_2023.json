@@ -2,7 +2,7 @@
   "country": "CIV",
   "year": 2023,
   "region": "서아프리카",
-  "updated": "2026-06-14",
+  "updated": "2026-06-15",
   "wto_raw": {
     "ITS_MTV_AX": 24.0,
     "ITS_MTV_AM": 3268.0,
@@ -70,18 +70,5 @@
       "score": 0.0009
     }
   },
-  "eta": 0.3252,
-  "flags": {
-    "outlier_flag": false,
-    "a9_score": 0.2303,
-    "missing_dims": 2,
-    "missing_reason": "미신고",
-    "special_flag": false,
-    "reliability": "중"
-  },
-  "bsli": {
-    "score": -0.5515,
-    "year_used": 2018,
-    "reliability": "fallback_10yr"
-  }
+  "eta": 0.3252
 }

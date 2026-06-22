@@ -2,7 +2,7 @@
   "country": "SEN",
   "year": 2023,
   "region": "서아프리카",
-  "updated": "2026-06-14",
+  "updated": "2026-06-15",
   "wto_raw": {
     "ITS_MTV_AX": 1475.0,
     "ITS_MTV_AM": 2351.0,
@@ -70,18 +70,5 @@
       "score": 0.0
     }
   },
-  "eta": 0.3269,
-  "flags": {
-    "outlier_flag": false,
-    "a9_score": 0.0885,
-    "missing_dims": 2,
-    "missing_reason": "미신고",
-    "special_flag": true,
-    "reliability": "중"
-  },
-  "bsli": {
-    "score": -0.5385,
-    "year_used": 2018,
-    "reliability": "fallback_10yr"
-  }
+  "eta": 0.3269
 }
