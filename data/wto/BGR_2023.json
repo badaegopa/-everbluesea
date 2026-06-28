@@ -1,0 +1,93 @@
+{
+  "numeric": "100",
+  "iso_code": "BGR",
+  "name": "Bulgaria",
+  "region": "유럽",
+  "year": 2023,
+  "updated": "2026-06-28",
+  "collected": 12,
+  "total": 15,
+  "missing": [
+    "TP_A_0010",
+    "TP_A_0160",
+    "TP_A_0430"
+  ],
+  "missing_named": [
+    "단순평균실행관세",
+    "가중평균실행관세",
+    "무관세품목비중"
+  ],
+  "indicators": {
+    "trade": {
+      "ITS_MTV_AX": {
+        "value": 635.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTV_AM": {
+        "value": 6539.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AXVG": {
+        "value": -3.1,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AMVG": {
+        "value": -6.5,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "tariff": {
+      "TP_A_0010": null,
+      "TP_A_0160": null,
+      "TP_A_0430": null,
+      "TP_B_0020": {
+        "value": 100.0,
+        "year": null,
+        "unit": ""
+      },
+      "TP_B_0090": {
+        "value": 25.6,
+        "year": null,
+        "unit": ""
+      }
+    },
+    "services": {
+      "ITS_CS_QAX": {
+        "value": 16920.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_CS_QAM": {
+        "value": 7843.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_X": {
+        "value": 19078.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_M": {
+        "value": 652.0,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "price": {
+      "ITS_MTP_AUVX": {
+        "value": 99.2,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AUVM": {
+        "value": 99.0,
+        "year": 2023,
+        "unit": ""
+      }
+    }
+  }
+}

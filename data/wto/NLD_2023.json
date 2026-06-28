@@ -1,17 +1,35 @@
 {
-  "country": "528",
+  "numeric": "528",
   "iso_code": "NLD",
+  "name": "Netherlands",
+  "region": "유럽",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 10,
+  "total": 15,
+  "missing": [
+    "TP_A_0010",
+    "TP_A_0160",
+    "TP_A_0430",
+    "TP_B_0020",
+    "TP_B_0090"
+  ],
+  "missing_named": [
+    "단순평균실행관세",
+    "가중평균실행관세",
+    "무관세품목비중",
+    "단순평균양허관세",
+    "양허범위"
+  ],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 140062.0,
+        "value": 6770.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 843567.0,
+        "value": 5610.0,
         "year": 2023,
         "unit": ""
       },
@@ -45,12 +63,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 16977.0,
+        "value": 6276.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 191997.0,
+        "value": 286216.0,
         "year": 2023,
         "unit": ""
       }

@@ -1,12 +1,30 @@
 {
-  "country": "616",
+  "numeric": "616",
   "iso_code": "POL",
+  "name": "Poland",
+  "region": "유럽",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 10,
+  "total": 15,
+  "missing": [
+    "TP_A_0010",
+    "TP_A_0160",
+    "TP_A_0430",
+    "TP_B_0020",
+    "TP_B_0090"
+  ],
+  "missing_named": [
+    "단순평균실행관세",
+    "가중평균실행관세",
+    "무관세품목비중",
+    "단순평균양허관세",
+    "양허범위"
+  ],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 7300.0,
+        "value": 58496.0,
         "year": 2023,
         "unit": ""
       },
@@ -35,7 +53,7 @@
     },
     "services": {
       "ITS_CS_QAX": {
-        "value": 29960.0,
+        "value": 381.0,
         "year": 2023,
         "unit": ""
       },
@@ -45,12 +63,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 1129.0,
+        "value": 672.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 68994.0,
+        "value": 36945.0,
         "year": 2023,
         "unit": ""
       }

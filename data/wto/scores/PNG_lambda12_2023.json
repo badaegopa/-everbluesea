@@ -1,0 +1,76 @@
+{
+  "country": "PNG",
+  "year": 2023,
+  "region": "오세아니아",
+  "collected": 15,
+  "eu_adjusted": false,
+  "updated": "2026-06-28",
+  "wto_raw": {
+    "ITS_MTV_AX": 2221.0,
+    "ITS_MTV_AM": 3256.0,
+    "ITS_MTP_AXVG": 34.4,
+    "ITS_MTP_AMVG": -5.3,
+    "TP_A_0010": 4.2,
+    "TP_A_0160": 12.6,
+    "TP_A_0430": 2.8,
+    "TP_B_0020": 100.0,
+    "TP_B_0090": 32.8,
+    "ITS_CS_QAX": 409.0,
+    "ITS_CS_QAM": 2839.0,
+    "BAT_BV_X": 36.0,
+    "BAT_BV_M": 2550.0,
+    "ITS_MTP_AUVX": 65.3,
+    "ITS_MTP_AUVM": 97.2
+  },
+  "lambda12": {
+    "A1": {
+      "name": "수출력",
+      "score": 0.3201
+    },
+    "A2": {
+      "name": "제도신뢰",
+      "score": 0.8923
+    },
+    "A3": {
+      "name": "사회결속",
+      "score": 0.0021
+    },
+    "A4": {
+      "name": "경제역량",
+      "score": 0.2082
+    },
+    "A5": {
+      "name": "지속영속",
+      "score": 0.2648
+    },
+    "A6": {
+      "name": "환경지속",
+      "score": 0.4681
+    },
+    "A7": {
+      "name": "인구동태",
+      "score": null
+    },
+    "A8": {
+      "name": "거버넌스",
+      "score": 0.4892
+    },
+    "A9": {
+      "name": "지정학",
+      "score": 0.2209
+    },
+    "A10": {
+      "name": "문화정체",
+      "score": 0.0004
+    },
+    "A11": {
+      "name": "에너지",
+      "score": 0.0964
+    },
+    "A12": {
+      "name": "이동성",
+      "score": 0.0017
+    }
+  },
+  "eta": 0.2695
+}

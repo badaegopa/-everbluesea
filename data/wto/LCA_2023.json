@@ -1,0 +1,89 @@
+{
+  "numeric": "662",
+  "iso_code": "LCA",
+  "name": "Saint Lucia",
+  "region": "아메리카",
+  "year": 2023,
+  "updated": "2026-06-28",
+  "collected": 10,
+  "total": 15,
+  "missing": [
+    "TP_A_0010",
+    "TP_A_0160",
+    "TP_A_0430",
+    "ITS_CS_QAX",
+    "ITS_CS_QAM"
+  ],
+  "missing_named": [
+    "단순평균실행관세",
+    "가중평균실행관세",
+    "무관세품목비중",
+    "서비스수출액",
+    "서비스수입액"
+  ],
+  "indicators": {
+    "trade": {
+      "ITS_MTV_AX": {
+        "value": 24.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTV_AM": {
+        "value": 158.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AXVG": {
+        "value": 2.4,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AMVG": {
+        "value": 20.9,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "tariff": {
+      "TP_A_0010": null,
+      "TP_A_0160": null,
+      "TP_A_0430": null,
+      "TP_B_0020": {
+        "value": 99.5,
+        "year": null,
+        "unit": ""
+      },
+      "TP_B_0090": {
+        "value": 64.6,
+        "year": null,
+        "unit": ""
+      }
+    },
+    "services": {
+      "ITS_CS_QAX": null,
+      "ITS_CS_QAM": null,
+      "BAT_BV_X": {
+        "value": 1261.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_M": {
+        "value": 425.0,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "price": {
+      "ITS_MTP_AUVX": {
+        "value": 99.3,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AUVM": {
+        "value": 89.2,
+        "year": 2023,
+        "unit": ""
+      }
+    }
+  }
+}

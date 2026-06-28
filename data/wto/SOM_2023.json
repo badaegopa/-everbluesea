@@ -1,0 +1,91 @@
+{
+  "numeric": "706",
+  "iso_code": "SOM",
+  "name": "Somalia",
+  "region": "사하라이남아프리카",
+  "year": 2023,
+  "updated": "2026-06-28",
+  "collected": 11,
+  "total": 15,
+  "missing": [
+    "TP_B_0020",
+    "TP_B_0090",
+    "ITS_CS_QAX",
+    "ITS_CS_QAM"
+  ],
+  "missing_named": [
+    "단순평균양허관세",
+    "양허범위",
+    "서비스수출액",
+    "서비스수입액"
+  ],
+  "indicators": {
+    "trade": {
+      "ITS_MTV_AX": {
+        "value": 993.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTV_AM": {
+        "value": 4015.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AXVG": {
+        "value": 33.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AMVG": {
+        "value": -5.5,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "tariff": {
+      "TP_A_0010": {
+        "value": 15.6,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_A_0160": {
+        "value": 20.7,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_A_0430": {
+        "value": 14.9,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_B_0020": null,
+      "TP_B_0090": null
+    },
+    "services": {
+      "ITS_CS_QAX": null,
+      "ITS_CS_QAM": null,
+      "BAT_BV_X": {
+        "value": 185.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_M": {
+        "value": 1907.0,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "price": {
+      "ITS_MTP_AUVX": {
+        "value": 101.8,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AUVM": {
+        "value": 102.2,
+        "year": 2023,
+        "unit": ""
+      }
+    }
+  }
+}

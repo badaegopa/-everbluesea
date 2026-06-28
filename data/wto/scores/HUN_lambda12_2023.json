@@ -1,11 +1,13 @@
 {
   "country": "HUN",
   "year": 2023,
-  "region": "동유럽",
-  "updated": "2026-06-15",
+  "region": "유럽",
+  "collected": 10,
+  "eu_adjusted": false,
+  "updated": "2026-06-28",
   "wto_raw": {
-    "ITS_MTV_AX": 5956.0,
-    "ITS_MTV_AM": 4256.0,
+    "ITS_MTV_AX": 19231.0,
+    "ITS_MTV_AM": 7035.0,
     "ITS_MTP_AXVG": 0.0,
     "ITS_MTP_AMVG": -4.1,
     "TP_A_0010": null,
@@ -15,15 +17,15 @@
     "TP_B_0090": null,
     "ITS_CS_QAX": 37339.0,
     "ITS_CS_QAM": 27226.0,
-    "BAT_BV_X": 204.0,
-    "BAT_BV_M": 29903.0,
+    "BAT_BV_X": 2086.0,
+    "BAT_BV_M": 496.0,
     "ITS_MTP_AUVX": 107.0,
     "ITS_MTP_AUVM": 99.0
   },
   "lambda12": {
     "A1": {
-      "name": "인프라",
-      "score": 0.0835
+      "name": "수출력",
+      "score": 0.2355
     },
     "A2": {
       "name": "제도신뢰",
@@ -31,15 +33,15 @@
     },
     "A3": {
       "name": "사회결속",
-      "score": 0.0353
+      "score": 0.0357
     },
     "A4": {
       "name": "경제역량",
-      "score": 0.1431
+      "score": 0.1715
     },
     "A5": {
-      "name": "지식혁신",
-      "score": 0.8597
+      "name": "지속영속",
+      "score": 0.5775
     },
     "A6": {
       "name": "환경지속",
@@ -55,7 +57,7 @@
     },
     "A9": {
       "name": "지정학",
-      "score": 0.0725
+      "score": 0.0228
     },
     "A10": {
       "name": "문화정체",
@@ -63,12 +65,12 @@
     },
     "A11": {
       "name": "에너지",
-      "score": 0.2026
+      "score": 0.1076
     },
     "A12": {
       "name": "이동성",
-      "score": 0.0255
+      "score": 0.0198
     }
   },
-  "eta": 0.1822
+  "eta": 0.1508
 }

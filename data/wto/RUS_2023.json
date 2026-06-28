@@ -1,17 +1,23 @@
 {
-  "country": "643",
+  "numeric": "643",
   "iso_code": "RUS",
+  "name": "Russian Federation",
+  "region": "유럽",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 12887.0,
+        "value": 5619.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 3068.0,
+        "value": 6166.0,
         "year": 2023,
         "unit": ""
       },
@@ -65,12 +71,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 37044.0,
+        "value": 7550.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 4631.0,
+        "value": 63170.0,
         "year": 2023,
         "unit": ""
       }

@@ -1,0 +1,95 @@
+{
+  "numeric": "624",
+  "iso_code": "GNB",
+  "name": "Guinea-Bissau",
+  "region": "사하라이남아프리카",
+  "year": 2023,
+  "updated": "2026-06-28",
+  "collected": 13,
+  "total": 15,
+  "missing": [
+    "ITS_CS_QAX",
+    "ITS_CS_QAM"
+  ],
+  "missing_named": [
+    "서비스수출액",
+    "서비스수입액"
+  ],
+  "indicators": {
+    "trade": {
+      "ITS_MTV_AX": {
+        "value": 240.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTV_AM": {
+        "value": 474.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AXVG": {
+        "value": -20.7,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AMVG": {
+        "value": 1.6,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "tariff": {
+      "TP_A_0010": {
+        "value": 12.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_A_0160": {
+        "value": 15.9,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_A_0430": {
+        "value": 11.4,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_B_0020": {
+        "value": 97.6,
+        "year": null,
+        "unit": ""
+      },
+      "TP_B_0090": {
+        "value": 48.6,
+        "year": null,
+        "unit": ""
+      }
+    },
+    "services": {
+      "ITS_CS_QAX": null,
+      "ITS_CS_QAM": null,
+      "BAT_BV_X": {
+        "value": 8.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_M": {
+        "value": 156.0,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "price": {
+      "ITS_MTP_AUVX": {
+        "value": 123.2,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AUVM": {
+        "value": 99.4,
+        "year": 2023,
+        "unit": ""
+      }
+    }
+  }
+}

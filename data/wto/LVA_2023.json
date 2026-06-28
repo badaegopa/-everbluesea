@@ -1,0 +1,89 @@
+{
+  "numeric": "428",
+  "iso_code": "LVA",
+  "name": "Latvia",
+  "region": "유럽",
+  "year": 2023,
+  "updated": "2026-06-28",
+  "collected": 10,
+  "total": 15,
+  "missing": [
+    "TP_A_0010",
+    "TP_A_0160",
+    "TP_A_0430",
+    "TP_B_0020",
+    "TP_B_0090"
+  ],
+  "missing_named": [
+    "단순평균실행관세",
+    "가중평균실행관세",
+    "무관세품목비중",
+    "단순평균양허관세",
+    "양허범위"
+  ],
+  "indicators": {
+    "trade": {
+      "ITS_MTV_AX": {
+        "value": 5176.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTV_AM": {
+        "value": 5870.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AXVG": {
+        "value": -3.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AMVG": {
+        "value": -3.2,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "tariff": {
+      "TP_A_0010": null,
+      "TP_A_0160": null,
+      "TP_A_0430": null,
+      "TP_B_0020": null,
+      "TP_B_0090": null
+    },
+    "services": {
+      "ITS_CS_QAX": {
+        "value": 8122.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_CS_QAM": {
+        "value": 5777.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_X": {
+        "value": 9346.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_M": {
+        "value": 118.0,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "price": {
+      "ITS_MTP_AUVX": {
+        "value": 96.6,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AUVM": {
+        "value": 95.5,
+        "year": 2023,
+        "unit": ""
+      }
+    }
+  }
+}

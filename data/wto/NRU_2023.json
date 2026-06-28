@@ -1,0 +1,87 @@
+{
+  "numeric": "520",
+  "iso_code": "NRU",
+  "name": "Nauru",
+  "region": "오세아니아",
+  "year": 2023,
+  "updated": "2026-06-28",
+  "collected": 9,
+  "total": 15,
+  "missing": [
+    "TP_B_0020",
+    "TP_B_0090",
+    "ITS_CS_QAX",
+    "ITS_CS_QAM",
+    "BAT_BV_X",
+    "BAT_BV_M"
+  ],
+  "missing_named": [
+    "단순평균양허관세",
+    "양허범위",
+    "서비스수출액",
+    "서비스수입액",
+    "서비스수지(대변)",
+    "서비스수지(차변)"
+  ],
+  "indicators": {
+    "trade": {
+      "ITS_MTV_AX": {
+        "value": 38.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTV_AM": {
+        "value": 70.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AXVG": {
+        "value": -1.8,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AMVG": {
+        "value": -23.7,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "tariff": {
+      "TP_A_0010": {
+        "value": 12.6,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_A_0160": {
+        "value": 27.2,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_A_0430": {
+        "value": 10.2,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_B_0020": null,
+      "TP_B_0090": null
+    },
+    "services": {
+      "ITS_CS_QAX": null,
+      "ITS_CS_QAM": null,
+      "BAT_BV_X": null,
+      "BAT_BV_M": null
+    },
+    "price": {
+      "ITS_MTP_AUVX": {
+        "value": 89.2,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AUVM": {
+        "value": 103.7,
+        "year": 2023,
+        "unit": ""
+      }
+    }
+  }
+}

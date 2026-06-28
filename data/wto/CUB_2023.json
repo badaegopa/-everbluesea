@@ -1,0 +1,95 @@
+{
+  "numeric": "192",
+  "iso_code": "CUB",
+  "name": "Cuba",
+  "region": "아메리카",
+  "year": 2023,
+  "updated": "2026-06-28",
+  "collected": 13,
+  "total": 15,
+  "missing": [
+    "ITS_CS_QAX",
+    "ITS_CS_QAM"
+  ],
+  "missing_named": [
+    "서비스수출액",
+    "서비스수입액"
+  ],
+  "indicators": {
+    "trade": {
+      "ITS_MTV_AX": {
+        "value": 571.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTV_AM": {
+        "value": 40.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AXVG": {
+        "value": -27.7,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AMVG": {
+        "value": -7.9,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "tariff": {
+      "TP_A_0010": {
+        "value": 4.4,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_A_0160": {
+        "value": 4.3,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_A_0430": {
+        "value": 4.4,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_B_0020": {
+        "value": 32.5,
+        "year": null,
+        "unit": ""
+      },
+      "TP_B_0090": {
+        "value": 21.1,
+        "year": null,
+        "unit": ""
+      }
+    },
+    "services": {
+      "ITS_CS_QAX": null,
+      "ITS_CS_QAM": null,
+      "BAT_BV_X": {
+        "value": 6397.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_M": {
+        "value": 2399.0,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "price": {
+      "ITS_MTP_AUVX": {
+        "value": 100.8,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AUVM": {
+        "value": 99.1,
+        "year": 2023,
+        "unit": ""
+      }
+    }
+  }
+}

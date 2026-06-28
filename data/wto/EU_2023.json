@@ -1,17 +1,17 @@
 {
   "country": "918",
-  "iso_code": "918",
+  "iso_code": "EU",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 834930.0,
+        "value": 421660.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 771678.0,
+        "value": 1140405.0,
         "year": 2023,
         "unit": ""
       },
@@ -65,12 +65,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 77545.0,
+        "value": 20350.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 206653.0,
+        "value": 327056.0,
         "year": 2023,
         "unit": ""
       }

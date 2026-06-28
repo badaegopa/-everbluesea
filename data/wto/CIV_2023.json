@@ -1,12 +1,24 @@
 {
-  "country": "384",
+  "numeric": "384",
   "iso_code": "CIV",
+  "name": "Côte d'Ivoire",
+  "region": "사하라이남아프리카",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 13,
+  "total": 15,
+  "missing": [
+    "ITS_CS_QAX",
+    "ITS_CS_QAM"
+  ],
+  "missing_named": [
+    "서비스수출액",
+    "서비스수입액"
+  ],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 24.0,
+        "value": 3065.0,
         "year": 2023,
         "unit": ""
       },
@@ -57,12 +69,12 @@
       "ITS_CS_QAX": null,
       "ITS_CS_QAM": null,
       "BAT_BV_X": {
-        "value": 168.0,
+        "value": 1481.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 995.0,
+        "value": 4837.0,
         "year": 2023,
         "unit": ""
       }

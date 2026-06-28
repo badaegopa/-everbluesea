@@ -1,17 +1,23 @@
 {
-  "country": "764",
+  "numeric": "764",
   "iso_code": "THA",
+  "name": "Thailand",
+  "region": "동아시아동남아",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 53267.0,
+        "value": 42880.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 23868.0,
+        "value": 29548.0,
         "year": 2023,
         "unit": ""
       },
@@ -65,12 +71,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 790.0,
+        "value": 264.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 330.0,
+        "value": 53789.0,
         "year": 2023,
         "unit": ""
       }

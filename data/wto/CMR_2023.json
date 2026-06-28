@@ -1,8 +1,14 @@
 {
-  "country": "120",
+  "numeric": "120",
   "iso_code": "CMR",
+  "name": "Cameroon",
+  "region": "사하라이남아프리카",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
@@ -65,7 +71,7 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 35.0,
+        "value": 7.0,
         "year": 2023,
         "unit": ""
       },

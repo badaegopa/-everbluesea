@@ -1,8 +1,24 @@
 {
-  "country": "180",
+  "numeric": "180",
   "iso_code": "COD",
+  "name": "Congo, The Democratic Republic of the",
+  "region": "사하라이남아프리카",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 11,
+  "total": 15,
+  "missing": [
+    "ITS_MTP_AMVG",
+    "TP_A_0010",
+    "TP_A_0160",
+    "TP_A_0430"
+  ],
+  "missing_named": [
+    "수입물량증가율",
+    "단순평균실행관세",
+    "가중평균실행관세",
+    "무관세품목비중"
+  ],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
@@ -39,22 +55,22 @@
     },
     "services": {
       "ITS_CS_QAX": {
-        "value": 49.0,
+        "value": 5.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_CS_QAM": {
-        "value": 5680.0,
+        "value": 5623.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 0.0,
+        "value": 695.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 251.0,
+        "value": 124.0,
         "year": 2023,
         "unit": ""
       }

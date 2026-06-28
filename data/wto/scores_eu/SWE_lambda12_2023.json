@@ -1,0 +1,76 @@
+{
+  "country": "SWE",
+  "year": 2023,
+  "region": "유럽",
+  "collected": 10,
+  "eu_adjusted": true,
+  "updated": "2026-06-28",
+  "wto_raw": {
+    "ITS_MTV_AX": 149113.0,
+    "ITS_MTV_AM": 1581.0,
+    "ITS_MTP_AXVG": -0.8,
+    "ITS_MTP_AMVG": -5.8,
+    "TP_A_0010": 5.0,
+    "TP_A_0160": 10.8,
+    "TP_A_0430": 4.1,
+    "TP_B_0020": 100.0,
+    "TP_B_0090": 5.0,
+    "ITS_CS_QAX": 106048.0,
+    "ITS_CS_QAM": 14392.0,
+    "BAT_BV_X": 2798.0,
+    "BAT_BV_M": 4335.0,
+    "ITS_MTP_AUVX": 100.6,
+    "ITS_MTP_AUVM": 101.0
+  },
+  "lambda12": {
+    "A1": {
+      "name": "수출력",
+      "score": 0.459
+    },
+    "A2": {
+      "name": "제도신뢰",
+      "score": 0.8718
+    },
+    "A3": {
+      "name": "사회결속",
+      "score": 0.0602
+    },
+    "A4": {
+      "name": "경제역량",
+      "score": 0.2753
+    },
+    "A5": {
+      "name": "지속영속",
+      "score": 0.5461
+    },
+    "A6": {
+      "name": "환경지속",
+      "score": 0.5204
+    },
+    "A7": {
+      "name": "인구동태",
+      "score": null
+    },
+    "A8": {
+      "name": "거버넌스",
+      "score": 0.3771
+    },
+    "A9": {
+      "name": "지정학",
+      "score": 0.0366
+    },
+    "A10": {
+      "name": "문화정체",
+      "score": 0.1015
+    },
+    "A11": {
+      "name": "에너지",
+      "score": 0.0916
+    },
+    "A12": {
+      "name": "이동성",
+      "score": 0.0336
+    }
+  },
+  "eta": 0.3067
+}

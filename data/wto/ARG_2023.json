@@ -1,17 +1,23 @@
 {
-  "country": "32",
+  "numeric": "032",
   "iso_code": "ARG",
+  "name": "Argentina",
+  "region": "아메리카",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 35673.0,
+        "value": 5887.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 8520.0,
+        "value": 453.0,
         "year": 2023,
         "unit": ""
       },
@@ -60,17 +66,17 @@
         "unit": ""
       },
       "ITS_CS_QAM": {
-        "value": 22572.0,
+        "value": 250.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 55.0,
+        "value": 116.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 23340.0,
+        "value": 5392.0,
         "year": 2023,
         "unit": ""
       }

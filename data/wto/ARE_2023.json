@@ -1,17 +1,23 @@
 {
-  "country": "784",
+  "numeric": "784",
   "iso_code": "ARE",
+  "name": "United Arab Emirates",
+  "region": "중동북아프리카",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 19839.0,
+        "value": 44082.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 25510.0,
+        "value": 1513.0,
         "year": 2023,
         "unit": ""
       },
@@ -65,12 +71,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 118819.0,
+        "value": 5014.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 98997.0,
+        "value": 350.0,
         "year": 2023,
         "unit": ""
       }

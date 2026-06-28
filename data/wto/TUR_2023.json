@@ -1,17 +1,23 @@
 {
-  "country": "792",
+  "numeric": "792",
   "iso_code": "TUR",
+  "name": "Türkiye",
+  "region": "중동북아프리카",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 2575.0,
+        "value": 32362.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 34325.0,
+        "value": 30268.0,
         "year": 2023,
         "unit": ""
       },
@@ -65,12 +71,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 1617.0,
+        "value": 627.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 2116.0,
+        "value": 3530.0,
         "year": 2023,
         "unit": ""
       }

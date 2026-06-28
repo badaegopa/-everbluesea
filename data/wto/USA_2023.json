@@ -1,17 +1,23 @@
 {
-  "country": "840",
+  "numeric": "840",
   "iso_code": "USA",
+  "name": "United States",
+  "region": "아메리카",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 18724.0,
+        "value": 93318.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 382553.0,
+        "value": 89348.0,
         "year": 2023,
         "unit": ""
       },

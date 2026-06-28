@@ -1,0 +1,76 @@
+{
+  "country": "VUT",
+  "year": 2023,
+  "region": "오세아니아",
+  "collected": 15,
+  "eu_adjusted": false,
+  "updated": "2026-06-28",
+  "wto_raw": {
+    "ITS_MTV_AX": 60.0,
+    "ITS_MTV_AM": 473.0,
+    "ITS_MTP_AXVG": 18.6,
+    "ITS_MTP_AMVG": 81.8,
+    "TP_A_0010": 9.0,
+    "TP_A_0160": 16.9,
+    "TP_A_0430": 7.8,
+    "TP_B_0020": 100.0,
+    "TP_B_0090": 40.1,
+    "ITS_CS_QAX": 227.0,
+    "ITS_CS_QAM": 212.0,
+    "BAT_BV_X": 43.0,
+    "BAT_BV_M": 0.0,
+    "ITS_MTP_AUVX": 101.2,
+    "ITS_MTP_AUVM": 97.5
+  },
+  "lambda12": {
+    "A1": {
+      "name": "수출력",
+      "score": 0.2639
+    },
+    "A2": {
+      "name": "제도신뢰",
+      "score": 0.7692
+    },
+    "A3": {
+      "name": "사회결속",
+      "score": 0.0002
+    },
+    "A4": {
+      "name": "경제역량",
+      "score": 0.3645
+    },
+    "A5": {
+      "name": "지속영속",
+      "score": 0.5249
+    },
+    "A6": {
+      "name": "환경지속",
+      "score": 0.5709
+    },
+    "A7": {
+      "name": "인구동태",
+      "score": null
+    },
+    "A8": {
+      "name": "거버넌스",
+      "score": 0.3902
+    },
+    "A9": {
+      "name": "지정학",
+      "score": 0.5575
+    },
+    "A10": {
+      "name": "문화정체",
+      "score": 0.0002
+    },
+    "A11": {
+      "name": "에너지",
+      "score": 0.4652
+    },
+    "A12": {
+      "name": "이동성",
+      "score": 0.0002
+    }
+  },
+  "eta": 0.3552
+}

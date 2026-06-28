@@ -1,17 +1,23 @@
 {
-  "country": "410",
+  "numeric": "410",
   "iso_code": "KOR",
+  "name": "Korea, Republic of",
+  "region": "동아시아동남아",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 124794.0,
+        "value": 29580.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 17121.0,
+        "value": 16162.0,
         "year": 2023,
         "unit": ""
       },
@@ -55,7 +61,7 @@
     },
     "services": {
       "ITS_CS_QAX": {
-        "value": 127042.0,
+        "value": 1224.0,
         "year": 2023,
         "unit": ""
       },
@@ -70,7 +76,7 @@
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 7824.0,
+        "value": 3873.0,
         "year": 2023,
         "unit": ""
       }

@@ -1,0 +1,83 @@
+{
+  "numeric": "408",
+  "iso_code": "PRK",
+  "name": "Korea, Democratic People's Republic of",
+  "region": "동아시아동남아",
+  "year": 2023,
+  "updated": "2026-06-28",
+  "collected": 7,
+  "total": 15,
+  "missing": [
+    "ITS_MTP_AXVG",
+    "TP_A_0010",
+    "TP_A_0160",
+    "TP_A_0430",
+    "TP_B_0020",
+    "TP_B_0090",
+    "ITS_CS_QAX",
+    "ITS_CS_QAM"
+  ],
+  "missing_named": [
+    "수출물량증가율",
+    "단순평균실행관세",
+    "가중평균실행관세",
+    "무관세품목비중",
+    "단순평균양허관세",
+    "양허범위",
+    "서비스수출액",
+    "서비스수입액"
+  ],
+  "indicators": {
+    "trade": {
+      "ITS_MTV_AX": {
+        "value": 330.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTV_AM": {
+        "value": 2440.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AXVG": null,
+      "ITS_MTP_AMVG": {
+        "value": 76.1,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "tariff": {
+      "TP_A_0010": null,
+      "TP_A_0160": null,
+      "TP_A_0430": null,
+      "TP_B_0020": null,
+      "TP_B_0090": null
+    },
+    "services": {
+      "ITS_CS_QAX": null,
+      "ITS_CS_QAM": null,
+      "BAT_BV_X": {
+        "value": 466.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_M": {
+        "value": 30.0,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "price": {
+      "ITS_MTP_AUVX": {
+        "value": 91.4,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AUVM": {
+        "value": 96.9,
+        "year": 2023,
+        "unit": ""
+      }
+    }
+  }
+}

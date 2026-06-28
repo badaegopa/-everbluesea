@@ -1,17 +1,23 @@
 {
-  "country": "804",
+  "numeric": "804",
   "iso_code": "UKR",
+  "name": "Ukraine",
+  "region": "유럽",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 279.0,
+        "value": 22586.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 901.0,
+        "value": 7293.0,
         "year": 2023,
         "unit": ""
       },
@@ -55,7 +61,7 @@
     },
     "services": {
       "ITS_CS_QAX": {
-        "value": 11014.0,
+        "value": 16602.0,
         "year": 2023,
         "unit": ""
       },
@@ -65,12 +71,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 1852.0,
+        "value": 15447.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 265.0,
+        "value": 966.0,
         "year": 2023,
         "unit": ""
       }

@@ -1,17 +1,29 @@
 {
-  "country": "686",
+  "numeric": "686",
   "iso_code": "SEN",
+  "name": "Senegal",
+  "region": "사하라이남아프리카",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 13,
+  "total": 15,
+  "missing": [
+    "ITS_CS_QAX",
+    "ITS_CS_QAM"
+  ],
+  "missing_named": [
+    "서비스수출액",
+    "서비스수입액"
+  ],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 1475.0,
+        "value": 200.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 2351.0,
+        "value": 480.0,
         "year": 2023,
         "unit": ""
       },
@@ -57,12 +69,12 @@
       "ITS_CS_QAX": null,
       "ITS_CS_QAM": null,
       "BAT_BV_X": {
-        "value": 22.0,
+        "value": 90.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 1.0,
+        "value": 3420.0,
         "year": 2023,
         "unit": ""
       }

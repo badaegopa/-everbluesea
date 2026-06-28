@@ -1,17 +1,23 @@
 {
-  "country": "608",
+  "numeric": "608",
   "iso_code": "PHL",
+  "name": "Philippines",
+  "region": "동아시아동남아",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 7013.0,
+        "value": 4612.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 19352.0,
+        "value": 21896.0,
         "year": 2023,
         "unit": ""
       },
@@ -65,12 +71,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 3208.0,
+        "value": 214.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 3867.0,
+        "value": 43.0,
         "year": 2023,
         "unit": ""
       }

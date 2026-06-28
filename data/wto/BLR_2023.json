@@ -1,0 +1,95 @@
+{
+  "numeric": "112",
+  "iso_code": "BLR",
+  "name": "Belarus",
+  "region": "유럽",
+  "year": 2023,
+  "updated": "2026-06-28",
+  "collected": 13,
+  "total": 15,
+  "missing": [
+    "TP_B_0020",
+    "TP_B_0090"
+  ],
+  "missing_named": [
+    "단순평균양허관세",
+    "양허범위"
+  ],
+  "indicators": {
+    "trade": {
+      "ITS_MTV_AX": {
+        "value": 512.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTV_AM": {
+        "value": 5063.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AXVG": {
+        "value": 7.3,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AMVG": {
+        "value": 35.5,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "tariff": {
+      "TP_A_0010": {
+        "value": 6.6,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_A_0160": {
+        "value": 9.8,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_A_0430": {
+        "value": 6.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_B_0020": null,
+      "TP_B_0090": null
+    },
+    "services": {
+      "ITS_CS_QAX": {
+        "value": 8798.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_CS_QAM": {
+        "value": 5931.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_X": {
+        "value": 7710.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_M": {
+        "value": 1676.0,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "price": {
+      "ITS_MTP_AUVX": {
+        "value": 97.2,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AUVM": {
+        "value": 83.0,
+        "year": 2023,
+        "unit": ""
+      }
+    }
+  }
+}

@@ -1,8 +1,14 @@
 {
-  "country": "458",
+  "numeric": "458",
   "iso_code": "MYS",
+  "name": "Malaysia",
+  "region": "동아시아동남아",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
@@ -65,12 +71,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 3334.0,
+        "value": 37744.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 784.0,
+        "value": 47316.0,
         "year": 2023,
         "unit": ""
       }

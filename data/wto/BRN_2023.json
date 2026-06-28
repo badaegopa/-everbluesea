@@ -1,0 +1,97 @@
+{
+  "numeric": "096",
+  "iso_code": "BRN",
+  "name": "Brunei Darussalam",
+  "region": "동아시아동남아",
+  "year": 2023,
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
+  "indicators": {
+    "trade": {
+      "ITS_MTV_AX": {
+        "value": 20.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTV_AM": {
+        "value": 624.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AXVG": {
+        "value": 8.5,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AMVG": {
+        "value": -7.9,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "tariff": {
+      "TP_A_0010": {
+        "value": 0.5,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_A_0160": {
+        "value": 0.1,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_A_0430": {
+        "value": 0.6,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_B_0020": {
+        "value": 95.5,
+        "year": null,
+        "unit": ""
+      },
+      "TP_B_0090": {
+        "value": 25.4,
+        "year": null,
+        "unit": ""
+      }
+    },
+    "services": {
+      "ITS_CS_QAX": {
+        "value": 340.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_CS_QAM": {
+        "value": 1642.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_X": {
+        "value": 228.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_M": {
+        "value": 180.0,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "price": {
+      "ITS_MTP_AUVX": {
+        "value": 72.8,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AUVM": {
+        "value": 88.5,
+        "year": 2023,
+        "unit": ""
+      }
+    }
+  }
+}

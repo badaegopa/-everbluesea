@@ -1,8 +1,14 @@
 {
-  "country": "566",
+  "numeric": "566",
   "iso_code": "NGA",
+  "name": "Nigeria",
+  "region": "사하라이남아프리카",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
@@ -65,12 +71,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 208.0,
+        "value": 5555.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 2230.0,
+        "value": 49.0,
         "year": 2023,
         "unit": ""
       }

@@ -1,0 +1,76 @@
+{
+  "country": "PRY",
+  "year": 2023,
+  "region": "아메리카",
+  "collected": 15,
+  "eu_adjusted": false,
+  "updated": "2026-06-28",
+  "wto_raw": {
+    "ITS_MTV_AX": 8544.0,
+    "ITS_MTV_AM": 1359.0,
+    "ITS_MTP_AXVG": 44.5,
+    "ITS_MTP_AMVG": -3.5,
+    "TP_A_0010": 8.6,
+    "TP_A_0160": 9.0,
+    "TP_A_0430": 8.6,
+    "TP_B_0020": 100.0,
+    "TP_B_0090": 33.4,
+    "ITS_CS_QAX": 2516.0,
+    "ITS_CS_QAM": 2505.0,
+    "BAT_BV_X": 3367.0,
+    "BAT_BV_M": 165.0,
+    "ITS_MTP_AUVX": 82.7,
+    "ITS_MTP_AUVM": 105.2
+  },
+  "lambda12": {
+    "A1": {
+      "name": "수출력",
+      "score": 0.3646
+    },
+    "A2": {
+      "name": "제도신뢰",
+      "score": 0.7795
+    },
+    "A3": {
+      "name": "사회결속",
+      "score": 0.0028
+    },
+    "A4": {
+      "name": "경제역량",
+      "score": 0.2328
+    },
+    "A5": {
+      "name": "지속영속",
+      "score": 0.4481
+    },
+    "A6": {
+      "name": "환경지속",
+      "score": 0.6626
+    },
+    "A7": {
+      "name": "인구동태",
+      "score": null
+    },
+    "A8": {
+      "name": "거버넌스",
+      "score": 0.3784
+    },
+    "A9": {
+      "name": "지정학",
+      "score": 0.2672
+    },
+    "A10": {
+      "name": "문화정체",
+      "score": 0.0024
+    },
+    "A11": {
+      "name": "에너지",
+      "score": 0.1011
+    },
+    "A12": {
+      "name": "이동성",
+      "score": 0.0044
+    }
+  },
+  "eta": 0.2949
+}

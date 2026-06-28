@@ -1,0 +1,76 @@
+{
+  "country": "PRK",
+  "year": 2023,
+  "region": "동아시아동남아",
+  "collected": 7,
+  "eu_adjusted": false,
+  "updated": "2026-06-28",
+  "wto_raw": {
+    "ITS_MTV_AX": 330.0,
+    "ITS_MTV_AM": 2440.0,
+    "ITS_MTP_AXVG": null,
+    "ITS_MTP_AMVG": 76.1,
+    "TP_A_0010": null,
+    "TP_A_0160": null,
+    "TP_A_0430": null,
+    "TP_B_0020": null,
+    "TP_B_0090": null,
+    "ITS_CS_QAX": null,
+    "ITS_CS_QAM": null,
+    "BAT_BV_X": 466.0,
+    "BAT_BV_M": 30.0,
+    "ITS_MTP_AUVX": 91.4,
+    "ITS_MTP_AUVM": 96.9
+  },
+  "lambda12": {
+    "A1": {
+      "name": "수출력",
+      "score": 0.0011
+    },
+    "A2": {
+      "name": "제도신뢰",
+      "score": null
+    },
+    "A3": {
+      "name": "사회결속",
+      "score": null
+    },
+    "A4": {
+      "name": "경제역량",
+      "score": 0.2963
+    },
+    "A5": {
+      "name": "지속영속",
+      "score": 0.4501
+    },
+    "A6": {
+      "name": "환경지속",
+      "score": null
+    },
+    "A7": {
+      "name": "인구동태",
+      "score": null
+    },
+    "A8": {
+      "name": "거버넌스",
+      "score": null
+    },
+    "A9": {
+      "name": "지정학",
+      "score": 0.8446
+    },
+    "A10": {
+      "name": "문화정체",
+      "score": null
+    },
+    "A11": {
+      "name": "에너지",
+      "score": 0.4439
+    },
+    "A12": {
+      "name": "이동성",
+      "score": 0.0008
+    }
+  },
+  "eta": 0.3395
+}

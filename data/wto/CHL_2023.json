@@ -1,17 +1,23 @@
 {
-  "country": "152",
+  "numeric": "152",
   "iso_code": "CHL",
+  "name": "Chile",
+  "region": "아메리카",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 25654.0,
+        "value": 427.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 10740.0,
+        "value": 10481.0,
         "year": 2023,
         "unit": ""
       },
@@ -65,7 +71,7 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 29.0,
+        "value": 15627.0,
         "year": 2023,
         "unit": ""
       },

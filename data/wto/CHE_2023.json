@@ -1,17 +1,23 @@
 {
-  "country": "756",
+  "numeric": "756",
   "iso_code": "CHE",
+  "name": "Switzerland",
+  "region": "유럽",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 6527.0,
+        "value": 287239.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 17227.0,
+        "value": 18486.0,
         "year": 2023,
         "unit": ""
       },
@@ -65,12 +71,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 1548.0,
+        "value": 13176.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 14629.0,
+        "value": 274069.0,
         "year": 2023,
         "unit": ""
       }

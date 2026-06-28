@@ -1,12 +1,18 @@
 {
-  "country": "156",
+  "numeric": "156",
   "iso_code": "CHN",
+  "name": "China",
+  "region": "동아시아동남아",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 95234.0,
+        "value": 105787.0,
         "year": 2023,
         "unit": ""
       },
@@ -65,12 +71,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 6623.0,
+        "value": 20629.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 79767.0,
+        "value": 1580.0,
         "year": 2023,
         "unit": ""
       }

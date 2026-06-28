@@ -1,8 +1,14 @@
 {
-  "country": "682",
+  "numeric": "682",
   "iso_code": "SAU",
+  "name": "Saudi Arabia",
+  "region": "중동북아프리카",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
@@ -65,12 +71,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 32132.0,
+        "value": 6677.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 5312.0,
+        "value": 466.0,
         "year": 2023,
         "unit": ""
       }

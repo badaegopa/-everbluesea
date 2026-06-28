@@ -1,17 +1,23 @@
 {
-  "country": "586",
+  "numeric": "586",
   "iso_code": "PAK",
+  "name": "Pakistan",
+  "region": "남아시아중앙아",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 6820.0,
+        "value": 1.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 10544.0,
+        "value": 461.0,
         "year": 2023,
         "unit": ""
       },
@@ -55,7 +61,7 @@
     },
     "services": {
       "ITS_CS_QAX": {
-        "value": 866.0,
+        "value": 7406.0,
         "year": 2023,
         "unit": ""
       },
@@ -65,12 +71,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 66.0,
+        "value": 228.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 11140.0,
+        "value": 107.0,
         "year": 2023,
         "unit": ""
       }

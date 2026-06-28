@@ -1,8 +1,14 @@
 {
-  "country": "360",
+  "numeric": "360",
   "iso_code": "IDN",
+  "name": "Indonesia",
+  "region": "동아시아동남아",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
@@ -60,7 +66,7 @@
         "unit": ""
       },
       "ITS_CS_QAM": {
-        "value": 13020.0,
+        "value": 51283.0,
         "year": 2023,
         "unit": ""
       },
@@ -70,7 +76,7 @@
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 44566.0,
+        "value": 158.0,
         "year": 2023,
         "unit": ""
       }

@@ -1,0 +1,97 @@
+{
+  "numeric": "084",
+  "iso_code": "BLZ",
+  "name": "Belize",
+  "region": "아메리카",
+  "year": 2023,
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
+  "indicators": {
+    "trade": {
+      "ITS_MTV_AX": {
+        "value": 211.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTV_AM": {
+        "value": 275.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AXVG": {
+        "value": -16.6,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AMVG": {
+        "value": 0.0,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "tariff": {
+      "TP_A_0010": {
+        "value": 11.9,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_A_0160": {
+        "value": 22.4,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_A_0430": {
+        "value": 10.3,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_B_0020": {
+        "value": 96.0,
+        "year": null,
+        "unit": ""
+      },
+      "TP_B_0090": {
+        "value": 59.1,
+        "year": null,
+        "unit": ""
+      }
+    },
+    "services": {
+      "ITS_CS_QAX": {
+        "value": 1048.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_CS_QAM": {
+        "value": 308.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_X": {
+        "value": 0.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_M": {
+        "value": 288.0,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "price": {
+      "ITS_MTP_AUVX": {
+        "value": 113.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AUVM": {
+        "value": 97.0,
+        "year": 2023,
+        "unit": ""
+      }
+    }
+  }
+}

@@ -1,17 +1,23 @@
 {
-  "country": "788",
+  "numeric": "788",
   "iso_code": "TUN",
+  "name": "Tunisia",
+  "region": "중동북아프리카",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 2637.0,
+        "value": 2577.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 3828.0,
+        "value": 4654.0,
         "year": 2023,
         "unit": ""
       },
@@ -70,7 +76,7 @@
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 3819.0,
+        "value": 725.0,
         "year": 2023,
         "unit": ""
       }

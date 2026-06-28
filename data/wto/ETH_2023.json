@@ -1,12 +1,30 @@
 {
-  "country": "231",
+  "numeric": "231",
   "iso_code": "ETH",
+  "name": "Ethiopia",
+  "region": "사하라이남아프리카",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 10,
+  "total": 15,
+  "missing": [
+    "TP_A_0010",
+    "TP_A_0160",
+    "TP_A_0430",
+    "TP_B_0020",
+    "TP_B_0090"
+  ],
+  "missing_named": [
+    "단순평균실행관세",
+    "가중평균실행관세",
+    "무관세품목비중",
+    "단순평균양허관세",
+    "양허범위"
+  ],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 0.0,
+        "value": 3012.0,
         "year": 2023,
         "unit": ""
       },
@@ -40,17 +58,17 @@
         "unit": ""
       },
       "ITS_CS_QAM": {
-        "value": 7633.0,
+        "value": 1.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 61.0,
+        "value": 5016.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 5314.0,
+        "value": 273.0,
         "year": 2023,
         "unit": ""
       }

@@ -1,8 +1,22 @@
 {
-  "country": "642",
+  "numeric": "642",
   "iso_code": "ROU",
+  "name": "Romania",
+  "region": "유럽",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 12,
+  "total": 15,
+  "missing": [
+    "TP_A_0010",
+    "TP_A_0160",
+    "TP_A_0430"
+  ],
+  "missing_named": [
+    "단순평균실행관세",
+    "가중평균실행관세",
+    "무관세품목비중"
+  ],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
@@ -11,7 +25,7 @@
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 2804.0,
+        "value": 3689.0,
         "year": 2023,
         "unit": ""
       },
@@ -53,12 +67,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 299.0,
+        "value": 39869.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 27901.0,
+        "value": 281.0,
         "year": 2023,
         "unit": ""
       }

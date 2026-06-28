@@ -1,12 +1,18 @@
 {
-  "country": "504",
+  "numeric": "504",
   "iso_code": "MAR",
+  "name": "Morocco",
+  "region": "중동북아프리카",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 8165.0,
+        "value": 3780.0,
         "year": 2023,
         "unit": ""
       },
@@ -65,12 +71,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 1505.0,
+        "value": 2290.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 178.0,
+        "value": 12644.0,
         "year": 2023,
         "unit": ""
       }

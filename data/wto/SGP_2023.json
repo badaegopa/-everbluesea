@@ -1,17 +1,23 @@
 {
-  "country": "702",
-  "iso_code": "702",
+  "numeric": "702",
+  "iso_code": "SGP",
+  "name": "Singapore",
+  "region": "동아시아동남아",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 19372.0,
+        "value": 15442.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 16480.0,
+        "value": 17850.0,
         "year": 2023,
         "unit": ""
       },
@@ -65,12 +71,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 571.0,
+        "value": 284672.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 3441.0,
+        "value": 6620.0,
         "year": 2023,
         "unit": ""
       }

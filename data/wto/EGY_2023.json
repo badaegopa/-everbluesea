@@ -1,8 +1,22 @@
 {
-  "country": "818",
+  "numeric": "818",
   "iso_code": "EGY",
+  "name": "Egypt",
+  "region": "중동북아프리카",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 12,
+  "total": 15,
+  "missing": [
+    "TP_A_0010",
+    "TP_A_0160",
+    "TP_A_0430"
+  ],
+  "missing_named": [
+    "단순평균실행관세",
+    "가중평균실행관세",
+    "무관세품목비중"
+  ],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
@@ -11,7 +25,7 @@
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 19744.0,
+        "value": 16951.0,
         "year": 2023,
         "unit": ""
       },
@@ -53,12 +67,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 117.0,
+        "value": 4850.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 321.0,
+        "value": 484.0,
         "year": 2023,
         "unit": ""
       }

@@ -1,0 +1,76 @@
+{
+  "country": "FJI",
+  "year": 2023,
+  "region": "오세아니아",
+  "collected": 15,
+  "eu_adjusted": false,
+  "updated": "2026-06-28",
+  "wto_raw": {
+    "ITS_MTV_AX": 523.0,
+    "ITS_MTV_AM": 598.0,
+    "ITS_MTP_AXVG": -3.0,
+    "ITS_MTP_AMVG": 9.8,
+    "TP_A_0010": 8.2,
+    "TP_A_0160": 21.2,
+    "TP_A_0430": 6.1,
+    "TP_B_0020": 50.0,
+    "TP_B_0090": 41.0,
+    "ITS_CS_QAX": 2079.0,
+    "ITS_CS_QAM": 920.0,
+    "BAT_BV_X": 4.0,
+    "BAT_BV_M": 0.0,
+    "ITS_MTP_AUVX": 104.3,
+    "ITS_MTP_AUVM": 94.2
+  },
+  "lambda12": {
+    "A1": {
+      "name": "수출력",
+      "score": 0.193
+    },
+    "A2": {
+      "name": "제도신뢰",
+      "score": 0.4994
+    },
+    "A3": {
+      "name": "사회결속",
+      "score": 0.0016
+    },
+    "A4": {
+      "name": "경제역량",
+      "score": 0.175
+    },
+    "A5": {
+      "name": "지속영속",
+      "score": 0.5231
+    },
+    "A6": {
+      "name": "환경지속",
+      "score": 0.4854
+    },
+    "A7": {
+      "name": "인구동태",
+      "score": null
+    },
+    "A8": {
+      "name": "거버넌스",
+      "score": 0.4137
+    },
+    "A9": {
+      "name": "지정학",
+      "score": 0.0711
+    },
+    "A10": {
+      "name": "문화정체",
+      "score": 0.002
+    },
+    "A11": {
+      "name": "에너지",
+      "score": 0.1569
+    },
+    "A12": {
+      "name": "이동성",
+      "score": 0.0008
+    }
+  },
+  "eta": 0.2293
+}

@@ -1,17 +1,35 @@
 {
-  "country": "724",
+  "numeric": "724",
   "iso_code": "ESP",
+  "name": "Spain",
+  "region": "유럽",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 10,
+  "total": 15,
+  "missing": [
+    "TP_A_0010",
+    "TP_A_0160",
+    "TP_A_0430",
+    "TP_B_0020",
+    "TP_B_0090"
+  ],
+  "missing_named": [
+    "단순평균실행관세",
+    "가중평균실행관세",
+    "무관세품목비중",
+    "단순평균양허관세",
+    "양허범위"
+  ],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 79442.0,
+        "value": 286604.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 63343.0,
+        "value": 315363.0,
         "year": 2023,
         "unit": ""
       },
@@ -45,12 +63,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 5356.0,
+        "value": 3759.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 6478.0,
+        "value": 2131.0,
         "year": 2023,
         "unit": ""
       }

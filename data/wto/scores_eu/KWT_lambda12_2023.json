@@ -1,0 +1,76 @@
+{
+  "country": "KWT",
+  "year": 2023,
+  "region": "중동북아프리카",
+  "collected": 15,
+  "eu_adjusted": false,
+  "updated": "2026-06-28",
+  "wto_raw": {
+    "ITS_MTV_AX": 478.0,
+    "ITS_MTV_AM": 6590.0,
+    "ITS_MTP_AXVG": 2.0,
+    "ITS_MTP_AMVG": 7.4,
+    "TP_A_0010": 4.7,
+    "TP_A_0160": 5.4,
+    "TP_A_0430": 4.6,
+    "TP_B_0020": 99.9,
+    "TP_B_0090": 98.0,
+    "ITS_CS_QAX": 11302.0,
+    "ITS_CS_QAM": 30403.0,
+    "BAT_BV_X": 9265.0,
+    "BAT_BV_M": 549.0,
+    "ITS_MTP_AUVX": 82.3,
+    "ITS_MTP_AUVM": 100.9
+  },
+  "lambda12": {
+    "A1": {
+      "name": "수출력",
+      "score": 0.2095
+    },
+    "A2": {
+      "name": "제도신뢰",
+      "score": 0.8789
+    },
+    "A3": {
+      "name": "사회결속",
+      "score": 0.0254
+    },
+    "A4": {
+      "name": "경제역량",
+      "score": 0.1828
+    },
+    "A5": {
+      "name": "지속영속",
+      "score": 0.4139
+    },
+    "A6": {
+      "name": "환경지속",
+      "score": 0.5818
+    },
+    "A7": {
+      "name": "인구동태",
+      "score": null
+    },
+    "A8": {
+      "name": "거버넌스",
+      "score": 0.6913
+    },
+    "A9": {
+      "name": "지정학",
+      "score": 0.0522
+    },
+    "A10": {
+      "name": "문화정체",
+      "score": 0.0108
+    },
+    "A11": {
+      "name": "에너지",
+      "score": 0.1561
+    },
+    "A12": {
+      "name": "이동성",
+      "score": 0.021
+    }
+  },
+  "eta": 0.2931
+}

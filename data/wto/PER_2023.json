@@ -1,17 +1,23 @@
 {
-  "country": "604",
+  "numeric": "604",
   "iso_code": "PER",
+  "name": "Peru",
+  "region": "아메리카",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 13302.0,
+        "value": 1153.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 7034.0,
+        "value": 15976.0,
         "year": 2023,
         "unit": ""
       },
@@ -55,7 +61,7 @@
     },
     "services": {
       "ITS_CS_QAX": {
-        "value": 5862.0,
+        "value": 1789.0,
         "year": 2023,
         "unit": ""
       },
@@ -65,12 +71,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 0.0,
+        "value": 623.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 1939.0,
+        "value": 13843.0,
         "year": 2023,
         "unit": ""
       }

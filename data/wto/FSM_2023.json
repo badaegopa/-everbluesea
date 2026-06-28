@@ -1,0 +1,87 @@
+{
+  "numeric": "583",
+  "iso_code": "FSM",
+  "name": "Micronesia, Federated States of",
+  "region": "오세아니아",
+  "year": 2023,
+  "updated": "2026-06-28",
+  "collected": 9,
+  "total": 15,
+  "missing": [
+    "TP_B_0020",
+    "TP_B_0090",
+    "ITS_CS_QAX",
+    "ITS_CS_QAM",
+    "BAT_BV_X",
+    "BAT_BV_M"
+  ],
+  "missing_named": [
+    "단순평균양허관세",
+    "양허범위",
+    "서비스수출액",
+    "서비스수입액",
+    "서비스수지(대변)",
+    "서비스수지(차변)"
+  ],
+  "indicators": {
+    "trade": {
+      "ITS_MTV_AX": {
+        "value": 106.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTV_AM": {
+        "value": 301.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AXVG": {
+        "value": -4.1,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AMVG": {
+        "value": 13.6,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "tariff": {
+      "TP_A_0010": {
+        "value": 5.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_A_0160": {
+        "value": 6.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_A_0430": {
+        "value": 4.9,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_B_0020": null,
+      "TP_B_0090": null
+    },
+    "services": {
+      "ITS_CS_QAX": null,
+      "ITS_CS_QAM": null,
+      "BAT_BV_X": null,
+      "BAT_BV_M": null
+    },
+    "price": {
+      "ITS_MTP_AUVX": {
+        "value": 99.5,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AUVM": {
+        "value": 95.3,
+        "year": 2023,
+        "unit": ""
+      }
+    }
+  }
+}

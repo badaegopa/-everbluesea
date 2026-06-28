@@ -1,17 +1,23 @@
 {
-  "country": "24",
+  "numeric": "024",
   "iso_code": "AGO",
+  "name": "Angola",
+  "region": "사하라이남아프리카",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 170.0,
+        "value": 4.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 2387.0,
+        "value": 657.0,
         "year": 2023,
         "unit": ""
       },
@@ -65,12 +71,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 52.0,
+        "value": 235.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 11227.0,
+        "value": 1868.0,
         "year": 2023,
         "unit": ""
       }

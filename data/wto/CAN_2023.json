@@ -1,17 +1,23 @@
 {
-  "country": "124",
+  "numeric": "124",
   "iso_code": "CAN",
+  "name": "Canada",
+  "region": "아메리카",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 9635.0,
+        "value": 63066.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 51030.0,
+        "value": 19813.0,
         "year": 2023,
         "unit": ""
       },
@@ -65,12 +71,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 1543.0,
+        "value": 139321.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 39752.0,
+        "value": 164584.0,
         "year": 2023,
         "unit": ""
       }

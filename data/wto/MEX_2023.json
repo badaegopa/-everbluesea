@@ -1,8 +1,14 @@
 {
-  "country": "484",
+  "numeric": "484",
   "iso_code": "MEX",
+  "name": "Mexico",
+  "region": "아메리카",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
@@ -65,12 +71,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 31019.0,
+        "value": 1798.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 81942.0,
+        "value": 1113.0,
         "year": 2023,
         "unit": ""
       }

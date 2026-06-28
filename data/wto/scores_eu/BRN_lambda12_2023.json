@@ -1,0 +1,76 @@
+{
+  "country": "BRN",
+  "year": 2023,
+  "region": "동아시아동남아",
+  "collected": 15,
+  "eu_adjusted": false,
+  "updated": "2026-06-28",
+  "wto_raw": {
+    "ITS_MTV_AX": 20.0,
+    "ITS_MTV_AM": 624.0,
+    "ITS_MTP_AXVG": 8.5,
+    "ITS_MTP_AMVG": -7.9,
+    "TP_A_0010": 0.5,
+    "TP_A_0160": 0.1,
+    "TP_A_0430": 0.6,
+    "TP_B_0020": 95.5,
+    "TP_B_0090": 25.4,
+    "ITS_CS_QAX": 340.0,
+    "ITS_CS_QAM": 1642.0,
+    "BAT_BV_X": 228.0,
+    "BAT_BV_M": 180.0,
+    "ITS_MTP_AUVX": 72.8,
+    "ITS_MTP_AUVM": 88.5
+  },
+  "lambda12": {
+    "A1": {
+      "name": "수출력",
+      "score": 0.2303
+    },
+    "A2": {
+      "name": "제도신뢰",
+      "score": 0.961
+    },
+    "A3": {
+      "name": "사회결속",
+      "score": 0.0012
+    },
+    "A4": {
+      "name": "경제역량",
+      "score": 0.1557
+    },
+    "A5": {
+      "name": "지속영속",
+      "score": 0.2553
+    },
+    "A6": {
+      "name": "환경지속",
+      "score": 0.516
+    },
+    "A7": {
+      "name": "인구동태",
+      "score": null
+    },
+    "A8": {
+      "name": "거버넌스",
+      "score": 0.5597
+    },
+    "A9": {
+      "name": "지정학",
+      "score": 0.0912
+    },
+    "A10": {
+      "name": "문화정체",
+      "score": 0.0003
+    },
+    "A11": {
+      "name": "에너지",
+      "score": 0.0811
+    },
+    "A12": {
+      "name": "이동성",
+      "score": 0.0009
+    }
+  },
+  "eta": 0.2593
+}

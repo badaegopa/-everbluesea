@@ -1,0 +1,91 @@
+{
+  "numeric": "352",
+  "iso_code": "ISL",
+  "name": "Iceland",
+  "region": "유럽",
+  "year": 2023,
+  "updated": "2026-06-28",
+  "collected": 11,
+  "total": 15,
+  "missing": [
+    "ITS_MTP_AXVG",
+    "ITS_MTP_AMVG",
+    "ITS_MTP_AUVX",
+    "ITS_MTP_AUVM"
+  ],
+  "missing_named": [
+    "수출물량증가율",
+    "수입물량증가율",
+    "수출단가지수",
+    "수입단가지수"
+  ],
+  "indicators": {
+    "trade": {
+      "ITS_MTV_AX": {
+        "value": 9.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTV_AM": {
+        "value": 245.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AXVG": null,
+      "ITS_MTP_AMVG": null
+    },
+    "tariff": {
+      "TP_A_0010": {
+        "value": 3.3,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_A_0160": {
+        "value": 23.5,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_A_0430": {
+        "value": 0.1,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_B_0020": {
+        "value": 95.0,
+        "year": null,
+        "unit": ""
+      },
+      "TP_B_0090": {
+        "value": 24.0,
+        "year": null,
+        "unit": ""
+      }
+    },
+    "services": {
+      "ITS_CS_QAX": {
+        "value": 7164.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_CS_QAM": {
+        "value": 4761.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_X": {
+        "value": 6841.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_M": {
+        "value": 114.0,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "price": {
+      "ITS_MTP_AUVX": null,
+      "ITS_MTP_AUVM": null
+    }
+  }
+}

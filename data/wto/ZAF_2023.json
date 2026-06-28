@@ -1,8 +1,14 @@
 {
-  "country": "710",
+  "numeric": "710",
   "iso_code": "ZAF",
+  "name": "South Africa",
+  "region": "사하라이남아프리카",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
@@ -11,7 +17,7 @@
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 7687.0,
+        "value": 22459.0,
         "year": 2023,
         "unit": ""
       },
@@ -65,12 +71,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 69.0,
+        "value": 16858.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 337.0,
+        "value": 27719.0,
         "year": 2023,
         "unit": ""
       }

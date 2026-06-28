@@ -1,17 +1,23 @@
 {
-  "country": "392",
+  "numeric": "392",
   "iso_code": "JPN",
+  "name": "Japan",
+  "region": "동아시아동남아",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 717256.0,
+        "value": 12726.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 25619.0,
+        "value": 84408.0,
         "year": 2023,
         "unit": ""
       },
@@ -65,12 +71,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 1411.0,
+        "value": 198161.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 65390.0,
+        "value": 989.0,
         "year": 2023,
         "unit": ""
       }

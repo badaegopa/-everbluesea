@@ -1,0 +1,73 @@
+{
+  "numeric": "020",
+  "iso_code": "AND",
+  "name": "Andorra",
+  "region": "유럽",
+  "year": 2023,
+  "updated": "2026-06-28",
+  "collected": 2,
+  "total": 15,
+  "missing": [
+    "ITS_MTP_AXVG",
+    "ITS_MTP_AMVG",
+    "TP_A_0010",
+    "TP_A_0160",
+    "TP_A_0430",
+    "TP_B_0020",
+    "TP_B_0090",
+    "ITS_CS_QAX",
+    "ITS_CS_QAM",
+    "BAT_BV_X",
+    "BAT_BV_M",
+    "ITS_MTP_AUVX",
+    "ITS_MTP_AUVM"
+  ],
+  "missing_named": [
+    "수출물량증가율",
+    "수입물량증가율",
+    "단순평균실행관세",
+    "가중평균실행관세",
+    "무관세품목비중",
+    "단순평균양허관세",
+    "양허범위",
+    "서비스수출액",
+    "서비스수입액",
+    "서비스수지(대변)",
+    "서비스수지(차변)",
+    "수출단가지수",
+    "수입단가지수"
+  ],
+  "indicators": {
+    "trade": {
+      "ITS_MTV_AX": {
+        "value": 252.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTV_AM": {
+        "value": 1995.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AXVG": null,
+      "ITS_MTP_AMVG": null
+    },
+    "tariff": {
+      "TP_A_0010": null,
+      "TP_A_0160": null,
+      "TP_A_0430": null,
+      "TP_B_0020": null,
+      "TP_B_0090": null
+    },
+    "services": {
+      "ITS_CS_QAX": null,
+      "ITS_CS_QAM": null,
+      "BAT_BV_X": null,
+      "BAT_BV_M": null
+    },
+    "price": {
+      "ITS_MTP_AUVX": null,
+      "ITS_MTP_AUVM": null
+    }
+  }
+}

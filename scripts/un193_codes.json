@@ -1,0 +1,967 @@
+{
+  "004": {
+    "iso3": "AFG",
+    "name": "Afghanistan",
+    "region": "남아시아중앙아"
+  },
+  "008": {
+    "iso3": "ALB",
+    "name": "Albania",
+    "region": "유럽"
+  },
+  "012": {
+    "iso3": "DZA",
+    "name": "Algeria",
+    "region": "중동북아프리카"
+  },
+  "020": {
+    "iso3": "AND",
+    "name": "Andorra",
+    "region": "유럽"
+  },
+  "024": {
+    "iso3": "AGO",
+    "name": "Angola",
+    "region": "사하라이남아프리카"
+  },
+  "028": {
+    "iso3": "ATG",
+    "name": "Antigua and Barbuda",
+    "region": "아메리카"
+  },
+  "032": {
+    "iso3": "ARG",
+    "name": "Argentina",
+    "region": "아메리카"
+  },
+  "051": {
+    "iso3": "ARM",
+    "name": "Armenia",
+    "region": "유럽"
+  },
+  "036": {
+    "iso3": "AUS",
+    "name": "Australia",
+    "region": "오세아니아"
+  },
+  "040": {
+    "iso3": "AUT",
+    "name": "Austria",
+    "region": "유럽"
+  },
+  "031": {
+    "iso3": "AZE",
+    "name": "Azerbaijan",
+    "region": "유럽"
+  },
+  "044": {
+    "iso3": "BHS",
+    "name": "Bahamas",
+    "region": "아메리카"
+  },
+  "048": {
+    "iso3": "BHR",
+    "name": "Bahrain",
+    "region": "중동북아프리카"
+  },
+  "050": {
+    "iso3": "BGD",
+    "name": "Bangladesh",
+    "region": "남아시아중앙아"
+  },
+  "052": {
+    "iso3": "BRB",
+    "name": "Barbados",
+    "region": "아메리카"
+  },
+  "112": {
+    "iso3": "BLR",
+    "name": "Belarus",
+    "region": "유럽"
+  },
+  "056": {
+    "iso3": "BEL",
+    "name": "Belgium",
+    "region": "유럽"
+  },
+  "084": {
+    "iso3": "BLZ",
+    "name": "Belize",
+    "region": "아메리카"
+  },
+  "204": {
+    "iso3": "BEN",
+    "name": "Benin",
+    "region": "사하라이남아프리카"
+  },
+  "064": {
+    "iso3": "BTN",
+    "name": "Bhutan",
+    "region": "남아시아중앙아"
+  },
+  "068": {
+    "iso3": "BOL",
+    "name": "Bolivia, Plurinational State of",
+    "region": "아메리카"
+  },
+  "070": {
+    "iso3": "BIH",
+    "name": "Bosnia and Herzegovina",
+    "region": "유럽"
+  },
+  "072": {
+    "iso3": "BWA",
+    "name": "Botswana",
+    "region": "사하라이남아프리카"
+  },
+  "076": {
+    "iso3": "BRA",
+    "name": "Brazil",
+    "region": "아메리카"
+  },
+  "096": {
+    "iso3": "BRN",
+    "name": "Brunei Darussalam",
+    "region": "동아시아동남아"
+  },
+  "100": {
+    "iso3": "BGR",
+    "name": "Bulgaria",
+    "region": "유럽"
+  },
+  "854": {
+    "iso3": "BFA",
+    "name": "Burkina Faso",
+    "region": "사하라이남아프리카"
+  },
+  "108": {
+    "iso3": "BDI",
+    "name": "Burundi",
+    "region": "사하라이남아프리카"
+  },
+  "132": {
+    "iso3": "CPV",
+    "name": "Cabo Verde",
+    "region": "사하라이남아프리카"
+  },
+  "116": {
+    "iso3": "KHM",
+    "name": "Cambodia",
+    "region": "동아시아동남아"
+  },
+  "120": {
+    "iso3": "CMR",
+    "name": "Cameroon",
+    "region": "사하라이남아프리카"
+  },
+  "124": {
+    "iso3": "CAN",
+    "name": "Canada",
+    "region": "아메리카"
+  },
+  "140": {
+    "iso3": "CAF",
+    "name": "Central African Republic",
+    "region": "사하라이남아프리카"
+  },
+  "148": {
+    "iso3": "TCD",
+    "name": "Chad",
+    "region": "사하라이남아프리카"
+  },
+  "152": {
+    "iso3": "CHL",
+    "name": "Chile",
+    "region": "아메리카"
+  },
+  "156": {
+    "iso3": "CHN",
+    "name": "China",
+    "region": "동아시아동남아"
+  },
+  "170": {
+    "iso3": "COL",
+    "name": "Colombia",
+    "region": "아메리카"
+  },
+  "174": {
+    "iso3": "COM",
+    "name": "Comoros",
+    "region": "사하라이남아프리카"
+  },
+  "178": {
+    "iso3": "COG",
+    "name": "Congo",
+    "region": "사하라이남아프리카"
+  },
+  "180": {
+    "iso3": "COD",
+    "name": "Congo, The Democratic Republic of the",
+    "region": "사하라이남아프리카"
+  },
+  "188": {
+    "iso3": "CRI",
+    "name": "Costa Rica",
+    "region": "아메리카"
+  },
+  "384": {
+    "iso3": "CIV",
+    "name": "Côte d'Ivoire",
+    "region": "사하라이남아프리카"
+  },
+  "191": {
+    "iso3": "HRV",
+    "name": "Croatia",
+    "region": "유럽"
+  },
+  "192": {
+    "iso3": "CUB",
+    "name": "Cuba",
+    "region": "아메리카"
+  },
+  "196": {
+    "iso3": "CYP",
+    "name": "Cyprus",
+    "region": "유럽"
+  },
+  "203": {
+    "iso3": "CZE",
+    "name": "Czechia",
+    "region": "유럽"
+  },
+  "208": {
+    "iso3": "DNK",
+    "name": "Denmark",
+    "region": "유럽"
+  },
+  "262": {
+    "iso3": "DJI",
+    "name": "Djibouti",
+    "region": "사하라이남아프리카"
+  },
+  "212": {
+    "iso3": "DMA",
+    "name": "Dominica",
+    "region": "아메리카"
+  },
+  "214": {
+    "iso3": "DOM",
+    "name": "Dominican Republic",
+    "region": "아메리카"
+  },
+  "218": {
+    "iso3": "ECU",
+    "name": "Ecuador",
+    "region": "아메리카"
+  },
+  "818": {
+    "iso3": "EGY",
+    "name": "Egypt",
+    "region": "중동북아프리카"
+  },
+  "222": {
+    "iso3": "SLV",
+    "name": "El Salvador",
+    "region": "아메리카"
+  },
+  "226": {
+    "iso3": "GNQ",
+    "name": "Equatorial Guinea",
+    "region": "사하라이남아프리카"
+  },
+  "232": {
+    "iso3": "ERI",
+    "name": "Eritrea",
+    "region": "사하라이남아프리카"
+  },
+  "233": {
+    "iso3": "EST",
+    "name": "Estonia",
+    "region": "유럽"
+  },
+  "748": {
+    "iso3": "SWZ",
+    "name": "Eswatini",
+    "region": "사하라이남아프리카"
+  },
+  "231": {
+    "iso3": "ETH",
+    "name": "Ethiopia",
+    "region": "사하라이남아프리카"
+  },
+  "242": {
+    "iso3": "FJI",
+    "name": "Fiji",
+    "region": "오세아니아"
+  },
+  "246": {
+    "iso3": "FIN",
+    "name": "Finland",
+    "region": "유럽"
+  },
+  "250": {
+    "iso3": "FRA",
+    "name": "France",
+    "region": "유럽"
+  },
+  "266": {
+    "iso3": "GAB",
+    "name": "Gabon",
+    "region": "사하라이남아프리카"
+  },
+  "270": {
+    "iso3": "GMB",
+    "name": "Gambia",
+    "region": "사하라이남아프리카"
+  },
+  "268": {
+    "iso3": "GEO",
+    "name": "Georgia",
+    "region": "유럽"
+  },
+  "276": {
+    "iso3": "DEU",
+    "name": "Germany",
+    "region": "유럽"
+  },
+  "288": {
+    "iso3": "GHA",
+    "name": "Ghana",
+    "region": "사하라이남아프리카"
+  },
+  "300": {
+    "iso3": "GRC",
+    "name": "Greece",
+    "region": "유럽"
+  },
+  "308": {
+    "iso3": "GRD",
+    "name": "Grenada",
+    "region": "아메리카"
+  },
+  "320": {
+    "iso3": "GTM",
+    "name": "Guatemala",
+    "region": "아메리카"
+  },
+  "324": {
+    "iso3": "GIN",
+    "name": "Guinea",
+    "region": "사하라이남아프리카"
+  },
+  "624": {
+    "iso3": "GNB",
+    "name": "Guinea-Bissau",
+    "region": "사하라이남아프리카"
+  },
+  "328": {
+    "iso3": "GUY",
+    "name": "Guyana",
+    "region": "사하라이남아프리카"
+  },
+  "332": {
+    "iso3": "HTI",
+    "name": "Haiti",
+    "region": "아메리카"
+  },
+  "340": {
+    "iso3": "HND",
+    "name": "Honduras",
+    "region": "아메리카"
+  },
+  "348": {
+    "iso3": "HUN",
+    "name": "Hungary",
+    "region": "유럽"
+  },
+  "352": {
+    "iso3": "ISL",
+    "name": "Iceland",
+    "region": "유럽"
+  },
+  "356": {
+    "iso3": "IND",
+    "name": "India",
+    "region": "남아시아중앙아"
+  },
+  "360": {
+    "iso3": "IDN",
+    "name": "Indonesia",
+    "region": "동아시아동남아"
+  },
+  "364": {
+    "iso3": "IRN",
+    "name": "Iran, Islamic Republic of",
+    "region": "중동북아프리카"
+  },
+  "368": {
+    "iso3": "IRQ",
+    "name": "Iraq",
+    "region": "중동북아프리카"
+  },
+  "372": {
+    "iso3": "IRL",
+    "name": "Ireland",
+    "region": "유럽"
+  },
+  "376": {
+    "iso3": "ISR",
+    "name": "Israel",
+    "region": "중동북아프리카"
+  },
+  "380": {
+    "iso3": "ITA",
+    "name": "Italy",
+    "region": "유럽"
+  },
+  "388": {
+    "iso3": "JAM",
+    "name": "Jamaica",
+    "region": "아메리카"
+  },
+  "392": {
+    "iso3": "JPN",
+    "name": "Japan",
+    "region": "동아시아동남아"
+  },
+  "400": {
+    "iso3": "JOR",
+    "name": "Jordan",
+    "region": "중동북아프리카"
+  },
+  "398": {
+    "iso3": "KAZ",
+    "name": "Kazakhstan",
+    "region": "남아시아중앙아"
+  },
+  "404": {
+    "iso3": "KEN",
+    "name": "Kenya",
+    "region": "사하라이남아프리카"
+  },
+  "296": {
+    "iso3": "KIR",
+    "name": "Kiribati",
+    "region": "오세아니아"
+  },
+  "408": {
+    "iso3": "PRK",
+    "name": "Korea, Democratic People's Republic of",
+    "region": "동아시아동남아"
+  },
+  "410": {
+    "iso3": "KOR",
+    "name": "Korea, Republic of",
+    "region": "동아시아동남아"
+  },
+  "414": {
+    "iso3": "KWT",
+    "name": "Kuwait",
+    "region": "중동북아프리카"
+  },
+  "417": {
+    "iso3": "KGZ",
+    "name": "Kyrgyzstan",
+    "region": "남아시아중앙아"
+  },
+  "418": {
+    "iso3": "LAO",
+    "name": "Lao People's Democratic Republic",
+    "region": "동아시아동남아"
+  },
+  "428": {
+    "iso3": "LVA",
+    "name": "Latvia",
+    "region": "유럽"
+  },
+  "422": {
+    "iso3": "LBN",
+    "name": "Lebanon",
+    "region": "중동북아프리카"
+  },
+  "426": {
+    "iso3": "LSO",
+    "name": "Lesotho",
+    "region": "사하라이남아프리카"
+  },
+  "430": {
+    "iso3": "LBR",
+    "name": "Liberia",
+    "region": "사하라이남아프리카"
+  },
+  "434": {
+    "iso3": "LBY",
+    "name": "Libya",
+    "region": "중동북아프리카"
+  },
+  "438": {
+    "iso3": "LIE",
+    "name": "Liechtenstein",
+    "region": "유럽"
+  },
+  "440": {
+    "iso3": "LTU",
+    "name": "Lithuania",
+    "region": "유럽"
+  },
+  "442": {
+    "iso3": "LUX",
+    "name": "Luxembourg",
+    "region": "유럽"
+  },
+  "450": {
+    "iso3": "MDG",
+    "name": "Madagascar",
+    "region": "사하라이남아프리카"
+  },
+  "454": {
+    "iso3": "MWI",
+    "name": "Malawi",
+    "region": "사하라이남아프리카"
+  },
+  "458": {
+    "iso3": "MYS",
+    "name": "Malaysia",
+    "region": "동아시아동남아"
+  },
+  "462": {
+    "iso3": "MDV",
+    "name": "Maldives",
+    "region": "남아시아중앙아"
+  },
+  "466": {
+    "iso3": "MLI",
+    "name": "Mali",
+    "region": "사하라이남아프리카"
+  },
+  "470": {
+    "iso3": "MLT",
+    "name": "Malta",
+    "region": "유럽"
+  },
+  "584": {
+    "iso3": "MHL",
+    "name": "Marshall Islands",
+    "region": "오세아니아"
+  },
+  "478": {
+    "iso3": "MRT",
+    "name": "Mauritania",
+    "region": "사하라이남아프리카"
+  },
+  "480": {
+    "iso3": "MUS",
+    "name": "Mauritius",
+    "region": "사하라이남아프리카"
+  },
+  "484": {
+    "iso3": "MEX",
+    "name": "Mexico",
+    "region": "아메리카"
+  },
+  "583": {
+    "iso3": "FSM",
+    "name": "Micronesia, Federated States of",
+    "region": "오세아니아"
+  },
+  "498": {
+    "iso3": "MDA",
+    "name": "Moldova, Republic of",
+    "region": "유럽"
+  },
+  "492": {
+    "iso3": "MCO",
+    "name": "Monaco",
+    "region": "유럽"
+  },
+  "496": {
+    "iso3": "MNG",
+    "name": "Mongolia",
+    "region": "동아시아동남아"
+  },
+  "499": {
+    "iso3": "MNE",
+    "name": "Montenegro",
+    "region": "유럽"
+  },
+  "504": {
+    "iso3": "MAR",
+    "name": "Morocco",
+    "region": "중동북아프리카"
+  },
+  "508": {
+    "iso3": "MOZ",
+    "name": "Mozambique",
+    "region": "사하라이남아프리카"
+  },
+  "104": {
+    "iso3": "MMR",
+    "name": "Myanmar",
+    "region": "동아시아동남아"
+  },
+  "516": {
+    "iso3": "NAM",
+    "name": "Namibia",
+    "region": "사하라이남아프리카"
+  },
+  "520": {
+    "iso3": "NRU",
+    "name": "Nauru",
+    "region": "오세아니아"
+  },
+  "524": {
+    "iso3": "NPL",
+    "name": "Nepal",
+    "region": "남아시아중앙아"
+  },
+  "528": {
+    "iso3": "NLD",
+    "name": "Netherlands",
+    "region": "유럽"
+  },
+  "554": {
+    "iso3": "NZL",
+    "name": "New Zealand",
+    "region": "오세아니아"
+  },
+  "558": {
+    "iso3": "NIC",
+    "name": "Nicaragua",
+    "region": "아메리카"
+  },
+  "562": {
+    "iso3": "NER",
+    "name": "Niger",
+    "region": "사하라이남아프리카"
+  },
+  "566": {
+    "iso3": "NGA",
+    "name": "Nigeria",
+    "region": "사하라이남아프리카"
+  },
+  "807": {
+    "iso3": "MKD",
+    "name": "North Macedonia",
+    "region": "유럽"
+  },
+  "578": {
+    "iso3": "NOR",
+    "name": "Norway",
+    "region": "유럽"
+  },
+  "512": {
+    "iso3": "OMN",
+    "name": "Oman",
+    "region": "중동북아프리카"
+  },
+  "586": {
+    "iso3": "PAK",
+    "name": "Pakistan",
+    "region": "남아시아중앙아"
+  },
+  "585": {
+    "iso3": "PLW",
+    "name": "Palau",
+    "region": "오세아니아"
+  },
+  "591": {
+    "iso3": "PAN",
+    "name": "Panama",
+    "region": "아메리카"
+  },
+  "598": {
+    "iso3": "PNG",
+    "name": "Papua New Guinea",
+    "region": "오세아니아"
+  },
+  "600": {
+    "iso3": "PRY",
+    "name": "Paraguay",
+    "region": "아메리카"
+  },
+  "604": {
+    "iso3": "PER",
+    "name": "Peru",
+    "region": "아메리카"
+  },
+  "608": {
+    "iso3": "PHL",
+    "name": "Philippines",
+    "region": "동아시아동남아"
+  },
+  "616": {
+    "iso3": "POL",
+    "name": "Poland",
+    "region": "유럽"
+  },
+  "620": {
+    "iso3": "PRT",
+    "name": "Portugal",
+    "region": "유럽"
+  },
+  "634": {
+    "iso3": "QAT",
+    "name": "Qatar",
+    "region": "중동북아프리카"
+  },
+  "642": {
+    "iso3": "ROU",
+    "name": "Romania",
+    "region": "유럽"
+  },
+  "643": {
+    "iso3": "RUS",
+    "name": "Russian Federation",
+    "region": "유럽"
+  },
+  "646": {
+    "iso3": "RWA",
+    "name": "Rwanda",
+    "region": "사하라이남아프리카"
+  },
+  "659": {
+    "iso3": "KNA",
+    "name": "Saint Kitts and Nevis",
+    "region": "아메리카"
+  },
+  "662": {
+    "iso3": "LCA",
+    "name": "Saint Lucia",
+    "region": "아메리카"
+  },
+  "670": {
+    "iso3": "VCT",
+    "name": "Saint Vincent and the Grenadines",
+    "region": "아메리카"
+  },
+  "882": {
+    "iso3": "WSM",
+    "name": "Samoa",
+    "region": "오세아니아"
+  },
+  "674": {
+    "iso3": "SMR",
+    "name": "San Marino",
+    "region": "유럽"
+  },
+  "678": {
+    "iso3": "STP",
+    "name": "Sao Tome and Principe",
+    "region": "사하라이남아프리카"
+  },
+  "682": {
+    "iso3": "SAU",
+    "name": "Saudi Arabia",
+    "region": "중동북아프리카"
+  },
+  "686": {
+    "iso3": "SEN",
+    "name": "Senegal",
+    "region": "사하라이남아프리카"
+  },
+  "688": {
+    "iso3": "SRB",
+    "name": "Serbia",
+    "region": "유럽"
+  },
+  "690": {
+    "iso3": "SYC",
+    "name": "Seychelles",
+    "region": "사하라이남아프리카"
+  },
+  "694": {
+    "iso3": "SLE",
+    "name": "Sierra Leone",
+    "region": "사하라이남아프리카"
+  },
+  "702": {
+    "iso3": "SGP",
+    "name": "Singapore",
+    "region": "동아시아동남아"
+  },
+  "703": {
+    "iso3": "SVK",
+    "name": "Slovakia",
+    "region": "유럽"
+  },
+  "705": {
+    "iso3": "SVN",
+    "name": "Slovenia",
+    "region": "유럽"
+  },
+  "090": {
+    "iso3": "SLB",
+    "name": "Solomon Islands",
+    "region": "오세아니아"
+  },
+  "706": {
+    "iso3": "SOM",
+    "name": "Somalia",
+    "region": "사하라이남아프리카"
+  },
+  "710": {
+    "iso3": "ZAF",
+    "name": "South Africa",
+    "region": "사하라이남아프리카"
+  },
+  "728": {
+    "iso3": "SSD",
+    "name": "South Sudan",
+    "region": "사하라이남아프리카"
+  },
+  "724": {
+    "iso3": "ESP",
+    "name": "Spain",
+    "region": "유럽"
+  },
+  "144": {
+    "iso3": "LKA",
+    "name": "Sri Lanka",
+    "region": "남아시아중앙아"
+  },
+  "729": {
+    "iso3": "SDN",
+    "name": "Sudan",
+    "region": "사하라이남아프리카"
+  },
+  "740": {
+    "iso3": "SUR",
+    "name": "Suriname",
+    "region": "사하라이남아프리카"
+  },
+  "752": {
+    "iso3": "SWE",
+    "name": "Sweden",
+    "region": "유럽"
+  },
+  "756": {
+    "iso3": "CHE",
+    "name": "Switzerland",
+    "region": "유럽"
+  },
+  "760": {
+    "iso3": "SYR",
+    "name": "Syrian Arab Republic",
+    "region": "중동북아프리카"
+  },
+  "762": {
+    "iso3": "TJK",
+    "name": "Tajikistan",
+    "region": "남아시아중앙아"
+  },
+  "764": {
+    "iso3": "THA",
+    "name": "Thailand",
+    "region": "동아시아동남아"
+  },
+  "626": {
+    "iso3": "TLS",
+    "name": "Timor-Leste",
+    "region": "동아시아동남아"
+  },
+  "768": {
+    "iso3": "TGO",
+    "name": "Togo",
+    "region": "사하라이남아프리카"
+  },
+  "776": {
+    "iso3": "TON",
+    "name": "Tonga",
+    "region": "오세아니아"
+  },
+  "780": {
+    "iso3": "TTO",
+    "name": "Trinidad and Tobago",
+    "region": "아메리카"
+  },
+  "788": {
+    "iso3": "TUN",
+    "name": "Tunisia",
+    "region": "중동북아프리카"
+  },
+  "792": {
+    "iso3": "TUR",
+    "name": "Türkiye",
+    "region": "중동북아프리카"
+  },
+  "795": {
+    "iso3": "TKM",
+    "name": "Turkmenistan",
+    "region": "남아시아중앙아"
+  },
+  "798": {
+    "iso3": "TUV",
+    "name": "Tuvalu",
+    "region": "오세아니아"
+  },
+  "800": {
+    "iso3": "UGA",
+    "name": "Uganda",
+    "region": "사하라이남아프리카"
+  },
+  "804": {
+    "iso3": "UKR",
+    "name": "Ukraine",
+    "region": "유럽"
+  },
+  "784": {
+    "iso3": "ARE",
+    "name": "United Arab Emirates",
+    "region": "중동북아프리카"
+  },
+  "826": {
+    "iso3": "GBR",
+    "name": "United Kingdom",
+    "region": "유럽"
+  },
+  "840": {
+    "iso3": "USA",
+    "name": "United States",
+    "region": "아메리카"
+  },
+  "858": {
+    "iso3": "URY",
+    "name": "Uruguay",
+    "region": "아메리카"
+  },
+  "860": {
+    "iso3": "UZB",
+    "name": "Uzbekistan",
+    "region": "남아시아중앙아"
+  },
+  "548": {
+    "iso3": "VUT",
+    "name": "Vanuatu",
+    "region": "오세아니아"
+  },
+  "862": {
+    "iso3": "VEN",
+    "name": "Venezuela, Bolivarian Republic of",
+    "region": "아메리카"
+  },
+  "704": {
+    "iso3": "VNM",
+    "name": "Viet Nam",
+    "region": "동아시아동남아"
+  },
+  "887": {
+    "iso3": "YEM",
+    "name": "Yemen",
+    "region": "중동북아프리카"
+  },
+  "894": {
+    "iso3": "ZMB",
+    "name": "Zambia",
+    "region": "사하라이남아프리카"
+  },
+  "716": {
+    "iso3": "ZWE",
+    "name": "Zimbabwe",
+    "region": "사하라이남아프리카"
+  },
+  "834": {
+    "iso3": "TZA",
+    "name": "Tanzania, United Republic of",
+    "region": "사하라이남아프리카"
+  }
+}

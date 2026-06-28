@@ -1,17 +1,23 @@
 {
-  "country": "834",
+  "numeric": "834",
   "iso_code": "TZA",
+  "name": "Tanzania, United Republic of",
+  "region": "사하라이남아프리카",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 2600.0,
+        "value": 1.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 1499.0,
+        "value": 214.0,
         "year": 2023,
         "unit": ""
       },
@@ -60,12 +66,12 @@
         "unit": ""
       },
       "ITS_CS_QAM": {
-        "value": 589.0,
+        "value": 2396.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 2202.0,
+        "value": 8.0,
         "year": 2023,
         "unit": ""
       },

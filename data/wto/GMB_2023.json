@@ -1,0 +1,95 @@
+{
+  "numeric": "270",
+  "iso_code": "GMB",
+  "name": "Gambia",
+  "region": "사하라이남아프리카",
+  "year": 2023,
+  "updated": "2026-06-28",
+  "collected": 13,
+  "total": 15,
+  "missing": [
+    "ITS_MTP_AXVG",
+    "ITS_MTP_AMVG"
+  ],
+  "missing_named": [
+    "수출물량증가율",
+    "수입물량증가율"
+  ],
+  "indicators": {
+    "trade": {
+      "ITS_MTV_AX": {
+        "value": 19.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTV_AM": {
+        "value": 182.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AXVG": null,
+      "ITS_MTP_AMVG": null
+    },
+    "tariff": {
+      "TP_A_0010": {
+        "value": 12.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_A_0160": {
+        "value": 15.9,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_A_0430": {
+        "value": 11.4,
+        "year": 2023,
+        "unit": ""
+      },
+      "TP_B_0020": {
+        "value": 14.3,
+        "year": null,
+        "unit": ""
+      },
+      "TP_B_0090": {
+        "value": 103.3,
+        "year": null,
+        "unit": ""
+      }
+    },
+    "services": {
+      "ITS_CS_QAX": {
+        "value": 392.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_CS_QAM": {
+        "value": 150.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_X": {
+        "value": 0.0,
+        "year": 2023,
+        "unit": ""
+      },
+      "BAT_BV_M": {
+        "value": 235.0,
+        "year": 2023,
+        "unit": ""
+      }
+    },
+    "price": {
+      "ITS_MTP_AUVX": {
+        "value": 97.7,
+        "year": 2023,
+        "unit": ""
+      },
+      "ITS_MTP_AUVM": {
+        "value": 96.6,
+        "year": 2023,
+        "unit": ""
+      }
+    }
+  }
+}

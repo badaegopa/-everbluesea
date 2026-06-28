@@ -1,8 +1,14 @@
 {
-  "country": "50",
+  "numeric": "050",
   "iso_code": "BGD",
+  "name": "Bangladesh",
+  "region": "남아시아중앙아",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
@@ -65,12 +71,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 198.0,
+        "value": 184.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 1511.0,
+        "value": 0.0,
         "year": 2023,
         "unit": ""
       }

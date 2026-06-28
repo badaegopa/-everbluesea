@@ -1,17 +1,23 @@
 {
-  "country": "376",
+  "numeric": "376",
   "iso_code": "ISR",
+  "name": "Israel",
+  "region": "중동북아프리카",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 2803.0,
+        "value": 5339.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 9891.0,
+        "value": 12099.0,
         "year": 2023,
         "unit": ""
       },
@@ -65,12 +71,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 173.0,
+        "value": 55499.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 689.0,
+        "value": 2979.0,
         "year": 2023,
         "unit": ""
       }

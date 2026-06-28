@@ -1,0 +1,76 @@
+{
+  "country": "UZB",
+  "year": 2023,
+  "region": "남아시아중앙아",
+  "collected": 10,
+  "eu_adjusted": false,
+  "updated": "2026-06-28",
+  "wto_raw": {
+    "ITS_MTV_AX": 710.0,
+    "ITS_MTV_AM": 83.0,
+    "ITS_MTP_AXVG": 34.3,
+    "ITS_MTP_AMVG": 30.0,
+    "TP_A_0010": null,
+    "TP_A_0160": null,
+    "TP_A_0430": null,
+    "TP_B_0020": null,
+    "TP_B_0090": null,
+    "ITS_CS_QAX": 5433.0,
+    "ITS_CS_QAM": 8171.0,
+    "BAT_BV_X": 4430.0,
+    "BAT_BV_M": 1958.0,
+    "ITS_MTP_AUVX": 93.8,
+    "ITS_MTP_AUVM": 96.9
+  },
+  "lambda12": {
+    "A1": {
+      "name": "수출력",
+      "score": 0.3171
+    },
+    "A2": {
+      "name": "제도신뢰",
+      "score": null
+    },
+    "A3": {
+      "name": "사회결속",
+      "score": 0.008
+    },
+    "A4": {
+      "name": "경제역량",
+      "score": 0.2799
+    },
+    "A5": {
+      "name": "지속영속",
+      "score": 0.4674
+    },
+    "A6": {
+      "name": "환경지속",
+      "score": null
+    },
+    "A7": {
+      "name": "인구동태",
+      "score": null
+    },
+    "A8": {
+      "name": "거버넌스",
+      "score": null
+    },
+    "A9": {
+      "name": "지정학",
+      "score": 0.3575
+    },
+    "A10": {
+      "name": "문화정체",
+      "score": 0.0052
+    },
+    "A11": {
+      "name": "에너지",
+      "score": 0.2426
+    },
+    "A12": {
+      "name": "이동성",
+      "score": 0.0084
+    }
+  },
+  "eta": 0.2108
+}

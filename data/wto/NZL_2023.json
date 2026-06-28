@@ -1,17 +1,23 @@
 {
-  "country": "554",
+  "numeric": "554",
   "iso_code": "NZL",
+  "name": "New Zealand",
+  "region": "오세아니아",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 30667.0,
+        "value": 1884.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 6033.0,
+        "value": 7287.0,
         "year": 2023,
         "unit": ""
       },
@@ -55,7 +61,7 @@
     },
     "services": {
       "ITS_CS_QAX": {
-        "value": 17021.0,
+        "value": 2345.0,
         "year": 2023,
         "unit": ""
       },
@@ -65,12 +71,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 19134.0,
+        "value": 3941.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 9.0,
+        "value": 376.0,
         "year": 2023,
         "unit": ""
       }

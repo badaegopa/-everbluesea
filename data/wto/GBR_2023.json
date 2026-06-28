@@ -1,12 +1,18 @@
 {
-  "country": "826",
+  "numeric": "826",
   "iso_code": "GBR",
+  "name": "United Kingdom",
+  "region": "유럽",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 33326.0,
+        "value": 31157.0,
         "year": 2023,
         "unit": ""
       },
@@ -65,12 +71,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 5211.0,
+        "value": 5538.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 4738.0,
+        "value": 25006.0,
         "year": 2023,
         "unit": ""
       }

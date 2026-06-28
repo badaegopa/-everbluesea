@@ -1,12 +1,18 @@
 {
-  "country": "800",
+  "numeric": "800",
   "iso_code": "UGA",
+  "name": "Uganda",
+  "region": "사하라이남아프리카",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 2597.0,
+        "value": 187.0,
         "year": 2023,
         "unit": ""
       },
@@ -65,12 +71,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 112.0,
+        "value": 2065.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 0.0,
+        "value": 90.0,
         "year": 2023,
         "unit": ""
       }

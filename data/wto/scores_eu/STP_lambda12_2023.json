@@ -1,0 +1,76 @@
+{
+  "country": "STP",
+  "year": 2023,
+  "region": "사하라이남아프리카",
+  "collected": 10,
+  "eu_adjusted": false,
+  "updated": "2026-06-28",
+  "wto_raw": {
+    "ITS_MTV_AX": 16.0,
+    "ITS_MTV_AM": 60.0,
+    "ITS_MTP_AXVG": 5.3,
+    "ITS_MTP_AMVG": -4.7,
+    "TP_A_0010": null,
+    "TP_A_0160": null,
+    "TP_A_0430": null,
+    "TP_B_0020": null,
+    "TP_B_0090": null,
+    "ITS_CS_QAX": 76.0,
+    "ITS_CS_QAM": 76.0,
+    "BAT_BV_X": 126.0,
+    "BAT_BV_M": 0.0,
+    "ITS_MTP_AUVX": 102.7,
+    "ITS_MTP_AUVM": 98.1
+  },
+  "lambda12": {
+    "A1": {
+      "name": "수출력",
+      "score": 0.2197
+    },
+    "A2": {
+      "name": "제도신뢰",
+      "score": null
+    },
+    "A3": {
+      "name": "사회결속",
+      "score": 0.0001
+    },
+    "A4": {
+      "name": "경제역량",
+      "score": 0.1568
+    },
+    "A5": {
+      "name": "지속영속",
+      "score": 0.54
+    },
+    "A6": {
+      "name": "환경지속",
+      "score": null
+    },
+    "A7": {
+      "name": "인구동태",
+      "score": null
+    },
+    "A8": {
+      "name": "거버넌스",
+      "score": null
+    },
+    "A9": {
+      "name": "지정학",
+      "score": 0.0556
+    },
+    "A10": {
+      "name": "문화정체",
+      "score": 0.0001
+    },
+    "A11": {
+      "name": "에너지",
+      "score": 0.0939
+    },
+    "A12": {
+      "name": "이동성",
+      "score": 0.0002
+    }
+  },
+  "eta": 0.1333
+}

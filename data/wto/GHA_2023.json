@@ -1,12 +1,18 @@
 {
-  "country": "288",
+  "numeric": "288",
   "iso_code": "GHA",
+  "name": "Ghana",
+  "region": "사하라이남아프리카",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 3220.0,
+        "value": 1319.0,
         "year": 2023,
         "unit": ""
       },
@@ -65,7 +71,7 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 217.0,
+        "value": 101.0,
         "year": 2023,
         "unit": ""
       },

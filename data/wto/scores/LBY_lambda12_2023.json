@@ -1,0 +1,76 @@
+{
+  "country": "LBY",
+  "year": 2023,
+  "region": "중동북아프리카",
+  "collected": 11,
+  "eu_adjusted": false,
+  "updated": "2026-06-28",
+  "wto_raw": {
+    "ITS_MTV_AX": 64.0,
+    "ITS_MTV_AM": 3228.0,
+    "ITS_MTP_AXVG": 6.2,
+    "ITS_MTP_AMVG": 17.8,
+    "TP_A_0010": 4.5,
+    "TP_A_0160": 2.0,
+    "TP_A_0430": 4.8,
+    "TP_B_0020": null,
+    "TP_B_0090": null,
+    "ITS_CS_QAX": null,
+    "ITS_CS_QAM": null,
+    "BAT_BV_X": 1756.0,
+    "BAT_BV_M": 153.0,
+    "ITS_MTP_AUVX": 79.4,
+    "ITS_MTP_AUVM": 95.7
+  },
+  "lambda12": {
+    "A1": {
+      "name": "수출력",
+      "score": 0.2227
+    },
+    "A2": {
+      "name": "제도신뢰",
+      "score": 0.7692
+    },
+    "A3": {
+      "name": "사회결속",
+      "score": null
+    },
+    "A4": {
+      "name": "경제역량",
+      "score": 0.209
+    },
+    "A5": {
+      "name": "지속영속",
+      "score": 0.3552
+    },
+    "A6": {
+      "name": "환경지속",
+      "score": 0.6173
+    },
+    "A7": {
+      "name": "인구동태",
+      "score": null
+    },
+    "A8": {
+      "name": "거버넌스",
+      "score": 0.7692
+    },
+    "A9": {
+      "name": "지정학",
+      "score": 0.1333
+    },
+    "A10": {
+      "name": "문화정체",
+      "score": null
+    },
+    "A11": {
+      "name": "에너지",
+      "score": 0.1953
+    },
+    "A12": {
+      "name": "이동성",
+      "score": 0.0032
+    }
+  },
+  "eta": 0.3638
+}

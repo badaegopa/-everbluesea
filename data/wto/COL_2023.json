@@ -1,17 +1,23 @@
 {
-  "country": "170",
+  "numeric": "170",
   "iso_code": "COL",
+  "name": "Colombia",
+  "region": "아메리카",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 10071.0,
+        "value": 21.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 9578.0,
+        "value": 7649.0,
         "year": 2023,
         "unit": ""
       },
@@ -65,7 +71,7 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 16042.0,
+        "value": 806.0,
         "year": 2023,
         "unit": ""
       },

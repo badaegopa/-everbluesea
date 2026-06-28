@@ -1,17 +1,23 @@
 {
-  "country": "704",
+  "numeric": "704",
   "iso_code": "VNM",
+  "name": "Viet Nam",
+  "region": "동아시아동남아",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 39768.0,
+        "value": 31222.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 36823.0,
+        "value": 6026.0,
         "year": 2023,
         "unit": ""
       },
@@ -55,7 +61,7 @@
     },
     "services": {
       "ITS_CS_QAX": {
-        "value": 5810.0,
+        "value": 19869.0,
         "year": 2023,
         "unit": ""
       },
@@ -65,12 +71,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 116.0,
+        "value": 294.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 1537.0,
+        "value": 356.0,
         "year": 2023,
         "unit": ""
       }

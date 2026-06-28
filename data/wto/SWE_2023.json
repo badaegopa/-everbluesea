@@ -1,17 +1,35 @@
 {
-  "country": "752",
+  "numeric": "752",
   "iso_code": "SWE",
+  "name": "Sweden",
+  "region": "유럽",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 10,
+  "total": 15,
+  "missing": [
+    "TP_A_0010",
+    "TP_A_0160",
+    "TP_A_0430",
+    "TP_B_0020",
+    "TP_B_0090"
+  ],
+  "missing_named": [
+    "단순평균실행관세",
+    "가중평균실행관세",
+    "무관세품목비중",
+    "단순평균양허관세",
+    "양허범위"
+  ],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 20816.0,
+        "value": 149113.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 23941.0,
+        "value": 1581.0,
         "year": 2023,
         "unit": ""
       },
@@ -40,17 +58,17 @@
         "unit": ""
       },
       "ITS_CS_QAM": {
-        "value": 113930.0,
+        "value": 14392.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 12868.0,
+        "value": 2798.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 4654.0,
+        "value": 4335.0,
         "year": 2023,
         "unit": ""
       }

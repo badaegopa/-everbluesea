@@ -1,17 +1,23 @@
 {
-  "country": "894",
+  "numeric": "894",
   "iso_code": "ZMB",
+  "name": "Zambia",
+  "region": "사하라이남아프리카",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 1117.0,
+        "value": 12.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 803.0,
+        "value": 278.0,
         "year": 2023,
         "unit": ""
       },
@@ -70,7 +76,7 @@
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 32.0,
+        "value": 3.0,
         "year": 2023,
         "unit": ""
       }

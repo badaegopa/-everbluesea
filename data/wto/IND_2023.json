@@ -1,12 +1,18 @@
 {
-  "country": "356",
-  "iso_code": "356",
+  "numeric": "356",
+  "iso_code": "IND",
+  "name": "India",
+  "region": "남아시아중앙아",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 51061.0,
+        "value": 17049.0,
         "year": 2023,
         "unit": ""
       },
@@ -65,12 +71,12 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 223337.0,
+        "value": 750.0,
         "year": 2023,
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 355.0,
+        "value": 182819.0,
         "year": 2023,
         "unit": ""
       }

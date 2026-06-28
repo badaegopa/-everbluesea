@@ -1,17 +1,23 @@
 {
-  "country": "76",
+  "numeric": "076",
   "iso_code": "BRA",
+  "name": "Brazil",
+  "region": "아메리카",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
-        "value": 157124.0,
+        "value": 81253.0,
         "year": 2023,
         "unit": ""
       },
       "ITS_MTV_AM": {
-        "value": 15554.0,
+        "value": 2289.0,
         "year": 2023,
         "unit": ""
       },
@@ -70,7 +76,7 @@
         "unit": ""
       },
       "BAT_BV_M": {
-        "value": 9611.0,
+        "value": 363.0,
         "year": 2023,
         "unit": ""
       }

@@ -1,8 +1,14 @@
 {
-  "country": "508",
+  "numeric": "508",
   "iso_code": "MOZ",
+  "name": "Mozambique",
+  "region": "사하라이남아프리카",
   "year": 2023,
-  "updated": "2026-06-14",
+  "updated": "2026-06-28",
+  "collected": 15,
+  "total": 15,
+  "missing": [],
+  "missing_named": [],
   "indicators": {
     "trade": {
       "ITS_MTV_AX": {
@@ -65,7 +71,7 @@
         "unit": ""
       },
       "BAT_BV_X": {
-        "value": 1.0,
+        "value": 1271.0,
         "year": 2023,
         "unit": ""
       },
