@@ -1,32 +1,32 @@
 {
-  "_updated": "2026-07-03 07:04 KST",
+  "_updated": "2026-07-04 07:02 KST",
   "kosis": {
     "인구_구군별_인구": {
-      "error": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxYjVjY2RhYTE2MGZjZDIwMjgzNWE%3D&format=json&jsonVD=Y&orgId=101&tblId=DT_1B040A3&itmId=T20+T21+T22&objL1=31110+31140+31170+31200+31710&prdSe=M&newEstPrdCnt=3 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kosis.kr', port=443) at 0x7f72cdfdbce0>, 'Connection to kosis.kr timed out. (connect timeout=30)'))"
+      "error": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxYjVjY2RhYTE2MGZjZDIwMjgzNWE%3D&format=json&jsonVD=Y&orgId=101&tblId=DT_1B040A3&itmId=T20+T21+T22&objL1=31110+31140+31170+31200+31710&prdSe=M&newEstPrdCnt=3 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kosis.kr', port=443) at 0x7f8a9c8734a0>, 'Connection to kosis.kr timed out. (connect timeout=30)'))"
     },
     "인구_구군별_출산율": {
-      "error": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxYjVjY2RhYTE2MGZjZDIwMjgzNWE%3D&format=json&jsonVD=Y&orgId=101&tblId=DT_1B81A17&itmId=T1&objL1=26010+26020+26030+26040+26310&prdSe=Y&newEstPrdCnt=3 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kosis.kr', port=443) at 0x7f72ce00dbb0>, 'Connection to kosis.kr timed out. (connect timeout=30)'))"
+      "error": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxYjVjY2RhYTE2MGZjZDIwMjgzNWE%3D&format=json&jsonVD=Y&orgId=101&tblId=DT_1B81A17&itmId=T1&objL1=26010+26020+26030+26040+26310&prdSe=Y&newEstPrdCnt=3 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kosis.kr', port=443) at 0x7f8a9c8a5580>, 'Connection to kosis.kr timed out. (connect timeout=30)'))"
     },
     "인구_고용현황": {
-      "error": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxYjVjY2RhYTE2MGZjZDIwMjgzNWE%3D&format=json&jsonVD=Y&orgId=101&tblId=DT_1DA7004S&itmId=ALL&objL1=31&prdSe=Y&newEstPrdCnt=3 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kosis.kr', port=443) at 0x7f72ce00cda0>, 'Connection to kosis.kr timed out. (connect timeout=30)'))"
+      "error": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxYjVjY2RhYTE2MGZjZDIwMjgzNWE%3D&format=json&jsonVD=Y&orgId=101&tblId=DT_1DA7004S&itmId=ALL&objL1=31&prdSe=Y&newEstPrdCnt=3 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kosis.kr', port=443) at 0x7f8a9c8a4dd0>, 'Connection to kosis.kr timed out. (connect timeout=30)'))"
     },
     "인구_기초수급": {
-      "error": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxYjVjY2RhYTE2MGZjZDIwMjgzNWE%3D&format=json&jsonVD=Y&orgId=101&tblId=DT_1YL13801E&itmId=ALL&objL1=31&prdSe=Y&newEstPrdCnt=3 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kosis.kr', port=443) at 0x7f72ce00fa40>, 'Connection to kosis.kr timed out. (connect timeout=30)'))"
+      "error": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxYjVjY2RhYTE2MGZjZDIwMjgzNWE%3D&format=json&jsonVD=Y&orgId=101&tblId=DT_1YL13801E&itmId=ALL&objL1=31&prdSe=Y&newEstPrdCnt=3 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kosis.kr', port=443) at 0x7f8a9c8a7410>, 'Connection to kosis.kr timed out. (connect timeout=30)'))"
     },
     "인구_노령화지수": {
-      "error": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxYjVjY2RhYTE2MGZjZDIwMjgzNWE%3D&format=json&jsonVD=Y&orgId=101&tblId=DT_1YL12501E&itmId=ALL&objL1=31&prdSe=Y&newEstPrdCnt=3 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kosis.kr', port=443) at 0x7f72ce00edb0>, 'Connection to kosis.kr timed out. (connect timeout=30)'))"
+      "error": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxYjVjY2RhYTE2MGZjZDIwMjgzNWE%3D&format=json&jsonVD=Y&orgId=101&tblId=DT_1YL12501E&itmId=ALL&objL1=31&prdSe=Y&newEstPrdCnt=3 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kosis.kr', port=443) at 0x7f8a9c8a6750>, 'Connection to kosis.kr timed out. (connect timeout=30)'))"
     },
     "인구_순이동": {
-      "error": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxYjVjY2RhYTE2MGZjZDIwMjgzNWE%3D&format=json&jsonVD=Y&orgId=101&tblId=DT_1B26A01&itmId=T25&objL1=31110+31140+31170+31200+31710&objL2=0&objL3=000&prdSe=M&newEstPrdCnt=1 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kosis.kr', port=443) at 0x7f72ce048ec0>, 'Connection to kosis.kr timed out. (connect timeout=30)'))"
+      "error": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxYjVjY2RhYTE2MGZjZDIwMjgzNWE%3D&format=json&jsonVD=Y&orgId=101&tblId=DT_1B26A01&itmId=T25&objL1=31110+31140+31170+31200+31710&objL2=0&objL3=000&prdSe=M&newEstPrdCnt=1 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kosis.kr', port=443) at 0x7f8a9c8d8890>, 'Connection to kosis.kr timed out. (connect timeout=30)'))"
     },
     "인구_재정자립도": {
-      "error": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxYjVjY2RhYTE2MGZjZDIwMjgzNWE%3D&format=json&jsonVD=Y&orgId=101&tblId=DT_1YL20921&itmId=ALL&objL1=26010+26020+26030+26040+26310&prdSe=Y&newEstPrdCnt=1 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kosis.kr', port=443) at 0x7f72ce00cb60>, 'Connection to kosis.kr timed out. (connect timeout=30)'))"
+      "error": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxYjVjY2RhYTE2MGZjZDIwMjgzNWE%3D&format=json&jsonVD=Y&orgId=101&tblId=DT_1YL20921&itmId=ALL&objL1=26010+26020+26030+26040+26310&prdSe=Y&newEstPrdCnt=1 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kosis.kr', port=443) at 0x7f8a9c8a4f80>, 'Connection to kosis.kr timed out. (connect timeout=30)'))"
     },
     "인구_빈집": {
-      "error": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxYjVjY2RhYTE2MGZjZDIwMjgzNWE%3D&format=json&jsonVD=Y&orgId=101&tblId=DT_1JU1512&itmId=T000&objL1=26010+26020+26030+26040+26510&objL2=00&prdSe=Y&newEstPrdCnt=1 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kosis.kr', port=443) at 0x7f72ce04a090>, 'Connection to kosis.kr timed out. (connect timeout=30)'))"
+      "error": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxYjVjY2RhYTE2MGZjZDIwMjgzNWE%3D&format=json&jsonVD=Y&orgId=101&tblId=DT_1JU1512&itmId=T000&objL1=26010+26020+26030+26040+26510&objL2=00&prdSe=Y&newEstPrdCnt=1 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kosis.kr', port=443) at 0x7f8a9c8d9a90>, 'Connection to kosis.kr timed out. (connect timeout=30)'))"
     },
     "인구_총주택": {
-      "error": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxYjVjY2RhYTE2MGZjZDIwMjgzNWE%3D&format=json&jsonVD=Y&orgId=101&tblId=DT_1JU1501&itmId=T10&objL1=26010+26020+26030+26040+26510&prdSe=Y&newEstPrdCnt=1 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kosis.kr', port=443) at 0x7f72ce00e990>, 'Connection to kosis.kr timed out. (connect timeout=30)'))"
+      "error": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxYjVjY2RhYTE2MGZjZDIwMjgzNWE%3D&format=json&jsonVD=Y&orgId=101&tblId=DT_1JU1501&itmId=T10&objL1=26010+26020+26030+26040+26510&prdSe=Y&newEstPrdCnt=1 (Caused by ConnectTimeoutError(<HTTPSConnection(host='kosis.kr', port=443) at 0x7f8a9c8a6180>, 'Connection to kosis.kr timed out. (connect timeout=30)'))"
     }
   },
   "sgis": {
@@ -217,7 +217,7 @@
     "eta_count": 5
   },
   "redesign": {
-    "_updated": "2026-07-03 07:19 KST",
+    "_updated": "2026-07-04 07:17 KST",
     "_design": {
       "eta_inputs": {
         "①순이동률": "건수/인구×100(%)",
@@ -289,46 +289,46 @@
   },
   "air_quality": {
     "junggu": {
-      "pm25": 18.0,
-      "pm10": 34.0,
-      "cai": 54,
+      "pm25": 24.0,
+      "pm10": 28.0,
+      "cai": 69,
       "station": "성남동",
-      "measured_at": "2026-07-03 07:00"
+      "measured_at": "2026-07-04 07:00"
     },
     "namgu": {
-      "pm25": 28.0,
-      "pm10": 35.0,
-      "cai": 64,
+      "pm25": 24.0,
+      "pm10": 28.0,
+      "cai": 66,
       "station": "삼산동",
-      "measured_at": "2026-07-03 07:00"
+      "measured_at": "2026-07-04 07:00"
     },
     "donggu": {
-      "pm25": 24.0,
-      "pm10": 29.0,
-      "cai": 56,
+      "pm25": 17.0,
+      "pm10": 26.0,
+      "cai": 69,
       "station": "전하동",
-      "measured_at": "2026-07-03 07:00"
+      "measured_at": "2026-07-04 07:00"
     },
     "bukgu": {
-      "pm25": 21.0,
-      "pm10": 30.0,
-      "cai": 54,
+      "pm25": 26.0,
+      "pm10": 38.0,
+      "cai": 74,
       "station": "농소동",
-      "measured_at": "2026-07-03 07:00"
+      "measured_at": "2026-07-04 07:00"
     },
     "ulju": {
       "pm25": 25.0,
-      "pm10": 40.0,
-      "cai": 64,
+      "pm10": 34.0,
+      "cai": 74,
       "station": "삼남읍",
-      "measured_at": "2026-07-03 07:00"
+      "measured_at": "2026-07-04 07:00"
     }
   },
   "apt_price": {
     "junggu": {
-      "avg_price_per_sqm": 503.6,
-      "trade_count": 330,
-      "sampled": 330,
+      "avg_price_per_sqm": 503.5,
+      "trade_count": 339,
+      "sampled": 339,
       "period_months": [
         "202607",
         "202606",
@@ -336,9 +336,9 @@
       ]
     },
     "namgu": {
-      "avg_price_per_sqm": 594.0,
-      "trade_count": 741,
-      "sampled": 741,
+      "avg_price_per_sqm": 594.5,
+      "trade_count": 749,
+      "sampled": 749,
       "period_months": [
         "202607",
         "202606",
@@ -346,9 +346,9 @@
       ]
     },
     "donggu": {
-      "avg_price_per_sqm": 318.2,
-      "trade_count": 302,
-      "sampled": 302,
+      "avg_price_per_sqm": 318.0,
+      "trade_count": 307,
+      "sampled": 307,
       "period_months": [
         "202607",
         "202606",
@@ -356,9 +356,9 @@
       ]
     },
     "bukgu": {
-      "avg_price_per_sqm": 366.3,
-      "trade_count": 481,
-      "sampled": 481,
+      "avg_price_per_sqm": 369.8,
+      "trade_count": 492,
+      "sampled": 492,
       "period_months": [
         "202607",
         "202606",
@@ -366,9 +366,9 @@
       ]
     },
     "ulju": {
-      "avg_price_per_sqm": 353.9,
-      "trade_count": 408,
-      "sampled": 408,
+      "avg_price_per_sqm": 352.7,
+      "trade_count": 415,
+      "sampled": 415,
       "period_months": [
         "202607",
         "202606",
@@ -377,20 +377,20 @@
     }
   },
   "bus_info": {
-    "total_routes": null,
-    "total_stations": null,
+    "total_routes": 520,
+    "total_stations": 3617,
     "city_code": "26",
-    "error": "99 가용한 세션이 존재하지 않습니다. (30/30)"
+    "measured_at": "2026-07-04"
   },
   "gold_price": {
-    "clpr": 197190.0,
-    "vs": -1260.0,
-    "fltRt": -0.63,
-    "mkp": 198440.0,
-    "hipr": 199480.0,
-    "lopr": 196950.0,
-    "trqu": 182962,
-    "basDt": "20260701"
+    "clpr": 202550.0,
+    "vs": 5360.0,
+    "fltRt": 2.72,
+    "mkp": 199200.0,
+    "hipr": 202550.0,
+    "lopr": 199200.0,
+    "trqu": 388281,
+    "basDt": "20260702"
   },
   "population_forecast": {
     "data": [],
@@ -398,11 +398,11 @@
   },
   "ecos_macro": {
     "base_rate": 2.5,
-    "usd_krw": 1535.7,
-    "cny_krw": 226.84,
-    "bond_3yr": 3.77,
+    "usd_krw": 1537.2,
+    "cny_krw": 226.82,
+    "bond_3yr": 3.772,
     "bond_10yr": 4.171,
-    "measured_at": "20260623"
+    "measured_at": "20260624"
   },
   "nkis_policy": {
     "저출산": [],
@@ -554,7 +554,7 @@
   },
   "cbam_industry": {
     "regions": {},
-    "computed_at": "2026-07-03 07:27 KST",
+    "computed_at": "2026-07-04 07:26 KST",
     "error": "사업체조사 데이터 미수집"
   }
 }
