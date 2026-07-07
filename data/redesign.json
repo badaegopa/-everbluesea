@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-07-07 07:26 KST",
+  "_updated": "2026-07-08 07:09 KST",
   "_design": {
     "eta_inputs": {
       "①순이동률": "건수/인구×100(%)",
@@ -17,43 +17,87 @@
     "labeling": "정부 공식 데이터 없음 (시도/전국 단위만 존재) — '측정 불가' 금지"
   },
   "meta": {
+    "net_migration_period": "202605",
+    "net_migration_method": "1인 이동건수 기반 (건수/인구×100)",
+    "migration_note": "산단 외지 인력 유동 포함 — 정주시민 이동과 미분리. 산업 계절성 노이즈 있음. 소수 유동이 지수에 미치는 영향 제한적.",
+    "fiscal_period": "2026",
+    "grdp_period": "2022",
+    "vacant_period": "2024",
+    "vacancy_note": "재개발 추진 지역 말소 미처리 포함 가능 — 단순 쇠퇴 지표로 해석 금지",
     "household_credit_period": "2025"
   },
   "eta_inputs": {
     "31110": {
-      "name": "중구"
+      "name": "중구",
+      "net_migration_rate": -0.076,
+      "fiscal_independence": 17.79,
+      "vacancy_rate": 6.42
     },
     "31140": {
-      "name": "남구"
+      "name": "남구",
+      "net_migration_rate": -0.008,
+      "fiscal_independence": 30.9,
+      "vacancy_rate": 7.46
     },
     "31170": {
-      "name": "동구"
+      "name": "동구",
+      "net_migration_rate": -0.032,
+      "fiscal_independence": 17.27,
+      "vacancy_rate": 6.82
     },
     "31200": {
-      "name": "북구"
+      "name": "북구",
+      "net_migration_rate": -0.095,
+      "fiscal_independence": 26.3,
+      "vacancy_rate": 5.91
     },
     "31710": {
-      "name": "울주군"
+      "name": "울주군",
+      "net_migration_rate": -0.04,
+      "fiscal_independence": 37.39,
+      "vacancy_rate": 10.18
     }
   },
   "raw": {
     "31110": {
-      "pop": 0
+      "pop": 203026,
+      "net_migration_1p": -154.0,
+      "vacant_houses": 4744.0,
+      "total_houses": 73841.0
     },
     "31140": {
-      "pop": 0
+      "pop": 304337,
+      "net_migration_1p": -25.0,
+      "vacant_houses": 8401.0,
+      "total_houses": 112629.0
     },
     "31170": {
-      "pop": 0
+      "pop": 147756,
+      "net_migration_1p": -48.0,
+      "vacant_houses": 3883.0,
+      "total_houses": 56926.0
     },
     "31200": {
-      "pop": 0
+      "pop": 213685,
+      "net_migration_1p": -204.0,
+      "vacant_houses": 4765.0,
+      "total_houses": 80646.0
     },
     "31710": {
-      "pop": 0
+      "pop": 218285,
+      "net_migration_1p": -88.0,
+      "vacant_houses": 8901.0,
+      "total_houses": 87466.0
     }
   },
   "separate_panel": {
+    "grdp_per_capita": {
+      "scope": "시도(울산광역시)",
+      "value": 77511.0,
+      "unit": "천원",
+      "period": "2022",
+      "district_status": "정부 공식 데이터 없음 (시도/전국 단위만 존재)"
+    },
     "household_credit": {
       "scope": "전국",
       "value": 1979088.4,
@@ -61,11 +105,5 @@
       "period": "2025",
       "district_status": "정부 공식 데이터 없음 (시도/전국 단위만 존재)"
     }
-  },
-  "_errors": {
-    "① 순이동률": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxY",
-    "② 재정자립도": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxY",
-    "③ GRDP(패널)": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxY",
-    "④ 빈집률": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxY"
   }
 }
