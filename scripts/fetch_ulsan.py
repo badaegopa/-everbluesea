@@ -372,7 +372,7 @@ def calc_eta(kosis, l12):
 def main():
     from datetime import datetime, timezone, timedelta
     KST = timezone(timedelta(hours=9))
-    now = datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")
+    now = datetime.now(KST).isoformat(timespec="minutes")
     print("=" * 50)
     print(f"DURE-η 파이프라인 v2 확정: {now}")
     print("=" * 50)

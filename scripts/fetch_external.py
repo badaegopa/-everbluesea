@@ -881,7 +881,7 @@ def compute_cbam_industry_exposure(biz_all, ghg_regional, ets_price_eur, eur_krw
 # ══════════════════════════════════════════════════════
 def main():
     import sys
-    now = datetime.datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")
+    now = datetime.datetime.now(KST).isoformat(timespec="minutes")
     print("=" * 52)
     print(f"외부 데이터 파이프라인 (data.go.kr 4종 + KOSIS + ECOS + NKIS): {now}")
     print("=" * 52)
