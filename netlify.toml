@@ -6,11 +6,6 @@
 
 [[redirects]]
   from = "/heatwave"
-  to = "/heatwave.html"
+  to = "/heatwave/index.html"
   status = 200
   force = true
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
