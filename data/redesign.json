@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-07-01 07:13 KST",
+  "_updated": "2026-07-21T06:57+09:00",
   "_design": {
     "eta_inputs": {
       "①순이동률": "건수/인구×100(%)",
@@ -60,31 +60,31 @@
   },
   "raw": {
     "31110": {
-      "pop": 203216,
+      "pop": 203026,
       "net_migration_1p": -154.0,
       "vacant_houses": 4744.0,
       "total_houses": 73841.0
     },
     "31140": {
-      "pop": 304385,
+      "pop": 304337,
       "net_migration_1p": -25.0,
       "vacant_houses": 8401.0,
       "total_houses": 112629.0
     },
     "31170": {
-      "pop": 147834,
+      "pop": 147756,
       "net_migration_1p": -48.0,
       "vacant_houses": 3883.0,
       "total_houses": 56926.0
     },
     "31200": {
-      "pop": 213772,
+      "pop": 213685,
       "net_migration_1p": -204.0,
       "vacant_houses": 4765.0,
       "total_houses": 80646.0
     },
     "31710": {
-      "pop": 218259,
+      "pop": 218285,
       "net_migration_1p": -88.0,
       "vacant_houses": 8901.0,
       "total_houses": 87466.0
