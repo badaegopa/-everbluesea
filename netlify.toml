@@ -9,6 +9,11 @@
   from = "/heatwave"
   to = "/heatwave.html"
   status = 200
+
+[[redirects]]
+  from = "/heatwave"
+  to = "/heatwave.html"
+  status = 200
   force = true
 
 [[redirects]]

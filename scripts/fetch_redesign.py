@@ -175,7 +175,7 @@ def collect_household_credit(out):
 
 def main():
     KST = datetime.timezone(datetime.timedelta(hours=9))
-    now = datetime.datetime.now(KST).strftime("%Y-%m-%d %H:%M KST")
+    now = datetime.datetime.now(KST).isoformat(timespec="minutes")
     pop = load_pop()
     out = {
         "_updated": now,
