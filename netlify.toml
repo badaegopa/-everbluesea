@@ -4,3 +4,14 @@
   to = "https://newsbriefing.giseub12.workers.dev/:splat"
   status = 200
   force = true
+
+[[redirects]]
+  from = "/heatwave"
+  to = "/heatwave.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
