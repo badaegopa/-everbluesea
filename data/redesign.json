@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-08-10T06:43+09:00",
+  "_updated": "2026-08-11T06:52+09:00",
   "_design": {
     "eta_inputs": {
       "①순이동률": "건수/인구×100(%)",
@@ -16,9 +16,7 @@
     ],
     "labeling": "정부 공식 데이터 없음 (시도/전국 단위만 존재) — '측정 불가' 금지"
   },
-  "meta": {
-    "household_credit_period": "2025"
-  },
+  "meta": {},
   "eta_inputs": {
     "31110": {
       "name": "중구"
@@ -53,19 +51,12 @@
       "pop": 0
     }
   },
-  "separate_panel": {
-    "household_credit": {
-      "scope": "전국",
-      "value": 1979088.4,
-      "unit": "십억원",
-      "period": "2025",
-      "district_status": "정부 공식 데이터 없음 (시도/전국 단위만 존재)"
-    }
-  },
+  "separate_panel": {},
   "_errors": {
     "① 순이동률": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxY",
     "② 재정자립도": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxY",
     "③ GRDP(패널)": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxY",
-    "④ 빈집률": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxY"
+    "④ 빈집률": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxY",
+    "⑥ 가계부채(패널)": "HTTPSConnectionPool(host='ecos.bok.or.kr', port=443): Max retries exceeded with url: /api/StatisticSearch/N1PUSZA47YHIQYB8AJHJ/json/kr/1/20/151Y001/A/2015/2030/"
   }
 }
