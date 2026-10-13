@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-10-12T09:10+09:00",
+  "_updated": "2026-10-13T11:23+09:00",
   "kosis": {
     "인구_구군별_인구": {
       "row_count": 45,
@@ -2263,7 +2263,7 @@
       "id": "API_0704",
       "errMsg": "Success",
       "errCd": 0,
-      "trId": "qhQ5_API_0704_1791763873543",
+      "trId": "azfC_API_0704_1791858248543",
       "features": [
         {
           "type": "Feature",
@@ -31891,7 +31891,7 @@
     "eta_count": 5
   },
   "redesign": {
-    "_updated": "2026-10-12T09:11+09:00",
+    "_updated": "2026-10-13T11:24+09:00",
     "_design": {
       "eta_inputs": {
         "①순이동률": "건수/인구×100(%)",
@@ -32001,46 +32001,46 @@
   },
   "air_quality": {
     "junggu": {
-      "pm25": 16.0,
-      "pm10": 24.0,
-      "cai": 47,
+      "pm25": null,
+      "pm10": null,
+      "cai": null,
       "station": "성남동",
-      "measured_at": "2026-10-12 09:00"
+      "error": "HTTPConnectionPool(host='apis.data.go.kr', port=80): Read timed out. (read timeo"
     },
     "namgu": {
-      "pm25": 14.0,
-      "pm10": 17.0,
-      "cai": 43,
+      "pm25": null,
+      "pm10": null,
+      "cai": null,
       "station": "삼산동",
-      "measured_at": "2026-10-12 09:00"
+      "error": "HTTPConnectionPool(host='apis.data.go.kr', port=80): Read timed out. (read timeo"
     },
     "donggu": {
-      "pm25": 7.0,
-      "pm10": 14.0,
-      "cai": 59,
+      "pm25": null,
+      "pm10": null,
+      "cai": null,
       "station": "전하동",
-      "measured_at": "2026-10-12 09:00"
+      "error": "HTTPConnectionPool(host='apis.data.go.kr', port=80): Read timed out. (read timeo"
     },
     "bukgu": {
-      "pm25": 20.0,
-      "pm10": 31.0,
-      "cai": 51,
+      "pm25": null,
+      "pm10": null,
+      "cai": null,
       "station": "농소동",
-      "measured_at": "2026-10-12 09:00"
+      "error": "HTTPConnectionPool(host='apis.data.go.kr', port=80): Read timed out. (read timeo"
     },
     "ulju": {
-      "pm25": 8.0,
-      "pm10": 9.0,
-      "cai": 35,
+      "pm25": null,
+      "pm10": null,
+      "cai": null,
       "station": "삼남읍",
-      "measured_at": "2026-10-12 09:00"
+      "error": "HTTPConnectionPool(host='apis.data.go.kr', port=80): Read timed out. (read timeo"
     }
   },
   "apt_price": {
     "junggu": {
-      "avg_price_per_sqm": 495.9,
-      "trade_count": 260,
-      "sampled": 260,
+      "avg_price_per_sqm": 497.1,
+      "trade_count": 274,
+      "sampled": 274,
       "period_months": [
         "202610",
         "202609",
@@ -32048,9 +32048,9 @@
       ]
     },
     "namgu": {
-      "avg_price_per_sqm": 536.3,
-      "trade_count": 523,
-      "sampled": 523,
+      "avg_price_per_sqm": 536.8,
+      "trade_count": 556,
+      "sampled": 556,
       "period_months": [
         "202610",
         "202609",
@@ -32058,9 +32058,9 @@
       ]
     },
     "donggu": {
-      "avg_price_per_sqm": 325.6,
-      "trade_count": 207,
-      "sampled": 207,
+      "avg_price_per_sqm": 327.7,
+      "trade_count": 214,
+      "sampled": 214,
       "period_months": [
         "202610",
         "202609",
@@ -32068,9 +32068,9 @@
       ]
     },
     "bukgu": {
-      "avg_price_per_sqm": 366.2,
-      "trade_count": 392,
-      "sampled": 392,
+      "avg_price_per_sqm": 367.5,
+      "trade_count": 422,
+      "sampled": 422,
       "period_months": [
         "202610",
         "202609",
@@ -32078,9 +32078,9 @@
       ]
     },
     "ulju": {
-      "avg_price_per_sqm": 335.1,
-      "trade_count": 348,
-      "sampled": 348,
+      "avg_price_per_sqm": 331.9,
+      "trade_count": 365,
+      "sampled": 365,
       "period_months": [
         "202610",
         "202609",
@@ -32092,17 +32092,17 @@
     "total_routes": 526,
     "total_stations": 3628,
     "city_code": "26",
-    "measured_at": "2026-10-12"
+    "measured_at": "2026-10-13"
   },
   "gold_price": {
-    "clpr": 178750.0,
-    "vs": -250.0,
-    "fltRt": -0.14,
-    "mkp": 180310.0,
-    "hipr": 180370.0,
-    "lopr": 178460.0,
-    "trqu": 127707,
-    "basDt": "20261007"
+    "clpr": 179970.0,
+    "vs": 2490.0,
+    "fltRt": 1.4,
+    "mkp": 180900.0,
+    "hipr": 181500.0,
+    "lopr": 179790.0,
+    "trqu": 133638,
+    "basDt": "20261012"
   },
   "population_forecast": {
     "data": [],
@@ -32110,11 +32110,11 @@
   },
   "ecos_macro": {
     "base_rate": 3.0,
-    "usd_krw": 1359.6,
-    "cny_krw": 202.55,
-    "bond_3yr": 3.937,
-    "bond_10yr": 4.365,
-    "measured_at": "20261002"
+    "usd_krw": 1358.5,
+    "cny_krw": 202.69,
+    "bond_3yr": 3.933,
+    "bond_10yr": 4.369,
+    "measured_at": "20261006"
   },
   "nkis_policy": {
     "저출산": [],
@@ -32278,27 +32278,32 @@
   "kicox_industry": {
     "op_rate_detail": {
       "label": "가동률 세부내역",
-      "error": "HTTPSConnectionPool(host='apis.data.go.kr', port=443): Read timed out. (read tim",
+      "period": "202607~202609",
+      "count": 0,
       "data": []
     },
     "op_by_industry": {
       "label": "업종별 가동률",
-      "error": "HTTPSConnectionPool(host='apis.data.go.kr', port=443): Read timed out. (read tim",
+      "period": "202607~202609",
+      "count": 0,
       "data": []
     },
     "prod_by_industry": {
       "label": "업종별 생산실적",
-      "error": "HTTPSConnectionPool(host='apis.data.go.kr', port=443): Read timed out. (read tim",
+      "period": "202607~202609",
+      "count": 0,
       "data": []
     },
     "export_by_industry": {
       "label": "업종별 수출실적",
-      "error": "HTTPSConnectionPool(host='apis.data.go.kr', port=443): Read timed out. (read tim",
+      "period": "202607~202609",
+      "count": 0,
       "data": []
     },
     "company_by_industry": {
       "label": "업종별 가동업체",
-      "error": "HTTPSConnectionPool(host='apis.data.go.kr', port=443): Read timed out. (read tim",
+      "period": "202607~202609",
+      "count": 0,
       "data": []
     }
   },
@@ -1715336,6 +1715341,6 @@
         }
       }
     },
-    "computed_at": "2026-10-12 09:14 KST"
+    "computed_at": "2026-10-13 11:27 KST"
   }
 }
