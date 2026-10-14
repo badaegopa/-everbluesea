@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-10-13T11:23+09:00",
+  "_updated": "2026-10-14T09:06+09:00",
   "kosis": {
     "인구_구군별_인구": {
       "row_count": 45,
@@ -2263,7 +2263,7 @@
       "id": "API_0704",
       "errMsg": "Success",
       "errCd": 0,
-      "trId": "azfC_API_0704_1791858248543",
+      "trId": "cHZU_API_0704_1791936422563",
       "features": [
         {
           "type": "Feature",
@@ -31891,7 +31891,7 @@
     "eta_count": 5
   },
   "redesign": {
-    "_updated": "2026-10-13T11:24+09:00",
+    "_updated": "2026-10-14T09:07+09:00",
     "_design": {
       "eta_inputs": {
         "①순이동률": "건수/인구×100(%)",
@@ -32038,9 +32038,9 @@
   },
   "apt_price": {
     "junggu": {
-      "avg_price_per_sqm": 497.1,
-      "trade_count": 274,
-      "sampled": 274,
+      "avg_price_per_sqm": 496.2,
+      "trade_count": 284,
+      "sampled": 284,
       "period_months": [
         "202610",
         "202609",
@@ -32048,9 +32048,9 @@
       ]
     },
     "namgu": {
-      "avg_price_per_sqm": 536.8,
-      "trade_count": 556,
-      "sampled": 556,
+      "avg_price_per_sqm": 537.5,
+      "trade_count": 567,
+      "sampled": 567,
       "period_months": [
         "202610",
         "202609",
@@ -32058,9 +32058,9 @@
       ]
     },
     "donggu": {
-      "avg_price_per_sqm": 327.7,
-      "trade_count": 214,
-      "sampled": 214,
+      "avg_price_per_sqm": 327.1,
+      "trade_count": 221,
+      "sampled": 221,
       "period_months": [
         "202610",
         "202609",
@@ -32068,9 +32068,9 @@
       ]
     },
     "bukgu": {
-      "avg_price_per_sqm": 367.5,
-      "trade_count": 422,
-      "sampled": 422,
+      "avg_price_per_sqm": 369.0,
+      "trade_count": 431,
+      "sampled": 431,
       "period_months": [
         "202610",
         "202609",
@@ -32078,9 +32078,9 @@
       ]
     },
     "ulju": {
-      "avg_price_per_sqm": 331.9,
-      "trade_count": 365,
-      "sampled": 365,
+      "avg_price_per_sqm": 330.5,
+      "trade_count": 373,
+      "sampled": 373,
       "period_months": [
         "202610",
         "202609",
@@ -32092,7 +32092,7 @@
     "total_routes": 526,
     "total_stations": 3628,
     "city_code": "26",
-    "measured_at": "2026-10-13"
+    "measured_at": "2026-10-14"
   },
   "gold_price": {
     "clpr": 179970.0,
@@ -1715341,6 +1715341,6 @@
         }
       }
     },
-    "computed_at": "2026-10-13 11:27 KST"
+    "computed_at": "2026-10-14 09:10 KST"
   }
 }
