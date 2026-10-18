@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-10-18T07:51+09:00",
+  "_updated": "2026-10-19T07:43+09:00",
   "kosis": {
     "인구_구군별_인구": {
       "row_count": 45,
@@ -2263,7 +2263,7 @@
       "id": "API_0704",
       "errMsg": "Success",
       "errCd": 0,
-      "trId": "L73V_API_0704_1792277501519",
+      "trId": "UFVc_API_0704_1792363450046",
       "features": [
         {
           "type": "Feature",
@@ -31891,7 +31891,7 @@
     "eta_count": 5
   },
   "redesign": {
-    "_updated": "2026-10-18T07:51+09:00",
+    "_updated": "2026-10-19T07:44+09:00",
     "_design": {
       "eta_inputs": {
         "①순이동률": "건수/인구×100(%)",
@@ -32001,39 +32001,39 @@
   },
   "air_quality": {
     "junggu": {
-      "pm25": 8.0,
-      "pm10": 20.0,
-      "cai": 35,
+      "pm25": null,
+      "pm10": null,
+      "cai": null,
       "station": "성남동",
-      "measured_at": "2026-10-18 07:00"
+      "error": "HTTPConnectionPool(host='apis.data.go.kr', port=80): Read timed out. (read timeo"
     },
     "namgu": {
-      "pm25": 4.0,
-      "pm10": 19.0,
-      "cai": 37,
+      "pm25": null,
+      "pm10": null,
+      "cai": null,
       "station": "삼산동",
-      "measured_at": "2026-10-18 07:00"
+      "error": "HTTPConnectionPool(host='apis.data.go.kr', port=80): Read timed out. (read timeo"
     },
     "donggu": {
-      "pm25": 8.0,
-      "pm10": 22.0,
-      "cai": 52,
+      "pm25": null,
+      "pm10": null,
+      "cai": null,
       "station": "전하동",
-      "measured_at": "2026-10-18 07:00"
+      "error": "HTTPConnectionPool(host='apis.data.go.kr', port=80): Read timed out. (read timeo"
     },
     "bukgu": {
-      "pm25": 5.0,
-      "pm10": 30.0,
-      "cai": 42,
+      "pm25": null,
+      "pm10": null,
+      "cai": null,
       "station": "농소동",
-      "measured_at": "2026-10-18 07:00"
+      "error": "HTTPConnectionPool(host='apis.data.go.kr', port=80): Read timed out. (read timeo"
     },
     "ulju": {
-      "pm25": 10.0,
-      "pm10": 18.0,
-      "cai": 33,
+      "pm25": null,
+      "pm10": null,
+      "cai": null,
       "station": "삼남읍",
-      "measured_at": "2026-10-18 07:00"
+      "error": "HTTPConnectionPool(host='apis.data.go.kr', port=80): Read timed out. (read timeo"
     }
   },
   "apt_price": {
@@ -32089,10 +32089,10 @@
     }
   },
   "bus_info": {
-    "total_routes": 530,
-    "total_stations": 3619,
+    "total_routes": 526,
+    "total_stations": 3628,
     "city_code": "26",
-    "measured_at": "2026-10-18"
+    "measured_at": "2026-10-19"
   },
   "gold_price": {
     "clpr": 179050.0,
@@ -32109,12 +32109,12 @@
     "error": "데이터가 존재하지 않습니다."
   },
   "ecos_macro": {
-    "base_rate": 3.0,
-    "usd_krw": 1339.2,
-    "cny_krw": 199.71,
-    "bond_3yr": 3.983,
-    "bond_10yr": 4.395,
-    "measured_at": "20261008"
+    "base_rate": null,
+    "usd_krw": 1338.0,
+    "cny_krw": 199.58,
+    "bond_3yr": 3.921,
+    "bond_10yr": 4.306,
+    "measured_at": "20261012"
   },
   "nkis_policy": {
     "저출산": [],
@@ -32278,8 +32278,7 @@
   "kicox_industry": {
     "op_rate_detail": {
       "label": "가동률 세부내역",
-      "period": "202607~202609",
-      "count": 0,
+      "error": "HTTPSConnectionPool(host='apis.data.go.kr', port=443): Read timed out. (read tim",
       "data": []
     },
     "op_by_industry": {
@@ -32290,19 +32289,18 @@
     },
     "prod_by_industry": {
       "label": "업종별 생산실적",
-      "period": "202607~202609",
-      "count": 0,
+      "error": "HTTPSConnectionPool(host='apis.data.go.kr', port=443): Read timed out. (read tim",
       "data": []
     },
     "export_by_industry": {
       "label": "업종별 수출실적",
-      "error": "HTTPSConnectionPool(host='apis.data.go.kr', port=443): Read timed out. (read tim",
+      "period": "202607~202609",
+      "count": 0,
       "data": []
     },
     "company_by_industry": {
       "label": "업종별 가동업체",
-      "period": "202607~202609",
-      "count": 0,
+      "error": "HTTPSConnectionPool(host='apis.data.go.kr', port=443): Read timed out. (read tim",
       "data": []
     }
   },
@@ -1715340,6 +1715338,6 @@
         }
       }
     },
-    "computed_at": "2026-10-18 07:54 KST"
+    "computed_at": "2026-10-19 07:47 KST"
   }
 }
