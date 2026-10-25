@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-10-25T07:51+09:00",
+  "_updated": "2026-10-26T07:59+09:00",
   "kosis": {
     "인구_구군별_인구": {
       "row_count": 45,
@@ -2263,7 +2263,7 @@
       "id": "API_0704",
       "errMsg": "Success",
       "errCd": 0,
-      "trId": "U9PD_API_0704_1792882309948",
+      "trId": "Saos_API_0704_1792969209369",
       "features": [
         {
           "type": "Feature",
@@ -31891,7 +31891,7 @@
     "eta_count": 5
   },
   "redesign": {
-    "_updated": "2026-10-25T07:51+09:00",
+    "_updated": "2026-10-26T08:00+09:00",
     "_design": {
       "eta_inputs": {
         "①순이동률": "건수/인구×100(%)",
@@ -32001,39 +32001,39 @@
   },
   "air_quality": {
     "junggu": {
-      "pm25": 6.0,
-      "pm10": 8.0,
-      "cai": 39,
+      "pm25": 10.0,
+      "pm10": 13.0,
+      "cai": 61,
       "station": "성남동",
-      "measured_at": "2026-10-25 07:00"
+      "measured_at": "2026-10-26 07:00"
     },
     "namgu": {
-      "pm25": 3.0,
-      "pm10": 4.0,
-      "cai": 39,
+      "pm25": 11.0,
+      "pm10": 12.0,
+      "cai": 63,
       "station": "삼산동",
-      "measured_at": "2026-10-25 07:00"
+      "measured_at": "2026-10-26 07:00"
     },
     "donggu": {
-      "pm25": null,
-      "pm10": 6.0,
-      "cai": null,
+      "pm25": 6.0,
+      "pm10": 12.0,
+      "cai": 64,
       "station": "전하동",
-      "measured_at": "2026-10-25 07:00"
+      "measured_at": "2026-10-26 07:00"
     },
     "bukgu": {
-      "pm25": null,
-      "pm10": 6.0,
-      "cai": null,
+      "pm25": 8.0,
+      "pm10": 17.0,
+      "cai": 58,
       "station": "농소동",
-      "measured_at": "2026-10-25 07:00"
+      "measured_at": "2026-10-26 07:00"
     },
     "ulju": {
-      "pm25": 4.0,
-      "pm10": 5.0,
-      "cai": 47,
+      "pm25": 14.0,
+      "pm10": 19.0,
+      "cai": 60,
       "station": "삼남읍",
-      "measured_at": "2026-10-25 07:00"
+      "measured_at": "2026-10-26 07:00"
     }
   },
   "apt_price": {
@@ -32058,9 +32058,9 @@
       ]
     },
     "donggu": {
-      "avg_price_per_sqm": 327.5,
-      "trade_count": 262,
-      "sampled": 262,
+      "avg_price_per_sqm": 329.8,
+      "trade_count": 266,
+      "sampled": 266,
       "period_months": [
         "202610",
         "202609",
@@ -32089,10 +32089,10 @@
     }
   },
   "bus_info": {
-    "total_routes": null,
-    "total_stations": null,
+    "total_routes": 526,
+    "total_stations": 3628,
     "city_code": "26",
-    "error": "99 가용한 세션이 존재하지 않습니다. (30/30)"
+    "measured_at": "2026-10-26"
   },
   "gold_price": {
     "clpr": 174290.0,
@@ -32110,11 +32110,11 @@
   },
   "ecos_macro": {
     "base_rate": 3.0,
-    "usd_krw": 1338.6,
-    "cny_krw": 199.94,
-    "bond_3yr": 3.867,
-    "bond_10yr": 4.193,
-    "measured_at": "20261015"
+    "usd_krw": 1348.5,
+    "cny_krw": 201.61,
+    "bond_3yr": 3.854,
+    "bond_10yr": 4.182,
+    "measured_at": "20261016"
   },
   "nkis_policy": {
     "저출산": [],
@@ -32293,8 +32293,7 @@
     },
     "export_by_industry": {
       "label": "업종별 수출실적",
-      "period": "202607~202609",
-      "count": 0,
+      "error": "HTTPSConnectionPool(host='apis.data.go.kr', port=443): Read timed out. (read tim",
       "data": []
     },
     "company_by_industry": {
@@ -1715337,6 +1715336,6 @@
         }
       }
     },
-    "computed_at": "2026-10-25 07:55 KST"
+    "computed_at": "2026-10-26 08:03 KST"
   }
 }
