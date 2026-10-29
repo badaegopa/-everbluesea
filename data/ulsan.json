@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-10-28T09:13+09:00",
+  "_updated": "2026-10-29T09:34+09:00",
   "kosis": {
     "인구_구군별_인구": {
       "row_count": 45,
@@ -1714,7 +1714,7 @@
           "PRD_SE": "M",
           "ITM_ID": "T25",
           "TBL_ID": "DT_1B26A01",
-          "PRD_DE": "202608",
+          "PRD_DE": "202609",
           "C3_NM": "계",
           "C3_OBJ_NM_ENG": "By age ",
           "C2_OBJ_NM_ENG": "By gender",
@@ -1722,13 +1722,13 @@
           "C1_OBJ_NM": "행정구역(시군구)별",
           "C2_NM": "계",
           "C3": "000",
-          "DT": "-150",
+          "DT": "-70",
           "C1": "31110",
           "UNIT_NM_ENG": "Person",
           "C3_NM_ENG": "total",
           "ITM_NM": "순이동",
           "TBL_NM": "시군구/성/연령(5세)별 1인 이동건수",
-          "LST_CHN_DE": "2026-09-07",
+          "LST_CHN_DE": "2026-10-15",
           "C1_NM_ENG": "Jung-gu",
           "C1_NM": "중구",
           "UNIT_NM": "명",
@@ -1743,7 +1743,7 @@
           "PRD_SE": "M",
           "ITM_ID": "T25",
           "TBL_ID": "DT_1B26A01",
-          "PRD_DE": "202608",
+          "PRD_DE": "202609",
           "C3_NM": "계",
           "C3_OBJ_NM_ENG": "By age ",
           "C2_OBJ_NM_ENG": "By gender",
@@ -1751,13 +1751,13 @@
           "C1_OBJ_NM": "행정구역(시군구)별",
           "C2_NM": "계",
           "C3": "000",
-          "DT": "97",
+          "DT": "25",
           "C1": "31140",
           "UNIT_NM_ENG": "Person",
           "C3_NM_ENG": "total",
           "ITM_NM": "순이동",
           "TBL_NM": "시군구/성/연령(5세)별 1인 이동건수",
-          "LST_CHN_DE": "2026-09-07",
+          "LST_CHN_DE": "2026-10-15",
           "C1_NM_ENG": "Nam-gu",
           "C1_NM": "남구",
           "UNIT_NM": "명",
@@ -1772,7 +1772,7 @@
           "PRD_SE": "M",
           "ITM_ID": "T25",
           "TBL_ID": "DT_1B26A01",
-          "PRD_DE": "202608",
+          "PRD_DE": "202609",
           "C3_NM": "계",
           "C3_OBJ_NM_ENG": "By age ",
           "C2_OBJ_NM_ENG": "By gender",
@@ -1780,13 +1780,13 @@
           "C1_OBJ_NM": "행정구역(시군구)별",
           "C2_NM": "계",
           "C3": "000",
-          "DT": "-103",
+          "DT": "-16",
           "C1": "31170",
           "UNIT_NM_ENG": "Person",
           "C3_NM_ENG": "total",
           "ITM_NM": "순이동",
           "TBL_NM": "시군구/성/연령(5세)별 1인 이동건수",
-          "LST_CHN_DE": "2026-09-07",
+          "LST_CHN_DE": "2026-10-15",
           "C1_NM_ENG": "Dong-gu",
           "C1_NM": "동구",
           "UNIT_NM": "명",
@@ -1801,7 +1801,7 @@
           "PRD_SE": "M",
           "ITM_ID": "T25",
           "TBL_ID": "DT_1B26A01",
-          "PRD_DE": "202608",
+          "PRD_DE": "202609",
           "C3_NM": "계",
           "C3_OBJ_NM_ENG": "By age ",
           "C2_OBJ_NM_ENG": "By gender",
@@ -1809,13 +1809,13 @@
           "C1_OBJ_NM": "행정구역(시군구)별",
           "C2_NM": "계",
           "C3": "000",
-          "DT": "-56",
+          "DT": "-37",
           "C1": "31200",
           "UNIT_NM_ENG": "Person",
           "C3_NM_ENG": "total",
           "ITM_NM": "순이동",
           "TBL_NM": "시군구/성/연령(5세)별 1인 이동건수",
-          "LST_CHN_DE": "2026-09-07",
+          "LST_CHN_DE": "2026-10-15",
           "C1_NM_ENG": "Buk-gu",
           "C1_NM": "북구",
           "UNIT_NM": "명",
@@ -1830,7 +1830,7 @@
           "PRD_SE": "M",
           "ITM_ID": "T25",
           "TBL_ID": "DT_1B26A01",
-          "PRD_DE": "202608",
+          "PRD_DE": "202609",
           "C3_NM": "계",
           "C3_OBJ_NM_ENG": "By age ",
           "C2_OBJ_NM_ENG": "By gender",
@@ -1838,13 +1838,13 @@
           "C1_OBJ_NM": "행정구역(시군구)별",
           "C2_NM": "계",
           "C3": "000",
-          "DT": "-27",
+          "DT": "-114",
           "C1": "31710",
           "UNIT_NM_ENG": "Person",
           "C3_NM_ENG": "total",
           "ITM_NM": "순이동",
           "TBL_NM": "시군구/성/연령(5세)별 1인 이동건수",
-          "LST_CHN_DE": "2026-09-07",
+          "LST_CHN_DE": "2026-10-15",
           "C1_NM_ENG": "Ulju-gun",
           "C1_NM": "울주군",
           "UNIT_NM": "명",
@@ -2263,7 +2263,7 @@
       "id": "API_0704",
       "errMsg": "Success",
       "errCd": 0,
-      "trId": "EIrO_API_0704_1793146446495",
+      "trId": "OCGq_API_0704_1793234113292",
       "features": [
         {
           "type": "Feature",
@@ -31714,12 +31714,12 @@
       "tfr": 0.808,
       "aged": 21.8,
       "doctors": 2.1,
-      "net_migration_rate": -0.074,
+      "net_migration_rate": -0.035,
       "fiscal_independence": 14.42,
       "vacancy_rate": 9.04,
-      "eta": 0.474,
+      "eta": 0.475,
       "lambda12": {
-        "P1": 0.5185,
+        "P1": 0.5088,
         "P2": 0.246,
         "A1": 0.5,
         "A2": 0.4327,
@@ -31741,12 +31741,12 @@
       "tfr": 0.829,
       "aged": 18.0,
       "doctors": 3.9,
-      "net_migration_rate": 0.032,
+      "net_migration_rate": 0.008,
       "fiscal_independence": 25.82,
       "vacancy_rate": 6.99,
       "eta": 0.581,
       "lambda12": {
-        "P1": 0.492,
+        "P1": 0.498,
         "P2": 0.246,
         "A1": 0.5,
         "A2": 0.4327,
@@ -31768,12 +31768,12 @@
       "tfr": 0.955,
       "aged": 19.8,
       "doctors": 3.9,
-      "net_migration_rate": -0.07,
+      "net_migration_rate": -0.011,
       "fiscal_independence": 16.36,
       "vacancy_rate": 7.16,
-      "eta": 0.565,
+      "eta": 0.566,
       "lambda12": {
-        "P1": 0.5175,
+        "P1": 0.5028,
         "P2": 0.246,
         "A1": 0.5,
         "A2": 0.4327,
@@ -31795,12 +31795,12 @@
       "tfr": 0.98,
       "aged": 13.0,
       "doctors": 1.5,
-      "net_migration_rate": -0.026,
+      "net_migration_rate": -0.017,
       "fiscal_independence": 23.34,
       "vacancy_rate": 5.98,
-      "eta": 0.528,
+      "eta": 0.529,
       "lambda12": {
-        "P1": 0.5065,
+        "P1": 0.5042,
         "P2": 0.246,
         "A1": 0.5,
         "A2": 0.4327,
@@ -31822,12 +31822,12 @@
       "tfr": null,
       "aged": 21.1,
       "doctors": 1.4,
-      "net_migration_rate": -0.012,
+      "net_migration_rate": -0.052,
       "fiscal_independence": 30.86,
       "vacancy_rate": 10.62,
-      "eta": 0.466,
+      "eta": 0.465,
       "lambda12": {
-        "P1": 0.503,
+        "P1": 0.513,
         "P2": 0.246,
         "A1": 0.5,
         "A2": 0.4327,
@@ -31891,7 +31891,7 @@
     "eta_count": 5
   },
   "redesign": {
-    "_updated": "2026-10-28T09:14+09:00",
+    "_updated": "2026-10-29T09:35+09:00",
     "_design": {
       "eta_inputs": {
         "①순이동률": "건수/인구×100(%)",
@@ -31909,49 +31909,87 @@
       "labeling": "정부 공식 데이터 없음 (시도/전국 단위만 존재) — '측정 불가' 금지"
     },
     "meta": {
+      "net_migration_period": "202609",
+      "net_migration_method": "1인 이동건수 기반 (건수/인구×100)",
+      "migration_note": "산단 외지 인력 유동 포함 — 정주시민 이동과 미분리. 산업 계절성 노이즈 있음. 소수 유동이 지수에 미치는 영향 제한적.",
       "fiscal_period": "2026",
+      "grdp_period": "2022",
+      "vacant_period": "2025",
+      "vacancy_note": "재개발 추진 지역 말소 미처리 포함 가능 — 단순 쇠퇴 지표로 해석 금지",
       "household_credit_period": "2025"
     },
     "eta_inputs": {
       "31110": {
         "name": "중구",
-        "fiscal_independence": 17.79
+        "net_migration_rate": -0.035,
+        "fiscal_independence": 17.79,
+        "vacancy_rate": 9.04
       },
       "31140": {
         "name": "남구",
-        "fiscal_independence": 30.9
+        "net_migration_rate": 0.008,
+        "fiscal_independence": 30.9,
+        "vacancy_rate": 6.99
       },
       "31170": {
         "name": "동구",
-        "fiscal_independence": 17.27
+        "net_migration_rate": -0.011,
+        "fiscal_independence": 17.27,
+        "vacancy_rate": 7.16
       },
       "31200": {
         "name": "북구",
-        "fiscal_independence": 26.3
+        "net_migration_rate": -0.017,
+        "fiscal_independence": 26.3,
+        "vacancy_rate": 5.98
       },
       "31710": {
         "name": "울주군",
-        "fiscal_independence": 37.39
+        "net_migration_rate": -0.052,
+        "fiscal_independence": 37.39,
+        "vacancy_rate": 10.62
       }
     },
     "raw": {
       "31110": {
-        "pop": 202430
+        "pop": 202430,
+        "net_migration_1p": -70.0,
+        "vacant_houses": 6821.0,
+        "total_houses": 75491.0
       },
       "31140": {
-        "pop": 304783
+        "pop": 304783,
+        "net_migration_1p": 25.0,
+        "vacant_houses": 7863.0,
+        "total_houses": 112435.0
       },
       "31170": {
-        "pop": 147352
+        "pop": 147352,
+        "net_migration_1p": -16.0,
+        "vacant_houses": 4075.0,
+        "total_houses": 56931.0
       },
       "31200": {
-        "pop": 213305
+        "pop": 213305,
+        "net_migration_1p": -37.0,
+        "vacant_houses": 4845.0,
+        "total_houses": 81027.0
       },
       "31710": {
-        "pop": 218207
+        "pop": 218207,
+        "net_migration_1p": -114.0,
+        "vacant_houses": 9426.0,
+        "total_houses": 88773.0
       }
     },
     "separate_panel": {
+      "grdp_per_capita": {
+        "scope": "시도(울산광역시)",
+        "value": 77511.0,
+        "unit": "천원",
+        "period": "2022",
+        "district_status": "정부 공식 데이터 없음 (시도/전국 단위만 존재)"
+      },
       "household_credit": {
         "scope": "전국",
         "value": 1979088.6,
@@ -31959,55 +31997,50 @@
         "period": "2025",
         "district_status": "정부 공식 데이터 없음 (시도/전국 단위만 존재)"
       }
-    },
-    "_errors": {
-      "① 순이동률": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxY",
-      "③ GRDP(패널)": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxY",
-      "④ 빈집률": "HTTPSConnectionPool(host='kosis.kr', port=443): Max retries exceeded with url: /openapi/Param/statisticsParameterData.do?method=getList&apiKey=MzNiMDRhOTQ4ZGYxY"
     }
   },
   "air_quality": {
     "junggu": {
-      "pm25": 8.0,
-      "pm10": 25.0,
-      "cai": 47,
+      "pm25": 13.0,
+      "pm10": 14.0,
+      "cai": 43,
       "station": "성남동",
-      "measured_at": "2026-10-28 09:00"
+      "measured_at": "2026-10-29 09:00"
     },
     "namgu": {
-      "pm25": 8.0,
-      "pm10": 22.0,
-      "cai": 50,
+      "pm25": 16.0,
+      "pm10": 18.0,
+      "cai": 49,
       "station": "삼산동",
-      "measured_at": "2026-10-28 09:00"
+      "measured_at": "2026-10-29 09:00"
     },
     "donggu": {
-      "pm25": 8.0,
-      "pm10": 21.0,
-      "cai": 48,
+      "pm25": 15.0,
+      "pm10": 22.0,
+      "cai": 60,
       "station": "전하동",
-      "measured_at": "2026-10-28 09:00"
+      "measured_at": "2026-10-29 09:00"
     },
     "bukgu": {
-      "pm25": 7.0,
-      "pm10": 30.0,
-      "cai": 52,
+      "pm25": 14.0,
+      "pm10": 21.0,
+      "cai": null,
       "station": "농소동",
-      "measured_at": "2026-10-28 09:00"
+      "measured_at": "2026-10-29 09:00"
     },
     "ulju": {
       "pm25": 9.0,
-      "pm10": 23.0,
-      "cai": 38,
+      "pm10": 19.0,
+      "cai": 32,
       "station": "삼남읍",
-      "measured_at": "2026-10-28 09:00"
+      "measured_at": "2026-10-29 09:00"
     }
   },
   "apt_price": {
     "junggu": {
-      "avg_price_per_sqm": 505.9,
-      "trade_count": 367,
-      "sampled": 367,
+      "avg_price_per_sqm": 506.9,
+      "trade_count": 372,
+      "sampled": 372,
       "period_months": [
         "202610",
         "202609",
@@ -32015,9 +32048,9 @@
       ]
     },
     "namgu": {
-      "avg_price_per_sqm": 545.7,
-      "trade_count": 721,
-      "sampled": 721,
+      "avg_price_per_sqm": 545.8,
+      "trade_count": 733,
+      "sampled": 733,
       "period_months": [
         "202610",
         "202609",
@@ -32035,9 +32068,9 @@
       ]
     },
     "bukgu": {
-      "avg_price_per_sqm": 370.3,
-      "trade_count": 555,
-      "sampled": 555,
+      "avg_price_per_sqm": 370.7,
+      "trade_count": 560,
+      "sampled": 560,
       "period_months": [
         "202610",
         "202609",
@@ -32046,8 +32079,8 @@
     },
     "ulju": {
       "avg_price_per_sqm": 335.1,
-      "trade_count": 447,
-      "sampled": 447,
+      "trade_count": 456,
+      "sampled": 456,
       "period_months": [
         "202610",
         "202609",
@@ -32059,17 +32092,17 @@
     "total_routes": 526,
     "total_stations": 3628,
     "city_code": "26",
-    "measured_at": "2026-10-28"
+    "measured_at": "2026-10-29"
   },
   "gold_price": {
-    "clpr": 170400.0,
-    "vs": -850.0,
-    "fltRt": -0.5,
-    "mkp": 170980.0,
-    "hipr": 170980.0,
-    "lopr": 168990.0,
-    "trqu": 131793,
-    "basDt": "20261026"
+    "clpr": 170390.0,
+    "vs": -10.0,
+    "fltRt": -0.01,
+    "mkp": 170450.0,
+    "hipr": 171130.0,
+    "lopr": 170150.0,
+    "trqu": 104104,
+    "basDt": "20261027"
   },
   "population_forecast": {
     "data": [],
@@ -32245,27 +32278,32 @@
   "kicox_industry": {
     "op_rate_detail": {
       "label": "가동률 세부내역",
-      "error": "HTTPSConnectionPool(host='apis.data.go.kr', port=443): Read timed out. (read tim",
+      "period": "202607~202609",
+      "count": 0,
       "data": []
     },
     "op_by_industry": {
       "label": "업종별 가동률",
-      "error": "HTTPSConnectionPool(host='apis.data.go.kr', port=443): Read timed out. (read tim",
+      "period": "202607~202609",
+      "count": 0,
       "data": []
     },
     "prod_by_industry": {
       "label": "업종별 생산실적",
-      "error": "code=04 ",
+      "period": "202607~202609",
+      "count": 0,
       "data": []
     },
     "export_by_industry": {
       "label": "업종별 수출실적",
-      "error": "code=04 ",
+      "period": "202607~202609",
+      "count": 0,
       "data": []
     },
     "company_by_industry": {
       "label": "업종별 가동업체",
-      "error": "code=04 ",
+      "period": "202607~202609",
+      "count": 0,
       "data": []
     }
   },
@@ -1715303,6 +1715341,6 @@
         }
       }
     },
-    "computed_at": "2026-10-28 09:18 KST"
+    "computed_at": "2026-10-29 09:38 KST"
   }
 }
