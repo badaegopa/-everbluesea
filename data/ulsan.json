@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-11-01T08:55+09:00",
+  "_updated": "2026-11-02T09:10+09:00",
   "kosis": {
     "인구_구군별_인구": {
       "row_count": 45,
@@ -2263,7 +2263,7 @@
       "id": "API_0704",
       "errMsg": "Success",
       "errCd": 0,
-      "trId": "Ef0Q_API_0704_1793490961301",
+      "trId": "Dt0D_API_0704_1793578273660",
       "features": [
         {
           "type": "Feature",
@@ -31891,7 +31891,7 @@
     "eta_count": 5
   },
   "redesign": {
-    "_updated": "2026-11-01T08:56+09:00",
+    "_updated": "2026-11-02T09:11+09:00",
     "_design": {
       "eta_inputs": {
         "①순이동률": "건수/인구×100(%)",
@@ -32001,39 +32001,39 @@
   },
   "air_quality": {
     "junggu": {
-      "pm25": 19.0,
-      "pm10": 29.0,
-      "cai": 66,
+      "pm25": 6.0,
+      "pm10": 7.0,
+      "cai": 48,
       "station": "성남동",
-      "measured_at": "2026-11-01 08:00"
+      "measured_at": "2026-11-02 09:00"
     },
     "namgu": {
-      "pm25": 20.0,
-      "pm10": 36.0,
-      "cai": 66,
+      "pm25": null,
+      "pm10": null,
+      "cai": null,
       "station": "삼산동",
-      "measured_at": "2026-11-01 08:00"
+      "measured_at": "2026-11-02 09:00"
     },
     "donggu": {
-      "pm25": 13.0,
-      "pm10": 38.0,
-      "cai": 61,
+      "pm25": null,
+      "pm10": 6.0,
+      "cai": 56,
       "station": "전하동",
-      "measured_at": "2026-11-01 08:00"
+      "measured_at": "2026-11-02 09:00"
     },
     "bukgu": {
-      "pm25": 14.0,
-      "pm10": 32.0,
-      "cai": 60,
+      "pm25": 5.0,
+      "pm10": 13.0,
+      "cai": 56,
       "station": "농소동",
-      "measured_at": "2026-11-01 08:00"
+      "measured_at": "2026-11-02 09:00"
     },
     "ulju": {
-      "pm25": 20.0,
-      "pm10": 28.0,
-      "cai": 55,
+      "pm25": 9.0,
+      "pm10": 10.0,
+      "cai": 39,
       "station": "삼남읍",
-      "measured_at": "2026-11-01 08:00"
+      "measured_at": "2026-11-02 09:00"
     }
   },
   "apt_price": {
@@ -32092,7 +32092,7 @@
     "total_routes": 526,
     "total_stations": 3628,
     "city_code": "26",
-    "measured_at": "2026-11-01"
+    "measured_at": "2026-11-02"
   },
   "gold_price": {
     "clpr": 173000.0,
@@ -32110,11 +32110,11 @@
   },
   "ecos_macro": {
     "base_rate": 3.0,
-    "usd_krw": 1325.5,
-    "cny_krw": 198.66,
-    "bond_3yr": 3.84,
-    "bond_10yr": 4.152,
-    "measured_at": "20261022"
+    "usd_krw": 1324.6,
+    "cny_krw": 198.37,
+    "bond_3yr": 3.803,
+    "bond_10yr": 4.097,
+    "measured_at": "20261023"
   },
   "nkis_policy": {
     "저출산": [],
@@ -32283,7 +32283,7 @@
     },
     "op_by_industry": {
       "label": "업종별 가동률",
-      "error": "HTTPSConnectionPool(host='apis.data.go.kr', port=443): Read timed out. (read tim",
+      "error": "code=04 ",
       "data": []
     },
     "prod_by_industry": {
@@ -1715336,6 +1715336,6 @@
         }
       }
     },
-    "computed_at": "2026-11-01 08:59 KST"
+    "computed_at": "2026-11-02 09:14 KST"
   }
 }
