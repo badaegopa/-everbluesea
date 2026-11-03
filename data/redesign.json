@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-11-02T09:11+09:00",
+  "_updated": "2026-11-03T11:45+09:00",
   "_design": {
     "eta_inputs": {
       "①순이동률": "건수/인구×100(%)",
@@ -23,8 +23,7 @@
     "fiscal_period": "2026",
     "grdp_period": "2022",
     "vacant_period": "2025",
-    "vacancy_note": "재개발 추진 지역 말소 미처리 포함 가능 — 단순 쇠퇴 지표로 해석 금지",
-    "household_credit_period": "2025"
+    "vacancy_note": "재개발 추진 지역 말소 미처리 포함 가능 — 단순 쇠퇴 지표로 해석 금지"
   },
   "eta_inputs": {
     "31110": {
@@ -60,31 +59,31 @@
   },
   "raw": {
     "31110": {
-      "pop": 202430,
+      "pop": 202377,
       "net_migration_1p": -70.0,
       "vacant_houses": 6821.0,
       "total_houses": 75491.0
     },
     "31140": {
-      "pop": 304783,
+      "pop": 304801,
       "net_migration_1p": 25.0,
       "vacant_houses": 7863.0,
       "total_houses": 112435.0
     },
     "31170": {
-      "pop": 147352,
+      "pop": 147258,
       "net_migration_1p": -16.0,
       "vacant_houses": 4075.0,
       "total_houses": 56931.0
     },
     "31200": {
-      "pop": 213305,
+      "pop": 213194,
       "net_migration_1p": -37.0,
       "vacant_houses": 4845.0,
       "total_houses": 81027.0
     },
     "31710": {
-      "pop": 218207,
+      "pop": 218258,
       "net_migration_1p": -114.0,
       "vacant_houses": 9426.0,
       "total_houses": 88773.0
@@ -97,13 +96,9 @@
       "unit": "천원",
       "period": "2022",
       "district_status": "정부 공식 데이터 없음 (시도/전국 단위만 존재)"
-    },
-    "household_credit": {
-      "scope": "전국",
-      "value": 1979088.6,
-      "unit": "십억원",
-      "period": "2025",
-      "district_status": "정부 공식 데이터 없음 (시도/전국 단위만 존재)"
     }
+  },
+  "_errors": {
+    "⑥ 가계부채(패널)": "HTTPSConnectionPool(host='ecos.bok.or.kr', port=443): Max retries exceeded with url: /api/StatisticSearch/N1PUSZA47YHIQYB8AJHJ/json/kr/1/20/151Y001/A/2015/2030/"
   }
 }
