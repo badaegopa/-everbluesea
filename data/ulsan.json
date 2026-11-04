@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-11-03T11:44+09:00",
+  "_updated": "2026-11-04T10:01+09:00",
   "kosis": {
     "인구_구군별_인구": {
       "row_count": 45,
@@ -2263,7 +2263,7 @@
       "id": "API_0704",
       "errMsg": "Success",
       "errCd": 0,
-      "trId": "DaPf_API_0704_1793673907183",
+      "trId": "w8UG_API_0704_1793754089448",
       "features": [
         {
           "type": "Feature",
@@ -31891,7 +31891,7 @@
     "eta_count": 5
   },
   "redesign": {
-    "_updated": "2026-11-03T11:45+09:00",
+    "_updated": "2026-11-04T10:01+09:00",
     "_design": {
       "eta_inputs": {
         "①순이동률": "건수/인구×100(%)",
@@ -31915,7 +31915,8 @@
       "fiscal_period": "2026",
       "grdp_period": "2022",
       "vacant_period": "2025",
-      "vacancy_note": "재개발 추진 지역 말소 미처리 포함 가능 — 단순 쇠퇴 지표로 해석 금지"
+      "vacancy_note": "재개발 추진 지역 말소 미처리 포함 가능 — 단순 쇠퇴 지표로 해석 금지",
+      "household_credit_period": "2025"
     },
     "eta_inputs": {
       "31110": {
@@ -31988,54 +31989,58 @@
         "unit": "천원",
         "period": "2022",
         "district_status": "정부 공식 데이터 없음 (시도/전국 단위만 존재)"
+      },
+      "household_credit": {
+        "scope": "전국",
+        "value": 1979088.6,
+        "unit": "십억원",
+        "period": "2025",
+        "district_status": "정부 공식 데이터 없음 (시도/전국 단위만 존재)"
       }
-    },
-    "_errors": {
-      "⑥ 가계부채(패널)": "HTTPSConnectionPool(host='ecos.bok.or.kr', port=443): Max retries exceeded with url: /api/StatisticSearch/N1PUSZA47YHIQYB8AJHJ/json/kr/1/20/151Y001/A/2015/2030/"
     }
   },
   "air_quality": {
     "junggu": {
-      "pm25": 18.0,
-      "pm10": 46.0,
-      "cai": 69,
+      "pm25": 20.0,
+      "pm10": 52.0,
+      "cai": 71,
       "station": "성남동",
-      "measured_at": "2026-11-03 11:00"
+      "measured_at": "2026-11-04 09:00"
     },
     "namgu": {
-      "pm25": 17.0,
-      "pm10": 40.0,
-      "cai": 68,
+      "pm25": 22.0,
+      "pm10": 52.0,
+      "cai": 75,
       "station": "삼산동",
-      "measured_at": "2026-11-03 11:00"
+      "measured_at": "2026-11-04 09:00"
     },
     "donggu": {
-      "pm25": 9.0,
-      "pm10": 26.0,
-      "cai": 58,
+      "pm25": 12.0,
+      "pm10": 53.0,
+      "cai": 81,
       "station": "전하동",
-      "measured_at": "2026-11-03 11:00"
+      "measured_at": "2026-11-04 09:00"
     },
     "bukgu": {
-      "pm25": 15.0,
-      "pm10": 35.0,
-      "cai": 71,
+      "pm25": 17.0,
+      "pm10": 49.0,
+      "cai": 77,
       "station": "농소동",
-      "measured_at": "2026-11-03 11:00"
+      "measured_at": "2026-11-04 09:00"
     },
     "ulju": {
-      "pm25": 19.0,
-      "pm10": 42.0,
-      "cai": 66,
+      "pm25": 25.0,
+      "pm10": 48.0,
+      "cai": 71,
       "station": "삼남읍",
-      "measured_at": "2026-11-03 11:00"
+      "measured_at": "2026-11-04 09:00"
     }
   },
   "apt_price": {
     "junggu": {
-      "avg_price_per_sqm": 513.8,
-      "trade_count": 267,
-      "sampled": 267,
+      "avg_price_per_sqm": 511.0,
+      "trade_count": 279,
+      "sampled": 279,
       "period_months": [
         "202611",
         "202610",
@@ -32043,9 +32048,9 @@
       ]
     },
     "namgu": {
-      "avg_price_per_sqm": 552.9,
-      "trade_count": 536,
-      "sampled": 536,
+      "avg_price_per_sqm": 556.9,
+      "trade_count": 547,
+      "sampled": 547,
       "period_months": [
         "202611",
         "202610",
@@ -32053,9 +32058,9 @@
       ]
     },
     "donggu": {
-      "avg_price_per_sqm": 323.8,
-      "trade_count": 194,
-      "sampled": 194,
+      "avg_price_per_sqm": 321.4,
+      "trade_count": 201,
+      "sampled": 201,
       "period_months": [
         "202611",
         "202610",
@@ -32063,9 +32068,9 @@
       ]
     },
     "bukgu": {
-      "avg_price_per_sqm": 377.4,
-      "trade_count": 416,
-      "sampled": 416,
+      "avg_price_per_sqm": 378.5,
+      "trade_count": 421,
+      "sampled": 421,
       "period_months": [
         "202611",
         "202610",
@@ -32073,9 +32078,9 @@
       ]
     },
     "ulju": {
-      "avg_price_per_sqm": 336.7,
-      "trade_count": 305,
-      "sampled": 305,
+      "avg_price_per_sqm": 336.3,
+      "trade_count": 310,
+      "sampled": 310,
       "period_months": [
         "202611",
         "202610",
@@ -32087,7 +32092,7 @@
     "total_routes": 526,
     "total_stations": 3628,
     "city_code": "26",
-    "measured_at": "2026-11-03"
+    "measured_at": "2026-11-04"
   },
   "gold_price": {
     "clpr": 169030.0,
@@ -32104,17 +32109,12 @@
     "error": "데이터가 존재하지 않습니다."
   },
   "ecos_macro": {
-    "base_rate": null,
-    "usd_krw": null,
-    "cny_krw": null,
-    "bond_3yr": null,
-    "bond_10yr": null,
-    "measured_at": null,
-    "base_rate_error": "HTTPSConnectionPool(host='ecos.bok.or.kr', port=443): Max retries exceeded with ",
-    "usd_krw_error": "HTTPSConnectionPool(host='ecos.bok.or.kr', port=443): Max retries exceeded with ",
-    "cny_krw_error": "HTTPSConnectionPool(host='ecos.bok.or.kr', port=443): Max retries exceeded with ",
-    "bond_3yr_error": "HTTPSConnectionPool(host='ecos.bok.or.kr', port=443): Max retries exceeded with ",
-    "bond_10yr_error": "HTTPSConnectionPool(host='ecos.bok.or.kr', port=443): Max retries exceeded with "
+    "base_rate": 3.0,
+    "usd_krw": 1324.3,
+    "cny_krw": 198.29,
+    "bond_3yr": 3.789,
+    "bond_10yr": 4.074,
+    "measured_at": "20261026"
   },
   "nkis_policy": {
     "저출산": [],
@@ -1715341,6 +1715341,6 @@
         }
       }
     },
-    "computed_at": "2026-11-03 11:50 KST"
+    "computed_at": "2026-11-04 10:05 KST"
   }
 }
