@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-11-16T09:41+09:00",
+  "_updated": "2026-11-17T12:22+09:00",
   "kosis": {
     "인구_구군별_인구": {
       "row_count": 45,
@@ -2263,7 +2263,7 @@
       "id": "API_0704",
       "errMsg": "Success",
       "errCd": 0,
-      "trId": "qS=r_API_0704_1794789736403",
+      "trId": "Xqr8_API_0704_1794885742295",
       "features": [
         {
           "type": "Feature",
@@ -31891,7 +31891,7 @@
     "eta_count": 5
   },
   "redesign": {
-    "_updated": "2026-11-16T09:42+09:00",
+    "_updated": "2026-11-17T12:22+09:00",
     "_design": {
       "eta_inputs": {
         "①순이동률": "건수/인구×100(%)",
@@ -32001,46 +32001,46 @@
   },
   "air_quality": {
     "junggu": {
-      "pm25": 12.0,
-      "pm10": 25.0,
-      "cai": 37,
+      "pm25": 8.0,
+      "pm10": 19.0,
+      "cai": 60,
       "station": "성남동",
-      "measured_at": "2026-11-16 09:00"
+      "measured_at": "2026-11-17 12:00"
     },
     "namgu": {
-      "pm25": 15.0,
-      "pm10": 23.0,
-      "cai": 58,
+      "pm25": 6.0,
+      "pm10": 22.0,
+      "cai": 64,
       "station": "삼산동",
-      "measured_at": "2026-11-16 09:00"
+      "measured_at": "2026-11-17 12:00"
     },
     "donggu": {
       "pm25": 16.0,
-      "pm10": 27.0,
-      "cai": 51,
+      "pm10": 33.0,
+      "cai": 53,
       "station": "전하동",
-      "measured_at": "2026-11-16 09:00"
+      "measured_at": "2026-11-17 12:00"
     },
     "bukgu": {
-      "pm25": 10.0,
-      "pm10": 24.0,
-      "cai": 54,
+      "pm25": 8.0,
+      "pm10": 21.0,
+      "cai": 66,
       "station": "농소동",
-      "measured_at": "2026-11-16 09:00"
+      "measured_at": "2026-11-17 12:00"
     },
     "ulju": {
-      "pm25": 11.0,
-      "pm10": 23.0,
-      "cai": 51,
+      "pm25": 9.0,
+      "pm10": 18.0,
+      "cai": 55,
       "station": "삼남읍",
-      "measured_at": "2026-11-16 09:00"
+      "measured_at": "2026-11-17 12:00"
     }
   },
   "apt_price": {
     "junggu": {
-      "avg_price_per_sqm": 512.6,
-      "trade_count": 330,
-      "sampled": 330,
+      "avg_price_per_sqm": 511.3,
+      "trade_count": 333,
+      "sampled": 333,
       "period_months": [
         "202611",
         "202610",
@@ -32049,8 +32049,8 @@
     },
     "namgu": {
       "avg_price_per_sqm": 556.9,
-      "trade_count": 637,
-      "sampled": 637,
+      "trade_count": 648,
+      "sampled": 648,
       "period_months": [
         "202611",
         "202610",
@@ -32058,9 +32058,9 @@
       ]
     },
     "donggu": {
-      "avg_price_per_sqm": 320.4,
-      "trade_count": 242,
-      "sampled": 242,
+      "avg_price_per_sqm": 333.9,
+      "trade_count": 155,
+      "sampled": 155,
       "period_months": [
         "202611",
         "202610",
@@ -32068,9 +32068,9 @@
       ]
     },
     "bukgu": {
-      "avg_price_per_sqm": 377.9,
-      "trade_count": 266,
-      "sampled": 266,
+      "avg_price_per_sqm": 380.0,
+      "trade_count": 500,
+      "sampled": 500,
       "period_months": [
         "202611",
         "202610",
@@ -32078,9 +32078,9 @@
       ]
     },
     "ulju": {
-      "avg_price_per_sqm": 331.5,
-      "trade_count": 377,
-      "sampled": 377,
+      "avg_price_per_sqm": 337.5,
+      "trade_count": 393,
+      "sampled": 393,
       "period_months": [
         "202611",
         "202610",
@@ -32092,17 +32092,17 @@
     "total_routes": 526,
     "total_stations": 3629,
     "city_code": "26",
-    "measured_at": "2026-11-16"
+    "measured_at": "2026-11-17"
   },
   "gold_price": {
-    "clpr": 170150.0,
-    "vs": -4740.0,
-    "fltRt": -2.71,
-    "mkp": 172000.0,
-    "hipr": 172000.0,
-    "lopr": 169700.0,
-    "trqu": 181792,
-    "basDt": "20261112"
+    "clpr": 166100.0,
+    "vs": -2100.0,
+    "fltRt": -1.25,
+    "mkp": 166860.0,
+    "hipr": 167990.0,
+    "lopr": 165000.0,
+    "trqu": 164572,
+    "basDt": "20261116"
   },
   "population_forecast": {
     "data": [],
@@ -32110,11 +32110,11 @@
   },
   "ecos_macro": {
     "base_rate": 3.0,
-    "usd_krw": 1342.0,
-    "cny_krw": 201.34,
-    "bond_3yr": 3.613,
-    "bond_10yr": 3.853,
-    "measured_at": "20261106"
+    "usd_krw": 1357.9,
+    "cny_krw": 203.43,
+    "bond_3yr": 3.639,
+    "bond_10yr": 3.863,
+    "measured_at": "20261109"
   },
   "nkis_policy": {
     "저출산": [],
@@ -1715341,6 +1715341,6 @@
         }
       }
     },
-    "computed_at": "2026-11-16 09:46 KST"
+    "computed_at": "2026-11-17 12:25 KST"
   }
 }
