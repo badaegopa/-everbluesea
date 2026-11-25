@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-11-24T14:07+09:00",
+  "_updated": "2026-11-25T12:55+09:00",
   "kosis": {
     "인구_구군별_인구": {
       "row_count": 45,
@@ -1714,7 +1714,7 @@
           "PRD_SE": "M",
           "ITM_ID": "T25",
           "TBL_ID": "DT_1B26A01",
-          "PRD_DE": "202609",
+          "PRD_DE": "202610",
           "C3_NM": "계",
           "C3_OBJ_NM_ENG": "By age ",
           "C2_OBJ_NM_ENG": "By gender",
@@ -1722,13 +1722,13 @@
           "C1_OBJ_NM": "행정구역(시군구)별",
           "C2_NM": "계",
           "C3": "000",
-          "DT": "-70",
+          "DT": "59",
           "C1": "31110",
           "UNIT_NM_ENG": "Person",
           "C3_NM_ENG": "total",
           "ITM_NM": "순이동",
           "TBL_NM": "시군구/성/연령(5세)별 1인 이동건수",
-          "LST_CHN_DE": "2026-10-15",
+          "LST_CHN_DE": "2026-11-04",
           "C1_NM_ENG": "Jung-gu",
           "C1_NM": "중구",
           "UNIT_NM": "명",
@@ -1743,7 +1743,7 @@
           "PRD_SE": "M",
           "ITM_ID": "T25",
           "TBL_ID": "DT_1B26A01",
-          "PRD_DE": "202609",
+          "PRD_DE": "202610",
           "C3_NM": "계",
           "C3_OBJ_NM_ENG": "By age ",
           "C2_OBJ_NM_ENG": "By gender",
@@ -1751,13 +1751,13 @@
           "C1_OBJ_NM": "행정구역(시군구)별",
           "C2_NM": "계",
           "C3": "000",
-          "DT": "25",
+          "DT": "-32",
           "C1": "31140",
           "UNIT_NM_ENG": "Person",
           "C3_NM_ENG": "total",
           "ITM_NM": "순이동",
           "TBL_NM": "시군구/성/연령(5세)별 1인 이동건수",
-          "LST_CHN_DE": "2026-10-15",
+          "LST_CHN_DE": "2026-11-04",
           "C1_NM_ENG": "Nam-gu",
           "C1_NM": "남구",
           "UNIT_NM": "명",
@@ -1772,7 +1772,7 @@
           "PRD_SE": "M",
           "ITM_ID": "T25",
           "TBL_ID": "DT_1B26A01",
-          "PRD_DE": "202609",
+          "PRD_DE": "202610",
           "C3_NM": "계",
           "C3_OBJ_NM_ENG": "By age ",
           "C2_OBJ_NM_ENG": "By gender",
@@ -1780,13 +1780,13 @@
           "C1_OBJ_NM": "행정구역(시군구)별",
           "C2_NM": "계",
           "C3": "000",
-          "DT": "-16",
+          "DT": "-70",
           "C1": "31170",
           "UNIT_NM_ENG": "Person",
           "C3_NM_ENG": "total",
           "ITM_NM": "순이동",
           "TBL_NM": "시군구/성/연령(5세)별 1인 이동건수",
-          "LST_CHN_DE": "2026-10-15",
+          "LST_CHN_DE": "2026-11-04",
           "C1_NM_ENG": "Dong-gu",
           "C1_NM": "동구",
           "UNIT_NM": "명",
@@ -1801,7 +1801,7 @@
           "PRD_SE": "M",
           "ITM_ID": "T25",
           "TBL_ID": "DT_1B26A01",
-          "PRD_DE": "202609",
+          "PRD_DE": "202610",
           "C3_NM": "계",
           "C3_OBJ_NM_ENG": "By age ",
           "C2_OBJ_NM_ENG": "By gender",
@@ -1809,13 +1809,13 @@
           "C1_OBJ_NM": "행정구역(시군구)별",
           "C2_NM": "계",
           "C3": "000",
-          "DT": "-37",
+          "DT": "-92",
           "C1": "31200",
           "UNIT_NM_ENG": "Person",
           "C3_NM_ENG": "total",
           "ITM_NM": "순이동",
           "TBL_NM": "시군구/성/연령(5세)별 1인 이동건수",
-          "LST_CHN_DE": "2026-10-15",
+          "LST_CHN_DE": "2026-11-04",
           "C1_NM_ENG": "Buk-gu",
           "C1_NM": "북구",
           "UNIT_NM": "명",
@@ -1830,7 +1830,7 @@
           "PRD_SE": "M",
           "ITM_ID": "T25",
           "TBL_ID": "DT_1B26A01",
-          "PRD_DE": "202609",
+          "PRD_DE": "202610",
           "C3_NM": "계",
           "C3_OBJ_NM_ENG": "By age ",
           "C2_OBJ_NM_ENG": "By gender",
@@ -1838,13 +1838,13 @@
           "C1_OBJ_NM": "행정구역(시군구)별",
           "C2_NM": "계",
           "C3": "000",
-          "DT": "-114",
+          "DT": "-25",
           "C1": "31710",
           "UNIT_NM_ENG": "Person",
           "C3_NM_ENG": "total",
           "ITM_NM": "순이동",
           "TBL_NM": "시군구/성/연령(5세)별 1인 이동건수",
-          "LST_CHN_DE": "2026-10-15",
+          "LST_CHN_DE": "2026-11-04",
           "C1_NM_ENG": "Ulju-gun",
           "C1_NM": "울주군",
           "UNIT_NM": "명",
@@ -2263,7 +2263,7 @@
       "id": "API_0704",
       "errMsg": "Success",
       "errCd": 0,
-      "trId": "q4J3_API_0704_1795496866668",
+      "trId": "I*7c_API_0704_1795578964488",
       "features": [
         {
           "type": "Feature",
@@ -31714,12 +31714,12 @@
       "tfr": 0.808,
       "aged": 21.8,
       "doctors": 2.1,
-      "net_migration_rate": -0.035,
+      "net_migration_rate": 0.029,
       "fiscal_independence": 14.42,
       "vacancy_rate": 9.04,
-      "eta": 0.475,
+      "eta": 0.477,
       "lambda12": {
-        "P1": 0.5088,
+        "P1": 0.4928,
         "P2": 0.246,
         "A1": 0.5,
         "A2": 0.4327,
@@ -31741,12 +31741,12 @@
       "tfr": 0.829,
       "aged": 18.0,
       "doctors": 3.9,
-      "net_migration_rate": 0.008,
+      "net_migration_rate": -0.01,
       "fiscal_independence": 25.82,
       "vacancy_rate": 6.99,
-      "eta": 0.581,
+      "eta": 0.58,
       "lambda12": {
-        "P1": 0.498,
+        "P1": 0.5025,
         "P2": 0.246,
         "A1": 0.5,
         "A2": 0.4327,
@@ -31768,12 +31768,12 @@
       "tfr": 0.955,
       "aged": 19.8,
       "doctors": 3.9,
-      "net_migration_rate": -0.011,
+      "net_migration_rate": -0.048,
       "fiscal_independence": 16.36,
       "vacancy_rate": 7.16,
       "eta": 0.566,
       "lambda12": {
-        "P1": 0.5028,
+        "P1": 0.512,
         "P2": 0.246,
         "A1": 0.5,
         "A2": 0.4327,
@@ -31795,12 +31795,12 @@
       "tfr": 0.98,
       "aged": 13.0,
       "doctors": 1.5,
-      "net_migration_rate": -0.017,
+      "net_migration_rate": -0.043,
       "fiscal_independence": 23.34,
       "vacancy_rate": 5.98,
-      "eta": 0.529,
+      "eta": 0.528,
       "lambda12": {
-        "P1": 0.5042,
+        "P1": 0.5108,
         "P2": 0.246,
         "A1": 0.5,
         "A2": 0.4327,
@@ -31822,12 +31822,12 @@
       "tfr": null,
       "aged": 21.1,
       "doctors": 1.4,
-      "net_migration_rate": -0.052,
+      "net_migration_rate": -0.011,
       "fiscal_independence": 30.86,
       "vacancy_rate": 10.62,
-      "eta": 0.465,
+      "eta": 0.466,
       "lambda12": {
-        "P1": 0.513,
+        "P1": 0.5028,
         "P2": 0.246,
         "A1": 0.5,
         "A2": 0.4327,
@@ -31891,7 +31891,7 @@
     "eta_count": 5
   },
   "redesign": {
-    "_updated": "2026-11-24T14:07+09:00",
+    "_updated": "2026-11-25T12:56+09:00",
     "_design": {
       "eta_inputs": {
         "①순이동률": "건수/인구×100(%)",
@@ -31909,7 +31909,7 @@
       "labeling": "정부 공식 데이터 없음 (시도/전국 단위만 존재) — '측정 불가' 금지"
     },
     "meta": {
-      "net_migration_period": "202609",
+      "net_migration_period": "202610",
       "net_migration_method": "1인 이동건수 기반 (건수/인구×100)",
       "migration_note": "산단 외지 인력 유동 포함 — 정주시민 이동과 미분리. 산업 계절성 노이즈 있음. 소수 유동이 지수에 미치는 영향 제한적.",
       "fiscal_period": "2026",
@@ -31921,31 +31921,31 @@
     "eta_inputs": {
       "31110": {
         "name": "중구",
-        "net_migration_rate": -0.035,
+        "net_migration_rate": 0.029,
         "fiscal_independence": 17.79,
         "vacancy_rate": 9.04
       },
       "31140": {
         "name": "남구",
-        "net_migration_rate": 0.008,
+        "net_migration_rate": -0.01,
         "fiscal_independence": 30.9,
         "vacancy_rate": 6.99
       },
       "31170": {
         "name": "동구",
-        "net_migration_rate": -0.011,
+        "net_migration_rate": -0.048,
         "fiscal_independence": 17.27,
         "vacancy_rate": 7.16
       },
       "31200": {
         "name": "북구",
-        "net_migration_rate": -0.017,
+        "net_migration_rate": -0.043,
         "fiscal_independence": 26.3,
         "vacancy_rate": 5.98
       },
       "31710": {
         "name": "울주군",
-        "net_migration_rate": -0.052,
+        "net_migration_rate": -0.011,
         "fiscal_independence": 37.39,
         "vacancy_rate": 10.62
       }
@@ -31953,31 +31953,31 @@
     "raw": {
       "31110": {
         "pop": 202377,
-        "net_migration_1p": -70.0,
+        "net_migration_1p": 59.0,
         "vacant_houses": 6821.0,
         "total_houses": 75491.0
       },
       "31140": {
         "pop": 304801,
-        "net_migration_1p": 25.0,
+        "net_migration_1p": -32.0,
         "vacant_houses": 7863.0,
         "total_houses": 112435.0
       },
       "31170": {
         "pop": 147258,
-        "net_migration_1p": -16.0,
+        "net_migration_1p": -70.0,
         "vacant_houses": 4075.0,
         "total_houses": 56931.0
       },
       "31200": {
         "pop": 213194,
-        "net_migration_1p": -37.0,
+        "net_migration_1p": -92.0,
         "vacant_houses": 4845.0,
         "total_houses": 81027.0
       },
       "31710": {
         "pop": 218258,
-        "net_migration_1p": -114.0,
+        "net_migration_1p": -25.0,
         "vacant_houses": 9426.0,
         "total_houses": 88773.0
       }
@@ -32001,46 +32001,46 @@
   },
   "air_quality": {
     "junggu": {
-      "pm25": 12.0,
-      "pm10": 23.0,
+      "pm25": 8.0,
+      "pm10": 14.0,
       "cai": 58,
       "station": "성남동",
-      "measured_at": "2026-11-24 13:00"
+      "measured_at": "2026-11-25 12:00"
     },
     "namgu": {
-      "pm25": 8.0,
-      "pm10": 22.0,
-      "cai": null,
+      "pm25": 6.0,
+      "pm10": 14.0,
+      "cai": 57,
       "station": "삼산동",
-      "measured_at": "2026-11-24 13:00"
+      "measured_at": "2026-11-25 12:00"
     },
     "donggu": {
-      "pm25": 11.0,
-      "pm10": 23.0,
-      "cai": 57,
+      "pm25": 10.0,
+      "pm10": 21.0,
+      "cai": 54,
       "station": "전하동",
-      "measured_at": "2026-11-24 13:00"
+      "measured_at": "2026-11-25 12:00"
     },
     "bukgu": {
-      "pm25": 11.0,
-      "pm10": 23.0,
-      "cai": 58,
+      "pm25": 5.0,
+      "pm10": 17.0,
+      "cai": 56,
       "station": "농소동",
-      "measured_at": "2026-11-24 13:00"
+      "measured_at": "2026-11-25 12:00"
     },
     "ulju": {
-      "pm25": 12.0,
-      "pm10": 19.0,
-      "cai": 57,
+      "pm25": 6.0,
+      "pm10": 12.0,
+      "cai": 58,
       "station": "삼남읍",
-      "measured_at": "2026-11-24 13:00"
+      "measured_at": "2026-11-25 12:00"
     }
   },
   "apt_price": {
     "junggu": {
-      "avg_price_per_sqm": 507.8,
-      "trade_count": 368,
-      "sampled": 368,
+      "avg_price_per_sqm": 507.6,
+      "trade_count": 371,
+      "sampled": 371,
       "period_months": [
         "202611",
         "202610",
@@ -32048,9 +32048,9 @@
       ]
     },
     "namgu": {
-      "avg_price_per_sqm": 554.4,
-      "trade_count": 707,
-      "sampled": 707,
+      "avg_price_per_sqm": 557.0,
+      "trade_count": 719,
+      "sampled": 719,
       "period_months": [
         "202611",
         "202610",
@@ -32058,9 +32058,9 @@
       ]
     },
     "donggu": {
-      "avg_price_per_sqm": 316.6,
-      "trade_count": 285,
-      "sampled": 285,
+      "avg_price_per_sqm": 316.2,
+      "trade_count": 286,
+      "sampled": 286,
       "period_months": [
         "202611",
         "202610",
@@ -32068,9 +32068,9 @@
       ]
     },
     "bukgu": {
-      "avg_price_per_sqm": 379.2,
-      "trade_count": 554,
-      "sampled": 554,
+      "avg_price_per_sqm": 379.1,
+      "trade_count": 558,
+      "sampled": 558,
       "period_months": [
         "202611",
         "202610",
@@ -32078,9 +32078,9 @@
       ]
     },
     "ulju": {
-      "avg_price_per_sqm": 338.6,
-      "trade_count": 424,
-      "sampled": 424,
+      "avg_price_per_sqm": 339.4,
+      "trade_count": 270,
+      "sampled": 270,
       "period_months": [
         "202611",
         "202610",
@@ -32092,17 +32092,17 @@
     "total_routes": 526,
     "total_stations": 3629,
     "city_code": "26",
-    "measured_at": "2026-11-24"
+    "measured_at": "2026-11-25"
   },
   "gold_price": {
-    "clpr": 157000.0,
-    "vs": 3910.0,
-    "fltRt": 2.55,
-    "mkp": 153890.0,
-    "hipr": 157110.0,
-    "lopr": 153850.0,
-    "trqu": 175570,
-    "basDt": "20261123"
+    "clpr": 156760.0,
+    "vs": -240.0,
+    "fltRt": -0.15,
+    "mkp": 157230.0,
+    "hipr": 159250.0,
+    "lopr": 156500.0,
+    "trqu": 126862,
+    "basDt": "20261124"
   },
   "population_forecast": {
     "data": [],
@@ -1715341,6 +1715341,6 @@
         }
       }
     },
-    "computed_at": "2026-11-24 14:11 KST"
+    "computed_at": "2026-11-25 12:59 KST"
   }
 }
