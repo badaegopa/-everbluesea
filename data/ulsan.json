@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-11-27T12:27+09:00",
+  "_updated": "2026-11-28T12:02+09:00",
   "kosis": {
     "인구_구군별_인구": {
       "row_count": 45,
@@ -2263,7 +2263,7 @@
       "id": "API_0704",
       "errMsg": "Success",
       "errCd": 0,
-      "trId": "svQZ_API_0704_1795750057476",
+      "trId": "YvTV_API_0704_1795834986237",
       "features": [
         {
           "type": "Feature",
@@ -31891,7 +31891,7 @@
     "eta_count": 5
   },
   "redesign": {
-    "_updated": "2026-11-27T12:27+09:00",
+    "_updated": "2026-11-28T12:03+09:00",
     "_design": {
       "eta_inputs": {
         "①순이동률": "건수/인구×100(%)",
@@ -32001,46 +32001,46 @@
   },
   "air_quality": {
     "junggu": {
-      "pm25": 13.0,
-      "pm10": 38.0,
-      "cai": 60,
+      "pm25": 29.0,
+      "pm10": 56.0,
+      "cai": 72,
       "station": "성남동",
-      "measured_at": "2026-11-27 12:00"
+      "measured_at": "2026-11-28 11:00"
     },
     "namgu": {
-      "pm25": 22.0,
-      "pm10": 47.0,
-      "cai": 62,
+      "pm25": 27.0,
+      "pm10": 55.0,
+      "cai": 79,
       "station": "삼산동",
-      "measured_at": "2026-11-27 12:00"
+      "measured_at": "2026-11-28 11:00"
     },
     "donggu": {
-      "pm25": 7.0,
-      "pm10": 21.0,
-      "cai": 52,
+      "pm25": 32.0,
+      "pm10": 60.0,
+      "cai": 82,
       "station": "전하동",
-      "measured_at": "2026-11-27 12:00"
+      "measured_at": "2026-11-28 11:00"
     },
     "bukgu": {
-      "pm25": 17.0,
-      "pm10": 40.0,
-      "cai": 64,
+      "pm25": 25.0,
+      "pm10": 51.0,
+      "cai": 79,
       "station": "농소동",
-      "measured_at": "2026-11-27 12:00"
+      "measured_at": "2026-11-28 11:00"
     },
     "ulju": {
-      "pm25": 6.0,
-      "pm10": 14.0,
-      "cai": 66,
+      "pm25": 31.0,
+      "pm10": 52.0,
+      "cai": 82,
       "station": "삼남읍",
-      "measured_at": "2026-11-27 12:00"
+      "measured_at": "2026-11-28 11:00"
     }
   },
   "apt_price": {
     "junggu": {
-      "avg_price_per_sqm": 506.7,
-      "trade_count": 381,
-      "sampled": 381,
+      "avg_price_per_sqm": null,
+      "trade_count": 0,
+      "sampled": 0,
       "period_months": [
         "202611",
         "202610",
@@ -32048,9 +32048,9 @@
       ]
     },
     "namgu": {
-      "avg_price_per_sqm": 559.0,
-      "trade_count": 729,
-      "sampled": 729,
+      "avg_price_per_sqm": null,
+      "trade_count": 0,
+      "sampled": 0,
       "period_months": [
         "202611",
         "202610",
@@ -32058,9 +32058,9 @@
       ]
     },
     "donggu": {
-      "avg_price_per_sqm": 318.2,
-      "trade_count": 294,
-      "sampled": 294,
+      "avg_price_per_sqm": null,
+      "trade_count": 0,
+      "sampled": 0,
       "period_months": [
         "202611",
         "202610",
@@ -32068,9 +32068,9 @@
       ]
     },
     "bukgu": {
-      "avg_price_per_sqm": 378.5,
-      "trade_count": 570,
-      "sampled": 570,
+      "avg_price_per_sqm": null,
+      "trade_count": 0,
+      "sampled": 0,
       "period_months": [
         "202611",
         "202610",
@@ -32078,9 +32078,9 @@
       ]
     },
     "ulju": {
-      "avg_price_per_sqm": 339.6,
-      "trade_count": 443,
-      "sampled": 443,
+      "avg_price_per_sqm": null,
+      "trade_count": 0,
+      "sampled": 0,
       "period_months": [
         "202611",
         "202610",
@@ -32089,10 +32089,10 @@
     }
   },
   "bus_info": {
-    "total_routes": 526,
-    "total_stations": 3629,
+    "total_routes": 527,
+    "total_stations": 3633,
     "city_code": "26",
-    "measured_at": "2026-11-27"
+    "measured_at": "2026-11-28"
   },
   "gold_price": {
     "clpr": 154490.0,
@@ -32110,11 +32110,11 @@
   },
   "ecos_macro": {
     "base_rate": 3.0,
-    "usd_krw": 1335.0,
-    "cny_krw": 200.12,
-    "bond_3yr": 3.725,
-    "bond_10yr": 3.966,
-    "measured_at": "20261117"
+    "usd_krw": 1338.8,
+    "cny_krw": 200.79,
+    "bond_3yr": 3.736,
+    "bond_10yr": 3.975,
+    "measured_at": "20261118"
   },
   "nkis_policy": {
     "저출산": [],
@@ -1715341,6 +1715341,6 @@
         }
       }
     },
-    "computed_at": "2026-11-27 12:31 KST"
+    "computed_at": "2026-11-28 12:06 KST"
   }
 }
